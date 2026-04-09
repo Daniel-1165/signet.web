@@ -35,7 +35,7 @@ const Community = () => {
             handle: "@astraeus_",
             verified: true,
             avatar: "AS",
-            avatarColor: "bg-gradient-to-br from-signet-green to-emerald-600",
+            avatarColor: "bg-foreground text-background",
             content: "The roots of sustained growth are often invisible. Focus on the 1% compound daily.\n\nWho else is hitting their deep work target today? 🌲",
             image: "/community_roots.png",
             time: "2h",
@@ -51,7 +51,7 @@ const Community = () => {
             handle: "@val_strategist",
             verified: true,
             avatar: "VA",
-            avatarColor: "bg-gradient-to-br from-earth-brown to-amber-700",
+            avatarColor: "bg-accent text-white",
             content: "Just finished the 'Iron Discipline' module. The mental framework for decision-making under pressure is genuinely a game changer.\n\nMorning routine has never been this dialed in. Highly recommend to anyone in the current cohort.",
             time: "4h",
             replies: 13,
@@ -66,7 +66,7 @@ const Community = () => {
             handle: "@zenith_hq",
             verified: false,
             avatar: "ZN",
-            avatarColor: "bg-gradient-to-br from-slate-600 to-slate-800",
+            avatarColor: "bg-foreground text-background",
             content: "3 hours of deep focus done before 9am. The flow state is real today.\n\nAnyone else notice that consistency compounds faster than intensity? The data from my last 30 days is wild 📈",
             time: "5h",
             replies: 8,
@@ -85,9 +85,9 @@ const Community = () => {
     ];
 
     const whoToFollow = [
-        { name: "Marcus Aurelius", handle: "@stoic_arch", avatar: "MA", color: "bg-gradient-to-br from-amber-600 to-orange-700", verified: true },
-        { name: "Eleanor", handle: "@el_growth", avatar: "EL", color: "bg-gradient-to-br from-purple-500 to-indigo-600", verified: false },
-        { name: "Rhys James", handle: "@rhys_j", avatar: "RJ", color: "bg-gradient-to-br from-sky-500 to-blue-600", verified: true },
+        { name: "Marcus Aurelius", handle: "@stoic_arch", avatar: "MA", color: "bg-foreground", verified: true },
+        { name: "Eleanor", handle: "@el_growth", avatar: "EL", color: "bg-accent", verified: false },
+        { name: "Rhys James", handle: "@rhys_j", avatar: "RJ", color: "bg-foreground", verified: true },
     ];
 
     const navItems = [
@@ -104,22 +104,22 @@ const Community = () => {
     };
 
     return (
-        <section id="community" className="py-24 bg-[#F8F9F5]">
+        <section id="community" className="py-24 bg-background">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
                 {/* Section Header */}
                 <motion.div
-                    className="mb-12 text-center"
+                    className="mb-12 text-left"
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-signet-green/60 mb-4">The Network</p>
-                    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground leading-[1.1]">
+                    <p className="text-xs font-black uppercase tracking-[0.3em] text-accent/80 mb-4">The Network</p>
+                    <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground leading-[1.1]">
                         Where Growth Happens<br />
                         <span className="text-foreground/30">in Real Time.</span>
                     </h2>
-                    <p className="mt-5 text-base text-foreground/40 max-w-lg mx-auto">
+                    <p className="mt-5 text-base text-foreground/50 max-w-lg">
                         A private feed of ideas, breakthroughs, and accountability from high-performers building in public.
                     </p>
                 </motion.div>

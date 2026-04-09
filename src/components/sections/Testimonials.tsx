@@ -35,8 +35,8 @@ const Testimonials = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-signet-green mb-3">Community</p>
-                    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground max-w-md">Real stories from our network.</h2>
+                    <p className="text-xs font-black uppercase tracking-[0.25em] text-accent mb-3">Community</p>
+                    <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground max-w-md">Real stories from our network.</h2>
                     <p className="mt-4 text-lg text-foreground/50 font-normal">Join 10,000+ individuals committed to building their life right.</p>
                 </motion.div>
 
@@ -48,11 +48,11 @@ const Testimonials = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: i * 0.15 }}
-                            className="group relative rounded-2xl border border-black/[0.06] bg-[#F7F8F5] p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-lg hover:shadow-black/5"
+                            className="group relative rounded-2xl border border-black/[0.08] bg-white p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-lg hover:shadow-black/5"
                         >
                             <p className="text-lg leading-relaxed italic text-foreground/70 mb-8">"{review.content}"</p>
                             <div className="flex items-center gap-4">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white font-semibold text-xs text-signet-green shadow-sm border border-black/[0.04]">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent font-semibold text-xs text-white shadow-sm">
                                     {review.logo}
                                 </div>
                                 <div>

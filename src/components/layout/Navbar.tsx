@@ -47,7 +47,7 @@ const Navbar = () => {
                 </motion.div>
 
                 <div className="hidden items-center gap-10 md:flex">
-                    {["Features", "Products", "Community", "Assessments"].map((item, i) => (
+                    {["Home", "Features", "Products", "Community", "Assessments"].map((item, i) => (
                         <motion.div
                             key={item}
                             initial={{ opacity: 0, y: -10 }}
@@ -56,7 +56,7 @@ const Navbar = () => {
                             className="relative group"
                         >
                             <Link
-                                href={item === "Features" ? "/features" : item === "Assessments" ? "/assessments" : `#${item.toLowerCase()}`}
+                                href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Assessments" ? "/assessments" : `#${item.toLowerCase()}`}
                                 className="relative py-2 text-sm font-medium tracking-tight text-foreground/60 transition-colors hover:text-foreground inline-flex items-center gap-1"
                             >
                                 {item}
@@ -142,10 +142,10 @@ const Navbar = () => {
                         className="border-t border-black/[0.05] bg-white py-8 md:hidden dark:border-white/[0.05] dark:bg-black"
                     >
                         <div className="flex flex-col items-center gap-6 px-6">
-                            {["Features", "Products", "Community", "Assessments"].map((item) => (
+                            {["Home", "Features", "Products", "Community", "Assessments"].map((item) => (
                                 <Link
                                     key={item}
-                                    href={`#${item.toLowerCase()}`}
+                                    href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Assessments" ? "/assessments" : `#${item.toLowerCase()}`}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="text-lg font-medium tracking-tight text-foreground/60 hover:text-foreground"
                                 >

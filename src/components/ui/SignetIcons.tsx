@@ -19,7 +19,7 @@ export const NotificationIcon = ({ size = 24, className = "" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path d="M18 8C18 11.3137 15.3137 14 12 14C8.68629 14 6 11.3137 6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8Z" stroke="currentColor" strokeWidth="2" />
     <path d="M10 22H14C15.1046 22 16 21.1046 16 20H8C8 21.1046 8.89543 22 10 22Z" fill="currentColor" />
-    <circle cx="17" cy="7" r="3" fill="#4ade80" stroke="#0a0f0a" strokeWidth="1.5" />
+    <circle cx="17" cy="7" r="3" fill="#FF6B00" stroke="#000000" strokeWidth="1.5" />
   </svg>
 );
 

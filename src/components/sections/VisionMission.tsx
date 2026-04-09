@@ -7,9 +7,6 @@ const VisionMission = () => {
     return (
         <section className="py-24 bg-white relative overflow-hidden">
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-signet-green/[0.02] transform translate-x-1/4 -skew-x-12" />
-            <div className="absolute bottom-10 left-10 w-1.5 h-1.5 rounded-full bg-terra-soil opacity-20" />
-            
             <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
                 <motion.div
                     className="mb-14 text-center space-y-4"
@@ -19,7 +16,6 @@ const VisionMission = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <p className="text-[10px] font-black uppercase tracking-[0.4em] text-terra-soil/40 mb-3 font-heading">Operational Compass</p>
-                    <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-foreground font-heading leading-tight uppercase">Our North <span className="text-signet-green">Star.</span></h2>
                     <div className="w-12 h-[1px] bg-solar-gold/30 mx-auto" />
                 </motion.div>
 
@@ -29,7 +25,7 @@ const VisionMission = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative overflow-hidden rounded-[3rem] bg-[#0A261D] p-12 flex flex-col gap-8 group"
+                        className="relative overflow-hidden rounded-[3rem] bg-[#0c120c] p-12 flex flex-col gap-8 group"
                     >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-solar-gold shadow-[0_0_15px_rgba(251,191,36,0.1)]">
@@ -42,7 +38,7 @@ const VisionMission = () => {
                             </p>
                         </div>
                         <div className="mt-auto pt-8 border-t border-white/5">
-                           <span className="text-[9px] font-bold uppercase tracking-widest text-[#4ade80]">High-Signal Collective</span>
+                           <span className="text-[9px] font-bold uppercase tracking-widest text-foreground/40">High-Signal Collective</span>
                         </div>
                     </motion.div>
 
@@ -54,8 +50,8 @@ const VisionMission = () => {
                         className="relative overflow-hidden rounded-[3rem] border border-black/[0.06] bg-[#F7F8F5] p-12 flex flex-col gap-8 group hover:bg-white transition-colors duration-500"
                     >
                         <div className="absolute bottom-0 right-0 w-32 h-32 bg-terra-soil/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0A261D] text-white shadow-xl shadow-black/10">
-                           <Activity size={24} className="text-[#4ade80]" />
+                        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0c120c] text-white shadow-xl shadow-black/10">
+                           <Activity size={24} className="text-solar-gold" />
                         </div>
                         <div>
                             <h2 className="text-3xl font-bold tracking-tight text-foreground mb-4 font-heading uppercase font-heading">The Mission</h2>

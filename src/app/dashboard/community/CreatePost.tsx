@@ -2,36 +2,68 @@
 
 import { useSupabaseClient } from "@/lib/supabase/client";
 import { useUser } from "@clerk/nextjs";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Image as ImageIcon, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function CreatePost() {
   const { user } = useUser();
-  const supabase = useSupabaseClient();
   const router = useRouter();
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onload = (e) => setImagePreview(e.target?.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!content.trim() || isLoading) return;
 
     setIsLoading(true);
-    const { error } = await supabase
-      .from('posts')
-      .insert({
-        content: content.trim(),
-        user_id: user?.id
+    try {
+      const formData = new FormData();
+      formData.append('content', content.trim());
+      if (selectedImage) {
+        formData.append('image', selectedImage);
+      }
+
+      const response = await fetch('/api/community/posts', {
+        method: 'POST',
+        body: formData,
       });
 
-    setIsLoading(false);
-    if (!error) {
-      setContent("");
-      setIsFocused(false);
-      router.refresh();
+      if (response.ok) {
+        setContent("");
+        setIsFocused(false);
+        setSelectedImage(null);
+        setImagePreview(null);
+        if (fileInputRef.current) fileInputRef.current.value = '';
+        router.refresh();
+      } else {
+        console.error('Failed to create post');
+      }
+    } catch (error) {
+      console.error('Error creating post:', error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -62,6 +94,19 @@ export function CreatePost() {
               }}
             />
             
+            {imagePreview && (
+              <div className="mt-4 relative">
+                <img src={imagePreview} alt="Preview" className="w-full max-h-64 object-cover rounded-xl" />
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="absolute top-2 right-2 p-1 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+            )}
+            
             <AnimatePresence>
               {isFocused && (
                 <motion.div 
@@ -71,7 +116,18 @@ export function CreatePost() {
                   className="flex items-center justify-between mt-4 overflow-hidden"
                 >
                   <div className="flex items-center gap-3">
-                    <button type="button" className="p-2.5 rounded-full bg-[#1a201a] text-white/40 hover:text-[#4ade80] transition-colors">
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageSelect}
+                      className="hidden"
+                    />
+                    <button 
+                      type="button" 
+                      onClick={() => fileInputRef.current?.click()}
+                      className="p-2.5 rounded-full bg-[#1a201a] text-white/40 hover:text-[#4ade80] transition-colors"
+                    >
                       <ImageIcon size={18} />
                     </button>
                     <button 

@@ -52,11 +52,11 @@ const Hero = () => {
             {/* Interactive Parallax Orbs */}
             <motion.div 
                 style={{ x: xOrb1, y: yOrb1 }}
-                className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-signet-green/10 blur-[120px] rounded-full pointer-events-none -z-10" 
+                className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-accent/5 blur-[120px] rounded-full pointer-events-none -z-10" 
             />
             <motion.div 
                 style={{ x: xOrb2, y: yOrb2 }}
-                className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-signet-light/20 blur-[150px] rounded-full pointer-events-none -z-10" 
+                className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-foreground/5 blur-[150px] rounded-full pointer-events-none -z-10" 
             />
 
             {/* Giant Logo Watermark */}
@@ -71,25 +71,25 @@ const Hero = () => {
 
             <motion.div style={{ y: yHero }} className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
                 <motion.div
-                    className="flex flex-col items-center text-center"
+                    className="flex flex-col items-start text-left"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
                 >
                     <motion.div
                         variants={itemVariants}
-                        className="mb-8 flex items-center gap-3 rounded-full border border-black/[0.05] bg-white/50 px-4 py-2 soft-blur"
+                        className="mb-8 flex items-center gap-3 rounded-full border border-black/[0.08] bg-white px-4 py-2 shadow-sm"
                     >
-                        <div className="h-2 w-2 rounded-full bg-signet-green animate-pulse" />
-                        <span className="text-[11px] font-semibold uppercase tracking-widest text-foreground/60">A New Standard for Growth</span>
+                        <div className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-foreground/80">A New Standard for Growth</span>
                     </motion.div>
 
                     <motion.h1
                         variants={itemVariants}
-                        className="max-w-4xl text-5xl font-medium leading-[1.1] tracking-tight md:text-7xl lg:text-8xl"
+                        className="max-w-4xl text-6xl font-extrabold leading-[1.05] tracking-tighter md:text-8xl lg:text-9xl text-foreground"
                     >
                         Grow silently,<br />
-                        <span className="bg-gradient-to-r from-signet-green to-foreground/60 bg-clip-text text-transparent italic font-light">thrive sustainably.</span>
+                        <span className="text-accent italic font-black">thrive sustainably.</span>
                     </motion.h1>
 
                     <motion.p
@@ -102,9 +102,9 @@ const Hero = () => {
 
                     <motion.div
                         variants={itemVariants}
-                        className="mt-12 flex flex-col items-center justify-center gap-8 sm:flex-row w-full"
+                        className="mt-12 flex flex-col items-start gap-4 sm:flex-row w-full"
                     >
-                        <MagneticButton className="group relative flex h-14 items-center justify-center gap-3 rounded-full bg-foreground px-10 text-sm font-semibold text-background transition-colors hover:bg-signet-green hover:shadow-[0_8px_30px_rgb(45,106,79,0.3)]">
+                        <MagneticButton className="group relative flex h-14 items-center justify-center gap-3 rounded-full bg-foreground px-10 text-sm font-bold text-background transition-colors hover:bg-accent hover:shadow-[0_8px_30px_rgba(255,107,0,0.3)]">
                             Start Your Journey
                             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </MagneticButton>
@@ -129,8 +129,8 @@ const Hero = () => {
                         ].map((stat) => (
                             <div key={stat.label} className="group text-center md:text-left flex flex-col items-center md:items-start gap-2 cursor-default">
                                 <motion.div 
-                                    whileHover={{ scale: 1.1, color: "var(--color-signet-green)" }}
-                                    className="text-4xl md:text-5xl font-light tracking-tight text-foreground/80 transition-colors"
+                                    whileHover={{ scale: 1.1, color: "var(--color-accent)" }}
+                                    className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground transition-colors"
                                 >
                                     {stat.value}
                                 </motion.div>

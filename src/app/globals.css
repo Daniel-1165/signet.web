@@ -7,31 +7,31 @@
   --font-heading: var(--font-syne);
   --font-mono: var(--font-geist-mono);
 
-  /* Evergreen Premium Palette */
-  --color-accent: #0A261D; /* Deep Pine */
-  --color-signet-green: #2D6A4F; /* Leaf Green */
-  --color-growth-green: #4C7D4D; /* Organic Green */
-  --color-earth-brown: #6B4E31; /* Earthy Brown */
+  /* Unified Premium Palette (Green Accent) */
+  --color-accent: #16A34A; /* Organizations Green */
+  --color-signet-green: #16A34A;
+  --color-growth-green: #22C55E;
+  --color-earth-brown: #0A0A0A;
   
   /* Unique Psychology Accents for Details */
-  --color-solar-gold: #fbbf24; /* Focus & Energy */
-  --color-terra-soil: #c2410c; /* Grounding & Foundation */
-  --color-vision-blue: #0ea5e9; /* Clarity & Vision */
+  --color-solar-gold: #fbbf24; 
+  --color-terra-soil: #171717;
+  --color-vision-blue: #0ea5e9;
   
-  --color-signet-light: #D8E2DC;
-  --color-platinum: #F4F6F0;
-  --color-emerald-glow: #4ade80;
+  --color-signet-light: #171717;
+  --color-platinum: #111111;
+  --color-emerald-glow: #16A34A;
 }
 
 :root {
-  --background: #F8F9F5; /* Very light, organic cream */
-  --foreground: #0A261D; /* Deep Pine text */
+  --background: #050505; /* Deep dark background */
+  --foreground: #EDEDED; /* Light grey text */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #081C15; /* Deep, rich forest night (if they force dark mode) */
-    --foreground: #F4F6F0;
+    --background: #050505;
+    --foreground: #EDEDED;
   }
 }
 

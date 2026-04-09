@@ -3,10 +3,74 @@
 import { motion } from "framer-motion";
 import { MessageSquare, Heart, Share2, MoreHorizontal, Clock } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import { useState, useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
 
 export function PostCard({ post, profile }: { post: any; profile: any }) {
+  const { user } = useUser();
+  const [reactions, setReactions] = useState(post.post_reactions || []);
+  const [comments, setComments] = useState(post.post_comments || []);
+  const [showComments, setShowComments] = useState(false);
+  const [newComment, setNewComment] = useState("");
+  const [isLoadingReaction, setIsLoadingReaction] = useState(false);
+  const [isLoadingComment, setIsLoadingComment] = useState(false);
+
   const authorName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "Growth Member";
   const authorImage = profile?.image_url || "/placeholder-avatar.png";
+
+  const userReaction = reactions.find((r: any) => r.user_id === user?.id);
+  const reactionCount = reactions.length;
+
+  const handleReaction = async () => {
+    if (!user || isLoadingReaction) return;
+
+    setIsLoadingReaction(true);
+    try {
+      const response = await fetch(`/api/community/posts/${post.id}/reactions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reaction_type: 'like' }),
+      });
+
+      if (response.ok) {
+        const { action } = await response.json();
+        if (action === 'added') {
+          setReactions([...reactions, { id: Date.now(), user_id: user.id, reaction_type: 'like' }]);
+        } else {
+          setReactions(reactions.filter((r: any) => r.user_id !== user.id));
+        }
+      }
+    } catch (error) {
+      console.error('Error toggling reaction:', error);
+    } finally {
+      setIsLoadingReaction(false);
+    }
+  };
+
+  const handleComment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newComment.trim() || !user || isLoadingComment) return;
+
+    setIsLoadingComment(true);
+    try {
+      const response = await fetch(`/api/community/posts/${post.id}/comments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: newComment.trim() }),
+      });
+
+      if (response.ok) {
+        const comment = await response.json();
+        setComments([...comments, comment]);
+        setNewComment("");
+        setShowComments(true);
+      }
+    } catch (error) {
+      console.error('Error adding comment:', error);
+    } finally {
+      setIsLoadingComment(false);
+    }
+  };
 
   return (
     <motion.div 
@@ -37,20 +101,114 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
         <p className="text-[#a5b0a5] leading-relaxed text-lg font-medium whitespace-pre-wrap">
           {post.content}
         </p>
+        {post.image_url && (
+          <div className="mt-4">
+            <img 
+              src={post.image_url} 
+              alt="Post image" 
+              className="w-full max-h-96 object-cover rounded-xl border border-white/5" 
+            />
+          </div>
+        )}
       </div>
 
       <div className="flex items-center gap-6 pt-6 border-t border-white/5">
-        <ActionButton icon={<Heart size={18} />} count={0} label="Applaud" />
-        <ActionButton icon={<MessageSquare size={18} />} count={0} label="Insight" />
+        <ActionButton 
+          icon={<Heart size={18} className={userReaction ? 'fill-[#4ade80] text-[#4ade80]' : ''} />} 
+          count={reactionCount} 
+          label="Applaud" 
+          onClick={handleReaction}
+          isLoading={isLoadingReaction}
+        />
+        <ActionButton 
+          icon={<MessageSquare size={18} />} 
+          count={comments.length} 
+          label="Insight" 
+          onClick={() => setShowComments(!showComments)}
+        />
         <ActionButton icon={<Share2 size={18} />} count={0} label="Circulate" />
       </div>
+
+      {/* Comments Section */}
+      {showComments && (
+        <motion.div 
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          className="mt-6 pt-6 border-t border-white/5 space-y-4"
+        >
+          {comments.length > 0 && (
+            <div className="space-y-4">
+              {comments.map((comment: any) => (
+                <div key={comment.id} className="flex gap-3">
+                  <img 
+                    src={comment.profiles?.image_url || "/placeholder-avatar.png"} 
+                    alt={comment.profiles ? `${comment.profiles.first_name} ${comment.profiles.last_name}` : "User"}
+                    className="w-8 h-8 rounded-full object-cover border border-white/10"
+                  />
+                  <div className="flex-1">
+                    <div className="bg-[#1a201a] rounded-xl p-3">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-sm font-semibold text-white">
+                          {comment.profiles ? `${comment.profiles.first_name || ''} ${comment.profiles.last_name || ''}`.trim() : "User"}
+                        </span>
+                        <span className="text-xs text-white/40">
+                          {formatDistanceToNow(new Date(comment.created_at))} ago
+                        </span>
+                      </div>
+                      <p className="text-sm text-white/80">{comment.content}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {user && (
+            <form onSubmit={handleComment} className="flex gap-3">
+              <img 
+                src={user.imageUrl} 
+                alt={user.firstName || "You"}
+                className="w-8 h-8 rounded-full object-cover border border-white/10"
+              />
+              <div className="flex-1 flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Share your insight..."
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  className="flex-1 bg-[#1a201a] border border-white/5 rounded-full px-4 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#4ade80]/50"
+                  disabled={isLoadingComment}
+                />
+                <button
+                  type="submit"
+                  disabled={!newComment.trim() || isLoadingComment}
+                  className="px-4 py-2 bg-[#4ade80] text-[#0a0f0a] rounded-full text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#4ade80]/90 transition-colors"
+                >
+                  {isLoadingComment ? '...' : 'Post'}
+                </button>
+              </div>
+            </form>
+          )}
+        </motion.div>
+      )}
     </motion.div>
   );
 }
 
-function ActionButton({ icon, count, label }: { icon: React.ReactNode; count: number; label: string }) {
+function ActionButton({ icon, count, label, onClick, isLoading }: { 
+  icon: React.ReactNode; 
+  count: number; 
+  label: string;
+  onClick?: () => void;
+  isLoading?: boolean;
+}) {
   return (
-    <button className="flex items-center gap-2.5 text-white/40 hover:text-white transition-all group/btn">
+    <button 
+      className="flex items-center gap-2.5 text-white/40 hover:text-white transition-all group/btn disabled:opacity-50 disabled:cursor-not-allowed"
+      onClick={onClick}
+      disabled={isLoading}
+    >
       <div className="p-2 rounded-xl group-hover/btn:bg-[#1a201a] transition-colors">
         {icon}
       </div>

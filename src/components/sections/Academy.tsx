@@ -12,7 +12,7 @@ const courses = [
         icon: <ShieldCheck className="h-5 w-5" />,
         duration: "4 Weeks",
         stats: "Level: Foundation",
-        accent: "bg-signet-green/10 text-signet-green"
+        accent: "bg-accent/10 text-accent"
     },
     {
         title: "Deep Focus Protocols",
@@ -21,7 +21,7 @@ const courses = [
         icon: <Target className="h-5 w-5" />,
         duration: "6 Weeks",
         stats: "Level: Advanced",
-        accent: "bg-[#6B4E31]/10 text-[#6B4E31]"
+        accent: "bg-foreground/10 text-foreground"
     },
     {
         title: "Mental Model Synthesis",
@@ -30,7 +30,7 @@ const courses = [
         icon: <Layers className="h-5 w-5" />,
         duration: "持续 Weeks",
         stats: "Level: Mastery",
-        accent: "bg-blue-500/10 text-blue-600"
+        accent: "bg-accent/10 text-accent"
     },
     {
         title: "Adaptive Leadership",
@@ -39,7 +39,7 @@ const courses = [
         icon: <Zap className="h-5 w-5" />,
         duration: "8 Weeks",
         stats: "Level: Expert",
-        accent: "bg-purple-500/10 text-purple-600"
+        accent: "bg-foreground/10 text-foreground"
     }
 ];
 
@@ -47,9 +47,9 @@ const Academy = () => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
 
     return (
-        <section id="academy" className="py-32 overflow-hidden relative bg-[#F7F8F5]/30">
+        <section id="academy" className="py-32 overflow-hidden relative bg-background">
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-signet-green/[0.03] rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/4" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/4" />
             
             <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row gap-20">
                 <motion.div
@@ -59,12 +59,12 @@ const Academy = () => {
                     transition={{ duration: 0.8 }}
                     className="lg:w-[40%] flex flex-col justify-center"
                 >
-                    <div className="sticky top-40">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-signet-green/10 text-signet-green text-[10px] font-bold uppercase tracking-widest mb-6">
+                    <div className="sticky top-40 text-left">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest mb-6">
                             <GraduationCap className="h-3 w-3" /> Signet Academy
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground mb-8 leading-[1.1]">
-                            The Growth <br /><span className="italic font-light text-foreground/40">Curriculum.</span>
+                        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground mb-8 leading-[1.1]">
+                            The Growth <br /><span className="italic font-black text-foreground/40">Curriculum.</span>
                         </h2>
                         <p className="text-xl font-normal text-foreground/50 leading-relaxed mb-12 max-w-md">
                             Education at Signet is not passive consumption. It's a structured escalation of your internal capabilities.
@@ -78,13 +78,13 @@ const Academy = () => {
                                 "Post-completion certification"
                             ].map((item, id) => (
                                 <div key={id} className="flex items-center gap-3 text-sm font-medium text-foreground/70">
-                                    <div className="h-1.5 w-1.5 rounded-full bg-signet-green" />
+                                    <div className="h-1.5 w-1.5 rounded-full bg-accent" />
                                     {item}
                                 </div>
                             ))}
                         </div>
 
-                        <button className="mt-12 group flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-signet-green hover:text-foreground transition-colors duration-300">
+                        <button className="mt-12 group flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-accent hover:text-foreground transition-colors duration-300">
                             Apply for next Cohort <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </button>
                     </div>
@@ -119,12 +119,12 @@ const Academy = () => {
                                                 {course.category}
                                             </span>
                                             {isActive && (
-                                                <div className="flex items-center gap-1 text-[9px] font-bold text-signet-green uppercase tracking-tighter">
+                                                <div className="flex items-center gap-1 text-[9px] font-bold text-accent uppercase tracking-tighter">
                                                     <Star className="h-2 w-2 fill-current" /> Active Enrollment
                                                 </div>
                                             )}
                                         </div>
-                                        <h3 className={`text-2xl font-medium transition-colors duration-500 ${isActive ? "text-foreground" : "text-foreground/40 group-hover:text-foreground/60"}`}>
+                                        <h3 className={`text-2xl font-bold tracking-tight transition-colors duration-500 ${isActive ? "text-foreground" : "text-foreground/40 group-hover:text-foreground/60"}`}>
                                             {course.title}
                                         </h3>
                                     </div>
@@ -157,7 +157,7 @@ const Academy = () => {
                                                     </div>
                                                 </div>
                                                 <div className="w-full md:w-32 flex flex-col gap-2">
-                                                    <button className="w-full py-3 rounded-2xl bg-foreground text-white text-[11px] font-bold uppercase tracking-widest hover:bg-signet-green transition-colors">
+                                                    <button className="w-full py-3 rounded-2xl bg-foreground text-white text-[11px] font-bold uppercase tracking-widest hover:bg-accent transition-colors">
                                                         Explore
                                                     </button>
                                                 </div>

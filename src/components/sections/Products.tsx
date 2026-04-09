@@ -11,7 +11,7 @@ const Products = () => {
             description: "A deep-dive into the seasonal philosophy of focus and high-performance execution.",
             icon: <Book className="h-6 w-6" />,
             image: "/community_roots.png",
-            color: "bg-signet-green/10"
+            color: "bg-solar-gold/10"
         },
         {
             title: "Habitual Architecture",
@@ -45,7 +45,7 @@ const Products = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-signet-green mb-3">Resources & Materials</p>
+                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-solar-gold mb-3">Resources & Materials</p>
                     <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground max-w-2xl leading-tight">
                         Tools for the Modern Architect of Self.
                     </h2>
@@ -66,14 +66,14 @@ const Products = () => {
                             </div>
                             
                             <div className="flex-1">
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-signet-green">{product.category}</span>
-                                <h3 className="mt-2 text-xl font-semibold text-foreground group-hover:text-signet-green transition-colors">{product.title}</h3>
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-solar-gold">{product.category}</span>
+                                <h3 className="mt-2 text-xl font-semibold text-foreground group-hover:text-solar-gold transition-colors">{product.title}</h3>
                                 <p className="mt-3 text-sm leading-relaxed text-foreground/50">{product.description}</p>
                             </div>
 
                             <div className="mt-8 pt-6 border-t border-black/[0.03] flex items-center justify-between">
                                 <span className="text-xs font-bold text-foreground">Explore Material</span>
-                                <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-signet-green transition-colors">
+                                <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-solar-gold transition-colors">
                                     <ArrowUpRight className="h-4 w-4" />
                                 </div>
                             </div>

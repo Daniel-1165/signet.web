@@ -45,12 +45,33 @@ CREATE TABLE IF NOT EXISTS public.posts (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
 );
 
+-- 6. Post Reactions (likes, etc.)
+CREATE TABLE IF NOT EXISTS public.post_reactions (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  post_id UUID REFERENCES public.posts(id) ON DELETE CASCADE,
+  user_id TEXT REFERENCES public.profiles(id) ON DELETE CASCADE,
+  reaction_type TEXT DEFAULT 'like', -- 'like', 'love', 'laugh', etc.
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()),
+  UNIQUE(post_id, user_id, reaction_type)
+);
+
+-- 7. Post Comments
+CREATE TABLE IF NOT EXISTS public.post_comments (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  post_id UUID REFERENCES public.posts(id) ON DELETE CASCADE,
+  user_id TEXT REFERENCES public.profiles(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
+);
+
 -- Enable RLS on all tables
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.rooms ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.room_members ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.messages ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.post_reactions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.post_comments ENABLE ROW LEVEL SECURITY;
 
 -- 6. Row Level Security Policies
 
@@ -81,5 +102,25 @@ CREATE POLICY "Posts can be created by everyone" ON public.posts FOR INSERT WITH
 CREATE POLICY "Posts can be updated by everyone" ON public.posts FOR UPDATE USING (true);
 CREATE POLICY "Posts can be deleted by everyone" ON public.posts FOR DELETE USING (true);
 
+-- Post Reactions: Anyone can read, create, delete
+CREATE POLICY "Post reactions are viewable by everyone" ON public.post_reactions FOR SELECT USING (true);
+CREATE POLICY "Post reactions can be created by everyone" ON public.post_reactions FOR INSERT WITH CHECK (true);
+CREATE POLICY "Post reactions can be deleted by everyone" ON public.post_reactions FOR DELETE USING (true);
+
+-- Post Comments: Anyone can read, create, update, delete
+CREATE POLICY "Post comments are viewable by everyone" ON public.post_comments FOR SELECT USING (true);
+CREATE POLICY "Post comments can be created by everyone" ON public.post_comments FOR INSERT WITH CHECK (true);
+CREATE POLICY "Post comments can be updated by everyone" ON public.post_comments FOR UPDATE USING (true);
+CREATE POLICY "Post comments can be deleted by everyone" ON public.post_comments FOR DELETE USING (true);
+
 -- 7. Initialize Global Room
 INSERT INTO public.rooms (name, type) VALUES ('Global Collective', 'group') ON CONFLICT DO NOTHING;
+
+-- 8. Create Storage Bucket for Post Images
+INSERT INTO storage.buckets (id, name, public) VALUES ('post-images', 'post-images', true) ON CONFLICT DO NOTHING;
+
+-- 9. Storage Policies for Post Images
+CREATE POLICY "Post images are publicly accessible" ON storage.objects FOR SELECT USING (bucket_id = 'post-images');
+CREATE POLICY "Users can upload post images" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'post-images');
+CREATE POLICY "Users can update their own post images" ON storage.objects FOR UPDATE USING (bucket_id = 'post-images');
+CREATE POLICY "Users can delete their own post images" ON storage.objects FOR DELETE USING (bucket_id = 'post-images');

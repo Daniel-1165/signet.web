@@ -25,8 +25,8 @@ const FeaturesGrid = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-signet-green mb-3">The Blueprint</p>
-                    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground max-w-xl leading-tight">
+                    <p className="text-xs font-black uppercase tracking-[0.25em] text-accent mb-3">The Blueprint</p>
+                    <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground max-w-xl leading-tight">
                         A framework built for those who grow in silence.
                     </h2>
                 </motion.div>
@@ -49,7 +49,7 @@ const FeaturesGrid = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <div className="absolute bottom-0 left-0 p-8">
-                            <div className="inline-flex items-center gap-2 bg-signet-green/90 text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
+                            <div className="inline-flex items-center gap-2 bg-accent/90 text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
                                 <Target className="h-3 w-3" /> Deep Focus
                             </div>
                             <h3 className="text-2xl md:text-3xl font-semibold text-white leading-snug max-w-sm">
@@ -68,7 +68,7 @@ const FeaturesGrid = () => {
                             viewport={{ once: true }}
                             className="group flex-1 rounded-2xl border border-black/[0.06] bg-[#F7F8F5] p-6 flex flex-col justify-between hover:shadow-lg hover:shadow-black/5 transition-all duration-500"
                         >
-                            <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white text-signet-green shadow-sm mb-4">
+                            <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white text-accent shadow-sm mb-4">
                                 <TrendingUp className="h-4 w-4" />
                             </div>
                             <div>
@@ -106,7 +106,7 @@ const FeaturesGrid = () => {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
-                            className="group flex-1 rounded-2xl bg-signet-green p-6 flex flex-col justify-between hover:shadow-lg hover:shadow-signet-green/20 transition-all duration-500"
+                            className="group flex-1 rounded-2xl bg-accent p-6 flex flex-col justify-between hover:shadow-lg hover:shadow-accent/20 transition-all duration-500"
                         >
                             <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 text-white mb-4">
                                 <Users2 className="h-4 w-4" />
@@ -125,7 +125,7 @@ const FeaturesGrid = () => {
                             viewport={{ once: true }}
                             className="group flex-1 rounded-2xl border border-black/[0.06] bg-[#F7F8F5] p-6 flex flex-col justify-between hover:shadow-lg hover:shadow-black/5 transition-all duration-500"
                         >
-                            <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white text-signet-green shadow-sm mb-4">
+                            <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white text-accent shadow-sm mb-4">
                                 <BookOpen className="h-4 w-4" />
                             </div>
                             <div>
@@ -159,7 +159,7 @@ const FeaturesGrid = () => {
                                     Connect and accelerate with hyper-achievers worldwide.
                                 </h3>
                             </div>
-                            <button className="hidden md:flex flex-shrink-0 h-12 w-12 items-center justify-center rounded-full bg-white text-foreground hover:bg-signet-green hover:text-white transition-colors duration-300 shadow-lg">
+                            <button className="hidden md:flex flex-shrink-0 h-12 w-12 items-center justify-center rounded-full bg-white text-foreground hover:bg-accent hover:text-white transition-colors duration-300 shadow-lg">
                                 <ArrowUpRight className="h-5 w-5" />
                             </button>
                         </div>
@@ -180,7 +180,7 @@ const FeaturesGrid = () => {
                     </div>
                     <a
                         href="/join"
-                        className="flex-shrink-0 flex items-center gap-2 bg-foreground text-background px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-signet-green transition-colors duration-300"
+                        className="flex-shrink-0 flex items-center gap-2 bg-foreground text-background px-7 py-3.5 rounded-full text-sm font-bold hover:bg-accent transition-colors duration-300"
                     >
                         Join Network <ArrowUpRight className="h-4 w-4" />
                     </a>
