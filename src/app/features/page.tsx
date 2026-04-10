@@ -6,7 +6,6 @@ import { GerminationAnimation } from "@/components/animations/GerminationAnimati
 export default function FeaturesPage() {
   return (
     <div className="relative min-h-screen premium-gradient bg-background">
-      <Navbar />
       
       <main className="pt-40 pb-24 px-8 max-w-7xl mx-auto space-y-32">
         {/* Hero Section */}
@@ -27,10 +26,11 @@ export default function FeaturesPage() {
 
         {/* Animation & Motivation */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-           <div className="p-12 rounded-[3.5rem] bg-foreground/5 border border-foreground/10 relative group overflow-hidden">
-              <div className="absolute inset-0 bg-white opacity-20 transform translate-x-full group-hover:translate-x-0 transition-transform duration-1000" />
-              <GerminationAnimation />
-              <div className="text-center mt-12 space-y-3 relative z-10">
+           <div className="p-4 rounded-[3.5rem] bg-foreground/5 border border-foreground/10 relative group overflow-hidden">
+              <div className="w-full h-80 rounded-[2.5rem] overflow-hidden bg-black/5 relative">
+                 <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1200" alt="Precision Structural Engineering" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 block" />
+              </div>
+              <div className="text-center mt-6 mb-4 space-y-2 relative z-10">
                  <h3 className="text-xs font-black uppercase tracking-[0.3em] text-foreground/40">Growth Protocol</h3>
                  <p className="text-sm font-bold text-foreground tracking-tight">Watching the ascent — your evolution is rhythmic.</p>
               </div>

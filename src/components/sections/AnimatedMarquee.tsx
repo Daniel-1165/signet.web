@@ -21,8 +21,8 @@ const AnimatedMarquee = () => {
     ];
 
     return (
-        <section className="relative w-full overflow-hidden bg-transparent py-10 md:py-16">
-            <div className="flex whitespace-nowrap [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+        <section className="relative w-full overflow-hidden bg-transparent py-12 md:py-16">
+            <div className="flex whitespace-nowrap bg-transparent">
                 {/* We double the text arrays to create a seamless loop */}
                 {[...Array(2)].map((_, i) => (
                     <motion.div
@@ -41,9 +41,9 @@ const AnimatedMarquee = () => {
                             const Icon = item.icon;
                             // Mimic realistic brand logos with SVG + bold text
                             return (
-                                <div key={`${i}-${index}`} className="flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 cursor-default">
-                                    <Icon className="w-8 h-8 text-foreground" fill="currentColor" strokeWidth={1.5} />
-                                    <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground mb-0.5" style={{ fontFamily: "Arial, sans-serif" }}>
+                                <div key={`${i}-${index}`} className="flex items-center gap-3 opacity-100 transition-opacity duration-300 cursor-default">
+                                    <Icon className="w-10 h-10 text-foreground" fill="currentColor" strokeWidth={1.5} />
+                                    <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground" style={{ fontFamily: "Arial, sans-serif" }}>
                                         {item.text}
                                     </span>
                                 </div>

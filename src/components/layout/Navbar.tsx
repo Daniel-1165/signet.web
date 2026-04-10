@@ -21,7 +21,7 @@ const Navbar = () => {
     return (
         <nav
             className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled
-                ? "bg-white/80 py-4 shadow-sm backdrop-blur-md dark:bg-black/50"
+                ? "bg-white py-4 shadow-md border-b border-black/5"
                 : "bg-transparent py-6"
                 }`}
         >
@@ -56,8 +56,8 @@ const Navbar = () => {
                             className="relative group"
                         >
                             <Link
-                                href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Assessments" ? "/assessments" : `#${item.toLowerCase()}`}
-                                className="relative py-2 text-sm font-medium tracking-tight text-foreground/60 transition-colors hover:text-foreground inline-flex items-center gap-1"
+                                href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Assessments" ? "/assessments" : item === "Community" ? "/community" : `#${item.toLowerCase()}`}
+                                className="relative py-2 text-sm font-bold tracking-tight text-black transition-colors hover:text-black/70 inline-flex items-center gap-1"
                             >
                                 {item}
                                 {item === "Products" && (
@@ -92,22 +92,22 @@ const Navbar = () => {
                         </motion.div>
                     ))}
 
-                    <Show when="signed-in">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex items-center gap-6"
+                            className="flex items-center gap-4"
                         >
-                            <Link
-                                href="/dashboard"
-                                className="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors"
-                            >
-                                Dashboard
-                            </Link>
-                            <UserButton />
+                            <Show when="signed-in">
+                                <UserButton
+                                    appearance={{
+                                        elements: {
+                                            avatarBox: "w-9 h-9"
+                                        }
+                                    }}
+                                />
+                            </Show>
                         </motion.div>
-                    </Show>
 
                     <Show when="signed-out">
                         <motion.div
@@ -145,7 +145,7 @@ const Navbar = () => {
                             {["Home", "Features", "Products", "Community", "Assessments"].map((item) => (
                                 <Link
                                     key={item}
-                                    href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Assessments" ? "/assessments" : `#${item.toLowerCase()}`}
+                                    href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Assessments" ? "/assessments" : item === "Community" ? "/community" : `#${item.toLowerCase()}`}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="text-lg font-medium tracking-tight text-foreground/60 hover:text-foreground"
                                 >

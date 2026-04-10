@@ -8,59 +8,86 @@ const VisionMission = () => {
         <section className="py-24 bg-white relative overflow-hidden">
             {/* Background elements */}
             <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
-                <motion.div
-                    className="mb-14 text-center space-y-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-terra-soil/40 mb-3 font-heading">Operational Compass</p>
-                    <div className="w-12 h-[1px] bg-solar-gold/30 mx-auto" />
-                </motion.div>
+                {/* Removed Operational Compass header per user instructions */}
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    {/* Vision Bento Box */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative overflow-hidden rounded-[3rem] bg-[#0c120c] p-12 flex flex-col gap-8 group"
+                        className="relative overflow-hidden rounded-[2.5rem] bg-[#0c120c] flex flex-col group shadow-2xl"
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-solar-gold shadow-[0_0_15px_rgba(251,191,36,0.1)]">
-                           <Zap size={24} fill="currentColor" />
+                        {/* Illustration Container */}
+                        <div className="h-64 w-full bg-black relative overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200" 
+                                alt="Realistic plant growing representing ecosystem growth" 
+                                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0c120c] to-transparent"></div>
+                            {/* Watermark Logo Dots Integration */}
+                            <svg viewBox="0 0 100 50" className="absolute top-6 left-6 h-8 w-auto text-white/50" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="21" cy="18" r="8" fill="currentColor" stroke="none" />
+                                <circle cx="50" cy="12" r="10" fill="currentColor" stroke="none" />
+                                <circle cx="79" cy="18" r="8" fill="currentColor" stroke="none" />
+                                <path d="M6,42 L21,28 L35.5,42 L50,27 L64.5,42 L79,28 L94,42" />
+                            </svg>
                         </div>
-                        <div>
-                            <h2 className="text-3xl font-bold tracking-tight text-white mb-4 font-heading uppercase">The Vision</h2>
-                            <p className="text-xl font-normal leading-relaxed text-white/40 font-outfit">
-                                To engineer a global collective of resilient trailblazers who model and scale excellence across the digital and physical frontiers.
-                            </p>
-                        </div>
-                        <div className="mt-auto pt-8 border-t border-white/5">
-                           <span className="text-[9px] font-bold uppercase tracking-widest text-foreground/40">High-Signal Collective</span>
+                        
+                        {/* Text Container */}
+                        <div className="p-10 flex flex-col grow justify-between bg-[#0c120c] relative z-10 -mt-10">
+                            <div>
+                                <h2 className="text-3xl font-bold tracking-tight text-white mb-4 font-heading uppercase">The Vision</h2>
+                                <p className="text-lg font-medium leading-relaxed text-white/70">
+                                    To architect an uncompromising ecosystem of elite performers operating with absolute synchronization and boundless emotional intelligence.
+                                </p>
+                            </div>
+                            <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                               <span className="text-[10px] font-bold uppercase tracking-widest text-[#16a34a]">High-Signal Collective</span>
+                               <span className="text-white/40 group-hover:text-white transition-colors">↗</span>
+                            </div>
                         </div>
                     </motion.div>
 
+                    {/* Mission Bento Box */}
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="relative overflow-hidden rounded-[3rem] border border-black/[0.06] bg-[#F7F8F5] p-12 flex flex-col gap-8 group hover:bg-white transition-colors duration-500"
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="relative overflow-hidden rounded-[2.5rem] border border-black/5 bg-white flex flex-col group shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-500"
                     >
-                        <div className="absolute bottom-0 right-0 w-32 h-32 bg-terra-soil/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0c120c] text-white shadow-xl shadow-black/10">
-                           <Activity size={24} className="text-solar-gold" />
+                        {/* Illustration Container */}
+                        <div className="h-64 w-full bg-[#f4f6f0] relative overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1552674605-15cdd193e62f?auto=format&fit=crop&q=80&w=1200" 
+                                alt="Athlete running dynamically representing execution and mission" 
+                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 block"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
+                             {/* Watermark Logo Dots Integration */}
+                            <svg viewBox="0 0 100 50" className="absolute top-6 left-6 h-8 w-auto text-black/50" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="21" cy="18" r="8" fill="currentColor" stroke="none" />
+                                <circle cx="50" cy="12" r="10" fill="currentColor" stroke="none" />
+                                <circle cx="79" cy="18" r="8" fill="currentColor" stroke="none" />
+                                <path d="M6,42 L21,28 L35.5,42 L50,27 L64.5,42 L79,28 L94,42" />
+                            </svg>
                         </div>
-                        <div>
-                            <h2 className="text-3xl font-bold tracking-tight text-foreground mb-4 font-heading uppercase font-heading">The Mission</h2>
-                            <p className="text-xl font-normal leading-relaxed text-foreground/50 font-outfit">
-                                Orchestrating the ascent of dedicated contributors to achieve extraordinary, sustainable results through iron discipline and rhythmic focus.
-                            </p>
-                        </div>
-                        <div className="mt-auto pt-8 border-t border-black/5">
-                           <span className="text-[9px] font-bold uppercase tracking-widest text-terra-soil/40">Sustained Execution</span>
+
+                        {/* Text Container */}
+                        <div className="p-10 flex flex-col grow justify-between bg-white relative z-10 -mt-10">
+                            <div>
+                                <h2 className="text-3xl font-bold tracking-tight text-foreground mb-4 font-heading uppercase">The Mission</h2>
+                                <p className="text-lg font-medium leading-relaxed text-foreground/70">
+                                    Creating and deploying highly integrated, actionable growth protocols that elevate ordinary potential into unparalleled mastery.
+                                </p>
+                            </div>
+                            <div className="mt-8 pt-6 border-t border-black/5 flex items-center justify-between">
+                               <span className="text-[10px] font-bold uppercase tracking-widest text-[#16a34a]">Sustained Execution</span>
+                               <span className="text-foreground/40 group-hover:text-foreground transition-colors">↗</span>
+                            </div>
                         </div>
                     </motion.div>
                 </div>

@@ -8,9 +8,9 @@
   --font-mono: var(--font-geist-mono);
 
   /* Unified Premium Palette (Green Accent) */
-  --color-accent: #16A34A; /* Organizations Green */
-  --color-signet-green: #16A34A;
-  --color-growth-green: #22C55E;
+  --color-accent: #006400; /* Pure Dark Green */
+  --color-signet-green: #006400;
+  --color-growth-green: #008000;
   --color-earth-brown: #0A0A0A;
   
   /* Unique Psychology Accents for Details */
@@ -20,18 +20,18 @@
   
   --color-signet-light: #171717;
   --color-platinum: #111111;
-  --color-emerald-glow: #16A34A;
+  --color-emerald-glow: #006400;
 }
 
 :root {
-  --background: #050505; /* Deep dark background */
-  --foreground: #EDEDED; /* Light grey text */
+  --background: #F9FBF4; /* Very light soft greenish-white matching the travel theme */
+  --foreground: #0B1C15; /* Dark, sharp text for visibility */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #050505;
-    --foreground: #EDEDED;
+    --background: #F9FBF4; /* Force light mode per request */
+    --foreground: #0B1C15;
   }
 }
 
@@ -58,11 +58,11 @@ body {
 }
 
 .premium-gradient {
-  background: radial-gradient(circle at top center, rgba(7, 95, 36, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle at top center, rgba(167, 215, 172, 0.15) 0%, transparent 70%);
 }
 
 .dark .premium-gradient {
-  background: radial-gradient(circle at top center, rgba(22, 163, 74, 0.07) 0%, transparent 70%);
+  background: radial-gradient(circle at top center, rgba(167, 215, 172, 0.15) 0%, transparent 70%);
 }
 
 .soft-blur {
@@ -71,17 +71,17 @@ body {
 }
 
 .signet-glow {
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
-  border: 1px solid rgba(74, 222, 128, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .signet-glow-hover:hover {
-  box-shadow: 0 0 30px rgba(74, 222, 128, 0.2);
-  border-color: rgba(74, 222, 128, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+  background: linear-gradient(135deg, #0B1C15 0%, rgba(11,28,21,0.7) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
