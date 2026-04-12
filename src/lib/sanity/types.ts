@@ -48,3 +48,23 @@ export interface Page {
   seoTitle?: string
   seoDescription?: string
 }
+
+export interface Testimonial {
+  _id: string
+  name: string
+  role: string
+  company?: string
+  content: string
+  avatar?: {
+    asset?: {
+      _id: string
+      url: string
+    }
+    hotspot?: {
+      x: number
+      y: number
+    }
+  }
+  featured?: boolean
+  order?: number
+}

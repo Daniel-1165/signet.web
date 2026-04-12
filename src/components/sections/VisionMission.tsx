@@ -22,8 +22,8 @@ const VisionMission = () => {
                         {/* Illustration Container */}
                         <div className="h-64 w-full bg-black relative overflow-hidden">
                             <img 
-                                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200" 
-                                alt="Realistic plant growing representing ecosystem growth" 
+                                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200" 
+                                alt="Unyielding mountain range representing the height of vision" 
                                 className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0c120c] to-transparent"></div>
@@ -39,13 +39,13 @@ const VisionMission = () => {
                         {/* Text Container */}
                         <div className="p-10 flex flex-col grow justify-between bg-[#0c120c] relative z-10 -mt-10">
                             <div>
-                                <h2 className="text-3xl font-bold tracking-tight text-white mb-4 font-heading uppercase">The Vision</h2>
+                                <h2 className="text-3xl font-bold tracking-tight text-white mb-4 font-heading uppercase">Our Vision</h2>
                                 <p className="text-lg font-medium leading-relaxed text-white/70">
-                                    To architect an uncompromising ecosystem of elite performers operating with absolute synchronization and boundless emotional intelligence.
+                                    To build a global network of trailblazers who model and replicate excellence in diverse spheres.
                                 </p>
                             </div>
                             <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                               <span className="text-[10px] font-bold uppercase tracking-widest text-[#16a34a]">High-Signal Collective</span>
+                               <span className="text-[10px] font-bold uppercase tracking-widest text-[#16a34a]">Global Collective</span>
                                <span className="text-white/40 group-hover:text-white transition-colors">↗</span>
                             </div>
                         </div>
@@ -62,8 +62,8 @@ const VisionMission = () => {
                         {/* Illustration Container */}
                         <div className="h-64 w-full bg-[#f4f6f0] relative overflow-hidden">
                             <img 
-                                src="https://images.unsplash.com/photo-1552674605-15cdd193e62f?auto=format&fit=crop&q=80&w=1200" 
-                                alt="Athlete running dynamically representing execution and mission" 
+                                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1200" 
+                                alt="Sunlight rays through forest trees representing growth and mission" 
                                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 block"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
@@ -79,13 +79,13 @@ const VisionMission = () => {
                         {/* Text Container */}
                         <div className="p-10 flex flex-col grow justify-between bg-white relative z-10 -mt-10">
                             <div>
-                                <h2 className="text-3xl font-bold tracking-tight text-foreground mb-4 font-heading uppercase">The Mission</h2>
+                                <h2 className="text-3xl font-bold tracking-tight text-foreground mb-4 font-heading uppercase">Our Mission</h2>
                                 <p className="text-lg font-medium leading-relaxed text-foreground/70">
-                                    Creating and deploying highly integrated, actionable growth protocols that elevate ordinary potential into unparalleled mastery.
+                                    Ordinary persons achieving extraordinary results, silently and sustainably.
                                 </p>
                             </div>
                             <div className="mt-8 pt-6 border-t border-black/5 flex items-center justify-between">
-                               <span className="text-[10px] font-bold uppercase tracking-widest text-[#16a34a]">Sustained Execution</span>
+                               <span className="text-[10px] font-bold uppercase tracking-widest text-[#16a34a]">Sustainable Results</span>
                                <span className="text-foreground/40 group-hover:text-foreground transition-colors">↗</span>
                             </div>
                         </div>

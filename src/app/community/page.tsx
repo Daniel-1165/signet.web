@@ -20,32 +20,54 @@ export default function CommunityPage() {
   const fetchPosts = async () => {
     setLoading(true);
     const { data, error } = await supabase
-      .from('community_posts')
-      .select('*')
+      .from('posts')
+      .select('*, profiles(first_name, last_name, image_url)')
       .order('created_at', { ascending: false });
       
     if (data) setPosts(data);
     setLoading(false);
   };
 
+  const [uploading, setUploading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
   const handlePost = async () => {
     if (!user) return alert("Log in to broadcast to the network.");
-    if (!newPost.trim()) return alert("Write an insight before posting.");
+    if (!newPost.trim() && !selectedImage) return alert("Write an insight or attach an image before posting.");
 
-    // We generate a fallback realistic growth image for the demo periodically
-    const demoImage = Math.random() > 0.5 
-      ? "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200" 
-      : null;
+    setUploading(true);
+    let image_url = null;
 
-    const { data, error } = await supabase.from('community_posts').insert([
+    if (selectedImage) {
+      const fileExt = selectedImage.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${user.id}/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('post-images')
+        .upload(filePath, selectedImage);
+
+      if (uploadError) {
+        setUploading(false);
+        return alert("Failed to upload image: " + uploadError.message);
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('post-images')
+        .getPublicUrl(filePath);
+      
+      image_url = publicUrl;
+    }
+
+    const { data, error } = await supabase.from('posts').insert([
       {
         user_id: user.id,
-        author_name: user.fullName || user.firstName || "Anonymous User",
-        author_avatar: user.imageUrl,
         content: newPost,
-        image_url: demoImage
+        image_url: image_url
       }
-    ]).select();
+    ]).select('*, profiles(first_name, last_name, image_url)').single();
+
+    setUploading(false);
 
     if (error) {
       console.error("Community Post Error:", error);
@@ -53,9 +75,10 @@ export default function CommunityPage() {
       return;
     }
 
-    if (data && data.length > 0) {
-      setPosts([data[0], ...posts]);
+    if (data) {
+      setPosts([data, ...posts]);
       setNewPost("");
+      setSelectedImage(null);
     }
   };
 
@@ -114,32 +137,67 @@ export default function CommunityPage() {
                    <div className="w-full h-full bg-accent text-white flex items-center justify-center font-bold">U</div>
                  )}
               </div>
-              <textarea 
-                value={newPost}
-                onChange={(e) => setNewPost(e.target.value)}
-                placeholder="Share a mental model, framework, or progression log..."
-                className="w-full bg-[#F9FBF4] rounded-2xl py-3 px-5 outline-none text-base font-medium text-foreground border border-black/5 focus:border-accent/40 focus:bg-white transition-all shadow-inner resize-none min-h-[80px]"
-              />
+              <div className="flex-1 space-y-3">
+                <textarea 
+                  value={newPost}
+                  onChange={(e) => setNewPost(e.target.value)}
+                  placeholder="Share a mental model, framework, or progression log..."
+                  className="w-full bg-[#F9FBF4] rounded-2xl py-3 px-5 outline-none text-base font-medium text-foreground border border-black/5 focus:border-accent/40 focus:bg-white transition-all shadow-inner resize-none min-h-[80px]"
+                />
+                
+                {selectedImage && (
+                  <div className="relative inline-block group">
+                    <img 
+                      src={URL.createObjectURL(selectedImage)} 
+                      alt="Selected" 
+                      className="h-24 w-24 object-cover rounded-xl border border-black/5 shadow-sm"
+                    />
+                    <button 
+                      onClick={() => setSelectedImage(null)}
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <MoreHorizontal className="w-3 h-3 rotate-45" />
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
             
             <div className="flex items-center justify-between pt-2">
               <div className="flex items-center gap-2">
+                <input 
+                  type="file" 
+                  id="media-upload" 
+                  hidden 
+                  accept="image/*,video/*"
+                  onChange={(e) => setSelectedImage(e.target.files?.[0] || null)}
+                />
                 <button onClick={() => alert("Polling engine deployed in v1.2 updates.")} className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-black/5 transition-colors text-xs font-bold text-foreground/70">
                   <HelpCircle className="w-4 h-4" /> Poll
                 </button>
-                <button onClick={() => alert("Video uploads queued for future release.")} className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-black/5 transition-colors text-xs font-bold text-foreground/70">
+                <label 
+                  htmlFor="media-upload"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-black/5 transition-colors text-xs font-bold text-foreground/70 cursor-pointer"
+                >
                   <Video className="w-4 h-4" /> Video
-                </button>
-                <button onClick={() => alert("Gallery asset management coming soon.")} className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-black/5 transition-colors text-xs font-bold text-foreground/70">
+                </label>
+                <label 
+                  htmlFor="media-upload"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-black/5 transition-colors text-xs font-bold text-foreground/70 cursor-pointer"
+                >
                   <ImageIcon className="w-4 h-4" /> Gallery
-                </button>
+                </label>
               </div>
               <button 
                 onClick={handlePost}
-                disabled={!newPost.trim()}
+                disabled={(!newPost.trim() && !selectedImage) || uploading}
                 className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center shadow-[0_4px_15px_rgba(22,163,74,0.3)] hover:scale-105 transition-transform disabled:opacity-50"
               >
-                <Send className="w-4 h-4 -ml-1 mt-1" />
+                {uploading ? (
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4 -ml-1 mt-1" />
+                )}
               </button>
             </div>
           </div>
@@ -178,11 +236,11 @@ export default function CommunityPage() {
 
                 <div className="flex items-start gap-4 mb-6">
                    <div className="w-14 h-14 rounded-full overflow-hidden bg-black/5 shadow-inner border border-black/10">
-                     <img src={post.author_avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150&q=80"} alt={post.author_name} />
+                     <img src={post.profiles?.image_url || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150&q=80"} alt={post.profiles?.first_name} />
                   </div>
                   <div className="flex flex-col justify-center">
                     <h3 className="font-extrabold text-xl flex items-center gap-2 text-black">
-                      {post.author_name} <span className="w-4 h-4 bg-accent rounded-full border border-white shadow-sm flex items-center justify-center"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+                      {post.profiles?.first_name} {post.profiles?.last_name} <span className="w-4 h-4 bg-accent rounded-full border border-white shadow-sm flex items-center justify-center"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
                     </h3>
                     <p className="text-base font-semibold text-black/60 mt-0.5">{formatDate(post.created_at)}</p>
                   </div>
@@ -193,14 +251,22 @@ export default function CommunityPage() {
                     {post.content}
                   </p>
                   
-                  {/* Instagram-style Full View Image */}
+                  {/* Media Content (Image or Video) */}
                   {post.image_url && (
                     <div className="rounded-2xl overflow-hidden shadow-md border border-black/5 w-full bg-black mt-4">
-                      <img 
+                      {post.image_url.match(/\.(mp4|webm|ogg)$/i) ? (
+                        <video 
+                          src={post.image_url} 
+                          controls 
+                          className="w-full h-auto max-h-[600px] block" 
+                        />
+                      ) : (
+                        <img 
                           src={post.image_url} 
                           alt="Progress context" 
                           className="w-full h-auto max-h-[600px] object-cover block" 
-                      />
+                        />
+                      )}
                     </div>
                   )}
                 </div>
