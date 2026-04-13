@@ -1,21 +1,21 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './sanity/schemaTypes'
 
-const {
-  NEXT_PUBLIC_SANITY_PROJECT_ID = 'placeholder-project-id',
-  NEXT_PUBLIC_SANITY_DATASET = 'production',
-} = process.env
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+
+if (!projectId) {
+  throw new Error('Missing NEXT_PUBLIC_SANITY_PROJECT_ID in environment. Add it to .env.local or your deployment env settings.')
+}
 
 export default defineConfig({
   name: 'default',
   title: 'Signet Web CMS',
-  projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: NEXT_PUBLIC_SANITY_DATASET,
+  projectId,
+  dataset,
   plugins: [
     structureTool(),
-    visionTool(),
   ],
   schema: {
     types: schemaTypes,

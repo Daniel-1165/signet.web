@@ -55,9 +55,9 @@ export default function Sidebar() {
 
       {/* Support / Quick Links */}
       <div className="pt-6 border-t border-[#E0E7E2] mb-6 space-y-3 px-3">
-         <Link href="https://wa.me/" className="flex items-center gap-4 px-3 py-3 rounded-2xl font-bold text-sm text-black hover:text-green-700 hover:bg-green-50 transition-all whitespace-nowrap overflow-hidden">
+         <Link href="/contact" className="flex items-center gap-4 px-3 py-3 rounded-2xl font-bold text-sm text-black hover:text-green-700 hover:bg-green-50 transition-all whitespace-nowrap overflow-hidden">
             <MessageCircle className="w-6 h-6 shrink-0" /> 
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Contacts & WhatsApp</span>
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Contact & Support</span>
          </Link>
       </div>
 

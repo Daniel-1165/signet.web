@@ -105,3 +105,39 @@ export const GET_FEATURED_TESTIMONIALS = `
     },
   }
 `
+
+export const GET_ALL_RESOURCES = `
+  *[_type == "resourceCard"] | order(_createdAt desc) {
+    _id,
+    title,
+    category,
+    description,
+    image {
+      asset-> {
+        _id,
+        url
+      },
+      hotspot,
+    },
+    color,
+    iconName,
+  }
+`
+
+export const GET_RESOURCES_BY_CATEGORY = `
+  *[_type == "resourceCard" && category == $category] | order(_createdAt desc) {
+    _id,
+    title,
+    category,
+    description,
+    image {
+      asset-> {
+        _id,
+        url
+      },
+      hotspot,
+    },
+    color,
+    iconName,
+  }
+`

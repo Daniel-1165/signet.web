@@ -47,7 +47,7 @@ const Navbar = () => {
                 </motion.div>
 
                 <div className="hidden items-center gap-10 md:flex">
-                    {["Home", "Features", "Products", "Community", "Assessments"].map((item, i) => (
+                    {["Home", "Features", "Vision Guide", "Resources", "Community", "Assessments"].map((item, i) => (
                         <motion.div
                             key={item}
                             initial={{ opacity: 0, y: -10 }}
@@ -56,39 +56,12 @@ const Navbar = () => {
                             className="relative group"
                         >
                             <Link
-                                href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Assessments" ? "/assessments" : item === "Community" ? "/community" : `#${item.toLowerCase()}`}
+                                href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Vision Guide" ? "/vision-guide" : item === "Assessments" ? "/assessments" : item === "Community" ? "/community" : item === "Resources" ? "/resources" : `#${item.toLowerCase()}`}
                                 className="relative py-2 text-sm font-bold tracking-tight text-black transition-colors hover:text-black/70 inline-flex items-center gap-1"
                             >
                                 {item}
-                                {item === "Products" && (
-                                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="transition-transform group-hover:rotate-180">
-                                        <path d="M1 3L4 6L7 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                )}
                                 <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-signet-green transition-all duration-300 group-hover:w-full"></span>
                             </Link>
-
-                            {item === "Products" && (
-                                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100 z-50">
-                                    <div className="w-52 rounded-2xl bg-white border border-black/[0.06] p-2 shadow-2xl shadow-black/10 backdrop-blur-xl">
-                                        {[
-                                            { label: "Magazines", icon: "📖" },
-                                            { label: "Books", icon: "📚" },
-                                            { label: "Articles", icon: "📄" },
-                                            { label: "Designs", icon: "🎨" }
-                                        ].map((subItem) => (
-                                            <Link
-                                                key={subItem.label}
-                                                href={`/products/${subItem.label.toLowerCase()}`}
-                                                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-foreground/60 hover:bg-[#F7F8F5] hover:text-signet-green transition-all"
-                                            >
-                                                <span className="text-base">{subItem.icon}</span>
-                                                {subItem.label}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
                         </motion.div>
                     ))}
 
