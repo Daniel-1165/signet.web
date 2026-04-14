@@ -16,7 +16,7 @@ const Products = () => {
         {
             title: "Habitual Architecture",
             category: "Book",
-            description: "The definitive guide to forging iron discipline through curated environmental design.",
+            description: "The definitive guide to forging iron sustainability through curated environmental design.",
             icon: <Bookmark className="h-5 w-5" />,
             image: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=800",
             color: "bg-[#171717] text-white"

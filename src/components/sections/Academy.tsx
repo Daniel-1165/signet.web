@@ -6,7 +6,7 @@ import { GraduationCap, BookOpen, Layers, Target, ShieldCheck, Zap, ArrowRight, 
 
 const courses = [
     {
-        title: "Iron Discipline Architecture",
+        title: "Iron Sustainability Architecture",
         category: "Module 01",
         description: "A foundational breakdown of environmental design and habit stacking. We replace motivation with systems that function automatically.",
         icon: <ShieldCheck className="h-5 w-5" />,
@@ -15,7 +15,7 @@ const courses = [
         accent: "bg-accent/10 text-accent"
     },
     {
-        title: "Deep Focus Protocols",
+        title: "Deep Focus Networks",
         category: "Module 02",
         description: "The mechanics of non-linear performance. Learn to access and sustain high-output flow states in an age of constant noise.",
         icon: <Target className="h-5 w-5" />,
@@ -35,7 +35,7 @@ const courses = [
     {
         title: "Adaptive Leadership",
         category: "Module 04",
-        description: "Sustaining growth while managing teams or systems. Practical application of discipline within high-pressure environments.",
+        description: "Sustaining growth while managing teams or systems. Practical application of sustainability within high-pressure environments.",
         icon: <Zap className="h-5 w-5" />,
         duration: "8 Weeks",
         stats: "Level: Expert",

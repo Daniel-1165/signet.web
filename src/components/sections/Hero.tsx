@@ -88,7 +88,7 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                     className="max-w-4xl text-6xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tight text-foreground"
                 >
-                    Growth, maturity, and discipline <span className="text-foreground/40 font-normal">all in one protocol</span>
+                    Growth, excellence, and sustainability <span className="text-foreground/40 font-normal">all in one network</span>
                 </motion.h1>
 
                 <motion.p
@@ -132,7 +132,7 @@ const Hero = () => {
                 >
                     <div className="absolute top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-400 shadow-inner"></div>
                     <p className="mt-4 font-[Gloria_Hallelujah,sans-serif] text-sm leading-relaxed text-black/80 font-medium transform rotate-1">
-                        Solidify morning protocol, review daily metrics before deep work sessions. 🚀
+                        Solidify morning network, review daily metrics before deep work sessions. 🚀
                     </p>
                     <div className="absolute -bottom-6 -right-6 w-14 h-14 bg-white rounded-2xl shadow-xl border border-black/5 flex items-center justify-center transform rotate-12">
                         <svg className="w-6 h-6 text-[#0055FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -175,7 +175,7 @@ const Hero = () => {
                     <div className="space-y-4">
                         <div>
                             <div className="flex justify-between text-xs font-medium mb-2">
-                                <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-accent"></div> Physical Protocol</span>
+                                <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-accent"></div> Physical Network</span>
                                 <span className="text-foreground/50">80%</span>
                             </div>
                             <div className="h-2 w-full bg-black/5 rounded-full overflow-hidden">

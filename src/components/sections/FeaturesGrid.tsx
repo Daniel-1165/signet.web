@@ -89,7 +89,7 @@ const FeaturesGrid = () => {
                                 <ShieldCheck className="h-4 w-4" />
                             </div>
                             <div>
-                                <h3 className="text-base font-semibold text-white mb-1">Iron Discipline</h3>
+                                <h3 className="text-base font-semibold text-white mb-1">Iron Sustainability</h3>
                                 <p className="text-white/50 text-sm leading-relaxed">Forge habits that outlast motivation. Consistency is your competitive edge.</p>
                             </div>
                         </motion.div>

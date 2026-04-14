@@ -52,7 +52,7 @@ const Community = () => {
             verified: true,
             avatar: "VA",
             avatarColor: "bg-accent text-white",
-            content: "Just finished the 'Iron Discipline' module. The mental framework for decision-making under pressure is genuinely a game changer.\n\nMorning routine has never been this dialed in. Highly recommend to anyone in the current cohort.",
+            content: "Just finished the 'Iron Sustainability' module. The mental framework for decision-making under pressure is genuinely a game changer.\n\nMorning routine has never been this dialed in. Highly recommend to anyone in the current cohort.",
             time: "4h",
             replies: 13,
             reposts: 7,
@@ -78,8 +78,8 @@ const Community = () => {
     ];
 
     const trends = [
-        { category: "Growth", topic: "#DeepWorkProtocol", posts: "2,847" },
-        { category: "Discipline", topic: "Iron Discipline Cohort", posts: "1,204" },
+        { category: "Growth", topic: "#DeepWorkNetwork", posts: "2,847" },
+        { category: "Sustainability", topic: "Iron Sustainability Cohort", posts: "1,204" },
         { category: "Wellness", topic: "#DigitalFasting", posts: "943" },
         { category: "Mindset", topic: "Morning Routines", posts: "5,621" },
     ];

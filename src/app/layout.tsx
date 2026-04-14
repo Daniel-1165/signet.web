@@ -21,7 +21,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Signet | Build Your Life Right",
-  description: "A minimalist community for personal growth, disciplined living, and mature mindset development.",
+  description: "A minimalist community for personal growth, sustainable living, and excellent mindset development.",
 };
 
 export default function RootLayout({

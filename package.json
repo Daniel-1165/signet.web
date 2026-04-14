@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^7.0.7",
+    "@emailjs/browser": "^4.4.1",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.99.0",
     "@supabase/supabase-js": "^2.101.1",

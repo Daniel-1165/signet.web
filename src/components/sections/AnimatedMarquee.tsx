@@ -12,7 +12,7 @@ import {
 
 const AnimatedMarquee = () => {
     const marqueeItems = [
-        { text: "Discipline", icon: Activity },
+        { text: "Sustainability", icon: Activity },
         { text: "Mastery", icon: Crown },
         { text: "Growth", icon: TrendingUp },
         { text: "Excellence", icon: Sparkles },
