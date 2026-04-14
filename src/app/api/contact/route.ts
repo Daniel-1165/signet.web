@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createServerSupabaseClient } from '@/lib/supabase/server'
 
 interface ContactFormData {
   firstName: string
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create Supabase client
-    const supabase = await createClient()
+    const supabase = createServerSupabaseClient()
 
     // Insert contact form data
     const { data, error } = await supabase
