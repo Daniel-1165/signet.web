@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS public.posts (
   user_id TEXT REFERENCES public.profiles(id) ON DELETE CASCADE,
   content TEXT NOT NULL,
   image_url TEXT,
+  likes_count INTEGER DEFAULT 0,
+  comments_count INTEGER DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
 );
 
@@ -123,4 +125,13 @@ INSERT INTO storage.buckets (id, name, public) VALUES ('post-images', 'post-imag
 CREATE POLICY "Post images are publicly accessible" ON storage.objects FOR SELECT USING (bucket_id = 'post-images');
 CREATE POLICY "Users can upload post images" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'post-images');
 CREATE POLICY "Users can update their own post images" ON storage.objects FOR UPDATE USING (bucket_id = 'post-images');
-CREATE POLICY "Users can delete their own post images" ON storage.objects FOR DELETE USING (bucket_id = 'post-images');
+-- 10. Increment Post Likes Function
+CREATE OR REPLACE FUNCTION public.increment_post_likes(post_id_val UUID)
+RETURNS VOID AS $$
+BEGIN
+  UPDATE public.posts
+  SET likes_count = COALESCE(likes_count, 0) + 1
+  WHERE id = post_id_val;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+

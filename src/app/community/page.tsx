@@ -71,7 +71,11 @@ export default function CommunityPage() {
 
     if (error) {
       console.error("Community Post Error:", error);
-      alert("Failed to post message. " + error.message);
+      if (error.code === '23503') {
+        alert("Wait a second while your profile synchronizes with our database... try again in 3 seconds.");
+      } else {
+        alert("Failed to post message. " + error.message);
+      }
       return;
     }
 
@@ -93,9 +97,9 @@ export default function CommunityPage() {
     // Call our SQL function to permanently increment the database
     await supabase.rpc('increment_post_likes', { post_id_val: postId });
     
-    // Register the like safely (might fail if duplicate, which we ignore for UX)
-    await supabase.from('community_likes').insert([
-      { user_id: user.id, post_id: postId }
+    // Register the like safely in the post_reactions table
+    await supabase.from('post_reactions').insert([
+      { user_id: user.id, post_id: postId, reaction_type: 'like' }
     ]);
   };
 

@@ -14,6 +14,7 @@ export default defineConfig({
   title: 'Signet Web CMS',
   projectId,
   dataset,
+  basePath: '/studio',
   plugins: [
     structureTool(),
   ],
