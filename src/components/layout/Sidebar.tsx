@@ -18,7 +18,7 @@ export default function Sidebar() {
   const { user } = useUser();
 
   return (
-    <aside className="group w-20 hover:w-64 transition-all duration-300 h-[calc(100vh-6rem)] bg-[#F9FBF4] border-r border-[#E0E7E2] flex flex-col py-8 sticky top-24 overflow-x-hidden overflow-y-auto hide-scrollbar shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-40">
+    <aside className="group w-20 hover:w-64 transition-all duration-300 h-[calc(100vh-6rem)] bg-[#F9FBF4] border-r border-[#E0E7E2] flex flex-col py-8 sticky top-24 overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-40">
       
       {/* Brand Icon/Logo */}
       <div className="px-5 mb-10 flex items-center justify-center lg:justify-start gap-4 whitespace-nowrap">

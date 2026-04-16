@@ -1,5 +1,3 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { Shield, Zap, Globe, MessageCircle, BarChart3, Users, Sparkles } from "lucide-react";
 import { GerminationAnimation } from "@/components/animations/GerminationAnimation";
 
@@ -109,9 +107,6 @@ export default function FeaturesPage() {
               </div>
            </div>
         </div>
-      </main>
-
-      <Footer />
     </div>
   );
 }

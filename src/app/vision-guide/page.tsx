@@ -1,5 +1,3 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import VisionGuideContent from "@/components/sections/VisionGuideContent";
 import { BookOpen, Lightbulb, Heart, CheckCircle2, Target, Compass } from "lucide-react";
 
@@ -15,9 +13,7 @@ const sectionIcons = {
 export default function VisionGuidePage() {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#F7F8F5] to-white">
-      <Navbar />
-
-      <main className="pt-40 pb-24 px-8 max-w-6xl mx-auto">
+      <main className="pt-10 pb-24 px-8 max-w-6xl mx-auto">
         {/* Hero Section */}
         <div className="text-center space-y-12 mb-32">
           <div className="flex justify-center gap-1.5 mb-4">
@@ -326,8 +322,6 @@ export default function VisionGuidePage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

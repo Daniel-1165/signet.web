@@ -1,7 +1,5 @@
 import Hero from "@/components/sections/Hero";
-import Navbar from "@/components/layout/Navbar";
 import Testimonials from "@/components/sections/Testimonials";
-import Footer from "@/components/layout/Footer";
 import AnimatedMarquee from "@/components/sections/AnimatedMarquee";
 import Process from "@/components/sections/Process";
 import VisionMission from "@/components/sections/VisionMission";
@@ -18,7 +16,6 @@ export default function Home() {
         <Process />
         <Testimonials />
       </main>
-      <Footer />
     </div>
   );
 }
