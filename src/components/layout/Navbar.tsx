@@ -3,12 +3,21 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
-import { SignInButton, UserButton, Show } from "@clerk/nextjs";
+import { Menu, X, ArrowRight, Shield } from "lucide-react";
+import { SignInButton, UserButton, Show, useUser } from "@clerk/nextjs";
+import { useSupabaseClient } from "@/lib/supabase/client";
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    
+    // Admin state
+    const { user } = useUser();
+    const supabase = useSupabaseClient();
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [showAdminModal, setShowAdminModal] = useState(false);
+    const [targetUser, setTargetUser] = useState("");
+    const [adminActionStatus, setAdminActionStatus] = useState("");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,6 +26,43 @@ const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    useEffect(() => {
+        if (user) {
+            supabase.from('profiles').select('role').eq('id', user.id).single().then(({ data }) => {
+                if (data && data.role === 'admin') {
+                    setIsAdmin(true);
+                }
+            });
+        }
+    }, [user, supabase]);
+
+    const handleMakeAdmin = async () => {
+        if (!targetUser.trim()) return;
+        setAdminActionStatus("Processing...");
+        const { data: searchProfile, error: searchError } = await supabase
+            .from('profiles')
+            .select('id, first_name')
+            .ilike('first_name', targetUser.trim())
+            .limit(1)
+            .single();
+        
+        if (searchProfile) {
+            const { error: updateError } = await supabase
+                .from('profiles')
+                .update({ role: 'admin' })
+                .eq('id', searchProfile.id);
+            if (updateError) {
+                setAdminActionStatus("Error: " + updateError.message);
+            } else {
+                setAdminActionStatus(`Success! ${searchProfile.first_name || targetUser} is now an admin.`);
+                setTargetUser("");
+                setTimeout(() => { setShowAdminModal(false); setAdminActionStatus(""); }, 2000);
+            }
+        } else {
+            setAdminActionStatus("User not found!");
+        }
+    };
 
     return (
         <nav
@@ -79,6 +125,14 @@ const Navbar = () => {
                                         }
                                     }}
                                 />
+                                {isAdmin && (
+                                    <button 
+                                        onClick={() => setShowAdminModal(true)}
+                                        className="h-9 px-3 bg-accent/10 border border-accent/20 text-accent rounded-full font-bold text-xs flex items-center gap-1.5 hover:bg-accent hover:text-white transition-colors ml-3"
+                                    >
+                                        <Shield className="w-4 h-4" /> Admin
+                                    </button>
+                                )}
                             </Show>
                         </motion.div>
 
@@ -146,6 +200,42 @@ const Navbar = () => {
                             </Show>
                         </div>
                     </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Admin Modal */}
+            <AnimatePresence>
+                {showAdminModal && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            className="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm relative"
+                        >
+                            <button onClick={() => setShowAdminModal(false)} className="absolute top-4 right-4 text-black/40 hover:text-black">
+                                <X className="h-5 w-5" />
+                            </button>
+                            <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Shield className="text-accent h-5 w-5" /> Admin Panel</h3>
+                            <p className="text-xs text-black/50 mb-6">Promote a user to Admin by entering their exact username (First Name).</p>
+                            
+                            <input 
+                                type="text"
+                                placeholder="Username"
+                                value={targetUser}
+                                onChange={(e) => setTargetUser(e.target.value)}
+                                className="w-full px-4 py-3 bg-black/5 border border-black/10 rounded-xl text-sm mb-4 focus:outline-none focus:border-accent"
+                            />
+                            {adminActionStatus && <p className="text-xs font-bold text-accent mb-4">{adminActionStatus}</p>}
+                            <button 
+                                onClick={handleMakeAdmin}
+                                disabled={!targetUser.trim()}
+                                className="w-full bg-accent text-white py-3 rounded-xl font-bold tracking-wide hover:bg-accent/90 transition-colors disabled:opacity-50"
+                            >
+                                Make Admin
+                            </button>
+                        </motion.div>
+                    </div>
                 )}
             </AnimatePresence>
         </nav>

@@ -53,6 +53,15 @@ export default function CommunityPage() {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [toast, setToast] = useState<{ msg: string; type: "success" | "error" } | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      supabase.from('profiles').select('role').eq('id', user.id).single().then(({ data }) => {
+        if (data?.role === 'admin') setIsAdmin(true);
+      });
+    }
+  }, [user, supabase]);
 
   const showToast = (msg: string, type: "success" | "error" = "success") => {
     setToast({ msg, type });
@@ -449,7 +458,7 @@ export default function CommunityPage() {
                   >
                     <Share2 className="w-4 h-4 text-black/40" />
                   </button>
-                  {user && (user.id === post.user_id || user.publicMetadata?.role === "admin") && (
+                  {user && (user.id === post.user_id || isAdmin) && (
                     <button
                       onClick={() => handleDeletePost(post.id)}
                       className="opacity-0 group-hover:opacity-100 p-2 rounded-full hover:bg-red-50 transition-all ml-1"
@@ -510,7 +519,7 @@ export default function CommunityPage() {
                             <span className="text-xs text-black/40">{formatDate(comment.created_at)}</span>
                             <p className="text-sm text-black mt-1">{comment.content}</p>
                             
-                            {user && (user.id === comment.user_id || user.publicMetadata?.role === "admin") && (
+                            {user && (user.id === comment.user_id || isAdmin) && (
                               <button
                                 onClick={() => handleDeleteComment(post.id, comment.id)}
                                 className="absolute top-2 right-2 opacity-0 group-hover/comment:opacity-100 p-1.5 rounded-full hover:bg-red-50 transition-all"
