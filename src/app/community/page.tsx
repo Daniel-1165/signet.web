@@ -2,7 +2,7 @@
 
 import {
   MessageSquare, Heart, Share2, MoreHorizontal,
-  Video, Image as ImageIcon, Send, X, ChevronDown, ChevronUp
+  Video, Image as ImageIcon, Send, X, ChevronDown, ChevronUp, Trash2
 } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useSupabaseClient } from "@/lib/supabase/client";
@@ -262,6 +262,39 @@ export default function CommunityPage() {
     }
   };
 
+  // ─── Delete Actions ───────────────────────────────────────────────────────────
+  const handleDeletePost = async (postId: string) => {
+    if (!confirm("Are you sure you want to delete this post?")) return;
+    const { error } = await supabase.from("posts").delete().eq("id", postId);
+    if (error) {
+      showToast("Error deleting post: " + error.message, "error");
+    } else {
+      setPosts((prev) => prev.filter((p) => p.id !== postId));
+      showToast("Post deleted successfully");
+    }
+  };
+
+  const handleDeleteComment = async (postId: string, commentId: string) => {
+    if (!confirm("Are you sure you want to delete this comment?")) return;
+    const { error } = await supabase.from("post_comments").delete().eq("id", commentId);
+    if (error) {
+      showToast("Error deleting comment: " + error.message, "error");
+    } else {
+      setPosts((prev) =>
+        prev.map((p) =>
+          p.id === postId
+            ? {
+                ...p,
+                comments: p.comments?.filter((c) => c.id !== commentId),
+                comments_count: Math.max(0, (p.comments_count || 1) - 1),
+              }
+            : p
+        )
+      );
+      showToast("Comment deleted successfully");
+    }
+  };
+
   // ─── Helpers ──────────────────────────────────────────────────────────────────
   const formatDate = (d: string) =>
     new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
@@ -416,6 +449,14 @@ export default function CommunityPage() {
                   >
                     <Share2 className="w-4 h-4 text-black/40" />
                   </button>
+                  {user && (user.id === post.user_id || user.publicMetadata?.role === "admin") && (
+                    <button
+                      onClick={() => handleDeletePost(post.id)}
+                      className="opacity-0 group-hover:opacity-100 p-2 rounded-full hover:bg-red-50 transition-all ml-1"
+                    >
+                      <Trash2 className="w-4 h-4 text-red-400 hover:text-red-500" />
+                    </button>
+                  )}
                 </div>
 
                 {/* Content */}
@@ -464,10 +505,20 @@ export default function CommunityPage() {
                           <div className="w-8 h-8 rounded-full overflow-hidden bg-black/5 flex-shrink-0">
                             <img src={comment.profiles?.image_url || DEFAULT_AVATAR} alt={comment.profiles?.first_name || ""} className="w-full h-full object-cover" />
                           </div>
-                          <div className="flex-1 bg-[#F9FBF4] rounded-2xl px-4 py-3">
+                          <div className="flex-1 bg-[#F9FBF4] rounded-2xl px-4 py-3 relative group/comment">
                             <span className="font-bold text-xs text-black">{comment.profiles?.first_name} {comment.profiles?.last_name} · </span>
                             <span className="text-xs text-black/40">{formatDate(comment.created_at)}</span>
                             <p className="text-sm text-black mt-1">{comment.content}</p>
+                            
+                            {user && (user.id === comment.user_id || user.publicMetadata?.role === "admin") && (
+                              <button
+                                onClick={() => handleDeleteComment(post.id, comment.id)}
+                                className="absolute top-2 right-2 opacity-0 group-hover/comment:opacity-100 p-1.5 rounded-full hover:bg-red-50 transition-all"
+                                title="Delete comment"
+                              >
+                                <Trash2 className="w-3.5 h-3.5 text-red-400" />
+                              </button>
+                            )}
                           </div>
                         </div>
                       ))

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Users, Compass, BarChart3, Settings, LogOut, Brain, Target, Lightbulb, MessageCircle, Share2 } from "lucide-react";
+import { Home, Users, Compass, BarChart3, Settings, LogOut, Brain, Target, Lightbulb, MessageCircle, Share2, Award } from "lucide-react";
 import { useUser, SignOutButton } from "@clerk/nextjs";
 
 const navItems = [
@@ -11,6 +11,7 @@ const navItems = [
   { name: "EQ Test", href: "/eq-test", icon: Brain },
   { name: "IQ Assessment", href: "/iq-test", icon: Lightbulb },
   { name: "Personal Vision Guide", href: "/vision-guide", icon: Target },
+  { name: "Certificates", href: "/certificates", icon: Award },
 ];
 
 export default function Sidebar() {
