@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Users, Compass, BarChart3, Settings, LogOut, Brain, Target, Lightbulb, MessageCircle, Share2, Award } from "lucide-react";
+import { useState } from "react";
+import { Home, Users, Compass, BarChart3, Settings, LogOut, Brain, Target, Lightbulb, MessageCircle, Share2, Award, Menu, X } from "lucide-react";
 import { useUser, SignOutButton } from "@clerk/nextjs";
 
 const navItems = [
@@ -17,13 +18,36 @@ const navItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const { user } = useUser();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <aside className="group w-20 hover:w-64 transition-all duration-300 h-[calc(100vh-6rem)] bg-[#F9FBF4] border-r border-[#E0E7E2] flex flex-col py-8 sticky top-24 overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-40">
+    <>
+      {/* Mobile Toggle Button */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden fixed bottom-6 right-6 z-[60] w-14 h-14 bg-accent text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(16,129,114,0.3)] hover:scale-105 transition-transform"
+      >
+        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[50]"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <aside className={`
+        group fixed md:sticky top-0 md:top-24 z-[55] md:z-40 h-[100dvh] md:h-[calc(100vh-6rem)]
+        bg-[#F9FBF4] border-r border-[#E0E7E2] flex flex-col pt-12 pb-8 md:py-8
+        overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)] transition-all duration-300
+        ${isOpen ? "translate-x-0 w-64" : "-translate-x-full md:translate-x-0 md:w-16 md:hover:w-64"}
+      `}>
       
       {/* Brand Icon/Logo */}
-      <div className="px-5 mb-10 flex items-center justify-center lg:justify-start gap-4 whitespace-nowrap">
-        <div className="flex items-center justify-center shrink-0 w-8 h-8">
+      <div className="px-4 mb-10 flex items-center justify-center lg:justify-start gap-4 whitespace-nowrap">
+        <div className="flex items-center justify-center shrink-0 w-8 h-8 ml-0 md:ml-0 lg:ml-0.5">
           <svg viewBox="0 0 100 50" className="w-full h-auto text-black" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
               <circle cx="21" cy="18" r="8" fill="currentColor" stroke="none" />
               <circle cx="50" cy="12" r="10" fill="currentColor" stroke="none" />
@@ -34,14 +58,15 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-3 px-3">
+      <nav className="flex-1 space-y-3 px-2">
         {navItems.map((item) => {
           const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== "/");
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-4 px-3 py-3.5 rounded-2xl transition-all duration-300 font-bold text-sm whitespace-nowrap overflow-hidden ${
+              onClick={() => setIsOpen(false)}
+              className={`flex items-center gap-4 px-2.5 py-3.5 rounded-2xl transition-all duration-300 font-bold text-sm whitespace-nowrap overflow-hidden ${
                 isActive 
                   ? "bg-white shadow-[0_4px_12px_rgba(0,0,0,0.04)] text-accent border border-black/5" 
                   : "text-black hover:bg-black/[0.04]"
@@ -55,25 +80,26 @@ export default function Sidebar() {
       </nav>
 
       {/* Support / Quick Links */}
-      <div className="pt-6 border-t border-[#E0E7E2] mb-6 space-y-3 px-3">
-         <Link href="/contact" className="flex items-center gap-4 px-3 py-3 rounded-2xl font-bold text-sm text-black hover:text-green-700 hover:bg-green-50 transition-all whitespace-nowrap overflow-hidden">
+      <div className="pt-6 border-t border-[#E0E7E2] mb-6 space-y-3 px-2">
+         <Link onClick={() => setIsOpen(false)} href="/contact" className="flex items-center gap-4 px-2.5 py-3 rounded-2xl font-bold text-sm text-black hover:text-green-700 hover:bg-green-50 transition-all whitespace-nowrap overflow-hidden">
             <MessageCircle className="w-6 h-6 shrink-0" /> 
             <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Contact & Support</span>
          </Link>
       </div>
 
       {/* Bottom Section */}
-      <div className="pt-6 border-t border-[#E0E7E2] px-3 space-y-3">
+      <div className="pt-6 border-t border-[#E0E7E2] px-2 space-y-3">
          <Link
+          onClick={() => setIsOpen(false)}
           href="/settings"
-          className="flex items-center gap-4 px-3 py-3 rounded-2xl transition-all duration-300 font-bold text-sm text-black hover:bg-black/[0.04] whitespace-nowrap overflow-hidden"
+          className="flex items-center gap-4 px-2.5 py-3 rounded-2xl transition-all duration-300 font-bold text-sm text-black hover:bg-black/[0.04] whitespace-nowrap overflow-hidden"
          >
           <Settings className="w-6 h-6 shrink-0" />
           <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
          </Link>
 
          <SignOutButton>
-           <button className="w-full flex items-center gap-4 px-3 py-3 rounded-2xl transition-all duration-300 font-bold text-sm text-red-600 hover:text-red-700 hover:bg-red-50 whitespace-nowrap overflow-hidden">
+           <button className="w-full flex items-center gap-4 px-2.5 py-3 rounded-2xl transition-all duration-300 font-bold text-sm text-red-600 hover:text-red-700 hover:bg-red-50 whitespace-nowrap overflow-hidden">
              <LogOut className="w-6 h-6 shrink-0" />
              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Log out</span>
            </button>
@@ -99,5 +125,6 @@ export default function Sidebar() {
         </div>
       </div>
     </aside>
+    </>
   );
 }

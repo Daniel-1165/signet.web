@@ -154,7 +154,7 @@ const Navbar = () => {
 
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.05] md:hidden dark:border-white/[0.05]"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.05] md:hidden"
                 >
                     {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </button>
@@ -166,7 +166,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="border-t border-black/[0.05] bg-white py-8 md:hidden dark:border-white/[0.05] dark:bg-black"
+                        className="border-t border-black/[0.05] bg-white py-8 md:hidden"
                     >
                         <div className="flex flex-col items-center gap-6 px-6">
                             {["Home", "Features", "Products", "Community"].map((item) => (
@@ -193,7 +193,7 @@ const Navbar = () => {
                             </Show>
                             <Show when="signed-out">
                                 <SignInButton mode="modal">
-                                    <button className="mt-4 flex h-14 w-full items-center justify-center rounded-full bg-black text-base font-bold text-white dark:bg-white dark:text-black">
+                                    <button className="mt-4 flex h-14 w-full items-center justify-center rounded-full bg-black text-base font-bold text-white">
                                         Join Network
                                     </button>
                                 </SignInButton>

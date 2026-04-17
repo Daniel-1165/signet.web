@@ -15,7 +15,6 @@ export default defineType({
       name: 'role',
       title: 'Role / Designation',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'company',
@@ -26,7 +25,7 @@ export default defineType({
       name: 'content',
       title: 'Testimonial Content',
       type: 'text',
-      validation: (Rule) => Rule.required().min(20).max(500),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'avatar',

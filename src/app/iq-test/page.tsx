@@ -104,22 +104,21 @@ const dNumMatrix = () => (
     </svg>
 );
 
-// QUESTIONS DATA
 const QUESTIONS: Question[] = [
     { id: 1, domain: 'Gf', diff: 1, weight: 1.0, type: 'visual', q: "Identify the missing element in the 3×3 logic grid.", func: d3x3Matrix, opts: ["Circle", "Square", "Triangle", "Star"], ans: 1 },
-    { id: 7, domain: 'Gf', diff: 1, weight: 1.0, type: 'visual', q: "Which shape logically follows the sequence? (Alternating Fill Rule)", func: dShapeSeq, opts: ["Small Solid", "Large Hollow", "Medium Solid", "Large Solid"], ans: 1 },
-    { id: 13, domain: 'Gf', diff: 2, weight: 1.5, type: 'visual', q: "Identify the pattern completion for this spatial matrix.", func: d3x3Matrix, opts: ["Double Circle", "Rotating Square", "X-Cross", "Dot Grid"], ans: 2 },
+    { id: 7, domain: 'Gf', diff: 1, weight: 1.0, type: 'text', q: "If all Zaps are Bops, and some Bops are Clips, which statement must logically be true?", opts: ["All Clips are Zaps", "Some Zaps are Clips", "Some Clips are Bops", "No Zaps are Clips"], ans: 2 },
+    { id: 13, domain: 'Gf', diff: 2, weight: 1.5, type: 'text', q: "What letter comes next in the sequence: O, T, T, F, F, S, S, E, __ ?", opts: ["N", "T", "E", "M"], ans: 0 },
     { id: 2, domain: 'Gc', diff: 1, weight: 1.0, type: 'text', q: "EPHEMERAL is to PERMANENT as NOVICE is to:", opts: ["Beginner", "Expert", "Transient", "Legacy"], ans: 1 },
     { id: 8, domain: 'Gc', diff: 1, weight: 1.0, type: 'text', q: "Which word is most nearly the opposite of GARRULOUS?", opts: ["Chatty", "Loud", "Taciturn", "Erudite"], ans: 2 },
     { id: 14, domain: 'Gc', diff: 2, weight: 1.5, type: 'text', q: "ARCHIPELAGO is to ISLAND as GALAXY is to:", opts: ["Nebula", "Star", "Orbit", "Universe"], ans: 1 },
     { id: 3, domain: 'Gv', diff: 1, weight: 1.0, type: 'visual', q: "Select the correct horizontal mirror reflection of the L-shape.", func: dMirror, opts: ["Shape A", "Shape B", "Shape C", "Shape D"], ans: 0 },
-    { id: 9, domain: 'Gv', diff: 1, weight: 1.0, type: 'visual', q: "How many total squares of all sizes exist in this 3×3 grid?", func: dCountSquares, opts: ["9", "10", "14", "16"], ans: 2 },
+    { id: 9, domain: 'Gv', diff: 1, weight: 1.0, type: 'text', q: "You face North. You turn 90° right, walk 10 paces, turn 180°, and walk 5 paces. Which direction are you facing?", opts: ["North", "East", "South", "West"], ans: 3 },
     { id: 4, domain: 'Gw', diff: 1, weight: 1.0, type: 'text', q: "Remember the sequence: 4 - 9 - 1 - 7. Reverse it and add 2 to the second number.", opts: ["7 - 3 - 9 - 4", "7 - 1 - 9 - 4", "7 - 5 - 9 - 4", "4 - 3 - 1 - 7"], ans: 0 },
     { id: 10, domain: 'Gw', diff: 1, weight: 1.0, type: 'text', q: "Which word comes second alphabetically: Apple, Zebra, Mango, Kilo?", opts: ["Apple", "Mango", "Kilo", "Zebra"], ans: 2 },
-    { id: 5, domain: 'Gs', diff: 1, weight: 1.0, type: 'visual', timed: true, q: "Identify the most frequent symbol in the field.", func: dSymbolFreq, opts: ["+", "○", "△", "□"], ans: 0 },
-    { id: 6, domain: 'Gq', diff: 1, weight: 1.0, type: 'visual', q: "Identify the missing number in this matrix sequence.", func: dNumMatrix, opts: ["12", "14", "15", "18"], ans: 2 },
+    { id: 5, domain: 'Gs', diff: 1, weight: 1.0, type: 'text', timed: true, q: "Speed Logic: Identify the word that does NOT belong as quickly as possible.", opts: ["Guitar", "Flute", "Piano", "Painting"], ans: 3 },
+    { id: 6, domain: 'Gq', diff: 1, weight: 1.0, type: 'text', q: "What comes next in the sequence: 2, 5, 11, 23, __ ?", opts: ["45", "46", "47", "49"], ans: 2 },
     { id: 12, domain: 'Gq', diff: 1, weight: 1.0, type: 'text', q: "A train travels 60 miles in 45 minutes. What is its speed in mph?", opts: ["45 mph", "60 mph", "75 mph", "80 mph"], ans: 3 },
-    { id: 15, domain: 'Gv', diff: 2, weight: 1.5, type: 'visual', q: "Match the rotation: 90 degrees clockwise.", func: dMirror, opts: ["Opt A", "Opt B", "Opt C", "Opt D"], ans: 1 }
+    { id: 15, domain: 'Gv', diff: 2, weight: 1.5, type: 'text', q: "Imagine a 3x3x3 wooden cube painted red on the outside. How many small cubes have exactly ONE red face?", opts: ["4", "6", "8", "9"], ans: 1 }
 ];
 
 // ==========================================
@@ -230,166 +229,180 @@ export default function IQTestPage() {
 
     if (view === "welcome") {
         return (
-            <div className="min-h-screen bg-white text-black font-sans flex flex-col justify-center px-6 py-20 mx-auto max-w-5xl">
-                <div className="mb-4">
-                    <span className="text-[10px] tracking-[0.2em] font-medium uppercase border border-black px-3 py-1">SIGNET ASSESSMENT</span>
-                </div>
-                <h1 className="text-5xl md:text-8xl tracking-tight leading-none mb-8 font-syne font-bold">
-                    Cognitive <br />
-                    Evaluation
-                </h1>
-                <p className="text-lg md:text-2xl text-black/60 max-w-2xl mb-16 leading-relaxed font-outfit font-light">
-                    A rigorous examination of primary cognitive factors. Minimalist by design. Melbourne-inspired typographical approach.
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-20 border-t border-black pt-12">
-                     {[
-                         { label: "DURATION", val: "15 MIN" },
-                         { label: "FORMAT", val: "ADAPTIVE" },
-                         { label: "DOMAINS", val: "SIX FACTORS" },
-                         { label: "THEORY", val: "C-H-C" }
-                     ].map(it => (
-                         <div key={it.label} className="flex flex-col">
-                             <span className="text-[10px] tracking-[0.15em] font-medium text-black/50 mb-2">{it.label}</span>
-                             <span className="text-xl tracking-tight font-medium">{it.val}</span>
-                         </div>
-                     ))}
-                </div>
-                <button 
-                    onClick={startAssessment}
-                    className="self-start group flex items-center gap-4 border-b-2 border-black pb-2 text-xl tracking-tight transition-all hover:opacity-60"
-                >
-                    Begin Process <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                </button>
-            </div>
-        );
-    }
-
-    if (view === "results" && results) {
-        return (
-            <div className="min-h-screen bg-white text-black font-sans px-6 py-20 mx-auto max-w-5xl">
-                <header className="mb-24 flex flex-col md:flex-row justify-between items-baseline border-b border-black pb-8">
-                    <h2 className="text-3xl md:text-5xl tracking-tight font-syne font-bold">Evaluation Complete</h2>
-                    <p className="text-[10px] tracking-[0.2em] uppercase mt-4 md:mt-0 font-medium">Data Sync Verified</p>
-                </header>
-
-                <div className="grid lg:grid-cols-12 gap-16 mb-24">
-                    <div className="lg:col-span-4 flex flex-col justify-between">
-                        <div>
-                            <div className="text-[10px] tracking-[0.15em] font-medium text-black/50 mb-2">INTELLIGENCE QUOTIENT</div>
-                            <div className="text-[8rem] md:text-[10rem] leading-none tracking-tighter mb-4 font-syne">{results.iq}</div>
-                            <div className="text-sm tracking-widest uppercase mb-12">Percentile: Top {Math.round((1 - results.iq/200) * 100)}%</div>
-                        </div>
-                        <p className="text-[10px] text-black/50 max-w-xs leading-relaxed uppercase tracking-wider">
-                            This metric represents a personal baseline estimation, not a formal diagnostic credential.
-                        </p>
+            <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F9FBF4] text-black font-sans flex flex-col justify-center px-6 py-20">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
+                
+                <div className="max-w-5xl mx-auto w-full relative z-10">
+                    <div className="mb-4">
+                        <span className="text-[10px] tracking-[0.2em] font-medium uppercase border-l-2 border-accent pl-3 text-accent py-1">SIGNET ASSESSMENT</span>
                     </div>
-
-                    <div className="lg:col-span-8 flex flex-col justify-center">
-                        <div className="text-[10px] tracking-[0.15em] font-medium text-black/50 mb-2">PRIMARY ARCHETYPE</div>
-                        <h3 className="text-4xl md:text-6xl tracking-tight mb-4 font-syne font-bold">{results.archetype.name}</h3>
-                        <p className="text-xl md:text-2xl text-black/50 mb-12 font-outfit font-light">{results.archetype.sig}</p>
-                        
-                        <div className="grid grid-cols-2 gap-8 border-t border-black/10 pt-8 mt-auto">
-                            {Object.entries(results.domainScores).map(([key, score]) => (
-                                <div key={key} className="flex flex-col">
-                                    <div className="flex justify-between items-center mb-2">
-                                        <span className="text-[10px] tracking-[0.15em] font-medium uppercase text-black/70">{G_TYPES[key as Domain].name}</span>
-                                        <span className="text-[10px] font-medium">{Math.round(score)}</span>
-                                    </div>
-                                    <div className="w-full h-[1px] bg-black/10 relative">
-                                        <motion.div 
-                                            className="absolute top-0 left-0 border-b border-black h-[1px]"
-                                            initial={{ width: 0 }}
-                                            animate={{ width: `${score}%` }}
-                                            transition={{ duration: 1.5, ease: "easeOut" }}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                    <h1 className="text-6xl md:text-8xl tracking-tight leading-none mb-8 font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-accent/80">
+                        Cognitive <br />
+                        Evaluation
+                    </h1>
+                    <p className="text-lg md:text-2xl text-black/60 max-w-2xl mb-16 leading-relaxed font-outfit font-light">
+                        A rigorous yet engaging examination of primary cognitive factors. Discover your archetype through dynamic intelligence profiling.
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-3xl p-8 border border-black/5">
+                         {[
+                             { label: "DURATION", val: "15 MIN" },
+                             { label: "FORMAT", val: "ADAPTIVE" },
+                             { label: "DOMAINS", val: "SIX FACTORS" },
+                             { label: "THEORY", val: "C-H-C" }
+                         ].map(it => (
+                             <div key={it.label} className="flex flex-col border-l border-black/5 pl-4">
+                                 <span className="text-[10px] tracking-[0.15em] font-medium text-accent mb-2">{it.label}</span>
+                                 <span className="text-xl tracking-tight font-bold">{it.val}</span>
+                             </div>
+                         ))}
                     </div>
-                </div>
-
-                <div className="flex justify-center pt-12 border-t border-black/10">
                     <button 
-                         onClick={() => window.location.reload()} 
-                         className="group flex items-center gap-4 text-xs tracking-[0.2em] font-medium uppercase transition-all hover:opacity-60"
+                        onClick={startAssessment}
+                        className="group flex items-center justify-center gap-4 bg-accent text-white px-8 py-4 rounded-full font-bold text-lg tracking-tight transition-all hover:bg-accent/90 shadow-[0_8px_30px_rgba(16,129,114,0.3)] hover:scale-105"
                     >
-                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" /> Re-evaluate
+                        Begin Process <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </button>
                 </div>
             </div>
         );
     }
 
-    return (
-        <div className="min-h-screen bg-white text-black font-sans flex flex-col max-w-4xl mx-auto px-6">
-            <header className="py-8 flex items-center justify-between border-b border-black/10">
-                <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-medium uppercase tracking-[0.15em]">{G_TYPES[question.domain].name}</span>
-                </div>
-                <div className="flex items-center gap-8">
-                    <span className="text-[10px] font-medium tracking-wide text-black/50">{curIdx + 1} / {QUESTIONS.length}</span>
-                    {question.timed && (
-                        <span className="text-[10px] font-medium tracking-widest uppercase text-red-600">{Math.ceil(gsTimer)}S</span>
-                    )}
-                </div>
-            </header>
+    if (view === "results" && results) {
+        return (
+            <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-b from-[#F1F5F0] to-white text-black font-sans px-6 py-20">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+                
+                <div className="max-w-5xl mx-auto w-full">
+                    <header className="mb-24 flex flex-col md:flex-row justify-between items-baseline border-b border-black/10 pb-8">
+                        <h2 className="text-4xl md:text-5xl tracking-tight font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-accent">Evaluation Complete</h2>
+                        <p className="text-[10px] tracking-[0.2em] text-accent uppercase mt-4 md:mt-0 font-bold bg-accent/10 px-4 py-2 rounded-full">Data Sync Verified</p>
+                    </header>
 
-            <main className="flex-1 flex flex-col justify-center py-12">
-                 <AnimatePresence mode="wait">
-                    <motion.div 
-                        key={curIdx}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="flex-1 flex flex-col justify-center max-w-2xl"
-                    >
-                        <h2 className="text-2xl md:text-3xl tracking-tight leading-relaxed mb-16 font-outfit font-light">{question.q}</h2>
-
-                        {question.type === 'visual' && question.func && (
-                            <div className="mb-16 flex justify-start">
-                                {question.func({})}
+                    <div className="grid lg:grid-cols-12 gap-12 mb-24">
+                        <div className="lg:col-span-4 flex flex-col justify-between bg-white shadow-xl shadow-black/5 rounded-3xl p-10 border border-black/5 relative overflow-hidden">
+                            <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/5 rounded-full blur-2xl"></div>
+                            <div className="relative z-10">
+                                <div className="text-[10px] tracking-[0.15em] font-bold text-accent mb-4">INTELLIGENCE QUOTIENT</div>
+                                <div className="text-[7rem] md:text-[9rem] leading-none tracking-tighter mb-4 font-syne font-black text-black">{results.iq}</div>
+                                <div className="text-sm tracking-widest uppercase mb-12 font-bold text-black/60 border-l-2 border-accent pl-3">Percentile: Top {Math.round((1 - results.iq/200) * 100)}%</div>
                             </div>
-                        )}
-
-                        <div className="flex flex-col gap-1 w-full max-w-md">
-                            {question.opts.map((opt, i) => (
-                                <button 
-                                    key={i}
-                                    onClick={() => handleSelect(i)}
-                                    className={`py-4 border-b text-left text-lg tracking-tight transition-all duration-200 flex items-center justify-between group ${
-                                        userAns[question.id] === i 
-                                            ? 'border-black text-black' 
-                                            : 'border-black/10 text-black/60 hover:text-black hover:border-black/40'
-                                    }`}
-                                >
-                                    <span>{opt}</span>
-                                    <span className={`text-[10px] font-medium ${userAns[question.id] === i ? 'opacity-100' : 'opacity-0'} transition-opacity`}>SELECTED</span>
-                                </button>
-                            ))}
+                            <p className="text-[10px] text-black/40 max-w-xs leading-relaxed uppercase tracking-wider relative z-10 font-bold">
+                                This metric represents a personal baseline estimation, not a formal diagnostic credential.
+                            </p>
                         </div>
-                    </motion.div>
-                 </AnimatePresence>
-            </main>
 
-            <footer className="py-8 border-t border-black/10 flex items-center justify-between">
-                <button 
-                    onClick={() => setCurIdx(Math.max(0, curIdx - 1))}
-                    disabled={curIdx === 0}
-                    className="text-[10px] tracking-[0.2em] font-medium uppercase hover:opacity-60 disabled:opacity-0 transition-opacity flex items-center gap-2"
-                >
-                    <ArrowLeft className="w-3 h-3" /> Back
-                </button>
-                <button 
-                    onClick={handleNext}
-                    disabled={userAns[question.id] === undefined}
-                    className="group text-sm tracking-tight font-medium flex items-center gap-3 disabled:opacity-30 transition-all hover:opacity-60"
-                >
-                    {curIdx === QUESTIONS.length - 1 ? "FINISH" : "NEXT"} <ArrowRight className="w-4 h-4 group-enabled:group-hover:translate-x-1 transition-transform" />
-                </button>
-            </footer>
+                        <div className="lg:col-span-8 flex flex-col justify-center bg-white shadow-xl shadow-black/5 rounded-3xl p-10 border border-black/5">
+                            <div className="text-[10px] tracking-[0.15em] font-bold text-accent mb-4">PRIMARY ARCHETYPE</div>
+                            <h3 className="text-4xl md:text-6xl tracking-tight mb-4 font-syne font-black">{results.archetype.name}</h3>
+                            <p className="text-xl md:text-2xl text-black/60 mb-12 font-outfit">{results.archetype.sig}</p>
+                            
+                            <div className="grid grid-cols-2 gap-x-12 gap-y-8 border-t border-black/5 pt-8 mt-auto">
+                                {Object.entries(results.domainScores).map(([key, score]) => (
+                                    <div key={key} className="flex flex-col">
+                                        <div className="flex justify-between items-center mb-3">
+                                            <span className="text-[10px] tracking-[0.15em] font-bold uppercase text-black/70">{G_TYPES[key as Domain].name}</span>
+                                            <span className="text-sm font-black text-accent">{Math.round(score)}</span>
+                                        </div>
+                                        <div className="w-full h-2 bg-black/5 rounded-full overflow-hidden relative">
+                                            <motion.div 
+                                                className="absolute top-0 left-0 bg-accent h-full rounded-full"
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${score}%` }}
+                                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-center pt-12">
+                        <button 
+                             onClick={() => window.location.reload()} 
+                             className="group flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-xs tracking-[0.2em] font-bold uppercase transition-all hover:bg-black/80 hover:scale-105 shadow-xl"
+                        >
+                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" /> Re-evaluate
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-b from-[#F1F5F0] to-white text-black font-sans flex flex-col px-6">
+            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl -z-10 -translate-x-1/2 -translate-y-1/2"></div>
+            
+            <div className="max-w-4xl mx-auto w-full flex flex-col flex-1 relative z-10">
+                <header className="py-8 flex items-center justify-between border-b border-black/10">
+                    <div className="flex items-center gap-4">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.15em] bg-accent/10 text-accent px-3 py-1 rounded-full">{G_TYPES[question.domain].name}</span>
+                    </div>
+                    <div className="flex items-center gap-8">
+                        <span className="text-[10px] font-bold tracking-wide text-black/50 bg-black/5 px-4 py-1.5 rounded-full">{curIdx + 1} / {QUESTIONS.length}</span>
+                        {question.timed && (
+                            <span className="text-xs font-black tracking-widest uppercase text-red-600 bg-red-50 px-3 py-1 rounded-full shadow-sm animate-pulse">{Math.ceil(gsTimer)}S</span>
+                        )}
+                    </div>
+                </header>
+
+                <main className="flex-1 flex flex-col justify-center py-12">
+                     <AnimatePresence mode="wait">
+                        <motion.div 
+                            key={curIdx}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.3 }}
+                            className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full"
+                        >
+                            <h2 className="text-3xl md:text-4xl tracking-tight leading-relaxed mb-16 font-outfit font-medium text-center">{question.q}</h2>
+
+                            {question.type === 'visual' && question.func && (
+                                <div className="mb-16 flex justify-center bg-white shadow-xl shadow-black/5 p-8 rounded-3xl border border-black/5">
+                                    {question.func({})}
+                                </div>
+                            )}
+
+                            <div className="flex flex-col gap-3 w-full max-w-md mx-auto">
+                                {question.opts.map((opt, i) => (
+                                    <button 
+                                        key={i}
+                                        onClick={() => handleSelect(i)}
+                                        className={`py-5 px-6 rounded-2xl text-left text-lg font-medium tracking-tight transition-all duration-200 flex items-center justify-between group border ${
+                                            userAns[question.id] === i 
+                                                ? 'bg-accent border-accent text-white shadow-lg shadow-accent/20 scale-105' 
+                                                : 'bg-white border-black/5 text-black hover:border-accent hover:bg-accent/5 hover:text-accent shadow-sm'
+                                        }`}
+                                    >
+                                        <span>{opt}</span>
+                                        <span className={`text-[10px] font-bold tracking-widest uppercase ${userAns[question.id] === i ? 'opacity-100' : 'opacity-0'} transition-opacity`}>SELECTED</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </motion.div>
+                     </AnimatePresence>
+                </main>
+
+                <footer className="py-8 border-t border-black/10 flex items-center justify-between mt-auto">
+                    <button 
+                        onClick={() => setCurIdx(Math.max(0, curIdx - 1))}
+                        disabled={curIdx === 0}
+                        className="text-[10px] tracking-[0.2em] font-bold uppercase text-black/50 hover:text-black disabled:opacity-0 transition-opacity flex items-center gap-2"
+                    >
+                        <ArrowLeft className="w-3 h-3" /> Back
+                    </button>
+                    <button 
+                        onClick={handleNext}
+                        disabled={userAns[question.id] === undefined}
+                        className="group bg-black text-white px-8 py-3 rounded-full text-sm tracking-tight font-bold flex items-center gap-3 disabled:opacity-30 disabled:bg-black/10 disabled:text-black transition-all hover:bg-black/80 hover:scale-105 shadow-xl disabled:shadow-none"
+                    >
+                        {curIdx === QUESTIONS.length - 1 ? "FINISH" : "NEXT"} <ArrowRight className="w-4 h-4 group-enabled:group-hover:translate-x-1 transition-transform" />
+                    </button>
+                </footer>
+            </div>
         </div>
     );
 }
