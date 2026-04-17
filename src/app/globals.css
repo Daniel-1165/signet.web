@@ -8,9 +8,9 @@
   --font-mono: var(--font-geist-mono);
 
   /* Unified Premium Palette (Green Accent) */
-  --color-accent: #006400; /* Pure Dark Green */
-  --color-signet-green: #006400;
-  --color-growth-green: #008000;
+  --color-accent: #108172; /* Pure Dark Green */
+  --color-signet-green: #108172;
+  --color-growth-green: #7AFF69;
   --color-earth-brown: #0A0A0A;
   
   /* Unique Psychology Accents for Details */
@@ -20,7 +20,7 @@
   
   --color-signet-light: #171717;
   --color-platinum: #111111;
-  --color-emerald-glow: #006400;
+  --color-emerald-glow: #7AFF69;
 }
 
 :root {
@@ -38,7 +38,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: 'Melbourne', var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;

@@ -48,36 +48,6 @@ export default function VisionGuideContent({
   const [expandedPrompts, setExpandedPrompts] = useState<Set<number>>(new Set())
   const [journalEntries, setJournalEntries] = useState<Record<number, string>>({})
 
-  const bgColors = [
-    'bg-blue-50',
-    'bg-green-50',
-    'bg-purple-50',
-    'bg-amber-50',
-    'bg-pink-50',
-    'bg-indigo-50',
-    'bg-teal-50',
-  ]
-
-  const borderColors = [
-    'border-blue-200',
-    'border-green-200',
-    'border-purple-200',
-    'border-amber-200',
-    'border-pink-200',
-    'border-indigo-200',
-    'border-teal-200',
-  ]
-
-  const accentColors = [
-    'text-blue-600',
-    'text-green-600',
-    'text-purple-600',
-    'text-amber-600',
-    'text-pink-600',
-    'text-indigo-600',
-    'text-teal-600',
-  ]
-
   const togglePrompt = (index: number) => {
     const newExpanded = new Set(expandedPrompts)
     if (newExpanded.has(index)) {
@@ -96,14 +66,14 @@ export default function VisionGuideContent({
   }
 
   return (
-    <div className={`rounded-3xl border-2 ${borderColors[index % 7]} ${bgColors[index % 7]} p-8 md:p-12 space-y-8`}>
+    <div className={`rounded-3xl border-2 border-accent/10 bg-accent/5 p-8 md:p-12 space-y-8`}>
       {/* Header */}
       <div className="flex items-start gap-4">
-        <div className={`p-3 rounded-2xl bg-white border-2 ${borderColors[index % 7]}`}>
-          <div className={`${accentColors[index % 7]}`}>{icon}</div>
+        <div className={`p-3 rounded-2xl bg-white border-2 border-accent/10`}>
+          <div className="text-accent">{icon}</div>
         </div>
         <div>
-          <h2 className={`text-4xl font-black ${accentColors[index % 7]} uppercase tracking-tight`}>
+          <h2 className="text-4xl font-black text-accent uppercase tracking-tight">
             {title}
           </h2>
           <p className="text-sm font-bold text-foreground/50 uppercase tracking-widest mt-1">
@@ -130,11 +100,11 @@ export default function VisionGuideContent({
       {/* Key Points */}
       {keyPoints && keyPoints.length > 0 && (
         <div className="space-y-3">
-          <h3 className="font-black text-lg uppercase tracking-tight">Key Takeaways</h3>
+          <h3 className="font-black text-lg uppercase tracking-tight text-foreground">Key Takeaways</h3>
           <div className="grid md:grid-cols-2 gap-3">
             {keyPoints.map((point, i) => (
               <div key={i} className="flex gap-3 items-start p-3 bg-white/60 rounded-lg">
-                <div className={`w-1.5 h-1.5 rounded-full ${accentColors[index % 7]} mt-2 flex-shrink-0`} />
+                <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                 <p className="text-sm text-foreground/70">{point}</p>
               </div>
             ))}
@@ -145,13 +115,13 @@ export default function VisionGuideContent({
       {/* Biblical References */}
       {biblicalReferences && biblicalReferences.length > 0 && (
         <div className="space-y-4 p-6 bg-white/70 rounded-2xl border border-white/50">
-          <h3 className="font-black text-lg uppercase tracking-tight text-purple-700">Biblical Grounding</h3>
+          <h3 className="font-black text-lg uppercase tracking-tight text-accent">Biblical Grounding</h3>
           {biblicalReferences.map((ref, i) => (
             <div key={i} className="space-y-2 pb-4 border-b border-white/50 last:border-b-0">
-              <p className="font-bold text-purple-600 text-sm">{ref.verse}</p>
+              <p className="font-bold text-accent text-sm">{ref.verse}</p>
               <p className="text-sm italic text-foreground/70 mb-2">"{ref.text}"</p>
-              <div className="p-3 bg-purple-50 rounded-lg">
-                <p className="text-xs font-semibold text-purple-700 mb-1">Application:</p>
+              <div className="p-3 bg-accent/10 rounded-lg">
+                <p className="text-xs font-semibold text-accent mb-1">Application:</p>
                 <p className="text-sm text-foreground/70">{ref.interpretation}</p>
               </div>
             </div>
@@ -162,7 +132,7 @@ export default function VisionGuideContent({
       {/* Academic Resources */}
       {academicResources && academicResources.length > 0 && (
         <div className="space-y-4">
-          <h3 className="font-black text-lg uppercase tracking-tight">Research & Academic Foundation</h3>
+          <h3 className="font-black text-lg uppercase tracking-tight text-foreground">Research & Academic Foundation</h3>
           {academicResources.map((resource, i) => (
             <div key={i} className="p-4 bg-white/60 rounded-lg border border-white/50 space-y-2">
               <p className="font-bold text-foreground/90">{resource.title}</p>
@@ -177,13 +147,13 @@ export default function VisionGuideContent({
 
       {/* Reflection Prompts */}
       {reflectionPrompts && reflectionPrompts.length > 0 && (
-        <div className="space-y-4 p-6 bg-white/70 rounded-2xl border-2 border-amber-200">
-          <h3 className="font-black text-lg uppercase tracking-tight text-amber-700">Reflection & Journal Prompts</h3>
+        <div className="space-y-4 p-6 bg-white/70 rounded-2xl border-2 border-accent/20">
+          <h3 className="font-black text-lg uppercase tracking-tight text-accent">Reflection & Journal Prompts</h3>
           {reflectionPrompts.map((prompt, i) => (
             <div key={i} className="space-y-3">
               <button
                 onClick={() => togglePrompt(i)}
-                className="w-full text-left font-bold text-amber-600 text-base hover:text-amber-700 transition-colors flex items-center justify-between"
+                className="w-full text-left font-bold text-accent text-base hover:text-accent/80 transition-colors flex items-center justify-between"
               >
                 <span>💭 {prompt.question}</span>
                 <span className={`transform transition-transform ${expandedPrompts.has(i) ? 'rotate-180' : ''}`}>
@@ -193,20 +163,20 @@ export default function VisionGuideContent({
 
               {expandedPrompts.has(i) && (
                 <div className="space-y-3 animate-in slide-in-from-top-2 duration-300">
-                  <p className="text-sm text-foreground/70 mb-3 p-2 bg-amber-50 rounded pl-3 border-l-4 border-amber-300">
+                  <p className="text-sm text-foreground/70 mb-3 p-2 bg-accent/5 rounded pl-3 border-l-4 border-accent/30">
                     {prompt.guidance}
                   </p>
                   <textarea
                     value={journalEntries[i] || ''}
                     onChange={(e) => updateJournalEntry(i, e.target.value)}
                     placeholder={prompt.journalPlaceholder}
-                    className="w-full p-4 bg-white rounded-lg border-2 border-amber-100 min-h-24 text-sm text-foreground resize-y focus:border-amber-300 focus:outline-none transition-colors"
+                    className="w-full p-4 bg-white rounded-lg border-2 border-accent/10 min-h-24 text-sm text-foreground resize-y focus:border-accent/40 focus:outline-none transition-colors"
                   />
                   <div className="flex justify-between items-center text-xs text-foreground/50">
                     <span>Characters: {journalEntries[i]?.length || 0}</span>
                     <button
                       onClick={() => navigator.clipboard.writeText(journalEntries[i] || '')}
-                      className="text-amber-600 hover:text-amber-700 underline"
+                      className="text-accent hover:text-accent/80 underline"
                     >
                       Copy to clipboard
                     </button>
@@ -229,7 +199,7 @@ export default function VisionGuideContent({
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i <= index ? accentColors[index % 7] : 'bg-foreground/20'
+                  i <= index ? 'bg-accent' : 'bg-foreground/20'
                 }`}
               />
             ))}

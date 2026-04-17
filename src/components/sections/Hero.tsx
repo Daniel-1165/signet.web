@@ -73,7 +73,7 @@ const Hero = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="w-20 h-20 mb-8 flex items-center justify-center"
                 >
-                    <svg viewBox="0 0 100 50" className="w-full h-auto text-[#16a34a]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 100 50" className="w-full h-auto text-accent" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="21" cy="18" r="8" />
                         <circle cx="50" cy="12" r="10" />
                         <circle cx="79" cy="18" r="8" />
@@ -108,7 +108,7 @@ const Hero = () => {
                     className="mt-10 flex flex-col sm:flex-row items-center gap-4 relative z-20"
                 >
                     <MagneticButton>
-                        <button className="h-14 px-8 rounded-full bg-[#16a34a] text-white font-bold tracking-wide flex items-center gap-3 hover:scale-105 transition-transform shadow-[0_0_30px_rgba(22,163,74,0.3)] border border-[#16a34a]/20">
+                        <button className="h-14 px-8 rounded-full bg-accent text-white font-bold tracking-wide flex items-center gap-3 hover:scale-105 transition-transform shadow-[0_0_30px_rgba(16,129,114,0.3)] border border-accent/20">
                             Join Us <ArrowUpRight className="w-5 h-5" />
                         </button>
                     </MagneticButton>
@@ -128,10 +128,10 @@ const Hero = () => {
                     initial={{ opacity: 0, x: -50, rotate: -15 }}
                     animate={{ opacity: 1, x: 0, rotate: -6 }}
                     transition={{ duration: 1, delay: 0.8, type: "spring" }}
-                    className="hidden lg:flex absolute top-[10%] left-0 xl:-left-12 flex-col w-56 bg-[#FFF9C4] rounded-tr-3xl rounded-b-xl p-5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-black/[0.03] -z-5"
+                    className="hidden lg:flex absolute top-[10%] left-0 xl:-left-12 flex-col w-56 bg-accent/10 backdrop-blur-md rounded-tr-3xl rounded-b-xl p-5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-accent/20 -z-5"
                 >
-                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-400 shadow-inner"></div>
-                    <p className="mt-4 font-[Gloria_Hallelujah,sans-serif] text-sm leading-relaxed text-black/80 font-medium transform rotate-1">
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent shadow-inner animate-pulse"></div>
+                    <p className="mt-4 text-sm leading-relaxed text-accent font-bold transform rotate-1">
                         Solidify morning network, review daily metrics before deep work sessions. 🚀
                     </p>
                     <div className="absolute -bottom-6 -right-6 w-14 h-14 bg-white rounded-2xl shadow-xl border border-black/5 flex items-center justify-center transform rotate-12">
