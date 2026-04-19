@@ -1,31 +1,5 @@
 // GROQ queries for Sanity content fetching
 
-export const GET_ALL_POSTS = `
-  *[_type == "post"] | order(publishedAt desc) {
-    _id,
-    title,
-    slug,
-    publishedAt,
-    mainImage,
-    author->,
-    categories[]->,
-    body,
-  }
-`
-
-export const GET_POST_BY_SLUG = `
-  *[_type == "post" && slug.current == $slug][0] {
-    _id,
-    title,
-    slug,
-    publishedAt,
-    mainImage,
-    author->,
-    categories[]->,
-    body,
-  }
-`
-
 export const GET_ALL_PAGES = `
   *[_type == "page"] | order(publishedAt desc) {
     _id,
@@ -50,33 +24,10 @@ export const GET_PAGE_BY_SLUG = `
   }
 `
 
-export const GET_AUTHORS = `
-  *[_type == "author"] {
-    _id,
-    name,
-    slug,
-    image,
-    bio,
-  }
-`
-
-export const GET_CATEGORIES = `
-  *[_type == "category"] {
-    _id,
-    title,
-    description,
-  }
-`
-
 export const GET_TESTIMONIALS = `
-  *[_type == "testimonial"] | order(order asc) {
+  *[_type == "testimonial"] | order(_createdAt asc) {
     _id,
     name,
-    role,
-    company,
-    content,
-    featured,
-    order,
     avatar {
       asset-> {
         _id,
@@ -87,22 +38,18 @@ export const GET_TESTIMONIALS = `
   }
 `
 
-export const GET_FEATURED_TESTIMONIALS = `
-  *[_type == "testimonial" && featured == true] | order(order asc) {
+export const GET_CERTIFICATES = `
+  *[_type == "certificate"] | order(_createdAt desc) {
     _id,
-    name,
-    role,
-    company,
-    content,
-    featured,
-    order,
-    avatar {
+    username,
+    courseName,
+    issueDate,
+    certificateFile {
       asset-> {
         _id,
         url
-      },
-      hotspot,
-    },
+      }
+    }
   }
 `
 
@@ -111,33 +58,20 @@ export const GET_ALL_RESOURCES = `
     _id,
     title,
     category,
-    description,
-    image {
+    thumbnail {
       asset-> {
         _id,
         url
       },
       hotspot,
     },
-    color,
-    iconName,
-  }
-`
-
-export const GET_RESOURCES_BY_CATEGORY = `
-  *[_type == "resourceCard" && category == $category] | order(_createdAt desc) {
-    _id,
-    title,
-    category,
-    description,
-    image {
+    resourceFile {
       asset-> {
         _id,
-        url
-      },
-      hotspot,
+        url,
+        extension
+      }
     },
-    color,
-    iconName,
+    content
   }
 `

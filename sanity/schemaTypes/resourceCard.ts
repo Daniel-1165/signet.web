@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'resourceCard',
-  title: 'Resource Card',
+  title: 'Resource',
   type: 'document',
   fields: [
     defineField({
@@ -12,31 +12,37 @@ export default defineType({
     }),
     defineField({
       name: 'category',
-      title: 'Category (Magazine, Book, Articles, Designs)',
+      title: 'Category',
       type: 'string',
+      options: {
+        list: [
+          {title: 'Magazine', value: 'Magazine'},
+          {title: 'Book', value: 'Book'},
+          {title: 'Article', value: 'Article'},
+          {title: 'Design', value: 'Design'}
+        ],
+      }
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-    }),
-    defineField({
-      name: 'image',
-      title: 'Background/Hero Image',
+      name: 'thumbnail',
+      title: 'Thumbnail / Cover Image',
       type: 'image',
+      description: 'Used for Book covers, Design previews, etc.',
       options: {
         hotspot: true,
       },
     }),
     defineField({
-      name: 'color',
-      title: 'Theme Color (Tailwind class)',
-      type: 'string',
+      name: 'resourceFile',
+      title: 'Resource File (PDF / Document)',
+      type: 'file',
+      description: 'Upload PDF for books or magazines',
     }),
     defineField({
-      name: 'iconName',
-      title: 'Icon Name (Lucide string mapping)',
-      type: 'string',
+      name: 'content',
+      title: 'Write-up / Article Content',
+      type: 'text',
+      description: 'Write up for designs, or text content for articles',
     }),
   ],
 })

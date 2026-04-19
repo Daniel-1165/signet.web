@@ -38,9 +38,9 @@ export default function RootLayout({
           
           <div className="flex flex-col min-h-screen relative">
             <Navbar />
-            <div className="flex flex-1 pt-24">
+            <div className="flex flex-1 md:pt-24">
               <Sidebar />
-              <main className="flex-1 w-full overflow-x-hidden relative">
+              <main className="flex-1 w-full overflow-x-hidden relative pb-20 md:pb-0 md:pl-20">
                 {children}
               </main>
             </div>

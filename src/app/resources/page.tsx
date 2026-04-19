@@ -1,21 +1,26 @@
 import { sanityFetch } from "@/lib/sanity/client";
 import { GET_ALL_RESOURCES } from "@/lib/sanity/queries";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Compass, Sparkles, Image as ImageIcon } from "lucide-react";
+import { ArrowRight, BookOpen, Compass, Sparkles, Image as ImageIcon, FileText, Download } from "lucide-react";
 
 interface ResourceCard {
   _id: string;
   title: string;
   category: string;
-  description: string;
-  image?: {
+  thumbnail?: {
     asset?: {
       _id: string;
       url: string;
     };
   };
-  color?: string;
-  iconName?: string;
+  resourceFile?: {
+    asset?: {
+      _id: string;
+      url: string;
+      extension: string;
+    };
+  };
+  content?: string;
 }
 
 async function getResources(): Promise<ResourceCard[]> {
@@ -32,10 +37,10 @@ async function getResources(): Promise<ResourceCard[]> {
 }
 
 const categories = [
-  { id: "Books", title: "Essential Reads", icon: BookOpen, desc: "Fundamental knowledge and deep learning" },
-  { id: "Articles", title: "Curated Articles", icon: Compass, desc: "Bite-sized insights and mental models" },
-  { id: "Magazines", title: "Periodicals", icon: Sparkles, desc: "In-depth issues on growth and systems" },
-  { id: "Designs", title: "Visual Architecture", icon: ImageIcon, desc: "Blueprints and aesthetic inspiration" },
+  { id: "Book", title: "Essential Books", icon: BookOpen, desc: "Fundamental knowledge and deep learning" },
+  { id: "Design", title: "Visual Designs", icon: ImageIcon, desc: "Blueprints, UX/UI, and aesthetic inspirations" },
+  { id: "Magazine", title: "Magazines & Serials", icon: Sparkles, desc: "In-depth issues on growth and systems" },
+  { id: "Article", title: "Curated Articles", icon: FileText, desc: "Bite-sized insights and mental models" },
 ];
 
 export default async function ResourcesPage() {
@@ -53,154 +58,134 @@ export default async function ResourcesPage() {
   );
 
   return (
-    <div className="relative min-h-screen bg-[#FDFDFD] font-sans selection:bg-accent/20">
-      <main className="pt-8 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto">
+    <div className="relative min-h-screen bg-[#0D120E] font-sans selection:bg-[#1DA756]/20 text-white">
+      <main className="pt-8 pb-32 pl-6 md:pl-12 max-w-[1800px] mx-auto pr-0">
         
-        {/* Dynamic Hero Area inspired by ExploreEase */}
-        <div className="bg-[#F4F6F0] rounded-[2.5rem] p-8 md:p-16 mb-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between border border-black/[0.03]">
-          {/* Subtle background decoration */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-accent/10 blur-3xl rounded-full mix-blend-multiply" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-100/50 blur-3xl rounded-full mix-blend-multiply" />
+        {/* Dynamic Hero Area */}
+        <div className="bg-[#1DA756]/10 rounded-l-[3rem] p-8 md:p-16 mb-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between border-y border-l border-[#1DA756]/20">
+          <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-[#1DA756]/20 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
           
-          <div className="relative z-10 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/5 shadow-sm mb-6">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-xs font-bold text-foreground">Signet Library</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-foreground leading-[1.1] mb-6">
-              Curated assets for <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-emerald-600">
-                your evolution.
-              </span>
+          <div className="relative z-10 max-w-2xl pr-6 md:pr-12">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.1] mb-6 text-white">
+              The Signet <br />
+              <span className="text-[#D3F36B]">Resource Library.</span>
             </h1>
-            <p className="text-lg text-foreground/60 leading-relaxed max-w-xl font-medium">
-              Dive into our handpicked collection of books, articles, and design resources. Build your mental models and accelerate your journey to excellence.
+            <p className="text-lg text-white/60 leading-relaxed font-medium">
+              Dive into our handpicked collection of books, articles, magazines, and design resources. Build your mental models and accelerate your journey to excellence.
             </p>
-          </div>
-
-          <div className="relative z-10 hidden lg:block w-72 h-72">
-            {/* Abstract decorative element representing the library structure */}
-            <div className="absolute inset-0 bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-black/5 transform rotate-3 flex items-center justify-center overflow-hidden">
-               <div className="grid grid-cols-2 gap-3 w-full h-full p-6">
-                 <div className="bg-accent/10 rounded-xl w-full h-full" />
-                 <div className="bg-[#0055FF]/5 rounded-xl w-full h-4/5 mt-auto" />
-                 <div className="bg-black/5 rounded-xl w-full h-3/4" />
-                 <div className="bg-orange-500/10 rounded-xl w-full h-full" />
-               </div>
-            </div>
-            <div className="absolute -bottom-6 -left-6 bg-white px-5 py-3 rounded-2xl shadow-xl border border-black/5 transform -rotate-6">
-               <p className="font-bold text-sm text-foreground">Explore Deep Work ↗</p>
-            </div>
           </div>
         </div>
 
-        {/* Resources Content */}
-        <div className="space-y-20">
+        {/* Resources Content - Horizontal Scrolling */}
+        <div className="space-y-24">
           {categories.map((category) => {
             const items = resourcesByCategory[category.id] || [];
             
             return (
               <section key={category.id} className="scroll-mt-32" id={category.id.toLowerCase()}>
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                       <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
-                          <category.icon size={20} strokeWidth={2.5} />
-                       </div>
-                       <h2 className="text-3xl font-extrabold text-foreground tracking-tight">
+                <div className="flex items-center justify-between mb-8 pr-6 md:pr-12">
+                  <div className="flex items-center gap-4">
+                     <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D3F36B] shadow-inner">
+                        <category.icon size={24} strokeWidth={2.5} />
+                     </div>
+                     <div>
+                       <h2 className="text-3xl font-extrabold tracking-tight">
                          {category.title}
                        </h2>
-                    </div>
-                    <p className="text-foreground/50 font-medium pl-14">
-                      {category.desc}
-                    </p>
+                       <p className="text-white/40 text-sm font-medium mt-1">
+                         {category.desc}
+                       </p>
+                     </div>
                   </div>
-                  {items.length > 0 && (
-                    <button className="text-sm font-bold text-accent hover:text-accent/80 transition-colors flex items-center gap-1">
-                      View all <ArrowRight size={16} />
-                    </button>
-                  )}
+                  <div className="hidden sm:flex gap-2">
+                     <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40"><ArrowRight className="rotate-180" size={16}/></div>
+                     <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white"><ArrowRight size={16}/></div>
+                  </div>
                 </div>
 
-                {/* Library Grid Layout */}
-                {items.length > 0 ? (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10">
-                    {items.map((resource) => (
-                      <div key={resource._id} className="group cursor-pointer flex flex-col h-full">
-                        {/* Book/Resource Cover */}
-                        <div className="relative w-full aspect-[2/3] rounded-2xl overflow-hidden bg-[#F3F4F1] border border-black/[0.04] shadow-sm transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
-                          {resource.image?.asset?.url ? (
+                {/* Horizontal Scroll Container */}
+                <div className="flex overflow-x-auto gap-6 pb-8 pt-2 no-scrollbar snap-x snap-mandatory pr-6 md:pr-12">
+                  {items.length > 0 ? (
+                    items.map((resource) => (
+                      <div key={resource._id} className="group shrink-0 w-[280px] md:w-[340px] snap-start flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden hover:bg-white/[0.04] transition-colors relative">
+                        {/* Thumbnail */}
+                        <div className="relative w-full aspect-[4/3] overflow-hidden bg-black/20">
+                          {resource.thumbnail?.asset?.url ? (
                             <img
-                              src={resource.image.asset.url}
+                              src={resource.thumbnail.asset.url}
                               alt={resource.title}
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                               loading="lazy"
                             />
                           ) : (
-                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                              <category.icon size={32} className="text-black/10 mb-3" />
-                              <span className="text-xs font-bold text-black/20 uppercase tracking-widest">{category.id}</span>
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center opacity-30">
+                              <category.icon size={40} className="mb-3" />
                             </div>
                           )}
                           
-                          {/* Hover Overlay */}
-                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                             <div className="bg-white text-black text-xs font-bold px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
-                               View Resource
+                          {/* File Type Badge Overlay */}
+                          {resource.resourceFile?.asset?.extension && (
+                             <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 flex items-center gap-2">
+                               <Download size={12} className="text-[#D3F36B]" />
+                               <span className="text-[10px] font-bold tracking-widest uppercase">{resource.resourceFile.asset.extension}</span>
                              </div>
-                          </div>
-                        </div>
-
-                        {/* Resource Info */}
-                        <div className="mt-4 flex-1 flex flex-col">
-                          <h3 className="font-extrabold text-[15px] leading-snug text-foreground line-clamp-2 group-hover:text-accent transition-colors">
-                            {resource.title}
-                          </h3>
-                          <p className="text-xs font-semibold text-foreground/40 mt-1 uppercase tracking-wider">
-                            {resource.category}
-                          </p>
-                          {resource.description && (
-                            <p className="text-sm text-foreground/60 mt-2 line-clamp-2 leading-relaxed">
-                              {resource.description}
-                            </p>
                           )}
                         </div>
+
+                        {/* Content */}
+                        <div className="p-6 flex-1 flex flex-col">
+                          <h3 className="font-extrabold text-lg leading-snug line-clamp-2 group-hover:text-[#D3F36B] transition-colors">
+                            {resource.title}
+                          </h3>
+                          {resource.content && (
+                            <p className="text-sm text-white/50 mt-3 line-clamp-3 leading-relaxed">
+                              {resource.content}
+                            </p>
+                          )}
+                          
+                          {/* Access Button / Link */}
+                          <div className="mt-6 pt-4 border-t border-white/5 w-full flex items-center justify-between">
+                             <span className="text-xs font-bold uppercase tracking-wider text-white/30">{category.id}</span>
+                             <Link 
+                               href={resource.resourceFile?.asset?.url || "#"} 
+                               target={resource.resourceFile ? "_blank" : "_self"}
+                               className="w-8 h-8 rounded-full bg-[#1DA756]/20 text-[#1DA756] flex items-center justify-center group-hover:bg-[#1DA756] group-hover:text-white transition-colors"
+                             >
+                                <ArrowRight size={14} className="-rotate-45" />
+                             </Link>
+                          </div>
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  /* Empty State optimized for the "Wait to upload via Studio" requirement */
-                  <div className="w-full rounded-3xl border border-dashed border-black/10 bg-black/[0.01] p-12 text-center flex flex-col items-center justify-center">
-                     <div className="w-16 h-16 rounded-2xl bg-white shadow-sm border border-black/5 flex items-center justify-center mb-4">
-                        <category.icon size={24} className="text-black/20" />
-                     </div>
-                     <h3 className="text-lg font-bold text-foreground/50 mb-1">No {category.id.toLowerCase()} curated yet</h3>
-                     <p className="text-sm font-medium text-foreground/40 max-w-sm">
-                       Head over to your Sanity Studio at <code className="bg-black/5 px-1.5 py-0.5 rounded text-xs">/studio</code> to upload elements for this section.
-                     </p>
-                  </div>
-                )}
+                    ))
+                  ) : (
+                    /* Empty State horizontally aligned */
+                    <div className="shrink-0 w-[400px] snap-start rounded-3xl border border-dashed border-white/10 bg-white/[0.01] p-10 flex flex-col items-center justify-center text-center">
+                       <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+                          <category.icon size={24} className="text-white/20" />
+                       </div>
+                       <h3 className="text-lg font-bold text-white/50 mb-1">No {category.id.toLowerCase()}s uploaded</h3>
+                       <p className="text-sm font-medium text-white/30 max-w-[250px]">
+                         Upload via Sanity Studio to populate this shelf.
+                       </p>
+                    </div>
+                  )}
+                </div>
               </section>
             );
           })}
         </div>
-
-        {/* Global CTA */}
-        <div className="mt-40 bg-foreground text-white rounded-[2.5rem] p-12 flex flex-col items-center text-center relative overflow-hidden shadow-2xl">
-           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-accent/20 rounded-full blur-[100px] opacity-30 pointer-events-none" />
-           <h2 className="text-4xl font-black mb-4 relative z-10">Cultivate Your Mind.</h2>
-           <p className="text-white/60 font-medium max-w-lg mb-8 relative z-10">
-             Transform information into implementation. Join the network to discuss insights and frameworks with top-tier operators.
-           </p>
-           <Link
-             href="/community"
-             className="relative z-10 flex items-center gap-2 px-8 py-4 bg-white text-black font-extrabold rounded-full hover:scale-105 transition-transform"
-           >
-             Enter the Network <ArrowRight size={18} />
-           </Link>
-        </div>
-
       </main>
+
+      {/* Global CSS for hiding scrollbar but maintaining swipe */}
+      <style dangerouslySetInnerHTML={{__html: `
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}} />
     </div>
   );
 }
