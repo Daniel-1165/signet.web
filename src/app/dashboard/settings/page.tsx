@@ -20,18 +20,18 @@ export default async function SettingsPage() {
     .single();
 
   return (
-    <div className="min-h-screen bg-[#0a0f0a] text-white">
-      <nav className="fixed top-0 z-40 w-full border-b border-white/5 bg-[#0a0f0a]/80 py-4 backdrop-blur-md">
+    <div className="min-h-screen bg-[#0D120E] text-white">
+      <nav className="fixed top-0 z-40 w-full border-b border-white/5 bg-[#0D120E]/80 py-4 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6">
           <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-xl font-bold tracking-tighter text-[#4ade80] hover:opacity-80 transition-opacity">
+            <Link href="/dashboard" className="text-xl font-bold tracking-tighter text-[#1DA756] hover:opacity-80 transition-opacity">
               SIGNET
             </Link>
             <span className="text-white/20">/</span>
             <h1 className="text-sm font-medium tracking-wide uppercase text-white/60">Settings</h1>
           </div>
           <div className="flex items-center gap-6">
-            <Link href="/dashboard" className="text-sm hover:text-[#4ade80] transition-colors">
+            <Link href="/dashboard" className="text-sm hover:text-[#1DA756] transition-colors">
               Dashboard
             </Link>
             <UserButton />
@@ -50,10 +50,10 @@ export default async function SettingsPage() {
         </div>
 
         <aside className="space-y-8">
-          <div className="p-8 bg-[#121812] border border-white/5 rounded-3xl">
+          <div className="p-8 bg-[#232826] border border-white/5 rounded-3xl">
             <div className="flex items-center gap-3 mb-6">
-              <Trophy className="text-[#4ade80]" size={20} />
-              <h3 className="font-bold uppercase tracking-widest text-[#4ade80] text-xs">Network Reputation</h3>
+              <Trophy className="text-[#1DA756]" size={20} />
+              <h3 className="font-bold uppercase tracking-widest text-[#1DA756] text-xs">Network Reputation</h3>
             </div>
             <div className="flex items-baseline gap-2 mb-2">
               <span className="text-5xl font-black">{profile?.reputation_points || 0}</span>
@@ -64,12 +64,12 @@ export default async function SettingsPage() {
             </p>
           </div>
 
-          <div className="p-8 bg-[#121812] border border-white/5 rounded-3xl">
+          <div className="p-8 bg-[#232826] border border-white/5 rounded-3xl">
             <div className="flex items-center gap-3 mb-6">
               <Shield className="text-white/40" size={20} />
               <h3 className="font-bold uppercase tracking-widest text-white/40 text-xs">Membership Status</h3>
             </div>
-            <div className="flex items-center gap-4 py-4 px-5 bg-[#1a201a] rounded-2xl border border-white/5 mb-4 group cursor-help">
+            <div className="flex items-center gap-4 py-4 px-5 bg-[#3C413F] rounded-2xl border border-white/5 mb-4 group cursor-help">
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
                 💎
               </div>

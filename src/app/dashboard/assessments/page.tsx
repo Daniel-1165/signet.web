@@ -5,14 +5,14 @@ export default function DashboardAssessmentsPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-16 pb-24">
       {/* Header Panel */}
-      <header className="bg-[#121812]/50 soft-blur border border-white/5 p-12 rounded-[3.5rem] inner-glow signet-glow relative overflow-hidden">
+      <header className="bg-[#232826]/50 soft-blur border border-white/5 p-12 rounded-[3.5rem] inner-glow signet-glow relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-[400px] h-full bg-vision-blue/5 blur-[100px]" />
         <div className="absolute -bottom-10 left-1/4 w-[200px] h-[200px] bg-solar-gold/5 blur-[80px]" />
         
         <div className="relative z-10 space-y-6">
-           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#4ade80]/10 text-[#4ade80] text-[10px] font-bold uppercase tracking-widest border border-[#4ade80]/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse shadow-[0_0_8px_#4ade80]" /> Testing & Calibration
+           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1DA756]/10 text-[#1DA756] text-[10px] font-bold uppercase tracking-widest border border-[#1DA756]/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1DA756] animate-pulse shadow-[0_0_8px_#1DA756]" /> Testing & Calibration
            </div>
            <div className="space-y-2">
               <h1 className="text-5xl font-extrabold tracking-tighter text-white font-heading uppercase">Baseline <span className="text-white/40 italic font-light font-sans lowercase">Assessments.</span></h1>
@@ -38,12 +38,12 @@ export default function DashboardAssessmentsPage() {
       {/* Protocol Modules */}
       <div className="grid md:grid-cols-2 gap-12">
         {assessments.map((test, i) => (
-          <div key={i} className="group bg-[#121812]/30 soft-blur border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-[#4ade80]/20 transition-all duration-500 hover:-translate-y-1 p-10">
+          <div key={i} className="group bg-[#232826]/30 soft-blur border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-[#1DA756]/20 transition-all duration-500 hover:-translate-y-1 p-10">
             <div className="flex justify-between items-start mb-10">
                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${test.color} text-white shadow-lg`}>
                   <test.icon size={30} />
                </div>
-               <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold uppercase tracking-widest text-[#4ade80]">
+               <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold uppercase tracking-widest text-[#1DA756]">
                   Ready for Input
                </div>
                {/* psychology accent */}
@@ -52,17 +52,17 @@ export default function DashboardAssessmentsPage() {
             
             <div className="space-y-6">
                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-white/20 font-heading">
-                  <span className="flex items-center gap-1.5"><Clock size={12} className="text-[#4ade80]" /> {test.duration}</span>
+                  <span className="flex items-center gap-1.5"><Clock size={12} className="text-[#1DA756]" /> {test.duration}</span>
                   <span className="flex items-center gap-1.5 text-solar-gold">{test.type}</span>
                </div>
-               <h3 className="text-3xl font-bold text-white font-heading leading-tight group-hover:text-[#4ade80] transition-colors">{test.title}</h3>
+               <h3 className="text-3xl font-bold text-white font-heading leading-tight group-hover:text-[#1DA756] transition-colors">{test.title}</h3>
                <p className="text-white/40 text-sm leading-relaxed line-clamp-3 font-outfit">
                   {test.desc}
                </p>
                
                <div className="pt-8 flex items-center justify-between border-t border-white/5">
                   <span className="text-[10px] font-black uppercase tracking-widest text-white/10">Score: ---</span>
-                  <button className="px-8 py-3 rounded-xl bg-white text-black text-xs font-bold uppercase hover:bg-[#4ade80] hover:text-white transition-all">
+                  <button className="px-8 py-3 rounded-xl bg-white text-black text-xs font-bold uppercase hover:bg-[#1DA756] hover:text-white transition-all">
                      Initiate Protocol
                   </button>
                </div>
@@ -72,12 +72,12 @@ export default function DashboardAssessmentsPage() {
       </div>
 
       {/* Schema / Technical Detail Section for the dashboard */}
-      <div className="p-16 rounded-[4rem] bg-[#121812]/50 border border-white/5 relative overflow-hidden">
+      <div className="p-16 rounded-[4rem] bg-[#232826]/50 border border-white/5 relative overflow-hidden">
          <div className="relative z-10 grid md:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
                <h2 className="text-2xl font-bold tracking-tight text-white font-heading uppercase">Calibration Schema.</h2>
                <p className="text-white/40 text-sm leading-relaxed font-outfit">
-                  Our tests use the <span className="text-[#4ade80] font-bold">Signet Calibration Schema</span> to ensure that results are adjusted for focus-decay and environmental noise.
+                  Our tests use the <span className="text-[#1DA756] font-bold">Signet Calibration Schema</span> to ensure that results are adjusted for focus-decay and environmental noise.
                </p>
                <div className="grid grid-cols-2 gap-4">
                   {['Consistency', 'Speed', 'Decay', 'Signal'].map(label => (

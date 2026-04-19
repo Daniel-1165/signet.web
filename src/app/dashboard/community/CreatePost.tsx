@@ -72,7 +72,7 @@ export function CreatePost() {
   return (
     <motion.div 
       layout
-      className={`bg-[#121812] border border-white/5 rounded-2xl p-6 transition-all duration-300 ${isFocused ? 'border-[#4ade80]/20 ring-1 ring-[#4ade80]/10 shadow-2xl shadow-[#4ade80]/5' : ''}`}
+      className={`bg-[#232826] border border-white/5 rounded-2xl p-6 transition-all duration-300 ${isFocused ? 'border-[#1DA756]/20 ring-1 ring-[#1DA756]/10 shadow-2xl shadow-[#1DA756]/5' : ''}`}
     >
       <div className="flex items-start gap-4 mb-4">
         <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-white/10">
@@ -126,7 +126,7 @@ export function CreatePost() {
                     <button 
                       type="button" 
                       onClick={() => fileInputRef.current?.click()}
-                      className="p-2.5 rounded-full bg-[#1a201a] text-white/40 hover:text-[#4ade80] transition-colors"
+                      className="p-2.5 rounded-full bg-[#3C413F] text-white/40 hover:text-[#1DA756] transition-colors"
                     >
                       <ImageIcon size={18} />
                     </button>
@@ -140,7 +140,7 @@ export function CreatePost() {
                   </div>
                   <button 
                     disabled={!content.trim() || isLoading}
-                    className="flex items-center gap-2 px-6 h-10 rounded-full bg-[#4ade80] text-[#0a0f0a] font-bold text-sm tracking-wide disabled:opacity-30 disabled:grayscale transition-all active:scale-95 group"
+                    className="flex items-center gap-2 px-6 h-10 rounded-full bg-[#1DA756] text-[#0D120E] font-bold text-sm tracking-wide disabled:opacity-30 disabled:grayscale transition-all active:scale-95 group"
                   >
                     <span>Growth Spark</span>
                     <Send size={14} className="group-hover:translate-x-0.5 transition-transform" />

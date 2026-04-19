@@ -358,7 +358,7 @@ export default function CommunityPage() {
                 onKeyDown={(e) => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) handlePost(); }}
                 placeholder={user ? "Share a mental model, framework, or progression log... (Ctrl+Enter to post)" : "Sign in to post to the feed..."}
                 disabled={!user}
-                className="w-full bg-[#F9FBF4] rounded-2xl py-3 px-4 outline-none text-sm font-medium text-foreground border border-black/5 focus:border-accent/40 focus:bg-white transition-all resize-none min-h-[80px] disabled:opacity-50"
+                className="w-full bg-[#F7F6F0] rounded-2xl py-3 px-4 outline-none text-sm font-medium text-foreground border border-black/5 focus:border-accent/40 focus:bg-white transition-all resize-none min-h-[80px] disabled:opacity-50"
               />
             </div>
 
@@ -514,7 +514,7 @@ export default function CommunityPage() {
                           <div className="w-8 h-8 rounded-full overflow-hidden bg-black/5 flex-shrink-0">
                             <img src={comment.profiles?.image_url || DEFAULT_AVATAR} alt={comment.profiles?.first_name || ""} className="w-full h-full object-cover" />
                           </div>
-                          <div className="flex-1 bg-[#F9FBF4] rounded-2xl px-4 py-3 relative group/comment">
+                          <div className="flex-1 bg-[#F7F6F0] rounded-2xl px-4 py-3 relative group/comment">
                             <span className="font-bold text-xs text-black">{comment.profiles?.first_name} {comment.profiles?.last_name} · </span>
                             <span className="text-xs text-black/40">{formatDate(comment.created_at)}</span>
                             <p className="text-sm text-black mt-1">{comment.content}</p>
@@ -552,7 +552,7 @@ export default function CommunityPage() {
                           }
                           onKeyDown={(e) => { if (e.key === "Enter") handleComment(post.id); }}
                           placeholder="Write a comment... (Enter to send)"
-                          className="flex-1 bg-[#F9FBF4] rounded-2xl px-4 py-2.5 text-sm outline-none border border-black/5 focus:border-accent/40 focus:bg-white transition-all font-medium"
+                          className="flex-1 bg-[#F7F6F0] rounded-2xl px-4 py-2.5 text-sm outline-none border border-black/5 focus:border-accent/40 focus:bg-white transition-all font-medium"
                         />
                         <button
                           onClick={() => handleComment(post.id)}

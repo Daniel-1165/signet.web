@@ -9,11 +9,11 @@ export const GerminationAnimation = ({ className = "" }) => (
     {/* The Seedling */}
     <div className="relative bottom-4 flex flex-col items-center">
       {/* Stem */}
-      <div className="w-1.5 h-32 bg-[#4ade80] rounded-full animate-germinate relative">
+      <div className="w-1.5 h-32 bg-[#1DA756] rounded-full animate-germinate relative">
         {/* Leaves */}
-        <div className="absolute -left-6 top-10 w-8 h-4 bg-[#4ade80] rounded-[100%_0%_100%_0%] rotate-[-20deg] shadow-[0_0_10px_#4ade80/20]" />
-        <div className="absolute -right-6 top-4 w-8 h-4 bg-[#4ade80] rounded-[0%_100%_0%_100%] rotate-[20deg] shadow-[0_0_10px_#4ade80/20]" />
-        <div className="absolute -left-8 top-0 w-10 h-5 bg-[#4ade80] rounded-[100%_0%_100%_0%] rotate-[-40deg] shadow-[0_0_15px_#4ade80/30]" />
+        <div className="absolute -left-6 top-10 w-8 h-4 bg-[#1DA756] rounded-[100%_0%_100%_0%] rotate-[-20deg] shadow-[0_0_10px_#1DA756/20]" />
+        <div className="absolute -right-6 top-4 w-8 h-4 bg-[#1DA756] rounded-[0%_100%_0%_100%] rotate-[20deg] shadow-[0_0_10px_#1DA756/20]" />
+        <div className="absolute -left-8 top-0 w-10 h-5 bg-[#1DA756] rounded-[100%_0%_100%_0%] rotate-[-40deg] shadow-[0_0_15px_#1DA756/30]" />
         
         {/* The Solar Pulse at the tip */}
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-4 h-4 bg-solar-gold rounded-full blur-[8px] animate-pulse" />

@@ -40,7 +40,7 @@ export default function Sidebar() {
 
       <aside className={`
         group fixed md:sticky top-0 md:top-24 z-[55] md:z-40 h-[100dvh] md:h-[calc(100vh-6rem)]
-        bg-[#F9FBF4] border-r border-[#E0E7E2] flex flex-col pt-12 pb-8 md:py-8
+        bg-[#F7F6F0] border-r border-[#E0E7E2] flex flex-col pt-12 pb-8 md:py-8
         overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)] transition-all duration-300
         ${isOpen ? "translate-x-0 w-64" : "-translate-x-full md:translate-x-0 md:w-16 md:hover:w-64"}
       `}>

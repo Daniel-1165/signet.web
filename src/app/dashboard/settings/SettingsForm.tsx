@@ -43,12 +43,12 @@ export function SettingsForm({ initialData }: { initialData: any }) {
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-2">
-          <label className="text-[10px] font-bold uppercase tracking-widest text-[#4ade80]">Growth Bio</label>
+          <label className="text-[10px] font-bold uppercase tracking-widest text-[#1DA756]">Growth Bio</label>
           <textarea
             placeholder="Tell us about your mission..."
             value={formData.bio}
             onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-            className="w-full h-32 bg-[#121812] border border-white/5 rounded-2xl p-5 text-white/80 focus:border-[#4ade80]/40 transition-colors focus:ring-0 focus:outline-none resize-none font-medium leading-relaxed"
+            className="w-full h-32 bg-[#232826] border border-white/5 rounded-2xl p-5 text-white/80 focus:border-[#1DA756]/40 transition-colors focus:ring-0 focus:outline-none resize-none font-medium leading-relaxed"
           />
         </div>
         
@@ -62,7 +62,7 @@ export function SettingsForm({ initialData }: { initialData: any }) {
                 placeholder="growth_leader"
                 value={formData.twitter_handle}
                 onChange={(e) => setFormData({ ...formData, twitter_handle: e.target.value })}
-                className="w-full h-14 bg-[#121812] border border-white/5 rounded-2xl pl-10 pr-5 text-white/80 focus:border-[#4ade80]/40 transition-colors focus:ring-0 focus:outline-none font-medium"
+                className="w-full h-14 bg-[#232826] border border-white/5 rounded-2xl pl-10 pr-5 text-white/80 focus:border-[#1DA756]/40 transition-colors focus:ring-0 focus:outline-none font-medium"
               />
             </div>
           </div>
@@ -74,7 +74,7 @@ export function SettingsForm({ initialData }: { initialData: any }) {
               placeholder="https://signet.xyz"
               value={formData.website_url}
               onChange={(e) => setFormData({ ...formData, website_url: e.target.value })}
-              className="w-full h-14 bg-[#121812] border border-white/5 rounded-2xl px-5 text-white/80 focus:border-[#4ade80]/40 transition-colors focus:ring-0 focus:outline-none font-medium"
+              className="w-full h-14 bg-[#232826] border border-white/5 rounded-2xl px-5 text-white/80 focus:border-[#1DA756]/40 transition-colors focus:ring-0 focus:outline-none font-medium"
             />
           </div>
         </div>
@@ -83,7 +83,7 @@ export function SettingsForm({ initialData }: { initialData: any }) {
       <div className="pt-4 flex items-center gap-6">
         <button
           disabled={isLoading}
-          className="relative px-12 h-14 rounded-2xl bg-[#4ade80] text-[#0a0f0a] font-bold text-sm tracking-wide transition-all active:scale-95 disabled:opacity-50 overflow-hidden group min-w-[180px]"
+          className="relative px-12 h-14 rounded-2xl bg-[#1DA756] text-[#0D120E] font-bold text-sm tracking-wide transition-all active:scale-95 disabled:opacity-50 overflow-hidden group min-w-[180px]"
         >
           <AnimatePresence mode="wait">
             {isLoading ? (
@@ -103,7 +103,7 @@ export function SettingsForm({ initialData }: { initialData: any }) {
           </AnimatePresence>
         </button>
         {showSuccess && (
-          <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="text-xs font-bold text-[#4ade80] uppercase tracking-widest">
+          <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="text-xs font-bold text-[#1DA756] uppercase tracking-widest">
             Profile sync complete.
           </motion.p>
         )}

@@ -35,12 +35,12 @@ const Products = () => {
             description: "Minimalist workspace templates designed for maximum cognitive clarity and sustained rhythm.",
             icon: <Layout className="h-5 w-5" />,
             image: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=800",
-            color: "bg-[#F9FBF4] text-[#006400] border border-black/5"
+            color: "bg-[#F7F6F0] text-[#006400] border border-black/5"
         }
     ];
 
     return (
-        <section id="products" className="py-24 bg-[#F9FBF4] overflow-hidden relative">
+        <section id="products" className="py-24 bg-[#F7F6F0] overflow-hidden relative">
             {/* Background Watermark Dots */}
             <div className="absolute top-1/2 left-0 -translate-y-1/2 -ml-20 opacity-5 pointer-events-none">
                 <svg viewBox="0 0 100 50" className="h-[40rem] w-auto" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@ const Products = () => {
                                 
                                 <div className="mt-auto flex items-center justify-between border-t border-black/5 pt-4">
                                     <span className="text-xs font-bold text-foreground group-hover:text-[#006400] transition-colors">Explore Resource</span>
-                                    <div className="h-8 w-8 rounded-full bg-[#F9FBF4] border border-black/5 flex items-center justify-center group-hover:bg-[#006400] group-hover:text-white transition-colors">
+                                    <div className="h-8 w-8 rounded-full bg-[#F7F6F0] border border-black/5 flex items-center justify-center group-hover:bg-[#006400] group-hover:text-white transition-colors">
                                         <ArrowUpRight className="h-3 w-3" />
                                     </div>
                                 </div>

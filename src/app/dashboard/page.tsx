@@ -9,9 +9,9 @@ export default async function DashboardPage() {
 
   if (!userId || !user) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#0a0f0a] text-white">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#0D120E] text-white">
         <h1 className="text-2xl font-bold">Unauthorized</h1>
-        <Link href="/" className="mt-4 text-[#4ade80] hover:underline">
+        <Link href="/" className="mt-4 text-[#1DA756] hover:underline">
           Go back home
         </Link>
       </div>
@@ -45,18 +45,18 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0f0a] text-white selection:bg-[#4ade80]/30 selection:text-[#4ade80]">
-      <nav className="fixed top-0 z-40 w-full border-b border-white/5 bg-[#0a0f0a]/80 py-4 backdrop-blur-md">
+    <div className="min-h-screen bg-[#0D120E] text-white selection:bg-[#1DA756]/30 selection:text-[#1DA756]">
+      <nav className="fixed top-0 z-40 w-full border-b border-white/5 bg-[#0D120E]/80 py-4 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-8">
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-xl font-bold tracking-tighter text-[#4ade80] hover:opacity-80 transition-opacity">
+            <Link href="/" className="text-xl font-bold tracking-tighter text-[#1DA756] hover:opacity-80 transition-opacity">
               SIGNET
             </Link>
             <span className="text-white/20">/</span>
             <h1 className="text-sm font-medium tracking-wide uppercase text-white/60">Dashboard</h1>
           </div>
           <div className="flex items-center gap-6">
-            <Link href="/" className="text-sm hover:text-[#4ade80] transition-colors font-medium">
+            <Link href="/" className="text-sm hover:text-[#1DA756] transition-colors font-medium">
               Home
             </Link>
             <UserButton />
@@ -67,24 +67,24 @@ export default async function DashboardPage() {
       <main className="max-w-6xl mx-auto px-8 pt-32 pb-24">
         {/* Welcome Block */}
         <div className="relative group mb-12">
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#4ade80]/5 via-transparent to-transparent opacity-50 rounded-[2.5rem]" />
-          <div className="relative bg-[#121812] border border-white/5 rounded-[2.5rem] p-10 md:p-14 overflow-hidden shadow-2xl">
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#1DA756]/5 via-transparent to-transparent opacity-50 rounded-[2.5rem]" />
+          <div className="relative bg-[#232826] border border-white/5 rounded-[2.5rem] p-10 md:p-14 overflow-hidden shadow-2xl">
             <div className="flex flex-col md:flex-row md:items-center gap-10">
               <div className="relative">
-                <div className="w-28 h-28 rounded-3xl overflow-hidden border border-[#4ade80]/20 shadow-2xl shadow-[#4ade80]/5">
+                <div className="w-28 h-28 rounded-3xl overflow-hidden border border-[#1DA756]/20 shadow-2xl shadow-[#1DA756]/5">
                   <img 
                     src={user.imageUrl} 
                     alt={user.firstName || "User"} 
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-[#4ade80] flex items-center justify-center text-[#0a0f0a]">
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-[#1DA756] flex items-center justify-center text-[#0D120E]">
                    <span className="text-xs font-bold">Lvl 1</span>
                 </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-3 py-1 rounded-full bg-[#4ade80]/10 text-[#4ade80] text-[10px] font-bold uppercase tracking-widest">Growth Leader</span>
+                  <span className="px-3 py-1 rounded-full bg-[#1DA756]/10 text-[#1DA756] text-[10px] font-bold uppercase tracking-widest">Growth Leader</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Collective Member since {new Date(user.createdAt).getFullYear()}</span>
                 </div>
@@ -140,15 +140,15 @@ export default async function DashboardPage() {
 
 function DashboardCard({ title, description, icon, accent }: { title: string; description: string; icon: string; accent: string }) {
   return (
-    <div className={`h-full p-8 bg-[#121812] border border-white/5 rounded-3xl hover:border-${accent === 'green' ? '[#4ade80]' : 'white'}/20 transition-all group flex flex-col items-start shadow-xl`}>
-      <div className={`w-14 h-14 mb-8 rounded-2xl bg-[#1a201a] border border-white/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-500 shadow-inner`}>
+    <div className={`h-full p-8 bg-[#232826] border border-white/5 rounded-3xl hover:border-${accent === 'green' ? '[#1DA756]' : 'white'}/20 transition-all group flex flex-col items-start shadow-xl`}>
+      <div className={`w-14 h-14 mb-8 rounded-2xl bg-[#3C413F] border border-white/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-500 shadow-inner`}>
         {icon}
       </div>
-      <h3 className="text-xl font-bold mb-3 group-hover:text-[#4ade80] transition-colors">{title}</h3>
+      <h3 className="text-xl font-bold mb-3 group-hover:text-[#1DA756] transition-colors">{title}</h3>
       <p className="text-sm text-white/40 leading-relaxed font-medium">{description}</p>
       
       <div className="mt-auto pt-8 w-full">
-         <div className="h-0.5 w-0 group-hover:w-full bg-[#4ade80]/20 transition-all duration-700" />
+         <div className="h-0.5 w-0 group-hover:w-full bg-[#1DA756]/20 transition-all duration-700" />
       </div>
     </div>
   );

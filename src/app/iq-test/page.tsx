@@ -229,7 +229,7 @@ export default function IQTestPage() {
 
     if (view === "welcome") {
         return (
-            <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F9FBF4] text-black font-sans flex flex-col justify-center px-6 py-20">
+            <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F7F6F0] text-black font-sans flex flex-col justify-center px-6 py-20">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
                 

@@ -77,22 +77,22 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-[#121812] border border-white/5 rounded-2xl p-6 group hover:border-[#4ade80]/15 hover:shadow-2xl transition-all duration-300"
+      className="bg-[#232826] border border-white/5 rounded-2xl p-6 group hover:border-[#1DA756]/15 hover:shadow-2xl transition-all duration-300"
     >
       <div className="flex items-start justify-between mb-6">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-white/10 ring-2 ring-[#4ade80]/0 group-hover:ring-[#4ade80]/20 transition-all">
+          <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-white/10 ring-2 ring-[#1DA756]/0 group-hover:ring-[#1DA756]/20 transition-all">
             <img src={authorImage} alt={authorName} className="w-full h-full object-cover" />
           </div>
           <div>
-            <h4 className="font-bold text-lg tracking-tight group-hover:text-[#4ade80] transition-colors">{authorName}</h4>
+            <h4 className="font-bold text-lg tracking-tight group-hover:text-[#1DA756] transition-colors">{authorName}</h4>
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-white/20">
               <Clock size={12} className="shrink-0" />
               <span>{formatDistanceToNow(new Date(post.created_at))} ago</span>
             </div>
           </div>
         </div>
-        <button className="p-2 rounded-full hover:bg-[#1a201a] text-white/40 transition-colors">
+        <button className="p-2 rounded-full hover:bg-[#3C413F] text-white/40 transition-colors">
           <MoreHorizontal size={20} />
         </button>
       </div>
@@ -114,7 +114,7 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
 
       <div className="flex items-center gap-6 pt-6 border-t border-white/5">
         <ActionButton 
-          icon={<Heart size={18} className={userReaction ? 'fill-[#4ade80] text-[#4ade80]' : ''} />} 
+          icon={<Heart size={18} className={userReaction ? 'fill-[#1DA756] text-[#1DA756]' : ''} />} 
           count={reactionCount} 
           label="Applaud" 
           onClick={handleReaction}
@@ -147,7 +147,7 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
                     className="w-8 h-8 rounded-full object-cover border border-white/10"
                   />
                   <div className="flex-1">
-                    <div className="bg-[#1a201a] rounded-xl p-3">
+                    <div className="bg-[#3C413F] rounded-xl p-3">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm font-semibold text-white">
                           {comment.profiles ? `${comment.profiles.first_name || ''} ${comment.profiles.last_name || ''}`.trim() : "User"}
@@ -177,13 +177,13 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
                   placeholder="Share your insight..."
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
-                  className="flex-1 bg-[#1a201a] border border-white/5 rounded-full px-4 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#4ade80]/50"
+                  className="flex-1 bg-[#3C413F] border border-white/5 rounded-full px-4 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#1DA756]/50"
                   disabled={isLoadingComment}
                 />
                 <button
                   type="submit"
                   disabled={!newComment.trim() || isLoadingComment}
-                  className="px-4 py-2 bg-[#4ade80] text-[#0a0f0a] rounded-full text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#4ade80]/90 transition-colors"
+                  className="px-4 py-2 bg-[#1DA756] text-[#0D120E] rounded-full text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#1DA756]/90 transition-colors"
                 >
                   {isLoadingComment ? '...' : 'Post'}
                 </button>
@@ -209,7 +209,7 @@ function ActionButton({ icon, count, label, onClick, isLoading }: {
       onClick={onClick}
       disabled={isLoading}
     >
-      <div className="p-2 rounded-xl group-hover/btn:bg-[#1a201a] transition-colors">
+      <div className="p-2 rounded-xl group-hover/btn:bg-[#3C413F] transition-colors">
         {icon}
       </div>
       <span className="text-xs font-bold uppercase tracking-widest group-hover/btn:opacity-100 opacity-60 transition-opacity">

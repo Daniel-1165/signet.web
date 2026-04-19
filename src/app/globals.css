@@ -7,31 +7,31 @@
   --font-heading: var(--font-syne);
   --font-mono: var(--font-geist-mono);
 
-  /* Unified Premium Palette (Green Accent) */
-  --color-accent: #108172; /* Pure Dark Green */
-  --color-signet-green: #108172;
-  --color-growth-green: #7AFF69;
-  --color-earth-brown: #0A0A0A;
+  /* Unified Premium Palette */
+  --color-accent: #1DA756; /* Emerald Green */
+  --color-signet-green: #1DA756;
+  --color-growth-green: #D3F36B;
+  --color-earth-brown: #0D120E;
   
-  /* Unique Psychology Accents for Details */
-  --color-solar-gold: #fbbf24; 
-  --color-terra-soil: #171717;
+  /* Surface & Detail Tones */
+  --color-solar-gold: #D3F36B; 
+  --color-terra-soil: #24282C;
   --color-vision-blue: #0ea5e9;
   
-  --color-signet-light: #171717;
-  --color-platinum: #111111;
-  --color-emerald-glow: #7AFF69;
+  --color-signet-light: #232826;
+  --color-platinum: #3C413F;
+  --color-emerald-glow: #D3F36B;
 }
 
 :root {
-  --background: #F9FBF4; /* Very light soft greenish-white matching the travel theme */
-  --foreground: #0B1C15; /* Dark, sharp text for visibility */
+  --background: #F7F6F0; /* Warm off-white */
+  --foreground: #0D120E; /* Deep dark green-black */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #F9FBF4; /* Force light mode per request */
-    --foreground: #0B1C15;
+    --background: #F7F6F0; /* Force light mode */
+    --foreground: #0D120E;
   }
 }
 

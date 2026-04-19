@@ -21,7 +21,7 @@ export default function ChatPage() {
           <ChatWindow roomId={selectedRoomId} />
         ) : (
           <div className="h-full flex items-center justify-center">
-            <div className="max-w-md text-center p-14 bg-[#121812]/50 soft-blur rounded-[2.5rem] border border-white/5 space-y-8 inner-glow signet-glow">
+            <div className="max-w-md text-center p-14 bg-[#232826]/50 soft-blur rounded-[2.5rem] border border-white/5 space-y-8 inner-glow signet-glow">
               <div className="flex justify-center">
                 <ChatIllustration />
               </div>
@@ -32,8 +32,8 @@ export default function ChatPage() {
                 </p>
               </div>
               <div className="pt-4">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#4ade80]/10 text-[10px] font-bold uppercase tracking-widest text-[#4ade80] border border-[#4ade80]/20">
-                   <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] shadow-[0_0_8px_#4ade80]" />
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1DA756]/10 text-[10px] font-bold uppercase tracking-widest text-[#1DA756] border border-[#1DA756]/20">
+                   <span className="w-1.5 h-1.5 rounded-full bg-[#1DA756] shadow-[0_0_8px_#1DA756]" />
                    Real-time Sync Active
                 </div>
               </div>

@@ -109,19 +109,19 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
       {/* Header */}
       <header className="flex items-center justify-between px-8 py-6 border-b border-white/5 bg-[#111111]/50 soft-blur">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00] signet-glow">
+          <div className="w-12 h-12 rounded-2xl bg-[#D3F36B]/10 border border-[#D3F36B]/20 flex items-center justify-center text-[#D3F36B] signet-glow">
             <TransmissionIcon size={20} />
           </div>
           <div>
             <h2 className="text-xl font-bold tracking-tight text-white font-heading">{room?.name || 'Growth Hub'}</h2>
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-pulse" />
-              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]/60 font-heading">Feed Active</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D3F36B] animate-pulse" />
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#D3F36B]/60 font-heading">Feed Active</span>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button className="p-2.5 rounded-xl bg-white/5 text-white/40 hover:text-[#FF6B00] hover:bg-[#FF6B00]/10 transition-all border border-transparent hover:border-[#FF6B00]/20">
+          <button className="p-2.5 rounded-xl bg-white/5 text-white/40 hover:text-[#D3F36B] hover:bg-[#D3F36B]/10 transition-all border border-transparent hover:border-[#D3F36B]/20">
             <NotificationIcon size={18} />
           </button>
           <button className="p-2.5 rounded-xl bg-white/5 text-white/40 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10">
@@ -158,18 +158,18 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
               </div>
               <div className={`group relative px-6 py-4 rounded-[2rem] text-sm leading-relaxed typography-premium ${
                 msg.user_id === user?.id 
-                  ? 'bg-[#FF6B00] text-[#000000] font-semibold signet-glow' 
+                  ? 'bg-[#D3F36B] text-[#000000] font-semibold signet-glow' 
                   : 'bg-[#111111]/80 soft-blur text-white/80 border border-white/5 inner-glow'
               }`}>
                 {msg.content}
                 
                 {/* Reactions Placeholder */}
                 <div className={`absolute -bottom-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all ${msg.user_id === user?.id ? 'right-4' : 'left-4'}`}>
-                   <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#000000] border border-white/10 text-[10px] font-bold text-white/40 hover:text-[#FF6B00] transition-colors">
+                   <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#000000] border border-white/10 text-[10px] font-bold text-white/40 hover:text-[#D3F36B] transition-colors">
                       <LikeIcon size={12} />
                       <span>0</span>
                    </button>
-                   <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#000000] border border-white/10 text-[10px] font-bold text-white/40 hover:text-[#FF6B00] transition-colors">
+                   <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#000000] border border-white/10 text-[10px] font-bold text-white/40 hover:text-[#D3F36B] transition-colors">
                       <CommentIcon size={12} />
                       <span>Reply</span>
                    </button>
@@ -188,11 +188,11 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Share an insight with the collective..."
-            className="w-full h-16 bg-[#000000] border border-white/5 rounded-2xl px-8 pr-16 focus:outline-none focus:border-[#FF6B00]/40 text-sm tracking-wide transition-all placeholder:text-white/10"
+            className="w-full h-16 bg-[#000000] border border-white/5 rounded-2xl px-8 pr-16 focus:outline-none focus:border-[#D3F36B]/40 text-sm tracking-wide transition-all placeholder:text-white/10"
           />
           <button 
             type="submit"
-            className="absolute right-3 top-3 w-10 h-10 bg-[#FF6B00] text-[#000000] rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-[#FF6B00]/20 signet-glow"
+            className="absolute right-3 top-3 w-10 h-10 bg-[#D3F36B] text-[#000000] rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-[#D3F36B]/20 signet-glow"
           >
             <TransmissionIcon size={18} />
           </button>
