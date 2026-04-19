@@ -48,7 +48,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-20 pb-20 overflow-hidden bg-background">
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-20 pb-20 overflow-hidden bg-transparent">
             {/* Subtle Grid / Dotted Background */}
             <div className="absolute inset-0 max-w-7xl mx-auto -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
             
@@ -86,7 +86,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    className="max-w-4xl text-6xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tight text-foreground"
+                    className="max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tight text-foreground"
                 >
                     Growth, excellence, and sustainability <span className="text-foreground/40 font-normal">all in one network</span>
                 </motion.h1>
@@ -95,7 +95,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                    className="mt-8 max-w-2xl text-lg font-medium text-foreground/60"
+                    className="mt-8 max-w-2xl text-base md:text-lg font-medium text-foreground/60"
                 >
                     Efficiently manage your personal development, forge lasting habits, and meticulously track your journey to mastery.
                 </motion.p>

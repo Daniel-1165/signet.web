@@ -11,8 +11,11 @@ import {
   Shield, 
   ArrowUpRight,
   Zap,
-  Activity
+  Activity,
+  Menu,
+  X
 } from 'lucide-react'
+import { useState } from 'react'
 import { UserButton } from '@clerk/nextjs'
 
 const sidebarItems = [
@@ -25,9 +28,27 @@ const sidebarItems = [
 
 export default function DashboardSidebar() {
   const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="w-64 h-screen bg-[#0a0f0a] border-r border-white/5 flex flex-col p-6 fixed left-0 top-0 z-50">
+    <>
+      {/* Mobile Toggle Button */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden fixed bottom-6 left-6 z-[60] w-14 h-14 bg-[#4ade80] text-black rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(74,222,128,0.3)] hover:scale-105 transition-transform"
+      >
+        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[50]"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <div className={`w-64 h-screen bg-[#0a0f0a] border-r border-white/5 flex flex-col p-6 fixed left-0 top-0 z-50 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
       {/* Logo */}
       <div className="mb-12 px-2">
         <Link href="/" className="text-2xl font-extrabold tracking-tighter text-[#4ade80] font-heading flex items-center gap-2">
@@ -88,5 +109,6 @@ export default function DashboardSidebar() {
         </div>
       </div>
     </div>
+    </>
   )
 }
