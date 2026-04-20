@@ -336,49 +336,60 @@ export default function IQTestPage() {
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl -z-10 -translate-x-1/2 -translate-y-1/2"></div>
             
             <div className="max-w-4xl mx-auto w-full flex flex-col flex-1 relative z-10">
-                <header className="py-8 flex items-center justify-between border-b border-black/10">
-                    <div className="flex items-center gap-4">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.15em] bg-accent/10 text-accent px-3 py-1 rounded-full">{G_TYPES[question.domain].name}</span>
+                <header className="pt-6 pb-2 w-full">
+                    <div className="flex items-center gap-2 mb-6">
+                        <button onClick={() => setCurIdx(Math.max(0, curIdx - 1))} disabled={curIdx === 0} className="disabled:opacity-30">
+                            <ArrowLeft className="w-5 h-5 text-black" />
+                        </button>
+                        <span className="text-lg font-bold text-black">Assessment</span>
                     </div>
-                    <div className="flex items-center gap-8">
-                        <span className="text-[10px] font-bold tracking-wide text-black/50 bg-black/5 px-4 py-1.5 rounded-full">{curIdx + 1} / {QUESTIONS.length}</span>
-                        {question.timed && (
-                            <span className="text-xs font-black tracking-widest uppercase text-red-600 bg-red-50 px-3 py-1 rounded-full shadow-sm animate-pulse">{Math.ceil(gsTimer)}S</span>
-                        )}
+                    <div className="flex items-center gap-4 w-full">
+                        <div className="h-[2px] bg-accent w-1/4 rounded-full" />
+                        <span className="text-[10px] font-bold uppercase text-accent tracking-[0.15em] whitespace-nowrap">
+                            QUESTION {curIdx + 1} OF {QUESTIONS.length}
+                        </span>
+                        <div className="h-[2px] bg-black/10 flex-1 rounded-full" />
                     </div>
                 </header>
 
-                <main className="flex-1 flex flex-col justify-center py-12">
+                <main className="flex-1 flex flex-col pt-8 pb-32 relative">
                      <AnimatePresence mode="wait">
                         <motion.div 
                             key={curIdx}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.3 }}
-                            className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full"
+                            className="flex flex-col w-full"
                         >
-                            <h2 className="text-3xl md:text-4xl tracking-tight leading-relaxed mb-16 font-outfit font-medium text-center">{question.q}</h2>
+                            {question.timed && (
+                                <div className="text-center mb-4">
+                                    <span className="text-xs font-black tracking-widest uppercase text-red-600 bg-red-50 px-3 py-1 rounded-full shadow-sm animate-pulse">{Math.ceil(gsTimer)}S</span>
+                                </div>
+                            )}
+                            
+                            <h2 className="text-2xl md:text-3xl tracking-tight leading-snug mb-10 font-outfit font-medium text-center max-w-lg mx-auto">
+                                {question.q}
+                            </h2>
 
                             {question.type === 'visual' && question.func && (
-                                <div className="mb-16 flex justify-center bg-white shadow-xl shadow-black/5 p-8 rounded-3xl border border-black/5">
+                                <div className="mb-10 flex justify-center bg-white shadow-sm p-6 rounded-[2rem] border border-black/5 max-w-sm mx-auto w-full">
                                     {question.func({})}
                                 </div>
                             )}
 
-                            <div className="flex flex-col gap-3 w-full max-w-md mx-auto">
+                            <div className="flex flex-wrap justify-center gap-3 w-full max-w-md mx-auto">
                                 {question.opts.map((opt, i) => (
                                     <button 
                                         key={i}
                                         onClick={() => handleSelect(i)}
-                                        className={`py-5 px-6 rounded-2xl text-left text-lg font-medium tracking-tight transition-all duration-200 flex items-center justify-between group border ${
+                                        className={`py-3 px-6 rounded-full text-center text-[15px] font-medium transition-all duration-200 border ${
                                             userAns[question.id] === i 
-                                                ? 'bg-accent border-accent text-white shadow-lg shadow-accent/20 scale-105' 
-                                                : 'bg-white border-black/5 text-black hover:border-accent hover:bg-accent/5 hover:text-accent shadow-sm'
+                                                ? 'bg-accent border-accent text-white shadow-md' 
+                                                : 'bg-white border-black/10 text-black hover:border-accent hover:text-accent'
                                         }`}
                                     >
-                                        <span>{opt}</span>
-                                        <span className={`text-[10px] font-bold tracking-widest uppercase ${userAns[question.id] === i ? 'opacity-100' : 'opacity-0'} transition-opacity`}>SELECTED</span>
+                                        {opt}
                                     </button>
                                 ))}
                             </div>
@@ -386,20 +397,13 @@ export default function IQTestPage() {
                      </AnimatePresence>
                 </main>
 
-                <footer className="py-8 border-t border-black/10 flex items-center justify-between mt-auto">
-                    <button 
-                        onClick={() => setCurIdx(Math.max(0, curIdx - 1))}
-                        disabled={curIdx === 0}
-                        className="text-[10px] tracking-[0.2em] font-bold uppercase text-black/50 hover:text-black disabled:opacity-0 transition-opacity flex items-center gap-2"
-                    >
-                        <ArrowLeft className="w-3 h-3" /> Back
-                    </button>
+                <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-end z-20 pointer-events-none">
                     <button 
                         onClick={handleNext}
                         disabled={userAns[question.id] === undefined}
-                        className="group bg-black text-white px-8 py-3 rounded-full text-sm tracking-tight font-bold flex items-center gap-3 disabled:opacity-30 disabled:bg-black/10 disabled:text-black transition-all hover:bg-black/80 hover:scale-105 shadow-xl disabled:shadow-none"
+                        className="text-accent font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:bg-accent/10 px-6 py-3 rounded-full transition-all disabled:opacity-30 pointer-events-auto bg-white/80 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-black/5"
                     >
-                        {curIdx === QUESTIONS.length - 1 ? "FINISH" : "NEXT"} <ArrowRight className="w-4 h-4 group-enabled:group-hover:translate-x-1 transition-transform" />
+                        {curIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} 
                     </button>
                 </footer>
             </div>

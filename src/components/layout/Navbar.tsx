@@ -84,7 +84,7 @@ const Navbar = () => {
                 </motion.div>
 
                 <div className="hidden items-center gap-10 md:flex">
-                    {["Home", "Features", "Resources", "Community"].map((item, i) => (
+                    {["Home", "About Us", "Resources", "Community"].map((item, i) => (
                         <motion.div
                             key={item}
                             initial={{ opacity: 0, y: -10 }}
@@ -93,7 +93,7 @@ const Navbar = () => {
                             className="relative group"
                         >
                             <Link
-                                href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Community" ? "/community" : item === "Resources" ? "/resources" : `#${item.toLowerCase()}`}
+                                href={item === "Home" ? "/" : item === "About Us" ? "/features" : item === "Community" ? "/community" : item === "Resources" ? "/resources" : `#${item.toLowerCase()}`}
                                 className="relative py-2 text-sm font-bold tracking-tight text-black transition-colors hover:text-black/70 inline-flex items-center gap-1"
                             >
                                 {item}
@@ -160,10 +160,10 @@ const Navbar = () => {
                         className="border-t border-black/[0.05] bg-white py-8 md:hidden"
                     >
                         <div className="flex flex-col items-center gap-6 px-6">
-                            {["Home", "Features", "Products", "Community"].map((item) => (
+                            {["Home", "About Us", "Products", "Community"].map((item) => (
                                 <Link
                                     key={item}
-                                    href={item === "Home" ? "/" : item === "Features" ? "/features" : item === "Community" ? "/community" : `#${item.toLowerCase()}`}
+                                    href={item === "Home" ? "/" : item === "About Us" ? "/features" : item === "Community" ? "/community" : `#${item.toLowerCase()}`}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="text-lg font-medium tracking-tight text-foreground/60 hover:text-foreground"
                                 >

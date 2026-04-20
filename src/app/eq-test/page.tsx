@@ -342,91 +342,71 @@ export default function EQAssessment() {
 
   // Active Question Screen
   return (
-    <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col pt-24`}>
-       
-       <div className="fixed top-[88px] left-0 right-0 h-1.5 bg-[#f2f0ec] z-20">
-         <motion.div 
-           className="h-full bg-[#5c4fcf]"
-           initial={{ width: 0 }}
-           animate={{ width: `${progressPercent}%` }}
-           transition={{ duration: 0.3 }}
-         />
-       </div>
-
-       <div className="max-w-3xl w-full mx-auto px-6 py-12 flex-1 flex flex-col">
+    <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col pt-6 px-6`}>
+       <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col relative">
           
-          <div className="mb-12 flex items-center justify-between">
-            <span className="px-4 py-1.5 bg-[#f2f0ec] text-xs font-bold uppercase tracking-widest rounded-full text-[#1a1a2e]/60">
-              {question.dimension}
-            </span>
-            <span className="font-serif text-2xl text-[#1a1a2e]/30">
-              {currentIdx + 1} <span className="text-sm">/ {QUESTIONS.length}</span>
-            </span>
-          </div>
+          <header className="pt-6 pb-2 w-full">
+              <div className="flex items-center gap-2 mb-6">
+                  <button onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))} disabled={currentIdx === 0} className="disabled:opacity-30">
+                      <ArrowLeft className="w-5 h-5 text-[#1a1a2e]" />
+                  </button>
+                  <span className="text-lg font-bold text-[#1a1a2e]">Questionnaire</span>
+              </div>
+              <div className="flex items-center gap-4 w-full">
+                  <div className="h-[2px] bg-[#1DA756] w-1/4 rounded-full" />
+                  <span className="text-[10px] font-bold uppercase text-[#1DA756] tracking-[0.15em] whitespace-nowrap">
+                      QUESTION {currentIdx + 1} OF {QUESTIONS.length}
+                  </span>
+                  <div className="h-[2px] bg-black/10 flex-1 rounded-full" />
+              </div>
+          </header>
 
-          <div className="flex-1 flex flex-col justify-center">
+          <main className="flex-1 flex flex-col pt-8 pb-32">
             <AnimatePresence mode="wait">
               <motion.div
                 key={question.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col w-full"
               >
-                <h2 className="text-3xl md:text-4xl font-serif text-[#1a1a2e] leading-snug mb-10 pl-6 border-l-4 border-[#5c4fcf]">
+                <h2 className="text-2xl md:text-3xl tracking-tight leading-snug mb-10 font-medium text-center max-w-lg mx-auto">
                   {question.text}
                 </h2>
 
-                <div className="space-y-4">
+                <div className="flex flex-wrap justify-center gap-3 w-full max-w-md mx-auto">
                   {question.options.map((opt, i) => {
                     const isSelected = answers[question.id] === opt.score;
-                    const letters = ['A', 'B', 'C', 'D', 'E'];
                     
                     return (
                       <button
                         key={i}
                         onClick={() => handleSelect(opt.score)}
-                        className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex items-center gap-5 group ${
+                        className={`py-3 px-6 rounded-full text-center text-[15px] font-medium transition-all duration-200 border ${
                           isSelected 
-                            ? 'bg-[#1a1a2e] border-[#1a1a2e] text-white shadow-xl' 
-                            : 'bg-white border-[#1a1a2e]/10 text-[#1a1a2e] hover:border-[#1a1a2e]/30 hover:bg-[#f2f0ec]'
+                            ? 'bg-[#1DA756] border-[#1DA756] text-white shadow-md' 
+                            : 'bg-white border-[#1a1a2e]/10 text-[#1a1a2e] hover:border-[#1DA756] hover:text-[#1DA756]'
                         }`}
                       >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                          isSelected ? 'bg-white text-[#1a1a2e]' : 'bg-[#f2f0ec] text-[#1a1a2e]/50 group-hover:bg-white'
-                        }`}>
-                          {letters[i]}
-                        </div>
-                        <span className="font-medium text-[15px] leading-relaxed flex-1">{opt.text}</span>
+                        {opt.text}
                       </button>
                     )
                   })}
                 </div>
               </motion.div>
             </AnimatePresence>
-          </div>
+          </main>
 
-          <div className="mt-12 flex justify-between items-center pt-6 border-t border-[#1a1a2e]/10">
-            <button 
-              onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))}
-              className={`p-3 rounded-full border transition-all ${currentIdx === 0 ? 'opacity-0 pointer-events-none' : 'border-[#1a1a2e]/20 text-[#1a1a2e] hover:bg-[#f2f0ec]'}`}
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-
-            <button 
-              onClick={handleNext}
-              disabled={answers[question.id] === undefined}
-              className={`px-8 py-4 rounded-full font-bold flex items-center gap-3 transition-all ${
-                answers[question.id] !== undefined 
-                ? 'bg-[#1a1a2e] text-white hover:bg-[#5c4fcf] shadow-xl' 
-                : 'bg-[#f2f0ec] text-[#1a1a2e]/30 cursor-not-allowed'
-              }`}
-            >
-              {currentIdx === QUESTIONS.length - 1 ? 'Analyze Results' : 'Continue'} <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
-
+          <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-end z-20 pointer-events-none">
+              <button 
+                  onClick={handleNext}
+                  disabled={answers[question.id] === undefined}
+                  className="text-[#1DA756] font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:bg-[#1DA756]/10 px-6 py-3 rounded-full transition-all disabled:opacity-30 pointer-events-auto bg-white/80 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-black/5"
+              >
+                  {currentIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} 
+              </button>
+          </footer>
        </div>
     </div>
   );

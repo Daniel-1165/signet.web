@@ -13,14 +13,15 @@ import {
   Target,
   Search,
   Sparkles,
-  Award
+  Award,
+  Info
 } from "lucide-react";
 import { useUser, SignOutButton } from "@clerk/nextjs";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 const desktopNavItems = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Features", href: "/features", icon: Sparkles },
+  { name: "About Us", href: "/features", icon: Info },
   { name: "Resources", href: "/resources", icon: FolderOpen },
   { name: "Community", href: "/community", icon: Users },
   { name: "EQ Test", href: "/eq-test", icon: Brain },
@@ -34,7 +35,7 @@ const mobileNavItems = [
   { name: "Resource", href: "/resources", icon: FolderOpen },
   { name: "Search", href: "#", icon: Search }, // Search in center
   { name: "Community", href: "/community", icon: Users },
-  { name: "Feature", href: "/features", icon: Sparkles },
+  { name: "About", href: "/features", icon: Info },
 ];
 
 export default function Sidebar() {
@@ -44,22 +45,23 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile Bottom Navigation Bar styled like Twitter/Instagram */}
-      <div className={`md:hidden fixed bottom-0 left-0 w-full z-[60] bg-white border-t border-black/5 pb-safe pt-2 px-6 flex items-center justify-between shadow-[0_-8px_30px_rgba(0,0,0,0.04)] h-16 transition-transform duration-300 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
-        {mobileNavItems.map((item, index) => {
+      {/* Mobile Bottom Navigation - Native App Style */}
+      <div className={`md:hidden fixed bottom-0 left-0 w-full z-[60] bg-white border-t border-[#0D120E]/5 pb-safe flex items-center justify-between px-2 h-[72px] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] transition-transform duration-300 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
+        {mobileNavItems.map((item) => {
           const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== "/");
-          const isCenter = index === 2; // Search icon at the center
           
           return (
             <Link
               key={item.name}
               href={item.href}
-              className={`flex flex-col items-center justify-center relative w-12 h-12 rounded-full transition-all duration-300 ${isCenter ? 'bg-[#1DA756] text-white shadow-lg -translate-y-4 hover:scale-105' : (isActive ? 'text-[#1DA756]' : 'text-black/50 hover:bg-black/5 hover:text-black')}`}
+              className={`flex flex-col items-center justify-center flex-1 h-full gap-1.5 transition-colors duration-200 ${isActive ? 'text-[#1DA756]' : 'text-[#0D120E]/40 hover:text-[#0D120E]/70'}`}
             >
-              <item.icon className={`w-6 h-6 ${isCenter || isActive ? 'stroke-[2.5px]' : 'stroke-2'}`} />
-              {isActive && !isCenter && (
-                 <span className="w-1.5 h-1.5 bg-[#1DA756] rounded-full absolute -bottom-1"></span>
-              )}
+              <div className={`relative flex items-center justify-center w-8 h-8 rounded-full ${isActive ? 'bg-[#1DA756]/10' : 'bg-transparent'}`}>
+                <item.icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5px]' : 'stroke-[2px]'}`} />
+              </div>
+              <span className={`text-[10px] leading-none ${isActive ? 'font-bold' : 'font-medium'}`}>
+                {item.name}
+              </span>
             </Link>
           );
         })}
@@ -89,7 +91,7 @@ export default function Sidebar() {
         {desktopNavItems.map((item, i) => {
           const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== "/");
           // Fake some badges exactly like the Untitled UI image ("Drafts 10", "Scheduled 2", etc.)
-          const count = item.name === "Community" ? 12 : item.name === "Features" ? 3 : null;
+          const count = item.name === "Community" ? 12 : item.name === "About Us" ? 3 : null;
 
           return (
             <Link

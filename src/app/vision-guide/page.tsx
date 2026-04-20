@@ -1,3 +1,5 @@
+"use client";
+
 import VisionGuideContent from "@/components/sections/VisionGuideContent";
 import { BookOpen, Lightbulb, Heart, CheckCircle2, Target, Compass, ArrowRight, ArrowLeft } from "lucide-react";
 import { useState } from "react";
