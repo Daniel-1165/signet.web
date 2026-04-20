@@ -99,3 +99,29 @@ export const GET_ALL_RESOURCES = `
     content
   }
 `
+
+export const GET_ALL_POSTS = `
+  *[_type == "post"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    author->{name, image},
+    mainImage,
+    categories[]->{title},
+    publishedAt,
+    body
+  }
+`
+
+export const GET_POST_BY_SLUG = `
+  *[_type == "post" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    author->{name, image},
+    mainImage,
+    categories[]->{title},
+    publishedAt,
+    body
+  }
+`
