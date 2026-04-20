@@ -77,18 +77,9 @@ const Navbar = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <Link href="/" className="group flex items-center gap-3 relative">
-                        <div className="absolute inset-0 -z-10 rounded-full bg-signet-green/0 blur-xl transition-all duration-500 group-hover:bg-signet-green/20"></div>
-                        <svg viewBox="0 0 100 50" className="h-8 w-auto text-[#1DA756] transition-transform duration-500 group-hover:scale-105" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="21" cy="18" r="8" fill="currentColor" stroke="none" />
-                            <circle cx="50" cy="12" r="10" fill="currentColor" stroke="none" />
-                            <circle cx="79" cy="18" r="8" fill="currentColor" stroke="none" />
-                            <path d="M6,42 L21,28 L35.5,42 L50,27 L64.5,42 L79,28 L94,42" />
-                        </svg>
-                        <div className="flex flex-col text-[11px] font-extrabold leading-[1.1] tracking-widest uppercase transition-colors duration-500 font-heading">
-                            <span className="text-[#1DA756]">Signet</span>
-                            <span className="text-[#24282C]">Community</span>
-                        </div>
+                    <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
+                        <div className="absolute inset-0 -z-10 rounded-xl bg-black/5 blur-xl transition-all duration-500 group-hover:bg-black/10"></div>
+                        <img src="/logo-dark.svg" alt="Signet Logo" className="h-11 w-11 rounded-xl shadow-lg ring-1 ring-white/10" />
                     </Link>
                 </motion.div>
 

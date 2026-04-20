@@ -25,9 +25,33 @@ export const GET_PAGE_BY_SLUG = `
 `
 
 export const GET_TESTIMONIALS = `
-  *[_type == "testimonial"] | order(_createdAt asc) {
+  *[_type == "testimonial"] | order(order asc, _createdAt asc) {
     _id,
     name,
+    role,
+    company,
+    content,
+    featured,
+    order,
+    avatar {
+      asset-> {
+        _id,
+        url
+      },
+      hotspot,
+    },
+  }
+`
+
+export const GET_FEATURED_TESTIMONIALS = `
+  *[_type == "testimonial" && featured == true] | order(order asc, _createdAt asc) {
+    _id,
+    name,
+    role,
+    company,
+    content,
+    featured,
+    order,
     avatar {
       asset-> {
         _id,
