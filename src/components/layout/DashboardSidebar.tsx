@@ -34,9 +34,17 @@ export default function DashboardSidebar() {
     <>
       {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#F7F6F0]/90 backdrop-blur-md z-[50] flex items-center justify-between px-6 border-b border-[rgba(0,0,0,0.05)] shadow-sm">
-        <Link href="/" className="text-xl font-extrabold tracking-tighter text-[#0D120E] font-heading flex items-center gap-2">
-          SIGNET
-          <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] shadow-[0_0_8px_#1DA756]" />
+        <Link href="/" className="group flex items-center gap-3 relative">
+            <svg viewBox="0 0 100 50" className="h-6 w-auto text-[#1DA756] transition-transform duration-500 group-hover:scale-105" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="21" cy="18" r="8" fill="currentColor" stroke="none" />
+                <circle cx="50" cy="12" r="10" fill="currentColor" stroke="none" />
+                <circle cx="79" cy="18" r="8" fill="currentColor" stroke="none" />
+                <path d="M6,42 L21,28 L35.5,42 L50,27 L64.5,42 L79,28 L94,42" />
+            </svg>
+            <div className="flex flex-col text-[10px] font-extrabold leading-[1.1] tracking-widest uppercase transition-colors duration-500 font-heading">
+                <span className="text-[#1DA756]">Signet</span>
+                <span className="text-[#24282C]">Community</span>
+            </div>
         </Link>
         <div className="flex items-center gap-4">
           <div className="flex-shrink-0 flex items-center justify-center p-[2px] rounded-full border border-[rgba(0,0,0,0.1)] bg-white shadow-sm">
@@ -65,11 +73,18 @@ export default function DashboardSidebar() {
         {/* Mobile Sidebar Close Button & Logo */}
         <div className="mb-12 px-2 flex items-center justify-between">
           <div>
-            <Link href="/" className="text-2xl font-extrabold tracking-tighter text-[#0D120E] font-heading flex items-center gap-2">
-              SIGNET
-              <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] shadow-[0_0_8px_#1DA756]" />
+            <Link href="/" className="group flex items-center gap-3 relative">
+                <svg viewBox="0 0 100 50" className="h-7 w-auto text-[#1DA756] transition-transform duration-500 group-hover:scale-105" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="21" cy="18" r="8" fill="currentColor" stroke="none" />
+                    <circle cx="50" cy="12" r="10" fill="currentColor" stroke="none" />
+                    <circle cx="79" cy="18" r="8" fill="currentColor" stroke="none" />
+                    <path d="M6,42 L21,28 L35.5,42 L50,27 L64.5,42 L79,28 L94,42" />
+                </svg>
+                <div className="flex flex-col text-[11px] font-extrabold leading-[1.1] tracking-widest uppercase transition-colors duration-500 font-heading">
+                    <span className="text-[#1DA756]">Signet</span>
+                    <span className="text-[#24282C]">Community</span>
+                </div>
             </Link>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0D120E]/40 mt-1 font-heading">Inner Circle</p>
           </div>
           <button 
             onClick={() => setIsOpen(false)}
