@@ -32,84 +32,105 @@ export default function DashboardSidebar() {
 
   return (
     <>
-      {/* Mobile Toggle Button */}
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden fixed bottom-6 left-6 z-[60] w-14 h-14 bg-[#1DA756] text-black rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(74,222,128,0.3)] hover:scale-105 transition-transform"
-      >
-        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </button>
+      {/* Mobile Top Bar */}
+      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#F7F6F0]/90 backdrop-blur-md z-[50] flex items-center justify-between px-6 border-b border-[rgba(0,0,0,0.05)] shadow-sm">
+        <Link href="/" className="text-xl font-extrabold tracking-tighter text-[#0D120E] font-heading flex items-center gap-2">
+          SIGNET
+          <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] shadow-[0_0_8px_#1DA756]" />
+        </Link>
+        <div className="flex items-center gap-4">
+          <div className="flex-shrink-0 flex items-center justify-center p-[2px] rounded-full border border-[rgba(0,0,0,0.1)] bg-white shadow-sm">
+             <UserButton />
+          </div>
+          <button 
+            onClick={() => setIsOpen(true)}
+            className="text-[#0D120E] p-1.5 rounded-md hover:bg-black/5"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
 
       {/* Mobile Overlay */}
       {isOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[50]"
+          className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[60]"
           onClick={() => setIsOpen(false)}
         />
       )}
 
-      <div className={`w-64 h-screen bg-[#0D120E] border-r border-white/5 flex flex-col p-6 fixed left-0 top-0 z-50 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
-      {/* Logo */}
-      <div className="mb-12 px-2">
-        <Link href="/" className="text-2xl font-extrabold tracking-tighter text-[#1DA756] font-heading flex items-center gap-2">
-          SIGNET
-          <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] animate-pulse shadow-[0_0_8px_#1DA756]" />
-        </Link>
-        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mt-1 font-heading">Inner Circle</p>
-      </div>
-
-      {/* Navigation */}
-      <nav className="flex-1 space-y-2">
-        {sidebarItems.map((item) => {
-          const isActive = pathname === item.href
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all group ${
-                isActive 
-                  ? 'bg-[#1DA756]/10 border border-[#1DA756]/20 text-[#1DA756] shadow-[0_0_20px_rgba(74,222,128,0.05)]' 
-                  : 'text-white/40 hover:text-white hover:bg-white/[0.02] border border-transparent'
-              }`}
-            >
-              <item.icon size={18} className={`transition-transform duration-500 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
-              <span className="text-xs font-bold tracking-wide font-heading">{item.name}</span>
-              {isActive && (
-                <div className="ml-auto w-1 h-3 rounded-full bg-[#1DA756]" />
-              )}
+      {/* Sidebar Container */}
+      <div className={`w-full md:w-64 h-screen bg-white md:bg-[#F7F6F0] border-r border-[#0D120E]/5 flex flex-col p-6 fixed left-0 top-0 z-[70] md:z-50 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
+        
+        {/* Mobile Sidebar Close Button & Logo */}
+        <div className="mb-12 px-2 flex items-center justify-between">
+          <div>
+            <Link href="/" className="text-2xl font-extrabold tracking-tighter text-[#0D120E] font-heading flex items-center gap-2">
+              SIGNET
+              <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] shadow-[0_0_8px_#1DA756]" />
             </Link>
-          )
-        })}
-      </nav>
-
-      {/* Bottom Section */}
-      <div className="mt-auto space-y-4 pt-6 border-t border-white/5">
-        <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-3 shadow-inner">
-           <div className="flex items-center justify-between">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-white/20">Membership</span>
-              <Shield size={10} className="text-[#1DA756]" />
-           </div>
-           <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-white tracking-tight">Growth Tier</span>
-              <Link href="/join" className="text-[10px] text-[#1DA756] hover:underline flex items-center gap-0.5">
-                 Upgrade <ArrowUpRight size={10} />
-              </Link>
-           </div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0D120E]/40 mt-1 font-heading">Inner Circle</p>
+          </div>
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="md:hidden text-[#0D120E] p-1.5 bg-black/5 rounded-full hover:bg-black/10"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
-        <div className="flex items-center gap-3 px-2">
-          <div className="p-1 rounded-xl bg-white/5 border border-white/10">
-            <UserButton />
+        {/* Navigation */}
+        <nav className="flex-1 space-y-2">
+          {sidebarItems.map((item) => {
+            const isActive = pathname === item.href
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all group ${
+                  isActive 
+                    ? 'bg-[#1DA756]/10 text-[#0D120E] shadow-[0_4px_20px_rgba(29,167,86,0.05)]' 
+                    : 'text-[#0D120E]/60 hover:text-[#0D120E] hover:bg-black/[0.02] border border-transparent'
+                }`}
+              >
+                <item.icon size={18} className={`transition-transform duration-500 ${isActive ? 'text-[#1DA756] scale-110' : 'group-hover:scale-110'}`} />
+                <span className={`text-xs font-bold tracking-wide font-heading ${isActive ? 'text-[#0D120E]' : ''}`}>{item.name}</span>
+                {isActive && (
+                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#1DA756]" />
+                )}
+              </Link>
+            )
+          })}
+        </nav>
+
+        {/* Bottom Section */}
+        <div className="mt-auto space-y-4 pt-6 border-t border-[#0D120E]/5">
+          <div className="p-4 rounded-2xl bg-black/[0.02] border border-[#0D120E]/5 space-y-3 shadow-inner">
+             <div className="flex items-center justify-between">
+                <span className="text-[9px] font-bold uppercase tracking-widest text-[#0D120E]/40">Membership</span>
+                <Shield size={10} className="text-[#1DA756]" />
+             </div>
+             <div className="flex items-center justify-between">
+                <span className="text-[11px] font-bold text-[#0D120E] tracking-tight">Growth Tier</span>
+                <Link href="/join" className="text-[10px] text-[#1DA756] hover:underline flex items-center gap-0.5">
+                   Upgrade <ArrowUpRight size={10} />
+                </Link>
+             </div>
           </div>
-          <div className="flex-1 min-w-0">
-             <p className="text-[11px] font-bold text-white truncate">Active Member</p>
-             <p className="text-[9px] font-bold text-[#1DA756] uppercase tracking-widest leading-none mt-1">Live Sync</p>
+
+          <div className="hidden md:flex items-center gap-3 px-2">
+            <div className="p-0.5 rounded-full bg-white border border-[#0D120E]/10 flex-shrink-0 shadow-sm">
+              <UserButton />
+            </div>
+            <div className="flex-1 min-w-0">
+               <p className="text-[11px] font-bold text-[#0D120E] truncate">Active Member</p>
+               <p className="text-[9px] font-bold text-[#1DA756] uppercase tracking-widest leading-none mt-1">Live Sync</p>
+            </div>
+            <div className="w-2 h-2 rounded-full bg-[#1DA756] animate-pulse shadow-[0_0_8px_#1DA756]" />
           </div>
-          <div className="w-2 h-2 rounded-full bg-[#1DA756] animate-pulse" />
         </div>
       </div>
-    </div>
     </>
   )
 }
