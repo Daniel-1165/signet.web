@@ -16,7 +16,7 @@ export default function FeaturesPage() {
         {/* ── TOP HERO: GET TO KNOW US ─────────────────────────────── */}
         <section className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
           <img
-            src="/signet-nature.png"
+            src="/get-to-know-us.png"
             alt="Get To Know Us"
             className="w-full h-full object-cover"
           />
@@ -111,6 +111,13 @@ export default function FeaturesPage() {
                                 <p className="text-[#0D120E]/50 font-bold uppercase text-xs tracking-wider">Interactive sessions at your convenience.</p>
                             </div>
                         </div>
+                    </div>
+                    <div className="mt-12 rounded-none overflow-hidden shadow-2xl">
+                        <img 
+                            src="/program-info.png" 
+                            alt="Program Duration and Gains" 
+                            className="w-full object-cover hover:scale-105 transition-transform duration-700"
+                        />
                     </div>
                 </div>
 
