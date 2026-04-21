@@ -75,7 +75,7 @@ export default function FeaturesPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
             <div className="rounded-none overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
                 <img 
-                    src="/hero-primary.png" 
+                    src="/signet-branding.png" 
                     alt="The Signet Core" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
@@ -112,13 +112,6 @@ export default function FeaturesPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-12 rounded-none overflow-hidden shadow-2xl">
-                        <img 
-                            src="/program-info.png" 
-                            alt="Program Duration and Gains" 
-                            className="w-full object-cover hover:scale-105 transition-transform duration-700"
-                        />
-                    </div>
                 </div>
 
                 <div className="md:w-1/2 bg-[#0D120E] rounded-none p-10 md:p-16 text-white shadow-2xl relative overflow-hidden">
@@ -133,6 +126,59 @@ export default function FeaturesPage() {
                     </Link>
                 </div>
             </div>
+        </section>
+
+        {/* ── YOUR GAINS ────────────────────────────────────────────── */}
+        <section className="bg-white py-24 border-y border-black/[0.03]">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="grid md:grid-cols-2 gap-16 md:gap-32 items-center">
+              <div className="order-2 md:order-1">
+                <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block font-sans">Transformation</span>
+                <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.85] mb-12">Your <br/><span className="text-[#1DA756]">Gains.</span></h2>
+                
+                <div className="space-y-10">
+                  <div className="flex gap-6">
+                    <div className="w-10 h-10 rounded-full bg-[#1DA756]/10 flex items-center justify-center shrink-0 mt-1">
+                      <Target className="text-[#1DA756]" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-black text-xl uppercase mb-2">Mastery of Skills</h4>
+                      <p className="text-[#0D120E]/60 leading-relaxed font-medium capitalize text-lg">Requisite for success in your academics, career, business, relationship, ministry, family or leadership position.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-6">
+                    <div className="w-10 h-10 rounded-full bg-[#1DA756]/10 flex items-center justify-center shrink-0 mt-1">
+                      <Award className="text-[#1DA756]" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-black text-xl uppercase mb-2">Certificate of Participation</h4>
+                      <p className="text-[#0D120E]/60 leading-relaxed font-medium capitalize text-lg mb-6">Subject to meeting the following performance criteria:</p>
+                      <ul className="space-y-4">
+                         {['Attendance to classes', 'Participation in team activities', 'Passing the assessment tests'].map((crit) => (
+                           <li key={crit} className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#0D120E]/40">
+                             <div className="w-2 h-2 bg-[#1DA756]" />
+                             {crit}
+                           </li>
+                         ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="order-1 md:order-2">
+                <div className="relative aspect-[4/5] md:aspect-auto md:h-[650px] overflow-hidden group shadow-2xl">
+                  <img 
+                    src="/program-info.png" 
+                    alt="Success and Rewards" 
+                    className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1DA756]/20 to-transparent mix-blend-overlay"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* ── IMAGE SECTION 3: LOCKED IN ───────────────────────────── */}
