@@ -107,14 +107,14 @@ const Navbar = () => {
         >
           {/* Logo Icon */}
           <div className="w-10 h-10 flex-shrink-0">
-            <svg viewBox="0 0 100 85" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="22" cy="28" r="11" fill="#4ADE80" />
-              <circle cx="50" cy="16" r="15" fill="#4ADE80" />
-              <circle cx="78" cy="28" r="11" fill="#4ADE80" />
+            <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="42" r="12" fill="#5EE07B" />
+              <circle cx="50" cy="24" r="18" fill="#5EE07B" />
+              <circle cx="78" cy="42" r="12" fill="#5EE07B" />
               <path 
-                d="M5,72 L22,42 L38,65 L50,32 L62,65 L78,42 L95,72" 
-                stroke="#1DA756" 
-                strokeWidth="10" 
+                d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
+                stroke="#14856B" 
+                strokeWidth="12" 
                 strokeLinecap="square" 
                 strokeLinejoin="miter" 
                 fill="none" 
@@ -200,14 +200,14 @@ const Navbar = () => {
                   className="flex items-center gap-3"
                 >
                   <div className="w-10 h-10 flex-shrink-0">
-                    <svg viewBox="0 0 100 85" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="22" cy="28" r="11" fill="#4ADE80" />
-                      <circle cx="50" cy="16" r="15" fill="#4ADE80" />
-                      <circle cx="78" cy="28" r="11" fill="#4ADE80" />
+                    <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="22" cy="42" r="12" fill="#5EE07B" />
+                      <circle cx="50" cy="24" r="18" fill="#5EE07B" />
+                      <circle cx="78" cy="42" r="12" fill="#5EE07B" />
                       <path 
-                        d="M5,72 L22,42 L38,65 L50,32 L62,65 L78,42 L95,72" 
-                        stroke="#1DA756" 
-                        strokeWidth="10" 
+                        d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
+                        stroke="#14856B" 
+                        strokeWidth="12" 
                         strokeLinecap="square" 
                         strokeLinejoin="miter" 
                         fill="none" 
@@ -303,14 +303,14 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 flex-shrink-0">
-              <svg viewBox="0 0 100 85" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="22" cy="28" r="11" fill="#4ADE80" />
-                <circle cx="50" cy="16" r="15" fill="#4ADE80" />
-                <circle cx="78" cy="28" r="11" fill="#4ADE80" />
+              <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="42" r="12" fill="#5EE07B" />
+                <circle cx="50" cy="24" r="18" fill="#5EE07B" />
+                <circle cx="78" cy="42" r="12" fill="#5EE07B" />
                 <path 
-                  d="M5,72 L22,42 L38,65 L50,32 L62,65 L78,42 L95,72" 
-                  stroke="#1DA756" 
-                  strokeWidth="10" 
+                  d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
+                  stroke="#14856B" 
+                  strokeWidth="12" 
                   strokeLinecap="square" 
                   strokeLinejoin="miter" 
                   fill="none" 

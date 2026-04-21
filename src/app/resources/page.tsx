@@ -40,13 +40,7 @@ const ResourceCard = ({ data, idx }: { data: any, idx: number }) => {
       {/* Background Image Placeholder (Nature/Growth) */}
       <div className="absolute inset-0 z-0">
          <img 
-            src={`https://images.unsplash.com/photo-${[
-                "1441974231531-c6227db76b6e",
-                "1518133910546-b6c2fb7d79e3",
-                "1464822759023-fed622ff2c3b",
-                "1470071459604-3b5ec3a7fe05",
-                "1501854140801-50d01698950b"
-            ][idx % 5]}?auto=format&fit=crop&q=80&w=800`}
+            src={idx % 2 === 0 ? "/images/serene_nature.png" : "/images/growing_plant.png"}
             alt="Nature"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
          />
@@ -91,15 +85,27 @@ export default async function ResourcesPage() {
       <section className="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
             <div className="max-w-2xl">
-                <span className="text-[11px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block">The Library</span>
+                <div className="flex items-center gap-3 mb-6">
+                    <Leaf className="text-[#1DA756]" size={20} />
+                    <span className="text-[11px] font-black tracking-[0.3em] text-[#1DA756] uppercase">Wisdom Network</span>
+                </div>
                 <h1 className="text-5xl md:text-[6rem] font-black uppercase leading-[0.85] tracking-tighter">
-                    Fuel for <br/>
-                    <span className="text-[#1DA756]">The Silent.</span>
+                    Seeds of <br/>
+                    <span className="text-[#1DA756]">Insight.</span>
                 </h1>
             </div>
-            <p className="text-lg md:text-xl text-[#0D120E]/50 font-medium max-w-sm capitalize">
-                A meticulously curated collection of knowledge, tools, and inspiration for the modern trailblazer.
-            </p>
+            <div className="space-y-6 max-w-sm">
+                <p className="text-lg md:text-xl text-[#0D120E]/50 font-medium leading-relaxed capitalize">
+                    The quiet pursuit of mastery requires the finest tools. Explore our repository of disciplined growth.
+                </p>
+                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-[#0D120E]/30">
+                    <span>Curated</span>
+                    <span className="w-1 h-1 rounded-full bg-[#1DA756]"></span>
+                    <span>Structured</span>
+                    <span className="w-1 h-1 rounded-full bg-[#1DA756]"></span>
+                    <span>Silent</span>
+                </div>
+            </div>
          </div>
       </section>
 
@@ -139,21 +145,21 @@ export default async function ResourcesPage() {
                     }
                     
                     // Interrupt handler (Spotlight/Banner)
-                    if (item.interruptType === "banner") {
-                        return (
-                            <div key={item._id} className="md:col-span-3 min-h-[300px] rounded-[3rem] bg-[#0D120E] p-10 md:p-16 text-white relative overflow-hidden flex flex-col justify-center">
-                                <div className="absolute right-0 top-0 w-96 h-96 bg-[#1DA756]/20 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
-                                <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block">{item.label}</span>
-                                <h2 className="text-3xl md:text-5xl font-black uppercase leading-none mb-6 relative z-10">{item.headline}</h2>
-                                <p className="text-white/50 text-lg max-w-xl mb-8 relative z-10">{item.subtext}</p>
-                                <Link href={item.ctaUrl || "#"} className="h-14 px-8 bg-[#1DA756] text-white rounded-full font-black uppercase text-xs inline-flex items-center gap-2 self-start hover:scale-105 transition-transform shadow-xl shadow-[#1DA756]/20">
-                                    {item.ctaLabel} <ArrowRight size={14} />
+                    return (
+                        <div key={item._id} className="md:col-span-3 min-h-[300px] rounded-none bg-[#0D120E] p-10 md:p-16 text-white relative overflow-hidden flex flex-col justify-center border border-white/5">
+                            <div className="absolute right-0 top-0 w-96 h-96 bg-[#1DA756]/10 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2" />
+                            <div className="absolute left-0 bottom-0 w-64 h-64 bg-[#D3F36B]/5 rounded-full blur-[80px] -translate-x-1/2 translate-y-1/2" />
+                            
+                            <div className="relative z-10">
+                                <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block">{item.label || "Featured Insight"}</span>
+                                <h2 className="text-3xl md:text-5xl font-black uppercase leading-none mb-6 max-w-3xl">{item.headline || item.title}</h2>
+                                <p className="text-white/40 text-lg max-w-xl mb-8 leading-relaxed">{item.subtext || "Unlock deeper levels of self-mastery through our private network protocols."}</p>
+                                <Link href={item.ctaUrl || "#"} className="h-14 px-10 bg-white text-[#0D120E] rounded-none font-black uppercase text-xs inline-flex items-center gap-3 hover:bg-[#1DA756] hover:text-white transition-all shadow-xl">
+                                    {item.ctaLabel || "Learn More"} <ChevronRight size={16} />
                                 </Link>
                             </div>
-                        );
-                    }
-                    
-                    return null;
+                        </div>
+                    );
                 })}
             </div>
          )}
