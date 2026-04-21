@@ -41,9 +41,9 @@ const AnimatedMarquee = () => {
                             const Icon = item.icon;
                             // Mimic realistic brand logos with SVG + bold text
                             return (
-                                <div key={`${i}-${index}`} className="flex items-center gap-3 opacity-100 transition-opacity duration-300 cursor-default">
-                                    <Icon className="w-10 h-10 text-foreground" fill="currentColor" strokeWidth={1.5} />
-                                    <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground" style={{ fontFamily: "Arial, sans-serif" }}>
+                                <div key={`${i}-${index}`} className="flex items-center gap-3 opacity-30 hover:opacity-60 transition-opacity duration-300 cursor-default">
+                                    <Icon className="w-8 h-8 text-foreground" fill="currentColor" strokeWidth={1.5} />
+                                    <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" style={{ fontFamily: "Arial, sans-serif" }}>
                                         {item.text}
                                     </span>
                                 </div>

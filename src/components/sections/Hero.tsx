@@ -48,17 +48,24 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-20 pb-20 overflow-hidden bg-transparent">
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-12 md:pt-20 pb-20 overflow-hidden bg-transparent">
             {/* Subtle Grid / Dotted Background */}
             <div className="absolute inset-0 max-w-7xl mx-auto -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
             
             {/* Signet Logo Watermark */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] opacity-[0.03] pointer-events-none -z-10">
-                <svg viewBox="0 0 100 80" className="w-full h-auto text-black" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="25" cy="20" r="12" />
-                    <circle cx="50" cy="12" r="14" />
-                    <circle cx="75" cy="20" r="12" />
-                    <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                <svg viewBox="0 0 100 85" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="22" cy="28" r="11" fill="#4ADE80" />
+                    <circle cx="50" cy="16" r="15" fill="#4ADE80" />
+                    <circle cx="78" cy="28" r="11" fill="#4ADE80" />
+                    <path 
+                        d="M5,72 L22,42 L38,65 L50,32 L62,65 L78,42 L95,72" 
+                        stroke="#1DA756" 
+                        strokeWidth="10" 
+                        strokeLinecap="square" 
+                        strokeLinejoin="miter" 
+                        fill="none" 
+                    />
                 </svg>
             </div>
 
@@ -73,11 +80,18 @@ const Hero = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="w-20 h-20 mb-8 flex items-center justify-center"
                 >
-                    <svg viewBox="0 0 100 80" className="w-full h-auto text-[#1DA756]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="25" cy="20" r="12" />
-                        <circle cx="50" cy="12" r="14" />
-                        <circle cx="75" cy="20" r="12" />
-                        <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                    <svg viewBox="0 0 100 85" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="22" cy="28" r="11" fill="#4ADE80" />
+                        <circle cx="50" cy="16" r="15" fill="#4ADE80" />
+                        <circle cx="78" cy="28" r="11" fill="#4ADE80" />
+                        <path 
+                            d="M5,72 L22,42 L38,65 L50,32 L62,65 L78,42 L95,72" 
+                            stroke="#1DA756" 
+                            strokeWidth="10" 
+                            strokeLinecap="square" 
+                            strokeLinejoin="miter" 
+                            fill="none" 
+                        />
                     </svg>
                 </motion.div>
 

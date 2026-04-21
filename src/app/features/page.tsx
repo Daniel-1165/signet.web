@@ -16,7 +16,7 @@ export default function FeaturesPage() {
         {/* ── TOP HERO: GET TO KNOW US ─────────────────────────────── */}
         <section className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
           <img
-            src="/get-to-know-us.png"
+            src="/signet-nature.png"
             alt="Get To Know Us"
             className="w-full h-full object-cover"
           />
@@ -50,19 +50,19 @@ export default function FeaturesPage() {
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4 pt-12">
-                   <div className="rounded-[2.5rem] overflow-hidden shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                   <div className="rounded-none overflow-hidden shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
                      <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600" alt="Nature" />
                    </div>
-                   <div className="rounded-[2.5rem] overflow-hidden shadow-xl transform rotate-3 bg-[#1DA756] p-8 text-white">
+                   <div className="rounded-none overflow-hidden shadow-xl transform rotate-3 bg-[#1DA756] p-8 text-white">
                       <Quote className="opacity-40 mb-4" />
                       <p className="font-bold text-lg leading-tight capitalize">"True growth is like a tree; it doesn't make a sound as it rises."</p>
                    </div>
                 </div>
                 <div className="space-y-4">
-                   <div className="rounded-[2.5rem] overflow-hidden shadow-2xl h-80">
+                   <div className="rounded-none overflow-hidden shadow-2xl h-80">
                      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" alt="Mountain" className="h-full w-full object-cover" />
                    </div>
-                   <div className="rounded-[2.5rem] overflow-hidden shadow-xl transform -rotate-2">
+                   <div className="rounded-none overflow-hidden shadow-xl transform -rotate-2">
                      <img src="https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?auto=format&fit=crop&q=80&w=600" alt="Growth" />
                    </div>
                 </div>
@@ -73,9 +73,9 @@ export default function FeaturesPage() {
 
         {/* ── IMAGE SECTION 2: LOGO PAPER ─────────────────────────── */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
-            <div className="rounded-[3rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
+            <div className="rounded-none overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
                 <img 
-                    src="/logo-paper.png" 
+                    src="/hero-primary.png" 
                     alt="The Signet Core" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
@@ -94,7 +94,7 @@ export default function FeaturesPage() {
                     
                     <div className="space-y-10">
                         <div className="flex gap-6">
-                            <div className="w-14 h-14 rounded-2xl bg-white shadow-xl flex items-center justify-center shrink-0 border border-black/5">
+                            <div className="w-14 h-14 rounded-none bg-white shadow-xl flex items-center justify-center shrink-0 border border-black/5">
                                 <Calendar className="text-[#1DA756]" />
                             </div>
                             <div>
@@ -103,7 +103,7 @@ export default function FeaturesPage() {
                             </div>
                         </div>
                         <div className="flex gap-6">
-                            <div className="w-14 h-14 rounded-2xl bg-white shadow-xl flex items-center justify-center shrink-0 border border-black/5">
+                            <div className="w-14 h-14 rounded-none bg-white shadow-xl flex items-center justify-center shrink-0 border border-black/5">
                                 <Clock className="text-[#1DA756]" />
                             </div>
                             <div>
@@ -114,7 +114,7 @@ export default function FeaturesPage() {
                     </div>
                 </div>
 
-                <div className="md:w-1/2 bg-[#0D120E] rounded-[3rem] p-10 md:p-16 text-white shadow-2xl relative overflow-hidden">
+                <div className="md:w-1/2 bg-[#0D120E] rounded-none p-10 md:p-16 text-white shadow-2xl relative overflow-hidden">
                     {/* Decorative element */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-[#1DA756]/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
                     
@@ -130,11 +130,11 @@ export default function FeaturesPage() {
 
         {/* ── IMAGE SECTION 3: LOCKED IN ───────────────────────────── */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
-            <div className="rounded-[3rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
+            <div className="rounded-none overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
                 <img 
-                    src="/locked-in.png" 
+                    src="/mission.png" 
                     alt="Locked In" 
-                    className="w-full h-full object-contain bg-[#174F34] group-hover:scale-105 transition-transform duration-[2s]"
+                    className="w-full h-full object-cover bg-[#174F34] group-hover:scale-105 transition-transform duration-[2s]"
                 />
             </div>
         </section>
@@ -153,8 +153,8 @@ export default function FeaturesPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {curriculum.map((item, index) => (
-                    <div key={index} className="group bg-white rounded-[2rem] p-8 border border-black/[0.03] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div className="w-12 h-12 rounded-xl bg-[#F7F6F0] flex items-center justify-center text-[#1DA756] mb-6 group-hover:bg-[#1DA756] group-hover:text-white transition-colors">
+                    <div key={index} className="group bg-white rounded-none p-8 border border-black/[0.03] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div className="w-12 h-12 rounded-none bg-[#F7F6F0] flex items-center justify-center text-[#1DA756] mb-6 group-hover:bg-[#1DA756] group-hover:text-white transition-colors">
                             <item.icon size={20} />
                         </div>
                         <h4 className="font-black text-lg uppercase tracking-tight mb-2 group-hover:text-[#1DA756] transition-colors">

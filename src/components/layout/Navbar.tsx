@@ -107,11 +107,18 @@ const Navbar = () => {
         >
           {/* Logo Icon */}
           <div className="w-10 h-10 flex-shrink-0">
-            <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="25" cy="20" r="12" />
-              <circle cx="50" cy="12" r="14" />
-              <circle cx="75" cy="20" r="12" />
-              <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+            <svg viewBox="0 0 100 85" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="28" r="11" fill="#4ADE80" />
+              <circle cx="50" cy="16" r="15" fill="#4ADE80" />
+              <circle cx="78" cy="28" r="11" fill="#4ADE80" />
+              <path 
+                d="M5,72 L22,42 L38,65 L50,32 L62,65 L78,42 L95,72" 
+                stroke="#1DA756" 
+                strokeWidth="10" 
+                strokeLinecap="square" 
+                strokeLinejoin="miter" 
+                fill="none" 
+              />
             </svg>
           </div>
           {/* Logo Text */}
@@ -198,11 +205,18 @@ const Navbar = () => {
                   className="flex items-center gap-3"
                 >
                   <div className="w-10 h-10 flex-shrink-0">
-                    <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="25" cy="20" r="12" />
-                      <circle cx="50" cy="12" r="14" />
-                      <circle cx="75" cy="20" r="12" />
-                      <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                    <svg viewBox="0 0 100 85" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="22" cy="28" r="11" fill="#4ADE80" />
+                      <circle cx="50" cy="16" r="15" fill="#4ADE80" />
+                      <circle cx="78" cy="28" r="11" fill="#4ADE80" />
+                      <path 
+                        d="M5,72 L22,42 L38,65 L50,32 L62,65 L78,42 L95,72" 
+                        stroke="#1DA756" 
+                        strokeWidth="10" 
+                        strokeLinecap="square" 
+                        strokeLinejoin="miter" 
+                        fill="none" 
+                      />
                     </svg>
                   </div>
                   <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
@@ -294,11 +308,18 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 flex-shrink-0">
-              <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="25" cy="20" r="12" />
-                <circle cx="50" cy="12" r="14" />
-                <circle cx="75" cy="20" r="12" />
-                <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+              <svg viewBox="0 0 100 85" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="28" r="11" fill="#4ADE80" />
+                <circle cx="50" cy="16" r="15" fill="#4ADE80" />
+                <circle cx="78" cy="28" r="11" fill="#4ADE80" />
+                <path 
+                  d="M5,72 L22,42 L38,65 L50,32 L62,65 L78,42 L95,72" 
+                  stroke="#1DA756" 
+                  strokeWidth="10" 
+                  strokeLinecap="square" 
+                  strokeLinejoin="miter" 
+                  fill="none" 
+                />
               </svg>
             </div>
             <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
