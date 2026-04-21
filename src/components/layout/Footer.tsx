@@ -7,7 +7,19 @@ const Footer = () => {
                 <div className="grid gap-12 md:grid-cols-4">
                     <div className="col-span-2 space-y-6">
                         <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
-                            <img src="/logo-dark.svg" alt="Signet Logo" className="h-10 w-10 rounded-xl" />
+                            <div className="w-10 h-10 flex-shrink-0">
+                                <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E] dark:text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="25" cy="20" r="12" />
+                                    <circle cx="50" cy="12" r="14" />
+                                    <circle cx="75" cy="20" r="12" />
+                                    <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <div className="flex flex-col leading-none font-bold text-[#0D120E] dark:text-white text-[10px] tracking-tight uppercase">
+                                <span>Silent</span>
+                                <span>Growth</span>
+                                <span>Network</span>
+                            </div>
                         </Link>
                         <p className="max-w-xs text-sm leading-relaxed text-foreground/50">
                             Build your life right. A community dedicated to continuous growth, mindful living, and mature discipline.

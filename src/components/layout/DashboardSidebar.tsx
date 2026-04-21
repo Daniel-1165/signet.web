@@ -37,7 +37,18 @@ export default function DashboardSidebar() {
       {/* Mobile Top Bar */}
       <div className={`md:hidden fixed top-0 left-0 right-0 h-16 bg-[#F7F6F0]/90 backdrop-blur-md z-[50] flex items-center justify-between px-6 border-b border-[rgba(0,0,0,0.05)] shadow-sm transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
-            <img src="/logo-dark.svg" alt="Signet Logo" className="h-8 w-8 rounded-lg shadow-sm" />
+            <div className="w-8 h-8 flex-shrink-0 translate-y-[-2px]">
+                <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="25" cy="20" r="12" />
+                    <circle cx="50" cy="12" r="14" />
+                    <circle cx="75" cy="20" r="12" />
+                    <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            </div>
+            <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[8px] tracking-tight uppercase">
+                <span>Silent</span>
+                <span>Growth</span>
+            </div>
         </Link>
         <div className="flex items-center gap-4">
           <div className="flex-shrink-0 flex items-center justify-center p-[2px] rounded-full border border-[rgba(0,0,0,0.1)] bg-white shadow-sm">
@@ -67,7 +78,19 @@ export default function DashboardSidebar() {
         <div className="mb-12 px-2 flex items-center justify-between">
           <div>
             <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
-                <img src="/logo-dark.svg" alt="Signet Logo" className="h-10 w-10 rounded-xl shadow-lg ring-1 ring-white/10" />
+                <div className="w-10 h-10 flex-shrink-0">
+                    <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E] dark:text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="20" r="12" />
+                        <circle cx="50" cy="12" r="14" />
+                        <circle cx="75" cy="20" r="12" />
+                        <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </div>
+                <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
+                    <span>Silent</span>
+                    <span>Growth</span>
+                    <span>Network</span>
+                </div>
             </Link>
           </div>
           <button 
