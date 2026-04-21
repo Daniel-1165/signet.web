@@ -26,7 +26,6 @@ const desktopNavItems = [
 const mobileNavItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Resources", href: "/resources", icon: FolderOpen },
-  { name: "Search", href: "#", icon: Search },
   { name: "Community", href: "/community", icon: Users },
   { name: "About", href: "/features", icon: Info },
 ];

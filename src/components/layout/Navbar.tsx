@@ -129,32 +129,27 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* Right side: auth state + hamburger */}
+        {/* Right side: hamburger */}
         <div className="flex items-center gap-4">
-          {/* Show based on auth state */}
-          {isLoaded && (
-            <>
-              {isSignedIn ? (
-                /* Signed in — show profile avatar */
-                <div className="flex items-center justify-center p-[2px] rounded-full border border-black/10 bg-white shadow-sm">
-                  <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
-                </div>
-              ) : (
-                /* Signed out — Login + Get Started */
-                <div className="flex items-center gap-2">
-                  <SignInButton mode="modal">
-                    <button className="px-3 py-1.5 text-[10px] font-bold text-[#0D120E]/70 hover:bg-black/[0.04] transition-colors rounded-lg">
-                      Login
-                    </button>
-                  </SignInButton>
-                  <SignUpButton mode="modal">
-                    <button className="px-3 py-1.5 text-[10px] font-bold text-white bg-[#1DA756] rounded-lg">
-                      Join
-                    </button>
-                  </SignUpButton>
-                </div>
-              )}
-            </>
+          {/* Join button ONLY shows when scrolled (and if not signed in) */}
+          {isScrolled && !isLoaded && (
+             <SignUpButton mode="modal">
+               <button className="px-5 py-2 text-[11px] font-bold text-white bg-[#1DA756] rounded-full shadow-lg shadow-[#1DA756]/20">
+                 Join
+               </button>
+             </SignUpButton>
+          )}
+          {isScrolled && isLoaded && !isSignedIn && (
+             <SignUpButton mode="modal">
+               <button className="px-5 py-2 text-[11px] font-bold text-white bg-[#1DA756] rounded-full shadow-lg shadow-[#1DA756]/20">
+                 Join
+               </button>
+             </SignUpButton>
+          )}
+          {isScrolled && isSignedIn && (
+            <div className="flex items-center justify-center p-[2px] rounded-full border border-black/10 bg-white shadow-sm">
+              <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
+            </div>
           )}
 
           {/* Custom Hamburger — always visible */}
@@ -167,7 +162,7 @@ const Navbar = () => {
             <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#0D120E]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <line x1="4" y1="7" x2="20" y2="7" />
               <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="17" x2="14" y2="17" />
+              <line x1="10" y1="17" x2="20" y2="17" />
             </svg>
           </button>
         </div>
@@ -343,7 +338,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Auth */}
+          {/* Auth - Only shows Join when scrolled or in specialized context */}
           <div className="hidden md:flex items-center gap-3">
             {isLoaded && (
               isSignedIn ? (
@@ -365,12 +360,22 @@ const Navbar = () => {
                       Login
                     </button>
                   </SignInButton>
-                  <SignUpButton mode="modal">
-                    <button className="group h-10 px-6 flex items-center gap-2 rounded-full bg-[#0D120E] text-white text-sm font-bold hover:bg-[#0D120E]/85 transition-all shadow-sm">
-                      Get Started
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </button>
-                  </SignUpButton>
+                  <AnimatePresence>
+                    {isScrolled && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9, x: 10 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, x: 10 }}
+                      >
+                        <SignUpButton mode="modal">
+                          <button className="group h-10 px-6 flex items-center gap-2 rounded-full bg-[#0D120E] text-white text-sm font-bold hover:bg-[#0D120E]/85 transition-all shadow-sm">
+                            Join Now
+                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                          </button>
+                        </SignUpButton>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </>
               )
             )}
