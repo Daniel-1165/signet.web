@@ -161,7 +161,7 @@ export default async function FeedResourcesPage() {
       {/* Page Header */}
       <div className="max-w-5xl mx-auto px-6 mb-16">
          <h1 className="text-5xl md:text-[6rem] font-black tracking-tighter text-white leading-none">
-           Library & <br/> <span className="text-white/30">Resources</span>
+           Library &amp; <br/> <span className="text-white/30">Resources</span>
          </h1>
          <p className="text-xl text-white/50 mt-6 font-medium max-w-2xl leading-relaxed">
            A carefully paced stream of insights, books, deep dives, and tools designed to interrupt your feed with pure value.
@@ -177,11 +177,11 @@ export default async function FeedResourcesPage() {
            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
              {stream.map((item, idx) => {
                if (item._streamType === 'post') {
-                 return <ResourceCard key={\`post-\${item._id}-\${idx}\`} data={item} />;
+                 return <ResourceCard key={`post-${item._id}-${idx}`} data={item} />;
                } else {
-                 if (item.interruptType === 'spotlight') return <SpotlightInterrupt key={\`int-\${item._id}-\${idx}\`} data={item} />;
-                 if (item.interruptType === 'banner') return <BannerInterrupt key={\`int-\${item._id}-\${idx}\`} data={item} />;
-                 if (item.interruptType === 'shelf') return <ShelfInterrupt key={\`int-\${item._id}-\${idx}\`} data={item} />;
+                 if (item.interruptType === 'spotlight') return <SpotlightInterrupt key={`int-${item._id}-${idx}`} data={item} />;
+                 if (item.interruptType === 'banner') return <BannerInterrupt key={`int-${item._id}-${idx}`} data={item} />;
+                 if (item.interruptType === 'shelf') return <ShelfInterrupt key={`int-${item._id}-${idx}`} data={item} />;
                  return null;
                }
              })}
