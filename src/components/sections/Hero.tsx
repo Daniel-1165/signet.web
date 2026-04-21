@@ -54,11 +54,11 @@ const Hero = () => {
             
             {/* Signet Logo Watermark */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] opacity-[0.03] pointer-events-none -z-10">
-                <svg viewBox="0 0 100 50" className="w-full h-auto text-black" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="21" cy="18" r="8" fill="currentColor" stroke="none" />
-                    <circle cx="50" cy="12" r="10" fill="currentColor" stroke="none" />
-                    <circle cx="79" cy="18" r="8" fill="currentColor" stroke="none" />
-                    <path d="M6,42 L21,28 L35.5,42 L50,27 L64.5,42 L79,28 L94,42" />
+                <svg viewBox="0 0 100 80" className="w-full h-auto text-black" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="25" cy="20" r="12" />
+                    <circle cx="50" cy="12" r="14" />
+                    <circle cx="75" cy="20" r="12" />
+                    <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
             </div>
 
@@ -73,11 +73,11 @@ const Hero = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="w-20 h-20 mb-8 flex items-center justify-center"
                 >
-                    <svg viewBox="0 0 100 50" className="w-full h-auto text-accent" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="21" cy="18" r="8" />
-                        <circle cx="50" cy="12" r="10" />
-                        <circle cx="79" cy="18" r="8" />
-                        <path d="M6,42 L21,28 L35.5,42 L50,27 L64.5,42 L79,28 L94,42" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
+                    <svg viewBox="0 0 100 80" className="w-full h-auto text-[#1DA756]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="20" r="12" />
+                        <circle cx="50" cy="12" r="14" />
+                        <circle cx="75" cy="20" r="12" />
+                        <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </motion.div>
 

@@ -4,299 +4,399 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, Shield } from "lucide-react";
-import { SignInButton, UserButton, Show, useUser } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignUpButton,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 import { useSupabaseClient } from "@/lib/supabase/client";
+import {
+  Home, Users, FolderOpen, Brain, Lightbulb, Target, Award, Info,
+} from "lucide-react";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/features" },
+  { label: "Resources", href: "/resources" },
+  { label: "Community", href: "/community" },
+];
+
+const sidebarLinks = [
+  { label: "Home", href: "/", icon: Home },
+  { label: "About Us", href: "/features", icon: Info },
+  { label: "Resources", href: "/resources", icon: FolderOpen },
+  { label: "Community", href: "/community", icon: Users },
+  { label: "EQ Test", href: "/eq-test", icon: Brain },
+  { label: "IQ Assessment", href: "/iq-test", icon: Lightbulb },
+  { label: "Vision Guide", href: "/vision-guide", icon: Target },
+  { label: "Certificates", href: "/certificates", icon: Award },
+];
 
 const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    // Admin state
-    const { user } = useUser();
-    const supabase = useSupabaseClient();
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [showAdminModal, setShowAdminModal] = useState(false);
-    const [targetUser, setTargetUser] = useState("");
-    const [adminActionStatus, setAdminActionStatus] = useState("");
+  const { user, isLoaded, isSignedIn } = useUser();
+  const supabase = useSupabaseClient();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showAdminModal, setShowAdminModal] = useState(false);
+  const [targetUser, setTargetUser] = useState("");
+  const [adminActionStatus, setAdminActionStatus] = useState("");
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    useEffect(() => {
-        if (user) {
-            supabase.from('profiles').select('role').eq('id', user.id).single().then(({ data }) => {
-                if (data && data.role === 'admin') {
-                    setIsAdmin(true);
-                }
-            });
-        }
-    }, [user, supabase]);
+  useEffect(() => {
+    if (user) {
+      supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single()
+        .then(({ data }) => {
+          if (data?.role === "admin") setIsAdmin(true);
+        });
+    }
+  }, [user, supabase]);
 
-    const handleMakeAdmin = async () => {
-        if (!targetUser.trim()) return;
-        setAdminActionStatus("Processing...");
-        const { data: searchProfile } = await supabase
-            .from('profiles')
-            .select('id, first_name')
-            .ilike('first_name', targetUser.trim())
-            .limit(1)
-            .single();
+  const handleMakeAdmin = async () => {
+    if (!targetUser.trim()) return;
+    setAdminActionStatus("Processing...");
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("id, first_name")
+      .ilike("first_name", targetUser.trim())
+      .limit(1)
+      .single();
 
-        if (searchProfile) {
-            const { error: updateError } = await supabase
-                .from('profiles')
-                .update({ role: 'admin' })
-                .eq('id', searchProfile.id);
-            if (updateError) {
-                setAdminActionStatus("Error: " + updateError.message);
-            } else {
-                setAdminActionStatus(`Success! ${searchProfile.first_name || targetUser} is now an admin.`);
-                setTargetUser("");
-                setTimeout(() => { setShowAdminModal(false); setAdminActionStatus(""); }, 2000);
-            }
-        } else {
-            setAdminActionStatus("User not found!");
-        }
-    };
+    if (profile) {
+      const { error } = await supabase
+        .from("profiles")
+        .update({ role: "admin" })
+        .eq("id", profile.id);
+      if (error) {
+        setAdminActionStatus("Error: " + error.message);
+      } else {
+        setAdminActionStatus(`Success! ${profile.first_name || targetUser} is now an admin.`);
+        setTargetUser("");
+        setTimeout(() => { setShowAdminModal(false); setAdminActionStatus(""); }, 2000);
+      }
+    } else {
+      setAdminActionStatus("User not found!");
+    }
+  };
 
-    return (
-        <>
-            {/* ── MOBILE TOP BAR ── */}
-            <div className={`md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 h-[60px] transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm border-b border-black/5' : 'bg-white/90 backdrop-blur-md'}`}>
-                {/* Logo */}
-                <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-                    <img src="/logo-dark.svg" alt="Signet" className="h-9 w-9 rounded-xl shadow-sm" />
-                    <span className="font-extrabold text-[#0D120E] text-sm tracking-widest uppercase">Signet</span>
-                </Link>
+  return (
+    <>
+      {/* ════════════════════════════════════════════════════════════
+          MOBILE TOP BAR  (visible on all screen sizes < md)
+      ════════════════════════════════════════════════════════════ */}
+      <header
+        className={`md:hidden fixed top-0 left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 ${
+          isScrolled ? "bg-white/10 backdrop-blur-md" : "bg-transparent"
+        }`}
+      >
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+        >
+          {/* Logo Icon */}
+          <div className="w-10 h-10 flex-shrink-0">
+            <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="25" cy="20" r="12" />
+              <circle cx="50" cy="12" r="14" />
+              <circle cx="75" cy="20" r="12" />
+              <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          {/* Logo Text */}
+          <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
+            <span>Silent</span>
+            <span>Growth</span>
+            <span>Network</span>
+          </div>
+        </Link>
 
-                {/* Right: User + Hamburger */}
-                <div className="flex items-center gap-3">
-                    <Show when="signed-in">
-                        <div className="flex items-center justify-center p-[2px] rounded-full border border-black/10 bg-white shadow-sm">
-                            <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
-                        </div>
-                    </Show>
-                    <button
-                        id="mobile-menu-toggle"
-                        onClick={() => setIsMobileMenuOpen(true)}
-                        className="w-10 h-10 flex items-center justify-center rounded-full border border-black/[0.08] bg-white shadow-sm hover:bg-black/5 transition-colors"
-                        aria-label="Open menu"
-                    >
-                        <Menu className="h-5 w-5 text-[#0D120E]" />
+        {/* Right side: auth state + hamburger */}
+        <div className="flex items-center gap-4">
+          {/* Show based on auth state */}
+          {isLoaded && (
+            <>
+              {isSignedIn ? (
+                /* Signed in — show profile avatar */
+                <div className="flex items-center justify-center p-[2px] rounded-full border border-black/10 bg-white shadow-sm">
+                  <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
+                </div>
+              ) : (
+                /* Signed out — Login + Get Started */
+                <div className="flex items-center gap-2">
+                  <SignInButton mode="modal">
+                    <button className="px-3 py-1.5 text-[10px] font-bold text-[#0D120E]/70 hover:bg-black/[0.04] transition-colors rounded-lg">
+                      Login
                     </button>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <button className="px-3 py-1.5 text-[10px] font-bold text-white bg-[#1DA756] rounded-lg">
+                      Join
+                    </button>
+                  </SignUpButton>
                 </div>
-            </div>
+              )}
+            </>
+          )}
 
-            {/* ── MOBILE SIDEBAR OVERLAY ── */}
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            key="backdrop"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[60]"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        />
+          {/* Custom Hamburger — always visible */}
+          <button
+            id="mobile-menu-btn"
+            onClick={() => setIsSidebarOpen(true)}
+            aria-label="Open menu"
+            className="w-10 h-10 flex items-center justify-center"
+          >
+            <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#0D120E]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="17" x2="14" y2="17" />
+            </svg>
+          </button>
+        </div>
+      </header>
 
-                        {/* Slide-in panel from right */}
-                        <motion.div
-                            key="panel"
-                            initial={{ x: "100%" }}
-                            animate={{ x: 0 }}
-                            exit={{ x: "100%" }}
-                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                            className="md:hidden fixed top-0 right-0 h-full w-[280px] bg-white z-[70] flex flex-col shadow-2xl"
-                        >
-                            {/* Panel Header */}
-                            <div className="flex items-center justify-between px-6 py-5 border-b border-black/5">
-                                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2.5">
-                                    <img src="/logo-dark.svg" alt="Signet" className="h-9 w-9 rounded-xl shadow-sm" />
-                                    <span className="font-extrabold text-[#0D120E] text-sm tracking-widest uppercase">Signet</span>
-                                </Link>
-                                <button
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="w-9 h-9 flex items-center justify-center rounded-full bg-black/5 hover:bg-black/10 transition-colors"
-                                    aria-label="Close menu"
-                                >
-                                    <X className="h-4 w-4 text-[#0D120E]" />
-                                </button>
-                            </div>
+      {/* ════════════════════════════════════════════════════════════
+          MOBILE SLIDE-IN SIDEBAR PANEL
+      ════════════════════════════════════════════════════════════ */}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <>
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[60]"
+              onClick={() => setIsSidebarOpen(false)}
+            />
 
-                            {/* Nav Links */}
-                            <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
-                                {[
-                                    { label: "Home", href: "/" },
-                                    { label: "About Us", href: "/features" },
-                                    { label: "Resources", href: "/resources" },
-                                    { label: "Community", href: "/community" },
-                                ].map((item) => (
-                                    <Link
-                                        key={item.label}
-                                        href={item.href}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="flex items-center gap-3 px-4 py-3.5 rounded-2xl text-[#0D120E]/70 hover:text-[#0D120E] hover:bg-black/[0.04] font-semibold text-sm tracking-tight transition-all"
-                                    >
-                                        {item.label}
-                                    </Link>
-                                ))}
-
-                                <Show when="signed-in">
-                                    <Link
-                                        href="/dashboard"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="flex items-center gap-3 px-4 py-3.5 rounded-2xl text-[#1DA756] hover:bg-[#1DA756]/5 font-bold text-sm tracking-tight transition-all"
-                                    >
-                                        Dashboard →
-                                    </Link>
-                                </Show>
-                            </nav>
-
-                            {/* Panel Footer */}
-                            <div className="px-6 pb-8 pt-4 border-t border-black/5">
-                                <Show when="signed-out">
-                                    <SignInButton mode="modal">
-                                        <button className="w-full flex h-12 items-center justify-center gap-2 rounded-full bg-[#0D120E] text-white font-bold text-sm tracking-wide hover:bg-[#0D120E]/90 transition-all">
-                                            Join Network
-                                            <ArrowRight className="h-4 w-4" />
-                                        </button>
-                                    </SignInButton>
-                                </Show>
-                                <Show when="signed-in">
-                                    {isAdmin && (
-                                        <button
-                                            onClick={() => { setShowAdminModal(true); setIsMobileMenuOpen(false); }}
-                                            className="w-full h-10 mt-3 px-3 bg-[#1DA756]/10 border border-[#1DA756]/20 text-[#1DA756] rounded-full font-bold text-xs flex items-center justify-center gap-1.5"
-                                        >
-                                            <Shield className="w-4 h-4" /> Admin Panel
-                                        </button>
-                                    )}
-                                </Show>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
-
-            {/* ── DESKTOP NAV ── */}
-            <nav className={`hidden md:block fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled
-                ? "bg-white py-4 shadow-md border-b border-black/5"
-                : "bg-white md:bg-transparent py-4 md:py-6 border-b border-black/5 md:border-transparent"
-                }`}
+            <motion.div
+              key="panel"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="md:hidden fixed top-0 right-0 h-full w-[280px] bg-white z-[70] flex flex-col shadow-2xl"
             >
-                <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                        <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
-                            <div className="absolute inset-0 -z-10 rounded-xl bg-black/5 blur-xl transition-all duration-500 group-hover:bg-black/10"></div>
-                            <img src="/logo-dark.svg" alt="Signet Logo" className="h-11 w-11 rounded-xl shadow-lg ring-1 ring-white/10" />
-                        </Link>
-                    </motion.div>
+              {/* Panel header */}
+              <div className="flex items-center justify-between px-6 py-5 border-b border-black/[0.06]">
+                <Link
+                  href="/"
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="25" cy="20" r="12" />
+                      <circle cx="50" cy="12" r="14" />
+                      <circle cx="75" cy="20" r="12" />
+                      <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
+                    <span>Silent</span>
+                    <span>Growth</span>
+                    <span>Network</span>
+                  </div>
+                </Link>
+                <button
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-black/[0.05] hover:bg-black/[0.09] transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="h-4 w-4 text-[#0D120E]" />
+                </button>
+              </div>
 
-                    <div className="hidden items-center gap-10 md:flex">
-                        {["Home", "About Us", "Resources", "Community"].map((item, i) => (
-                            <motion.div
-                                key={item}
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 0.1 * i, ease: [0.16, 1, 0.3, 1] }}
-                                className="relative group"
-                            >
-                                <Link
-                                    href={item === "Home" ? "/" : item === "About Us" ? "/features" : item === "Community" ? "/community" : item === "Resources" ? "/resources" : `#${item.toLowerCase()}`}
-                                    className="relative py-2 text-sm font-bold tracking-tight text-black transition-colors hover:text-black/70 inline-flex items-center gap-1"
-                                >
-                                    {item}
-                                    <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-signet-green transition-all duration-300 group-hover:w-full"></span>
-                                </Link>
-                            </motion.div>
-                        ))}
+              {/* Nav Links */}
+              <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+                {sidebarLinks.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#0D120E]/60 hover:text-[#0D120E] hover:bg-black/[0.04] font-semibold text-sm tracking-tight transition-all"
+                  >
+                    <item.icon className="w-4 h-4 shrink-0 text-[#0D120E]/35" />
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
 
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex items-center gap-4"
-                        >
-                            <Show when="signed-in">
-                                <UserButton appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
-                                {isAdmin && (
-                                    <button
-                                        onClick={() => setShowAdminModal(true)}
-                                        className="h-9 px-3 bg-accent/10 border border-accent/20 text-accent rounded-full font-bold text-xs flex items-center gap-1.5 hover:bg-accent hover:text-white transition-colors ml-3"
-                                    >
-                                        <Shield className="w-4 h-4" /> Admin
-                                    </button>
-                                )}
-                            </Show>
-                        </motion.div>
-
-                        <Show when="signed-out">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                            >
-                                <SignInButton mode="modal">
-                                    <button className="group flex h-10 items-center justify-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-white transition-all hover:bg-foreground/90 hover:shadow-md hover:shadow-black/5">
-                                        Join Network
-                                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                    </button>
-                                </SignInButton>
-                            </motion.div>
-                        </Show>
+              {/* Panel Footer — auth actions */}
+              <div className="px-6 pb-8 pt-4 border-t border-black/[0.05] space-y-3">
+                {isLoaded && (
+                  isSignedIn ? (
+                    <div className="flex items-center gap-3 px-2 py-2">
+                      <UserButton appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[13px] font-bold text-[#0D120E] truncate">
+                          {user?.fullName || user?.firstName || "Member"}
+                        </p>
+                        <p className="text-[11px] text-[#0D120E]/40 truncate">
+                          {user?.primaryEmailAddress?.emailAddress}
+                        </p>
+                      </div>
                     </div>
-                </div>
-            </nav>
-
-            {/* Admin Modal */}
-            <AnimatePresence>
-                {showAdminModal && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            className="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm relative"
-                        >
-                            <button onClick={() => setShowAdminModal(false)} className="absolute top-4 right-4 text-black/40 hover:text-black">
-                                <X className="h-5 w-5" />
-                            </button>
-                            <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Shield className="text-accent h-5 w-5" /> Admin Panel</h3>
-                            <p className="text-xs text-black/50 mb-6">Promote a user to Admin by entering their exact username (First Name).</p>
-
-                            <input
-                                type="text"
-                                placeholder="Username"
-                                value={targetUser}
-                                onChange={(e) => setTargetUser(e.target.value)}
-                                className="w-full px-4 py-3 bg-black/5 border border-black/10 rounded-xl text-sm mb-4 focus:outline-none focus:border-accent"
-                            />
-                            {adminActionStatus && <p className="text-xs font-bold text-accent mb-4">{adminActionStatus}</p>}
-                            <button
-                                onClick={handleMakeAdmin}
-                                disabled={!targetUser.trim()}
-                                className="w-full bg-accent text-white py-3 rounded-xl font-bold tracking-wide hover:bg-accent/90 transition-colors disabled:opacity-50"
-                            >
-                                Make Admin
-                            </button>
-                        </motion.div>
-                    </div>
+                  ) : (
+                    <>
+                      <SignInButton mode="modal">
+                        <button className="w-full h-11 flex items-center justify-center rounded-full border border-black/[0.1] text-sm font-bold text-[#0D120E] hover:bg-black/[0.04] transition-colors">
+                          Login
+                        </button>
+                      </SignInButton>
+                      <SignUpButton mode="modal">
+                        <button className="w-full h-11 flex items-center justify-center gap-2 rounded-full bg-[#1DA756] text-white text-sm font-bold hover:bg-[#158C45] transition-colors shadow-md shadow-[#1DA756]/20">
+                          Get Started <ArrowRight className="h-4 w-4" />
+                        </button>
+                      </SignUpButton>
+                    </>
+                  )
                 )}
-            </AnimatePresence>
-        </>
-    );
+
+                {isAdmin && isSignedIn && (
+                  <button
+                    onClick={() => { setShowAdminModal(true); setIsSidebarOpen(false); }}
+                    className="w-full h-10 mt-1 px-3 bg-[#1DA756]/10 border border-[#1DA756]/20 text-[#1DA756] rounded-full font-bold text-xs flex items-center justify-center gap-1.5"
+                  >
+                    <Shield className="w-4 h-4" /> Admin Panel
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* ════════════════════════════════════════════════════════════
+          DESKTOP NAV BAR
+      ════════════════════════════════════════════════════════════ */}
+      <nav
+        className={`hidden md:block fixed top-0 z-[50] w-full transition-all duration-300 ${
+          isScrolled
+            ? "bg-white py-4 shadow-md border-b border-black/[0.05]"
+            : "bg-white/0 py-6"
+        }`}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <div className="w-10 h-10 flex-shrink-0">
+              <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="25" cy="20" r="12" />
+                <circle cx="50" cy="12" r="14" />
+                <circle cx="75" cy="20" r="12" />
+                <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
+              <span>Silent</span>
+              <span>Growth</span>
+              <span>Network</span>
+            </div>
+          </Link>
+
+          {/* Links */}
+          <div className="hidden items-center gap-8 md:flex">
+            {navLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="relative group py-2 text-sm font-bold tracking-tight text-[#0D120E] hover:text-[#0D120E]/70 transition-colors"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#1DA756] transition-all duration-300 group-hover:w-full" />
+              </Link>
+            ))}
+          </div>
+
+          {/* Auth */}
+          <div className="hidden md:flex items-center gap-3">
+            {isLoaded && (
+              isSignedIn ? (
+                <>
+                  <UserButton appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
+                  {isAdmin && (
+                    <button
+                      onClick={() => setShowAdminModal(true)}
+                      className="h-9 px-3 bg-[#1DA756]/10 border border-[#1DA756]/20 text-[#1DA756] rounded-full font-bold text-xs flex items-center gap-1.5 hover:bg-[#1DA756] hover:text-white transition-colors"
+                    >
+                      <Shield className="w-4 h-4" /> Admin
+                    </button>
+                  )}
+                </>
+              ) : (
+                <>
+                  <SignInButton mode="modal">
+                    <button className="h-10 px-5 text-sm font-bold text-[#0D120E]/70 border border-black/[0.1] rounded-full hover:bg-black/[0.04] transition-colors">
+                      Login
+                    </button>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <button className="group h-10 px-6 flex items-center gap-2 rounded-full bg-[#0D120E] text-white text-sm font-bold hover:bg-[#0D120E]/85 transition-all shadow-sm">
+                      Get Started
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </SignUpButton>
+                </>
+              )
+            )}
+          </div>
+        </div>
+      </nav>
+
+      {/* Admin Modal */}
+      <AnimatePresence>
+        {showAdminModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm relative"
+            >
+              <button onClick={() => setShowAdminModal(false)} className="absolute top-4 right-4 text-black/40 hover:text-black">
+                <X className="h-5 w-5" />
+              </button>
+              <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                <Shield className="text-[#1DA756] h-5 w-5" /> Admin Panel
+              </h3>
+              <p className="text-xs text-black/50 mb-6">Promote a user to Admin by entering their First Name.</p>
+              <input
+                type="text"
+                placeholder="Username"
+                value={targetUser}
+                onChange={(e) => setTargetUser(e.target.value)}
+                className="w-full px-4 py-3 bg-black/[0.05] border border-black/[0.1] rounded-xl text-sm mb-4 focus:outline-none focus:border-[#1DA756]"
+              />
+              {adminActionStatus && (
+                <p className="text-xs font-bold text-[#1DA756] mb-4">{adminActionStatus}</p>
+              )}
+              <button
+                onClick={handleMakeAdmin}
+                disabled={!targetUser.trim()}
+                className="w-full bg-[#1DA756] text-white py-3 rounded-xl font-bold tracking-wide hover:bg-[#158C45] transition-colors disabled:opacity-50"
+              >
+                Make Admin
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 };
 
 export default Navbar;
