@@ -51,7 +51,7 @@ export default function Sidebar() {
       {/* ── MOBILE BOTTOM NAV (scroll-aware) ── */}
       <div
         className={`md:hidden fixed bottom-0 left-0 w-full z-[55] bg-white/80 backdrop-blur-lg border-t border-[#0D120E]/5 flex items-center justify-between px-2 h-[68px] shadow-[0_-4px_24px_rgba(0,0,0,0.04)] transition-transform duration-300 ${
-          isVisible ? "translate-y-0" : "translate-y-full"
+          isVisible && pathname !== '/' ? "translate-y-0" : "translate-y-full"
         }`}
       >
         {mobileNavItems.map((item) => {
@@ -66,7 +66,7 @@ export default function Sidebar() {
               className={`flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors duration-200 ${
                 isActive
                   ? "text-[#1DA756]"
-                  : "text-[#0D120E]/35 hover:text-[#0D120E]/60"
+                  : "text-[#0D120E]/70 hover:text-[#0D120E]"
               }`}
             >
               <div

@@ -26,11 +26,11 @@ const VisionMission = () => {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0c120c] to-transparent" />
                             {/* Mini logo watermark */}
-                            <svg viewBox="0 0 100 80" className="absolute top-3 left-3 h-5 md:h-8 w-auto text-white/40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="25" cy="20" r="12" />
-                                <circle cx="50" cy="12" r="14" />
-                                <circle cx="75" cy="20" r="12" />
-                                <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                            <svg viewBox="0 0 100 100" className="absolute top-3 left-3 h-5 md:h-8 w-auto text-white/40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="22" cy="42" r="12" />
+                                <circle cx="50" cy="24" r="18" />
+                                <circle cx="78" cy="42" r="12" />
+                                <path d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" stroke="currentColor" strokeWidth="12" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
                             </svg>
                         </div>
 
@@ -67,11 +67,11 @@ const VisionMission = () => {
                                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
-                            <svg viewBox="0 0 100 80" className="absolute top-3 left-3 h-5 md:h-8 w-auto text-black/40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="25" cy="20" r="12" />
-                                <circle cx="50" cy="12" r="14" />
-                                <circle cx="75" cy="20" r="12" />
-                                <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                            <svg viewBox="0 0 100 100" className="absolute top-3 left-3 h-5 md:h-8 w-auto text-black/40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="22" cy="42" r="12" />
+                                <circle cx="50" cy="24" r="18" />
+                                <circle cx="78" cy="42" r="12" />
+                                <path d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" stroke="currentColor" strokeWidth="12" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
                             </svg>
                         </div>
 

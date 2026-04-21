@@ -98,8 +98,8 @@ const Process = () => {
                                 transition={{ duration: 0.8 }}
                             >
                                 <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-terra-soil/50 mb-4 italic">The Architecture of Progress</p>
-                                <h2 className="text-5xl md:text-6xl font-medium tracking-tight text-foreground mb-8 leading-[1.1]">
-                                    A calculated <br />pathway to <br /><span className="text-solar-gold italic font-light">supremacy.</span>
+                                <h2 className="text-5xl md:text-6xl font-black tracking-tight text-foreground mb-8 leading-[1.1] uppercase">
+                                    A defined <br />journey to <br /><span className="text-accent italic font-light">self-mastery.</span>
                                 </h2>
                                 <p className="text-xl text-foreground/40 font-medium leading-relaxed max-w-sm mb-12">
                                     Sustainable growth is not accidental. It is engineered through precise, rhythmic escalation.

@@ -4,7 +4,7 @@ import AnimatedMarquee from "@/components/sections/AnimatedMarquee";
 import Process from "@/components/sections/Process";
 import VisionMission from "@/components/sections/VisionMission";
 import FeaturesPreview from "@/components/sections/FeaturesPreview";
-import Products from "@/components/sections/Products";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -14,9 +14,9 @@ export default function Home() {
         <AnimatedMarquee />
         <VisionMission />
         <FeaturesPreview />
-        <Products />
         <Process />
         <Testimonials />
+        <Footer />
       </main>
     </div>
   );
