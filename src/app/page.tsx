@@ -1,4 +1,4 @@
-import Hero from "@/components/sections/Hero";
+import LockedInHero from "@/components/sections/LockedInHero";
 import Testimonials from "@/components/sections/Testimonials";
 import AnimatedMarquee from "@/components/sections/AnimatedMarquee";
 import Process from "@/components/sections/Process";
@@ -8,9 +8,9 @@ import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen premium-gradient">
-      <main className="flex flex-col gap-24 pb-24">
-        <Hero />
+    <div className="relative min-h-screen">
+      <main className="flex flex-col gap-24">
+        <LockedInHero />
         <AnimatedMarquee />
         <VisionMission />
         <FeaturesPreview />
