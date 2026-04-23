@@ -6,8 +6,8 @@ const VisionMission = () => {
     return (
         <section className="py-16 md:py-24 bg-white relative overflow-hidden">
             <div className="mx-auto max-w-7xl px-4 md:px-12 relative z-10">
-                {/* Always 2-column — even on mobile */}
-                <div className="grid grid-cols-2 gap-3 md:gap-8 max-w-5xl mx-auto">
+                {/* Stacked layout — not side-by-side */}
+                <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
 
                     {/* ── Vision Card ── */}
                     <motion.div
@@ -18,7 +18,7 @@ const VisionMission = () => {
                         className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] bg-[#0c120c] flex flex-col group shadow-xl"
                     >
                         {/* Image */}
-                        <div className="h-28 md:h-64 w-full relative overflow-hidden">
+                        <div className="h-56 md:h-96 w-full relative overflow-hidden">
                             <img
                                 src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
                                 alt="Mountain vision"
@@ -35,18 +35,18 @@ const VisionMission = () => {
                         </div>
 
                         {/* Text */}
-                        <div className="p-4 md:p-10 flex flex-col grow justify-between bg-[#0c120c] relative z-10 -mt-6">
+                        <div className="p-6 md:p-12 flex flex-col grow justify-between bg-[#0c120c] relative z-10 -mt-6">
                             <div>
-                                <h2 className="text-sm md:text-3xl font-black tracking-tight text-white mb-1 md:mb-4 uppercase font-heading leading-tight">
+                                <h2 className="text-xl md:text-4xl font-black tracking-tight text-white mb-2 md:mb-6 uppercase font-heading leading-tight">
                                     Our Vision
                                 </h2>
-                                <p className="text-[10px] md:text-lg font-medium leading-snug md:leading-relaxed text-white/60 line-clamp-3 md:line-clamp-none">
+                                <p className="text-sm md:text-xl font-medium leading-relaxed text-white/60">
                                     To build a global network of trailblazers who model and replicate excellence in diverse spheres.
                                 </p>
                             </div>
-                            <div className="mt-3 md:mt-8 pt-3 md:pt-6 border-t border-white/10 flex items-center justify-between">
-                                <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-[#1DA756]">Global Collective</span>
-                                <span className="text-white/40 group-hover:text-white transition-colors text-xs md:text-base">↗</span>
+                            <div className="mt-4 md:mt-10 pt-4 md:pt-8 border-t border-white/10 flex items-center justify-between">
+                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#1DA756]">Global Collective</span>
+                                <span className="text-white/40 group-hover:text-white transition-colors text-base md:text-xl">↗</span>
                             </div>
                         </div>
                     </motion.div>
@@ -60,7 +60,7 @@ const VisionMission = () => {
                         className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] border border-black/5 bg-white flex flex-col group shadow-lg hover:shadow-xl transition-all duration-500"
                     >
                         {/* Image */}
-                        <div className="h-28 md:h-64 w-full bg-[#f4f6f0] relative overflow-hidden">
+                        <div className="h-56 md:h-96 w-full bg-[#f4f6f0] relative overflow-hidden">
                             <img
                                 src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800"
                                 alt="Forest mission"
@@ -76,18 +76,18 @@ const VisionMission = () => {
                         </div>
 
                         {/* Text */}
-                        <div className="p-4 md:p-10 flex flex-col grow justify-between bg-white relative z-10 -mt-6">
+                        <div className="p-6 md:p-12 flex flex-col grow justify-between bg-white relative z-10 -mt-6">
                             <div>
-                                <h2 className="text-sm md:text-3xl font-black tracking-tight text-[#0D120E] mb-1 md:mb-4 uppercase font-heading leading-tight">
+                                <h2 className="text-xl md:text-4xl font-black tracking-tight text-[#0D120E] mb-2 md:mb-6 uppercase font-heading leading-tight">
                                     Our Mission
                                 </h2>
-                                <p className="text-[10px] md:text-lg font-medium leading-snug md:leading-relaxed text-[#0D120E]/60 line-clamp-3 md:line-clamp-none">
+                                <p className="text-sm md:text-xl font-medium leading-relaxed text-[#0D120E]/60">
                                     Ordinary persons achieving extraordinary results, silently and sustainably.
                                 </p>
                             </div>
-                            <div className="mt-3 md:mt-8 pt-3 md:pt-6 border-t border-black/5 flex items-center justify-between">
-                                <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-[#1DA756]">Sustainable Results</span>
-                                <span className="text-[#0D120E]/40 group-hover:text-[#0D120E] transition-colors text-xs md:text-base">↗</span>
+                            <div className="mt-4 md:mt-10 pt-4 md:pt-8 border-t border-black/5 flex items-center justify-between">
+                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#1DA756]">Sustainable Results</span>
+                                <span className="text-[#0D120E]/40 group-hover:text-[#0D120E] transition-colors text-base md:text-xl">↗</span>
                             </div>
                         </div>
                     </motion.div>
