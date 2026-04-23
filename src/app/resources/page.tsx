@@ -1,5 +1,5 @@
 import { sanityFetch } from "@/lib/sanity/client";
-import { ArrowRight, BookOpen, Clock, Search, Sparkles, TrendingUp, Star, ChevronRight, PlayCircle } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Leaf, Search, Sparkles, TrendingUp, Star, ChevronRight, PlayCircle } from "lucide-react";
 import Link from "next/link";
 
 const POSTS_QUERY = `
