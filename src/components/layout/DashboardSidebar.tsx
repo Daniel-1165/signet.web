@@ -39,7 +39,7 @@ export default function DashboardSidebar() {
         <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
             <div className="h-8 flex-shrink-0 flex items-center">
                 <img 
-                    src="/logo.svg.svg" 
+                    src="/signet-brand-logo.svg" 
                     alt="Signet Logo" 
                     className="h-8 w-auto object-contain"
                 />
@@ -75,7 +75,7 @@ export default function DashboardSidebar() {
             <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
                 <div className="h-10 flex-shrink-0 flex items-center">
                     <img 
-                        src="/logo.svg.svg" 
+                        src="/signet-brand-logo.svg" 
                         alt="Signet Logo" 
                         className="h-10 w-auto object-contain"
                     />

@@ -44,7 +44,7 @@ const Products = () => {
             {/* Background Watermark Dots */}
             <div className="absolute top-1/2 left-0 -translate-y-1/2 -ml-20 opacity-[0.03] pointer-events-none">
                 <img 
-                    src="/logo.svg.svg" 
+                    src="/signet-brand-logo.svg" 
                     alt="" 
                     className="h-[40rem] w-auto grayscale" 
                 />

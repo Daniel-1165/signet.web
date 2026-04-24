@@ -8,9 +8,11 @@ interface Props {
   testimonials: Testimonial[];
 }
 
-function getInitials(name: string) {
+function getInitials(name?: string) {
+  if (!name) return "U";
   return name
     .split(" ")
+    .filter(Boolean)
     .map((n) => n[0])
     .slice(0, 2)
     .join("")
@@ -68,7 +70,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                 className="group relative rounded-2xl border border-black/[0.08] bg-white p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-lg hover:shadow-black/5"
               >
                 <p className="text-lg leading-relaxed italic text-foreground/70 mb-8">
-                  &ldquo;{t.content}&rdquo;
+                  &ldquo;{t.content || "Testimonial content"}&rdquo;
                 </p>
 
                 <div className="flex items-center gap-4">
@@ -77,7 +79,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                     <div className="relative h-10 w-10 rounded-full overflow-hidden flex-shrink-0 shadow-sm">
                       <Image
                         src={t.avatar.asset.url}
-                        alt={t.name}
+                        alt={t.name || "User Avatar"}
                         fill
                         className="object-cover"
                         sizes="40px"
@@ -91,10 +93,10 @@ export default function TestimonialsClient({ testimonials }: Props) {
 
                   <div>
                     <div className="text-sm font-semibold tracking-tight text-foreground">
-                      {t.name}
+                      {t.name || "Anonymous User"}
                     </div>
                     <div className="text-xs font-medium text-foreground/50">
-                      {t.role}
+                      {t.role || "Member"}
                       {t.company ? `, ${t.company}` : ""}
                     </div>
                   </div>

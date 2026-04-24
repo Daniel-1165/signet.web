@@ -55,7 +55,7 @@ const Hero = () => {
             {/* Signet Logo Watermark */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] opacity-[0.03] pointer-events-none -z-10 flex justify-center">
                 <img 
-                    src="/logo.svg.svg" 
+                    src="/signet-brand-logo.svg" 
                     alt="" 
                     className="w-full h-auto grayscale" 
                 />
@@ -73,7 +73,7 @@ const Hero = () => {
                     className="w-20 h-20 mb-8 flex items-center justify-center"
                 >
                     <img 
-                        src="/logo.svg.svg" 
+                        src="/signet-brand-logo.svg" 
                         alt="Signet Logo" 
                         className="w-full h-auto object-contain"
                     />

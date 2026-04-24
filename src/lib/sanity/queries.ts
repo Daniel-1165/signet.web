@@ -25,7 +25,7 @@ export const GET_PAGE_BY_SLUG = `
 `
 
 export const GET_TESTIMONIALS = `
-  *[_type == "testimonial"] | order(order asc, _createdAt asc) {
+  *[_type == "testimonial"] | order(featured desc, order asc, _createdAt desc) {
     _id,
     name,
     role,

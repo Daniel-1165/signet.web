@@ -27,7 +27,7 @@ const VisionMission = () => {
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0c120c] to-transparent" />
                             {/* Mini logo watermark */}
                             <img 
-                                src="/logo.svg.svg" 
+                                src="/signet-brand-logo.svg" 
                                 alt="Signet Logo" 
                                 className="absolute top-3 left-3 h-5 md:h-8 w-auto object-contain opacity-40 grayscale brightness-0 invert"
                             />
@@ -81,7 +81,7 @@ const VisionMission = () => {
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
                             <img 
-                                src="/logo.svg.svg" 
+                                src="/signet-brand-logo.svg" 
                                 alt="Signet Logo" 
                                 className="absolute top-3 left-3 h-5 md:h-8 w-auto object-contain opacity-40 grayscale"
                             />

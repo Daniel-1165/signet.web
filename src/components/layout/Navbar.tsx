@@ -108,7 +108,7 @@ const Navbar = () => {
           {/* Logo Image */}
           <div className="w-10 h-10 flex-shrink-0 flex items-center">
             <img 
-              src="/logo.svg.svg" 
+              src="/signet-brand-logo.svg" 
               alt="Signet Logo" 
               className="h-10 w-auto object-contain"
             />
@@ -273,7 +273,7 @@ const Navbar = () => {
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="h-10 flex-shrink-0 flex items-center">
               <img 
-                src="/logo.svg.svg" 
+                src="/signet-brand-logo.svg" 
                 alt="Signet Logo" 
                 className="h-10 w-auto object-contain"
               />

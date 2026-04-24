@@ -99,7 +99,7 @@ export default function Sidebar() {
         <div className="px-6 mb-10 flex items-center h-12 overflow-hidden">
           <Link href="/" className="flex items-center gap-3">
             <img 
-              src="/logo.svg.svg" 
+              src="/signet-brand-logo.svg" 
               alt="Signet Logo" 
               className={`h-10 w-auto object-contain transition-all duration-300 ${!isExpanded ? "scale-75 -ml-1" : ""}`}
             />

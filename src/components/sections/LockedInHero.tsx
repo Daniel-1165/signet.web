@@ -57,7 +57,7 @@ const LockedInHero = () => {
                     >
                         <div className="w-14 h-14 bg-[#1DA756] rounded-2xl flex items-center justify-center flex-shrink-0">
                             <img 
-                                src="/logo.svg.svg" 
+                                src="/signet-brand-logo.svg" 
                                 alt="Signet Logo" 
                                 className="w-8 h-8 object-contain"
                             />
@@ -80,7 +80,7 @@ const LockedInHero = () => {
                     >
                          <div className="w-14 h-14 bg-[#1DA756] rounded-2xl flex items-center justify-center flex-shrink-0">
                             <img 
-                                src="/logo.svg.svg" 
+                                src="/signet-brand-logo.svg" 
                                 alt="Signet Logo" 
                                 className="w-8 h-8 object-contain"
                             />
