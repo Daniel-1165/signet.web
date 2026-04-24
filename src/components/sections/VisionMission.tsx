@@ -62,7 +62,7 @@ const VisionMission = () => {
                         {/* Image */}
                         <div className="h-56 md:h-96 w-full bg-[#f4f6f0] relative overflow-hidden">
                             <img
-                                src="/mission.png"
+                                src="/mission-leap.png"
                                 alt="Our Mission"
                                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                             />

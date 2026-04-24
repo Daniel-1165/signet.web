@@ -185,7 +185,7 @@ export default function FeaturesPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
             <div className="rounded-none overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
                 <img 
-                    src="/mission.png" 
+                    src="/mission-leap.png" 
                     alt="Locked In" 
                     className="w-full h-full object-cover bg-[#174F34] group-hover:scale-105 transition-transform duration-[2s]"
                 />

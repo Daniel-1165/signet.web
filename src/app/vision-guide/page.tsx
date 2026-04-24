@@ -40,7 +40,7 @@ export default function VisionGuidePage() {
         </div>
 
         {/* Guide Gallery / Carousel */}
-        <div className="relative min-h-[600px] bg-white rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 p-4 md:p-8 overflow-hidden">
+        <div className="relative min-h-[600px] p-0 md:p-0 overflow-visible">
           {/* Progress Indicators */}
           <div className="flex justify-center gap-2 mb-12">
              {[0,1,2,3,4,5,6].map((i) => (
