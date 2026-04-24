@@ -189,6 +189,12 @@ export default function FeaturesPage() {
                     alt="Locked In" 
                     className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-[2s]"
                 />
+                {/* Text Overlay */}
+                <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 z-20 bg-gradient-to-t from-black/80 to-transparent">
+                    <p className="text-white text-sm md:text-lg font-bold italic leading-relaxed max-w-lg mx-auto text-center">
+                        "raising men that walks with a sense of purpose and a vision at heart, thoroughly equiped withstand all life can throw at them"
+                    </p>
+                </div>
             </div>
         </section>
 

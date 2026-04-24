@@ -21,17 +21,17 @@ const AnimatedMarquee = () => {
     ];
 
     return (
-        <section className="relative w-full overflow-hidden bg-transparent py-12 md:py-16">
+        <section className="relative w-full overflow-hidden bg-transparent py-4 md:py-6">
             <div className="flex whitespace-nowrap bg-transparent">
                 {/* We double the text arrays to create a seamless loop */}
                 {[...Array(2)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="flex items-center gap-16 sm:gap-24 md:gap-32 pl-16 sm:pl-24 md:pl-32"
+                        className="flex items-center gap-8 sm:gap-12 md:gap-16 pl-8 sm:pl-12 md:pl-16"
                         initial={{ x: 0 }}
                         animate={{ x: "-100%" }}
                         transition={{
-                            duration: 40,
+                            duration: 25,
                             repeat: Infinity,
                             ease: "linear",
                             repeatType: "loop"
@@ -41,9 +41,9 @@ const AnimatedMarquee = () => {
                             const Icon = item.icon;
                             // Mimic realistic brand logos with SVG + bold text
                             return (
-                                <div key={`${i}-${index}`} className="flex items-center gap-3 opacity-30 hover:opacity-60 transition-opacity duration-300 cursor-default">
-                                    <Icon className="w-8 h-8 text-foreground" fill="currentColor" strokeWidth={1.5} />
-                                    <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" style={{ fontFamily: "Arial, sans-serif" }}>
+                                <div key={`${i}-${index}`} className="flex items-center gap-1.5 opacity-30 hover:opacity-60 transition-opacity duration-300 cursor-default min-w-[90px] sm:min-w-[130px]">
+                                    <Icon className="w-3.5 h-3.5 text-foreground" strokeWidth={2} />
+                                    <span className="text-[9px] sm:text-[11px] font-black tracking-tighter text-foreground uppercase truncate">
                                         {item.text}
                                     </span>
                                 </div>

@@ -32,6 +32,12 @@ const VisionMission = () => {
                                 <circle cx="78" cy="42" r="12" />
                                 <path d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" stroke="currentColor" strokeWidth="12" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
                             </svg>
+                            {/* Text Overlay */}
+                            <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 z-20 bg-gradient-to-t from-black/80 to-transparent">
+                                <p className="text-white text-sm md:text-lg font-bold italic leading-relaxed max-w-lg mx-auto text-center">
+                                    "To build a global network of trailblazers who model and replicate excellence in diverse spheres."
+                                </p>
+                            </div>
                         </div>
 
                         {/* Text */}
@@ -61,11 +67,19 @@ const VisionMission = () => {
                     >
                         {/* Image */}
                         <div className="h-56 md:h-96 w-full bg-[#f4f6f0] relative overflow-hidden">
-                            <img
-                                src="/mission-leap.png"
-                                alt="Our Mission"
-                                className="absolute inset-0 w-full h-full object-contain bg-[#0D120E] group-hover:scale-105 transition-all duration-700"
-                            />
+                            <div className="absolute inset-0 z-0">
+                                <img
+                                    src="/mission-leap.png"
+                                    alt="Our Mission"
+                                    className="w-full h-full object-contain bg-[#0D120E] group-hover:scale-105 transition-all duration-700"
+                                />
+                            </div>
+                            {/* Text Overlay */}
+                            <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 z-20 bg-gradient-to-t from-black/80 to-transparent">
+                                <p className="text-white text-sm md:text-lg font-bold italic leading-relaxed max-w-lg mx-auto text-center">
+                                    "raising men that walks with a sense of purpose and a vision at heart, thoroughly equiped withstand all life can throw at them"
+                                </p>
+                            </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
                             <svg viewBox="0 0 100 100" className="absolute top-3 left-3 h-5 md:h-8 w-auto text-black/40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="22" cy="42" r="12" />

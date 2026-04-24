@@ -29,29 +29,8 @@ const LockedInHero = () => {
             </div>
 
             {/* Logo */}
-            <motion.div 
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="relative z-10 flex flex-col items-center gap-2"
-            >
-                <div className="w-16 h-16">
-                    <svg viewBox="0 0 100 100" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="22" cy="42" r="12" fill="#FFFFFF" />
-                        <circle cx="50" cy="24" r="18" fill="#FFFFFF" />
-                        <circle cx="78" cy="42" r="12" fill="#FFFFFF" />
-                        <path 
-                            d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                            stroke="#FFFFFF" 
-                            strokeWidth="12" 
-                            strokeLinecap="square" 
-                            strokeLinejoin="miter" 
-                            fill="none" 
-                        />
-                    </svg>
-                </div>
-                <span className="text-white font-bold tracking-[0.2em] text-sm">SIGNET</span>
-            </motion.div>
+            {/* Navbar spacer or empty space removed since Navbar is absolute */}
+            <div className="h-16" />
 
             {/* Central Content */}
             <div className="relative z-10 flex flex-col items-center justify-center flex-1 w-full max-w-md px-6">

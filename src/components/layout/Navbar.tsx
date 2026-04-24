@@ -105,27 +105,13 @@ const Navbar = () => {
           href="/"
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
         >
-          {/* Logo Icon */}
-          <div className="w-10 h-10 flex-shrink-0">
-            <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="22" cy="42" r="12" fill="#1DA756" />
-              <circle cx="50" cy="24" r="18" fill="#1DA756" />
-              <circle cx="78" cy="42" r="12" fill="#1DA756" />
-              <path 
-                d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                stroke="#107C5F" 
-                strokeWidth="12" 
-                strokeLinecap="square" 
-                strokeLinejoin="miter" 
-                fill="none" 
-              />
-            </svg>
-          </div>
-          {/* Logo Text */}
-          <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
-            <span>Silent</span>
-            <span>Growth</span>
-            <span>Network</span>
+          {/* Logo Image */}
+          <div className="w-10 h-10 flex-shrink-0 flex items-center">
+            <img 
+              src={isScrolled ? "/logo.png" : "/logo-white.png"} 
+              alt="Signet Logo" 
+              className="h-10 w-auto object-contain"
+            />
           </div>
         </Link>
 
@@ -159,7 +145,7 @@ const Navbar = () => {
             aria-label="Open menu"
             className="w-10 h-10 flex items-center justify-center"
           >
-            <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#0D120E]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <svg viewBox="0 0 24 24" className={`w-6 h-6 ${isScrolled ? "text-[#0D120E]" : "text-white"}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <line x1="4" y1="7" x2="20" y2="7" />
               <line x1="4" y1="12" x2="20" y2="12" />
               <line x1="10" y1="17" x2="20" y2="17" />
@@ -279,31 +265,18 @@ const Navbar = () => {
         className={`hidden md:block fixed top-0 z-[50] w-full transition-all duration-300 ${
           isScrolled
             ? "bg-white py-4 shadow-md border-b border-black/[0.05]"
-            : "bg-white/0 py-6"
+            : "bg-transparent py-8"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 flex-shrink-0">
-              <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="22" cy="42" r="12" fill="#1DA756" />
-                <circle cx="50" cy="24" r="18" fill="#1DA756" />
-                <circle cx="78" cy="42" r="12" fill="#1DA756" />
-                <path 
-                  d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                  stroke="#107C5F" 
-                  strokeWidth="12" 
-                  strokeLinecap="square" 
-                  strokeLinejoin="miter" 
-                  fill="none" 
-                />
-              </svg>
-            </div>
-            <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
-              <span>Silent</span>
-              <span>Growth</span>
-              <span>Network</span>
+            <div className="h-10 flex-shrink-0 flex items-center">
+              <img 
+                src={isScrolled ? "/logo.png" : "/logo-white.png"} 
+                alt="Signet Logo" 
+                className="h-10 w-auto object-contain"
+              />
             </div>
           </Link>
 
@@ -313,7 +286,7 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="relative group py-2 text-sm font-bold tracking-tight text-[#0D120E] hover:text-[#0D120E]/70 transition-colors"
+                className={`relative group py-2 text-sm font-bold tracking-tight transition-colors ${isScrolled ? "text-[#0D120E] hover:text-[#0D120E]/70" : "text-white hover:text-white/80"}`}
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#1DA756] transition-all duration-300 group-hover:w-full" />

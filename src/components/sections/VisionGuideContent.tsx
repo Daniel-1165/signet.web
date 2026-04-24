@@ -66,7 +66,7 @@ export default function VisionGuideContent({
   }
 
   return (
-    <div className={`rounded-3xl border-2 border-accent/10 bg-accent/5 p-8 md:p-12 space-y-8`}>
+    <div className="py-8 space-y-12 transition-all">
       {/* Header */}
       <div className="flex items-start gap-4">
         <div className={`p-3 rounded-2xl bg-white border-2 border-accent/10`}>
@@ -101,33 +101,30 @@ export default function VisionGuideContent({
       {keyPoints && keyPoints.length > 0 && (
         <div className="space-y-3">
           <h3 className="font-black text-lg uppercase tracking-tight text-foreground">Key Takeaways</h3>
-          <div className="grid md:grid-cols-2 gap-3">
+          <div className="grid md:grid-cols-2 gap-4">
             {keyPoints.map((point, i) => (
-              <div key={i} className="flex gap-3 items-start p-3 bg-white/60 rounded-lg">
+              <div key={i} className="flex gap-3 items-start">
                 <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
-                <p className="text-sm text-foreground/70">{point}</p>
+                <p className="text-base text-foreground/70">{point}</p>
               </div>
             ))}
           </div>
         </div>
       )}
 
-      {/* Biblical References */}
-      {biblicalReferences && biblicalReferences.length > 0 && (
-        <div className="space-y-4 p-6 bg-white/70 rounded-2xl border border-white/50">
-          <h3 className="font-black text-lg uppercase tracking-tight text-accent">Biblical Grounding</h3>
+        <div className="space-y-6 pt-4">
+          <h3 className="font-black text-xl uppercase tracking-tight text-accent border-b border-accent/10 pb-2">Biblical Grounding</h3>
           {biblicalReferences.map((ref, i) => (
-            <div key={i} className="space-y-2 pb-4 border-b border-white/50 last:border-b-0">
-              <p className="font-bold text-accent text-sm">{ref.verse}</p>
-              <p className="text-sm italic text-foreground/70 mb-2">"{ref.text}"</p>
-              <div className="p-3 bg-accent/10 rounded-lg">
-                <p className="text-xs font-semibold text-accent mb-1">Application:</p>
-                <p className="text-sm text-foreground/70">{ref.interpretation}</p>
+            <div key={i} className="space-y-3">
+              <p className="font-bold text-accent text-base">{ref.verse}</p>
+              <p className="text-base italic text-foreground/70 mb-2 leading-relaxed">"{ref.text}"</p>
+              <div className="pl-4 border-l-2 border-accent/20">
+                <p className="text-xs font-black text-accent/50 uppercase mb-1">Application</p>
+                <p className="text-base text-foreground/80">{ref.interpretation}</p>
               </div>
             </div>
           ))}
         </div>
-      )}
 
       {/* Academic Resources */}
       {academicResources && academicResources.length > 0 && (
@@ -145,48 +142,28 @@ export default function VisionGuideContent({
         </div>
       )}
 
-      {/* Reflection Prompts */}
-      {reflectionPrompts && reflectionPrompts.length > 0 && (
-        <div className="space-y-4 p-6 bg-white/70 rounded-2xl border-2 border-accent/20">
-          <h3 className="font-black text-lg uppercase tracking-tight text-accent">Reflection & Journal Prompts</h3>
+        <div className="space-y-8 pt-8">
+          <h3 className="font-black text-xl uppercase tracking-tight text-accent border-b border-accent/10 pb-2">Reflection & Journal</h3>
           {reflectionPrompts.map((prompt, i) => (
-            <div key={i} className="space-y-3">
-              <button
-                onClick={() => togglePrompt(i)}
-                className="w-full text-left font-bold text-accent text-base hover:text-accent/80 transition-colors flex items-center justify-between"
-              >
-                <span>💭 {prompt.question}</span>
-                <span className={`transform transition-transform ${expandedPrompts.has(i) ? 'rotate-180' : ''}`}>
-                  ▼
-                </span>
-              </button>
-
-              {expandedPrompts.has(i) && (
-                <div className="space-y-3 animate-in slide-in-from-top-2 duration-300">
-                  <p className="text-sm text-foreground/70 mb-3 p-2 bg-accent/5 rounded pl-3 border-l-4 border-accent/30">
-                    {prompt.guidance}
-                  </p>
-                  <textarea
-                    value={journalEntries[i] || ''}
-                    onChange={(e) => updateJournalEntry(i, e.target.value)}
-                    placeholder={prompt.journalPlaceholder}
-                    className="w-full p-4 bg-white rounded-lg border-2 border-accent/10 min-h-24 text-sm text-foreground resize-y focus:border-accent/40 focus:outline-none transition-colors"
-                  />
-                  <div className="flex justify-between items-center text-xs text-foreground/50">
-                    <span>Characters: {journalEntries[i]?.length || 0}</span>
-                    <button
-                      onClick={() => navigator.clipboard.writeText(journalEntries[i] || '')}
-                      className="text-accent hover:text-accent/80 underline"
-                    >
-                      Copy to clipboard
-                    </button>
-                  </div>
-                </div>
-              )}
+            <div key={i} className="space-y-4">
+              <div className="font-bold text-accent text-lg flex items-start gap-2">
+                <span className="shrink-0 text-2xl">💭</span>
+                <span>{prompt.question}</span>
+              </div>
+              <div className="space-y-4">
+                <p className="text-sm text-foreground/60 italic p-4 bg-black/[0.02] rounded-lg">
+                  {prompt.guidance}
+                </p>
+                <textarea
+                  value={journalEntries[i] || ''}
+                  onChange={(e) => updateJournalEntry(i, e.target.value)}
+                  placeholder={prompt.journalPlaceholder}
+                  className="w-full p-6 bg-white rounded-xl border border-black/10 min-h-32 text-base text-foreground resize-y focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-all shadow-sm"
+                />
+              </div>
             </div>
           ))}
         </div>
-      )}
 
       {/* Progress Indicator */}
       <div className="flex justify-center pt-4">
