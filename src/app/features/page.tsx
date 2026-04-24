@@ -75,7 +75,7 @@ export default function FeaturesPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
             <div className="rounded-none overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
                 <img 
-                    src="/signet-branding.png" 
+                    src="/signet-nature.png" 
                     alt="The Signet Core" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
@@ -170,7 +170,7 @@ export default function FeaturesPage() {
               <div className="order-1 md:order-2">
                 <div className="relative aspect-[4/5] md:aspect-auto md:h-[650px] overflow-hidden group shadow-2xl">
                   <img 
-                    src="/program-info.png" 
+                    src="/community_roots.png" 
                     alt="Success and Rewards" 
                     className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
                   />

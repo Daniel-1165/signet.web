@@ -95,42 +95,13 @@ export default function Sidebar() {
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className="hidden md:flex flex-col fixed top-0 left-0 z-[45] h-screen bg-white border-r border-[#0D120E]/5 py-8 overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
       >
-        {/* Brand/Logo */}
-        <div className="px-6 mb-10 flex items-center gap-4 h-12 overflow-hidden">
-          <Link href="/" className="shrink-0 w-10 h-10 flex items-center justify-center">
-            <div className="w-full h-full text-[#0D120E]">
-              <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="22" cy="42" r="12" fill="#5EE07B" />
-                <circle cx="50" cy="24" r="18" fill="#5EE07B" />
-                <circle cx="78" cy="42" r="12" fill="#5EE07B" />
-                <path 
-                  d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                  stroke="#14856B" 
-                  strokeWidth="12" 
-                  strokeLinecap="square" 
-                  strokeLinejoin="miter" 
-                  fill="none" 
-                />
-              </svg>
-            </div>
+        {/* Brand/Logo - Only Text */}
+        <div className="px-6 mb-10 flex items-center h-12 overflow-hidden">
+          <Link href="/" className="flex items-center gap-3">
+            <span className={`font-black text-[#0D120E] text-2xl tracking-tighter uppercase font-heading transition-all duration-300 ${!isExpanded ? "scale-75 -ml-1" : ""}`}>
+              SIGNET
+            </span>
           </Link>
-          <AnimatePresence initial={false}>
-            {isExpanded && (
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                className="flex flex-col leading-none"
-              >
-                <span className="font-black text-[#0D120E] text-xs tracking-widest uppercase">
-                  Silent
-                </span>
-                <span className="font-black text-[#1DA756] text-xs tracking-widest uppercase">
-                  Growth
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
 
         {/* Navigation - No Scrollbar */}

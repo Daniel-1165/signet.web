@@ -108,12 +108,12 @@ const Navbar = () => {
           {/* Logo Icon */}
           <div className="w-10 h-10 flex-shrink-0">
             <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="22" cy="42" r="12" fill="#5EE07B" />
-              <circle cx="50" cy="24" r="18" fill="#5EE07B" />
-              <circle cx="78" cy="42" r="12" fill="#5EE07B" />
+              <circle cx="22" cy="42" r="12" fill="#1DA756" />
+              <circle cx="50" cy="24" r="18" fill="#1DA756" />
+              <circle cx="78" cy="42" r="12" fill="#1DA756" />
               <path 
                 d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                stroke="#14856B" 
+                stroke="#107C5F" 
                 strokeWidth="12" 
                 strokeLinecap="square" 
                 strokeLinejoin="miter" 
@@ -192,33 +192,16 @@ const Navbar = () => {
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="md:hidden fixed top-0 right-0 h-full w-[280px] bg-white z-[70] flex flex-col shadow-2xl"
             >
-              {/* Panel header */}
+              {/* Panel header - Text Logo */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-black/[0.06]">
                 <Link
                   href="/"
                   onClick={() => setIsSidebarOpen(false)}
-                  className="flex items-center gap-3"
+                  className="flex items-center"
                 >
-                  <div className="w-10 h-10 flex-shrink-0">
-                    <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="22" cy="42" r="12" fill="#5EE07B" />
-                      <circle cx="50" cy="24" r="18" fill="#5EE07B" />
-                      <circle cx="78" cy="42" r="12" fill="#5EE07B" />
-                      <path 
-                        d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                        stroke="#14856B" 
-                        strokeWidth="12" 
-                        strokeLinecap="square" 
-                        strokeLinejoin="miter" 
-                        fill="none" 
-                      />
-                    </svg>
-                  </div>
-                  <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
-                    <span>Silent</span>
-                    <span>Growth</span>
-                    <span>Network</span>
-                  </div>
+                  <span className="font-black text-[#0D120E] text-xl tracking-tighter uppercase font-heading">
+                    SIGNET
+                  </span>
                 </Link>
                 <button
                   onClick={() => setIsSidebarOpen(false)}
@@ -304,12 +287,12 @@ const Navbar = () => {
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 flex-shrink-0">
               <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="22" cy="42" r="12" fill="#5EE07B" />
-                <circle cx="50" cy="24" r="18" fill="#5EE07B" />
-                <circle cx="78" cy="42" r="12" fill="#5EE07B" />
+                <circle cx="22" cy="42" r="12" fill="#1DA756" />
+                <circle cx="50" cy="24" r="18" fill="#1DA756" />
+                <circle cx="78" cy="42" r="12" fill="#1DA756" />
                 <path 
                   d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                  stroke="#14856B" 
+                  stroke="#107C5F" 
                   strokeWidth="12" 
                   strokeLinecap="square" 
                   strokeLinejoin="miter" 

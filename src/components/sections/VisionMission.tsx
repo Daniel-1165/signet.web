@@ -20,9 +20,9 @@ const VisionMission = () => {
                         {/* Image */}
                         <div className="h-56 md:h-96 w-full relative overflow-hidden">
                             <img
-                                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
-                                alt="Mountain vision"
-                                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                src="/vision.png"
+                                alt="Our Vision"
+                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0c120c] to-transparent" />
                             {/* Mini logo watermark */}
@@ -62,8 +62,8 @@ const VisionMission = () => {
                         {/* Image */}
                         <div className="h-56 md:h-96 w-full bg-[#f4f6f0] relative overflow-hidden">
                             <img
-                                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800"
-                                alt="Forest mission"
+                                src="/mission.png"
+                                alt="Our Mission"
                                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />

@@ -8,11 +8,18 @@ const Footer = () => {
                     <div className="col-span-2 space-y-6">
                         <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
                             <div className="w-10 h-10 flex-shrink-0">
-                                <svg viewBox="0 0 100 80" className="w-full h-full text-[#0D120E] dark:text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="25" cy="20" r="12" />
-                                    <circle cx="50" cy="12" r="14" />
-                                    <circle cx="75" cy="20" r="12" />
-                                    <path d="M10,65 L30,40 L50,65 L70,40 L90,65" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                                <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="22" cy="42" r="12" fill="#1DA756" />
+                                    <circle cx="50" cy="24" r="18" fill="#1DA756" />
+                                    <circle cx="78" cy="42" r="12" fill="#1DA756" />
+                                    <path 
+                                        d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
+                                        stroke="#107C5F" 
+                                        strokeWidth="12" 
+                                        strokeLinecap="square" 
+                                        strokeLinejoin="miter" 
+                                        fill="none" 
+                                    />
                                 </svg>
                             </div>
                             <div className="flex flex-col leading-none font-bold text-[#0D120E] dark:text-white text-[10px] tracking-tight uppercase">
