@@ -183,11 +183,11 @@ export default function FeaturesPage() {
 
         {/* ── IMAGE SECTION 3: LOCKED IN ───────────────────────────── */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
-            <div className="rounded-[3rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
+            <div className="rounded-[3rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group bg-[#0D120E]">
                 <img 
                     src="/mission-leap.png" 
                     alt="Locked In" 
-                    className="w-full h-full object-cover bg-[#174F34] group-hover:scale-105 transition-transform duration-[2s]"
+                    className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-[2s]"
                 />
             </div>
         </section>

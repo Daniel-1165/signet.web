@@ -64,7 +64,7 @@ const VisionMission = () => {
                             <img
                                 src="/mission-leap.png"
                                 alt="Our Mission"
-                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                                className="absolute inset-0 w-full h-full object-contain bg-[#0D120E] group-hover:scale-105 transition-all duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
                             <svg viewBox="0 0 100 100" className="absolute top-3 left-3 h-5 md:h-8 w-auto text-black/40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
