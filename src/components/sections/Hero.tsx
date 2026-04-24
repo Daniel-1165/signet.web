@@ -53,20 +53,12 @@ const Hero = () => {
             <div className="absolute inset-0 max-w-7xl mx-auto -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
             
             {/* Signet Logo Watermark */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] opacity-[0.03] pointer-events-none -z-10">
-                <svg viewBox="0 0 100 100" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="22" cy="42" r="12" fill="#5EE07B" />
-                    <circle cx="50" cy="24" r="18" fill="#5EE07B" />
-                    <circle cx="78" cy="42" r="12" fill="#5EE07B" />
-                    <path 
-                        d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                        stroke="#14856B" 
-                        strokeWidth="12" 
-                        strokeLinecap="square" 
-                        strokeLinejoin="miter" 
-                        fill="none" 
-                    />
-                </svg>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] opacity-[0.03] pointer-events-none -z-10 flex justify-center">
+                <img 
+                    src="/logo.svg.svg" 
+                    alt="" 
+                    className="w-full h-auto grayscale" 
+                />
             </div>
 
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background -z-10"></div>
@@ -80,19 +72,11 @@ const Hero = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="w-20 h-20 mb-8 flex items-center justify-center"
                 >
-                    <svg viewBox="0 0 100 100" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="22" cy="42" r="12" fill="#5EE07B" />
-                        <circle cx="50" cy="24" r="18" fill="#5EE07B" />
-                        <circle cx="78" cy="42" r="12" fill="#5EE07B" />
-                        <path 
-                            d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                            stroke="#14856B" 
-                            strokeWidth="12" 
-                            strokeLinecap="square" 
-                            strokeLinejoin="miter" 
-                            fill="none" 
-                        />
-                    </svg>
+                    <img 
+                        src="/logo.svg.svg" 
+                        alt="Signet Logo" 
+                        className="w-full h-auto object-contain"
+                    />
                 </motion.div>
 
                 {/* Vast Centered Text */}

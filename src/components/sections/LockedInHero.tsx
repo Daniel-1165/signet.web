@@ -56,19 +56,11 @@ const LockedInHero = () => {
                         className="bg-white rounded-3xl p-4 flex items-center gap-4 shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform cursor-pointer group"
                     >
                         <div className="w-14 h-14 bg-[#1DA756] rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <svg viewBox="0 0 100 100" className="w-8 h-8" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="22" cy="42" r="12" fill="#FFFFFF" />
-                                <circle cx="50" cy="24" r="18" fill="#FFFFFF" />
-                                <circle cx="78" cy="42" r="12" fill="#FFFFFF" />
-                                <path 
-                                    d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                                    stroke="#FFFFFF" 
-                                    strokeWidth="12" 
-                                    strokeLinecap="square" 
-                                    strokeLinejoin="miter" 
-                                    fill="none" 
-                                />
-                            </svg>
+                            <img 
+                                src="/logo.svg.svg" 
+                                alt="Signet Logo" 
+                                className="w-8 h-8 object-contain"
+                            />
                         </div>
                         <div className="flex-1">
                             <div className="flex justify-between items-center mb-0.5">
@@ -87,19 +79,11 @@ const LockedInHero = () => {
                         className="bg-white rounded-3xl p-4 flex items-center gap-4 shadow-2xl transform rotate-2 hover:rotate-0 transition-transform cursor-pointer group z-10"
                     >
                          <div className="w-14 h-14 bg-[#1DA756] rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <svg viewBox="0 0 100 100" className="w-8 h-8" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="22" cy="42" r="12" fill="#FFFFFF" />
-                                <circle cx="50" cy="24" r="18" fill="#FFFFFF" />
-                                <circle cx="78" cy="12" r="12" fill="#FFFFFF" />
-                                <path 
-                                    d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                                    stroke="#FFFFFF" 
-                                    strokeWidth="12" 
-                                    strokeLinecap="square" 
-                                    strokeLinejoin="miter" 
-                                    fill="none" 
-                                />
-                            </svg>
+                            <img 
+                                src="/logo.svg.svg" 
+                                alt="Signet Logo" 
+                                className="w-8 h-8 object-contain"
+                            />
                         </div>
                         <div className="flex-1">
                             <div className="flex justify-between items-center mb-0.5">

@@ -7,25 +7,12 @@ const Footer = () => {
                 <div className="grid gap-12 md:grid-cols-4">
                     <div className="col-span-2 space-y-6">
                         <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
-                            <div className="w-10 h-10 flex-shrink-0">
-                                <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="22" cy="42" r="12" fill="#1DA756" />
-                                    <circle cx="50" cy="24" r="18" fill="#1DA756" />
-                                    <circle cx="78" cy="42" r="12" fill="#1DA756" />
-                                    <path 
-                                        d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" 
-                                        stroke="#107C5F" 
-                                        strokeWidth="12" 
-                                        strokeLinecap="square" 
-                                        strokeLinejoin="miter" 
-                                        fill="none" 
-                                    />
-                                </svg>
-                            </div>
-                            <div className="flex flex-col leading-none font-bold text-[#0D120E] dark:text-white text-[10px] tracking-tight uppercase">
-                                <span>Silent</span>
-                                <span>Growth</span>
-                                <span>Network</span>
+                            <div className="h-10 flex-shrink-0 flex items-center">
+                                <img 
+                                    src="/logo.svg.svg" 
+                                    alt="Signet Logo" 
+                                    className="h-10 w-auto object-contain"
+                                />
                             </div>
                         </Link>
                         <p className="max-w-xs text-sm leading-relaxed text-foreground/50">

@@ -37,17 +37,12 @@ export default function DashboardSidebar() {
       {/* Mobile Top Bar */}
       <div className={`md:hidden fixed top-0 left-0 right-0 h-16 bg-[#F7F6F0]/90 backdrop-blur-md z-[50] flex items-center justify-between px-6 border-b border-[rgba(0,0,0,0.05)] shadow-sm transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
-            <div className="w-8 h-8 flex-shrink-0 translate-y-[-2px]">
-                <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="22" cy="42" r="12" fill="#5EE07B" />
-                    <circle cx="50" cy="24" r="18" fill="#5EE07B" />
-                    <circle cx="78" cy="42" r="12" fill="#5EE07B" />
-                    <path d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" stroke="#14856B" strokeWidth="12" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
-                </svg>
-            </div>
-            <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[8px] tracking-tight uppercase">
-                <span>Silent</span>
-                <span>Growth</span>
+            <div className="h-8 flex-shrink-0 flex items-center">
+                <img 
+                    src="/logo.svg.svg" 
+                    alt="Signet Logo" 
+                    className="h-8 w-auto object-contain"
+                />
             </div>
         </Link>
         <div className="flex items-center gap-4">
@@ -78,18 +73,12 @@ export default function DashboardSidebar() {
         <div className="mb-12 px-2 flex items-center justify-between">
           <div>
             <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
-                <div className="w-10 h-10 flex-shrink-0">
-                    <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="22" cy="42" r="12" fill="#5EE07B" />
-                        <circle cx="50" cy="24" r="18" fill="#5EE07B" />
-                        <circle cx="78" cy="42" r="12" fill="#5EE07B" />
-                        <path d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" stroke="#14856B" strokeWidth="12" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
-                    </svg>
-                </div>
-                <div className="flex flex-col leading-none font-bold text-[#0D120E] text-[10px] tracking-tight uppercase">
-                    <span>Silent</span>
-                    <span>Growth</span>
-                    <span>Network</span>
+                <div className="h-10 flex-shrink-0 flex items-center">
+                    <img 
+                        src="/logo.svg.svg" 
+                        alt="Signet Logo" 
+                        className="h-10 w-auto object-contain"
+                    />
                 </div>
             </Link>
           </div>

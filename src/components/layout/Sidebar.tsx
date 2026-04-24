@@ -98,9 +98,11 @@ export default function Sidebar() {
         {/* Brand/Logo - Only Text */}
         <div className="px-6 mb-10 flex items-center h-12 overflow-hidden">
           <Link href="/" className="flex items-center gap-3">
-            <span className={`font-black text-[#0D120E] text-2xl tracking-tighter uppercase font-heading transition-all duration-300 ${!isExpanded ? "scale-75 -ml-1" : ""}`}>
-              SIGNET
-            </span>
+            <img 
+              src="/logo.svg.svg" 
+              alt="Signet Logo" 
+              className={`h-10 w-auto object-contain transition-all duration-300 ${!isExpanded ? "scale-75 -ml-1" : ""}`}
+            />
           </Link>
         </div>
 

@@ -42,13 +42,12 @@ const Products = () => {
     return (
         <section id="products" className="py-24 bg-[#F7F6F0] overflow-hidden relative">
             {/* Background Watermark Dots */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 -ml-20 opacity-5 pointer-events-none">
-                <svg viewBox="0 0 100 50" className="h-[40rem] w-auto" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="21" cy="18" r="8" fill="currentColor" stroke="none" />
-                    <circle cx="50" cy="12" r="10" fill="currentColor" stroke="none" />
-                    <circle cx="79" cy="18" r="8" fill="currentColor" stroke="none" />
-                    <path d="M6,42 L21,28 L35.5,42 L50,27 L64.5,42 L79,28 L94,42" />
-                </svg>
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 -ml-20 opacity-[0.03] pointer-events-none">
+                <img 
+                    src="/logo.svg.svg" 
+                    alt="" 
+                    className="h-[40rem] w-auto grayscale" 
+                />
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">

@@ -26,12 +26,11 @@ const VisionMission = () => {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0c120c] to-transparent" />
                             {/* Mini logo watermark */}
-                            <svg viewBox="0 0 100 100" className="absolute top-3 left-3 h-5 md:h-8 w-auto text-white/40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="22" cy="42" r="12" />
-                                <circle cx="50" cy="24" r="18" />
-                                <circle cx="78" cy="42" r="12" />
-                                <path d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" stroke="currentColor" strokeWidth="12" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
-                            </svg>
+                            <img 
+                                src="/logo.svg.svg" 
+                                alt="Signet Logo" 
+                                className="absolute top-3 left-3 h-5 md:h-8 w-auto object-contain opacity-40 grayscale brightness-0 invert"
+                            />
                             {/* Text Overlay */}
                             <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 z-20 bg-gradient-to-t from-black/80 to-transparent">
                                 <p className="text-white text-sm md:text-lg font-bold italic leading-relaxed max-w-lg mx-auto text-center">
@@ -81,12 +80,11 @@ const VisionMission = () => {
                                 </p>
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
-                            <svg viewBox="0 0 100 100" className="absolute top-3 left-3 h-5 md:h-8 w-auto text-black/40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="22" cy="42" r="12" />
-                                <circle cx="50" cy="24" r="18" />
-                                <circle cx="78" cy="42" r="12" />
-                                <path d="M8,82 L22,52 L36,76 L50,38 L64,76 L78,52 L92,82" stroke="currentColor" strokeWidth="12" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
-                            </svg>
+                            <img 
+                                src="/logo.svg.svg" 
+                                alt="Signet Logo" 
+                                className="absolute top-3 left-3 h-5 md:h-8 w-auto object-contain opacity-40 grayscale"
+                            />
                         </div>
 
                         {/* Text */}
