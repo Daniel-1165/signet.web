@@ -12,6 +12,7 @@ interface Profile {
   first_name: string | null;
   last_name: string | null;
   image_url: string | null;
+  headline?: string | null; 
 }
 
 interface Comment {
@@ -430,10 +431,9 @@ export default function CommunityPage() {
             </div>
           ) : (
             filteredPosts.map((post) => (
-              <div key={post.id} className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-black/[0.06] relative group">
-
-                {/* Author */}
-                <div className="flex items-start gap-4 mb-5">
+              <div key={post.id} className="bg-white rounded-xl p-5 md:p-6 shadow-sm border border-black/5 relative group">
+                {/* Author Info */}
+                <div className="flex items-start gap-3 mb-4">
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-black/5 border border-black/5 flex-shrink-0">
                     <img
                       src={post.profiles?.image_url || DEFAULT_AVATAR}
@@ -442,125 +442,158 @@ export default function CommunityPage() {
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-extrabold text-base text-black">
+                    <div className="flex items-center gap-1">
+                      <span className="font-bold text-sm text-black hover:text-accent hover:underline cursor-pointer">
                         {post.profiles?.first_name} {post.profiles?.last_name}
                       </span>
-                      <span className="w-4 h-4 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
-                      </span>
+                      <span className="text-black/30 text-xs">· 1st</span>
                     </div>
-                    <p className="text-xs font-semibold text-black/40 mt-0.5">{formatDate(post.created_at)}</p>
+                    <p className="text-[11px] text-black/50 font-medium leading-tight truncate">
+                      {post.profiles?.headline || "Signet Member & Trailblazer"}
+                    </p>
+                    <p className="text-[10px] text-black/30 font-medium mt-0.5">{formatDate(post.created_at)}</p>
                   </div>
                   <button
                     onClick={() => navigator.clipboard.writeText(post.content).then(() => showToast("Copied to clipboard!"))}
-                    className="opacity-0 group-hover:opacity-100 p-2 rounded-full hover:bg-black/5 transition-all"
+                    className="p-2 rounded-full hover:bg-black/5 transition-all text-black/40"
                   >
-                    <Share2 className="w-4 h-4 text-black/40" />
+                    <MoreHorizontal className="w-5 h-5" />
                   </button>
-                  {user && (user.id === post.user_id || isAdmin) && (
-                    <button
-                      onClick={() => handleDeletePost(post.id)}
-                      className="opacity-0 group-hover:opacity-100 p-2 rounded-full hover:bg-red-50 transition-all ml-1"
-                    >
-                      <Trash2 className="w-4 h-4 text-red-400 hover:text-red-500" />
-                    </button>
-                  )}
                 </div>
 
                 {/* Content */}
-                <p className="text-base font-medium leading-relaxed text-black whitespace-pre-wrap mb-4">{post.content}</p>
+                <p className="text-sm font-normal leading-relaxed text-black/80 whitespace-pre-wrap mb-4">
+                  {post.content}
+                </p>
 
                 {/* Media */}
                 {post.image_url && (
-                  <div className="rounded-2xl overflow-hidden border border-black/5 mb-4">
+                  <div className="rounded-lg overflow-hidden border border-black/5 mb-4">
                     {post.image_url.match(/\.(mp4|webm|ogg)$/i)
-                      ? <video src={post.image_url} controls className="w-full max-h-[400px]" />
-                      : <img src={post.image_url} alt="Post media" className="w-full max-h-[400px] object-cover" />
+                      ? <video src={post.image_url} controls className="w-full max-h-[500px]" />
+                      : <img src={post.image_url} alt="Post media" className="w-full max-h-[500px] object-cover" />
                     }
                   </div>
                 )}
 
-                {/* Actions */}
-                <div className="flex items-center gap-6 pt-4 border-t border-black/5">
+                {/* Social Summary Row */}
+                <div className="flex items-center justify-between pb-3 mb-1 border-b border-black/[0.04]">
+                  <div className="flex items-center gap-1.5 grayscale opacity-70">
+                    <div className="flex -space-x-1.5">
+                       {[1,2,3].map(i => (
+                         <div key={i} className="w-4 h-4 rounded-full border border-white overflow-hidden">
+                           <img src={`https://i.pravatar.cc/50?u=${post.id}${i}`} alt="Liker" />
+                         </div>
+                       ))}
+                    </div>
+                    <span className="text-[10px] font-medium text-black/40 hover:text-accent cursor-pointer">
+                      {post.likes_count || 0} likes · {post.comments_count || 0} comments
+                    </span>
+                  </div>
+                </div>
+
+                {/* Main Actions */}
+                <div className="flex items-center gap-1 mt-1">
                   <button
                     onClick={() => handleLike(post.id)}
-                    className={`flex items-center gap-2 text-sm font-bold transition-colors group/like ${post.liked_by_me ? "text-red-500" : "text-black/40 hover:text-red-500"}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors font-bold text-xs ${post.liked_by_me ? "text-accent bg-accent/5" : "text-black/50 hover:bg-black/5"}`}
                   >
-                    <Heart className={`w-5 h-5 transition-transform group-hover/like:scale-110 ${post.liked_by_me ? "fill-red-500" : ""}`} />
-                    <span>{post.likes_count || 0}</span>
+                    <Heart className={`w-4 h-4 ${post.liked_by_me ? "fill-accent" : ""}`} />
+                    <span>Like</span>
                   </button>
 
                   <button
                     onClick={() => handleToggleComments(post.id)}
-                    className={`flex items-center gap-2 text-sm font-bold transition-colors ${post.showComments ? "text-accent" : "text-black/40 hover:text-accent"}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors font-bold text-xs ${post.showComments ? "text-accent bg-accent/5" : "text-black/50 hover:bg-black/5"}`}
                   >
-                    <MessageSquare className="w-5 h-5" />
-                    <span>{post.comments_count || 0}</span>
-                    {post.showComments ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Comment</span>
+                  </button>
+
+                  <button
+                    onClick={() => navigator.clipboard.writeText(post.content).then(() => showToast("Link copied!"))}
+                    className="flex items-center gap-2 px-4 py-2 rounded-md text-black/50 hover:bg-black/5 font-bold text-xs"
+                  >
+                    <Share2 className="w-4 h-4" />
+                    <span>Share</span>
                   </button>
                 </div>
 
                 {/* Comments Panel */}
                 {post.showComments && (
-                  <div className="mt-4 pt-4 border-t border-black/5 space-y-4">
-                    {post.loadingComments ? (
-                      <div className="text-xs text-black/30 font-bold text-center py-4">Loading comments...</div>
-                    ) : (post.comments || []).length === 0 ? (
-                      <p className="text-xs text-black/30 font-bold text-center py-2">No comments yet. Be the first!</p>
-                    ) : (
-                      (post.comments || []).map((comment) => (
-                        <div key={comment.id} className="flex gap-3">
-                          <div className="w-8 h-8 rounded-full overflow-hidden bg-black/5 flex-shrink-0">
-                            <img src={comment.profiles?.image_url || DEFAULT_AVATAR} alt={comment.profiles?.first_name || ""} className="w-full h-full object-cover" />
-                          </div>
-                          <div className="flex-1 bg-[#F7F6F0] rounded-2xl px-4 py-3 relative group/comment">
-                            <span className="font-bold text-xs text-black">{comment.profiles?.first_name} {comment.profiles?.last_name} · </span>
-                            <span className="text-xs text-black/40">{formatDate(comment.created_at)}</span>
-                            <p className="text-sm text-black mt-1">{comment.content}</p>
-                            
-                            {user && (user.id === comment.user_id || isAdmin) && (
-                              <button
-                                onClick={() => handleDeleteComment(post.id, comment.id)}
-                                className="absolute top-2 right-2 opacity-0 group-hover/comment:opacity-100 p-1.5 rounded-full hover:bg-red-50 transition-all"
-                                title="Delete comment"
-                              >
-                                <Trash2 className="w-3.5 h-3.5 text-red-400" />
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      ))
-                    )}
-
+                  <div className="mt-4 space-y-3">
                     {/* Comment Input */}
                     {user && (
-                      <div className="flex gap-3 items-center mt-2">
-                        <div className="w-8 h-8 rounded-full overflow-hidden bg-black/5 flex-shrink-0">
+                      <div className="flex gap-2 items-start mt-4 mb-6">
+                        <div className="w-8 h-8 rounded-full overflow-hidden bg-black/5 flex-shrink-0 mt-0.5">
                           {user.imageUrl
                             ? <img src={user.imageUrl} alt="You" className="w-full h-full object-cover" />
-                            : <div className="w-full h-full bg-accent text-white flex items-center justify-center text-xs font-bold">{user.firstName?.[0] ?? "U"}</div>
+                            : <div className="w-full h-full bg-accent text-white flex items-center justify-center text-[10px] font-bold">{user.firstName?.[0] ?? "U"}</div>
                           }
                         </div>
-                        <input
-                          type="text"
-                          value={post.commentText || ""}
-                          onChange={(e) =>
-                            setPosts((prev) =>
-                              prev.map((p) => p.id === post.id ? { ...p, commentText: e.target.value } : p)
-                            )
-                          }
-                          onKeyDown={(e) => { if (e.key === "Enter") handleComment(post.id); }}
-                          placeholder="Write a comment... (Enter to send)"
-                          className="flex-1 bg-[#F7F6F0] rounded-2xl px-4 py-2.5 text-sm outline-none border border-black/5 focus:border-accent/40 focus:bg-white transition-all font-medium"
-                        />
-                        <button
-                          onClick={() => handleComment(post.id)}
-                          disabled={!post.commentText?.trim()}
-                          className="w-9 h-9 rounded-full bg-accent text-white flex items-center justify-center shadow-sm hover:scale-105 transition-transform disabled:opacity-40"
-                        >
-                          <Send className="w-3.5 h-3.5" />
-                        </button>
+                        <div className="flex-1 relative">
+                          <input
+                            type="text"
+                            value={post.commentText || ""}
+                            onChange={(e) =>
+                              setPosts((prev) =>
+                                prev.map((p) => p.id === post.id ? { ...p, commentText: e.target.value } : p)
+                              )
+                            }
+                            onKeyDown={(e) => { if (e.key === "Enter") handleComment(post.id); }}
+                            placeholder="Add a comment..."
+                            className="w-full bg-[#F3F2EF] rounded-full px-4 py-2 text-xs outline-none border border-transparent focus:border-black/5 focus:bg-white transition-all font-medium pr-10"
+                          />
+                          <button
+                            onClick={() => handleComment(post.id)}
+                            disabled={!post.commentText?.trim()}
+                            className="absolute right-2 top-1.5 w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center shadow-sm disabled:opacity-30"
+                          >
+                            <Send className="w-3 h-3" />
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {post.loadingComments ? (
+                      <div className="text-[10px] text-black/30 font-bold text-center py-4">Loading...</div>
+                    ) : (post.comments || []).length === 0 ? (
+                      <p className="text-[10px] text-black/30 font-bold text-center py-2">No reactions yet.</p>
+                    ) : (
+                      <div className="space-y-4">
+                        {(post.comments || []).map((comment) => (
+                          <div key={comment.id} className="flex gap-2 group/comment">
+                            <div className="w-8 h-8 rounded-full overflow-hidden bg-black/5 flex-shrink-0">
+                              <img src={comment.profiles?.image_url || DEFAULT_AVATAR} alt={comment.profiles?.first_name || ""} className="w-full h-full object-cover" />
+                            </div>
+                            <div className="flex-1">
+                                <div className="bg-[#F2F2F2] rounded-r-xl rounded-bl-xl px-3 py-2 relative">
+                                  <div className="flex justify-between items-start">
+                                    <div>
+                                      <span className="font-bold text-xs text-black block">{comment.profiles?.first_name} {comment.profiles?.last_name}</span>
+                                      <span className="text-[10px] text-black/40 block leading-tight mb-1">{comment.profiles?.headline || "Achiever"}</span>
+                                    </div>
+                                    <span className="text-[10px] text-black/30">{formatDate(comment.created_at)}</span>
+                                  </div>
+                                  <p className="text-xs text-black/80 mt-1 leading-relaxed">{comment.content}</p>
+                                  
+                                  {user && (user.id === comment.user_id || isAdmin) && (
+                                    <button
+                                      onClick={() => handleDeleteComment(post.id, comment.id)}
+                                      className="absolute top-2 right-2 opacity-0 group-hover/comment:opacity-100 p-1 rounded-full hover:bg-black/5 transition-all"
+                                    >
+                                      <Trash2 className="w-3 h-3 text-red-400" />
+                                    </button>
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-3 px-3 mt-1">
+                                    <button className="text-[10px] font-bold text-black/40 hover:text-accent">Like</button>
+                                    <span className="text-black/20">|</span>
+                                    <button className="text-[10px] font-bold text-black/40 hover:text-accent">Reply</button>
+                                </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     )}
                   </div>

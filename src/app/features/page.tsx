@@ -50,7 +50,7 @@ export default function FeaturesPage() {
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4 pt-12">
-                   <div className="rounded-none overflow-hidden shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                   <div className="rounded-3xl overflow-hidden shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
                      <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600" alt="Nature" />
                    </div>
                    <div className="rounded-none overflow-hidden shadow-xl transform rotate-3 bg-[#1DA756] p-8 text-white">
@@ -62,7 +62,7 @@ export default function FeaturesPage() {
                    <div className="rounded-none overflow-hidden shadow-2xl h-80">
                      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" alt="Mountain" className="h-full w-full object-cover" />
                    </div>
-                   <div className="rounded-none overflow-hidden shadow-xl transform -rotate-2">
+                   <div className="rounded-3xl overflow-hidden shadow-xl transform -rotate-2">
                      <img src="https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?auto=format&fit=crop&q=80&w=600" alt="Growth" />
                    </div>
                 </div>
@@ -183,7 +183,7 @@ export default function FeaturesPage() {
 
         {/* ── IMAGE SECTION 3: LOCKED IN ───────────────────────────── */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
-            <div className="rounded-none overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
+            <div className="rounded-[3rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
                 <img 
                     src="/mission-leap.png" 
                     alt="Locked In" 
