@@ -27,7 +27,7 @@ const VisionMission = () => {
 
                         {/* Top Content */}
                         <div className="relative z-20 p-8 flex flex-col gap-4 items-start">
-                            <div className="w-16 h-16 flex items-center justify-center">
+                            <div className="w-12 h-12 flex items-center justify-center">
                                 <img 
                                     src="/signet-brand-logo.svg" 
                                     alt="Signet Logo" 

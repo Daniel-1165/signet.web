@@ -81,8 +81,8 @@ export default function FeaturesPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
                 {/* Logo Top Left */}
-                <div className="absolute top-8 left-8 z-20 w-16 h-16">
-                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain drop-shadow-xl" />
+                <div className="absolute top-6 left-6 z-20">
+                    <img src="/logo-white.png" alt="Signet" className="w-12 h-12 object-contain drop-shadow-2xl opacity-90" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-10 md:p-16">
                     <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tight font-heading">Our Program Directive.</h2>
@@ -180,8 +180,8 @@ export default function FeaturesPage() {
                     className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
                   />
                   {/* Logo Top Left */}
-                  <div className="absolute top-8 left-8 z-20 w-16 h-16">
-                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain drop-shadow-xl" />
+                  <div className="absolute top-8 left-8 z-20">
+                      <img src="/logo-white.png" alt="Signet" className="w-12 h-12 object-contain drop-shadow-2xl opacity-90" />
                   </div>
                   
                   {/* Tagline */}
