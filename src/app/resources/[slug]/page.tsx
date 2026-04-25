@@ -9,7 +9,7 @@ const RESOURCE_QUERY = `
     _id, title, tag, description, readTime, publishedAt, accentColor, content,
     "fileUrl": file.asset->url,
     "fileName": file.asset->originalFilename,
-    "mainImageUrl": mainImage.asset->url
+    "mainImageUrl": coalesce(mainImage.asset->url, coverImage.asset->url, thumbnail.asset->url)
   }
 `;
 

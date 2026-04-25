@@ -81,8 +81,8 @@ export default function FeaturesPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
                 {/* Logo Top Left */}
-                <div className="absolute top-6 left-6 z-20">
-                    <img src="/logo-white.png" alt="Signet" className="w-12 h-12 object-contain drop-shadow-2xl opacity-90" />
+                <div className="absolute top-8 left-8 z-20 w-16 h-16">
+                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain drop-shadow-xl" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-10 md:p-16">
                     <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tight font-heading">Our Program Directive.</h2>
@@ -94,13 +94,13 @@ export default function FeaturesPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
             <div className="flex flex-col md:flex-row gap-16 md:gap-32">
                 <div className="md:w-1/2">
-                    <span className="text-[10px] font-black tracking-[0.3em] text-[#DAE8B3] uppercase mb-6 block">Structure & Discipline</span>
+                    <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block">Structure & Discipline</span>
                     <h2 className="text-4xl md:text-6xl font-black uppercase leading-none mb-8">Program <br/><span className="text-[#0D120E]/30">Details.</span></h2>
                     
                     <div className="space-y-10">
                         <div className="flex gap-6">
                             <div className="w-14 h-14 rounded-none bg-white shadow-xl flex items-center justify-center shrink-0 border border-black/5">
-                                <Calendar className="text-[#194342]" />
+                                <Calendar className="text-[#1DA756]" />
                             </div>
                             <div>
                                 <h4 className="font-black text-xl uppercase mb-1">Every Monday</h4>
@@ -109,7 +109,7 @@ export default function FeaturesPage() {
                         </div>
                         <div className="flex gap-6">
                             <div className="w-14 h-14 rounded-none bg-white shadow-xl flex items-center justify-center shrink-0 border border-black/5">
-                                <Clock className="text-[#194342]" />
+                                <Clock className="text-[#1DA756]" />
                             </div>
                             <div>
                                 <h4 className="font-black text-xl uppercase mb-1">Weekly Teams</h4>
@@ -119,14 +119,14 @@ export default function FeaturesPage() {
                     </div>
                 </div>
 
-                <div className="md:w-1/2 bg-[#194342] rounded-none p-10 md:p-16 text-white shadow-2xl relative overflow-hidden border border-[#DAE8B3]/30">
+                <div className="md:w-1/2 bg-[#0D120E] rounded-none p-10 md:p-16 text-white shadow-2xl relative overflow-hidden border border-[#1DA756]/30">
                     {/* Decorative element */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#DAE8B3]/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#1DA756]/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
                     
-                    <span className="text-[10px] font-black tracking-[0.3em] text-[#DAE8B3] uppercase mb-8 block">Active Enrollment</span>
-                    <h3 className="text-4xl md:text-7xl font-black mb-8 leading-none">16 MAR <br/> <span className="text-[#DAE8B3]">15 JUN.</span></h3>
+                    <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-8 block">Active Enrollment</span>
+                    <h3 className="text-4xl md:text-7xl font-black mb-8 leading-none">16 MAR <br/> <span className="text-[#1DA756]">15 JUN.</span></h3>
                     <p className="text-white/60 text-lg mb-12 font-medium capitalize">Join the next cohort of silent achievers. Enrollment is currently open for the summer session.</p>
-                    <Link href="/join" className="inline-flex items-center gap-3 text-[#DAE8B3] font-black tracking-[0.2em] uppercase text-sm group">
+                    <Link href="/join" className="inline-flex items-center gap-3 text-[#1DA756] font-black tracking-[0.2em] uppercase text-sm group">
                         Apply Now <ArrowRight className="group-hover:translate-x-2 transition-transform" />
                     </Link>
                 </div>
@@ -180,8 +180,8 @@ export default function FeaturesPage() {
                     className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
                   />
                   {/* Logo Top Left */}
-                  <div className="absolute top-8 left-8 z-20">
-                      <img src="/logo-white.png" alt="Signet" className="w-12 h-12 object-contain drop-shadow-2xl opacity-90" />
+                  <div className="absolute top-8 left-8 z-20 w-16 h-16">
+                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain drop-shadow-xl" />
                   </div>
                   
                   {/* Tagline */}

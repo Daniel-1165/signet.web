@@ -4,7 +4,17 @@ import Link from "next/link";
 
 const POSTS_QUERY = `
   *[_type in ["resource", "book", "article", "magazine"]] | order(publishedAt desc) {
-    _id, title, tag, description, readTime, publishedAt, accentColor, slug, _type
+    _id, title, tag, description, readTime, publishedAt, accentColor, slug, _type,
+    "mainImageUrl": coalesce(mainImage.asset->url, coverImage.asset->url, thumbnail.asset->url)
+  }
+`;
+
+const RESOURCE_QUERY = `
+  *[_type in ["resource", "book", "article", "magazine"] && slug.current == $slug][0] {
+    _id, title, tag, description, readTime, publishedAt, accentColor, content,
+    "fileUrl": file.asset->url,
+    "fileName": file.asset->originalFilename,
+    "mainImageUrl": coalesce(mainImage.asset->url, coverImage.asset->url, thumbnail.asset->url)
   }
 `;
 
@@ -38,13 +48,21 @@ const ResourceCard = ({ data, idx }: { data: any, idx: number }) => {
       }`}
     >
       {/* Background Image Placeholder (Nature/Growth) */}
-      <div className="absolute inset-0 z-0">
-         <img 
-            src={idx % 2 === 0 ? "/images/serene_nature.png" : "/images/growing_plant.png"}
-            alt="Nature"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-         />
-         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute inset-0 z-0 bg-[#0D120E]">
+         {data.mainImageUrl ? (
+           <img 
+              src={data.mainImageUrl}
+              alt={data.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+           />
+         ) : (
+           <img 
+              src={idx % 2 === 0 ? "/images/serene_nature.png" : "/images/growing_plant.png"}
+              alt="Nature"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 grayscale"
+           />
+         )}
+         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
       </div>
 
       <div className="relative z-10 mt-auto p-8 flex flex-col gap-3">

@@ -35,7 +35,7 @@ const sidebarLinks = [
 ];
 
 // Pages with dark hero backgrounds where navbar text should be white
-const DARK_HERO_ROUTES = ["/", "/features"];
+const DARK_HERO_ROUTES = ["/features"];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
