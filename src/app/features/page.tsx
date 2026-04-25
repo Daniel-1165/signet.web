@@ -15,13 +15,20 @@ export default function FeaturesPage() {
       <main className="pb-32">
         
         {/* ── TOP HERO: GET TO KNOW US ─────────────────────────────── */}
-        <section className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
+        <section className="relative w-full h-[70vh] md:h-screen overflow-hidden">
           <img
             src="/get-to-know-us.png"
             alt="Get To Know Us"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent"></div>
+          {/* Signet logo overlaid on the hero image */}
+          <div className="absolute bottom-10 left-8 z-20 flex items-center gap-3">
+            <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-4 py-2.5 rounded-full">
+              <img src="/signet-brand-logo.svg" alt="Signet" className="w-8 h-8 object-contain" style={{filter:"brightness(10) saturate(0)"}} />
+              <span className="text-white text-xs font-black tracking-widest uppercase">Signet</span>
+            </div>
+          </div>
         </section>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 uppercase">
@@ -81,8 +88,9 @@ export default function FeaturesPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
                 {/* Logo Top Left */}
-                <div className="absolute top-8 left-8 z-20 w-16 h-16">
-                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain drop-shadow-xl" />
+                <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full">
+                    <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-8 h-8 object-contain" style={{filter:"brightness(10) saturate(0)"}} />
+                    <span className="text-white text-xs font-black tracking-widest uppercase">Signet</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-10 md:p-16">
                     <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tight font-heading">Our Program Directive.</h2>
@@ -180,8 +188,9 @@ export default function FeaturesPage() {
                     className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
                   />
                   {/* Logo Top Left */}
-                  <div className="absolute top-8 left-8 z-20 w-16 h-16">
-                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain drop-shadow-xl" />
+                  <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full">
+                      <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-8 h-8 object-contain" style={{filter:"brightness(10) saturate(0)"}} />
+                      <span className="text-white text-xs font-black tracking-widest uppercase">Signet</span>
                   </div>
                   
                   {/* Tagline */}

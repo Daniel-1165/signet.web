@@ -109,7 +109,9 @@ const Navbar = () => {
           MOBILE TOP BAR  (visible on all screen sizes < md)
       ════════════════════════════════════════════════════════════ */}
       <header
-        className="md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 top-0 bg-transparent"
+        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 top-0 ${
+          hasDarkHero ? "bg-transparent" : "bg-white border-b border-black/5"
+        }`}
       >
         {/* Logo */}
         <Link
@@ -274,7 +276,9 @@ const Navbar = () => {
           DESKTOP NAV BAR
       ════════════════════════════════════════════════════════════ */}
       <nav
-        className="hidden md:block fixed z-[50] w-full transition-all duration-300 top-0 bg-transparent py-6"
+        className={`hidden md:block fixed z-[50] w-full transition-all duration-300 top-0 py-6 ${
+          hasDarkHero ? "bg-transparent" : "bg-white border-b border-black/5"
+        }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
           {/* Logo */}
