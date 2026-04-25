@@ -182,20 +182,20 @@ export default function EQAssessment() {
   // Welcome Screen
   if (screen === "welcome") {
     return (
-      <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col pt-16`}>
-        <div className="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-4xl mx-auto z-10">
-          <div className="w-16 h-16 rounded-full bg-accent text-white flex items-center justify-center mb-8 shadow-xl">
+      <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-center p-6`}>
+        <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto z-10">
+          <div className="w-16 h-16 rounded-full bg-accent text-white flex items-center justify-center mb-6 shadow-xl">
             <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h1 className="text-5xl md:text-7xl font-serif text-[#1a1a2e] mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-serif text-[#1a1a2e] mb-4 leading-tight">
              Define Your <br/><span className="text-[#16a34a] italic">Emotional Protocol.</span>
           </h1>
-          <p className="text-lg md:text-xl text-[#1a1a2e]/60 font-medium max-w-2xl leading-relaxed mb-10">
+          <p className="text-base md:text-lg text-[#1a1a2e]/60 font-medium max-w-2xl leading-relaxed mb-8">
             A 30-question diagnostic grounded in advanced behavioral frameworks. Pinpoint your emotional blind spots, discover your archetype, and architect a highly-calibrated mind.
           </p>
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
             {["Self-Awareness", "Self-Regulation", "Empathy", "Social Skills", "Motivation"].map(dim => (
-              <span key={dim} className="px-4 py-2 bg-[#f2f0ec] text-xs font-bold uppercase tracking-widest rounded-full">{dim}</span>
+              <span key={dim} className="px-3 py-1.5 bg-[#f2f0ec] text-[10px] font-bold uppercase tracking-widest rounded-full">{dim}</span>
             ))}
           </div>
           <button 
@@ -398,13 +398,20 @@ export default function EQAssessment() {
             </AnimatePresence>
           </main>
 
-          <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-end z-20 pointer-events-none">
+          <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center z-20 pointer-events-none max-w-3xl mx-auto">
+              <button 
+                  onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))}
+                  disabled={currentIdx === 0}
+                  className="text-[#1a1a2e]/40 font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:text-[#1a1a2e] px-6 py-3 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
+              >
+                  <ArrowLeft className="w-4 h-4 mr-2" /> Back
+              </button>
               <button 
                   onClick={handleNext}
                   disabled={answers[question.id] === undefined}
-                  className="text-[#1DA756] font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:bg-[#1DA756]/10 px-6 py-3 rounded-full transition-all disabled:opacity-30 pointer-events-auto bg-white/80 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-black/5"
+                  className="bg-[#1a1a2e] text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-[#16a34a] px-10 py-4 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
               >
-                  {currentIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} 
+                  {currentIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
               </button>
           </footer>
        </div>

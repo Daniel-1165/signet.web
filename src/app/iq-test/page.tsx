@@ -226,40 +226,40 @@ export default function IQTestPage() {
 
         return { iq, domainScores, archetype };
     }, [view, userAns, times]);
-
+    
     if (view === "welcome") {
         return (
-            <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F7F6F0] text-black font-sans flex flex-col justify-center px-6 py-20">
+            <div className="min-h-screen relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F7F6F0] text-black font-sans flex flex-col items-center justify-center px-6">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
                 
-                <div className="max-w-5xl mx-auto w-full relative z-10">
-                    <div className="mb-4">
-                        <span className="text-[10px] tracking-[0.2em] font-medium uppercase border-l-2 border-accent pl-3 text-accent py-1">SIGNET ASSESSMENT</span>
+                <div className="max-w-5xl mx-auto w-full relative z-10 flex flex-col items-center text-center">
+                    <div className="mb-2">
+                        <span className="text-[9px] tracking-[0.2em] font-medium uppercase border-l-2 border-accent pl-2 text-accent py-1">SIGNET ASSESSMENT</span>
                     </div>
-                    <h1 className="text-6xl md:text-8xl tracking-tight leading-none mb-8 font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-accent/80">
+                    <h1 className="text-4xl md:text-7xl tracking-tight leading-none mb-6 font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-accent/80">
                         Cognitive <br />
                         Evaluation
                     </h1>
-                    <p className="text-lg md:text-2xl text-black/60 max-w-2xl mb-16 leading-relaxed font-outfit font-light">
+                    <p className="text-base md:text-xl text-black/60 max-w-2xl mb-10 leading-relaxed font-outfit font-light">
                         A rigorous yet engaging examination of primary cognitive factors. Discover your archetype through dynamic intelligence profiling.
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-3xl p-8 border border-black/5">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-3xl p-6 border border-black/5 w-full">
                          {[
                              { label: "DURATION", val: "15 MIN" },
                              { label: "FORMAT", val: "ADAPTIVE" },
                              { label: "DOMAINS", val: "SIX FACTORS" },
                              { label: "THEORY", val: "C-H-C" }
                          ].map(it => (
-                             <div key={it.label} className="flex flex-col border-l border-black/5 pl-4">
-                                 <span className="text-[10px] tracking-[0.15em] font-medium text-accent mb-2">{it.label}</span>
-                                 <span className="text-xl tracking-tight font-bold">{it.val}</span>
+                             <div key={it.label} className="flex flex-col border-l border-black/5 pl-3 text-left">
+                                  <span className="text-[8px] tracking-[0.15em] font-medium text-accent mb-1">{it.label}</span>
+                                  <span className="text-base tracking-tight font-bold">{it.val}</span>
                              </div>
                          ))}
                     </div>
                     <button 
                         onClick={startAssessment}
-                        className="group flex items-center justify-center gap-4 bg-accent text-white px-8 py-4 rounded-full font-bold text-lg tracking-tight transition-all hover:bg-accent/90 shadow-[0_8px_30px_rgba(16,129,114,0.3)] hover:scale-105"
+                        className="group flex items-center justify-center gap-4 bg-accent text-white px-10 py-5 rounded-full font-bold text-lg tracking-tight transition-all hover:bg-black hover:scale-105 shadow-[0_8px_30px_rgba(16,129,114,0.3)]"
                     >
                         Begin Process <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </button>
@@ -397,13 +397,20 @@ export default function IQTestPage() {
                      </AnimatePresence>
                 </main>
 
-                <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-end z-20 pointer-events-none">
+                <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center z-20 pointer-events-none max-w-4xl mx-auto">
+                    <button 
+                        onClick={() => setCurIdx(Math.max(0, curIdx - 1))}
+                        disabled={curIdx === 0}
+                        className="text-black/40 font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:text-black px-6 py-3 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
+                    >
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Previous
+                    </button>
                     <button 
                         onClick={handleNext}
                         disabled={userAns[question.id] === undefined}
-                        className="text-accent font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:bg-accent/10 px-6 py-3 rounded-full transition-all disabled:opacity-30 pointer-events-auto bg-white/80 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-black/5"
+                        className="bg-black text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent px-10 py-4 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
                     >
-                        {curIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} 
+                        {curIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
                     </button>
                 </footer>
             </div>
