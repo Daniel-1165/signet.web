@@ -34,6 +34,9 @@ const sidebarLinks = [
   { label: "Certificates", href: "/certificates", icon: Award },
 ];
 
+// Pages with dark hero backgrounds where navbar text should be white
+const DARK_HERO_ROUTES = ["/features"];
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -45,6 +48,13 @@ const Navbar = () => {
   const [showAdminModal, setShowAdminModal] = useState(false);
   const [targetUser, setTargetUser] = useState("");
   const [adminActionStatus, setAdminActionStatus] = useState("");
+
+  // Determine if this page has a dark hero (navbar needs white text when not scrolled)
+  const hasDarkHero = DARK_HERO_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(route + "/")
+  );
+  // When not scrolled: dark hero pages get white text, light pages get dark text
+  const isLightText = !isScrolled && hasDarkHero;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -94,20 +104,13 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ════════════════════════════════════════════════════════════
-          TOP BANNER (Visible across all screens at the top)
-      ════════════════════════════════════════════════════════════ */}
-      <div className={`w-full bg-[#113123] text-white text-[11px] md:text-xs font-semibold py-2.5 flex items-center justify-center gap-2 z-[60] transition-all duration-300 ${isScrolled ? 'hidden' : 'block relative'}`}>
-          <span className="text-[#1DA756]">🚀</span>
-          <span>Session 2024 - Early-bird registration now open &gt;</span>
-      </div>
 
       {/* ════════════════════════════════════════════════════════════
           MOBILE TOP BAR  (visible on all screen sizes < md)
       ════════════════════════════════════════════════════════════ */}
       <header
-        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 ${
-          isScrolled ? "top-0 bg-white shadow-md border-b border-black/[0.05]" : "top-[40px] bg-transparent"
+        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 top-0 ${
+          isScrolled ? "bg-white shadow-md border-b border-black/[0.05]" : "bg-transparent"
         }`}
       >
         {/* Logo */}
@@ -120,29 +123,30 @@ const Navbar = () => {
             <img 
               src="/signet-brand-logo.svg" 
               alt="Signet Logo" 
-              className="h-10 w-auto object-contain"
+              className={`h-10 w-auto object-contain transition-all duration-300 ${isLightText ? "brightness-[10]" : ""}`}
+              style={isLightText ? { filter: "brightness(10)" } : undefined}
             />
           </div>
         </Link>
 
         {/* Right side: hamburger */}
         <div className="flex items-center gap-4">
-          {/* Join button ONLY shows when scrolled (and if not signed in) */}
-          {(isScrolled || pathname === '/') && !isLoaded && (
+          {/* Join button */}
+          {!isLoaded && (
              <SignUpButton mode="modal">
                <button className="px-5 py-2 text-[11px] font-bold text-white bg-[#1DA756] rounded-full shadow-lg shadow-[#1DA756]/20">
                  Join
                </button>
              </SignUpButton>
           )}
-          {(isScrolled || pathname === '/') && isLoaded && !isSignedIn && (
+          {isLoaded && !isSignedIn && (
              <SignUpButton mode="modal">
                <button className="px-5 py-2 text-[11px] font-bold text-white bg-[#1DA756] rounded-full shadow-lg shadow-[#1DA756]/20">
                  Join
                </button>
              </SignUpButton>
           )}
-          {(isScrolled || pathname === '/') && isSignedIn && (
+          {isSignedIn && (
             <div className="flex items-center justify-center p-[2px] rounded-full border border-black/10 bg-white shadow-sm">
               <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
             </div>
@@ -155,7 +159,7 @@ const Navbar = () => {
             aria-label="Open menu"
             className="w-10 h-10 flex items-center justify-center"
           >
-            <svg viewBox="0 0 24 24" className={`w-6 h-6 ${(isScrolled || pathname === '/') ? "text-[#0D120E]" : "text-white"}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <svg viewBox="0 0 24 24" className={`w-6 h-6 ${isLightText ? "text-white" : "text-[#0D120E]"}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <line x1="4" y1="7" x2="20" y2="7" />
               <line x1="4" y1="12" x2="20" y2="12" />
               <line x1="10" y1="17" x2="20" y2="17" />
@@ -272,10 +276,10 @@ const Navbar = () => {
           DESKTOP NAV BAR
       ════════════════════════════════════════════════════════════ */}
       <nav
-        className={`hidden md:block fixed z-[50] w-full transition-all duration-300 ${
+        className={`hidden md:block fixed z-[50] w-full transition-all duration-300 top-0 ${
           isScrolled
-            ? "top-0 bg-white py-4 shadow-sm border-b border-black/[0.05]"
-            : "top-[40px] bg-transparent py-6"
+            ? "bg-white py-4 shadow-sm border-b border-black/[0.05]"
+            : "bg-transparent py-6"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
@@ -285,7 +289,8 @@ const Navbar = () => {
               <img 
                 src="/signet-brand-logo.svg" 
                 alt="Signet Logo" 
-                className="h-10 w-auto object-contain"
+                className={`h-10 w-auto object-contain transition-all duration-300`}
+                style={isLightText ? { filter: "brightness(10)" } : undefined}
               />
             </div>
           </Link>
@@ -296,7 +301,7 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`relative group py-2 text-sm font-bold tracking-tight transition-colors ${(isScrolled || pathname === '/') ? "text-[#0D120E] hover:text-[#0D120E]/70" : "text-white hover:text-white/80"}`}
+                className={`relative group py-2 text-sm font-bold tracking-tight transition-colors ${isLightText ? "text-white hover:text-white/80" : "text-[#0D120E] hover:text-[#0D120E]/70"}`}
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#1DA756] transition-all duration-300 group-hover:w-full" />
@@ -322,26 +327,16 @@ const Navbar = () => {
               ) : (
                 <>
                   <SignInButton mode="modal">
-                    <button className="h-10 px-5 text-sm font-bold text-[#0D120E]/70 border border-black/[0.1] rounded-full hover:bg-black/[0.04] transition-colors">
+                    <button className={`h-10 px-5 text-sm font-bold rounded-full transition-colors ${isLightText ? "text-white/90 border border-white/20 hover:bg-white/10" : "text-[#0D120E]/70 border border-black/[0.1] hover:bg-black/[0.04]"}`}>
                       Login
                     </button>
                   </SignInButton>
-                  <AnimatePresence>
-                    {(isScrolled || pathname === '/') && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9, x: 10 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, x: 10 }}
-                      >
-                        <SignUpButton mode="modal">
-                          <button className="group h-10 px-6 flex items-center gap-2 rounded-full bg-[#0D120E] text-white text-sm font-bold hover:bg-[#0D120E]/85 transition-all shadow-sm">
-                            Join Now
-                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                          </button>
-                        </SignUpButton>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <SignUpButton mode="modal">
+                    <button className="group h-10 px-6 flex items-center gap-2 rounded-full bg-[#0D120E] text-white text-sm font-bold hover:bg-[#0D120E]/85 transition-all shadow-sm">
+                      Join Now
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </SignUpButton>
                 </>
               )
             )}
