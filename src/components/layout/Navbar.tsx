@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, Shield } from "lucide-react";
 import {
@@ -36,6 +37,7 @@ const sidebarLinks = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const pathname = usePathname();
 
   const { user, isLoaded, isSignedIn } = useUser();
   const supabase = useSupabaseClient();
@@ -118,21 +120,21 @@ const Navbar = () => {
         {/* Right side: hamburger */}
         <div className="flex items-center gap-4">
           {/* Join button ONLY shows when scrolled (and if not signed in) */}
-          {isScrolled && !isLoaded && (
+          {(isScrolled || pathname === '/') && !isLoaded && (
              <SignUpButton mode="modal">
                <button className="px-5 py-2 text-[11px] font-bold text-white bg-[#1DA756] rounded-full shadow-lg shadow-[#1DA756]/20">
                  Join
                </button>
              </SignUpButton>
           )}
-          {isScrolled && isLoaded && !isSignedIn && (
+          {(isScrolled || pathname === '/') && isLoaded && !isSignedIn && (
              <SignUpButton mode="modal">
                <button className="px-5 py-2 text-[11px] font-bold text-white bg-[#1DA756] rounded-full shadow-lg shadow-[#1DA756]/20">
                  Join
                </button>
              </SignUpButton>
           )}
-          {isScrolled && isSignedIn && (
+          {(isScrolled || pathname === '/') && isSignedIn && (
             <div className="flex items-center justify-center p-[2px] rounded-full border border-black/10 bg-white shadow-sm">
               <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
             </div>
@@ -145,7 +147,7 @@ const Navbar = () => {
             aria-label="Open menu"
             className="w-10 h-10 flex items-center justify-center"
           >
-            <svg viewBox="0 0 24 24" className={`w-6 h-6 ${isScrolled ? "text-[#0D120E]" : "text-white"}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <svg viewBox="0 0 24 24" className={`w-6 h-6 ${(isScrolled || pathname === '/') ? "text-[#0D120E]" : "text-white"}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <line x1="4" y1="7" x2="20" y2="7" />
               <line x1="4" y1="12" x2="20" y2="12" />
               <line x1="10" y1="17" x2="20" y2="17" />
@@ -286,7 +288,7 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`relative group py-2 text-sm font-bold tracking-tight transition-colors ${isScrolled ? "text-[#0D120E] hover:text-[#0D120E]/70" : "text-white hover:text-white/80"}`}
+                className={`relative group py-2 text-sm font-bold tracking-tight transition-colors ${(isScrolled || pathname === '/') ? "text-[#0D120E] hover:text-[#0D120E]/70" : "text-white hover:text-white/80"}`}
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#1DA756] transition-all duration-300 group-hover:w-full" />
@@ -317,7 +319,7 @@ const Navbar = () => {
                     </button>
                   </SignInButton>
                   <AnimatePresence>
-                    {isScrolled && (
+                    {(isScrolled || pathname === '/') && (
                       <motion.div
                         initial={{ opacity: 0, scale: 0.9, x: 10 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}

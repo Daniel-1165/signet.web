@@ -1,4 +1,4 @@
-import LockedInHero from "@/components/sections/LockedInHero";
+import ModernHero from "@/components/sections/ModernHero";
 import Testimonials from "@/components/sections/Testimonials";
 import AnimatedMarquee from "@/components/sections/AnimatedMarquee";
 import Process from "@/components/sections/Process";
@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen">
       <main className="flex flex-col gap-24">
-        <LockedInHero />
+        <ModernHero />
         <AnimatedMarquee />
         <VisionMission />
         <FeaturesPreview />
