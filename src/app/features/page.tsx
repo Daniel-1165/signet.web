@@ -74,15 +74,15 @@ export default function FeaturesPage() {
 
         {/* ── IMAGE SECTION 2: OUR PROGRAM DIRECTIVE ─────────────────────────── */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
-            <div className="rounded-none overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group">
+            <div className="rounded-none overflow-hidden shadow-2xl h-[300px] md:h-[450px] relative group">
                 <img 
                     src="/signet-nature.png" 
                     alt="Our Program Directive" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
                 {/* Logo Top Left */}
-                <div className="absolute top-8 left-8 z-20 w-12 h-12">
-                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain brightness-0 invert opacity-80" />
+                <div className="absolute top-8 left-8 z-20 w-16 h-16">
+                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain drop-shadow-xl" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-10 md:p-16">
                     <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tight font-heading">Our Program Directive.</h2>
@@ -180,14 +180,14 @@ export default function FeaturesPage() {
                     className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
                   />
                   {/* Logo Top Left */}
-                  <div className="absolute top-8 left-8 z-20 w-12 h-12">
-                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain brightness-0 invert opacity-80" />
+                  <div className="absolute top-8 left-8 z-20 w-16 h-16">
+                     <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-full h-full object-contain drop-shadow-xl" />
                   </div>
                   
                   {/* Tagline */}
                   <div className="absolute inset-x-0 bottom-0 p-8 z-20 bg-gradient-to-t from-black/60 to-transparent">
                       <p className="text-white text-sm md:text-base font-black uppercase tracking-wider text-center">
-                        in <span className="text-[#113123]">Signet</span> we cultivate our mind for Growth
+                        in <span className="text-[#1DA756] font-black drop-shadow-sm">Signet</span> we cultivate our mind for Growth
                       </p>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1DA756]/20 to-transparent mix-blend-overlay"></div>

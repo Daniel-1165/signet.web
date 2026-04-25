@@ -18,7 +18,7 @@ const VisionMission = () => {
                     >
                         {/* Background Image */}
                         <img
-                            src="/vision-statement.jpg"
+                            src="/vision-statement.webp"
                             alt="Our Vision"
                             className="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-all duration-700"
                         />
@@ -27,11 +27,11 @@ const VisionMission = () => {
 
                         {/* Top Content */}
                         <div className="relative z-20 p-8 flex flex-col gap-4 items-start">
-                            <div className="w-12 h-12 flex items-center justify-center">
+                            <div className="w-16 h-16 flex items-center justify-center">
                                 <img 
                                     src="/signet-brand-logo.svg" 
                                     alt="Signet Logo" 
-                                    className="h-full w-auto object-contain brightness-0 invert"
+                                    className="h-full w-auto object-contain drop-shadow-xl"
                                 />
                             </div>
                             <span className="inline-block bg-white text-black px-4 py-1.5 rounded-lg text-sm font-bold tracking-wide shadow-sm">

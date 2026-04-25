@@ -82,23 +82,47 @@ export default async function ResourcesPage() {
     <div className="min-h-screen bg-[#F7F6F0] pb-32" style={{ fontFamily: "'Melbourne', sans-serif" }}>
       
       {/* ── HEADER ────────────────────────────────────────────────── */}
-      <section className="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
-         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
+      <section className="pt-24 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+         {/* Top Actions: Search & CTA */}
+         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-16">
+             <div className="relative flex-1 w-full max-w-md">
+                 <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-[#0D120E]/30" size={18} />
+                 <input 
+                     type="text" 
+                     placeholder="Search library..." 
+                     className="w-full h-14 pl-14 pr-6 bg-white rounded-full border border-black/[0.03] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1DA756]/20 transition-all font-bold text-xs"
+                 />
+             </div>
+             
+             <div className="flex items-center gap-3 overflow-x-auto no-scrollbar w-full md:w-auto">
+                {["All", "Growth", "Leadership", "Productivity"].map(tag => (
+                    <button key={tag} className="h-12 px-6 rounded-full bg-white border border-black/[0.03] font-black uppercase text-[9px] tracking-widest hover:bg-[#1DA756] hover:text-white transition-all shadow-sm whitespace-nowrap">
+                        {tag}
+                    </button>
+                ))}
+             </div>
+
+             <Link href="/join" className="h-14 px-8 rounded-full bg-[#0D120E] text-white flex items-center justify-center font-black uppercase text-[10px] tracking-[0.2em] hover:bg-[#1DA756] transition-all shadow-xl shadow-black/10">
+                Join the Network
+             </Link>
+         </div>
+
+         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-2xl">
-                <div className="flex items-center gap-3 mb-6">
-                    <Leaf className="text-[#1DA756]" size={20} />
-                    <span className="text-[11px] font-black tracking-[0.3em] text-[#1DA756] uppercase">Wisdom Network</span>
+                <div className="flex items-center gap-3 mb-4">
+                    <Leaf className="text-[#1DA756]" size={16} />
+                    <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase">Wisdom Network</span>
                 </div>
-                <h1 className="text-5xl md:text-[6rem] font-black uppercase leading-[0.85] tracking-tighter">
+                <h1 className="text-4xl md:text-[4.5rem] font-black uppercase leading-[0.9] tracking-tighter">
                     Seeds of <br/>
                     <span className="text-[#1DA756]">Insight.</span>
                 </h1>
             </div>
-            <div className="space-y-6 max-w-sm">
-                <p className="text-lg md:text-xl text-[#0D120E]/50 font-medium leading-relaxed capitalize">
+            <div className="space-y-4 max-w-sm">
+                <p className="text-base md:text-lg text-[#0D120E]/50 font-medium leading-relaxed capitalize">
                     The quiet pursuit of mastery requires the finest tools. Explore our repository of disciplined growth.
                 </p>
-                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-[#0D120E]/30">
+                <div className="flex items-center gap-4 text-[9px] font-black uppercase tracking-widest text-[#0D120E]/30">
                     <span>Curated</span>
                     <span className="w-1 h-1 rounded-full bg-[#1DA756]"></span>
                     <span>Structured</span>
@@ -106,25 +130,6 @@ export default async function ResourcesPage() {
                     <span>Silent</span>
                 </div>
             </div>
-         </div>
-      </section>
-
-      {/* ── SEARCH & FILTER ───────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
-         <div className="flex flex-wrap items-center gap-4">
-            <div className="relative flex-1 min-w-[300px]">
-                <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-[#0D120E]/30" size={18} />
-                <input 
-                    type="text" 
-                    placeholder="Search library..." 
-                    className="w-full h-16 pl-16 pr-6 bg-white rounded-full border border-black/[0.03] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1DA756]/20 transition-all font-bold text-sm"
-                />
-            </div>
-            {["All", "Growth", "Leadership", "Productivity", "Mindset"].map(tag => (
-                <button key={tag} className="h-16 px-8 rounded-full bg-white border border-black/[0.03] font-black uppercase text-[10px] tracking-widest hover:bg-[#1DA756] hover:text-white transition-all shadow-sm">
-                    {tag}
-                </button>
-            ))}
          </div>
       </section>
 
