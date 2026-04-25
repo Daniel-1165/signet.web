@@ -8,7 +8,7 @@ import Footer from "@/components/layout/Footer";
 export default function Home() {
   return (
     <div className="relative min-h-screen">
-      <main className="flex flex-col gap-24">
+      <main className="flex flex-col gap-0">
         <ModernHero />
         <VisionMission />
         <FeaturesPreview />
