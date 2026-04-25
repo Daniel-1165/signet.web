@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Globe, Star, TrendingUp, Users } from "lucide-react";
+import { ArrowUpRight, Globe, Star, Activity, Crown, TrendingUp, Sparkles, Crosshair, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { MagneticButton } from "../ui/MagneticButton";
 
@@ -148,17 +148,32 @@ const ModernHero = () => {
                 </motion.div>
             </div>
 
-            {/* Bottom Logo Cloud */}
+            {/* Bottom Logo Cloud - Brand Values */}
             <div className="w-full border-t border-gray-100 mt-24 py-12 px-6">
                 <div className="max-w-6xl mx-auto flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Loom_logo.svg" alt="Loom" className="h-6 object-contain" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/HubSpot_Logo.svg" alt="HubSpot" className="h-6 object-contain opacity-80" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI" className="h-6 object-contain" />
-                    {/* Placeholder for Raycast/Zenefits styled logos using text for now if no svgs available */}
-                    <div className="text-xl font-bold tracking-tighter text-gray-800 flex items-center gap-2"><div className="w-4 h-4 bg-gray-800 rounded-sm rotate-45 transform"></div>Raycast</div>
-                    <div className="text-xl font-bold tracking-tight text-gray-800 flex items-center gap-1">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v4H4V4zm0 6h16v4H4v-4zm0 6h16v4H4v-4z"/></svg>
-                        zenefits
+                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2">
+                        <Activity className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                        Sustainability
+                    </div>
+                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2">
+                        <Crown className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                        Mastery
+                    </div>
+                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2">
+                        <TrendingUp className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                        Growth
+                    </div>
+                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2">
+                        <Sparkles className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                        Excellence
+                    </div>
+                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2 hidden lg:flex">
+                        <Crosshair className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                        Focus
+                    </div>
+                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2 hidden lg:flex">
+                        <ShieldCheck className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                        Resilience
                     </div>
                 </div>
             </div>

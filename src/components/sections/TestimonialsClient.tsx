@@ -69,23 +69,25 @@ export default function TestimonialsClient({ testimonials }: Props) {
                 transition={{ duration: 0.8, delay: i * 0.15 }}
                 className="group relative rounded-2xl border border-black/[0.08] bg-white p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-lg hover:shadow-black/5"
               >
-                <p className="text-lg leading-relaxed italic text-foreground/70 mb-8">
+                <p className="text-lg leading-relaxed italic text-foreground/70 mb-6">
                   &ldquo;{t.content || "Testimonial content"}&rdquo;
                 </p>
 
-                <div className="flex items-center gap-4">
-                  {/* Avatar: real image if provided, otherwise initials */}
-                  {t.avatar?.asset?.url ? (
-                    <div className="relative h-10 w-10 rounded-full overflow-hidden flex-shrink-0 shadow-sm">
-                      <Image
-                        src={t.avatar.asset.url}
-                        alt={t.name || "User Avatar"}
-                        fill
-                        className="object-cover"
-                        sizes="40px"
-                      />
-                    </div>
-                  ) : (
+                {/* If the user uploaded an image testimonial, show it large and readable */}
+                {t.avatar?.asset?.url && (
+                  <div className="relative w-full aspect-video md:aspect-[4/3] rounded-xl overflow-hidden mb-6 border border-black/5 shadow-sm">
+                    <Image
+                      src={t.avatar.asset.url}
+                      alt={t.name || "Testimonial media"}
+                      fill
+                      className="object-contain bg-black/5"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                )}
+
+                <div className="flex items-center gap-4 mt-auto pt-2">
+                  {!t.avatar?.asset?.url && (
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent font-semibold text-xs text-white shadow-sm flex-shrink-0">
                       {getInitials(t.name)}
                     </div>
