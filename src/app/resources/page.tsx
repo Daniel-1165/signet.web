@@ -3,8 +3,8 @@ import { ArrowRight, BookOpen, Clock, Leaf, Search, Sparkles, TrendingUp, Star, 
 import Link from "next/link";
 
 const POSTS_QUERY = `
-  *[_type == "resource"] | order(publishedAt desc) {
-    _id, title, tag, description, readTime, publishedAt, accentColor, slug
+  *[_type in ["resource", "book", "article", "magazine"]] | order(publishedAt desc) {
+    _id, title, tag, description, readTime, publishedAt, accentColor, slug, _type
   }
 `;
 

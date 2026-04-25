@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
 // ==========================================
-// DATA & TYPES
+// DATA & TYPES  
 // ==========================================
 
 const G_TYPES = {
@@ -80,7 +80,7 @@ const dCountSquares = () => (
 const dSymbolFreq = () => {
     const symbols = ['+', '○', '△', '□'];
     const items = [];
-    for(let i=0; i<40; i++) {
+    for (let i = 0; i < 40; i++) {
         items.push({
             sym: symbols[Math.floor(Math.random() * symbols.length)],
             x: Math.random() * 280 + 10,
@@ -98,7 +98,7 @@ const dSymbolFreq = () => {
 
 const dNumMatrix = () => (
     <svg viewBox="0 0 300 300" className="w-[80%] max-w-sm mx-auto h-auto">
-        {[ [3,6,9], [4,8,12], [5,10,"?"] ].map((row, i) => row.map((num, j) => (
+        {[[3, 6, 9], [4, 8, 12], [5, 10, "?"]].map((row, i) => row.map((num, j) => (
             <text key={`${i}-${j}`} x={j * 100 + 50} y={i * 100 + 60} textAnchor="middle" fontSize="24" fill="#000" fontWeight="400" className="font-sans">{num}</text>
         )))}
     </svg>
@@ -218,21 +218,21 @@ export default function IQTestPage() {
         let iq = avgPct <= 0.50 ? 70 + (avgPct / 0.50) * 30 : 100 + ((avgPct - 0.50) / 0.50) * 45;
         iq = Math.min(145, Math.max(70, Math.round(iq)));
 
-        const sorted = Object.entries(domainScores).sort((a,b) => b[1] - a[1]);
+        const sorted = Object.entries(domainScores).sort((a, b) => b[1] - a[1]);
         const top2 = sorted.slice(0, 2).map(x => x[0]).sort().join("+");
         const diff = Math.max(...Object.values(domainScores)) - Math.min(...Object.values(domainScores));
-        
+
         const archetype = diff < 18 ? ARCHETYPES.Generalist : (ARCHETYPES[top2 as keyof typeof ARCHETYPES] || ARCHETYPES["Gf+Gc"]);
 
         return { iq, domainScores, archetype };
     }, [view, userAns, times]);
-    
+
     if (view === "welcome") {
         return (
             <div className="min-h-screen relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F7F6F0] text-black font-sans flex flex-col items-center justify-center px-6">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
-                
+
                 <div className="max-w-5xl mx-auto w-full relative z-10 flex flex-col items-center text-center">
                     <div className="mb-2">
                         <span className="text-[9px] tracking-[0.2em] font-medium uppercase border-l-2 border-accent pl-2 text-accent py-1">SIGNET ASSESSMENT</span>
@@ -245,19 +245,19 @@ export default function IQTestPage() {
                         A rigorous yet engaging examination of primary cognitive factors. Discover your archetype through dynamic intelligence profiling.
                     </p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-3xl p-6 border border-black/5 w-full">
-                         {[
-                             { label: "DURATION", val: "15 MIN" },
-                             { label: "FORMAT", val: "ADAPTIVE" },
-                             { label: "DOMAINS", val: "SIX FACTORS" },
-                             { label: "THEORY", val: "C-H-C" }
-                         ].map(it => (
-                             <div key={it.label} className="flex flex-col border-l border-black/5 pl-3 text-left">
-                                  <span className="text-[8px] tracking-[0.15em] font-medium text-accent mb-1">{it.label}</span>
-                                  <span className="text-base tracking-tight font-bold">{it.val}</span>
-                             </div>
-                         ))}
+                        {[
+                            { label: "DURATION", val: "15 MIN" },
+                            { label: "FORMAT", val: "ADAPTIVE" },
+                            { label: "DOMAINS", val: "SIX FACTORS" },
+                            { label: "THEORY", val: "C-H-C" }
+                        ].map(it => (
+                            <div key={it.label} className="flex flex-col border-l border-black/5 pl-3 text-left">
+                                <span className="text-[8px] tracking-[0.15em] font-medium text-accent mb-1">{it.label}</span>
+                                <span className="text-base tracking-tight font-bold">{it.val}</span>
+                            </div>
+                        ))}
                     </div>
-                    <button 
+                    <button
                         onClick={startAssessment}
                         className="group flex items-center justify-center gap-4 bg-accent text-white px-10 py-5 rounded-full font-bold text-lg tracking-tight transition-all hover:bg-black hover:scale-105 shadow-[0_8px_30px_rgba(16,129,114,0.3)]"
                     >
@@ -272,7 +272,7 @@ export default function IQTestPage() {
         return (
             <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-b from-[#F1F5F0] to-white text-black font-sans px-6 py-20">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
-                
+
                 <div className="max-w-5xl mx-auto w-full">
                     <header className="mb-24 flex flex-col md:flex-row justify-between items-baseline border-b border-black/10 pb-8">
                         <h2 className="text-4xl md:text-5xl tracking-tight font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-accent">Evaluation Complete</h2>
@@ -285,7 +285,7 @@ export default function IQTestPage() {
                             <div className="relative z-10">
                                 <div className="text-[10px] tracking-[0.15em] font-bold text-accent mb-4">INTELLIGENCE QUOTIENT</div>
                                 <div className="text-[7rem] md:text-[9rem] leading-none tracking-tighter mb-4 font-syne font-black text-black">{results.iq}</div>
-                                <div className="text-sm tracking-widest uppercase mb-12 font-bold text-black/60 border-l-2 border-accent pl-3">Percentile: Top {Math.round((1 - results.iq/200) * 100)}%</div>
+                                <div className="text-sm tracking-widest uppercase mb-12 font-bold text-black/60 border-l-2 border-accent pl-3">Percentile: Top {Math.round((1 - results.iq / 200) * 100)}%</div>
                             </div>
                             <p className="text-[10px] text-black/40 max-w-xs leading-relaxed uppercase tracking-wider relative z-10 font-bold">
                                 This metric represents a personal baseline estimation, not a formal diagnostic credential.
@@ -296,7 +296,7 @@ export default function IQTestPage() {
                             <div className="text-[10px] tracking-[0.15em] font-bold text-accent mb-4">PRIMARY ARCHETYPE</div>
                             <h3 className="text-4xl md:text-6xl tracking-tight mb-4 font-syne font-black">{results.archetype.name}</h3>
                             <p className="text-xl md:text-2xl text-black/60 mb-12 font-outfit">{results.archetype.sig}</p>
-                            
+
                             <div className="grid grid-cols-2 gap-x-12 gap-y-8 border-t border-black/5 pt-8 mt-auto">
                                 {Object.entries(results.domainScores).map(([key, score]) => (
                                     <div key={key} className="flex flex-col">
@@ -305,7 +305,7 @@ export default function IQTestPage() {
                                             <span className="text-sm font-black text-accent">{Math.round(score)}</span>
                                         </div>
                                         <div className="w-full h-2 bg-black/5 rounded-full overflow-hidden relative">
-                                            <motion.div 
+                                            <motion.div
                                                 className="absolute top-0 left-0 bg-accent h-full rounded-full"
                                                 initial={{ width: 0 }}
                                                 animate={{ width: `${score}%` }}
@@ -319,11 +319,11 @@ export default function IQTestPage() {
                     </div>
 
                     <div className="flex justify-center pt-12">
-                        <button 
-                             onClick={() => window.location.reload()} 
-                             className="group flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-xs tracking-[0.2em] font-bold uppercase transition-all hover:bg-black/80 hover:scale-105 shadow-xl"
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="group flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-xs tracking-[0.2em] font-bold uppercase transition-all hover:bg-black/80 hover:scale-105 shadow-xl"
                         >
-                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" /> Re-evaluate
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" /> Re-evaluate
                         </button>
                     </div>
                 </div>
@@ -334,7 +334,7 @@ export default function IQTestPage() {
     return (
         <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-b from-[#F1F5F0] to-white text-black font-sans flex flex-col px-6">
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl -z-10 -translate-x-1/2 -translate-y-1/2"></div>
-            
+
             <div className="max-w-4xl mx-auto w-full flex flex-col flex-1 relative z-10">
                 <header className="pt-6 pb-2 w-full">
                     <div className="flex items-center gap-2 mb-6">
@@ -353,8 +353,8 @@ export default function IQTestPage() {
                 </header>
 
                 <main className="flex-1 flex flex-col pt-8 pb-32 relative">
-                     <AnimatePresence mode="wait">
-                        <motion.div 
+                    <AnimatePresence mode="wait">
+                        <motion.div
                             key={curIdx}
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -367,7 +367,7 @@ export default function IQTestPage() {
                                     <span className="text-xs font-black tracking-widest uppercase text-red-600 bg-red-50 px-3 py-1 rounded-full shadow-sm animate-pulse">{Math.ceil(gsTimer)}S</span>
                                 </div>
                             )}
-                            
+
                             <h2 className="text-2xl md:text-3xl tracking-tight leading-snug mb-10 font-outfit font-medium text-center max-w-lg mx-auto">
                                 {question.q}
                             </h2>
@@ -380,32 +380,31 @@ export default function IQTestPage() {
 
                             <div className="flex flex-wrap justify-center gap-3 w-full max-w-md mx-auto">
                                 {question.opts.map((opt, i) => (
-                                    <button 
+                                    <button
                                         key={i}
                                         onClick={() => handleSelect(i)}
-                                        className={`py-3 px-6 rounded-full text-center text-[15px] font-medium transition-all duration-200 border ${
-                                            userAns[question.id] === i 
-                                                ? 'bg-accent border-accent text-white shadow-md' 
+                                        className={`py-3 px-6 rounded-full text-center text-[15px] font-medium transition-all duration-200 border ${userAns[question.id] === i
+                                                ? 'bg-accent border-accent text-white shadow-md'
                                                 : 'bg-white border-black/10 text-black hover:border-accent hover:text-accent'
-                                        }`}
+                                            }`}
                                     >
                                         {opt}
                                     </button>
                                 ))}
                             </div>
                         </motion.div>
-                     </AnimatePresence>
+                    </AnimatePresence>
                 </main>
 
                 <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center z-20 pointer-events-none max-w-4xl mx-auto">
-                    <button 
+                    <button
                         onClick={() => setCurIdx(Math.max(0, curIdx - 1))}
                         disabled={curIdx === 0}
                         className="text-black/40 font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:text-black px-6 py-3 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" /> Previous
                     </button>
-                    <button 
+                    <button
                         onClick={handleNext}
                         disabled={userAns[question.id] === undefined}
                         className="bg-black text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent px-10 py-4 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
