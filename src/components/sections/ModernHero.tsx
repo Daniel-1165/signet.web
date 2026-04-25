@@ -7,15 +7,7 @@ import { MagneticButton } from "../ui/MagneticButton";
 
 const ModernHero = () => {
     return (
-        <section className="relative min-h-screen flex flex-col pt-32 pb-16 overflow-hidden bg-white">
-            {/* Top Banner overlay to mimic the reference image, positioned over the navbar area if needed, 
-                but since Navbar is fixed, we might just put it at the top of this component as a fake banner, 
-                or better yet, let's keep the hero content clean. The user wants the redesign inspired by the image. */}
-            
-            <div className="absolute top-0 left-0 w-full bg-[#113123] text-white text-xs font-semibold py-2.5 flex items-center justify-center gap-2 z-[40]">
-                <span className="text-[#1DA756]">🚀</span>
-                <span>Session 2024 - Early-bird registration now open &gt;</span>
-            </div>
+        <section className="relative min-h-screen flex flex-col pt-24 md:pt-32 pb-16 overflow-hidden bg-white">
 
             {/* Container */}
             <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-16 max-w-7xl px-6 lg:px-12 w-full mt-10">
@@ -34,7 +26,7 @@ const ModernHero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.1 }}
-                        className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#0D120E] leading-[1.1] mb-8"
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#0D120E] leading-[1.1] mb-6 md:mb-8 tracking-tight"
                     >
                         Change the way<br />
                         you approach<br />
@@ -80,21 +72,22 @@ const ModernHero = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="flex-1 w-full max-w-lg xl:max-w-none grid grid-cols-2 gap-4"
+                    className="flex-1 w-full max-w-lg xl:max-w-none grid grid-cols-1 sm:grid-cols-2 gap-4"
                 >
                     {/* Top Left: Image */}
-                    <div className="rounded-[32px] overflow-hidden aspect-square bg-[#E8E8E8] relative">
+                    <div className="rounded-[32px] overflow-hidden aspect-square bg-[#F4F1ED] relative flex items-center justify-center p-6">
                         <img 
                             src="/hero-primary.png" 
-                            alt="Growth" 
-                            className="w-full h-full object-cover"
+                            alt="Growth app" 
+                            className="w-full h-auto object-cover rounded-2xl shadow-xl max-w-[85%] rotate-[-5deg] hover:rotate-0 transition-transform duration-500"
                         />
                     </div>
 
                     {/* Top Right: Stats */}
-                    <div className="rounded-[32px] bg-[#F4F1ED] aspect-square p-8 flex flex-col justify-between relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full translate-x-12 -translate-y-12 opacity-50 blur-2xl"></div>
-                        <div className="flex justify-end">
+                    <div className="rounded-[32px] bg-[#F4F1ED] aspect-square p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
+                        {/* Decorative Arch */}
+                        <div className="absolute top-0 right-0 w-full h-full bg-[#EAE5DF] rounded-bl-[100px] rounded-tr-[32px] -z-0 scale-[1.15] origin-top-right"></div>
+                        <div className="flex justify-end z-10 relative">
                              <div className="text-4xl md:text-5xl font-medium text-[#0D120E] shrink-0">56+</div>
                         </div>
                         <div>
@@ -106,14 +99,14 @@ const ModernHero = () => {
                     </div>
 
                     {/* Bottom Left: Users Active */}
-                    <div className="rounded-[32px] bg-[#EAF2ED] aspect-square p-8 flex flex-col justify-between relative">
-                        <div className="absolute top-0 left-0 w-48 h-48 bg-white rounded-full -translate-x-16 -translate-y-16 opacity-60"></div>
-                        <div className="flex gap-2 relative z-10">
-                            <Star className="w-6 h-6 fill-[#113123] text-[#113123]" />
-                            <Star className="w-8 h-8 fill-[#113123] text-[#113123]" />
+                    <div className="rounded-[32px] bg-[#EAF2ED] aspect-square p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
+                        {/* Decorative Arch */}
+                        <div className="absolute top-0 left-0 w-full h-full bg-[#DCEEE3] rounded-tl-[32px] rounded-br-[100px] -z-0 scale-110 origin-top-left"></div>
+                        <div className="flex gap-2 relative z-10 text-[#113123]">
+                            ✦ ✦
                         </div>
                         <div className="relative z-10">
-                            <span className="text-[#113123] block mb-4 font-medium text-lg">Members Active</span>
+                            <span className="text-[#113123] block mb-4 font-medium text-base md:text-lg">Members Active</span>
                             <div className="flex items-center justify-between">
                                 <div className="flex -space-x-3">
                                     {[1, 2, 3].map((i) => (
@@ -130,10 +123,10 @@ const ModernHero = () => {
                     </div>
 
                     {/* Bottom Right: Chart */}
-                    <div className="rounded-[32px] bg-[#113123] aspect-square p-8 flex flex-col justify-between text-white relative overflow-hidden">
+                    <div className="rounded-[32px] bg-[#113123] aspect-square p-6 md:p-8 flex flex-col justify-between text-white relative overflow-hidden">
                         <div className="flex justify-between items-start z-10 relative">
-                            <span className="text-2xl md:text-3xl font-medium">$196k+</span>
-                            <ArrowUpRight className="w-5 h-5 text-[#1DA756]" />
+                            <span className="text-2xl lg:text-3xl font-medium">$196k+</span>
+                            <ArrowUpRight className="w-5 h-5 text-white/70" />
                         </div>
                         
                         {/* Fake Line Chart */}

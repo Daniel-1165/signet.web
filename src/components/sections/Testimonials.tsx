@@ -6,7 +6,7 @@ import TestimonialsClient from "./TestimonialsClient";
 async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const data = await sanityFetch({
-      query: `*[_type == "testimonial"] | order(featured desc, order asc, _createdAt desc)`,
+      query: GET_TESTIMONIALS,
       tags: ["testimonial"],
     });
 

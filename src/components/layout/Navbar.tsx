@@ -95,11 +95,19 @@ const Navbar = () => {
   return (
     <>
       {/* ════════════════════════════════════════════════════════════
+          TOP BANNER (Visible across all screens at the top)
+      ════════════════════════════════════════════════════════════ */}
+      <div className={`w-full bg-[#113123] text-white text-[11px] md:text-xs font-semibold py-2.5 flex items-center justify-center gap-2 z-[60] transition-all duration-300 ${isScrolled ? 'hidden' : 'block relative'}`}>
+          <span className="text-[#1DA756]">🚀</span>
+          <span>Session 2024 - Early-bird registration now open &gt;</span>
+      </div>
+
+      {/* ════════════════════════════════════════════════════════════
           MOBILE TOP BAR  (visible on all screen sizes < md)
       ════════════════════════════════════════════════════════════ */}
       <header
-        className={`md:hidden fixed top-0 left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 ${
-          isScrolled ? "bg-white/10 backdrop-blur-md" : "bg-transparent"
+        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 ${
+          isScrolled ? "top-0 bg-white shadow-md border-b border-black/[0.05]" : "top-[40px] bg-transparent"
         }`}
       >
         {/* Logo */}
@@ -264,10 +272,10 @@ const Navbar = () => {
           DESKTOP NAV BAR
       ════════════════════════════════════════════════════════════ */}
       <nav
-        className={`hidden md:block fixed top-0 z-[50] w-full transition-all duration-300 ${
+        className={`hidden md:block fixed z-[50] w-full transition-all duration-300 ${
           isScrolled
-            ? "bg-white py-4 shadow-md border-b border-black/[0.05]"
-            : "bg-transparent py-8"
+            ? "top-0 bg-white py-4 shadow-sm border-b border-black/[0.05]"
+            : "top-[40px] bg-transparent py-6"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
