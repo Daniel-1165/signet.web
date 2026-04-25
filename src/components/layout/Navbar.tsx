@@ -53,8 +53,8 @@ const Navbar = () => {
   const hasDarkHero = DARK_HERO_ROUTES.some(
     (route) => pathname === route || pathname.startsWith(route + "/")
   );
-  // When not scrolled: dark hero pages get white text, light pages get dark text
-  const isLightText = !isScrolled && hasDarkHero;
+  // Dark hero pages get white text, light pages get dark text
+  const isLightText = hasDarkHero;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -109,9 +109,7 @@ const Navbar = () => {
           MOBILE TOP BAR  (visible on all screen sizes < md)
       ════════════════════════════════════════════════════════════ */}
       <header
-        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 top-0 ${
-          isScrolled ? "bg-white shadow-md border-b border-black/[0.05]" : "bg-transparent"
-        }`}
+        className="md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-5 h-[70px] transition-all duration-300 top-0 bg-transparent"
       >
         {/* Logo */}
         <Link
@@ -276,11 +274,7 @@ const Navbar = () => {
           DESKTOP NAV BAR
       ════════════════════════════════════════════════════════════ */}
       <nav
-        className={`hidden md:block fixed z-[50] w-full transition-all duration-300 top-0 ${
-          isScrolled
-            ? "bg-white py-4 shadow-sm border-b border-black/[0.05]"
-            : "bg-transparent py-6"
-        }`}
+        className="hidden md:block fixed z-[50] w-full transition-all duration-300 top-0 bg-transparent py-6"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
           {/* Logo */}
