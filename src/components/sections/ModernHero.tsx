@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Globe, Star, Activity, Crown, TrendingUp, Sparkles, Crosshair, ShieldCheck, ChevronRight } from "lucide-react";
+import { ArrowUpRight, Globe, Star, Activity, Crown, TrendingUp, Sparkles, Crosshair, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { SignUpButton, useUser } from "@clerk/nextjs";
 
@@ -9,155 +9,166 @@ const ModernHero = () => {
     const { isSignedIn, isLoaded } = useUser();
 
     return (
-        <section className="relative min-h-screen flex flex-col pt-24 md:pt-32 pb-16 overflow-hidden bg-white">
+        <section className="relative min-h-screen flex flex-col pt-24 md:pt-32 pb-16 overflow-hidden bg-transparent">
 
             {/* Container */}
-            <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-16 max-w-7xl px-6 lg:px-12 w-full mt-10">
+            <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-[24px] max-w-7xl px-6 w-full mt-10 z-10">
                 {/* Left Content */}
                 <div className="flex-1 flex flex-col items-start w-full">
                     <motion.span 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-gray-400 font-bold text-xs tracking-widest uppercase mb-6"
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        className="text-[#6E7A67] font-medium text-[14px] uppercase tracking-widest mb-[16px]"
                     >
                         Try it now!
                     </motion.span>
                     
                     <motion.h1 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.1 }}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#0D120E] leading-[1.1] mb-6 md:mb-8 tracking-tight"
+                        transition={{ duration: 0.15, delay: 0.05, ease: "easeOut" }}
+                        className="text-[#1D1914] text-[48px] md:text-[60px] font-semibold leading-[1.1] md:leading-[60px] tracking-[-0.025em] mb-[24px]"
                     >
                         Change the way<br />
                         you approach<br />
-                        <span className="font-serif italic font-medium tracking-tight text-[#113123]">your growth</span>
+                        <span className="text-[#6E7A67]">your growth.</span>
                     </motion.h1>
 
                     <motion.p 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                        className="text-gray-500 text-base md:text-lg max-w-lg mb-12 leading-relaxed"
+                        transition={{ duration: 0.15, delay: 0.1, ease: "easeOut" }}
+                        className="text-[#1F1B16] text-[14px] leading-[28px] max-w-lg mb-[32px] font-normal"
                     >
                         From your everyday habits, to planning for your future with essential resources and community, 
                         Signet helps you get more out of your life trajectory.
                     </motion.p>
 
                     <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.3 }}
-                        className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
+                        transition={{ duration: 0.15, delay: 0.15, ease: "easeOut" }}
+                        className="flex flex-col sm:flex-row items-start sm:items-center gap-[16px]"
                     >
                         {isLoaded && !isSignedIn ? (
                             <SignUpButton mode="modal">
-                                <button className="bg-[#113123] text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl shadow-[#113123]/20 hover:bg-[#1DA756] transition-colors">
+                                <button className="bg-[#6E7A67] text-[#F8F4ED] px-[24px] py-[12px] rounded-[9999px] font-medium text-[14px] hover:bg-[#1D1914] transition-colors duration-150 ease-out shadow-sm shadow-black/5 border-0">
                                     Get Started Now
                                 </button>
                             </SignUpButton>
                         ) : (
                             <Link href="/dashboard">
-                                <button className="bg-[#113123] text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl shadow-[#113123]/20 hover:bg-[#1DA756] transition-colors">
+                                <button className="bg-[#6E7A67] text-[#F8F4ED] px-[24px] py-[12px] rounded-[9999px] font-medium text-[14px] hover:bg-[#1D1914] transition-colors duration-150 ease-out shadow-sm shadow-black/5 border-0">
                                     Go to Dashboard
                                 </button>
                             </Link>
                         )}
                         
-                        <div className="flex flex-col gap-1">
-                            <div className="flex text-[#F5B50A]">
+                        <div className="flex flex-col gap-[4px] ml-[8px]">
+                            <div className="flex text-[#8A5A37]">
                                 {[1, 2, 3, 4, 5].map((star) => (
                                     <Star key={star} className="w-4 h-4 fill-current" />
                                 ))}
-                                <span className="text-[#0D120E] font-bold text-sm ml-2">5.0</span>
+                                <span className="text-[#1D1914] font-medium text-[14px] ml-[8px]">5.0</span>
                             </div>
-                            <span className="text-gray-400 text-xs font-medium">from 120+ <a href="#" className="underline">reviews</a></span>
+                            <span className="text-[#1F1B16] text-[12px] font-normal opacity-80">from 120+ <a href="#" className="underline decoration-[#D8CEBF] hover:text-[#6E7A67] transition-colors">reviews</a></span>
                         </div>
                     </motion.div>
                 </div>
 
-
-                {/* Right Content - 2x2 Grid */}
+                {/* Right Content - Full Bleed Composition */}
                 <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="flex-1 w-full max-w-lg xl:max-w-none grid grid-cols-1 sm:grid-cols-2 gap-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
+                    className="flex-1 w-full max-w-lg xl:max-w-none grid grid-cols-1 sm:grid-cols-2 gap-[12px]"
                 >
-                    {/* Top Right: Stats (Now Top Left) */}
-                    <div className="rounded-[32px] bg-[#F4F1ED] aspect-square p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
-                        {/* Decorative Arch */}
-                        <div className="absolute top-0 right-0 w-full h-full bg-[#EAE5DF] rounded-bl-[100px] rounded-tr-[32px] -z-0 scale-[1.15] origin-top-right"></div>
-                        <div className="flex justify-end z-10 relative">
-                             <div className="text-4xl md:text-5xl font-medium text-[#0D120E] shrink-0">56+</div>
-                        </div>
-                        <div>
-                            <span className="text-gray-600 block mb-6">Resources</span>
-                            <div className="w-12 h-12 border border-gray-300 rounded-full flex items-center justify-center">
-                                <Globe className="w-6 h-6 text-gray-500 stroke-[1.5]" />
+                    {/* Top Left: Stats -> using gradient shell technique */}
+                    <div className="p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-[inset_0_1px_0_0_rgba(255,255,255,0.75)]">
+                        <div className="rounded-[31px] bg-[rgba(251,247,240,0.88)] backdrop-blur-[24px] h-full p-[24px] border border-[rgb(216,206,190)] flex flex-col justify-between overflow-hidden relative">
+                            {/* Decorative Arch */}
+                            <div className="absolute top-0 right-0 w-full h-[80%] bg-[rgba(255,255,255,0.3)] rounded-bl-[100px] border-l border-[rgba(255,255,255,0.6)]"></div>
+                            
+                            <div className="flex justify-end z-10 relative">
+                                <div className="text-[48px] font-semibold text-[#1D1914] tracking-[-0.025em] shrink-0">56+</div>
+                            </div>
+                            <div className="z-10 relative mt-8">
+                                <span className="text-[#1F1B16] font-medium text-[14px] block mb-[16px]">Core Resources</span>
+                                <div className="w-[48px] h-[48px] border border-[#D8CEBF] rounded-[9999px] flex items-center justify-center bg-white/50 shadow-sm backdrop-blur-[12px]">
+                                    <Globe className="w-5 h-5 text-[#6E7A67]" />
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Bottom Left: Activity */}
-                    <div className="rounded-[32px] bg-[#F4F1ED] p-6 md:p-8 flex flex-col justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
-                                <Activity className="w-5 h-5 text-[#113123]" />
+                    {/* Top Right: Activity Profile */}
+                    <div className="p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-sm">
+                        <div className="rounded-[31px] bg-[rgba(251,247,240,0.88)] backdrop-blur-[24px] h-full p-[24px] border border-[rgb(216,206,190)] flex flex-col justify-between">
+                            <div className="flex items-center gap-[12px]">
+                                <div className="w-[40px] h-[40px] bg-white border border-[#D8CEBF] rounded-[16px] flex items-center justify-center">
+                                    <Activity className="w-5 h-5 text-[#6E7A67]" />
+                                </div>
+                                <span className="text-[#1F1B16] font-medium text-[14px]">Active Learners</span>
                             </div>
-                            <span className="text-gray-500 font-medium">Monthly Active</span>
-                        </div>
-                        <div>
-                            <div className="text-3xl font-bold text-[#0D120E] mb-2">1,240+</div>
-                            <div className="flex items-center gap-1 text-xs text-[#1DA756] font-bold">
-                                <TrendingUp className="w-3 h-3" /> +12.5% this month
+                            <div className="mt-8">
+                                <div className="text-[32px] font-semibold text-[#1D1914] mb-[8px] tracking-[-0.025em]">1,240+</div>
+                                <div className="flex items-center gap-[4px] text-[12px] text-[#6E7A67] font-medium px-3 py-1 bg-[#6E7A67]/10 rounded-[9999px] w-fit">
+                                    <TrendingUp className="w-3 h-3" /> +12.5% this month
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Bottom Right: CTA/Join */}
-                    <Link href="/join" className="group rounded-[32px] bg-[#113123] p-6 md:p-8 flex flex-col justify-between hover:bg-[#1DA756] transition-all duration-500 shadow-2xl shadow-[#113123]/20 sm:col-span-2 aspect-auto min-h-[200px]">
-                        <div className="flex justify-between items-start">
-                             <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                                <Activity className="w-6 h-6 text-white" />
-                             </div>
-                             <ArrowUpRight className="w-6 h-6 text-white group-hover:rotate-45 transition-transform" />
-                        </div>
-                        <div>
-                            <span className="text-white/60 block mb-2 font-bold uppercase tracking-widest text-[10px]">Community</span>
-                            <h4 className="text-xl font-bold mb-3 uppercase tracking-tight">Join the network of silent achievers</h4>
-                        </div>
-                    </Link>
+                    {/* Bottom: CTA/Join -> glass shell approach */}
+                    <div className="sm:col-span-2 p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.75),0_1px_0_0_rgba(114,93,72,0.04)] relative hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.75),0_4px_12px_rgba(114,93,72,0.08)] transition-all duration-150 ease-out group">
+                        <Link href="/join" className="block rounded-[31px] bg-white/40 backdrop-blur-[24px] border border-[rgb(216,206,190)] p-[24px] flex flex-col justify-between min-h-[160px] h-full relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-80" />
+                            <div className="flex justify-between items-start z-10">
+                                <div className="w-[48px] h-[48px] bg-white border border-[#D8CEBF] rounded-[9999px] flex items-center justify-center">
+                                    <Sparkles className="w-5 h-5 text-[#8A5A37]" />
+                                </div>
+                                <div className="w-[32px] h-[32px] bg-[#6E7A67] text-[#F8F4ED] rounded-[9999px] flex items-center justify-center -rotate-45 group-hover:rotate-0 transition-transform duration-150 ease-out shadow-sm">
+                                    <ArrowUpRight className="w-4 h-4" />
+                                </div>
+                            </div>
+                            <div className="mt-8 z-10 flex flex-col md:flex-row md:items-end justify-between gap-[12px]">
+                                <div>
+                                    <span className="text-[#1F1B16] block mb-[4px] font-medium text-[12px] uppercase tracking-widest opacity-60">Community</span>
+                                    <h4 className="text-[20px] font-semibold tracking-[-0.025em] text-[#1D1914]">Join the network of silent achievers</h4>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
                 </motion.div>
 
             </div>
 
             {/* Bottom Logo Cloud - Brand Values */}
-            <div className="w-full border-t border-gray-100 mt-24 py-12 px-6">
-                <div className="max-w-6xl mx-auto flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2">
-                        <Activity className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+            <div className="w-full border-t border-[rgb(216,206,190)] border-opacity-40 mt-[80px] py-[32px] px-[24px] z-10 bg-[#FBF7F0]/30 backdrop-blur-[12px]">
+                <div className="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-[24px]">
+                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out">
+                        <Activity className="w-4 h-4" />
                         Sustainability
                     </div>
-                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2">
-                        <Crown className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out">
+                        <Crown className="w-4 h-4" />
                         Mastery
                     </div>
-                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2">
-                        <TrendingUp className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out">
+                        <TrendingUp className="w-4 h-4" />
                         Growth
                     </div>
-                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2">
-                        <Sparkles className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out hidden sm:flex">
+                        <Sparkles className="w-4 h-4" />
                         Excellence
                     </div>
-                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2 hidden lg:flex">
-                        <Crosshair className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out hidden md:flex">
+                        <Crosshair className="w-4 h-4" />
                         Focus
                     </div>
-                    <div className="text-lg md:text-xl font-black tracking-tight text-gray-800 flex items-center gap-2 hidden lg:flex">
-                        <ShieldCheck className="w-5 h-5 text-[#1DA756]" strokeWidth={2.5} />
+                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out hidden lg:flex">
+                        <ShieldCheck className="w-4 h-4" />
                         Resilience
                     </div>
                 </div>
@@ -167,3 +178,4 @@ const ModernHero = () => {
 };
 
 export default ModernHero;
+

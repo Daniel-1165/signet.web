@@ -3,124 +3,74 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-outfit);
-  --font-heading: var(--font-syne);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Unified Premium Palette */
-  --color-accent: #1DA756; /* Emerald Green */
-  --color-signet-green: #1DA756;
-  --color-growth-green: #D3F36B;
-  --color-earth-brown: #0D120E;
-  
-  /* Surface & Detail Tones */
-  --color-solar-gold: #D3F36B; 
-  --color-terra-soil: #24282C;
-  --color-vision-blue: #0ea5e9;
-  
-  --color-signet-light: #232826;
-  --color-platinum: #3C413F;
-  --color-emerald-glow: #D3F36B;
+  --color-primary: #6E7A67;
+  --color-secondary: #D8CEBF;
+  --color-tertiary: #8A5A37;
+  --color-neutral: #1D1914;
+  --color-border: #D8CEBE;
+  --color-surface: #FBF7F0;
 }
 
 :root {
-  --background: #F7F6F0; /* Warm off-white */
-  --foreground: #0D120E; /* Deep dark green-black */
+  --background: #FFFFFF;
+  --foreground: #1D1914;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #F7F6F0; /* Force light mode */
-    --foreground: #0D120E;
+    --background: #FFFFFF; /* Force light mode based on spec */
+    --foreground: #1D1914;
   }
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at top, rgba(237,228,214,0.9) 0%, rgba(245,239,230,1) 42%, rgba(241,234,223,1) 100%);
   color: var(--foreground);
-  font-family: 'Melbourne', var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  @apply bg-[#FFFFFF] text-[#1D1914] selection:bg-[#D8CEBF] selection:text-[#1D1914];
 }
 
-/* Custom Utilities for Mature Styling */
+/* Custom Utilities for Math/Aesthetics */
 @layer base {
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-bold tracking-tight;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
   }
 }
 
 .premium-gradient {
-  background: radial-gradient(circle at top center, rgba(167, 215, 172, 0.15) 0%, transparent 70%);
-}
-
-.dark .premium-gradient {
-  background: radial-gradient(circle at top center, rgba(167, 215, 172, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle at top center, rgba(110, 122, 103, 0.15) 0%, transparent 70%);
 }
 
 .soft-blur {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 .signet-glow {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: rgba(255, 255, 255, 0.75) 0px 1px 0px 0px inset, rgba(114, 93, 72, 0.04) 0px 1px 0px 0px;
+  border: 1px solid #D8CEBE;
 }
 
 .signet-glow-hover:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #0B1C15 0%, rgba(11,28,21,0.7) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  box-shadow: rgba(255, 255, 255, 0.75) 0px 1px 0px 0px inset, rgba(114, 93, 72, 0.1) 0px 2px 4px 0px;
+  border-color: #D8CEBE;
 }
 
 .inner-glow {
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .typography-premium {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.4;
 }
 
-.syne-heading {
-  font-family: var(--font-syne);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.05em;
-}
-
-@keyframes germinate {
-  0% { transform: scaleY(0); opacity: 0; }
-  20% { transform: scaleY(0.2); opacity: 1; }
-  50% { transform: scaleY(0.6) rotate(-2deg); }
-  80% { transform: scaleY(0.9) rotate(2deg); }
-  100% { transform: scaleY(1); opacity: 1; }
-}
-
-.animate-germinate {
-  animation: germinate 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  transform-origin: bottom;
-}
-
-.detail-dot {
-  @apply w-1 h-1 rounded-full inline-block;
-}
-
-.detail-line {
-  @apply h-[1px] bg-current opacity-10;
-}
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
