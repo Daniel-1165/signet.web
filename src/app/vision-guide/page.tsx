@@ -1,69 +1,48 @@
 "use client";
 
-import { BookOpen, Lightbulb, Heart, CheckCircle2, Target, Compass, ArrowRight, Upload, ImageIcon, Trash2 } from "lucide-react";
+import { 
+  BookOpen, Lightbulb, Heart, CheckCircle2, 
+  Target, Compass, ArrowRight, Upload, 
+  ImageIcon, Trash2, Sparkles, Shield,
+  ArrowUpRight, ChevronRight
+} from "lucide-react";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { PortableText } from 'next-sanity';
+import { SignUpButton, useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 const sections = [
   {
     id: "foundation",
     title: "The Foundation of Vision",
     subtitle: "Core Concepts",
-    icon: <BookOpen className="w-6 h-6" />,
+    icon: <BookOpen className="w-5 h-5" />,
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
     description: "A personal vision statement is more than a goal-setting exercise—it's a declaration of your divine purpose and the unique contribution you're called to make in this world.",
-    keyPoints: ['Vision statements articulate your "why"', 'Serve as a compass during uncertainty', 'Align personal goals with eternal values']
+    keyPoints: ['Defining your "Why"', 'Compass through Noise', 'Alignment']
   },
   {
     id: "biblical",
-    title: "Biblical Framework for Vision",
-    subtitle: "Spiritual Foundation",
-    icon: <Heart className="w-6 h-6" />,
+    title: "Biblical Framework",
+    subtitle: "Spiritual Roots",
+    icon: <Heart className="w-5 h-5" />,
     image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=1200",
     description: "The Bible provides the ultimate framework for personal vision. God's vision for humanity is revealed through Scripture, and He invites us to participate in His grand narrative.",
-    keyPoints: ["God has a specific purpose for each person", "Vision should glorify God and serve others"],
-    verse: { verse: "Jeremiah 29:11", text: '"For I know the plans I have for you," declares the Lord...', interpretation: "Your vision should be rooted in God's good plans." }
+    verse: { verse: "Habakkuk 2:2", text: '"Write the vision and make it plain on tablets, that he may run who reads it."', interpretation: "Clarity leads to execution." }
   },
   {
     id: "framework",
-    title: "Academic Vision Frameworks",
-    subtitle: "Evidence-Based Framework",
-    icon: <Lightbulb className="w-6 h-6" />,
+    title: "Evidence-Based Framework",
+    subtitle: "Modern Strategy",
+    icon: <Lightbulb className="w-5 h-5" />,
     image: "https://images.unsplash.com/photo-1454165833772-d996d49513d7?auto=format&fit=crop&q=80&w=1200",
-    description: "Modern research provides evidence-based frameworks for crafting effective vision statements. The most successful visions combine personal values, strengths, and aspirations with measurable outcomes.",
-    keyPoints: ['SMART goals framework', 'BHAG (Big Hairy Audacious Goals)', 'Personal SWOT analysis']
-  },
-  {
-    id: "exercise",
-    title: "Core Values Assessment",
-    subtitle: "Practical Application",
-    icon: <CheckCircle2 className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200",
-    description: "Your core values are the non-negotiable principles that guide your decisions and define your character.",
-    reflection: { question: "What are your top 5 core values?", guidance: "Consider moments when you felt most alive.", journalPlaceholder: "List your values here..." }
-  },
-  {
-    id: "reflection",
-    title: "Strengths & Gifts Inventory",
-    subtitle: "Introspection Prompt",
-    icon: <Target className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=1200",
-    description: "Gallup research shows that individuals who focus on their strengths are 3 times more likely to report having an excellent quality of life.",
-    reflection: { question: "What activities make you lose track of time?", guidance: "Think about work or hobbies where you excel naturally.", journalPlaceholder: "List activities..." }
-  },
-  {
-    id: "purpose",
-    title: "Life Purpose Integration",
-    subtitle: "Life Integration",
-    icon: <Compass className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200",
-    description: "Your life purpose integrates your calling, strengths, values, and vision into a cohesive whole.",
-    reflection: { question: "If you could only accomplish one thing in life, what would it be?", guidance: "This reveals your deepest calling.", journalPlaceholder: "Describe your one thing..." }
+    description: "Modern research provides evidence-based frameworks for crafting effective vision statements. Successful visions combine personal values and aspirations.",
+    keyPoints: ['SMART Metrics', 'BHAG Alignment', 'SWOT Synthesis']
   }
 ];
 
 export default function VisionGuidePage() {
+  const { isSignedIn, isLoaded } = useUser();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -79,195 +58,171 @@ export default function VisionGuidePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#FDFDFB]">
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-accent/5 to-transparent -z-10 pointer-events-none" />
+    <div className="relative min-h-screen bg-[#FDFDFB] text-[#0D120E] selection:bg-[#1DA756] selection:text-white"
+         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       
-      <main className="max-w-7xl mx-auto px-6 py-24">
-        {/* Simplified Header */}
-        <div className="max-w-4xl mb-32">
+      {/* ── HERO SECTION ─────────────────────────────────────────── */}
+      <section className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">Personal Development Matrix</p>
-            <h1 className="text-7xl md:text-8xl font-black tracking-tighter text-foreground leading-[0.95] mb-8">
-              The Vision <br /> 
-              <span className="text-accent underline decoration-accent/20 underline-offset-8">Blueprint</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1DA756]/10 border border-[#1DA756]/20 mb-8">
+              <Sparkles className="w-3.5 h-3.5 text-[#1DA756]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1DA756]">Vision Matrix v2.0</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
+              Empowering <br />
+              <span className="text-[#1DA756]">clarity</span> through <br />
+              innovation.
             </h1>
-            <p className="text-xl md:text-2xl text-foreground/60 max-w-2xl leading-relaxed">
-              A masterclass framework to architect your future and align your divine purpose with actionable excellence.
+            
+            <p className="text-lg md:text-xl text-[#0D120E]/60 max-w-lg mb-12 leading-relaxed font-medium">
+              Welcome to the Blueprint, where we combine spiritual insights and modern strategy to revolutionize your life trajectory.
             </p>
+            
+            <div className="flex flex-wrap gap-4">
+              {isLoaded && !isSignedIn ? (
+                <SignUpButton mode="modal">
+                   <button className="h-14 px-10 rounded-full bg-[#1DA756] text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-[#1DA756]/20">
+                      Get Started <ArrowUpRight size={18} />
+                   </button>
+                </SignUpButton>
+              ) : (
+                <Link href="/dashboard" className="h-14 px-10 rounded-full bg-[#1DA756] text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-[#1DA756]/20">
+                  Enter Dashboard <ChevronRight size={18} />
+                </Link>
+              )}
+              <button className="h-14 px-10 rounded-full bg-white border border-black/5 text-[#0D120E] font-bold hover:bg-black/5 transition-colors">
+                Explore Logic
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Featured Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="relative h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200" 
+              alt="Nature" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#1DA756]/20 to-transparent mix-blend-overlay"></div>
           </motion.div>
         </div>
+      </section>
 
-        {/* Normal Sections (Grid of Modules) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
-          {sections.map((section, idx) => (
-            <motion.section
-              key={section.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: idx % 2 * 0.1 }}
-              className="flex flex-col group"
-            >
-              {/* Image Container */}
-              <div className="relative h-[400px] rounded-[2rem] overflow-hidden mb-8 shadow-2xl shadow-black/5">
-                <img 
-                  src={section.image} 
-                  alt={section.title}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8 flex items-center gap-4">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-white border border-white/20">
-                    {section.icon}
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-white/70 leading-none mb-1">{section.subtitle}</p>
-                    <h3 className="text-xl font-bold text-white tracking-tight leading-none">{section.title}</h3>
-                  </div>
-                </div>
-              </div>
-
-              {/* Text Content */}
-              <div className="px-2">
-                <p className="text-lg text-foreground/70 leading-relaxed mb-6">
-                  {section.description}
-                </p>
-
-                {section.keyPoints && (
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {section.keyPoints.map(point => (
-                      <span key={point} className="px-3 py-1.5 bg-black/[0.03] border border-black/[0.06] rounded-full text-[10px] font-bold text-foreground/50 uppercase tracking-wider">
-                        {point}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {section.verse && (
-                  <div className="p-6 bg-accent/[0.03] border-l-4 border-accent rounded-r-2xl mb-8">
-                    <p className="text-sm font-black text-accent mb-2">{section.verse.verse}</p>
-                    <p className="text-base italic text-foreground/80 mb-4">"{section.verse.text}"</p>
-                    <p className="text-xs text-foreground/50 uppercase font-black tracking-widest leading-relaxed">
-                      {section.verse.interpretation}
-                    </p>
-                  </div>
-                )}
-
-                {section.reflection && (
-                  <div className="space-y-4">
-                    <div className="p-4 bg-black/[0.02] border border-black/[0.04] rounded-2xl">
-                      <p className="text-sm font-bold text-foreground mb-1">{section.reflection.question}</p>
-                      <p className="text-xs text-foreground/50 italic mb-4">{section.reflection.guidance}</p>
-                      <textarea 
-                        placeholder={section.reflection.journalPlaceholder}
-                        className="w-full bg-white border border-black/5 rounded-xl p-4 text-sm focus:ring-1 focus:ring-accent/20 focus:border-accent outline-none min-h-[100px] transition-all"
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.section>
-          ))}
-        </div>
-
-        {/* Final Vision Builder - The "Normal Section and Image Input" */}
-        <section className="mt-48 pt-32 border-t border-black/[0.05]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-            <div className="space-y-12">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-6">Phase 07: Synthesis</p>
-                <h2 className="text-6xl font-black tracking-tighter text-foreground leading-[0.95] mb-8">
-                  Craft Your <br /> Final Declaration
-                </h2>
-                <p className="text-xl text-foreground/60 leading-relaxed max-w-md">
-                  Combine your insights into a singular, powerful vision statement. Upload an image that visualizes your future.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-black uppercase tracking-widest text-foreground/40">Your Vision Statement</label>
-                  <textarea 
-                    placeholder="I will [action] so that [impact] because [why/purpose]..."
-                    className="w-full bg-black/[0.02] border border-black/[0.06] rounded-3xl p-8 text-xl font-medium focus:ring-2 focus:ring-accent/10 focus:border-accent outline-none min-h-[200px] transition-all"
-                  />
-                </div>
-
-                {/* Final Image Input Area */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-black uppercase tracking-widest text-foreground/40">Visual Representation</label>
-                  <div 
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`relative w-full aspect-video rounded-[3rem] border-2 border-dashed border-black/5 bg-black/[0.01] hover:bg-black/[0.03] transition-all cursor-pointer flex flex-col items-center justify-center p-8 text-center group overflow-hidden ${selectedImage ? 'border-solid border-accent/20' : ''}`}
-                  >
-                    {selectedImage ? (
-                      <>
-                        <img src={selectedImage} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                           <button onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }} className="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-                              <Trash2 className="w-5 h-5" />
-                           </button>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition-transform">
-                          <Upload className="w-6 h-6" />
-                        </div>
-                        <p className="text-lg font-bold text-foreground">Upload Vision Image</p>
-                        <p className="text-sm text-foreground/40 mt-1">PNG, JPG or WebP (max 10MB)</p>
-                      </>
-                    )}
-                    <input 
-                      type="file" 
-                      ref={fileInputRef} 
-                      onChange={handleImageUpload} 
-                      className="hidden" 
-                      accept="image/*"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-4 pt-8">
-                 <button className="h-16 px-10 bg-accent text-white font-black rounded-2xl shadow-xl shadow-accent/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-3">
-                   Save Vision <ArrowRight className="w-5 h-5" />
-                 </button>
-                 <button className="h-16 px-10 bg-white border border-black/10 text-foreground font-black rounded-2xl hover:bg-black/5 transition-all">
-                   Share Blueprint
-                 </button>
-              </div>
-            </div>
-
-            {/* Sidebar / Tip Area */}
-            <div className="lg:sticky lg:top-24 space-y-8">
-               <div className="p-10 rounded-[3rem] bg-accent text-white shadow-2xl shadow-accent/20">
-                  <Heart className="w-10 h-10 mb-6 opacity-40 shrink-0" />
-                  <h4 className="text-2xl font-black tracking-tight mb-4 leading-tight">Why a Vision Image Matters?</h4>
-                  <p className="text-white/80 leading-relaxed text-lg italic">
-                    "Visualization is one of the most powerful mind exercises you can do. According to popular research, visualization activates the same brain regions as actual experience."
-                  </p>
-               </div>
-               
-               <div className="p-10 rounded-[3rem] bg-black text-white shadow-2xl shadow-black/10">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-2 h-2 rounded-full bg-[#1DA756]" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-[#1DA756]">Academy Tip</span>
-                  </div>
-                  <h4 className="text-xl font-bold mb-4">The Clarity Rule</h4>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    If your vision cannot be explained to a 10-year old in less than 30 seconds, it's not clear enough. Refine until it's simple, evocative, and undeniable.
-                  </p>
-               </div>
+      {/* ── MODULES GRID ─────────────────────────────────────────── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div className="max-w-2xl">
+               <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-tight mb-6">
+                 Integrate vision <br />
+                 seamlessly into your <br />
+                 <span className="text-[#1DA756]">workflow.</span>
+               </h2>
+               <p className="text-lg text-[#0D120E]/50 font-medium">
+                 Our step-by-step guide will show you how to easily incorporate your purpose into your existing journey. Streamline your processes.
+               </p>
             </div>
           </div>
-        </section>
-      </main>
+
+          <div className="grid md:grid-cols-3 gap-8">
+             {sections.map((section, idx) => (
+                <div key={section.id} className="group">
+                   <div className="w-12 h-12 rounded-xl bg-[#1DA756]/10 flex items-center justify-center text-[#1DA756] mb-6">
+                      {section.icon}
+                   </div>
+                   <h4 className="text-xl font-bold mb-3 uppercase tracking-tight">{section.title}</h4>
+                   <p className="text-sm text-[#0D120E]/50 leading-relaxed font-medium mb-8">
+                      {section.description}
+                   </p>
+                   <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-4 shadow-xl border border-black/5">
+                      <img 
+                        src={section.image} 
+                        alt={section.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                      />
+                   </div>
+                </div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FINAL BUILDER SECTION ────────────────────────────────── */}
+      <section className="py-24 max-w-7xl mx-auto px-6 md:px-12">
+        <div className="bg-[#0D120E] rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden border border-white/5 shadow-2xl">
+           <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-[#1DA756]/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
+           
+           <div className="grid lg:grid-cols-2 gap-20 items-center">
+              <div>
+                 <span className="text-[10px] font-black tracking-[0.4em] text-[#1DA756] uppercase block mb-8">Final Declaration</span>
+                 <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] mb-10">
+                   Transforming <br />
+                   intentions with <br />
+                   <span className="text-[#1DA756]">sustainable</span> vision.
+                 </h2>
+                 <p className="text-[#0D120E]/40 text-lg md:text-xl font-medium mb-12 capitalize leading-relaxed">
+                   Signet empowers individuals to achieve their goals while minimizing internal friction. With our sustainable solutions, you can drive growth.
+                 </p>
+                 
+                 <div className="flex flex-col gap-6">
+                    <div className="flex gap-4">
+                       <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] mt-2" />
+                       <div>
+                          <p className="font-bold text-lg mb-1">Efficiency</p>
+                          <p className="text-white/40 text-sm">Streamline operations and reduce waste with our innovative vision.</p>
+                       </div>
+                    </div>
+                    <div className="flex gap-4">
+                       <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] mt-2" />
+                       <div>
+                          <p className="font-bold text-lg mb-1">Profitability</p>
+                          <p className="text-white/40 text-sm">Increase your bottom line while making a positive impact.</p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-[3rem] shadow-2xl">
+                 <h3 className="text-2xl font-bold mb-8">Craft Statement</h3>
+                 <textarea 
+                    placeholder="I will [action] so that [impact]..."
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-lg outline-none focus:border-[#1DA756] transition-colors min-h-[150px] mb-8"
+                 />
+                 
+                 <div 
+                    onClick={() => fileInputRef.current?.click()}
+                    className="aspect-video rounded-3xl border border-white/10 flex flex-col items-center justify-center p-6 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden"
+                 >
+                    {selectedImage ? (
+                      <img src={selectedImage} className="absolute inset-0 w-full h-full object-cover" />
+                    ) : (
+                      <>
+                        <Upload className="w-8 h-8 text-[#1DA756] mb-3" />
+                        <span className="text-xs font-bold text-white/40 uppercase tracking-widest">Upload Visual</span>
+                      </>
+                    )}
+                 </div>
+                 <input type="file" ref={fileInputRef} className="hidden" onChange={handleImageUpload} />
+                 
+                 <button className="w-full h-14 bg-[#1DA756] text-white rounded-full font-black uppercase text-xs tracking-widest mt-8 shadow-xl shadow-[#1DA756]/20">
+                    Save Declaration
+                 </button>
+              </div>
+           </div>
+        </div>
+      </section>
+
     </div>
   );
 }

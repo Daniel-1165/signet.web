@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Globe, Star, Activity, Crown, TrendingUp, Sparkles, Crosshair, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Globe, Star, Activity, Crown, TrendingUp, Sparkles, Crosshair, ShieldCheck, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { MagneticButton } from "../ui/MagneticButton";
+import { SignUpButton, useUser } from "@clerk/nextjs";
 
 const ModernHero = () => {
+    const { isSignedIn, isLoaded } = useUser();
+
     return (
         <section className="relative min-h-screen flex flex-col pt-24 md:pt-32 pb-16 overflow-hidden bg-white">
 
@@ -49,11 +51,19 @@ const ModernHero = () => {
                         transition={{ duration: 0.7, delay: 0.3 }}
                         className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
                     >
-                        <Link href="/join">
-                            <button className="bg-[#113123] text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl shadow-[#113123]/20 hover:bg-[#1DA756] transition-colors">
-                                Get Started Now
-                            </button>
-                        </Link>
+                        {isLoaded && !isSignedIn ? (
+                            <SignUpButton mode="modal">
+                                <button className="bg-[#113123] text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl shadow-[#113123]/20 hover:bg-[#1DA756] transition-colors">
+                                    Get Started Now
+                                </button>
+                            </SignUpButton>
+                        ) : (
+                            <Link href="/dashboard">
+                                <button className="bg-[#113123] text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl shadow-[#113123]/20 hover:bg-[#1DA756] transition-colors">
+                                    Go to Dashboard
+                                </button>
+                            </Link>
+                        )}
                         
                         <div className="flex flex-col gap-1">
                             <div className="flex text-[#F5B50A]">
@@ -67,6 +77,7 @@ const ModernHero = () => {
                     </motion.div>
                 </div>
 
+
                 {/* Right Content - 2x2 Grid */}
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -74,16 +85,7 @@ const ModernHero = () => {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="flex-1 w-full max-w-lg xl:max-w-none grid grid-cols-1 sm:grid-cols-2 gap-4"
                 >
-                    {/* Top Left: Image */}
-                    <div className="rounded-[32px] overflow-hidden aspect-square bg-[#F4F1ED] relative flex items-center justify-center p-6">
-                        <img 
-                            src="/hero-primary.png" 
-                            alt="Growth app" 
-                            className="w-full h-auto object-cover rounded-2xl shadow-xl max-w-[85%] rotate-[-5deg] hover:rotate-0 transition-transform duration-500"
-                        />
-                    </div>
-
-                    {/* Top Right: Stats */}
+                    {/* Top Right: Stats (Now Top Left) */}
                     <div className="rounded-[32px] bg-[#F4F1ED] aspect-square p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
                         {/* Decorative Arch */}
                         <div className="absolute top-0 right-0 w-full h-full bg-[#EAE5DF] rounded-bl-[100px] rounded-tr-[32px] -z-0 scale-[1.15] origin-top-right"></div>
@@ -115,7 +117,7 @@ const ModernHero = () => {
                     </div>
 
                     {/* Bottom Right: CTA/Join */}
-                    <Link href="/join" className="group rounded-[32px] bg-[#113123] p-6 md:p-8 flex flex-col justify-between hover:bg-[#1DA756] transition-all duration-500 shadow-2xl shadow-[#113123]/20">
+                    <Link href="/join" className="group rounded-[32px] bg-[#113123] p-6 md:p-8 flex flex-col justify-between hover:bg-[#1DA756] transition-all duration-500 shadow-2xl shadow-[#113123]/20 sm:col-span-2 aspect-auto min-h-[200px]">
                         <div className="flex justify-between items-start">
                              <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
                                 <Activity className="w-6 h-6 text-white" />
@@ -124,10 +126,11 @@ const ModernHero = () => {
                         </div>
                         <div>
                             <span className="text-white/60 block mb-2 font-bold uppercase tracking-widest text-[10px]">Community</span>
-                            <div className="text-2xl font-bold text-white">Join the network of silent achievers</div>
+                            <h4 className="text-xl font-bold mb-3 uppercase tracking-tight">Join the network of silent achievers</h4>
                         </div>
                     </Link>
                 </motion.div>
+
             </div>
 
             {/* Bottom Logo Cloud - Brand Values */}

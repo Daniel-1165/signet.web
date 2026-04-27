@@ -5,11 +5,16 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
 
 const RESOURCE_QUERY = `
-  *[_type in ["resource", "book", "article", "magazine"] && slug.current == $slug][0] {
-    _id, title, tag, description, readTime, publishedAt, accentColor, content,
-    "fileUrl": file.asset->url,
-    "fileName": file.asset->originalFilename,
-    "mainImageUrl": coalesce(mainImage.asset->url, coverImage.asset->url, thumbnail.asset->url)
+  *[_type == "resourceCard" && slug.current == $slug][0] {
+    _id, 
+    title, 
+    "tag": category, 
+    "description": content, 
+    _createdAt, 
+    "fileUrl": resourceFile.asset->url,
+    "fileName": resourceFile.asset->originalFilename,
+    "mainImageUrl": thumbnail.asset->url,
+    content
   }
 `;
 
@@ -17,8 +22,9 @@ export default async function ResourceDetailPage({ params }: { params: { slug: s
   const resource = await sanityFetch({ 
     query: RESOURCE_QUERY, 
     params: { slug: params.slug },
-    tags: ["resource"] 
+    tags: ["resourceCard"] 
   });
+
 
   if (!resource) {
     notFound();

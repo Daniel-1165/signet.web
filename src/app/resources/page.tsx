@@ -3,20 +3,31 @@ import { ArrowRight, BookOpen, Clock, Leaf, Search, Sparkles, TrendingUp, Star, 
 import Link from "next/link";
 
 const POSTS_QUERY = `
-  *[_type in ["resource", "book", "article", "magazine"]] | order(publishedAt desc) {
-    _id, title, tag, description, readTime, publishedAt, accentColor, slug, _type,
-    "mainImageUrl": coalesce(mainImage.asset->url, coverImage.asset->url, thumbnail.asset->url)
+  *[_type == "resourceCard"] | order(_createdAt desc) {
+    _id, 
+    title, 
+    "tag": category, 
+    "description": content, 
+    _createdAt, 
+    slug, 
+    _type,
+    "mainImageUrl": thumbnail.asset->url
   }
 `;
 
 const RESOURCE_QUERY = `
-  *[_type in ["resource", "book", "article", "magazine"] && slug.current == $slug][0] {
-    _id, title, tag, description, readTime, publishedAt, accentColor, content,
-    "fileUrl": file.asset->url,
-    "fileName": file.asset->originalFilename,
-    "mainImageUrl": coalesce(mainImage.asset->url, coverImage.asset->url, thumbnail.asset->url)
+  *[_type == "resourceCard" && slug.current == $slug][0] {
+    _id, 
+    title, 
+    "tag": category, 
+    "description": content, 
+    _createdAt, 
+    "fileUrl": resourceFile.asset->url,
+    "fileName": resourceFile.asset->originalFilename,
+    "mainImageUrl": thumbnail.asset->url
   }
 `;
+
 
 const INTERRUPTS_QUERY = `
   *[_type == "feedInterrupt" && isActive == true] | order(insertAfter asc) {
@@ -92,8 +103,9 @@ const ResourceCard = ({ data, idx }: { data: any, idx: number }) => {
 };
 
 export default async function ResourcesPage() {
-  const posts = (await sanityFetch({ query: POSTS_QUERY, tags: ["resource"] })) || [];
+  const posts = (await sanityFetch({ query: POSTS_QUERY, tags: ["resourceCard"] })) || [];
   const interrupts = (await sanityFetch({ query: INTERRUPTS_QUERY, tags: ["feedInterrupt"] })) || [];
+
   const stream = buildStream(posts, interrupts);
 
   return (
