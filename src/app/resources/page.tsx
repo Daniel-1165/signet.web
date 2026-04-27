@@ -102,6 +102,8 @@ const ResourceCard = ({ data, idx }: { data: any, idx: number }) => {
   );
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ResourcesPage() {
   const posts = (await sanityFetch({ query: POSTS_QUERY, tags: ["resourceCard"] })) || [];
   const interrupts = (await sanityFetch({ query: INTERRUPTS_QUERY, tags: ["feedInterrupt"] })) || [];

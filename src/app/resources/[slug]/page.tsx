@@ -18,6 +18,8 @@ const RESOURCE_QUERY = `
   }
 `;
 
+export const dynamic = "force-dynamic";
+
 export default async function ResourceDetailPage({ params }: { params: { slug: string } }) {
   const resource = await sanityFetch({ 
     query: RESOURCE_QUERY, 
