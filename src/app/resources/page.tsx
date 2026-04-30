@@ -1,6 +1,7 @@
 import { sanityFetch } from "@/lib/sanity/client";
-import { ArrowRight, BookOpen, Clock, Leaf, Search, Sparkles, TrendingUp, Star, ChevronRight, PlayCircle } from "lucide-react";
+import { Search, Star, Bookmark, PlayCircle, Clock, ChevronRight, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const POSTS_QUERY = `
   *[_type == "resourceCard"] | order(_createdAt desc) {
@@ -15,193 +16,231 @@ const POSTS_QUERY = `
   }
 `;
 
-const RESOURCE_QUERY = `
-  *[_type == "resourceCard" && slug.current == $slug][0] {
-    _id, 
-    title, 
-    "tag": category, 
-    "description": content, 
-    _createdAt, 
-    "fileUrl": resourceFile.asset->url,
-    "fileName": resourceFile.asset->originalFilename,
-    "mainImageUrl": thumbnail.asset->url
-  }
-`;
+// Helper component for book cards
+const BookCard = ({ data, isFeatured = false }: { data: any, isFeatured?: boolean }) => {
+  // Mock author and rating based on title
+  const mockAuthor = "Signet Curated";
+  const mockRating = (4.2 + (Math.random() * 0.7)).toFixed(1);
 
-
-const INTERRUPTS_QUERY = `
-  *[_type == "feedInterrupt" && isActive == true] | order(insertAfter asc) {
-    _id, interruptType, insertAfter, title, headline,
-    subtext, ctaLabel, ctaUrl, label, accentColor,
-    shelfLabel, tiles
-  }
-`;
-
-function buildStream(posts: any[], interrupts: any[]) {
-  const stream: any[] = [];
-  posts.forEach((post, index) => {
-    stream.push({ ...post, _streamType: "post" });
-    const afterCount = index + 1;
-    const items = interrupts.filter((i) => i.insertAfter === afterCount);
-    items.forEach((i) => stream.push({ ...i, _streamType: "interrupt" }));
-  });
-  return stream;
-}
-
-const ResourceCard = ({ data, idx }: { data: any, idx: number }) => {
-  const isLarge = idx % 5 === 0;
-  
   return (
-    <Link
-      href={data.slug?.current ? `/resources/${data.slug.current}` : "#"}
-      className={`group relative flex flex-col bg-white rounded-[2.5rem] border border-black/[0.03] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
-        isLarge ? "md:col-span-2 md:row-span-2 h-[500px]" : "h-[400px]"
-      }`}
-    >
-      {/* Background Image Placeholder (Nature/Growth) */}
-      <div className="absolute inset-0 z-0 bg-[#0D120E]">
-         {data.mainImageUrl ? (
-           <img 
-              src={data.mainImageUrl}
-              alt={data.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-           />
-         ) : (
-           <img 
-              src={idx % 2 === 0 ? "/images/serene_nature.png" : "/images/growing_plant.png"}
-              alt="Nature"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 grayscale"
-           />
-         )}
-         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-      </div>
-
-      <div className="relative z-10 mt-auto p-8 flex flex-col gap-3">
-         <div className="flex items-center gap-3">
-            <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black text-white uppercase tracking-widest">
-                {data.tag || "Resource"}
-            </span>
-            <span className="flex items-center gap-1.5 text-[10px] font-bold text-white/60">
-                <Clock size={10} /> {data.readTime || "5 min"}
-            </span>
-         </div>
-         <h3 className={`font-black text-white leading-tight tracking-tight uppercase ${isLarge ? "text-3xl md:text-5xl" : "text-xl"}`}>
-            {data.title}
-         </h3>
-         <div className="flex items-center gap-2 text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
-            Open Resource <ChevronRight size={16} />
-         </div>
-      </div>
-
-      {isLarge && (
-        <div className="absolute top-8 right-8 z-10 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white">
-            <Sparkles size={20} />
+    <Link href={data.slug?.current ? `/resources/${data.slug.current}` : "#"} className="group flex flex-col gap-3">
+      {/* Book Cover */}
+      <div className={`relative rounded-2xl overflow-hidden bg-[#F3F2EE] shadow-sm border border-black/[0.02] transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-1.5 ${isFeatured ? "aspect-[4/5]" : "aspect-[2/3]"}`}>
+        {data.mainImageUrl ? (
+          <img 
+            src={data.mainImageUrl} 
+            alt={data.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-[#1DA756]/10 to-[#1DA756]/5 flex flex-col items-center justify-center p-4 text-center">
+            <span className="font-black text-[#1DA756]/80 text-3xl uppercase tracking-tighter">{data.title.substring(0, 2)}</span>
+          </div>
+        )}
+        
+        {/* Hover overlay with action */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
+          <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:scale-110">
+            <Bookmark className="w-4 h-4" />
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#1DA756] text-white flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75 hover:scale-110">
+            <PlayCircle className="w-4 h-4" />
+          </div>
         </div>
-      )}
+
+        {/* Tag badge */}
+        {data.tag && (
+          <div className="absolute top-3 left-3 px-3 py-1.5 bg-white/95 backdrop-blur-md rounded-lg text-[9px] font-black uppercase tracking-widest text-[#0D120E] shadow-sm">
+            {data.tag}
+          </div>
+        )}
+      </div>
+
+      {/* Book Info */}
+      <div className="flex flex-col gap-1.5 px-0.5">
+        <h3 className="font-extrabold text-[#0D120E] text-base leading-snug line-clamp-2 group-hover:text-[#1DA756] transition-colors">
+          {data.title}
+        </h3>
+        <p className="text-xs text-[#0D120E]/50 font-bold capitalize">
+          {mockAuthor}
+        </p>
+        
+        {/* Rating & Pages */}
+        <div className="flex items-center gap-2 mt-1">
+          <div className="flex items-center bg-[#FFF8E7] px-2 py-0.5 rounded text-[#F5B041]">
+            <Star className="w-3 h-3 fill-current" />
+            <span className="text-[10px] font-black text-[#D08B16] ml-1.5">{mockRating}</span>
+          </div>
+          <span className="w-1 h-1 rounded-full bg-black/10" />
+          <span className="text-[10px] font-bold text-[#0D120E]/40 uppercase tracking-wider">Premium</span>
+        </div>
+      </div>
     </Link>
   );
-};
+}
 
 export const dynamic = "force-dynamic";
 
 export default async function ResourcesPage() {
   const posts = (await sanityFetch({ query: POSTS_QUERY, tags: ["resourceCard"] })) || [];
-  const interrupts = (await sanityFetch({ query: INTERRUPTS_QUERY, tags: ["feedInterrupt"] })) || [];
 
-  const stream = buildStream(posts, interrupts);
+  const featuredBook = posts[0];
+  const recentlyAdded = posts.slice(0, 5);
+  const recommendedForYou = posts.length > 5 ? posts.slice(5) : posts;
 
   return (
-    <div className="min-h-screen bg-[#F7F6F0] pb-32" style={{ fontFamily: "'Melbourne', sans-serif" }}>
-      
-      {/* ── HEADER ────────────────────────────────────────────────── */}
-      <section className="pt-24 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-         {/* Top Actions: Search & CTA */}
-         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-16">
-             <div className="relative flex-1 w-full max-w-md">
-                 <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-[#0D120E]/30" size={18} />
-                 <input 
-                     type="text" 
-                     placeholder="Search library..." 
-                     className="w-full h-14 pl-14 pr-6 bg-white rounded-full border border-black/[0.03] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1DA756]/20 transition-all font-bold text-xs"
-                 />
-             </div>
-             
-             <div className="flex items-center gap-3 overflow-x-auto no-scrollbar w-full md:w-auto">
-                {["All", "Growth", "Leadership", "Productivity"].map(tag => (
-                    <button key={tag} className="h-12 px-6 rounded-full bg-white border border-black/[0.03] font-black uppercase text-[9px] tracking-widest hover:bg-[#1DA756] hover:text-white transition-all shadow-sm whitespace-nowrap">
-                        {tag}
+    <div className="min-h-screen bg-[#FDFDFC] pb-32">
+
+      {/* ── TOP SEARCH & FILTER BAR ── */}
+      <div className="sticky top-0 z-[40] bg-[#FDFDFC]/80 backdrop-blur-xl border-b border-black/[0.04] px-6 py-4 md:py-5">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
+          <h1 className="hidden md:block text-2xl font-black tracking-tight text-[#0D120E]">
+            Library.
+          </h1>
+          <div className="flex-1 flex items-center gap-3 w-full max-w-2xl">
+            <div className="relative w-full">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#0D120E]/30" />
+              <input 
+                type="text"
+                placeholder="Search Book, Author, or ISBN..."
+                className="w-full h-14 pl-14 pr-6 bg-[#F5F4F0] rounded-2xl border-none focus:outline-none focus:ring-2 focus:ring-[#1DA756]/20 font-bold text-sm transition-all placeholder:text-[#0D120E]/30"
+              />
+            </div>
+            <button className="w-14 h-14 shrink-0 flex items-center justify-center bg-[#F5F4F0] rounded-2xl text-[#0D120E]/70 hover:bg-[#1DA756] hover:text-white transition-colors">
+              <SlidersHorizontal className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── MAIN CONTENT ── */}
+      <main className="max-w-7xl mx-auto px-6 py-10 space-y-16">
+
+        {/* FEATURED PICK HERO */}
+        {featuredBook && (
+          <section className="relative">
+            <div className="flex items-center mb-6 gap-3">
+              <span className="w-2 h-2 rounded-full bg-[#D0652B] animate-pulse"></span>
+              <h2 className="text-[#0D120E]/60 font-black uppercase text-[10px] tracking-[0.2em]">Popular This Week</h2>
+            </div>
+            
+            <Link 
+              href={featuredBook.slug?.current ? `/resources/${featuredBook.slug.current}` : "#"} 
+              className="block bg-gradient-to-br from-[#FFF5ED] to-[#FDF0E6] rounded-[2rem] p-8 md:p-12 relative overflow-hidden group shadow-sm border border-[#D0652B]/5"
+            >
+              <div className="relative z-10 flex flex-col md:flex-row gap-10 items-center md:items-start">
+                
+                {/* Info Side */}
+                <div className="flex-1 space-y-6 text-center md:text-left pt-2 md:pt-6">
+                  <div>
+                    <h1 className="text-4xl md:text-[3.5rem] font-black text-[#0D120E] leading-[1.1] mb-4">
+                      {featuredBook.title}
+                    </h1>
+                    <p className="text-lg font-bold text-[#D0652B]">Morgan Housel <span className="text-[#0D120E]/30 font-medium">(2020)</span></p>
+                  </div>
+                  
+                  <p className="text-[#0D120E]/60 font-medium leading-relaxed max-w-md mx-auto md:mx-0 line-clamp-3">
+                    {featuredBook.description || "Timeless lessons on wealth, greed, and happiness doing well with money isn't necessarily about what you know. It's about how you behave."}
+                  </p>
+                  
+                  <div className="flex items-center justify-center md:justify-start gap-3 mt-4">
+                    <button className="h-12 flex items-center justify-center px-8 bg-[#0D120E] text-white rounded-xl font-bold text-sm hover:bg-[#1DA756] hover:-translate-y-1 transition-all shadow-xl shadow-black/10">
+                      Read Now
                     </button>
-                ))}
-             </div>
-
-             <Link href="/join" className="h-14 px-8 rounded-full bg-[#0D120E] text-white flex items-center justify-center font-black uppercase text-[10px] tracking-[0.2em] hover:bg-[#1DA756] transition-all shadow-xl shadow-black/10">
-                Join the Network
-             </Link>
-         </div>
-
-         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="max-w-2xl">
-                <div className="flex items-center gap-3 mb-4">
-                    <Leaf className="text-[#1DA756]" size={16} />
-                    <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase">Wisdom Network</span>
+                    <button className="h-12 w-12 flex items-center justify-center bg-white text-[#0D120E] rounded-xl font-bold border border-black/[0.05] hover:bg-black/[0.02] transition-colors">
+                      <Bookmark className="w-5 h-5" />
+                    </button>
+                  </div>
                 </div>
-                <h1 className="text-4xl md:text-[4.5rem] font-black uppercase leading-[0.9] tracking-tighter">
-                    Seeds of <br/>
-                    <span className="text-[#1DA756]">Insight.</span>
-                </h1>
-            </div>
-            <div className="space-y-4 max-w-sm">
-                <p className="text-base md:text-lg text-[#0D120E]/50 font-medium leading-relaxed capitalize">
-                    The quiet pursuit of mastery requires the finest tools. Explore our repository of disciplined growth.
-                </p>
-                <div className="flex items-center gap-4 text-[9px] font-black uppercase tracking-widest text-[#0D120E]/30">
-                    <span>Curated</span>
-                    <span className="w-1 h-1 rounded-full bg-[#1DA756]"></span>
-                    <span>Structured</span>
-                    <span className="w-1 h-1 rounded-full bg-[#1DA756]"></span>
-                    <span>Silent</span>
-                </div>
-            </div>
-         </div>
-      </section>
 
-      {/* ── GRID ──────────────────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12">
-         {stream.length === 0 ? (
-            <div className="text-center py-40">
-                <div className="w-20 h-20 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-8">
-                    <BookOpen className="text-[#1DA756]" size={32} />
+                {/* Cover Hero Image Float */}
+                <div className="w-56 md:w-72 shrink-0 relative transition-transform duration-700 ease-out group-hover:-translate-y-4 group-hover:scale-105 group-hover:rotate-2">
+                  <div className="aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl shadow-black/20 relative z-20">
+                    {featuredBook.mainImageUrl ? (
+                      <img src={featuredBook.mainImageUrl} alt="Featured" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full bg-[#1DA756] flex flex-col items-center justify-center p-6 text-center">
+                         <span className="font-black text-white text-3xl uppercase">{featuredBook.title.split(' ')[0]}</span>
+                      </div>
+                    )}
+                    {/* Glossy overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-50 z-10 pointer-events-none" />
+                  </div>
+                  
+                  {/* Backdrop shadow/reflection */}
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-4/5 h-12 bg-black/30 blur-2xl rounded-full z-0" />
                 </div>
-                <h3 className="text-2xl font-black uppercase">Coming Soon.</h3>
-            </div>
-         ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
-                {stream.map((item, idx) => {
-                    if (item._streamType === "post") {
-                        return <ResourceCard key={item._id} data={item} idx={idx} />;
-                    }
-                    
-                    // Interrupt handler (Spotlight/Banner)
-                    return (
-                        <div key={item._id} className="md:col-span-3 min-h-[300px] rounded-none bg-[#0D120E] p-10 md:p-16 text-white relative overflow-hidden flex flex-col justify-center border border-white/5">
-                            <div className="absolute right-0 top-0 w-96 h-96 bg-[#1DA756]/10 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2" />
-                            <div className="absolute left-0 bottom-0 w-64 h-64 bg-[#D3F36B]/5 rounded-full blur-[80px] -translate-x-1/2 translate-y-1/2" />
-                            
-                            <div className="relative z-10">
-                                <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block">{item.label || "Featured Insight"}</span>
-                                <h2 className="text-3xl md:text-5xl font-black uppercase leading-none mb-6 max-w-3xl">{item.headline || item.title}</h2>
-                                <p className="text-white/40 text-lg max-w-xl mb-8 leading-relaxed">{item.subtext || "Unlock deeper levels of self-mastery through our private network protocols."}</p>
-                                <Link href={item.ctaUrl || "#"} className="h-14 px-10 bg-white text-[#0D120E] rounded-none font-black uppercase text-xs inline-flex items-center gap-3 hover:bg-[#1DA756] hover:text-white transition-all shadow-xl">
-                                    {item.ctaLabel || "Learn More"} <ChevronRight size={16} />
-                                </Link>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-         )}
-      </section>
+              </div>
 
+              {/* Decorative Background Elements */}
+              <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-white/40 rounded-full blur-[80px] pointer-events-none"></div>
+              <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-[#D0652B]/5 rounded-full blur-[80px] pointer-events-none"></div>
+            </Link>
+          </section>
+        )}
+
+        {/* ── CATEGORIES TAB BAR ── */}
+        <section>
+          <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-4 pt-2 -mx-6 px-6 md:mx-0 md:px-0">
+            {["All Genre", "Comedy", "Fiction", "Romance", "Biography", "Business"].map((genre, idx) => (
+              <button 
+                key={genre} 
+                className={`h-12 px-8 rounded-2xl text-sm font-bold whitespace-nowrap transition-all ${
+                  idx === 0 
+                  ? "bg-[#0D120E] text-white shadow-xl shadow-black/10" 
+                  : "bg-white text-[#0D120E] border border-black/[0.04] hover:bg-[#1DA756] hover:text-white hover:border-transparent hover:shadow-xl hover:shadow-[#1DA756]/20"
+                }`}
+              >
+                {genre}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* ── CONTINUE READING / RECENTLY ADDED ── */}
+        {recentlyAdded.length > 0 ? (
+          <section>
+            <div className="flex items-end justify-between mb-8">
+              <div>
+                <h2 className="text-2xl font-black text-[#0D120E]">Recently Added</h2>
+                <p className="text-[#0D120E]/50 font-bold text-sm mt-1">Discover new arrivals</p>
+              </div>
+              <Link href="#" className="hidden md:flex items-center gap-1 text-sm font-bold text-[#1DA756] hover:text-[#0D120E] transition-colors">
+                SEE ALL <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
+              {recentlyAdded.map(post => (
+                <BookCard key={post._id} data={post} />
+              ))}
+            </div>
+          </section>
+        ) : (
+          <div className="text-center py-20">
+             <h2 className="text-2xl font-black text-[#0D120E]/30 uppercase">No resources yet.</h2>
+          </div>
+        )}
+
+        {/* ── RECOMMENDED FOR YOU ── */}
+        {(recommendedForYou.length > 0 || posts.length > 0) && (
+          <section className="pt-8 border-t border-black/[0.04]">
+            <div className="flex items-end justify-between mb-8">
+              <div>
+                <h2 className="text-2xl font-black text-[#0D120E]">Recommended For You</h2>
+                <p className="text-[#0D120E]/50 font-bold text-sm mt-1">Based on your interests</p>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
+              {(recommendedForYou.length > 0 ? recommendedForYou : posts).map(post => (
+                <BookCard key={post._id} data={post} />
+              ))}
+            </div>
+          </section>
+        )}
+
+      </main>
     </div>
   );
 }
