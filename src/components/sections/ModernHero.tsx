@@ -27,8 +27,8 @@ const ModernHero = () => {
                     <motion.h1 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.15, delay: 0.05, ease: "easeOut" }}
-                        className="text-[#1D1914] text-[48px] md:text-[60px] font-semibold leading-[1.1] md:leading-[60px] tracking-[-0.025em] mb-[24px]"
+                        transition={{ duration: 0.2, delay: 0.05, ease: "easeOut" }}
+                        className="text-[#1D1914] text-[56px] md:text-[84px] font-bold leading-[1.05] md:leading-[88px] tracking-[-0.035em] mb-[32px]"
                     >
                         Change the way<br />
                         you approach<br />
@@ -38,8 +38,8 @@ const ModernHero = () => {
                     <motion.p 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.15, delay: 0.1, ease: "easeOut" }}
-                        className="text-[#1F1B16] text-[14px] leading-[28px] max-w-lg mb-[32px] font-normal"
+                        transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
+                        className="text-[#1F1B16]/80 text-[16px] md:text-[18px] leading-[32px] max-w-lg mb-[40px] font-medium"
                     >
                         From your everyday habits, to planning for your future with essential resources and community, 
                         Signet helps you get more out of your life trajectory.
@@ -48,19 +48,19 @@ const ModernHero = () => {
                     <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.15, delay: 0.15, ease: "easeOut" }}
+                        transition={{ duration: 0.2, delay: 0.15, ease: "easeOut" }}
                         className="flex flex-col sm:flex-row items-start sm:items-center gap-[16px]"
                     >
                         {isLoaded && !isSignedIn ? (
                             <SignUpButton mode="modal">
-                                <button className="bg-[#6E7A67] text-[#F8F4ED] px-[24px] py-[12px] rounded-[9999px] font-medium text-[14px] hover:bg-[#1D1914] transition-colors duration-150 ease-out shadow-sm shadow-black/5 border-0">
-                                    Get Started Now
+                                <button className="bg-[#1F3D24] text-[#F8F4ED] px-[40px] py-[16px] rounded-[9999px] font-bold text-[13px] tracking-widest uppercase hover:bg-[#1D1914] transition-all duration-300 shadow-2xl shadow-[#1F3D24]/20 border-0">
+                                    START FOR FREE
                                 </button>
                             </SignUpButton>
                         ) : (
                             <Link href="/dashboard">
-                                <button className="bg-[#6E7A67] text-[#F8F4ED] px-[24px] py-[12px] rounded-[9999px] font-medium text-[14px] hover:bg-[#1D1914] transition-colors duration-150 ease-out shadow-sm shadow-black/5 border-0">
-                                    Go to Dashboard
+                                <button className="bg-[#1F3D24] text-[#F8F4ED] px-[40px] py-[16px] rounded-[9999px] font-bold text-[13px] tracking-widest uppercase hover:bg-[#1D1914] transition-all duration-300 shadow-2xl shadow-[#1F3D24]/20 border-0">
+                                    GO TO DASHBOARD
                                 </button>
                             </Link>
                         )}

@@ -20,13 +20,20 @@ const RESOURCE_QUERY = `
 
 export const dynamic = "force-dynamic";
 
-export default async function ResourceDetailPage({ params }: { params: { slug: string } }) {
-  const resource = await sanityFetch({ 
-    query: RESOURCE_QUERY, 
-    params: { slug: params.slug },
-    tags: ["resourceCard"] 
-  });
+export default async function ResourceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
 
+  let resource;
+  try {
+    resource = await sanityFetch({ 
+      query: RESOURCE_QUERY, 
+      params: { slug },
+      tags: ["resourceCard"] 
+    });
+  } catch (error) {
+    console.error("Error fetching resource:", error);
+  }
 
   if (!resource) {
     notFound();
