@@ -15,19 +15,29 @@ export default function FeaturesPage() {
       <main className="pb-32">
         
         {/* ── TOP HERO: GET TO KNOW US ─────────────────────────────── */}
-        <section className="relative w-full h-screen overflow-hidden">
+        <section className="relative w-full h-screen overflow-hidden group">
           <img
             src="/png2svg/SIGNET-01.svg"
             alt="Get To Know Us"
-            className="absolute inset-0 w-full h-full object-contain"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
+          
           {/* Signet logo overlaid on the hero image */}
-          <div className="absolute bottom-12 left-12 z-20 flex items-center gap-3">
-            <div className="flex items-center gap-3 bg-black/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
-              <img src="/signet-brand-logo.svg" alt="Signet" className="w-8 h-8 object-contain" />
-              <span className="text-white text-sm font-black tracking-[0.3em] uppercase">Signet</span>
+          <div className="absolute bottom-12 left-12 z-20 flex flex-col gap-4">
+            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20">
+              <img src="/signet-brand-logo.svg" alt="Signet" className="w-8 h-8 object-contain brightness-0 invert" />
+              <span className="text-white text-xs font-black tracking-[0.4em] uppercase">Signet Platform</span>
             </div>
+            <h1 className="text-white/40 text-[10px] font-bold tracking-[0.5em] uppercase pl-6 font-sans">
+              Est. 2026 • Premium Growth Ecosystem
+            </h1>
+          </div>
+
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+             <h2 className="text-white text-4xl md:text-6xl font-black uppercase tracking-[0.2em] text-center opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+               Get to know us
+             </h2>
           </div>
         </section>
 

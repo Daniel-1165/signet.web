@@ -112,7 +112,7 @@ const Navbar = () => {
           MOBILE TOP BAR  (visible on all screen sizes < md)
       ════════════════════════════════════════════════════════════ */}
       <header
-        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-5 h-[80px] transition-all duration-300 top-0 ${
+        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-6 h-[72px] transition-all duration-300 top-0 ${
           isScrolled ? "bg-white/80 backdrop-blur-xl border-b border-black/5" : "bg-transparent"
         }`}
       >
@@ -125,42 +125,35 @@ const Navbar = () => {
             <img 
               src="/signet-brand-logo.svg" 
               alt="Signet Logo" 
-              className={`h-8 w-auto object-contain transition-all duration-300 ${isLightText ? "brightness-[10]" : ""}`}
-              style={isLightText ? { filter: "brightness(10)" } : undefined}
+              className={`h-7 w-auto object-contain transition-all duration-300 ${isLightText && !isScrolled ? "brightness-[10]" : ""}`}
             />
           </div>
-          <span className={`font-black text-xl tracking-tighter uppercase font-heading ${isLightText ? "text-white" : "text-[#0D120E]"}`}>
+          <span className={`font-black text-lg tracking-tighter uppercase font-heading ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}>
             SIGNET
           </span>
         </Link>
 
-        {/* Right side: hamburger */}
+        {/* Right side: hamburger & CTA */}
         <div className="flex items-center gap-4">
-          {/* Join button */}
           {!isSignedIn && (
              <SignUpButton mode="modal">
-               <button className="px-4 py-2 text-[12px] font-bold text-white bg-[#1D1914] rounded-full hover:bg-black transition-colors">
+               <button className="px-5 py-2 text-[10px] font-black text-[#F8F4ED] bg-[#1F3D24] rounded-full hover:bg-[#1D1914] transition-all tracking-widest uppercase">
                  START FOR FREE
                </button>
              </SignUpButton>
           )}
-          {isSignedIn && (
-            <div className="flex items-center justify-center p-[2px] rounded-full bg-white shadow-sm">
-              <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
-            </div>
-          )}
 
-          {/* Custom Hamburger */}
+          {/* Minimalist Hamburger */}
           <button
             id="mobile-menu-btn"
             onClick={() => setIsSidebarOpen(true)}
             aria-label="Open menu"
-            className={`w-10 h-10 flex items-center justify-center ${isLightText ? "text-white" : "text-[#0D120E]"}`}
+            className={`w-8 h-8 flex items-center justify-center ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}
           >
-            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <line x1="4" y1="6" x2="20" y2="6" />
+            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              <line x1="4" y1="7" x2="20" y2="7" />
               <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="8" y1="18" x2="20" y2="18" />
+              <line x1="4" y1="17" x2="20" y2="17" />
             </svg>
           </button>
         </div>
@@ -274,73 +267,87 @@ const Navbar = () => {
           DESKTOP NAV BAR
       ════════════════════════════════════════════════════════════ */}
       <nav
-        className={`hidden md:block fixed z-[50] w-full transition-all duration-300 top-0 py-6 ${
-          isScrolled ? "bg-white/70 backdrop-blur-xl border-b border-black/[0.03]" : "bg-transparent"
+        className={`hidden md:block fixed z-[50] w-full transition-all duration-500 top-0 py-6 ${
+          isScrolled ? "bg-white/80 backdrop-blur-2xl border-b border-black/[0.04] shadow-sm py-4" : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-8 lg:px-12">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-10 lg:px-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="h-9 flex-shrink-0 flex items-center">
+          <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-all">
+            <div className="h-8 flex-shrink-0 flex items-center">
               <img 
                 src="/signet-brand-logo.svg" 
                 alt="Signet Logo" 
-                className="h-9 w-auto object-contain transition-all duration-300"
-                style={isLightText ? { filter: "brightness(10)" } : undefined}
+                className={`h-7 w-auto object-contain transition-all duration-300 ${isLightText && !isScrolled ? "brightness-[10]" : ""}`}
               />
             </div>
-            <span className={`font-black text-2xl tracking-tighter uppercase font-heading ${isLightText ? "text-white" : "text-[#0D120E]"}`}>
+            <span className={`font-black text-xl tracking-tighter uppercase font-heading ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}>
               SIGNET
             </span>
           </Link>
 
-          {/* Links */}
-          <div className="hidden items-center gap-10 md:flex">
+          {/* Links - Minimal & Centered */}
+          <div className="flex items-center gap-10">
             {navLinks.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`relative group py-2 text-[13px] font-bold tracking-widest uppercase transition-colors ${
-                  isLightText ? "text-white/90 hover:text-white" : "text-[#0D120E]/70 hover:text-[#0D120E]"
+                className={`relative group py-2 text-[11px] font-black tracking-[0.2em] uppercase transition-all ${
+                  isLightText && !isScrolled ? "text-white/80 hover:text-white" : "text-[#0D120E]/60 hover:text-[#0D120E]"
                 }`}
               >
                 {item.label}
+                <span className={`absolute bottom-0 left-0 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full ${isLightText && !isScrolled ? "bg-white" : "bg-[#1DA756]"}`} />
               </Link>
             ))}
           </div>
 
-          {/* Auth */}
-          <div className="hidden md:flex items-center gap-6">
+          {/* Auth CTA & Hamburger - Pill Style */}
+          <div className="flex items-center gap-6">
             {isLoaded && (
               isSignedIn ? (
-                <>
-                  <UserButton appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
+                <div className="flex items-center gap-4">
+                  <UserButton appearance={{ elements: { avatarBox: "w-9 h-9 border-2 border-[#1DA756]/20" } }} />
                   {isAdmin && (
                     <button
                       onClick={() => setShowAdminModal(true)}
-                      className="h-9 px-4 bg-[#1D1914]/5 border border-[#1D1914]/10 text-[#1D1914] rounded-full font-bold text-[11px] uppercase tracking-wider flex items-center gap-1.5 hover:bg-[#1D1914] hover:text-white transition-all"
+                      className="h-9 px-4 bg-[#1DA756]/10 text-[#1DA756] border border-[#1DA756]/20 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-[#1DA756] hover:text-white transition-all shadow-sm"
                     >
-                      <Shield className="w-3.5 h-3.5" /> Admin
+                      Admin
                     </button>
                   )}
-                </>
+                </div>
               ) : (
-                <>
+                <div className="flex items-center gap-6">
                   <SignInButton mode="modal">
-                    <button className={`text-[13px] font-bold tracking-widest uppercase transition-colors ${
-                      isLightText ? "text-white/90 hover:text-white" : "text-[#0D120E]/70 hover:text-[#0D120E]"
+                    <button className={`text-[11px] font-black tracking-[0.2em] uppercase transition-colors ${
+                      isLightText && !isScrolled ? "text-white/80 hover:text-white" : "text-[#0D120E]/60 hover:text-[#0D120E]"
                     }`}>
                       Login
                     </button>
                   </SignInButton>
                   <SignUpButton mode="modal">
-                    <button className="h-11 px-8 flex items-center justify-center rounded-full bg-[#1F3D24] text-white text-[12px] font-bold uppercase tracking-widest hover:bg-[#1D1914] transition-all shadow-xl shadow-[#1F3D24]/10">
+                    <button className="h-10 px-8 flex items-center justify-center rounded-full bg-[#1F3D24] text-[#F8F4ED] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-[#1D1914] transition-all shadow-lg shadow-[#1F3D24]/20 border-0">
                       START FOR FREE
                     </button>
                   </SignUpButton>
-                </>
+                </div>
               )
             )}
+
+            {/* Desktop Hamburger menu */}
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className={`w-10 h-10 flex items-center justify-center transition-colors ${
+                isLightText && !isScrolled ? "text-white hover:text-white/70" : "text-[#0D120E] hover:text-[#1DA756]"
+              }`}
+            >
+              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                <line x1="4" y1="7" x2="20" y2="7" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="17" x2="20" y2="17" />
+              </svg>
+            </button>
           </div>
         </div>
       </nav>

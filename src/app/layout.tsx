@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, Outfit } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 import "./globals.css";
 import { SyncUser } from "@/components/auth/SyncUser";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -29,6 +30,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isLandingPage = pathname === "/" || pathname === "/features" || pathname === "/vision-guide";
+
   return (
     <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
@@ -38,9 +42,9 @@ export default function RootLayout({
           
           <div className="flex flex-col min-h-screen relative">
             <Navbar />
-            <div className="flex flex-1 pt-[60px] md:pt-0">
-              <Sidebar />
-              <main className="flex-1 w-full overflow-x-hidden relative pb-[80px] md:pb-0 md:pl-[72px]">
+            <div className={`flex flex-1 ${!isLandingPage ? "pt-[80px] md:pt-0" : ""}`}>
+              {!isLandingPage && <Sidebar />}
+              <main className={`flex-1 w-full overflow-x-hidden relative ${!isLandingPage ? "pb-[80px] md:pb-0 md:pl-[88px]" : ""}`}>
                 {children}
               </main>
             </div>
