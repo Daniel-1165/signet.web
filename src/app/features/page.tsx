@@ -19,7 +19,7 @@ export default function FeaturesPage() {
           <img
             src="/png2svg/SIGNET-01.svg"
             alt="Get To Know Us"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-contain"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/20"></div>
           {/* Signet logo overlaid on the hero image */}
