@@ -85,7 +85,7 @@ const ModernHero = () => {
                     className="flex-1 w-full max-w-lg xl:max-w-none grid grid-cols-1 sm:grid-cols-2 gap-[12px]"
                 >
                     {/* Top Left: Stats -> using gradient shell technique */}
-                    <div className="p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-[inset_0_1px_0_0_rgba(255,255,255,0.75)]">
+                    <div className="hidden md:block p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-[inset_0_1px_0_0_rgba(255,255,255,0.75)]">
                         <div className="rounded-[31px] bg-[rgba(251,247,240,0.88)] backdrop-blur-[24px] h-full p-[24px] border border-[rgb(216,206,190)] flex flex-col justify-between overflow-hidden relative">
                             {/* Decorative Arch */}
                             <div className="absolute top-0 right-0 w-full h-[80%] bg-[rgba(255,255,255,0.3)] rounded-bl-[100px] border-l border-[rgba(255,255,255,0.6)]"></div>
@@ -103,7 +103,7 @@ const ModernHero = () => {
                     </div>
 
                     {/* Top Right: Activity Profile */}
-                    <div className="p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-sm">
+                    <div className="hidden md:block p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-sm">
                         <div className="rounded-[31px] bg-[rgba(251,247,240,0.88)] backdrop-blur-[24px] h-full p-[24px] border border-[rgb(216,206,190)] flex flex-col justify-between">
                             <div className="flex items-center gap-[12px]">
                                 <div className="w-[40px] h-[40px] bg-white border border-[#D8CEBF] rounded-[16px] flex items-center justify-center">
@@ -146,30 +146,42 @@ const ModernHero = () => {
 
             {/* Bottom Logo Cloud - Brand Values */}
             <div className="w-full border-t border-[rgb(216,206,190)] border-opacity-40 mt-[80px] py-[32px] px-[24px] z-10 bg-[#FBF7F0]/30 backdrop-blur-[12px]">
-                <div className="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-[24px]">
-                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out">
-                        <Activity className="w-4 h-4" />
-                        Sustainability
-                    </div>
-                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out">
-                        <Crown className="w-4 h-4" />
-                        Mastery
-                    </div>
-                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out">
-                        <TrendingUp className="w-4 h-4" />
-                        Growth
-                    </div>
-                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out hidden sm:flex">
-                        <Sparkles className="w-4 h-4" />
-                        Excellence
-                    </div>
-                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out hidden md:flex">
-                        <Crosshair className="w-4 h-4" />
-                        Focus
-                    </div>
-                    <div className="text-[14px] font-semibold uppercase tracking-widest text-[#1D1914] flex items-center gap-[8px] opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out hidden lg:flex">
-                        <ShieldCheck className="w-4 h-4" />
-                        Resilience
+                <div className="max-w-6xl mx-auto overflow-hidden">
+                    <div className="flex whitespace-nowrap">
+                        {/* We double the text arrays to create a seamless loop */}
+                        {[...Array(2)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                className="flex items-center gap-8 sm:gap-12 md:gap-16 pl-8 sm:pl-12 md:pl-16"
+                                initial={{ x: 0 }}
+                                animate={{ x: "-100%" }}
+                                transition={{
+                                    duration: 25,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                    repeatType: "loop"
+                                }}
+                            >
+                                {[
+                                    { text: "Sustainability", icon: Activity },
+                                    { text: "Mastery", icon: Crown },
+                                    { text: "Growth", icon: TrendingUp },
+                                    { text: "Excellence", icon: Sparkles },
+                                    { text: "Focus", icon: Crosshair },
+                                    { text: "Resilience", icon: ShieldCheck }
+                                ].map((item, index) => {
+                                    const Icon = item.icon;
+                                    return (
+                                        <div key={`${i}-${index}`} className="flex items-center gap-1.5 opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out cursor-default min-w-[90px] sm:min-w-[130px]">
+                                            <Icon className="w-4 h-4" strokeWidth={4} />
+                                            <span className="text-[14px] font-black tracking-widest text-[#1D1914] uppercase truncate">
+                                                {item.text}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </div>
