@@ -14,6 +14,7 @@ import {
 import { useSupabaseClient } from "@/lib/supabase/client";
 import {
   Home, Users, FolderOpen, Brain, Lightbulb, Target, Award, Info,
+  MessageCircle
 } from "lucide-react";
 
 const navLinks = [
@@ -21,6 +22,7 @@ const navLinks = [
   { label: "About Us", href: "/features" },
   { label: "Resources", href: "/resources" },
   { label: "Community", href: "/community" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const sidebarLinks = [
@@ -28,6 +30,7 @@ const sidebarLinks = [
   { label: "About Us", href: "/features", icon: Info },
   { label: "Resources", href: "/resources", icon: FolderOpen },
   { label: "Community", href: "/community", icon: Users },
+  { label: "Contact", href: "/contact", icon: MessageCircle },
   { label: "EQ Test", href: "/eq-test", icon: Brain },
   { label: "IQ Assessment", href: "/iq-test", icon: Lightbulb },
   { label: "Vision Guide", href: "/vision-guide", icon: Target },
