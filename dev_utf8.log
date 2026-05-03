@@ -1,0 +1,24 @@
+﻿
+> signet-web@0.1.0 dev C:\Users\Daniel\signet-web
+> next dev
+
+node.exe : ΓÜá Port 3000 is in use by an unknown process, using available port 
+3001 instead.
+At C:\Users\Daniel\AppData\Roaming\npm\pnpm.ps1:24 char:5
++     & "node$exe"  "$basedir/node_modules/pnpm/bin/pnpm.cjs" $args
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ΓÜá Port 3000 i...t 3001 instead. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://10.224.10.216:3001
+- Environments: .env.local
+
+Γ£ô Starting...
+Γ¿» Unable to acquire lock at C:\Users\Daniel\signet-web\.next\dev\lock, is 
+another instance of next dev running?
+  Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.
