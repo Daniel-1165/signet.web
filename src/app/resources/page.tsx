@@ -1,5 +1,5 @@
 import { sanityFetch } from "@/lib/sanity/client";
-import { Search, Star, Bookmark, PlayCircle, Clock, ChevronRight, SlidersHorizontal } from "lucide-react";
+import { Search, Star, Bookmark, PlayCircle, Clock, ChevronRight, SlidersHorizontal, Book, Layout, BookmarkCheck, Heart, User } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -16,64 +16,94 @@ const POSTS_QUERY = `
   }
 `;
 
-// Helper component for book cards
-const BookCard = ({ data, isFeatured = false }: { data: any, isFeatured?: boolean }) => {
-  // Mock author and rating based on title
+// Mock authors for the "Top Authors" section
+const MOCK_AUTHORS = [
+  { name: "Ellen Eugen", role: "Mindset Coach", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150" },
+  { name: "Mathew Carl", role: "Psychologist", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150" },
+  { name: "Millman", role: "Growth Strategist", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150" },
+  { name: "S.L. Benson", role: "Author", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150" },
+  { name: "R.M. Ball", role: "Theologian", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" },
+];
+
+// Reusable Section Header
+const SectionHeader = ({ title, desc, href }: { title: string, desc?: string, href?: string }) => (
+  <div className="flex items-end justify-between mb-8">
+    <div>
+      <h2 className="text-xl md:text-2xl font-black text-[#0D120E] tracking-tight">{title}</h2>
+      {desc && <p className="text-[#0D120E]/40 font-bold text-[11px] uppercase tracking-widest mt-1.5">{desc}</p>}
+    </div>
+    {href && (
+      <Link href={href} className="text-[11px] font-black text-[#1DA756] hover:text-[#0D120E] transition-colors tracking-widest uppercase flex items-center gap-1.5 bg-[#1DA756]/5 px-4 py-2 rounded-full">
+        See All <ChevronRight className="w-3 h-3" />
+      </Link>
+    )}
+  </div>
+);
+
+// Redesigned Resource Card
+const ResourceCard = ({ data, type = "Book" }: { data: any, type?: string }) => {
   const mockAuthor = "Signet Curated";
   const mockRating = (4.2 + (Math.random() * 0.7)).toFixed(1);
+  const isMagazine = data.tag === "Magazine" || type === "Magazine";
 
   return (
-    <Link href={data.slug?.current ? `/resources/${data.slug.current}` : "#"} className="group flex flex-col gap-3">
-      {/* Book Cover */}
-      <div className={`relative rounded-2xl overflow-hidden bg-[#F3F2EE] shadow-sm border border-black/[0.02] transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-1.5 ${isFeatured ? "aspect-[4/5]" : "aspect-[2/3]"}`}>
+    <Link href={data.slug?.current ? `/resources/${data.slug.current}` : "#"} className="group flex flex-col gap-5">
+      {/* Cover Image Container */}
+      <div className={`relative ${isMagazine ? "aspect-[4/5.5]" : "aspect-[2/3]"} rounded-[1.5rem] overflow-hidden bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-black/[0.05] transition-all duration-500 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)] group-hover:-translate-y-4`}>
         {data.mainImageUrl ? (
           <img 
             src={data.mainImageUrl} 
             alt={data.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#1DA756]/10 to-[#1DA756]/5 flex flex-col items-center justify-center p-4 text-center">
-            <span className="font-black text-[#1DA756]/80 text-3xl uppercase tracking-tighter">{data.title.substring(0, 2)}</span>
+          <div className="w-full h-full bg-gradient-to-br from-[#F7F6F0] to-[#EBE9E1] flex flex-col items-center justify-center p-8 text-center ring-inset ring-1 ring-black/[0.05]">
+            <Book className={`w-10 h-10 ${isMagazine ? "text-[#D0652B]" : "text-[#1DA756]"} opacity-30 mb-4`} />
+            <span className="font-black text-[#0D120E]/30 text-base uppercase tracking-[0.2em]">{data.title.substring(0, 10)}</span>
           </div>
         )}
         
-        {/* Hover overlay with action */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
-          <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:scale-110">
-            <Bookmark className="w-4 h-4" />
-          </div>
-          <div className="w-10 h-10 rounded-full bg-[#1DA756] text-white flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75 hover:scale-110">
-            <PlayCircle className="w-4 h-4" />
-          </div>
+        {/* Book Spine Shadow Effect */}
+        <div className="absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-black/20 to-transparent opacity-40 z-20 pointer-events-none" />
+        
+        {/* Glossy Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-60 z-10 pointer-events-none" />
+        
+        {/* Quick Actions */}
+        <div className="absolute top-6 right-6 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0 z-30">
+          <button className="w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-xl flex items-center justify-center text-[#0D120E]/60 hover:text-red-500 hover:scale-110 transition-all">
+            <Heart className="w-5 h-5" />
+          </button>
+          <button className="w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-xl flex items-center justify-center text-[#0D120E]/60 hover:text-[#1DA756] hover:scale-110 transition-all">
+            <BookmarkCheck className="w-5 h-5" />
+          </button>
         </div>
 
-        {/* Tag badge */}
-        {data.tag && (
-          <div className="absolute top-3 left-3 px-3 py-1.5 bg-white/95 backdrop-blur-md rounded-lg text-[9px] font-black uppercase tracking-widest text-[#0D120E] shadow-sm">
-            {data.tag}
-          </div>
-        )}
+        {/* Floating Read Button */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
+           <div className="w-16 h-16 rounded-full bg-white shadow-2xl flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-500">
+              <PlayCircle className={`w-8 h-8 ${isMagazine ? "text-[#D0652B]" : "text-[#1DA756]"}`} />
+           </div>
+        </div>
       </div>
 
-      {/* Book Info */}
-      <div className="flex flex-col gap-1.5 px-0.5">
-        <h3 className="font-extrabold text-[#0D120E] text-base leading-snug line-clamp-2 group-hover:text-[#1DA756] transition-colors">
+      {/* Resource Info */}
+      <div className="px-1 space-y-1.5">
+        <div className="flex items-center justify-between">
+           <div className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest ${isMagazine ? "bg-[#FFF0E6] text-[#D0652B]" : "bg-[#E6F4EA] text-[#1DA756]"}`}>
+             {isMagazine ? "Magazine" : "Curated Book"}
+           </div>
+           <div className="flex items-center gap-1.5 text-[#F5B041]">
+             <Star className="w-3 h-3 fill-current" />
+             <span className="text-[11px] font-black text-[#D08B16]">{mockRating}</span>
+           </div>
+        </div>
+        <h3 className="font-bold text-[#0D120E] text-base md:text-lg leading-[1.3] line-clamp-2 min-h-[3.5rem] group-hover:text-[#1DA756] transition-colors italic">
           {data.title}
         </h3>
-        <p className="text-xs text-[#0D120E]/50 font-bold capitalize">
+        <p className="text-[12px] text-[#0D120E]/40 font-bold uppercase tracking-widest">
           {mockAuthor}
         </p>
-        
-        {/* Rating & Pages */}
-        <div className="flex items-center gap-2 mt-1">
-          <div className="flex items-center bg-[#FFF8E7] px-2 py-0.5 rounded text-[#F5B041]">
-            <Star className="w-3 h-3 fill-current" />
-            <span className="text-[10px] font-black text-[#D08B16] ml-1.5">{mockRating}</span>
-          </div>
-          <span className="w-1 h-1 rounded-full bg-black/10" />
-          <span className="text-[10px] font-bold text-[#0D120E]/40 uppercase tracking-wider">Premium</span>
-        </div>
       </div>
     </Link>
   );
@@ -84,161 +114,156 @@ export const dynamic = "force-dynamic";
 export default async function ResourcesPage() {
   const posts = (await sanityFetch({ query: POSTS_QUERY, tags: ["resourceCard"] })) || [];
 
-  const featuredBook = posts[0];
+  const magazines = posts.filter(p => p.tag === 'Magazine');
+  const books = posts.filter(p => p.tag === 'Book' || (p.tag !== 'Magazine' && p.tag !== 'Article'));
   const recentlyAdded = posts.slice(0, 5);
-  const recommendedForYou = posts.length > 5 ? posts.slice(5) : posts;
+  const featured = posts[0];
 
   return (
-    <div className="min-h-screen bg-[#FDFDFC] pb-32">
+    <div className="min-h-screen bg-[#FAFAFA] pb-32">
 
-      {/* ── TOP SEARCH & FILTER BAR ── */}
-      <div className="sticky top-0 z-[40] bg-[#FDFDFC]/80 backdrop-blur-xl border-b border-black/[0.04] px-6 py-4 md:py-5">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
-          <h1 className="hidden md:block text-2xl font-black tracking-tight text-[#0D120E]">
-            Library.
-          </h1>
-          <div className="flex-1 flex items-center gap-3 w-full max-w-2xl">
-            <div className="relative w-full">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#0D120E]/30" />
+      {/* ── STICKY NAVIGATION BAR ── */}
+      <header className="sticky top-0 z-[50] bg-white/70 backdrop-blur-3xl border-b border-black/[0.03] px-6 py-4">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-8">
+            <h1 className="text-xl font-black text-[#0D120E] tracking-tight flex items-center gap-2">
+              <div className="w-8 h-8 rounded-xl bg-[#1DA756] flex items-center justify-center text-white">
+                <Layout className="w-4 h-4" />
+              </div>
+              Library.
+            </h1>
+            
+            <nav className="hidden lg:flex items-center gap-8">
+              {['Top Books', 'Discover', 'Categories', 'History'].map((link, i) => (
+                <button key={link} className={`text-[11px] font-black uppercase tracking-[0.2em] ${i === 1 ? "text-[#1DA756]" : "text-[#0D120E]/30 hover:text-[#0D120E]"} transition-colors`}>
+                  {link}
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          <div className="flex items-center gap-3 w-full max-w-xl">
+            <div className="relative w-full group">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#0D120E]/20 group-focus-within:text-[#1DA756] transition-colors" />
               <input 
                 type="text"
                 placeholder="Search Book, Author, or ISBN..."
-                className="w-full h-14 pl-14 pr-6 bg-[#F5F4F0] rounded-2xl border-none focus:outline-none focus:ring-2 focus:ring-[#1DA756]/20 font-bold text-sm transition-all placeholder:text-[#0D120E]/30"
+                className="w-full h-12 pl-12 pr-6 bg-black/[0.03] hover:bg-black/[0.05] rounded-[1.25rem] border-none focus:outline-none focus:ring-2 focus:ring-[#1DA756]/10 font-bold text-xs transition-all placeholder:text-[#0D120E]/20"
               />
             </div>
-            <button className="w-14 h-14 shrink-0 flex items-center justify-center bg-[#F5F4F0] rounded-2xl text-[#0D120E]/70 hover:bg-[#1DA756] hover:text-white transition-colors">
-              <SlidersHorizontal className="w-5 h-5" />
-            </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* ── MAIN CONTENT ── */}
-      <main className="max-w-7xl mx-auto px-6 py-10 space-y-16">
+      <main className="max-w-7xl mx-auto px-6 py-12 md:py-16 space-y-32">
 
-        {/* FEATURED PICK HERO */}
-        {featuredBook && (
-          <section className="relative">
-            <div className="flex items-center mb-6 gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#D0652B] animate-pulse"></span>
-              <h2 className="text-[#0D120E]/60 font-black uppercase text-[10px] tracking-[0.2em]">Popular This Week</h2>
-            </div>
-            
-            <Link 
-              href={featuredBook.slug?.current ? `/resources/${featuredBook.slug.current}` : "#"} 
-              className="block bg-gradient-to-br from-[#FFF5ED] to-[#FDF0E6] rounded-[2rem] p-8 md:p-12 relative overflow-hidden group shadow-sm border border-[#D0652B]/5"
-            >
-              <div className="relative z-10 flex flex-col md:flex-row gap-10 items-center md:items-start">
-                
-                {/* Info Side */}
-                <div className="flex-1 space-y-6 text-center md:text-left pt-2 md:pt-6">
-                  <div>
-                    <h1 className="text-4xl md:text-[3.5rem] font-black text-[#0D120E] leading-[1.1] mb-4">
-                      {featuredBook.title}
-                    </h1>
-                    <p className="text-lg font-bold text-[#D0652B]">Morgan Housel <span className="text-[#0D120E]/30 font-medium">(2020)</span></p>
-                  </div>
-                  
-                  <p className="text-[#0D120E]/60 font-medium leading-relaxed max-w-md mx-auto md:mx-0 line-clamp-3">
-                    {featuredBook.description || "Timeless lessons on wealth, greed, and happiness doing well with money isn't necessarily about what you know. It's about how you behave."}
-                  </p>
-                  
-                  <div className="flex items-center justify-center md:justify-start gap-3 mt-4">
-                    <button className="h-12 flex items-center justify-center px-8 bg-[#0D120E] text-white rounded-xl font-bold text-sm hover:bg-[#1DA756] hover:-translate-y-1 transition-all shadow-xl shadow-black/10">
-                      Read Now
-                    </button>
-                    <button className="h-12 w-12 flex items-center justify-center bg-white text-[#0D120E] rounded-xl font-bold border border-black/[0.05] hover:bg-black/[0.02] transition-colors">
-                      <Bookmark className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Cover Hero Image Float */}
-                <div className="w-56 md:w-72 shrink-0 relative transition-transform duration-700 ease-out group-hover:-translate-y-4 group-hover:scale-105 group-hover:rotate-2">
-                  <div className="aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl shadow-black/20 relative z-20">
-                    {featuredBook.mainImageUrl ? (
-                      <img src={featuredBook.mainImageUrl} alt="Featured" className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full bg-[#1DA756] flex flex-col items-center justify-center p-6 text-center">
-                         <span className="font-black text-white text-3xl uppercase">{featuredBook.title.split(' ')[0]}</span>
-                      </div>
-                    )}
-                    {/* Glossy overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-50 z-10 pointer-events-none" />
-                  </div>
-                  
-                  {/* Backdrop shadow/reflection */}
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-4/5 h-12 bg-black/30 blur-2xl rounded-full z-0" />
-                </div>
-              </div>
-
-              {/* Decorative Background Elements */}
-              <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-white/40 rounded-full blur-[80px] pointer-events-none"></div>
-              <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-[#D0652B]/5 rounded-full blur-[80px] pointer-events-none"></div>
-            </Link>
-          </section>
-        )}
-
-        {/* ── CATEGORIES TAB BAR ── */}
+        {/* ── TOP AUTHORS ── */}
         <section>
-          <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-4 pt-2 -mx-6 px-6 md:mx-0 md:px-0">
-            {["All Genre", "Comedy", "Fiction", "Romance", "Biography", "Business"].map((genre, idx) => (
-              <button 
-                key={genre} 
-                className={`h-12 px-8 rounded-2xl text-sm font-bold whitespace-nowrap transition-all ${
-                  idx === 0 
-                  ? "bg-[#0D120E] text-white shadow-xl shadow-black/10" 
-                  : "bg-white text-[#0D120E] border border-black/[0.04] hover:bg-[#1DA756] hover:text-white hover:border-transparent hover:shadow-xl hover:shadow-[#1DA756]/20"
-                }`}
-              >
-                {genre}
-              </button>
+          <SectionHeader title="Top Authors" desc="Insights from the masters" />
+          <div className="flex items-center gap-10 md:gap-16 overflow-x-auto no-scrollbar pb-6 pt-2">
+            {MOCK_AUTHORS.map((author) => (
+               <div key={author.name} className="flex flex-col items-center gap-4 shrink-0 group">
+                  <div className="relative">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-transparent group-hover:border-[#1DA756] transition-all p-1">
+                      <img src={author.img} alt={author.name} className="w-full h-full object-cover rounded-full shadow-inner" />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-white shadow-md flex items-center justify-center border border-black/[0.05]">
+                      <Star className="w-3.5 h-3.5 text-[#F5B041] fill-current" />
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <h4 className="text-sm font-black text-[#0D120E] leading-none mb-1 group-hover:text-[#1DA756] transition-colors">{author.name}</h4>
+                    <p className="text-[10px] font-bold text-[#0D120E]/30 uppercase tracking-tight">{author.role}</p>
+                  </div>
+               </div>
             ))}
           </div>
         </section>
 
-        {/* ── CONTINUE READING / RECENTLY ADDED ── */}
-        {recentlyAdded.length > 0 ? (
+        {/* ── FEATURED PICK ── */}
+        {featured && (
           <section>
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <h2 className="text-2xl font-black text-[#0D120E]">Recently Added</h2>
-                <p className="text-[#0D120E]/50 font-bold text-sm mt-1">Discover new arrivals</p>
+            <SectionHeader title="Featured Selection" desc="Handpicked for your growth" />
+            <Link 
+              href={`/resources/${featured.slug?.current}`}
+              className="relative block w-full bg-[#1F1B16] rounded-[4rem] overflow-hidden group shadow-2xl shadow-black/10 transition-transform duration-500 hover:scale-[1.01]"
+            >
+              <div className="absolute inset-0 opacity-40 mix-blend-overlay">
+                <img src={featured.mainImageUrl} alt="" className="w-full h-full object-cover blur-3xl scale-125 transition-transform duration-[3s] group-hover:scale-150" />
               </div>
-              <Link href="#" className="hidden md:flex items-center gap-1 text-sm font-bold text-[#1DA756] hover:text-[#0D120E] transition-colors">
-                SEE ALL <ChevronRight className="w-4 h-4" />
-              </Link>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
-              {recentlyAdded.map(post => (
-                <BookCard key={post._id} data={post} />
-              ))}
-            </div>
+              
+              <div className="relative z-10 p-12 md:p-20 flex flex-col md:flex-row items-center gap-16">
+                <div className="flex-1 text-center md:text-left space-y-10">
+                  <div className="space-y-6">
+                    <div className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 w-fit mx-auto md:mx-0">
+                      <p className="text-[11px] font-black uppercase tracking-[0.4em] text-white">Editors Choice</p>
+                    </div>
+                    <h2 className="text-5xl md:text-7xl font-black text-white leading-[1] tracking-tight italic">
+                      {featured.title}
+                    </h2>
+                    <p className="text-xl md:text-2xl text-white/50 font-medium max-w-xl mx-auto md:mx-0 leading-relaxed">
+                      Transformative insights curated specifically for the Signet community trajectory.
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-wrap items-center justify-center md:justify-start gap-5">
+                    <button className="h-16 px-12 bg-[#1DA756] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#158C45] transition-all shadow-xl shadow-[#1DA756]/20">
+                      Explore Resource
+                    </button>
+                    <div className="flex items-center gap-4 px-8 h-16 rounded-2xl bg-white/5 border border-white/10 text-white/80">
+                      <Clock className="w-5 h-5 text-[#1DA756]" />
+                      <span className="text-base font-bold">12 min read</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-72 md:w-96 shrink-0 transform group-hover:-rotate-3 group-hover:-translate-y-6 transition-transform duration-700 ease-out">
+                  <div className="aspect-[2/3] rounded-[2rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] ring-1 ring-white/20">
+                    <img src={featured.mainImageUrl} alt="" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+            </Link>
           </section>
-        ) : (
-          <div className="text-center py-20">
-             <h2 className="text-2xl font-black text-[#0D120E]/30 uppercase">No resources yet.</h2>
-          </div>
         )}
 
-        {/* ── RECOMMENDED FOR YOU ── */}
-        {(recommendedForYou.length > 0 || posts.length > 0) && (
-          <section className="pt-8 border-t border-black/[0.04]">
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <h2 className="text-2xl font-black text-[#0D120E]">Recommended For You</h2>
-                <p className="text-[#0D120E]/50 font-bold text-sm mt-1">Based on your interests</p>
+        {/* ── BOOKS SECTION ── */}
+        <section>
+          <SectionHeader title="Curated Bookshelf" desc="The latest from our selection" href="#" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-20">
+            {books.slice(0, 8).map(book => (
+              <ResourceCard key={book._id} data={book} />
+            ))}
+            {books.length === 0 && (
+              <div className="col-span-full py-32 bg-black/[0.02] rounded-[3rem] border border-dashed border-black/[0.1] flex flex-col items-center justify-center text-[#0D120E]/20">
+                 <Book className="w-16 h-16 mb-6 opacity-30" />
+                 <h3 className="font-black uppercase tracking-[0.3em] text-sm">Library currently empty</h3>
               </div>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
-              {(recommendedForYou.length > 0 ? recommendedForYou : posts).map(post => (
-                <BookCard key={post._id} data={post} />
-              ))}
-            </div>
-          </section>
-        )}
+            )}
+          </div>
+        </section>
+
+        {/* ── MAGAZINES SECTION ── */}
+        <section className="relative px-8 py-20 bg-[#F7F6F0]/60 rounded-[4rem]">
+          <SectionHeader title="Journals & Magazines" desc="Periodic growth insights" href="#" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-10 gap-y-16">
+            {magazines.map(magazine => (
+              <ResourceCard key={magazine._id} data={magazine} type="Magazine" />
+            ))}
+          </div>
+        </section>
+
+        {/* ── RECOMMENDED ── */}
+        <section>
+          <SectionHeader title="Recommended For You" desc="Based on your growth profile" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-20">
+            {posts.length > 5 ? posts.slice(5, 13).map(post => (
+              <ResourceCard key={post._id} data={post} />
+            )) : posts.map(post => (
+              <ResourceCard key={post._id} data={post} />
+            ))}
+          </div>
+        </section>
 
       </main>
     </div>

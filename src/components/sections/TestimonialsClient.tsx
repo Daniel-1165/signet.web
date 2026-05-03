@@ -53,66 +53,54 @@ export default function TestimonialsClient({ testimonials }: Props) {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center justify-center py-20 rounded-2xl border border-black/[0.08] bg-white text-center"
+            className="flex flex-col items-center justify-center py-24 rounded-[3rem] border border-dashed border-black/[0.1] bg-white/50 text-center"
           >
-            <div className="text-5xl mb-4">💬</div>
-            <p className="text-foreground/40 text-base font-medium">
-              Testimonials coming soon.
-            </p>
-            <p className="text-foreground/25 text-sm mt-1">
-              Add them in Sanity Studio under{" "}
-              <span className="font-semibold">Testimonials</span>.
+            <div className="text-6xl mb-6 opacity-30">💬</div>
+            <p className="text-[#0D120E]/40 text-lg font-black uppercase tracking-widest">
+              Community voices arriving soon.
             </p>
           </motion.div>
         ) : (
-          <div className="relative">
-            {/* Horizontal Scroll Menu */}
-            <div className="flex overflow-x-auto pb-10 gap-6 snap-x snap-mandatory hide-scrollbar group/scroll">
-              {testimonials.map((t, i) => (
-                <motion.div
-                  key={t._id}
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: i * 0.1 }}
-                  className="flex-shrink-0 w-full md:w-[600px] lg:w-[800px] snap-center"
-                >
-                  <div className="group relative rounded-[32px] border border-black/[0.08] bg-white p-8 md:p-12 flex flex-col gap-8 md:gap-12 transition-all duration-500 hover:shadow-2xl hover:shadow-black/5 min-h-[400px]">
-                    
-                    <div className="flex-1 flex flex-col justify-center">
-                      <div className="mb-6">
-                        <span className="text-[#1DA756] text-4xl font-serif">“</span>
-                        <p className="text-xl md:text-2xl leading-relaxed italic text-[#0D120E] font-medium -mt-2">
-                          {t.content || "Testimonial content"}
-                        </p>
-                      </div>
-
-                      <div className="flex items-center gap-4 mt-auto">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent font-semibold text-sm text-white shadow-sm flex-shrink-0">
-                          {getInitials(t.name)}
-                        </div>
-                        <div>
-                          <div className="text-base font-bold tracking-tight text-[#0D120E]">
-                            {t.name || "Anonymous User"}
-                          </div>
-                          <div className="text-sm font-medium text-[#0D120E]/50">
-                            {t.role || "Member"}
-                            {t.company ? `, ${t.company}` : ""}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t._id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                className="group flex"
+              >
+                <div className="w-full rounded-[2.5rem] border border-black/[0.05] bg-white p-10 md:p-12 flex flex-col gap-10 transition-all duration-500 hover:shadow-2xl hover:shadow-black/5 hover:-translate-y-2 relative overflow-hidden">
+                  {/* Decorative Quote Mark */}
+                  <div className="absolute top-[-20px] right-[-10px] text-[120px] font-serif text-black/[0.02] pointer-events-none group-hover:text-[#1DA756]/5 transition-colors leading-none">
+                    ”
                   </div>
-                </motion.div>
-              ))}
-            </div>
 
-            {/* Scroll Hint (Mobile) / Desktop Visuals */}
-            <div className="flex justify-center gap-2 mt-4">
-               {testimonials.map((_, i) => (
-                 <div key={i} className="w-1.5 h-1.5 rounded-full bg-black/10 shrink-0" />
-               ))}
-            </div>
+                  <div className="flex-1 relative z-10">
+                    <div className="flex gap-1.5 mb-8">
+                      {[...Array(5)].map((_, starIdx) => (
+                        <svg key={starIdx} className="w-4 h-4 text-[#1DA756] fill-current" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.97a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.286 3.97c.3.921-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.175 0l-3.388 2.46c-.784.57-1.838-.197-1.539-1.118l1.285-3.97a1 1 0 00-.364-1.118L2.245 9.397c-.783-.57-.38-1.81.588-1.81h4.181a1 1 0 00.951-.69l1.285-3.97z" />
+                        </svg>
+                      ))}
+                    </div>
+                    
+                    <p className="text-xl md:text-2xl leading-relaxed text-[#0D120E] font-medium italic">
+                      "{t.content}"
+                    </p>
+                  </div>
+
+                  <div className="pt-8 border-t border-black/[0.05] relative z-10">
+                    <h4 className="text-lg font-black text-[#0D120E] tracking-tight">{t.name || "Anonymous"}</h4>
+                    <p className="text-xs font-bold text-[#0D120E]/40 uppercase tracking-[0.2em] mt-2 flex items-center gap-2">
+                       <span className="w-3 h-[1px] bg-black/10" />
+                       {t.role || "Member"}{t.company ? `, ${t.company}` : ""}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         )}
       </div>
