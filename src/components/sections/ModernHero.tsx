@@ -9,7 +9,7 @@ const ModernHero = () => {
     const { isSignedIn, isLoaded } = useUser();
 
     return (
-        <section className="relative min-h-screen flex flex-col pt-24 md:pt-32 pb-16 overflow-hidden bg-transparent">
+        <section className="relative min-h-screen flex flex-col pt-24 md:pt-32 pb-16 overflow-hidden bg-white">
 
             {/* Container */}
             <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-[24px] max-w-7xl px-6 w-full mt-10 z-10">
@@ -28,7 +28,7 @@ const ModernHero = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2, delay: 0.05, ease: "easeOut" }}
-                        className="text-[#1D1914] text-[56px] md:text-[84px] font-bold leading-[1.05] md:leading-[88px] tracking-[-0.035em] mb-[32px]"
+                        className="text-[#1D1914] text-[48px] md:text-[72px] font-bold leading-[1.05] md:leading-[1.1] tracking-[-0.035em] mb-[32px]"
                     >
                         Change the way<br />
                         you approach<br />
@@ -39,7 +39,7 @@ const ModernHero = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
-                        className="text-[#1F1B16]/80 text-[16px] md:text-[18px] leading-[32px] max-w-lg mb-[40px] font-medium"
+                        className="text-[#1F1B16]/80 text-[15px] md:text-[17px] leading-[30px] max-w-lg mb-[40px] font-medium"
                     >
                         From your everyday habits, to planning for your future with essential resources and community, 
                         Signet helps you get more out of your life trajectory.
@@ -145,7 +145,7 @@ const ModernHero = () => {
             </div>
 
             {/* Bottom Logo Cloud - Brand Values */}
-            <div className="w-full border-t border-[rgb(216,206,190)] border-opacity-40 mt-[80px] py-[32px] px-[24px] z-10 bg-[#FBF7F0]/30 backdrop-blur-[12px]">
+            <div className="w-full border-t border-[rgb(216,206,190)] border-opacity-40 mt-[80px] py-[32px] px-[24px] z-10 bg-white/30 backdrop-blur-[12px]">
                 <div className="max-w-6xl mx-auto overflow-hidden">
                     <div className="flex whitespace-nowrap">
                         {/* We double the text arrays to create a seamless loop */}

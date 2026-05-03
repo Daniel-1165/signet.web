@@ -12,11 +12,11 @@ export default function FeaturesPreview() {
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-black/5 text-foreground text-[10px] font-black uppercase tracking-widest border border-black/10">
              🌟 Mentoring Program
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight">
             Accelerate Your <br />
             <span className="text-accent">Personal Growth.</span>
           </h2>
-          <p className="text-foreground/60 text-lg max-w-lg leading-relaxed">
+          <p className="text-foreground/60 text-base max-w-lg leading-relaxed">
             Join our structured transformational journey designed to equip you with the skills required to excel across all dimensions of your life. Master self-awareness, leadership, and emotional intelligence.
           </p>
           

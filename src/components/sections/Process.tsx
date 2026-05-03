@@ -57,7 +57,7 @@ const ProcessStep = ({ step, i }: any) => {
                     <h3 className="mb-6 text-3xl font-medium tracking-tight text-foreground transition-all duration-500 group-hover:text-solar-gold">
                         {step.title}
                     </h3>
-                    <p className="text-foreground/50 leading-relaxed font-normal text-lg max-w-sm">
+                    <p className="text-foreground/50 leading-relaxed font-normal text-base max-w-sm">
                         {step.description}
                     </p>
                 </div>
@@ -98,10 +98,10 @@ const Process = () => {
                                 transition={{ duration: 0.8 }}
                             >
                                 <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-terra-soil/50 mb-4 italic">The Architecture of Progress</p>
-                                <h2 className="text-5xl md:text-6xl font-black tracking-tight text-foreground mb-8 leading-[1.1] uppercase">
+                                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground mb-8 leading-[1.1] uppercase">
                                     A defined <br />journey to <br /><span className="text-accent italic font-light">self-mastery.</span>
                                 </h2>
-                                <p className="text-xl text-foreground/40 font-medium leading-relaxed max-w-sm mb-12">
+                                <p className="text-lg text-foreground/40 font-medium leading-relaxed max-w-sm mb-12">
                                     Sustainable growth is not accidental. It is engineered through precise, rhythmic escalation.
                                 </p>
                                 
