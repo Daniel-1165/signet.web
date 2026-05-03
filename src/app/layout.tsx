@@ -4,7 +4,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import "./globals.css";
 import { SyncUser } from "@/components/auth/SyncUser";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
 
@@ -38,7 +37,6 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${syne.variable} ${outfit.variable} font-sans antialiased bg-white`}>
           <SyncUser />
-          <CustomCursor />
           
           <div className="flex flex-col min-h-screen relative">
             {pathname !== "/features" && pathname !== "/resources" && <Navbar />}
