@@ -9,7 +9,7 @@ const VisionMission = () => {
         {
             title: "Our Vision",
             statement: "To build a global network of trailblazers who model and replicate excellence in diverse spheres.",
-            image: "/vision.png",
+            image: "/vision-statement.webp",
             href: "/vision-guide"
         },
         {

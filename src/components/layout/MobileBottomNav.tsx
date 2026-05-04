@@ -5,16 +5,17 @@ import { usePathname } from "next/navigation";
 import { Home, Compass, FolderOpen, Users, Brain } from "lucide-react";
 import { motion } from "framer-motion";
 
-const navItems = [
-    { label: "Home", href: "/", icon: Home },
-    { label: "Growth", href: "/features", icon: Compass },
-    { label: "IQ Test", href: "/iq-test", icon: Brain },
-    { label: "Library", href: "/resources", icon: FolderOpen },
-    { label: "Society", href: "/community", icon: Users },
-];
-
-export function MobileBottomNav() {
+export function MobileBottomNav({ items }: { items?: any[] }) {
     const pathname = usePathname();
+    
+    const defaultItems = [
+        { label: "Home", href: "/", icon: Home },
+        { label: "Growth", href: "/features", icon: Compass },
+        { label: "Library", href: "/resources", icon: FolderOpen },
+        { label: "Society", href: "/community", icon: Users },
+    ];
+
+    const navItems = items || defaultItems;
 
     return (
         <motion.nav 

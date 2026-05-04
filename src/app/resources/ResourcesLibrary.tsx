@@ -101,161 +101,173 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
     );
   }, [search, initialPosts]);
 
-  const magazines = filteredPosts.filter(p => p.tag === 'Magazine');
   const books = filteredPosts.filter(p => p.tag === 'Book' || (p.tag !== 'Magazine' && p.tag !== 'Article'));
-  const featured = initialPosts[0]; // Featured stays as the latest one regardless of search, or we could filter it?
+  const recommended = initialPosts.length > 8 ? initialPosts.slice(0, 8) : initialPosts;
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] pb-32">
-      <header className="sticky top-0 z-[50] bg-white/70 backdrop-blur-3xl border-b border-black/[0.03] px-6 py-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-8">
-            <h1 className="text-xl font-black text-[#0D120E] tracking-tight flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-[#1DA756] flex items-center justify-center text-white">
-                <Layout className="w-4 h-4" />
-              </div>
-              Library.
-            </h1>
-            
-            <nav className="hidden lg:flex items-center gap-8">
-              {['Top Books', 'Discover', 'Categories', 'History'].map((link, i) => (
-                <button key={link} className={`text-[11px] font-black uppercase tracking-[0.2em] ${i === 1 ? "text-[#1DA756]" : "text-[#0D120E]/30 hover:text-[#0D120E]"} transition-colors`}>
-                  {link}
-                </button>
-              ))}
-            </nav>
-          </div>
+    <div className="min-h-screen bg-white text-[#0D120E]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+      {/* ── TOP NAVIGATION ─────────────────────────────────────────── */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.04] h-16 flex items-center px-6">
+        <div className="flex items-center gap-12 w-full">
+           <Link href="/" className="text-2xl font-black italic tracking-tighter text-[#1DA756]">
+             library.
+           </Link>
 
-          <div className="flex items-center gap-3 w-full max-w-xl">
-            <div className="relative w-full group">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#0D120E]/20 group-focus-within:text-[#1DA756] transition-colors" />
+           <div className="flex-1 max-w-2xl relative group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/20 group-focus-within:text-[#1DA756] transition-colors" />
               <input 
                 type="text"
-                placeholder="Search Book, Author, or ISBN..."
+                placeholder="Search by title, author or ISBN"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-12 pl-12 pr-6 bg-black/[0.03] hover:bg-black/[0.05] rounded-[1.25rem] border-none focus:outline-none focus:ring-2 focus:ring-[#1DA756]/10 font-bold text-xs transition-all placeholder:text-[#0D120E]/20"
+                className="w-full h-10 pl-11 pr-4 bg-black/[0.03] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1DA756]/10 transition-all placeholder:text-black/20"
               />
-            </div>
-          </div>
+           </div>
+
+           <div className="flex items-center gap-6 ml-auto">
+              <button className="px-4 py-1.5 bg-[#1DA756] text-white rounded-md text-[11px] font-bold uppercase tracking-widest hover:bg-[#158C45] transition-colors">
+                 Subscribe
+              </button>
+              <div className="flex items-center gap-3">
+                 <span className="text-[11px] font-bold text-black/40 uppercase">Member</span>
+                 <div className="w-8 h-8 rounded-full bg-black/5" />
+              </div>
+           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-12 md:py-16 space-y-32">
-        {search === "" && (
-          <>
-            <section>
-              <SectionHeader title="Top Authors" desc="Insights from the masters" />
-              <div className="flex items-center gap-10 md:gap-16 overflow-x-auto no-scrollbar pb-6 pt-2">
-                {MOCK_AUTHORS.map((author) => (
-                   <div key={author.name} className="flex flex-col items-center gap-4 shrink-0 group">
-                      <div className="relative">
-                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-transparent group-hover:border-[#1DA756] transition-all p-1">
-                          <img src={author.img} alt={author.name} className="w-full h-full object-cover rounded-full shadow-inner" />
-                        </div>
-                        <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-white shadow-md flex items-center justify-center border border-black/[0.05]">
-                          <Star className="w-3.5 h-3.5 text-[#F5B041] fill-current" />
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <h4 className="text-sm font-black text-[#0D120E] leading-none mb-1 group-hover:text-[#1DA756] transition-colors">{author.name}</h4>
-                        <p className="text-[10px] font-bold text-[#0D120E]/30 uppercase tracking-tight">{author.role}</p>
-                      </div>
-                   </div>
-                ))}
-              </div>
-            </section>
+      <div className="flex pt-16 h-screen">
+        {/* ── SIDEBAR ─────────────────────────────────────────────── */}
+        <aside className="w-64 border-r border-black/[0.04] p-8 hidden xl:flex flex-col gap-10 overflow-y-auto">
+           <div className="space-y-6">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black/30">Browse</h4>
+              <nav className="flex flex-col gap-4">
+                 {[
+                   { label: 'Top Books', icon: Star },
+                   { label: 'Discover', icon: Compass, active: true },
+                   { label: 'Categories', icon: Layout }
+                 ].map(item => (
+                   <button key={item.label} className={`flex items-center gap-3 text-xs font-bold ${item.active ? "text-[#1DA756]" : "text-black/50 hover:text-black"} transition-colors w-full text-left`}>
+                      <item.icon size={16} strokeWidth={item.active ? 2.5 : 2} />
+                      {item.label}
+                   </button>
+                 ))}
+              </nav>
+           </div>
 
-            {featured && (
+           <div className="space-y-6">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black/30">Your Books</h4>
+              <nav className="flex flex-col gap-4">
+                 {[
+                   { label: 'Reading', icon: Book },
+                   { label: 'Favorite Reads', icon: Heart },
+                   { label: 'History', icon: Clock }
+                 ].map(item => (
+                   <button key={item.label} className="flex items-center gap-3 text-xs font-bold text-black/50 hover:text-black transition-colors w-full text-left">
+                      <item.icon size={16} />
+                      {item.label}
+                   </button>
+                 ))}
+              </nav>
+           </div>
+
+           <div className="space-y-6">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-black/30">Shelves</h4>
+              <nav className="flex flex-col gap-4">
+                 <button className="flex items-center gap-3 text-xs font-bold text-black/50 hover:text-black transition-colors w-full text-left">
+                    <Bookmark size={16} />
+                    Your Shelves
+                 </button>
+              </nav>
+           </div>
+
+           <button className="mt-4 w-full py-2 bg-[#1DA756]/10 text-[#1DA756] border border-[#1DA756]/20 rounded-md text-[10px] font-black uppercase tracking-widest hover:bg-[#1DA756] hover:text-white transition-all">
+             Create a Shelf
+           </button>
+        </aside>
+
+        {/* ── MAIN CONTENT ────────────────────────────────────────── */}
+        <main className="flex-1 overflow-y-auto bg-[#FAFAFA] p-8 md:p-12">
+           <div className="max-w-6xl mx-auto space-y-20">
+              
+              {/* Recently Added Section */}
               <section>
-                <SectionHeader title="Featured Selection" desc="Handpicked for your growth" />
-                <Link 
-                  href={`/resources/${featured.slug?.current}`}
-                  className="relative block w-full bg-[#1F1B16] rounded-[4rem] overflow-hidden group shadow-2xl shadow-black/10 transition-transform duration-500 hover:scale-[1.01]"
-                >
-                  <div className="absolute inset-0 opacity-40 mix-blend-overlay">
-                    <img src={featured.mainImageUrl} alt="" className="w-full h-full object-cover blur-3xl scale-125 transition-transform duration-[3s] group-hover:scale-150" />
-                  </div>
-                  <div className="relative z-10 p-12 md:p-20 flex flex-col md:flex-row items-center gap-16">
-                    <div className="flex-1 text-center md:text-left space-y-10">
-                      <div className="space-y-6">
-                        <div className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 w-fit mx-auto md:mx-0">
-                          <p className="text-[11px] font-black uppercase tracking-[0.4em] text-white">Editors Choice</p>
-                        </div>
-                        <h2 className="text-4xl md:text-6xl font-black text-white leading-[1] tracking-tight italic">
-                          {featured.title}
-                        </h2>
-                        <p className="text-xl md:text-2xl text-white/50 font-medium max-w-xl mx-auto md:mx-0 leading-relaxed">
-                          Transformative insights curated specifically for the Signet community trajectory.
-                        </p>
-                      </div>
-                      <div className="flex flex-wrap items-center justify-center md:justify-start gap-5">
-                        <button className="h-16 px-12 bg-[#1DA756] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#158C45] transition-all shadow-xl shadow-[#1DA756]/20">
-                          Explore Resource
-                        </button>
-                        <div className="flex items-center gap-4 px-8 h-16 rounded-2xl bg-white/5 border border-white/10 text-white/80">
-                          <Clock className="w-5 h-5 text-[#1DA756]" />
-                          <span className="text-base font-bold">12 min read</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-72 md:w-96 shrink-0 transform group-hover:-rotate-3 group-hover:-translate-y-6 transition-transform duration-700 ease-out">
-                      <div className="aspect-[2/3] rounded-[2rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] ring-1 ring-white/20">
-                        <img src={featured.mainImageUrl} alt="" className="w-full h-full object-cover" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                 <div className="flex items-center justify-between mb-10">
+                    <h2 className="text-xl font-bold text-black/80">Recently Added</h2>
+                    <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">See All</Link>
+                 </div>
+                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                    {books.slice(0, 7).map(book => (
+                       <SimpleResourceCard key={book._id} data={book} />
+                    ))}
+                 </div>
               </section>
-            )}
-          </>
-        )}
 
-        <section>
-          <SectionHeader 
-            title={search ? `Search Results (${filteredPosts.length})` : "Curated Bookshelf"} 
-            desc={search ? "Showing resources matching your query" : "The latest from our selection"} 
-            href={!search ? "#" : undefined} 
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-20">
-            {books.slice(0, search ? undefined : 8).map(book => (
-              <ResourceCard key={book._id} data={book} />
-            ))}
-            {books.length === 0 && (
-              <div className="col-span-full py-32 bg-black/[0.02] rounded-[3rem] border border-dashed border-black/[0.1] flex flex-col items-center justify-center text-[#0D120E]/20">
-                 <Book className="w-16 h-16 mb-6 opacity-30" />
-                 <h3 className="font-black uppercase tracking-[0.3em] text-sm">
-                   {search ? "No matching books found" : "Library currently empty"}
-                 </h3>
-              </div>
-            )}
-          </div>
-        </section>
+              {/* Recommended Section */}
+              <section>
+                 <div className="flex items-center justify-between mb-10">
+                    <h2 className="text-xl font-bold text-black/80">Recommended For You</h2>
+                    <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">See All</Link>
+                 </div>
+                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                    {recommended.map(book => (
+                       <SimpleResourceCard key={book._id} data={book} />
+                    ))}
+                 </div>
+              </section>
 
-        {magazines.length > 0 && (
-          <section className="relative px-8 py-20 bg-[#F7F6F0]/60 rounded-[4rem]">
-            <SectionHeader title="Journals & Magazines" desc="Periodic growth insights" href={!search ? "#" : undefined} />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-10 gap-y-16">
-              {magazines.map(magazine => (
-                <ResourceCard key={magazine._id} data={magazine} type="Magazine" />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {search === "" && (
-          <section>
-            <SectionHeader title="Recommended For You" desc="Based on your growth profile" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-20">
-              {initialPosts.length > 5 ? initialPosts.slice(5, 13).map(post => (
-                <ResourceCard key={post._id} data={post} />
-              )) : filteredPosts.map(post => (
-                <ResourceCard key={post._id} data={post} />
-              ))}
-            </div>
-          </section>
-        )}
-      </main>
+              {search === "" && books.length > 14 && (
+                <section>
+                   <div className="flex items-center justify-between mb-10">
+                      <h2 className="text-xl font-bold text-black/80">Curated Collection</h2>
+                   </div>
+                   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 text-xs">
+                      {books.slice(14, 28).map(book => (
+                         <SimpleResourceCard key={book._id} data={book} />
+                      ))}
+                   </div>
+                </section>
+              )}
+           </div>
+        </main>
+      </div>
     </div>
+  );
+}
+
+// ── COMPACT RESOURCE CARD ─────────────────────────────────────────
+
+const SimpleResourceCard = ({ data }: { data: any }) => {
+  const rating = (4.0 + Math.random()).toFixed(1);
+  return (
+    <Link href={`/resources/${data.slug?.current}`} className="group block space-y-3">
+       <div className="aspect-[2/3] rounded-lg overflow-hidden bg-white shadow-sm border border-black/5 transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1 relative">
+         {data.mainImageUrl ? (
+            <img src={data.mainImageUrl} alt={data.title} className="w-full h-full object-cover" />
+         ) : (
+            <div className="w-full h-full bg-black/5 flex items-center justify-center">
+               <Book size={24} className="text-black/10" />
+            </div>
+         )}
+         {/* Overlay with small info icons on hover */}
+         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+            <button className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-black/60 hover:text-red-500 scale-90 group-hover:scale-100 transition-all">
+               <Heart size={14} />
+            </button>
+            <button className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-black/60 hover:text-[#1DA756] scale-90 group-hover:scale-100 transition-all">
+               <Bookmark size={14} />
+            </button>
+         </div>
+       </div>
+       <div className="space-y-1">
+          <h4 className="text-[12px] font-bold text-black/80 line-clamp-2 leading-tight group-hover:text-[#1DA756] transition-colors">{data.title}</h4>
+          <p className="text-[10px] text-black/40 font-medium">Signet Curated</p>
+          <div className="flex items-center gap-1 mt-1">
+             {[...Array(5)].map((_, i) => (
+               <Star key={i} size={8} className={`${i < Math.floor(Number(rating)) ? "text-[#F5B041] fill-current" : "text-black/10"}`} />
+             ))}
+          </div>
+       </div>
+    </Link>
   );
 }

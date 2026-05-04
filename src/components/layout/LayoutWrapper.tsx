@@ -4,10 +4,17 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
+import { Home, FolderOpen, Users, Compass } from "lucide-react";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLandingPage = pathname === "/" || pathname === "/features" || pathname === "/vision-guide";
+  const navItems = [
+    { label: "Home", href: "/", icon: Home },
+    { label: "Library", href: "/resources", icon: FolderOpen },
+    { label: "Community", href: "/community", icon: Users },
+    { label: "About", href: "/features", icon: Compass },
+  ];
 
   return (
     <div className="flex flex-col min-h-screen relative">
@@ -18,7 +25,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
           {children}
         </main>
       </div>
-      {isLandingPage && <MobileBottomNav />}
+      {pathname !== "/" && <MobileBottomNav items={navItems} />}
     </div>
   );
 }
