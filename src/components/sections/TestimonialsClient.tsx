@@ -91,12 +91,24 @@ export default function TestimonialsClient({ testimonials }: Props) {
                     </p>
                   </div>
 
-                  <div className="pt-8 border-t border-black/[0.05] relative z-10">
-                    <h4 className="text-lg font-black text-[#0D120E] tracking-tight">{t.name || "Anonymous"}</h4>
-                    <p className="text-xs font-bold text-[#0D120E]/40 uppercase tracking-[0.2em] mt-2 flex items-center gap-2">
-                       <span className="w-3 h-[1px] bg-black/10" />
-                       {t.role || "Member"}{t.company ? `, ${t.company}` : ""}
-                    </p>
+                  <div className="pt-8 border-t border-black/[0.05] relative z-10 flex items-center gap-4">
+                    {t.avatar?.asset?.url ? (
+                      <img 
+                        src={t.avatar.asset.url} 
+                        alt={t.name} 
+                        className="w-12 h-12 rounded-full object-cover border border-black/5"
+                      />
+                    ) : (
+                      <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent font-black text-xs">
+                        {getInitials(t.name)}
+                      </div>
+                    )}
+                    <div>
+                      <h4 className="text-lg font-black text-[#0D120E] tracking-tight">{t.name || "Anonymous"}</h4>
+                      <p className="text-[10px] font-bold text-[#0D120E]/40 uppercase tracking-[0.2em] mt-1 flex items-center gap-2">
+                         {t.role || "Member"}{t.company ? `, ${t.company}` : ""}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>

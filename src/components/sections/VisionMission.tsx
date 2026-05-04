@@ -9,13 +9,13 @@ const VisionMission = () => {
         {
             title: "Our Vision",
             statement: "To build a global network of trailblazers who model and replicate excellence in diverse spheres.",
-            image: "/vision-mountain.png",
+            image: "/vision.png",
             href: "/vision-guide"
         },
         {
             title: "Our Mission",
             statement: "Ordinary persons achieving extraordinary results, silently and sustainably.",
-            image: "/mission-runner.png",
+            image: "/mission.png",
             href: "/features"
         }
     ];
