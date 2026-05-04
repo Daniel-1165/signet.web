@@ -15,7 +15,7 @@ const VisionMission = () => {
         {
             title: "Our Mission",
             statement: "Ordinary persons achieving extraordinary results, silently and sustainably.",
-            image: "/mission.png",
+            image: "/mission-statement.webp",
             href: "/features"
         }
     ];

@@ -9,8 +9,10 @@ const CURRICULUM_ITEMS = [
     title: "Power of Vision",
     description: "Aligning with your core purpose",
     icon: Target,
-    color: "text-accent",
-    height: "h-[180px]",
+    color: "text-[#1DA756]",
+    bgColor: "bg-[#1DA756]",
+    isDark: true,
+    height: "h-[200px]",
     delay: 0.1
   },
   {
@@ -18,55 +20,69 @@ const CURRICULUM_ITEMS = [
     description: "Understanding your identity",
     icon: BookOpen,
     color: "text-emerald-500",
-    height: "h-[220px]",
+    bgColor: "bg-emerald-500",
+    isDark: true,
+    height: "h-[240px]",
     delay: 0.2
   },
   {
     title: "Time Management",
     description: "High-performance productivity",
     icon: Clock,
-    color: "text-blue-500",
-    height: "h-[160px]",
+    color: "text-[#158C45]",
+    bgColor: "bg-[#158C45]",
+    isDark: true,
+    height: "h-[180px]",
     delay: 0.3
   },
   {
     title: "Leadership",
     description: "Leading with influence",
     icon: Shield,
-    color: "text-purple-500",
-    height: "h-[240px]",
+    color: "text-green-600",
+    bgColor: "bg-green-600",
+    isDark: true,
+    height: "h-[260px]",
     delay: 0.4
   },
   {
     title: "Emotional Intel",
     description: "Mastering your emotions",
     icon: Brain,
-    color: "text-pink-500",
-    height: "h-[190px]",
+    color: "text-[#0A5D2E]",
+    bgColor: "bg-[#0A5D2E]",
+    isDark: true,
+    height: "h-[220px]",
     delay: 0.5
   },
   {
     title: "Goal Setting",
     description: "Turning dreams into reality",
     icon: Zap,
-    color: "text-orange-500",
-    height: "h-[210px]",
+    color: "text-lime-600",
+    bgColor: "bg-lime-600",
+    isDark: true,
+    height: "h-[240px]",
     delay: 0.6
   },
   {
     title: "Career Growth",
     description: "Building professional value",
     icon: Briefcase,
-    color: "text-indigo-500",
-    height: "h-[170px]",
+    color: "text-[#1DA756]",
+    bgColor: "bg-[#1DA756]/90",
+    isDark: true,
+    height: "h-[200px]",
     delay: 0.7
   },
   {
     title: "Financial Lite",
     description: "Scaling your wealth",
     icon: TrendingUp,
-    color: "text-lime-500",
-    height: "h-[230px]",
+    color: "text-emerald-700",
+    bgColor: "bg-emerald-700",
+    isDark: true,
+    height: "h-[250px]",
     delay: 0.8
   }
 ];
@@ -153,33 +169,33 @@ export default function FeaturesPreview() {
         <div className="flex-1 w-full relative group/scroll overflow-hidden">
             <div className="flex gap-6 overflow-x-auto pb-12 pt-4 no-scrollbar -mx-6 px-6 cursor-grab active:cursor-grabbing">
                 <div className="flex gap-6 items-end">
-                    {CURRICULUM_ITEMS.map((item, idx) => (
+                    {CURRICULUM_ITEMS.map((item) => (
                         <motion.div
                             key={item.title}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: item.delay }}
-                            className={`flex-none w-[200px] md:w-[240px] ${item.height} p-8 rounded-[2.5rem] bg-white border border-black/5 flex flex-col items-start gap-4 hover:shadow-2xl hover:shadow-black/5 transition-all duration-500 hover:-translate-y-2 relative group overflow-hidden`}
+                            className={`flex-none w-[200px] md:w-[240px] ${item.height} p-8 rounded-[2.5rem] ${item.bgColor} border border-white/10 flex flex-col items-start gap-4 hover:shadow-2xl hover:shadow-black/10 transition-all duration-500 hover:-translate-y-2 relative group overflow-hidden shadow-lg`}
                         >
                             {/* Inner ambient glow */}
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-black/[0.02] rounded-full -mr-12 -mt-12 transition-transform duration-700 group-hover:scale-150" />
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 transition-transform duration-700 group-hover:scale-150" />
                             
-                            <div className={`p-3 rounded-2xl bg-black/[0.03] ${item.color} group-hover:scale-110 transition-transform duration-500`}>
-                                <item.icon className="w-6 h-6" />
+                            <div className="p-3 rounded-2xl bg-white/20 group-hover:scale-110 transition-transform duration-500">
+                                <item.icon className="w-6 h-6 text-white" />
                             </div>
                             
                             <div className="mt-auto">
-                                <h3 className="font-black text-sm uppercase tracking-tight text-[#0D120E]">
+                                <h3 className="font-black text-sm uppercase tracking-tight text-white">
                                     {item.title}
                                 </h3>
-                                <p className="text-[10px] font-bold text-[#0D120E]/40 uppercase tracking-widest mt-1">
+                                <p className="text-[10px] font-bold text-white/70 uppercase tracking-widest mt-1">
                                     {item.description}
                                 </p>
                             </div>
 
                             {/* Decorative element */}
-                            <div className="absolute bottom-4 right-6 opacity-0 group-hover:opacity-10 transition-opacity">
+                            <div className="absolute bottom-4 right-6 opacity-0 group-hover:opacity-20 transition-opacity text-white">
                                 <ArrowUpRight className="w-8 h-8" />
                             </div>
                         </motion.div>
