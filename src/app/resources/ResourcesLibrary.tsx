@@ -220,15 +220,24 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                     <section>
                        <div className="flex items-center justify-between mb-10">
                           <div className="flex items-center gap-3">
-                             <div className="w-1.5 h-6 bg-[#1DA756] rounded-full" />
-                             <h2 className="text-xl font-bold text-black/80">Monthly Magazines</h2>
+                             <div className="w-1.5 h-6 bg-[#D0652B] rounded-full" />
+                             <h2 className="text-xl font-bold text-black/80">The Signet Editions</h2>
                           </div>
-                          <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">Digital Edition</Link>
+                          <div className="flex items-center gap-4">
+                             <p className="text-[10px] font-black text-black/20 uppercase tracking-widest">Scroll to explore</p>
+                             <Link href="#" className="text-[10px] font-black text-[#D0652B] uppercase tracking-[0.2em] hover:text-black transition-colors">Digital Archive</Link>
+                          </div>
                        </div>
-                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
-                          {magazines.map(mag => (
-                             <SimpleResourceCard key={mag._id} data={mag} />
-                          ))}
+                       
+                       <div className="relative group/mags">
+                          {/* Mobile: Horizontal Scroll | Desktop: 5-column Grid */}
+                          <div className="flex lg:grid lg:grid-cols-5 gap-6 md:gap-8 overflow-x-auto lg:overflow-visible pb-10 lg:pb-0 no-scrollbar snap-x snap-mandatory">
+                             {magazines.map(mag => (
+                                <div key={mag._id} className="flex-none w-[70%] sm:w-[45%] md:w-[30%] lg:w-auto snap-start">
+                                   <SimpleResourceCard data={mag} />
+                                </div>
+                             ))}
+                          </div>
                        </div>
                     </section>
                   )}
