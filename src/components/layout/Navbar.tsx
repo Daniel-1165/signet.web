@@ -150,10 +150,8 @@ const Navbar = () => {
             aria-label="Open menu"
             className={`w-8 h-8 flex items-center justify-center ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}
           >
-            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <line x1="4" y1="7" x2="20" y2="7" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="17" x2="20" y2="17" />
+            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M5 7h14M5 12h14M5 17h14" />
             </svg>
           </button>
         </div>
@@ -342,10 +340,8 @@ const Navbar = () => {
                 isLightText && !isScrolled ? "text-white hover:text-white/70" : "text-[#0D120E] hover:text-[#1DA756]"
               }`}
             >
-              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                <line x1="4" y1="7" x2="20" y2="7" />
-                <line x1="4" y1="12" x2="20" y2="12" />
-                <line x1="4" y1="17" x2="20" y2="17" />
+              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M5 7h14M5 12h14M5 17h14" />
               </svg>
             </button>
           </div>
