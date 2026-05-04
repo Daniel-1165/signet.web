@@ -30,9 +30,9 @@ const ModernHero = () => {
                         transition={{ duration: 0.2, delay: 0.05, ease: "easeOut" }}
                         className="text-[#1D1914] text-[48px] md:text-[72px] font-bold leading-[1.05] md:leading-[1.1] tracking-[-0.035em] mb-[32px]"
                     >
-                        Change the way<br />
-                        you approach<br />
-                        <span className="text-[#6E7A67]">your growth.</span>
+                        Master your<br />
+                        growth<br />
+                        <span className="text-[#6E7A67]">trajectory.</span>
                     </motion.h1>
 
                     <motion.p 
@@ -41,8 +41,7 @@ const ModernHero = () => {
                         transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
                         className="text-[#1F1B16]/80 text-[15px] md:text-[17px] leading-[30px] max-w-lg mb-[40px] font-medium"
                     >
-                        From your everyday habits, to planning for your future with essential resources and community, 
-                        Signet helps you get more out of your life trajectory.
+                        Harness essential resources and community to accelerate your personal and professional evolution.
                     </motion.p>
 
                     <motion.div 
@@ -134,8 +133,8 @@ const ModernHero = () => {
                             </div>
                             <div className="mt-8 z-10 flex flex-col md:flex-row md:items-end justify-between gap-[12px]">
                                 <div>
-                                    <span className="text-[#1F1B16] block mb-[4px] font-medium text-[12px] uppercase tracking-widest opacity-60">Community</span>
-                                    <h4 className="text-[20px] font-semibold tracking-[-0.025em] text-[#1D1914]">Join the network of silent achievers</h4>
+                                    <span className="text-[#1F1B16] block mb-[4px] font-medium text-[12px] uppercase tracking-widest opacity-60">Network</span>
+                                    <h4 className="text-[20px] font-semibold tracking-[-0.025em] text-[#1D1914]">Join the silent achievers</h4>
                                 </div>
                             </div>
                         </Link>

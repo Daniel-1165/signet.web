@@ -120,7 +120,7 @@ export default function FeaturesPreview() {
             transition={{ delay: 0.2 }}
             className="text-foreground/60 text-lg max-w-lg leading-relaxed font-medium"
           >
-            Join our structured transformational journey designed to equip you with the skills required to excel across all dimensions of your life.
+            A structured transformational journey designed for high-performance excellence across all dimensions of life.
           </motion.p>
           
           <motion.ul 
