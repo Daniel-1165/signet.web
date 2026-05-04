@@ -36,6 +36,8 @@ export default function Sidebar() {
   const isVisible = useScrollDirection();
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const isLandingPage = pathname === "/" || pathname === "/features" || pathname === "/vision-guide";
+
   return (
     <>
       <style jsx global>{`
@@ -87,14 +89,15 @@ export default function Sidebar() {
       </div>
 
       {/* ── DESKTOP MODERN SIDEBAR ── */}
-      <motion.aside
-        initial={false}
-        onMouseEnter={() => setIsExpanded(true)}
-        onMouseLeave={() => setIsExpanded(false)}
-        animate={{ width: isExpanded ? 280 : 88 }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="hidden md:flex flex-col fixed top-0 left-0 z-[45] h-screen bg-white border-r border-[#0D120E]/5 py-8 overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
-      >
+      {!isLandingPage && (
+        <motion.aside
+          initial={false}
+          onMouseEnter={() => setIsExpanded(true)}
+          onMouseLeave={() => setIsExpanded(false)}
+          animate={{ width: isExpanded ? 280 : 88 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden md:flex flex-col fixed top-0 left-0 z-[45] h-screen bg-white border-r border-[#0D120E]/5 py-8 overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
+        >
         {/* Brand/Logo - Only Text */}
         <div className="px-6 mb-10 flex items-center h-12 overflow-hidden">
           <Link href="/" className="flex items-center gap-3">
@@ -221,6 +224,7 @@ export default function Sidebar() {
           </div>
         </div>
       </motion.aside>
+    )}
     </>
   );
 }

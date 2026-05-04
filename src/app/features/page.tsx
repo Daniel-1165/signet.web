@@ -19,7 +19,7 @@ export default function FeaturesPage() {
         {/* ── TOP HERO: GET TO KNOW US ─────────────────────────────── */}
         <section className="relative w-full overflow-hidden">
           <img
-            src="/png2svg/SIGNET-01.svg"
+            src="/get-to-know-us.png"
             alt="Get To Know Us"
             className="w-full h-auto object-contain"
           />
