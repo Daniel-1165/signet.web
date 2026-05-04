@@ -101,6 +101,7 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
     );
   }, [search, initialPosts]);
 
+  const magazines = filteredPosts.filter(p => p.tag === 'Magazine');
   const books = filteredPosts.filter(p => p.tag === 'Book' || (p.tag !== 'Magazine' && p.tag !== 'Article'));
   const recommended = initialPosts.length > 8 ? initialPosts.slice(0, 8) : initialPosts;
 
@@ -190,6 +191,24 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
         <main className="flex-1 overflow-y-auto bg-[#FAFAFA] p-8 md:p-12">
            <div className="max-w-6xl mx-auto space-y-20">
               
+              {/* Magazines Section */}
+              {magazines.length > 0 && (
+                <section>
+                   <div className="flex items-center justify-between mb-10">
+                      <div className="flex items-center gap-3">
+                         <div className="w-1.5 h-6 bg-[#1DA756] rounded-full" />
+                         <h2 className="text-xl font-bold text-black/80">Monthly Magazines</h2>
+                      </div>
+                      <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">Digital Edition</Link>
+                   </div>
+                   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                      {magazines.map(mag => (
+                         <SimpleResourceCard key={mag._id} data={mag} />
+                      ))}
+                   </div>
+                </section>
+              )}
+
               {/* Recently Added Section */}
               <section>
                  <div className="flex items-center justify-between mb-10">
@@ -222,7 +241,7 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                       <h2 className="text-xl font-bold text-black/80">Curated Collection</h2>
                    </div>
                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 text-xs">
-                      {books.slice(14, 28).map(book => (
+                      {books.slice(14, 21).map(book => (
                          <SimpleResourceCard key={book._id} data={book} />
                       ))}
                    </div>
@@ -239,8 +258,15 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
 
 const SimpleResourceCard = ({ data }: { data: any }) => {
   const rating = (4.0 + Math.random()).toFixed(1);
+  const resourceUrl = data.fileUrl || (data.slug?.current ? `/resources/${data.slug.current}` : "#");
+
   return (
-    <Link href={`/resources/${data.slug?.current}`} className="group block space-y-3">
+    <a 
+      href={resourceUrl} 
+      download={!!data.fileUrl} 
+      target={data.fileUrl ? "_blank" : "_self"} 
+      className="group block space-y-3 cursor-pointer"
+    >
        <div className="aspect-[2/3] rounded-lg overflow-hidden bg-white shadow-sm border border-black/5 transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1 relative">
          {data.mainImageUrl ? (
             <img src={data.mainImageUrl} alt={data.title} className="w-full h-full object-cover" />
@@ -249,14 +275,13 @@ const SimpleResourceCard = ({ data }: { data: any }) => {
                <Book size={24} className="text-black/10" />
             </div>
          )}
-         {/* Overlay with small info icons on hover */}
          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-            <button className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-black/60 hover:text-red-500 scale-90 group-hover:scale-100 transition-all">
+            <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-black/60 hover:text-red-500 scale-90 group-hover:scale-100 transition-all">
                <Heart size={14} />
-            </button>
-            <button className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-black/60 hover:text-[#1DA756] scale-90 group-hover:scale-100 transition-all">
+            </div>
+            <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-black/60 hover:text-[#1DA756] scale-90 group-hover:scale-100 transition-all">
                <Bookmark size={14} />
-            </button>
+            </div>
          </div>
        </div>
        <div className="space-y-1">
@@ -264,10 +289,10 @@ const SimpleResourceCard = ({ data }: { data: any }) => {
           <p className="text-[10px] text-black/40 font-medium">Signet Curated</p>
           <div className="flex items-center gap-1 mt-1">
              {[...Array(5)].map((_, i) => (
-               <Star key={i} size={8} className={`${i < Math.floor(Number(rating)) ? "text-[#F5B041] fill-current" : "text-black/10"}`} />
+                <Star key={i} size={8} className={`${i < Math.floor(Number(rating)) ? "text-[#F5B041] fill-current" : "text-black/10"}`} />
              ))}
           </div>
        </div>
-    </Link>
+    </a>
   );
-}
+};

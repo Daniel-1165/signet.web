@@ -122,8 +122,8 @@ export default function FeaturesPage() {
                     <div className="absolute top-0 right-0 w-64 h-64 bg-[#1DA756]/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
                     
                     <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-8 block">Active Enrollment</span>
-                    <h3 className="text-4xl md:text-7xl font-black mb-8 leading-none">16 MAR <br/> <span className="text-[#1DA756]">15 JUN.</span></h3>
-                    <p className="text-white/60 text-lg mb-12 font-medium capitalize">Join the next cohort of silent achievers. Enrollment is currently open for the summer session.</p>
+                    <h3 className="text-4xl md:text-5xl font-black mb-8 leading-none uppercase tracking-tighter">Watch out for <br/> <span className="text-[#1DA756]">next cohort.</span></h3>
+                    <p className="text-white/60 text-lg mb-12 font-medium capitalize">Join the next group of high-achievers. Stay tuned for the upcoming session details.</p>
                     <Link href="/join" className="inline-flex items-center gap-3 text-[#1DA756] font-black tracking-[0.2em] uppercase text-sm group">
                         Apply Now <ArrowRight className="group-hover:translate-x-2 transition-transform" />
                     </Link>

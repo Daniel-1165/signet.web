@@ -9,8 +9,7 @@ const CURRICULUM_ITEMS = [
     title: "Power of Vision",
     description: "Aligning with your core purpose",
     icon: Target,
-    color: "text-[#1DA756]",
-    bgColor: "bg-[#1DA756]",
+    bgColor: "bg-[#051F20]",
     isDark: true,
     height: "h-[200px]",
     delay: 0.1
@@ -19,8 +18,7 @@ const CURRICULUM_ITEMS = [
     title: "Self-Awareness",
     description: "Understanding your identity",
     icon: BookOpen,
-    color: "text-emerald-500",
-    bgColor: "bg-emerald-500",
+    bgColor: "bg-[#0B2B26]",
     isDark: true,
     height: "h-[240px]",
     delay: 0.2
@@ -29,8 +27,7 @@ const CURRICULUM_ITEMS = [
     title: "Time Management",
     description: "High-performance productivity",
     icon: Clock,
-    color: "text-[#158C45]",
-    bgColor: "bg-[#158C45]",
+    bgColor: "bg-[#163832]",
     isDark: true,
     height: "h-[180px]",
     delay: 0.3
@@ -39,8 +36,7 @@ const CURRICULUM_ITEMS = [
     title: "Leadership",
     description: "Leading with influence",
     icon: Shield,
-    color: "text-green-600",
-    bgColor: "bg-green-600",
+    bgColor: "bg-[#235347]",
     isDark: true,
     height: "h-[260px]",
     delay: 0.4
@@ -49,8 +45,7 @@ const CURRICULUM_ITEMS = [
     title: "Emotional Intel",
     description: "Mastering your emotions",
     icon: Brain,
-    color: "text-[#0A5D2E]",
-    bgColor: "bg-[#0A5D2E]",
+    bgColor: "bg-[#173B2B]",
     isDark: true,
     height: "h-[220px]",
     delay: 0.5
@@ -59,8 +54,7 @@ const CURRICULUM_ITEMS = [
     title: "Goal Setting",
     description: "Turning dreams into reality",
     icon: Zap,
-    color: "text-lime-600",
-    bgColor: "bg-lime-600",
+    bgColor: "bg-[#2A5A45]",
     isDark: true,
     height: "h-[240px]",
     delay: 0.6
@@ -69,8 +63,7 @@ const CURRICULUM_ITEMS = [
     title: "Career Growth",
     description: "Building professional value",
     icon: Briefcase,
-    color: "text-[#1DA756]",
-    bgColor: "bg-[#1DA756]/90",
+    bgColor: "bg-[#0B2B26]",
     isDark: true,
     height: "h-[200px]",
     delay: 0.7
@@ -79,8 +72,7 @@ const CURRICULUM_ITEMS = [
     title: "Financial Lite",
     description: "Scaling your wealth",
     icon: TrendingUp,
-    color: "text-emerald-700",
-    bgColor: "bg-emerald-700",
+    bgColor: "bg-[#051F20]",
     isDark: true,
     height: "h-[250px]",
     delay: 0.8
@@ -130,11 +122,11 @@ export default function FeaturesPreview() {
             transition={{ delay: 0.3 }}
             className="space-y-5 pt-4 mb-8"
           >
-             <li className="flex items-center gap-4 text-foreground/80 font-bold tracking-tight md:text-lg">
+             <li className="flex items-center gap-4 text-foreground/80 font-bold tracking-tight md:text-lg italic">
                 <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
                     <Clock className="text-accent w-5 h-5" />
                 </div>
-                16th March - 15th June, 2026
+                Watch out for next cohort
              </li>
              <li className="flex items-center gap-4 text-foreground/80 font-bold tracking-tight md:text-lg">
                 <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
@@ -214,9 +206,6 @@ export default function FeaturesPreview() {
                 </div>
             </div>
 
-            {/* Fades for scroll */}
-            <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         </div>
       </div>
     </section>

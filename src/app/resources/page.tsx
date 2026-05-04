@@ -10,7 +10,9 @@ const POSTS_QUERY = `
     _createdAt, 
     slug, 
     _type,
-    "mainImageUrl": thumbnail.asset->url
+    "mainImageUrl": thumbnail.asset->url,
+    "fileUrl": resourceFile.asset->url,
+    "fileExtension": resourceFile.asset->extension
   }
 `;
 
