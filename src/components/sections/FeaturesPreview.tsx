@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import { ArrowUpRight, BookOpen, Target, Clock, Shield, Brain, Zap, Briefcase, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
