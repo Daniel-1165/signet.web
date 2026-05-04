@@ -1,3 +1,5 @@
+"use client";
+
 import { Brain, Heart, Zap, Clock, Shield, Award, CheckCircle2, Binary } from "lucide-react";
 import { motion } from "framer-motion";
 

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Calendar, Award, BookOpen, Clock, Users,
   CheckCircle2, Target, Brain, Activity, Shield,
