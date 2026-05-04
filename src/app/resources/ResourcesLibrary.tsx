@@ -111,24 +111,21 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.04] h-16 flex items-center px-6">
         <div className="flex items-center gap-12 w-full">
            <Link href="/" className="text-2xl font-black italic tracking-tighter text-[#1DA756]">
-             library.
+             resources.
            </Link>
 
-           <div className="flex-1 max-w-2xl relative group">
+           <div className="flex-1 max-w-4xl relative group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/20 group-focus-within:text-[#1DA756] transition-colors" />
               <input 
                 type="text"
                 placeholder="Search by title, author or ISBN"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-10 pl-11 pr-4 bg-black/[0.03] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1DA756]/10 transition-all placeholder:text-black/20"
+                className="w-full h-11 pl-11 pr-4 bg-black/[0.03] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#1DA756]/10 transition-all placeholder:text-black/20"
               />
            </div>
 
            <div className="flex items-center gap-6 ml-auto">
-              <button className="px-4 py-1.5 bg-[#1DA756] text-white rounded-md text-[11px] font-bold uppercase tracking-widest hover:bg-[#158C45] transition-colors">
-                 Subscribe
-              </button>
               <div className="flex items-center gap-3">
                  <span className="text-[11px] font-bold text-black/40 uppercase">Member</span>
                  <div className="w-8 h-8 rounded-full bg-black/5" />
@@ -191,61 +188,90 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
         <main className="flex-1 overflow-y-auto bg-[#FAFAFA] p-8 md:p-12">
            <div className="max-w-6xl mx-auto space-y-20">
               
-              {/* Magazines Section */}
-              {magazines.length > 0 && (
+              {search !== "" ? (
                 <section>
                    <div className="flex items-center justify-between mb-10">
                       <div className="flex items-center gap-3">
                          <div className="w-1.5 h-6 bg-[#1DA756] rounded-full" />
-                         <h2 className="text-xl font-bold text-black/80">Monthly Magazines</h2>
+                         <h2 className="text-xl font-bold text-black/80">Search Results for "{search}"</h2>
                       </div>
-                      <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">Digital Edition</Link>
+                      <p className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em]">{filteredPosts.length} items found</p>
                    </div>
-                   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
-                      {magazines.map(mag => (
-                         <SimpleResourceCard key={mag._id} data={mag} />
-                      ))}
-                   </div>
+                   {filteredPosts.length > 0 ? (
+                      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                         {filteredPosts.map(item => (
+                            <SimpleResourceCard key={item._id} data={item} />
+                         ))}
+                      </div>
+                   ) : (
+                      <div className="flex flex-col items-center justify-center py-20 text-center">
+                         <div className="w-20 h-20 rounded-full bg-black/5 flex items-center justify-center mb-6">
+                            <Search className="w-8 h-8 text-black/20" />
+                         </div>
+                         <h3 className="text-lg font-bold text-black/80">No results found</h3>
+                         <p className="text-sm text-black/40 mt-2">Try searching for something else or check your spelling.</p>
+                      </div>
+                   )}
                 </section>
-              )}
+              ) : (
+                <>
+                  {/* Magazines Section */}
+                  {magazines.length > 0 && (
+                    <section>
+                       <div className="flex items-center justify-between mb-10">
+                          <div className="flex items-center gap-3">
+                             <div className="w-1.5 h-6 bg-[#1DA756] rounded-full" />
+                             <h2 className="text-xl font-bold text-black/80">Monthly Magazines</h2>
+                          </div>
+                          <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">Digital Edition</Link>
+                       </div>
+                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                          {magazines.map(mag => (
+                             <SimpleResourceCard key={mag._id} data={mag} />
+                          ))}
+                       </div>
+                    </section>
+                  )}
 
-              {/* Recently Added Section */}
-              <section>
-                 <div className="flex items-center justify-between mb-10">
-                    <h2 className="text-xl font-bold text-black/80">Recently Added</h2>
-                    <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">See All</Link>
-                 </div>
-                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
-                    {books.slice(0, 7).map(book => (
-                       <SimpleResourceCard key={book._id} data={book} />
-                    ))}
-                 </div>
-              </section>
+                  {/* Recently Added Section */}
+                  <section>
+                     <div className="flex items-center justify-between mb-10">
+                        <h2 className="text-xl font-bold text-black/80">Recently Added</h2>
+                        <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">See All</Link>
+                     </div>
+                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                        {books.slice(0, 7).map(book => (
+                           <SimpleResourceCard key={book._id} data={book} />
+                        ))}
+                     </div>
+                  </section>
 
-              {/* Recommended Section */}
-              <section>
-                 <div className="flex items-center justify-between mb-10">
-                    <h2 className="text-xl font-bold text-black/80">Recommended For You</h2>
-                    <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">See All</Link>
-                 </div>
-                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
-                    {recommended.map(book => (
-                       <SimpleResourceCard key={book._id} data={book} />
-                    ))}
-                 </div>
-              </section>
+                  {/* Recommended Section */}
+                  <section>
+                     <div className="flex items-center justify-between mb-10">
+                        <h2 className="text-xl font-bold text-black/80">Recommended For You</h2>
+                        <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">See All</Link>
+                     </div>
+                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                        {recommended.map(book => (
+                           <SimpleResourceCard key={book._id} data={book} />
+                        ))}
+                     </div>
+                  </section>
 
-              {search === "" && books.length > 14 && (
-                <section>
-                   <div className="flex items-center justify-between mb-10">
-                      <h2 className="text-xl font-bold text-black/80">Curated Collection</h2>
-                   </div>
-                   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 text-xs">
-                      {books.slice(14, 21).map(book => (
-                         <SimpleResourceCard key={book._id} data={book} />
-                      ))}
-                   </div>
-                </section>
+                  {books.length > 14 && (
+                    <section>
+                       <div className="flex items-center justify-between mb-10">
+                          <h2 className="text-xl font-bold text-black/80">Curated Collection</h2>
+                       </div>
+                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 text-xs">
+                          {books.slice(14, 21).map(book => (
+                             <SimpleResourceCard key={book._id} data={book} />
+                          ))}
+                       </div>
+                    </section>
+                  )}
+                </>
               )}
            </div>
         </main>
