@@ -110,15 +110,15 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
       {/* ── TOP NAVIGATION ─────────────────────────────────────────── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.04] h-16 flex items-center px-6">
         <div className="flex items-center gap-12 w-full">
-           <Link href="/" className="text-2xl font-black italic tracking-tighter text-[#1DA756]">
-             resources.
+           <Link href="/" className="text-2xl font-black uppercase tracking-tighter text-[#1DA756]">
+             RESOURCES
            </Link>
 
            <div className="flex-1 max-w-4xl relative group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/20 group-focus-within:text-[#1DA756] transition-colors" />
               <input 
                 type="text"
-                placeholder="Search by title, author or ISBN"
+                placeholder="Search resources..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full h-11 pl-11 pr-4 bg-black/[0.03] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#1DA756]/10 transition-all placeholder:text-black/20"
@@ -126,10 +126,7 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
            </div>
 
            <div className="flex items-center gap-6 ml-auto">
-              <div className="flex items-center gap-3">
-                 <span className="text-[11px] font-bold text-black/40 uppercase">Member</span>
-                 <div className="w-8 h-8 rounded-full bg-black/5" />
-              </div>
+              {/* Profile removed to simplify navigation */}
            </div>
         </div>
       </header>
@@ -230,10 +227,10 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                        </div>
                        
                        <div className="relative group/mags">
-                          {/* Mobile: Horizontal Scroll | Desktop: 5-column Grid */}
-                          <div className="flex lg:grid lg:grid-cols-5 gap-6 md:gap-8 overflow-x-auto lg:overflow-visible pb-10 lg:pb-0 no-scrollbar snap-x snap-mandatory">
+                          {/* Desktop: 5 items visible, sized same as books (7-col width) */}
+                          <div className="flex gap-6 md:gap-8 overflow-x-auto pb-10 no-scrollbar snap-x snap-mandatory lg:max-w-[71.4%]">
                              {magazines.map(mag => (
-                                <div key={mag._id} className="flex-none w-[70%] sm:w-[45%] md:w-[30%] lg:w-auto snap-start">
+                                <div key={mag._id} className="flex-none w-[70%] sm:w-[45%] md:w-[30%] lg:w-[calc(20%-26px)] snap-start">
                                    <SimpleResourceCard data={mag} />
                                 </div>
                              ))}
