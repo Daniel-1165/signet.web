@@ -26,7 +26,7 @@ export default function FeaturesPage() {
         </section>
 
         {/* ── FLUID SECTION: GROWTH PHILOSOPHY ──────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 pb-12 md:pb-20 pt-0">
+        <section className="max-w-7xl mx-auto px-6 md:px-12 pt-12 md:pt-24 pb-12 md:pb-20">
           <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
             <div className="space-y-8">
               <h1 className="text-4xl md:text-7xl font-black leading-[0.9] tracking-tighter">
