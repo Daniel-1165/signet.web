@@ -12,7 +12,7 @@ const SectionHeader = ({ title, desc, href }: { title: string, desc?: string, hr
       {desc && <p className="text-[#0D120E]/40 font-bold text-[11px] uppercase tracking-widest mt-1.5">{desc}</p>}
     </div>
     {href && (
-      <Link href={href} className="text-[11px] font-black text-[#1DA756] hover:text-[#0D120E] transition-colors tracking-widest uppercase flex items-center gap-1.5 bg-[#1DA756]/5 px-4 py-2 rounded-full">
+      <Link href={href} className="text-[11px] font-black text-[#163832] hover:text-[#0D120E] transition-colors tracking-widest uppercase flex items-center gap-1.5 bg-[#163832]/5 px-4 py-2 rounded-full">
         See All <ChevronRight className="w-3 h-3" />
       </Link>
     )}
@@ -36,7 +36,7 @@ const ResourceCard = ({ data, type = "Book" }: { data: any, type?: string }) => 
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-[#F7F6F0] to-[#EBE9E1] flex flex-col items-center justify-center p-8 text-center ring-inset ring-1 ring-black/[0.05]">
-            <Book className={`w-10 h-10 ${isMagazine ? "text-[#D0652B]" : "text-[#1DA756]"} opacity-30 mb-4`} />
+            <Book className={`w-10 h-10 ${isMagazine ? "text-[#8A5A37]" : "text-[#163832]"} opacity-30 mb-4`} />
             <span className="font-black text-[#0D120E]/30 text-base uppercase tracking-[0.2em]">{data.title.substring(0, 10)}</span>
           </div>
         )}
@@ -47,21 +47,21 @@ const ResourceCard = ({ data, type = "Book" }: { data: any, type?: string }) => 
           <button className="w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-xl flex items-center justify-center text-[#0D120E]/60 hover:text-red-500 hover:scale-110 transition-all">
             <Heart className="w-5 h-5" />
           </button>
-          <button className="w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-xl flex items-center justify-center text-[#0D120E]/60 hover:text-[#1DA756] hover:scale-110 transition-all">
+          <button className="w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-xl flex items-center justify-center text-[#0D120E]/60 hover:text-[#163832] hover:scale-110 transition-all">
             <BookmarkCheck className="w-5 h-5" />
           </button>
         </div>
 
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
            <div className="w-16 h-16 rounded-full bg-white shadow-2xl flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-500">
-              <PlayCircle className={`w-8 h-8 ${isMagazine ? "text-[#D0652B]" : "text-[#1DA756]"}`} />
+              <PlayCircle className={`w-8 h-8 ${isMagazine ? "text-[#8A5A37]" : "text-[#163832]"}`} />
            </div>
         </div>
       </div>
 
       <div className="px-1 space-y-1.5">
         <div className="flex items-center justify-between">
-           <div className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest ${isMagazine ? "bg-[#FFF0E6] text-[#D0652B]" : "bg-[#E6F4EA] text-[#1DA756]"}`}>
+           <div className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest ${isMagazine ? "bg-[#FFF0E6] text-[#8A5A37]" : "bg-[#E6F4EA] text-[#163832]"}`}>
              {isMagazine ? "Magazine" : "Curated Book"}
            </div>
            <div className="flex items-center gap-1.5 text-[#F5B041]">
@@ -69,7 +69,7 @@ const ResourceCard = ({ data, type = "Book" }: { data: any, type?: string }) => 
              <span className="text-[11px] font-black text-[#D08B16]">{mockRating}</span>
            </div>
         </div>
-        <h3 className="font-bold text-[#0D120E] text-base md:text-lg leading-[1.3] line-clamp-2 min-h-[3.5rem] group-hover:text-[#1DA756] transition-colors italic">
+        <h3 className="font-bold text-[#0D120E] text-base md:text-lg leading-[1.3] line-clamp-2 min-h-[3.5rem] group-hover:text-[#163832] transition-colors italic">
           {data.title}
         </h3>
         <p className="text-[12px] text-[#0D120E]/40 font-bold uppercase tracking-widest">
@@ -110,18 +110,18 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
       {/* ── TOP NAVIGATION ─────────────────────────────────────────── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.04] h-16 flex items-center px-6">
         <div className="flex items-center gap-12 w-full">
-           <Link href="/" className="text-2xl font-black uppercase tracking-tighter text-[#1DA756]">
+           <Link href="/" className="text-2xl font-black uppercase tracking-tighter text-[#163832]" style={{ fontFamily: "'Playfair Display', serif" }}>
              RESOURCES
            </Link>
 
-           <div className="flex-1 max-w-4xl relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/20 group-focus-within:text-[#1DA756] transition-colors" />
+           <div className="flex-1 max-w-2xl mx-auto relative group">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#163832]/30 group-focus-within:text-[#163832] transition-colors" />
               <input 
                 type="text"
-                placeholder="Search resources..."
+                placeholder="Search the collection..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-11 pl-11 pr-4 bg-black/[0.03] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#1DA756]/10 transition-all placeholder:text-black/20"
+                className="w-full h-12 pl-12 pr-6 bg-[#0B2B26]/[0.03] border border-transparent focus:border-[#163832]/20 rounded-full text-[13px] focus:outline-none focus:bg-white focus:shadow-xl focus:shadow-[#163832]/5 transition-all placeholder:text-[#163832]/30 font-medium"
               />
            </div>
 
@@ -142,7 +142,7 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                    { label: 'Discover', icon: Compass, active: true },
                    { label: 'Categories', icon: Layout }
                  ].map(item => (
-                   <button key={item.label} className={`flex items-center gap-3 text-xs font-bold ${item.active ? "text-[#1DA756]" : "text-black/50 hover:text-black"} transition-colors w-full text-left`}>
+                   <button key={item.label} className={`flex items-center gap-3 text-xs font-bold ${item.active ? "text-[#163832]" : "text-black/50 hover:text-black"} transition-colors w-full text-left`}>
                       <item.icon size={16} strokeWidth={item.active ? 2.5 : 2} />
                       {item.label}
                    </button>
@@ -176,7 +176,7 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
               </nav>
            </div>
 
-           <button className="mt-4 w-full py-2 bg-[#1DA756]/10 text-[#1DA756] border border-[#1DA756]/20 rounded-md text-[10px] font-black uppercase tracking-widest hover:bg-[#1DA756] hover:text-white transition-all">
+           <button className="mt-4 w-full py-2 bg-[#163832]/10 text-[#163832] border border-[#163832]/20 rounded-md text-[10px] font-black uppercase tracking-widest hover:bg-[#163832] hover:text-white transition-all">
              Create a Shelf
            </button>
         </aside>
@@ -217,12 +217,12 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                     <section>
                        <div className="flex items-center justify-between mb-10">
                           <div className="flex items-center gap-3">
-                             <div className="w-1.5 h-6 bg-[#D0652B] rounded-full" />
+                             <div className="w-1.5 h-6 bg-[#8A5A37] rounded-full" />
                              <h2 className="text-xl font-bold text-black/80">The Signet Editions</h2>
                           </div>
                           <div className="flex items-center gap-4">
                              <p className="text-[10px] font-black text-black/20 uppercase tracking-widest">Scroll to explore</p>
-                             <Link href="#" className="text-[10px] font-black text-[#D0652B] uppercase tracking-[0.2em] hover:text-black transition-colors">Digital Archive</Link>
+                             <Link href="#" className="text-[10px] font-black text-[#8A5A37] uppercase tracking-[0.2em] hover:text-black transition-colors">Digital Archive</Link>
                           </div>
                        </div>
                        
@@ -297,32 +297,44 @@ const SimpleResourceCard = ({ data }: { data: any }) => {
       href={resourceUrl} 
       download={!!data.fileUrl} 
       target={data.fileUrl ? "_blank" : "_self"} 
-      className="group block space-y-3 cursor-pointer"
+      className="group block space-y-4 cursor-pointer"
     >
-       <div className="aspect-[2/3] rounded-lg overflow-hidden bg-white shadow-sm border border-black/5 transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1 relative">
+       <div className="aspect-[2/3] rounded-xl overflow-hidden bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 transition-all duration-500 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-2 relative">
          {data.mainImageUrl ? (
-            <img src={data.mainImageUrl} alt={data.title} className="w-full h-full object-cover" />
+            <img src={data.mainImageUrl} alt={data.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
          ) : (
-            <div className="w-full h-full bg-black/5 flex items-center justify-center">
-               <Book size={24} className="text-black/10" />
+            <div className="w-full h-full bg-[#0B2B26]/[0.02] flex items-center justify-center p-6 text-center">
+               <Book size={24} className="text-[#163832]/10" />
             </div>
          )}
-         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-black/60 hover:text-red-500 scale-90 group-hover:scale-100 transition-all">
-               <Heart size={14} />
-            </div>
-            <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-black/60 hover:text-[#1DA756] scale-90 group-hover:scale-100 transition-all">
-               <Bookmark size={14} />
+         
+         {/* Overlay for actions */}
+         <div className="absolute inset-0 bg-gradient-to-t from-[#051F20]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+            <div className="flex gap-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="w-9 h-9 rounded-full bg-white/95 backdrop-blur-md shadow-lg flex items-center justify-center text-[#163832] hover:text-red-500 hover:scale-110 transition-all">
+                   <Heart size={15} />
+                </div>
+                <div className="w-9 h-9 rounded-full bg-white/95 backdrop-blur-md shadow-lg flex items-center justify-center text-[#163832] hover:text-[#235347] hover:scale-110 transition-all">
+                   <Bookmark size={15} />
+                </div>
             </div>
          </div>
+
+         {/* Shelf Binding Effect */}
+         <div className="absolute inset-y-0 left-0 w-[1px] bg-white/20 z-10" />
+         <div className="absolute inset-y-0 left-[2px] w-[2px] bg-black/10 z-10" />
        </div>
-       <div className="space-y-1">
-          <h4 className="text-[12px] font-bold text-black/80 line-clamp-2 leading-tight group-hover:text-[#1DA756] transition-colors">{data.title}</h4>
-          <p className="text-[10px] text-black/40 font-medium">Signet Curated</p>
-          <div className="flex items-center gap-1 mt-1">
-             {[...Array(5)].map((_, i) => (
-                <Star key={i} size={8} className={`${i < Math.floor(Number(rating)) ? "text-[#F5B041] fill-current" : "text-black/10"}`} />
-             ))}
+
+       <div className="space-y-1.5 px-0.5">
+          <h4 className="text-[13px] font-bold text-[#051F20] line-clamp-2 leading-snug group-hover:text-[#163832] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
+            {data.title}
+          </h4>
+          <div className="flex items-center justify-between">
+            <p className="text-[9px] text-[#051F20]/40 font-black uppercase tracking-[0.15em]">Signet Library</p>
+            <div className="flex items-center gap-0.5">
+                <Star size={8} className="text-[#DA8B16] fill-current" />
+                <span className="text-[9px] font-black text-[#DA8B16]">{rating}</span>
+            </div>
           </div>
        </div>
     </a>

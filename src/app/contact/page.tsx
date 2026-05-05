@@ -10,9 +10,9 @@ export default function ContactPage() {
       description: "Chat with us instantly on WhatsApp for quick support and questions.",
       action: "Start Chat",
       href: "https://wa.me/15551234567?text=Hi%20Signet%20Network%2C%20I%20need%20help%20with...",
-      color: "bg-green-500 hover:bg-green-600",
-      bgColor: "bg-green-50",
-      textColor: "text-green-700",
+      color: "bg-[#0B2B26] hover:bg-[#163832]",
+      bgColor: "bg-[#DAF1DE]/40",
+      textColor: "text-[#051F20]",
     },
     {
       icon: <Mail className="w-8 h-8" />,
@@ -20,9 +20,9 @@ export default function ContactPage() {
       description: "Send us a detailed message and we'll get back to you within 24 hours.",
       action: "Send Email",
       href: "mailto:hello@signetnetwork.com?subject=Support%20Request&body=Hi%20Signet%20Network%20Team%2C%0A%0A",
-      color: "bg-blue-500 hover:bg-blue-600",
-      bgColor: "bg-blue-50",
-      textColor: "text-blue-700",
+      color: "bg-[#163832] hover:bg-[#235347]",
+      bgColor: "bg-[#8EB69B]/20",
+      textColor: "text-[#051F20]",
     },
     {
       icon: <Phone className="w-8 h-8" />,
@@ -30,9 +30,9 @@ export default function ContactPage() {
       description: "Speak directly with our support team for urgent matters.",
       action: "Call Now",
       href: "tel:+15551234567",
-      color: "bg-purple-500 hover:bg-purple-600",
-      bgColor: "bg-purple-50",
-      textColor: "text-purple-700",
+      color: "bg-[#235347] hover:bg-[#0B2B26]",
+      bgColor: "bg-[#DAF1DE]/40",
+      textColor: "text-[#051F20]",
     },
   ];
 
@@ -81,8 +81,8 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-6">
-            <h1 className="text-6xl md:text-7xl font-black tracking-tighter text-foreground leading-tight">
-              Get in <span className="text-accent">Touch</span>
+            <h1 className="text-6xl md:text-7xl font-black tracking-tighter text-[#051F20] leading-tight">
+              Get in <span className="text-[#163832]">Touch</span>
             </h1>
             <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
               We're here to help you on your personal development journey. Choose your preferred way to connect with our support team.
