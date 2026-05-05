@@ -73,7 +73,7 @@ export default function FeaturesPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
             <div className="rounded-2xl overflow-hidden shadow-2xl h-[300px] md:h-[450px] relative group">
                 <img 
-                    src="/mission-new.png" 
+                    src="/mission-leap.png" 
                     alt="Our Program Directive" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />

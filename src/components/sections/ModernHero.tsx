@@ -15,15 +15,6 @@ const ModernHero = () => {
             <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-[24px] max-w-7xl px-6 w-full mt-10 z-10">
                 {/* Left Content */}
                 <div className="flex-1 flex flex-col items-start w-full">
-                    <motion.span 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="text-[#6E7A67] font-medium text-[14px] uppercase tracking-widest mb-[16px]"
-                    >
-                        Try it now!
-                    </motion.span>
-                    
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}

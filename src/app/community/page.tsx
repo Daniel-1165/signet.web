@@ -40,8 +40,22 @@ interface Post {
   loadingComments?: boolean;
 }
 
-const TABS = ["All", "Posts", "Media", "Milestones"];
+const TABS = ["All", "Posts", "Media", "Milestones", "Write-ups"];
 const DEFAULT_AVATAR = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150&q=80";
+
+import { client } from "@/lib/sanity/client";
+
+const WRITEUPS_QUERY = `
+  *[_type == "feedInterrupt" && interruptType == "write-up" && isActive == true] | order(_createdAt desc) {
+    _id,
+    headline,
+    body,
+    insertAfter,
+    cardSize,
+    ctaLabel,
+    ctaUrl
+  }
+`;
 
 export default function CommunityPage() {
   const { user } = useUser();
@@ -92,8 +106,22 @@ export default function CommunityPage() {
 
         const likedIds = new Set((myLikes || []).map((l: any) => l.post_id));
         enriched = enriched.map((p) => ({ ...p, liked_by_me: likedIds.has(p.id) }));
-      }
-      setPosts(enriched);
+      // Enrich with interrupts from Sanity
+      const interrupts = await client.fetch(WRITEUPS_QUERY);
+      const interruptsWithFlag = (interrupts || []).map((i: any) => ({ ...i, _isInterrupt: true }));
+      
+      // Merge logic
+      let combined = [...enriched];
+      const sortedInterrupts = [...interruptsWithFlag].sort((a: any, b: any) => a.insertAfter - b.insertAfter);
+      
+      let offset = 0;
+      sortedInterrupts.forEach((interrupt: any) => {
+         const pos = Math.min((interrupt.insertAfter || 2) + offset, combined.length);
+         combined.splice(pos, 0, interrupt);
+         offset++;
+      });
+
+      setPosts(combined as any);
     }
     setLoading(false);
   }, [supabase, user]);
@@ -310,6 +338,8 @@ export default function CommunityPage() {
     new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
 
   const filteredPosts = posts.filter((p) => {
+    if (activeTab === "Write-ups") return (p as any)._isInterrupt;
+    if ((p as any)._isInterrupt && activeTab !== "All") return false;
     if (activeTab === "All" || activeTab === "Posts") return true;
     if (activeTab === "Media") return !!p.image_url;
     if (activeTab === "Milestones") return p.content?.toLowerCase().includes("milestone") || p.content?.toLowerCase().includes("goal");
@@ -430,7 +460,27 @@ export default function CommunityPage() {
               <p className="text-sm font-medium mt-2 text-black/50">Be the first to share something with the community.</p>
             </div>
           ) : (
-            filteredPosts.map((post) => (
+            filteredPosts.map((post: any, idx) => (
+              (post as any)._isInterrupt ? (
+                 <div key={post._id || idx} className="bg-white rounded-3xl p-8 shadow-sm border border-black/5">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="w-1.5 h-6 bg-[#8EB69B] rounded-full" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#051F20]/30">Signet Brief / Write-up</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#051F20] leading-tight mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        {post.headline}
+                    </h3>
+                    <p className="text-sm md:text-base text-[#051F20]/70 leading-relaxed font-medium capitalize line-clamp-6 mb-8">
+                        {post.body}
+                    </p>
+                    <div className="flex items-center justify-between pt-6 border-t border-black/[0.04]">
+                         <span className="text-[10px] font-black text-[#8EB69B] uppercase tracking-widest">Signet Network Exclusive</span>
+                         <div className="w-10 h-10 rounded-full bg-[#DAF1DE] flex items-center justify-center">
+                            <Bookmark size={16} className="text-[#163832]" />
+                         </div>
+                    </div>
+                 </div>
+              ) : (
               <div key={post.id} className="bg-white rounded-xl p-5 md:p-6 shadow-sm border border-black/5 relative group">
                 {/* Author Info */}
                 <div className="flex items-start gap-3 mb-4">

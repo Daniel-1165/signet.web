@@ -88,8 +88,21 @@ const MOCK_AUTHORS = [
   { name: "R.M. Ball", role: "Theologian", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" },
 ];
 
-export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[] }) {
+export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { initialPosts: any[], interrupts?: any[] }) {
   const [search, setSearch] = useState("");
+
+  const mergeInterrupts = (items: any[], activeInterrupts: any[]) => {
+    let result = [...items].map(item => ({ ...item, _isInterrupt: false }));
+    const sortedInterrupts = [...activeInterrupts].sort((a, b) => a.insertAfter - b.insertAfter);
+    
+    let offset = 0;
+    sortedInterrupts.forEach(interrupt => {
+      const position = Math.min(interrupt.insertAfter + offset, result.length);
+      result.splice(position, 0, { ...interrupt, _isInterrupt: true });
+      offset++;
+    });
+    return result;
+  };
 
   const filteredPosts = useMemo(() => {
     if (!search) return initialPosts;
@@ -102,7 +115,13 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
   }, [search, initialPosts]);
 
   const magazines = filteredPosts.filter(p => p.tag === 'Magazine');
-  const books = filteredPosts.filter(p => p.tag === 'Book' || (p.tag !== 'Magazine' && p.tag !== 'Article'));
+  const rawBooks = filteredPosts.filter(p => p.tag === 'Book' || (p.tag !== 'Magazine' && p.tag !== 'Article'));
+  
+  const booksWithInterrupts = useMemo(() => {
+    if (search) return rawBooks; 
+    return mergeInterrupts(rawBooks, interrupts);
+  }, [rawBooks, interrupts, search]);
+
   const recommended = initialPosts.length > 8 ? initialPosts.slice(0, 8) : initialPosts;
 
   return (
@@ -126,7 +145,7 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
            </div>
 
            <div className="flex items-center gap-6 ml-auto">
-              {/* Profile removed to simplify navigation */}
+              {/* Profile removed */}
            </div>
         </div>
       </header>
@@ -189,13 +208,13 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                 <section>
                    <div className="flex items-center justify-between mb-10">
                       <div className="flex items-center gap-3">
-                         <div className="w-1.5 h-6 bg-[#1DA756] rounded-full" />
+                         <div className="w-1.5 h-6 bg-[#163832] rounded-full" />
                          <h2 className="text-xl font-bold text-black/80">Search Results for "{search}"</h2>
                       </div>
                       <p className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em]">{filteredPosts.length} items found</p>
                    </div>
                    {filteredPosts.length > 0 ? (
-                      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 auto-rows-max grid-flow-dense">
                          {filteredPosts.map(item => (
                             <SimpleResourceCard key={item._id} data={item} />
                          ))}
@@ -227,7 +246,6 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                        </div>
                        
                        <div className="relative group/mags">
-                          {/* Sized same as books (grid-cols match) */}
                           <div className="flex gap-6 overflow-x-auto pb-10 no-scrollbar snap-x snap-mandatory">
                              {magazines.map(mag => (
                                 <div key={mag._id} className="flex-none w-[calc(50%-12px)] md:w-[calc(25%-18px)] lg:w-[calc(16.66%-20px)] xl:w-[calc(14.28%-21px)] snap-start">
@@ -243,11 +261,15 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                   <section>
                      <div className="flex items-center justify-between mb-10">
                         <h2 className="text-xl font-bold text-black/80">Recently Added</h2>
-                        <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">See All</Link>
+                        <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#163832] transition-colors">See All</Link>
                      </div>
-                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
-                        {books.slice(0, 7).map(book => (
-                           <SimpleResourceCard key={book._id} data={book} />
+                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 auto-rows-max grid-flow-dense">
+                        {booksWithInterrupts.slice(0, 14).map((item, idx) => (
+                           item._isInterrupt ? (
+                             <WriteUpCard key={item._id || idx} data={item} />
+                           ) : (
+                             <SimpleResourceCard key={item._id || idx} data={item} />
+                           )
                         ))}
                      </div>
                   </section>
@@ -256,23 +278,27 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                   <section>
                      <div className="flex items-center justify-between mb-10">
                         <h2 className="text-xl font-bold text-black/80">Recommended For You</h2>
-                        <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#1DA756] transition-colors">See All</Link>
+                        <Link href="#" className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em] hover:text-[#163832] transition-colors">See All</Link>
                      </div>
-                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 auto-rows-max grid-flow-dense">
                         {recommended.map(book => (
                            <SimpleResourceCard key={book._id} data={book} />
                         ))}
                      </div>
                   </section>
 
-                  {books.length > 14 && (
+                  {booksWithInterrupts.length > 14 && (
                     <section>
                        <div className="flex items-center justify-between mb-10">
                           <h2 className="text-xl font-bold text-black/80">Curated Collection</h2>
                        </div>
-                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 text-xs">
-                          {books.slice(14, 21).map(book => (
-                             <SimpleResourceCard key={book._id} data={book} />
+                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-6 auto-rows-max grid-flow-dense">
+                          {booksWithInterrupts.slice(14, 28).map((item, idx) => (
+                             item._isInterrupt ? (
+                               <WriteUpCard key={item._id || idx} data={item} />
+                             ) : (
+                               <SimpleResourceCard key={item._id || idx} data={item} />
+                             )
                           ))}
                        </div>
                     </section>
@@ -286,7 +312,47 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
   );
 }
 
-// ── COMPACT RESOURCE CARD ─────────────────────────────────────────
+// ── WRITE-UP INTERRUPT CARD ──────────────────────────────────────
+
+const WriteUpCard = ({ data }: { data: any }) => {
+  const sizeClasses: Record<string, string> = {
+    compact: "col-span-1",
+    standard: "col-span-2",
+    wide: "col-span-2 md:col-span-3",
+    featured: "col-span-2 md:col-span-2 row-span-2",
+  };
+  
+  return (
+    <div className={`p-8 bg-white border border-[#0B2B26]/5 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] flex flex-col justify-between hover:shadow-xl transition-all duration-500 ${sizeClasses[data.cardSize || 'standard']}`}>
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+            <div className="w-1.5 h-6 bg-[#8EB69B] rounded-full" />
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#051F20]/30">Signet Write-up</span>
+        </div>
+        <h3 className="text-2xl md:text-3xl font-bold text-[#051F20] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+            {data.headline}
+        </h3>
+        <p className="text-[15px] text-[#051F20]/60 leading-relaxed font-medium capitalize line-clamp-6">
+            {data.body}
+        </p>
+      </div>
+      
+      <div className="mt-8 flex items-center justify-between">
+        {data.ctaLabel ? (
+           <Link href={data.ctaUrl || "#"} className="inline-flex items-center gap-2 text-[#163832] font-black text-[11px] uppercase tracking-widest group/btn">
+              {data.ctaLabel} <ChevronRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+           </Link>
+        ) : (
+           <span className="text-[9px] font-black text-[#8EB69B] uppercase tracking-widest">Signet Network Exclusive</span>
+        )}
+        <div className="w-10 h-10 rounded-full bg-[#DAF1DE] flex items-center justify-center">
+            <Bookmark size={16} className="text-[#163832]" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 const SimpleResourceCard = ({ data }: { data: any }) => {
   const rating = (4.0 + Math.random()).toFixed(1);
