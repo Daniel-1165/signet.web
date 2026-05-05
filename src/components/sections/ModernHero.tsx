@@ -24,13 +24,26 @@ const ModernHero = () => {
                         Try it now!
                     </motion.span>
                     
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.05 }}
+                        className="mb-8 w-full max-w-[400px]"
+                    >
+                        <img 
+                            src="/mission-leap.png" 
+                            alt="Locked In Notifications" 
+                            className="w-full h-auto rounded-3xl shadow-2xl"
+                        />
+                    </motion.div>
+
                     <motion.h1 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.2, delay: 0.05, ease: "easeOut" }}
+                        transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
                         className="text-[#1D1914] text-[48px] md:text-[72px] font-bold leading-[1.05] md:leading-[1.1] tracking-[-0.035em] mb-[32px]"
                     >
-                        Master your<br />
+                        Making your<br />
                         growth<br />
                         <span className="text-[#6E7A67]">trajectory.</span>
                     </motion.h1>
@@ -171,9 +184,9 @@ const ModernHero = () => {
                                 ].map((item, index) => {
                                     const Icon = item.icon;
                                     return (
-                                        <div key={`${i}-${index}`} className="flex items-center gap-1.5 opacity-70 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out cursor-default min-w-[90px] sm:min-w-[130px]">
-                                            <Icon className="w-4 h-4" strokeWidth={4} />
-                                            <span className="text-[14px] font-black tracking-widest text-[#1D1914] uppercase truncate">
+                                        <div key={`${i}-${index}`} className="flex items-center gap-2.5 opacity-90 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out cursor-default min-w-[110px] sm:min-w-[150px]">
+                                            <Icon className="w-5 h-5" strokeWidth={6} />
+                                            <span className="text-[16px] font-black tracking-[0.15em] text-[#1D1914] uppercase truncate">
                                                 {item.text}
                                             </span>
                                         </div>

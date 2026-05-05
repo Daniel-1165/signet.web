@@ -12,6 +12,14 @@
   --color-neutral: #1D1914;
   --color-border: #D8CEBE;
   --color-surface: #FFFFFF;
+
+  /* Signet Branded Greens */
+  --color-signet-dark: #051F20;
+  --color-signet-deep: #0B2B26;
+  --color-signet-primary: #163832;
+  --color-signet-medium: #235347;
+  --color-signet-light: #8EB69B;
+  --color-signet-pale: #DAF1DE;
 }
 
 :root {
