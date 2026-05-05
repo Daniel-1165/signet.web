@@ -22,9 +22,9 @@ const ModernHero = () => {
                         className="mb-8 w-full max-w-[400px]"
                     >
                         <img 
-                            src="/mission-leap.png" 
+                            src="/png2svg (3)/Screenshot_20260413-095412_1.svg" 
                             alt="Locked In Notifications" 
-                            className="w-full h-auto rounded-3xl shadow-2xl"
+                            className="w-full h-auto rounded-3xl"
                         />
                     </motion.div>
 
