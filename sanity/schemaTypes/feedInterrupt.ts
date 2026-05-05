@@ -10,7 +10,7 @@ export default defineType({
       name: 'interruptType', 
       title: 'Interrupt Type', 
       type: 'string',
-      options: { list: ['spotlight', 'shelf', 'banner'] },
+      options: { list: ['spotlight', 'shelf', 'banner', 'write-up'] },
       validation: Rule => Rule.required()
     }),
     defineField({ name: 'insertAfter', title: 'Insert After Position', type: 'number', validation: Rule => Rule.required().min(0) }),
@@ -25,6 +25,23 @@ export default defineType({
     defineField({ name: 'accentColor', title: 'Accent Color', type: 'string', description: 'Hex code (e.g. #1DA756 or #0dcaf0)', hidden: ({parent}) => parent?.interruptType === 'shelf' }),
     
     defineField({ name: 'shelfLabel', title: 'Shelf Label', type: 'string', hidden: ({parent}) => parent?.interruptType !== 'shelf' }),
+    
+    // Write-up specific fields
+    defineField({ 
+      name: 'body', 
+      title: 'Body Text', 
+      type: 'text', 
+      hidden: ({parent}) => parent?.interruptType !== 'write-up' 
+    }),
+    defineField({ 
+      name: 'cardSize', 
+      title: 'Card Size', 
+      type: 'string', 
+      options: { list: ['compact', 'standard', 'wide', 'featured'] },
+      initialValue: 'standard',
+      hidden: ({parent}) => parent?.interruptType !== 'write-up' 
+    }),
+    
     defineField({ 
       name: 'tiles', 
       title: 'Shelf Tiles', 
