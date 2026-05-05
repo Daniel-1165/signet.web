@@ -27,7 +27,7 @@ const ResourceCard = ({ data, type = "Book" }: { data: any, type?: string }) => 
 
   return (
     <Link href={data.slug?.current ? `/resources/${data.slug.current}` : "#"} className="group flex flex-col gap-5">
-      <div className={`relative ${isMagazine ? "aspect-[4/5.5]" : "aspect-[2/3]"} rounded-[1.5rem] overflow-hidden bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-black/[0.05] transition-all duration-500 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)] group-hover:-translate-y-4`}>
+      <div className={`relative aspect-[2/3] rounded-[1.5rem] overflow-hidden bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-black/[0.05] transition-all duration-500 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)] group-hover:-translate-y-4`}>
         {data.mainImageUrl ? (
           <img 
             src={data.mainImageUrl} 
@@ -227,10 +227,10 @@ export default function ResourcesLibrary({ initialPosts }: { initialPosts: any[]
                        </div>
                        
                        <div className="relative group/mags">
-                          {/* Desktop: 5 items visible, sized same as books (7-col width) */}
-                          <div className="flex gap-6 md:gap-8 overflow-x-auto pb-10 no-scrollbar snap-x snap-mandatory lg:max-w-[71.4%]">
+                          {/* Sized same as books (grid-cols match) */}
+                          <div className="flex gap-6 overflow-x-auto pb-10 no-scrollbar snap-x snap-mandatory">
                              {magazines.map(mag => (
-                                <div key={mag._id} className="flex-none w-[70%] sm:w-[45%] md:w-[30%] lg:w-[calc(20%-26px)] snap-start">
+                                <div key={mag._id} className="flex-none w-[calc(50%-12px)] md:w-[calc(25%-18px)] lg:w-[calc(16.66%-20px)] xl:w-[calc(14.28%-21px)] snap-start">
                                    <SimpleResourceCard data={mag} />
                                 </div>
                              ))}
