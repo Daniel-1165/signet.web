@@ -650,6 +650,7 @@ export default function CommunityPage() {
                   </div>
                 )}
               </div>
+              )
             ))
           )}
         </div>
