@@ -106,6 +106,7 @@ export default function CommunityPage() {
 
         const likedIds = new Set((myLikes || []).map((l: any) => l.post_id));
         enriched = enriched.map((p) => ({ ...p, liked_by_me: likedIds.has(p.id) }));
+      }
       // Enrich with interrupts from Sanity
       const interrupts = await client.fetch(WRITEUPS_QUERY);
       const interruptsWithFlag = (interrupts || []).map((i: any) => ({ ...i, _isInterrupt: true }));
