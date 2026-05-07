@@ -93,8 +93,22 @@ export default function FeaturesPreview() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-black/5 text-foreground text-[10px] font-black uppercase tracking-widest border border-black/10"
           >
-             🌟 Mentoring Program
+             <div className="w-2.5 h-2.5 rounded-full bg-[#163832]" /> Mentoring Program
           </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="w-full max-w-[280px] hover:scale-105 transition-transform duration-500 my-6"
+          >
+             <img 
+                 src="/png2svg (3)/Screenshot_20260413-095412_1.svg" 
+                 alt="Signet Mobile App Interface" 
+                 className="w-full h-auto rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] ring-1 ring-black/5"
+             />
+          </motion.div>
+
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

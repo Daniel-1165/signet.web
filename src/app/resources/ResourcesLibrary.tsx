@@ -127,30 +127,26 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
   return (
     <div className="min-h-screen bg-white text-[#0D120E]" style={{ fontFamily: "'Outfit', sans-serif" }}>
       {/* ── TOP NAVIGATION ─────────────────────────────────────────── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.04] h-16 flex items-center px-6">
-        <div className="flex items-center gap-12 w-full">
-           <Link href="/" className="text-2xl font-black uppercase tracking-tighter text-[#163832]" style={{ fontFamily: "'Playfair Display', serif" }}>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.04] min-h-[4rem] flex flex-col md:flex-row md:items-center justify-center p-4 md:px-6 gap-4">
+        <div className="flex items-center justify-between w-full md:w-auto md:mr-4">
+           <Link href="/" className="text-xl font-black uppercase tracking-tighter text-[#163832]" style={{ fontFamily: "'Playfair Display', serif" }}>
              RESOURCES
            </Link>
+        </div>
 
-           <div className="flex-1 max-w-2xl mx-auto relative group">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#163832]/30 group-focus-within:text-[#163832] transition-colors" />
-              <input 
-                type="text"
-                placeholder="Search the collection..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-12 pl-12 pr-6 bg-[#0B2B26]/[0.03] border border-transparent focus:border-[#163832]/20 rounded-full text-[13px] focus:outline-none focus:bg-white focus:shadow-xl focus:shadow-[#163832]/5 transition-all placeholder:text-[#163832]/30 font-medium"
-              />
-           </div>
-
-           <div className="flex items-center gap-6 ml-auto">
-              {/* Profile removed */}
-           </div>
+        <div className="flex-1 w-full max-w-4xl relative group">
+           <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#163832]/30 group-focus-within:text-[#163832] transition-colors" />
+           <input 
+             type="text"
+             placeholder="Search the collection..."
+             value={search}
+             onChange={(e) => setSearch(e.target.value)}
+             className="w-full h-12 pl-12 pr-6 bg-[#0B2B26]/[0.03] border border-transparent focus:border-[#163832]/20 rounded-full text-[13px] focus:outline-none focus:bg-white focus:shadow-xl focus:shadow-[#163832]/5 transition-all placeholder:text-[#163832]/30 font-medium"
+           />
         </div>
       </header>
 
-      <div className="flex pt-16 h-screen">
+      <div className="flex pt-32 md:pt-16 h-screen">
         {/* ── SIDEBAR ─────────────────────────────────────────────── */}
         <aside className="w-64 border-r border-black/[0.04] p-8 hidden xl:flex flex-col gap-10 overflow-y-auto">
            <div className="space-y-6">
@@ -234,14 +230,10 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   {/* Magazines Section */}
                   {magazines.length > 0 && (
                     <section>
-                       <div className="flex items-center justify-between mb-10">
+                       <div className="flex justify-center mb-10 w-full">
                           <div className="flex items-center gap-3">
                              <div className="w-1.5 h-6 bg-[#8A5A37] rounded-full" />
                              <h2 className="text-xl font-bold text-black/80">The Signet Editions</h2>
-                          </div>
-                          <div className="flex items-center gap-4">
-                             <p className="text-[10px] font-black text-black/20 uppercase tracking-widest">Scroll to explore</p>
-                             <Link href="#" className="text-[10px] font-black text-[#8A5A37] uppercase tracking-[0.2em] hover:text-black transition-colors">Digital Archive</Link>
                           </div>
                        </div>
                        
