@@ -4,31 +4,45 @@ import Process from "@/components/sections/Process";
 import VisionMission from "@/components/sections/VisionMission";
 import FeaturesPreview from "@/components/sections/FeaturesPreview";
 import Footer from "@/components/layout/Footer";
+import BlogCarousel from "@/components/sections/BlogCarousel";
 import { ParticleBackground } from "@/components/ui/ParticleBackground";
 import { sanityFetch } from "@/lib/sanity/client";
 import Link from "next/link";
 import { ChevronRight, Bookmark } from "lucide-react";
 
 const DATA_QUERY = `
-  *[_type == "feedInterrupt" && interruptType == "write-up" && isActive == true] | order(_createdAt desc) {
-    _id,
-    headline,
-    body,
-    ctaLabel,
-    ctaUrl,
-    cardSize,
-    "slug": slug.current
+  {
+    "writeUps": *[_type == "feedInterrupt" && interruptType == "write-up" && isActive == true] | order(_createdAt desc) {
+      _id,
+      headline,
+      body,
+      ctaLabel,
+      ctaUrl,
+      cardSize,
+      "slug": slug.current
+    },
+    "posts": *[_type == "post"] | order(publishedAt desc)[0...5] {
+      _id,
+      title,
+      "slug": slug.current,
+      "mainImageUrl": mainImage.asset->url,
+      publishedAt,
+      "authorName": author->name
+    }
   }
 `;
 
 export default async function Home() {
-  const writeUps = await sanityFetch({ query: DATA_QUERY, tags: ["feedInterrupt"] }) || [];
+  const data = await sanityFetch({ query: DATA_QUERY, tags: ["feedInterrupt", "post"] }) || {};
+  const writeUps = data.writeUps || [];
+  const posts = data.posts || [];
 
   return (
     <div className="relative min-h-screen">
       <ParticleBackground />
       <main className="flex flex-col gap-0">
         <ModernHero />
+        <BlogCarousel posts={posts} />
         <VisionMission />
 
         {/* Global Write-ups Section */}

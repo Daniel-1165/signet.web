@@ -114,8 +114,8 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
     );
   }, [search, initialPosts]);
 
-  const magazines = filteredPosts.filter(p => p.tag === 'Magazine');
-  const rawBooks = filteredPosts.filter(p => p.tag === 'Book' || (p.tag !== 'Magazine' && p.tag !== 'Article'));
+  const magazines = filteredPosts.filter(p => p.tag?.toLowerCase() === 'magazine');
+  const rawBooks = filteredPosts.filter(p => p.tag?.toLowerCase() === 'book' || (p.tag?.toLowerCase() !== 'magazine' && p.tag?.toLowerCase() !== 'article'));
   
   const booksWithInterrupts = useMemo(() => {
     if (search) return rawBooks; 
