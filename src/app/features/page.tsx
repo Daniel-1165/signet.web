@@ -9,6 +9,7 @@ import {
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function FeaturesPage() {
   return (
@@ -18,9 +19,12 @@ export default function FeaturesPage() {
         
         {/* ── TOP HERO: GET TO KNOW US ─────────────────────────────── */}
         <section className="relative w-full overflow-hidden">
-          <img
+          <Image
             src="/get-to-know-us.png"
             alt="Get To Know Us"
+            width={1920}
+            height={1080}
+            priority
             className="w-full h-auto object-contain"
           />
         </section>

@@ -38,7 +38,7 @@ const sidebarLinks = [
 ];
 
 // Pages with dark hero backgrounds where navbar text should be white
-const DARK_HERO_ROUTES = ["/vision-guide"];
+const DARK_HERO_ROUTES: string[] = [];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -128,9 +128,11 @@ const Navbar = () => {
               className={`h-7 w-auto object-contain transition-all duration-300 ${isLightText && !isScrolled ? "brightness-[10]" : ""}`}
             />
           </div>
-          <span className={`font-black text-lg tracking-tighter uppercase font-heading ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}>
-            SIGNET
-          </span>
+          {pathname === "/" && (
+            <span className={`font-black text-lg tracking-tighter uppercase font-heading ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}>
+              SIGNET
+            </span>
+          )}
         </Link>
 
         {/* Right side: hamburger & CTA */}
@@ -279,9 +281,6 @@ const Navbar = () => {
                 className={`h-7 w-auto object-contain transition-all duration-300 ${isLightText && !isScrolled ? "brightness-[10]" : ""}`}
               />
             </div>
-            <span className={`font-black text-xl tracking-tighter uppercase font-heading ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}>
-              SIGNET
-            </span>
           </Link>
 
           {/* Links - Minimal & Centered */}
