@@ -28,7 +28,8 @@ export default defineType({
           {title: 'Magazine', value: 'Magazine'},
           {title: 'Book', value: 'Book'},
           {title: 'Article', value: 'Article'},
-          {title: 'Design', value: 'Design'}
+          {title: 'Design', value: 'Design'},
+          {title: 'Image', value: 'Image'}
         ],
       }
     }),
