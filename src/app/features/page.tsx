@@ -73,7 +73,7 @@ export default function FeaturesPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
             <div className="rounded-2xl overflow-hidden shadow-2xl h-[300px] md:h-[450px] relative group">
                 <img 
-                    src="/png2svg (3)/Screenshot_20260413-095412_1.svg" 
+                    src="/mission-leap.png" 
                     alt="Our Program Directive" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
@@ -200,9 +200,9 @@ export default function FeaturesPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
             <div className="rounded-[3rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group bg-[#0D120E]">
                 <img 
-                    src="/png2svg (3)/Screenshot_20260413-095412_1.svg" 
+                    src="/mission-leap.png" 
                     alt="Locked In" 
-                    className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-[2s]"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                 />
                 {/* Text Overlay */}
                 <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 z-20 bg-gradient-to-t from-black/80 to-transparent">

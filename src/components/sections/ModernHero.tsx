@@ -15,18 +15,6 @@ const ModernHero = () => {
             <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-[24px] max-w-7xl px-6 w-full mt-10 z-10">
                 {/* Left Content */}
                 <div className="flex-1 flex flex-col items-start w-full">
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: 0.05 }}
-                        className="mb-8 w-full max-w-[400px]"
-                    >
-                        <img 
-                            src="/png2svg (3)/Screenshot_20260413-095412_1.svg" 
-                            alt="Locked In Notifications" 
-                            className="w-full h-auto rounded-3xl"
-                        />
-                    </motion.div>
 
                     <motion.h1 
                         initial={{ opacity: 0, y: 10 }}

@@ -31,6 +31,17 @@ export default async function Home() {
         <ModernHero />
         <VisionMission />
 
+        {/* Floating App Preview Image */}
+        <section className="bg-white pb-16 flex justify-center">
+            <div className="w-full max-w-sm px-6 hover:scale-105 transition-transform duration-500">
+                <img 
+                    src="/png2svg (3)/Screenshot_20260413-095412_1.svg" 
+                    alt="Locked In Mobile Interface" 
+                    className="w-full h-auto rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] ring-1 ring-black/5"
+                />
+            </div>
+        </section>
+
         {/* Global Write-ups Section */}
         {writeUps.length > 0 && (
           <section className="bg-[#FAFAFA] py-24 md:py-32 border-y border-black/[0.04]">
