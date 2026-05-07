@@ -184,25 +184,25 @@ export default function EQAssessment() {
     return (
       <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-center p-6`}>
         <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto z-10">
-          <div className="w-16 h-16 rounded-full bg-accent text-white flex items-center justify-center mb-6 shadow-xl">
-            <CheckCircle2 className="w-8 h-8" />
+          <div className="w-12 h-12 rounded-full bg-accent text-[#051F20] flex items-center justify-center mb-4 shadow-xl">
+            <CheckCircle2 className="w-6 h-6" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-serif text-[#1a1a2e] mb-4 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-serif text-[#1a1a2e] mb-3 leading-tight">
              Define Your <br/><span className="text-[#16a34a] italic">Emotional Protocol.</span>
           </h1>
-          <p className="text-base md:text-lg text-[#1a1a2e]/60 font-medium max-w-2xl leading-relaxed mb-8">
+          <p className="text-sm md:text-base text-[#1a1a2e]/60 font-medium max-w-2xl leading-relaxed mb-6">
             A 30-question diagnostic grounded in advanced behavioral frameworks. Pinpoint your emotional blind spots, discover your archetype, and architect a highly-calibrated mind.
           </p>
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
             {["Self-Awareness", "Self-Regulation", "Empathy", "Social Skills", "Motivation"].map(dim => (
               <span key={dim} className="px-3 py-1.5 bg-[#f2f0ec] text-[10px] font-bold uppercase tracking-widest rounded-full">{dim}</span>
             ))}
           </div>
           <button 
             onClick={() => setScreen("test")}
-            className="px-10 py-5 bg-[#1a1a2e] text-white rounded-full font-bold tracking-wide hover:bg-[#16a34a] transition-all duration-300 shadow-2xl flex items-center gap-3"
+            className="px-8 py-3 bg-[#163832] text-white rounded-full font-bold tracking-wide hover:bg-accent hover:text-[#051F20] transition-all duration-300 shadow-2xl flex items-center gap-3"
           >
-            Start Assessment <ArrowRight className="w-5 h-5" />
+            Start Assessment <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -345,8 +345,8 @@ export default function EQAssessment() {
     <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col pt-6 px-6`}>
        <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col relative">
           
-          <header className="pt-6 pb-2 w-full">
-              <div className="flex items-center gap-2 mb-6">
+          <header className="pt-4 pb-2 w-full">
+              <div className="flex items-center gap-2 mb-4">
                   <button onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))} disabled={currentIdx === 0} className="disabled:opacity-30">
                       <ArrowLeft className="w-5 h-5 text-[#1a1a2e]" />
                   </button>
@@ -361,7 +361,7 @@ export default function EQAssessment() {
               </div>
           </header>
 
-          <main className="flex-1 flex flex-col pt-8 pb-32">
+          <main className="flex-1 flex flex-col pt-4 pb-24">
             <AnimatePresence mode="wait">
               <motion.div
                 key={question.id}
@@ -371,7 +371,7 @@ export default function EQAssessment() {
                 transition={{ duration: 0.3 }}
                 className="flex flex-col w-full"
               >
-                <h2 className="text-2xl md:text-3xl tracking-tight leading-snug mb-10 font-medium text-center max-w-lg mx-auto">
+                <h2 className="text-xl md:text-2xl tracking-tight leading-snug mb-6 font-medium text-center max-w-lg mx-auto">
                   {question.text}
                 </h2>
 
@@ -383,10 +383,10 @@ export default function EQAssessment() {
                       <button
                         key={i}
                         onClick={() => handleSelect(opt.score)}
-                        className={`py-3 px-6 rounded-full text-center text-[15px] font-medium transition-all duration-200 border ${
+                        className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-all duration-200 border ${
                           isSelected 
-                            ? 'bg-[#1DA756] border-[#1DA756] text-white shadow-md' 
-                            : 'bg-white border-[#1a1a2e]/10 text-[#1a1a2e] hover:border-[#1DA756] hover:text-[#1DA756]'
+                            ? 'bg-[#163832] border-[#163832] text-white shadow-md' 
+                            : 'bg-white border-[#1a1a2e]/10 text-[#1a1a2e] hover:border-[#163832] hover:text-[#163832]'
                         }`}
                       >
                         {opt.text}
@@ -398,18 +398,18 @@ export default function EQAssessment() {
             </AnimatePresence>
           </main>
 
-          <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center z-20 pointer-events-none max-w-3xl mx-auto">
+          <footer className="fixed bottom-0 left-0 right-0 p-4 flex justify-between items-center z-20 pointer-events-none max-w-3xl mx-auto">
               <button 
                   onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))}
                   disabled={currentIdx === 0}
-                  className="text-[#1a1a2e]/40 font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:text-[#1a1a2e] px-6 py-3 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
+                  className="text-[#1a1a2e]/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-[#1a1a2e] px-4 py-2 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
               >
-                  <ArrowLeft className="w-4 h-4 mr-2" /> Back
+                  <ArrowLeft className="w-3 h-3 mr-2" /> Back
               </button>
               <button 
                   onClick={handleNext}
                   disabled={answers[question.id] === undefined}
-                  className="bg-[#1a1a2e] text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-[#16a34a] px-10 py-4 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
+                  className="bg-[#163832] text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-[#051F20] px-6 py-3 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
               >
                   {currentIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
               </button>

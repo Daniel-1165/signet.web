@@ -237,14 +237,14 @@ export default function IQTestPage() {
                     <div className="mb-2">
                         <span className="text-[9px] tracking-[0.2em] font-medium uppercase border-l-2 border-accent pl-2 text-accent py-1">SIGNET ASSESSMENT</span>
                     </div>
-                    <h1 className="text-4xl md:text-7xl tracking-tight leading-none mb-6 font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-accent/80">
+                    <h1 className="text-3xl md:text-5xl tracking-tight leading-none mb-4 font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-[#163832]">
                         Cognitive <br />
                         Evaluation
                     </h1>
-                    <p className="text-base md:text-xl text-black/60 max-w-2xl mb-10 leading-relaxed font-outfit font-light">
+                    <p className="text-sm md:text-base text-black/60 max-w-2xl mb-6 leading-relaxed font-outfit font-light">
                         A rigorous yet engaging examination of primary cognitive factors. Discover your archetype through dynamic intelligence profiling.
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-3xl p-6 border border-black/5 w-full">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-2xl p-4 border border-black/5 w-full">
                         {[
                             { label: "DURATION", val: "15 MIN" },
                             { label: "FORMAT", val: "ADAPTIVE" },
@@ -259,7 +259,7 @@ export default function IQTestPage() {
                     </div>
                     <button
                         onClick={startAssessment}
-                        className="group flex items-center justify-center gap-4 bg-accent text-white px-10 py-5 rounded-full font-bold text-lg tracking-tight transition-all hover:bg-black hover:scale-105 shadow-[0_8px_30px_rgba(16,129,114,0.3)]"
+                        className="group flex items-center justify-center gap-3 bg-[#163832] text-white px-8 py-3 rounded-full font-bold text-base tracking-tight transition-all hover:bg-accent hover:text-[#051F20] hover:scale-105 shadow-[0_8px_30px_rgba(16,129,114,0.3)]"
                     >
                         Begin Process <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </button>
@@ -321,7 +321,7 @@ export default function IQTestPage() {
                     <div className="flex justify-center pt-12">
                         <button
                             onClick={() => window.location.reload()}
-                            className="group flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-xs tracking-[0.2em] font-bold uppercase transition-all hover:bg-black/80 hover:scale-105 shadow-xl"
+                            className="group flex items-center justify-center gap-3 bg-[#163832] text-white px-6 py-3 rounded-full text-xs tracking-[0.2em] font-bold uppercase transition-all hover:bg-accent hover:text-[#051F20] hover:scale-105 shadow-xl"
                         >
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" /> Re-evaluate
                         </button>
@@ -352,7 +352,7 @@ export default function IQTestPage() {
                     </div>
                 </header>
 
-                <main className="flex-1 flex flex-col pt-8 pb-32 relative">
+                <main className="flex-1 flex flex-col pt-4 pb-24 relative">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={curIdx}
@@ -363,17 +363,17 @@ export default function IQTestPage() {
                             className="flex flex-col w-full"
                         >
                             {question.timed && (
-                                <div className="text-center mb-4">
-                                    <span className="text-xs font-black tracking-widest uppercase text-red-600 bg-red-50 px-3 py-1 rounded-full shadow-sm animate-pulse">{Math.ceil(gsTimer)}S</span>
+                                <div className="text-center mb-2">
+                                    <span className="text-xs font-black tracking-widest uppercase text-red-600 bg-red-50 px-2 py-0.5 rounded-full shadow-sm animate-pulse">{Math.ceil(gsTimer)}S</span>
                                 </div>
                             )}
 
-                            <h2 className="text-2xl md:text-3xl tracking-tight leading-snug mb-10 font-outfit font-medium text-center max-w-lg mx-auto">
+                            <h2 className="text-xl md:text-2xl tracking-tight leading-snug mb-6 font-outfit font-medium text-center max-w-lg mx-auto">
                                 {question.q}
                             </h2>
 
                             {question.type === 'visual' && question.func && (
-                                <div className="mb-10 flex justify-center bg-white shadow-sm p-6 rounded-[2rem] border border-black/5 max-w-sm mx-auto w-full">
+                                <div className="mb-6 flex justify-center bg-white shadow-sm p-4 rounded-xl border border-black/5 max-w-[280px] mx-auto w-full">
                                     {question.func({})}
                                 </div>
                             )}
@@ -383,9 +383,9 @@ export default function IQTestPage() {
                                     <button
                                         key={i}
                                         onClick={() => handleSelect(i)}
-                                        className={`py-3 px-6 rounded-full text-center text-[15px] font-medium transition-all duration-200 border ${userAns[question.id] === i
-                                                ? 'bg-accent border-accent text-white shadow-md'
-                                                : 'bg-white border-black/10 text-black hover:border-accent hover:text-accent'
+                                        className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-all duration-200 border ${userAns[question.id] === i
+                                                ? 'bg-[#163832] border-[#163832] text-white shadow-md'
+                                                : 'bg-white border-black/10 text-black hover:border-accent hover:text-black'
                                             }`}
                                     >
                                         {opt}
@@ -396,18 +396,18 @@ export default function IQTestPage() {
                     </AnimatePresence>
                 </main>
 
-                <footer className="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center z-20 pointer-events-none max-w-4xl mx-auto">
+                <footer className="fixed bottom-0 left-0 right-0 p-4 flex justify-between items-center z-20 pointer-events-none max-w-4xl mx-auto">
                     <button
                         onClick={() => setCurIdx(Math.max(0, curIdx - 1))}
                         disabled={curIdx === 0}
-                        className="text-black/40 font-bold uppercase tracking-widest text-sm flex items-center justify-center hover:text-black px-6 py-3 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
+                        className="text-black/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-black px-4 py-2 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
                     >
-                        <ArrowLeft className="w-4 h-4 mr-2" /> Previous
+                        <ArrowLeft className="w-3 h-3 mr-2" /> Previous
                     </button>
                     <button
                         onClick={handleNext}
                         disabled={userAns[question.id] === undefined}
-                        className="bg-black text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent px-10 py-4 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
+                        className="bg-[#163832] text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-[#051F20] px-6 py-3 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
                     >
                         {curIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
                     </button>

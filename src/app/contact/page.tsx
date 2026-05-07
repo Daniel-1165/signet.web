@@ -211,7 +211,7 @@ export default function ContactPage() {
               Quick Answers
             </h2>
             <p className="text-xl text-foreground/60">
-              Frequently asked questions about our support
+              Frequently asked questions about the Signet Mentorship Program
             </p>
           </div>
 
@@ -219,28 +219,28 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div className="p-6 rounded-2xl bg-white border border-black/5">
                 <h3 className="font-black text-lg text-foreground mb-3">
-                  How do I reset my password?
+                  How long is the mentorship program?
                 </h3>
                 <p className="text-foreground/60 text-sm leading-relaxed">
-                  Use the "Forgot Password" link on the login page. We'll send reset instructions to your email.
+                  The core program spans 12 weeks of intense personal development. However, members retain lifetime access to the network to ensure continuous, compounded growth.
                 </p>
               </div>
 
               <div className="p-6 rounded-2xl bg-white border border-black/5">
                 <h3 className="font-black text-lg text-foreground mb-3">
-                  Can I retake assessments?
+                  Is this program a good fit for me?
                 </h3>
                 <p className="text-foreground/60 text-sm leading-relaxed">
-                  Yes, you can retake assessments after 30 days. Premium members get unlimited retakes.
+                  If you are hungry to optimize your habits, cultivate unwavering discipline, and become the best version of yourself, then Signet is built entirely for you.
                 </p>
               </div>
 
               <div className="p-6 rounded-2xl bg-white border border-black/5">
                 <h3 className="font-black text-lg text-foreground mb-3">
-                  How do I delete my account?
+                  How much time do I need to commit?
                 </h3>
                 <p className="text-foreground/60 text-sm leading-relaxed">
-                  Contact us via email with your account details and we'll assist with account deletion.
+                  We recommend dedicating at least 3-5 hours a week. This allows you enough time to consume our briefs, engage with your cohort, and actively apply the frameworks.
                 </p>
               </div>
             </div>
@@ -248,28 +248,28 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div className="p-6 rounded-2xl bg-white border border-black/5">
                 <h3 className="font-black text-lg text-foreground mb-3">
-                  Are my results private?
+                  Is the format group or 1-on-1 driven?
                 </h3>
                 <p className="text-foreground/60 text-sm leading-relaxed">
-                  Yes, all assessment results are private and only visible to you. We never share personal data.
+                  Signet leverages a powerful hybrid framework. You'll receive deep 1-on-1 strategy sessions alongside group sprints to maximize accountability and collective insights.
                 </p>
               </div>
 
               <div className="p-6 rounded-2xl bg-white border border-black/5">
                 <h3 className="font-black text-lg text-foreground mb-3">
-                  How do I report a bug?
+                  What happens when the 12 weeks ends?
                 </h3>
                 <p className="text-foreground/60 text-sm leading-relaxed">
-                  Use the contact form above or email us with screenshots and steps to reproduce the issue.
+                  Your journey never truly ends. You transition into an alumni state where you stay plugged into the global activity feed, unlocking ongoing network opportunities.
                 </p>
               </div>
 
               <div className="p-6 rounded-2xl bg-white border border-black/5">
                 <h3 className="font-black text-lg text-foreground mb-3">
-                  Do you offer refunds?
+                  Do I need any prior experience?
                 </h3>
                 <p className="text-foreground/60 text-sm leading-relaxed">
-                  We offer refunds within 30 days of purchase. Contact us to discuss your specific situation.
+                  None. We provide everything from foundational mindsets to advanced daily operating protocols. Bring only commitment, and we'll provide the blueprint.
                 </p>
               </div>
             </div>

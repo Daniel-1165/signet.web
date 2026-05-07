@@ -15,7 +15,7 @@ const DATA_QUERY = `
       "fileUrl": resourceFile.asset->url,
       "fileExtension": resourceFile.asset->extension
     },
-    "interrupts": *[_type == "feedInterrupt" && isActive == true] | order(insertAfter min) {
+    "interrupts": *[_type == "feedInterrupt" && isActive == true] | order(insertAfter asc) {
       _id,
       interruptType,
       insertAfter,
