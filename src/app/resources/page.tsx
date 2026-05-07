@@ -19,7 +19,7 @@ const DATA_QUERY = `
       _id,
       title,
       "tag": "Article",
-      "description": pt::text(body),
+      "description": body[0].children[0].text,
       "_createdAt": publishedAt,
       "slug": {"current": slug.current},
       _type,
