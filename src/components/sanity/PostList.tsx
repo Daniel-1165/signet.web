@@ -23,7 +23,7 @@ export default function PostList({posts}: PostListProps) {
           {post.mainImage && (
             <div className="relative h-48 w-full">
               <Image
-                src={urlFor(post.mainImage).url()}
+                src={urlFor(post.mainImage as any).url()}
                 alt={post.title}
                 fill
                 className="object-cover"

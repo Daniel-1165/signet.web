@@ -112,6 +112,7 @@ export default function VisionGuideContent({
         </div>
       )}
 
+      {biblicalReferences && biblicalReferences.length > 0 && (
         <div className="space-y-6 pt-4">
           <h3 className="font-black text-xl uppercase tracking-tight text-accent border-b border-accent/10 pb-2">Biblical Grounding</h3>
           {biblicalReferences.map((ref, i) => (
@@ -125,6 +126,7 @@ export default function VisionGuideContent({
             </div>
           ))}
         </div>
+      )}
 
       {/* Academic Resources */}
       {academicResources && academicResources.length > 0 && (
@@ -142,6 +144,7 @@ export default function VisionGuideContent({
         </div>
       )}
 
+      {reflectionPrompts && reflectionPrompts.length > 0 && (
         <div className="space-y-8 pt-8">
           <h3 className="font-black text-xl uppercase tracking-tight text-accent border-b border-accent/10 pb-2">Reflection & Journal</h3>
           {reflectionPrompts.map((prompt, i) => (
@@ -164,6 +167,7 @@ export default function VisionGuideContent({
             </div>
           ))}
         </div>
+      )}
 
       {/* Progress Indicator */}
       <div className="flex justify-center pt-4">

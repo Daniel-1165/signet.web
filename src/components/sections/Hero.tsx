@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { MagneticButton } from "../ui/MagneticButton";
+import Link from "next/link";
 
 const Hero = () => {
     const { scrollY } = useScroll();
