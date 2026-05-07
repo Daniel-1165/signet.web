@@ -39,8 +39,14 @@ export default async function Home() {
     <div className="relative min-h-screen">
       <ParticleBackground />
       <main className="flex flex-col gap-0">
-        <ModernHero />
-        <BlogCarousel slides={slides} />
+        <div className="flex flex-col">
+          <div className="order-2 md:order-1 -mt-24 md:mt-0">
+            <ModernHero />
+          </div>
+          <div className="order-1 md:order-2 mt-24 md:mt-0">
+            <BlogCarousel slides={slides} />
+          </div>
+        </div>
         <VisionMission />
 
         {/* Global Write-ups Section */}

@@ -102,11 +102,11 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                   {...wrapperProps as any}
                   className="group block h-full cursor-pointer"
                 >
-                  <div className="relative aspect-[4/3] md:rounded-[2rem] overflow-hidden md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-[#0B2B26]/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition-all duration-500">
+                  <div className="relative w-full md:rounded-[2rem] overflow-hidden md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-[#0B2B26]/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition-all duration-500">
                     <img
                       src={slide.imageUrl}
                       alt={slide.caption || "Gallery image"}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-auto max-h-[80vh] object-contain transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
 

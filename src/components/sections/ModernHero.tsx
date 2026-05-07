@@ -20,11 +20,11 @@ const ModernHero = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
-                        className="text-[#1D1914] text-[48px] md:text-[72px] font-bold leading-[1.05] md:leading-[1.1] tracking-[-0.035em] mb-[32px]"
+                        className="text-[#1D1914] text-[36px] md:text-[64px] font-bold leading-[1.05] md:leading-[1.1] tracking-[-0.035em] mb-[32px]"
                     >
                         Making your<br />
                         growth<br />
-                        <span className="text-[#6E7A67]">trajectory.</span>
+                        <span className="text-[#6E7A67]">intentional.</span>
                     </motion.h1>
 
                     <motion.p 
