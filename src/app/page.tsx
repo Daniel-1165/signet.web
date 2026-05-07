@@ -21,28 +21,26 @@ const DATA_QUERY = `
       cardSize,
       "slug": slug.current
     },
-    "posts": *[_type == "post"] | order(publishedAt desc)[0...5] {
+    "slides": *[_type == "carouselSlide"] | order(order asc) {
       _id,
-      title,
-      "slug": slug.current,
-      "mainImageUrl": mainImage.asset->url,
-      publishedAt,
-      "authorName": author->name
+      "imageUrl": image.asset->url,
+      caption,
+      link
     }
   }
 `;
 
 export default async function Home() {
-  const data = await sanityFetch({ query: DATA_QUERY, tags: ["feedInterrupt", "post"] }) || {};
+  const data = await sanityFetch({ query: DATA_QUERY, tags: ["feedInterrupt", "carouselSlide"] }) || {};
   const writeUps = data.writeUps || [];
-  const posts = data.posts || [];
+  const slides = data.slides || [];
 
   return (
     <div className="relative min-h-screen">
       <ParticleBackground />
       <main className="flex flex-col gap-0">
         <ModernHero />
-        <BlogCarousel posts={posts} />
+        <BlogCarousel slides={slides} />
         <VisionMission />
 
         {/* Global Write-ups Section */}

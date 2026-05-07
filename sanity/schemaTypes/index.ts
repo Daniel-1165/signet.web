@@ -8,6 +8,7 @@ import blockContent from './blockContent'
 import author from './author'
 import category from './category'
 import post from './post'
+import carouselSlide from './carouselSlide'
 
 export const schemaTypes = [
   page,
@@ -20,6 +21,7 @@ export const schemaTypes = [
   author,
   category,
   post,
+  carouselSlide,
 ]
 
 export default schemaTypes
