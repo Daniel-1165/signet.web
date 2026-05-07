@@ -229,7 +229,7 @@ export default function IQTestPage() {
 
     if (view === "welcome") {
         return (
-            <div className="min-h-screen relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F7F6F0] text-black font-sans flex flex-col items-center justify-center px-6">
+            <div className="min-h-screen relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F7F6F0] text-black font-sans flex flex-col items-center justify-start pt-28 md:pt-0 md:justify-center px-6">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
 
@@ -237,14 +237,14 @@ export default function IQTestPage() {
                     <div className="mb-2">
                         <span className="text-[9px] tracking-[0.2em] font-medium uppercase border-l-2 border-accent pl-2 text-accent py-1">SIGNET ASSESSMENT</span>
                     </div>
-                    <h1 className="text-3xl md:text-5xl tracking-tight leading-none mb-4 font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-[#163832]">
+                    <h1 className="text-3xl md:text-5xl tracking-tight leading-none mb-3 font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-[#163832]">
                         Cognitive <br />
                         Evaluation
                     </h1>
-                    <p className="text-sm md:text-base text-black/60 max-w-2xl mb-6 leading-relaxed font-outfit font-light">
+                    <p className="text-sm md:text-base text-black/60 max-w-2xl mb-5 leading-relaxed font-outfit font-light">
                         A rigorous yet engaging examination of primary cognitive factors. Discover your archetype through dynamic intelligence profiling.
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-2xl p-4 border border-black/5 w-full">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-2xl p-3 border border-black/5 w-full">
                         {[
                             { label: "DURATION", val: "15 MIN" },
                             { label: "FORMAT", val: "ADAPTIVE" },

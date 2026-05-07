@@ -182,18 +182,18 @@ export default function EQAssessment() {
   // Welcome Screen
   if (screen === "welcome") {
     return (
-      <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-center p-6`}>
-        <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto z-10">
-          <div className="w-12 h-12 rounded-full bg-accent text-[#051F20] flex items-center justify-center mb-4 shadow-xl">
-            <CheckCircle2 className="w-6 h-6" />
+      <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-start pt-28 md:pt-0 md:justify-center p-6`}>
+        <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto z-10 w-full">
+          <div className="w-10 h-10 rounded-full bg-accent text-[#051F20] flex items-center justify-center mb-3 shadow-xl">
+            <CheckCircle2 className="w-5 h-5" />
           </div>
           <h1 className="text-3xl md:text-5xl font-serif text-[#1a1a2e] mb-3 leading-tight">
              Define Your <br/><span className="text-[#16a34a] italic">Emotional Protocol.</span>
           </h1>
-          <p className="text-sm md:text-base text-[#1a1a2e]/60 font-medium max-w-2xl leading-relaxed mb-6">
+          <p className="text-sm md:text-base text-[#1a1a2e]/60 font-medium max-w-2xl leading-relaxed mb-4">
             A 30-question diagnostic grounded in advanced behavioral frameworks. Pinpoint your emotional blind spots, discover your archetype, and architect a highly-calibrated mind.
           </p>
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
+          <div className="flex flex-wrap justify-center gap-1.5 mb-5 w-full">
             {["Self-Awareness", "Self-Regulation", "Empathy", "Social Skills", "Motivation"].map(dim => (
               <span key={dim} className="px-3 py-1.5 bg-[#f2f0ec] text-[10px] font-bold uppercase tracking-widest rounded-full">{dim}</span>
             ))}
