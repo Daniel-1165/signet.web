@@ -40,7 +40,7 @@ interface Post {
   loadingComments?: boolean;
 }
 
-const TABS = ["All", "Posts", "Media", "Milestones", "Write-ups"];
+const TABS = ["All", "Posts", "Media", "Write-ups"];
 const DEFAULT_AVATAR = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150&q=80";
 
 import { client } from "@/lib/sanity/client";
@@ -346,9 +346,9 @@ export default function CommunityPage() {
   const filteredPosts = posts.filter((p) => {
     if (activeTab === "Write-ups") return (p as any)._isInterrupt;
     if ((p as any)._isInterrupt && activeTab !== "All") return false;
-    if (activeTab === "All" || activeTab === "Posts") return true;
+    if (activeTab === "All") return true;
+    if (activeTab === "Posts") return p.user_id === user?.id;
     if (activeTab === "Media") return !!p.image_url;
-    if (activeTab === "Milestones") return p.content?.toLowerCase().includes("milestone") || p.content?.toLowerCase().includes("goal");
     return true;
   });
 
@@ -421,7 +421,7 @@ export default function CommunityPage() {
               <button
                 onClick={handlePost}
                 disabled={(!newPost.trim() && !selectedImage) || uploading || !user}
-                className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center shadow-[0_4px_15px_rgba(22,163,74,0.3)] hover:scale-105 transition-transform disabled:opacity-40 disabled:scale-100"
+                className="w-10 h-10 rounded-full bg-[#163832] text-white flex items-center justify-center shadow-[0_4px_15px_rgba(22,56,50,0.3)] hover:scale-105 transition-transform disabled:opacity-40 disabled:scale-100"
               >
                 {uploading
                   ? <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -432,7 +432,7 @@ export default function CommunityPage() {
           </div>
 
           {/* Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto py-1">
+          <div className="flex items-center gap-2 overflow-x-auto py-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {TABS.map((tab) => (
               <button
                 key={tab}
