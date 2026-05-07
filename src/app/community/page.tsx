@@ -88,7 +88,7 @@ export default function CommunityPage() {
     setLoading(true);
     const { data, error } = await supabase
       .from("posts")
-      .select("*, profiles(first_name, last_name, image_url)")
+      .select("*, profiles(first_name, last_name, image_url), post_reactions(user_id, profiles(image_url))")
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -228,6 +228,11 @@ export default function CommunityPage() {
 
       if (!error) {
         await supabase.rpc("increment_post_likes", { post_id_val: postId });
+        // Optimistically add our own profile to the likers if we have it
+        setPosts((prev) => prev.map((p) => p.id === postId ? { 
+          ...p, 
+          post_reactions: [...(p.post_reactions || []), { profiles: { image_url: user.imageUrl } }] 
+        } : p));
       } else if (error.code === "23505") {
         // Already liked in DB — just sync UI back
         setPosts((prev) =>
@@ -529,15 +534,18 @@ export default function CommunityPage() {
 
                 {/* Social Summary Row */}
                 <div className="flex items-center justify-between pb-3 mb-1 border-b border-black/[0.04]">
-                  <div className="flex items-center gap-1.5 grayscale opacity-70">
+                  <div className="flex items-center gap-1.5 opacity-80">
                     <div className="flex -space-x-1.5">
-                       {[1,2,3].map(i => (
-                         <div key={i} className="w-4 h-4 rounded-full border border-white overflow-hidden">
-                           <img src={`https://i.pravatar.cc/50?u=${post.id}${i}`} alt="Liker" />
-                         </div>
+                       {(post.post_reactions || [])
+                         .filter((r: any) => r.profiles?.image_url)
+                         .slice(0, 3)
+                         .map((r: any, i: number) => (
+                           <div key={i} className="w-4 h-4 rounded-full border border-white overflow-hidden bg-black/5">
+                             <img src={r.profiles.image_url} alt="Liker" className="w-full h-full object-cover" />
+                           </div>
                        ))}
                     </div>
-                    <span className="text-[10px] font-medium text-black/40 hover:text-accent cursor-pointer">
+                    <span className="text-[10px] font-medium text-black/40 hover:text-[#163832] cursor-pointer pl-1">
                       {post.likes_count || 0} likes · {post.comments_count || 0} comments
                     </span>
                   </div>
@@ -547,22 +555,32 @@ export default function CommunityPage() {
                 <div className="flex items-center gap-1 mt-1">
                   <button
                     onClick={() => handleLike(post.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors font-bold text-xs ${post.liked_by_me ? "text-accent bg-accent/5" : "text-black/50 hover:bg-black/5"}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors font-bold text-xs ${post.liked_by_me ? "text-[#163832] bg-[#163832]/5" : "text-black/50 hover:bg-black/5"}`}
                   >
-                    <Heart className={`w-4 h-4 ${post.liked_by_me ? "fill-accent" : ""}`} />
+                    <Heart className={`w-4 h-4 ${post.liked_by_me ? "fill-[#163832]" : ""}`} />
                     <span>Like</span>
                   </button>
 
                   <button
                     onClick={() => handleToggleComments(post.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors font-bold text-xs ${post.showComments ? "text-accent bg-accent/5" : "text-black/50 hover:bg-black/5"}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors font-bold text-xs ${post.showComments ? "text-[#163832] bg-[#163832]/5" : "text-black/50 hover:bg-black/5"}`}
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>Comment</span>
                   </button>
 
                   <button
-                    onClick={() => navigator.clipboard.writeText(post.content).then(() => showToast("Link copied!"))}
+                    onClick={() => {
+                        if (navigator.share) {
+                            navigator.share({
+                                title: `Post by ${post.profiles?.first_name || 'Signet Member'}`,
+                                text: post.content,
+                                url: window.location.href
+                            }).catch(() => {});
+                        } else {
+                            navigator.clipboard.writeText(post.content).then(() => showToast("Link copied!"));
+                        }
+                    }}
                     className="flex items-center gap-2 px-4 py-2 rounded-md text-black/50 hover:bg-black/5 font-bold text-xs"
                   >
                     <Share2 className="w-4 h-4" />
