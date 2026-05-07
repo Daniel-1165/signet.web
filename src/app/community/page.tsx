@@ -2,7 +2,7 @@
 
 import {
   MessageSquare, Heart, Share2, MoreHorizontal,
-  Video, Image as ImageIcon, Send, X, ChevronDown, ChevronUp, Trash2
+  Video, Image as ImageIcon, Send, X, ChevronDown, ChevronUp, Trash2, Bookmark
 } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useSupabaseClient } from "@/lib/supabase/client";
@@ -612,7 +612,7 @@ export default function CommunityPage() {
                       <p className="text-[10px] text-black/30 font-bold text-center py-2">No reactions yet.</p>
                     ) : (
                       <div className="space-y-4">
-                        {(post.comments || []).map((comment) => (
+                        {(post.comments || []).map((comment: any) => (
                           <div key={comment.id} className="flex gap-2 group/comment">
                             <div className="w-8 h-8 rounded-full overflow-hidden bg-black/5 flex-shrink-0">
                               <img src={comment.profiles?.image_url || DEFAULT_AVATAR} alt={comment.profiles?.first_name || ""} className="w-full h-full object-cover" />

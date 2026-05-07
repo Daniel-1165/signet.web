@@ -39,7 +39,7 @@ export default async function CommunityHubPage() {
 
           <div className="space-y-8">
             {posts && posts.length > 0 ? (
-              posts.map((post) => (
+              posts.map((post: any) => (
                 <PostCard 
                   key={post.id} 
                   post={post} 

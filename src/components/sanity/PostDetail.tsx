@@ -35,7 +35,7 @@ export default function PostDetail({post}: PostDetailProps) {
       {post.mainImage && (
         <div className="relative h-96 w-full mb-8">
           <Image
-            src={urlFor(post.mainImage).url()}
+            src={urlFor(post.mainImage as any).url()}
             alt={post.title}
             fill
             className="object-cover rounded-lg"
