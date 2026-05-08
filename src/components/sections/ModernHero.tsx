@@ -9,7 +9,7 @@ const ModernHero = () => {
     const { isSignedIn, isLoaded } = useUser();
 
     return (
-        <section className="relative min-h-screen flex flex-col pt-10 md:pt-32 pb-16 overflow-hidden bg-white">
+        <section className="relative min-h-screen flex flex-col pt-[69px] md:pt-32 pb-16 overflow-hidden bg-white">
 
             {/* Container */}
             <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-[24px] max-w-7xl px-6 w-full mt-10 z-10">

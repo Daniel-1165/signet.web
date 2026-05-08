@@ -60,7 +60,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
   }, [activeIndex, slides.length]);
 
   return (
-    <section className="bg-white py-6 md:py-24 border-y border-black/[0.04]">
+    <section className="bg-white pt-[69px] md:pt-24 pb-6 md:pb-24 border-y border-black/[0.04]">
 
       {/* Carousel - full width on mobile, constrained on desktop */}
       <div className="relative md:max-w-7xl md:mx-auto md:px-6">
@@ -97,7 +97,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                     <img
                       src={slide.imageUrl}
                       alt={slide.caption || "Gallery image"}
-                      className="w-full aspect-[4/5] md:h-[600px] md:aspect-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full aspect-[16/9] sm:aspect-video md:h-[600px] md:aspect-auto object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="eager"
                     />
 

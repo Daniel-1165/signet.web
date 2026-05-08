@@ -112,7 +112,7 @@ const Navbar = () => {
           MOBILE TOP BAR  (visible on all screen sizes < md)
       ════════════════════════════════════════════════════════════ */}
       <header
-        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-6 h-[72px] transition-all duration-300 top-0 ${
+        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-6 h-[69px] transition-all duration-300 top-0 ${
           isScrolled ? "bg-white/80 backdrop-blur-xl border-b border-black/5" : "bg-transparent"
         }`}
       >
@@ -267,8 +267,8 @@ const Navbar = () => {
           DESKTOP NAV BAR
       ════════════════════════════════════════════════════════════ */}
       <nav
-        className={`hidden md:block fixed z-[50] w-full transition-all duration-500 top-0 py-6 ${
-          isScrolled ? "bg-white/80 backdrop-blur-2xl border-b border-black/[0.04] shadow-sm py-4" : "bg-transparent"
+        className={`hidden md:block fixed z-[50] w-full transition-all duration-500 top-0 py-[21px] ${
+          isScrolled ? "bg-white/80 backdrop-blur-2xl border-b border-black/[0.04] shadow-sm py-[15px]" : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-10 lg:px-16">

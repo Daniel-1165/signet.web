@@ -49,7 +49,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative min-h-[75vh] flex flex-col items-center justify-center pt-12 md:pt-20 pb-12 overflow-hidden bg-transparent">
+        <section className="relative min-h-[75vh] flex flex-col items-center justify-center pt-[69px] md:pt-20 pb-12 overflow-hidden bg-transparent">
             {/* Subtle Grid / Dotted Background */}
             <div className="absolute inset-0 max-w-7xl mx-auto -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
             

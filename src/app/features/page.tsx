@@ -18,7 +18,7 @@ export default function FeaturesPage() {
       <main className="pb-32">
         
         {/* ── TOP HERO: GET TO KNOW US ─────────────────────────────── */}
-        <section className="relative w-full overflow-hidden">
+        <section className="relative w-full overflow-hidden pt-[69px] md:pt-0">
           <Image
             src="/get-to-know-us.png"
             alt="Get To Know Us"
