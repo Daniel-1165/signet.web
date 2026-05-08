@@ -1,5 +1,4 @@
 import { PortableText } from 'next-sanity'
-import { PortableTextComponents } from '@portabletext/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Post } from '@/lib/sanity/types'
@@ -10,7 +9,7 @@ interface PostDetailProps {
   post: Post
 }
 
-const ptComponents: PortableTextComponents = {
+const ptComponents: any = {
   block: {
     h1: ({ children }: any) => <h1 className="text-4xl md:text-5xl font-black text-[#051F20] mt-12 mb-6 leading-tight">{children}</h1>,
     h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-bold text-[#051F20] mt-10 mb-5 leading-tight">{children}</h2>,

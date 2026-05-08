@@ -45,13 +45,13 @@ const ModernHero = () => {
                         {isLoaded && !isSignedIn ? (
                             <SignUpButton mode="modal">
                                 <button className="bg-[#1F3D24] text-[#F8F4ED] px-[40px] py-[16px] rounded-[9999px] font-bold text-[13px] tracking-widest uppercase hover:bg-[#1D1914] transition-all duration-300 shadow-2xl shadow-[#1F3D24]/20 border-0">
-                                    START FOR FREE
+                                    JOIN OUR COMMUNITY
                                 </button>
                             </SignUpButton>
                         ) : (
-                            <Link href="/dashboard">
+                            <Link href="/dashboard/community">
                                 <button className="bg-[#1F3D24] text-[#F8F4ED] px-[40px] py-[16px] rounded-[9999px] font-bold text-[13px] tracking-widest uppercase hover:bg-[#1D1914] transition-all duration-300 shadow-2xl shadow-[#1F3D24]/20 border-0">
-                                    GO TO DASHBOARD
+                                    JOIN OUR COMMUNITY
                                 </button>
                             </Link>
                         )}
@@ -136,7 +136,7 @@ const ModernHero = () => {
             </div>
 
             {/* Bottom Logo Cloud - Brand Values */}
-            <div className="w-full border-t border-[rgb(216,206,190)] border-opacity-40 mt-[80px] py-[32px] px-[24px] z-10 bg-white/30 backdrop-blur-[12px]">
+            <div className="w-full border-t border-[rgb(216,206,190)] border-opacity-40 mt-[80px] py-[32px] px-[24px] z-10 bg-white">
                 <div className="max-w-6xl mx-auto overflow-hidden">
                     <div className="flex whitespace-nowrap">
                         {/* We double the text arrays to create a seamless loop */}
@@ -147,25 +147,25 @@ const ModernHero = () => {
                                 initial={{ x: 0 }}
                                 animate={{ x: "-100%" }}
                                 transition={{
-                                    duration: 25,
+                                    duration: 35,
                                     repeat: Infinity,
                                     ease: "linear",
                                     repeatType: "loop"
                                 }}
                             >
                                 {[
-                                    { text: "Sustainability", icon: Activity },
-                                    { text: "Mastery", icon: Crown },
-                                    { text: "Growth", icon: TrendingUp },
-                                    { text: "Excellence", icon: Sparkles },
-                                    { text: "Focus", icon: Crosshair },
-                                    { text: "Resilience", icon: ShieldCheck }
+                                    { text: "Sustainability", icon: Activity, color: "#0B3D2E" },
+                                    { text: "Mastery", icon: Crown, color: "#05291E" },
+                                    { text: "Growth", icon: TrendingUp, color: "#0B3D2E" },
+                                    { text: "Excellence", icon: Sparkles, color: "#05291E" },
+                                    { text: "Focus", icon: Crosshair, color: "#0B3D2E" },
+                                    { text: "Resilience", icon: ShieldCheck, color: "#05291E" }
                                 ].map((item, index) => {
                                     const Icon = item.icon;
                                     return (
-                                        <div key={`${i}-${index}`} className="flex items-center gap-2.5 opacity-90 hover:opacity-100 hover:text-[#6E7A67] transition-colors duration-150 ease-out cursor-default min-w-[110px] sm:min-w-[150px]">
-                                            <Icon className="w-5 h-5" strokeWidth={6} />
-                                            <span className="text-[16px] font-black tracking-[0.15em] text-[#1D1914] uppercase truncate">
+                                        <div key={`${i}-${index}`} className="flex items-center gap-2.5 transition-colors duration-150 ease-out cursor-default min-w-[110px] sm:min-w-[150px]">
+                                            <Icon className="w-5 h-5 shrink-0" style={{ color: item.color }} strokeWidth={3} />
+                                            <span className="text-[16px] font-black tracking-[0.15em] uppercase truncate" style={{ color: item.color }}>
                                                 {item.text}
                                             </span>
                                         </div>

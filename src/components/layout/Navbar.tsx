@@ -139,8 +139,8 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           {!isSignedIn && (
              <SignUpButton mode="modal">
-               <button className="px-5 py-2 text-[10px] font-black text-[#F8F4ED] bg-[#1F3D24] rounded-full hover:bg-[#1D1914] transition-all tracking-widest uppercase">
-                 START FOR FREE
+               <button className="px-5 py-2 text-[10px] font-black text-[#F8F4ED] bg-[#0B3D2E] rounded-full hover:bg-[#1D1914] transition-all tracking-widest uppercase">
+                 JOIN OUR COMMUNITY
                </button>
              </SignUpButton>
           )}
@@ -210,9 +210,9 @@ const Navbar = () => {
                     key={item.label}
                     href={item.href}
                     onClick={() => setIsSidebarOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#0D120E]/60 hover:text-[#0D120E] hover:bg-black/[0.04] font-semibold text-sm tracking-tight transition-all"
+                    className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#0D120E] hover:bg-black/[0.04] font-bold text-sm tracking-tight transition-all"
                   >
-                    <item.icon className="w-4 h-4 shrink-0 text-[#0D120E]/35" />
+                    <item.icon className="w-4 h-4 shrink-0 text-[#0B3D2E]" />
                     {item.label}
                   </Link>
                 ))}
@@ -324,8 +324,8 @@ const Navbar = () => {
                     </button>
                   </SignInButton>
                   <SignUpButton mode="modal">
-                    <button className="h-10 px-8 flex items-center justify-center rounded-full bg-[#1F3D24] text-[#F8F4ED] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-[#1D1914] transition-all shadow-lg shadow-[#1F3D24]/20 border-0">
-                      START FOR FREE
+                    <button className="h-10 px-8 flex items-center justify-center rounded-full bg-[#0B3D2E] text-[#F8F4ED] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-[#1D1914] transition-all shadow-lg shadow-[#0B3D2E]/20 border-0">
+                      JOIN OUR COMMUNITY
                     </button>
                   </SignUpButton>
                 </div>

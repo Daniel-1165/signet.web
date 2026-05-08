@@ -113,12 +113,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                       </div>
                     )}
 
-                    {/* Slide counter on mobile */}
-                    <div className="absolute top-4 right-4 md:hidden px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-sm">
-                      <span className="text-white text-[11px] font-bold">
-                        {i + 1}/{slides.length}
-                      </span>
-                    </div>
+                    {/* Slide counter removed */}
                   </div>
                 </Wrapper>
               </motion.div>
@@ -135,8 +130,8 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                 onClick={() => scrollToIndex(i)}
                 className={`rounded-full transition-all duration-300 ${
                   i === activeIndex
-                    ? "w-8 h-2 bg-[#163832]"
-                    : "w-2 h-2 bg-[#163832]/15 hover:bg-[#163832]/30"
+                    ? "w-8 h-2 bg-[#0B3D2E]"
+                    : "w-2 h-2 bg-[#0B3D2E]/20 hover:bg-[#0B3D2E]/40"
                 }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
