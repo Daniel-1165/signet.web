@@ -21,6 +21,9 @@
   --color-signet-medium: #235347;
   --color-signet-light: #8EB69B;
   --color-signet-pale: #DAF1DE;
+
+  --color-accent: var(--color-signet-primary);
+  --color-growth-green: var(--color-signet-medium);
 }
 
 :root {

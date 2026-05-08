@@ -1,8 +1,11 @@
 import { sanityFetch } from "@/lib/sanity/client";
-import { ArrowLeft, BookOpen, Clock, Download, Share2, Tag, Calendar } from "lucide-react";
+import { ArrowLeft, BookOpen, Clock, Download, Share2, Tag, Calendar, Twitter, Linkedin, Bookmark } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Footer from "@/components/layout/Footer";
+import { urlFor } from "@/lib/sanity/image";
+import { PortableText, PortableTextComponents } from '@portabletext/react';
 
 const RESOURCE_QUERY = `
   *[_type == "resourceCard" && slug.current == $slug][0] {
@@ -14,9 +17,41 @@ const RESOURCE_QUERY = `
     "fileUrl": resourceFile.asset->url,
     "fileName": resourceFile.asset->originalFilename,
     "mainImageUrl": thumbnail.asset->url,
+    author->{name, image, bio},
     content
   }
 `;
+
+const ptComponents: PortableTextComponents = {
+  block: {
+    h1: ({ children }: any) => <h1 className="text-4xl md:text-5xl font-black text-[#051F20] mt-12 mb-6 leading-tight uppercase tracking-tighter">{children}</h1>,
+    h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-bold text-[#051F20] mt-10 mb-5 leading-tight">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="text-2xl md:text-3xl font-bold text-[#051F20] mt-8 mb-4">{children}</h3>,
+    normal: ({ children }: any) => <p className="text-lg md:text-xl text-[#051F20]/80 leading-relaxed mb-6 font-medium">{children}</p>,
+    blockquote: ({ children }: any) => (
+      <blockquote className="border-l-4 border-[#163832] pl-8 py-4 my-10 italic text-2xl md:text-3xl text-[#163832]/90 font-serif leading-relaxed bg-[#163832]/5 rounded-r-2xl">
+        {children}
+      </blockquote>
+    ),
+  },
+  marks: {
+    strong: ({ children }: any) => <strong className="font-black text-[#051F20]">{children}</strong>,
+    em: ({ children }: any) => <em className="italic font-medium">{children}</em>,
+    highlight: ({ children }: any) => <mark className="bg-[#DAF1DE] text-[#163832] px-1 rounded-sm font-bold">{children}</mark>,
+    link: ({ value, children }: any) => {
+      const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
+      return (
+        <a href={value?.href} target={target} className="text-[#163832] underline decoration-2 underline-offset-4 hover:text-[#8EB69B] transition-colors">
+          {children}
+        </a>
+      )
+    },
+  },
+  list: {
+    bullet: ({ children }: any) => <ul className="list-disc pl-8 mb-8 space-y-4 text-[#051F20]/80 text-lg md:text-xl font-medium">{children}</ul>,
+    number: ({ children }: any) => <ol className="list-decimal pl-8 mb-8 space-y-4 text-[#051F20]/80 text-lg md:text-xl font-medium">{children}</ol>,
+  },
+}
 
 export const dynamic = "force-dynamic";
 
@@ -40,95 +75,123 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F6F0]" style={{ fontFamily: "'Melbourne', sans-serif" }}>
-      
-      {/* ── NAVIGATION ────────────────────────────────────────────── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/[0.03]">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/resources" className="flex items-center gap-2 text-sm font-black uppercase tracking-widest hover:text-[#1DA756] transition-colors">
-            <ArrowLeft size={16} /> Back to Library
-          </Link>
-          <div className="flex items-center gap-4">
-             <button className="w-10 h-10 rounded-full bg-[#0D120E]/5 flex items-center justify-center hover:bg-[#1DA756] hover:text-white transition-all">
-                <Share2 size={18} />
-             </button>
+    <div className="min-h-screen bg-[#FDFCF9]">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-16 py-12 md:py-24">
+        
+        {/* Left Sidebar */}
+        <aside className="hidden lg:flex flex-col w-48 shrink-0 sticky top-32 h-fit space-y-12">
+          <div className="flex flex-col gap-4">
+             {resource.author?.image && (
+                <div className="w-14 h-14 rounded-full overflow-hidden border border-[#051F20]/10">
+                   <img src={urlFor(resource.author.image as any).url()} alt={resource.author.name} className="object-cover w-full h-full" />
+                </div>
+             )}
+             <div className="space-y-4">
+                <p className="text-xs text-[#051F20]/60 leading-relaxed font-semibold">
+                   Insight provided by {resource.author?.name || 'Signet Editorial'}, architecting growth for the community.
+                </p>
+                <div className="flex gap-4 text-[#051F20]/40">
+                   <Twitter size={18} className="hover:text-[#163832] cursor-pointer" />
+                   <Linkedin size={18} className="hover:text-[#163832] cursor-pointer" />
+                </div>
+             </div>
           </div>
-        </div>
-      </nav>
 
-      <main className="pt-32 pb-32">
-        <article className="max-w-4xl mx-auto px-6">
-          
-          {/* ── HEADER ─────────────────────────────────────────────── */}
-          <header className="mb-16">
-            <div className="flex items-center gap-4 mb-8">
-               <span className="px-4 py-1.5 bg-[#1DA756] text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full">
-                  {resource.tag || "Discovery"}
-               </span>
-               <span className="flex items-center gap-2 text-[10px] font-bold text-black/40 uppercase tracking-widest">
-                  <Clock size={12} /> {resource.readTime || "5 MIN READ"}
-               </span>
-               {resource.publishedAt && (
-                 <span className="flex items-center gap-2 text-[10px] font-bold text-black/40 uppercase tracking-widest">
-                    <Calendar size={12} /> {new Date(resource.publishedAt).toLocaleDateString()}
-                 </span>
-               )}
+          <nav className="flex flex-col gap-6">
+            {['Articles', 'Books', 'Courses', 'Podcast'].map((item) => (
+              <Link 
+                key={item} 
+                href="/resources" 
+                className={`text-sm font-black uppercase tracking-widest transition-colors ${resource.tag === item ? 'text-[#163832]' : 'text-[#051F20]/30 hover:text-[#163832]'}`}
+              >
+                {item}
+              </Link>
+            ))}
+          </nav>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 max-w-4xl mx-auto">
+          <header className="mb-12 md:mb-20">
+            <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#163832] mb-6">
+              <span className="px-3 py-1 bg-[#DAF1DE] rounded-full">{resource.tag || "Discovery"}</span>
+              <span>{new Date(resource._createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             </div>
-
-            <h1 className="text-5xl md:text-7xl font-black uppercase leading-[0.9] tracking-tighter mb-8 italic">
-               {resource.title}
+            
+            <h1 className="text-5xl md:text-7xl font-black text-[#051F20] leading-[1.1] tracking-tighter mb-8 bg-gradient-to-br from-[#051F20] to-[#163832] bg-clip-text text-transparent italic uppercase">
+              {resource.title}
             </h1>
 
-            <p className="text-xl md:text-2xl text-[#0D120E]/60 font-medium leading-relaxed border-l-4 border-[#1DA756] pl-8">
-               {resource.description}
-            </p>
+            <div className="flex items-center justify-between py-8 border-y border-[#051F20]/5">
+               <div className="flex items-center gap-4">
+                  {resource.author?.image && (
+                    <div className="w-10 h-10 rounded-full overflow-hidden">
+                       <img src={urlFor(resource.author.image as any).url()} alt={resource.author.name} className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-[#051F20]/40">Written By</span>
+                    <span className="text-sm font-bold text-[#051F20]">{resource.author?.name || 'Signet Team'}</span>
+                  </div>
+               </div>
+               <div className="flex items-center gap-4 text-[#051F20]/60">
+                  <Share2 size={18} className="cursor-pointer hover:text-[#163832]" />
+                  <Bookmark size={18} className="cursor-pointer hover:text-[#163832]" />
+               </div>
+            </div>
           </header>
 
-          {/* ── FEATURED IMAGE ──────────────────────────────────────── */}
           {resource.mainImageUrl && (
-            <div className="rounded-[3rem] overflow-hidden aspect-[16/9] mb-16 shadow-2xl">
-               <img src={resource.mainImageUrl} alt={resource.title} className="w-full h-full object-cover" />
+            <div className="relative aspect-[16/9] w-full mb-16 rounded-[2rem] overflow-hidden shadow-2xl">
+              <img src={resource.mainImageUrl} alt={resource.title} className="w-full h-full object-cover" />
             </div>
           )}
 
-          {/* ── CONTENT (SIMPLIFIED RENDERING) ──────────────────────── */}
-          <div className="prose prose-xl max-w-none prose-headings:font-black prose-headings:uppercase prose-p:font-medium prose-p:text-[#0D120E]/70 mb-20">
-             {/* If we had a PortableText component, we would use it here. 
-                 For now, we display the raw content if it's a string, or a placeholder if it's block data.
-             */}
-             {typeof resource.content === 'string' ? (
-                <div dangerouslySetInnerHTML={{ __html: resource.content }} />
+          <div className="max-w-3xl mx-auto">
+             {typeof resource.content === 'object' && resource.content ? (
+                <PortableText value={resource.content} components={ptComponents} />
              ) : (
-                <div className="bg-white p-12 rounded-[2.5rem] border border-black/[0.03] shadow-sm">
-                   <p className="text-lg italic text-black/40">This resource contains rich media content. [Standard Implementation pending PortableText renderer]</p>
-                </div>
+                <p className="text-lg text-[#051F20]/80 leading-relaxed font-medium">{resource.description || resource.content}</p>
              )}
           </div>
 
-          {/* ── DOWNLOAD AREA ───────────────────────────────────────── */}
           {resource.fileUrl && (
-            <div className="bg-[#0D120E] rounded-[3rem] p-10 md:p-16 text-white text-center relative overflow-hidden group border border-[#1DA756]/30 shadow-2xl">
-               <div className="absolute top-0 right-0 w-64 h-64 bg-[#1DA756]/10 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
+            <div className="mt-20 p-10 bg-[#051F20] rounded-[3rem] text-white text-center relative overflow-hidden group border border-[#163832]/30">
+               <div className="absolute top-0 right-0 w-64 h-64 bg-[#163832]/20 rounded-full blur-[100px] pointer-events-none" />
                <div className="relative z-10">
-                  <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-500">
-                     <Download className="text-[#1DA756]" size={32} />
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-black uppercase mb-4 tracking-tight">Access Full Resource</h3>
-                  <p className="text-white/40 mb-10 max-w-md mx-auto font-medium">Download the complete version of this {resource.tag?.toLowerCase() || 'document'} for offline study.</p>
-                  <a 
-                    href={resource.fileUrl} 
-                    download={resource.fileName || "resource"}
-                    className="h-16 px-12 bg-[#1DA756] text-white rounded-full font-black uppercase text-xs tracking-widest inline-flex items-center gap-3 hover:bg-white hover:text-[#0D120E] transition-all shadow-xl"
-                  >
-                     Download File <ArrowLeft className="rotate-[-90deg]" size={16} />
+                  <Download className="mx-auto mb-6 text-[#8EB69B]" size={40} />
+                  <h3 className="text-3xl font-black uppercase mb-4">Tactical Resource File</h3>
+                  <p className="text-white/40 mb-8 max-w-sm mx-auto font-medium text-sm">Download the complete manual for our library analysis and internal review.</p>
+                  <a href={resource.fileUrl} download className="inline-flex items-center gap-3 px-10 py-4 bg-[#163832] text-white rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-white hover:text-[#051F20] transition-all">
+                     Download {resource.fileName || 'Resource'} <ArrowLeft className="rotate-[-90deg] w-4 h-4" />
                   </a>
                </div>
             </div>
           )}
 
-        </article>
-      </main>
-
+          {/* Author Bio at end */}
+          <footer className="mt-24 pt-24 border-t border-[#051F20]/10 max-w-3xl mx-auto">
+             <div className="p-10 bg-[#FAFAFA] rounded-[3rem] border border-[#051F20]/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left transition-all hover:shadow-xl group">
+                {resource.author?.image && (
+                  <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
+                     <img src={urlFor(resource.author.image as any).url()} alt={resource.author.name} className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <div>
+                   <span className="text-[10px] font-black uppercase tracking-widest text-[#163832] block mb-2">Author</span>
+                   <h3 className="text-2xl font-bold text-[#051F20] mb-3">{resource.author?.name || 'Signet Editorial'}</h3>
+                   <p className="text-md text-[#051F20]/60 leading-relaxed font-medium mb-6 italic">
+                     {resource.author?.bio || "A collective of strategic minds focused on architecting human-centric growth systems. We bridge the gap between abstract wisdom and tactical execution."}
+                   </p>
+                   <div className="flex gap-4 text-[#051F20]/30 justify-center md:justify-start">
+                      <Twitter size={18} className="hover:text-[#163832] cursor-pointer" />
+                      <Linkedin size={18} className="hover:text-[#163832] cursor-pointer" />
+                   </div>
+                </div>
+             </div>
+          </footer>
+        </main>
+      </div>
       <Footer />
     </div>
   );

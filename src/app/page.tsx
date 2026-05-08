@@ -40,10 +40,10 @@ export default async function Home() {
       <ParticleBackground />
       <main className="flex flex-col gap-0">
         <div className="flex flex-col">
-          <div className="order-2 md:order-1 -mt-24 md:mt-0">
+          <div className="order-2 md:order-1">
             <ModernHero />
           </div>
-          <div className="order-1 md:order-2 mt-24 md:mt-0">
+          <div className="order-1 md:order-2">
             <BlogCarousel slides={slides} />
           </div>
         </div>

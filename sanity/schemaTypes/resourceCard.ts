@@ -49,10 +49,16 @@ export default defineType({
       description: 'Upload PDF for books or magazines',
     }),
     defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{type: 'author'}],
+    }),
+    defineField({
       name: 'content',
       title: 'Write-up / Article Content',
-      type: 'text',
-      description: 'Write up for designs, or text content for articles',
+      type: 'blockContent',
+      description: 'Rich text content for articles (highly recommended over plain text)',
     }),
   ],
 })

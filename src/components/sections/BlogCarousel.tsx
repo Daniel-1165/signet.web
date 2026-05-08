@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface CarouselSlide {
   _id: string;
@@ -49,27 +49,18 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
     setActiveIndex(closest);
   };
 
+  // Auto-play feature
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const nextIndex = (activeIndex + 1) % slides.length;
+      scrollToIndex(nextIndex);
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(timer);
+  }, [activeIndex, slides.length]);
+
   return (
-    <section className="bg-white py-10 md:py-24 border-y border-black/[0.04]">
-      {/* Navigation arrows */}
-      <div className="max-w-7xl mx-auto px-6 mb-4 flex justify-end gap-3">
-        <button
-          onClick={() => scrollToIndex(activeIndex - 1)}
-          disabled={activeIndex === 0}
-          className="w-10 h-10 rounded-full border border-[#0B2B26]/10 flex items-center justify-center hover:bg-[#163832] hover:text-white hover:border-transparent disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-current disabled:hover:border-[#0B2B26]/10 transition-all duration-300"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </button>
-        <button
-          onClick={() => scrollToIndex(activeIndex + 1)}
-          disabled={activeIndex === slides.length - 1}
-          className="w-10 h-10 rounded-full border border-[#0B2B26]/10 flex items-center justify-center hover:bg-[#163832] hover:text-white hover:border-transparent disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-current disabled:hover:border-[#0B2B26]/10 transition-all duration-300"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="w-4 h-4" />
-        </button>
-      </div>
+    <section className="bg-white py-6 md:py-24 border-y border-black/[0.04]">
 
       {/* Carousel - full width on mobile, constrained on desktop */}
       <div className="relative md:max-w-7xl md:mx-auto md:px-6">
@@ -106,8 +97,8 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                     <img
                       src={slide.imageUrl}
                       alt={slide.caption || "Gallery image"}
-                      className="w-full h-auto max-h-[80vh] object-contain transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
+                      className="w-full aspect-[4/5] md:h-[600px] md:aspect-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="eager"
                     />
 
                     {/* Gradient overlay on hover */}
