@@ -106,7 +106,7 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
             <img 
               src={post.image_url} 
               alt="Post image" 
-              className="w-full max-h-96 object-cover rounded-xl border border-white/5" 
+              className="w-full max-h-96 object-cover object-top rounded-xl border border-white/5" 
             />
           </div>
         )}

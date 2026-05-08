@@ -38,6 +38,7 @@ interface Post {
   showComments?: boolean;
   commentText?: string;
   loadingComments?: boolean;
+  post_reactions?: any[];
 }
 
 const TABS = ["All", "Posts", "Media", "Write-ups"];
@@ -527,7 +528,7 @@ export default function CommunityPage() {
                   <div className="rounded-lg overflow-hidden border border-black/5 mb-4">
                     {post.image_url.match(/\.(mp4|webm|ogg)$/i)
                       ? <video src={post.image_url} controls className="w-full max-h-[500px]" />
-                      : <img src={post.image_url} alt="Post media" className="w-full max-h-[500px] object-cover" />
+                      : <img src={post.image_url} alt="Post media" className="w-full max-h-[500px] object-cover object-top" />
                     }
                   </div>
                 )}

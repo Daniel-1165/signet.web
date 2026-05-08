@@ -97,7 +97,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                     <img
                       src={slide.imageUrl}
                       alt={slide.caption || "Gallery image"}
-                      className="w-full aspect-[16/9] sm:aspect-video md:h-[600px] md:aspect-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full aspect-[16/9] sm:aspect-video md:h-[600px] md:aspect-auto object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       loading="eager"
                     />
 

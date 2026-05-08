@@ -93,7 +93,7 @@ const ArticleCard = ({ data }: { data: any }) => {
           <img
             src={data.mainImageUrl}
             alt={data.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
         ) : (

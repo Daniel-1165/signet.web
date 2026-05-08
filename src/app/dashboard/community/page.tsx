@@ -1,15 +1,45 @@
 import { auth } from "@clerk/nextjs/server";
 import { PostCard } from "./PostCard";
 import { CreatePost } from "./CreatePost";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export default async function CommunityHubPage() {
   const { userId } = await auth();
   if (!userId) return null;
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/community/posts`, {
-    cache: 'no-store'
-  });
-  const posts = response.ok ? await response.json() : [];
+  const supabase = createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from('posts')
+    .select(`
+      *,
+      profiles (
+        first_name,
+        last_name,
+        image_url
+      ),
+      post_reactions (
+        id,
+        user_id,
+        reaction_type
+      ),
+      post_comments (
+        id,
+        content,
+        created_at,
+        profiles (
+          first_name,
+          last_name,
+          image_url
+        )
+      )
+    `)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching posts:', error);
+  }
+
+  const posts = data || [];
 
   return (
     <div className="mx-auto max-w-5xl space-y-12 pb-24">
