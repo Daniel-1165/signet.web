@@ -65,6 +65,16 @@ export interface Testimonial {
       y: number
     }
   }
+  testimonialImage?: {
+    asset?: {
+      _id: string
+      url: string
+    }
+    hotspot?: {
+      x: number
+      y: number
+    }
+  }
   featured?: boolean
   order?: number
 }

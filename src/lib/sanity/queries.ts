@@ -40,6 +40,13 @@ export const GET_TESTIMONIALS = `
       },
       hotspot,
     },
+    testimonialImage {
+      asset-> {
+        _id,
+        url
+      },
+      hotspot,
+    },
   }
 `
 
@@ -53,6 +60,13 @@ export const GET_FEATURED_TESTIMONIALS = `
     featured,
     order,
     avatar {
+      asset-> {
+        _id,
+        url
+      },
+      hotspot,
+    },
+    testimonialImage {
       asset-> {
         _id,
         url
