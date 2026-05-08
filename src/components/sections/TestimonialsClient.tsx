@@ -75,27 +75,41 @@ export default function TestimonialsClient({ testimonials }: Props) {
                     transition={{ duration: 0.8, delay: i * 0.1 }}
                     className="flex-none w-[320px] md:w-[420px]"
                   >
-                    <div className="h-full rounded-[2.5rem] border border-black/[0.05] bg-white p-8 md:p-10 flex flex-col gap-8 transition-all duration-500 hover:shadow-2xl hover:shadow-black/5 hover:-translate-y-2 relative overflow-hidden">
-                      {/* Decorative Quote Mark */}
-                      <div className="absolute top-[-10px] right-[-5px] text-[100px] font-serif text-black/[0.02] pointer-events-none group-hover:text-[#1DA756]/5 transition-colors leading-none">
-                        ”
-                      </div>
-
-                      <div className="flex-1 relative z-10">
-                        <div className="flex gap-1 mb-6">
-                          {[...Array(5)].map((_, starIdx) => (
-                            <svg key={starIdx} className="w-3.5 h-3.5 text-[#1DA756] fill-current" viewBox="0 0 20 20">
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.97a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.286 3.97c.3.921-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.175 0l-3.388 2.46c-.784.57-1.838-.197-1.539-1.118l1.285-3.97a1 1 0 00-.364-1.118L2.245 9.397c-.783-.57-.38-1.81.588-1.81h4.181a1 1 0 00.951-.69l1.285-3.97z" />
-                            </svg>
-                          ))}
+                    <div className="h-full rounded-[2.5rem] border border-black/[0.05] bg-white p-8 md:p-10 flex flex-col gap-8 transition-all duration-500 hover:shadow-2xl hover:shadow-black/5 hover:-translate-y-2 relative overflow-hidden min-h-[350px]">
+                      {/* Decorative Quote Mark - Hide if image card exists */}
+                      {!t.testimonialImage && (
+                        <div className="absolute top-[-10px] right-[-5px] text-[100px] font-serif text-black/[0.02] pointer-events-none group-hover:text-[#1DA756]/5 transition-colors leading-none">
+                          ”
                         </div>
-                        
-                        <p className={`leading-relaxed text-[#0D120E] font-medium italic ${isLongText ? "text-base md:text-lg" : "text-lg md:text-xl"}`}>
-                          "{t.content}"
-                        </p>
-                      </div>
+                      )}
 
-                      <div className="pt-6 border-t border-black/[0.05] relative z-10 flex items-center gap-4">
+                      {t.testimonialImage ? (
+                        <div className="absolute inset-0 z-0">
+                          <img 
+                            src={t.testimonialImage.asset?.url} 
+                            alt={`Testimonial from ${t.name}`}
+                            className="w-full h-full object-cover"
+                          />
+                          {/* Subtle overlay to ensure any text overlay would be readable, though we aim for full image cards */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                        </div>
+                      ) : (
+                        <div className="flex-1 relative z-10">
+                          <div className="flex gap-1 mb-6">
+                            {[...Array(5)].map((_, starIdx) => (
+                              <svg key={starIdx} className="w-3.5 h-3.5 text-[#1DA756] fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.97a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.286 3.97c.3.921-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.175 0l-3.388 2.46c-.784.57-1.838-.197-1.539-1.118l1.285-3.97a1 1 0 00-.364-1.118L2.245 9.397c-.783-.57-.38-1.81.588-1.81h4.181a1 1 0 00.951-.69l1.285-3.97z" />
+                              </svg>
+                            ))}
+                          </div>
+                          
+                          <p className={`leading-relaxed text-[#0D120E] font-medium italic ${isLongText ? "text-base md:text-lg" : "text-lg md:text-xl"}`}>
+                            "{t.content}"
+                          </p>
+                        </div>
+                      )}
+
+                      <div className={`pt-6 border-t border-black/[0.05] relative z-10 flex items-center gap-4 ${t.testimonialImage ? "mt-auto bg-white/60 backdrop-blur-md -m-8 md:-m-10 p-6 md:p-8" : ""}`}>
                         {t.avatar?.asset?.url ? (
                           <img 
                             src={t.avatar.asset.url} 
@@ -108,8 +122,8 @@ export default function TestimonialsClient({ testimonials }: Props) {
                           </div>
                         )}
                         <div>
-                          <h4 className="text-base font-black text-[#0D120E] tracking-tight">{t.name || "Anonymous"}</h4>
-                          <p className="text-[9px] font-bold text-[#0D120E]/40 uppercase tracking-[0.2em] mt-1 flex items-center gap-2">
+                          <h4 className={`text-base font-black tracking-tight ${t.testimonialImage ? "text-[#051F20]" : "text-[#0D120E]"}`}>{t.name || "Anonymous"}</h4>
+                          <p className={`text-[9px] font-bold uppercase tracking-[0.2em] mt-1 flex items-center gap-2 ${t.testimonialImage ? "text-[#051F20]/60" : "text-[#0D120E]/40"}`}>
                              {t.role || "Member"}{t.company ? `, ${t.company}` : ""}
                           </p>
                         </div>

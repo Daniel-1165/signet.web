@@ -121,23 +121,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
           })}
         </div>
 
-        {/* Dot indicators */}
-        {slides.length > 1 && (
-          <div className="flex items-center justify-center gap-2 mt-6 px-6 md:px-0">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => scrollToIndex(i)}
-                className={`rounded-full transition-all duration-300 ${
-                  i === activeIndex
-                    ? "w-8 h-2 bg-[#0B3D2E]"
-                    : "w-2 h-2 bg-[#0B3D2E]/20 hover:bg-[#0B3D2E]/40"
-                }`}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
-          </div>
-        )}
+        {/* Dot indicators removed for editorial minimalism */}
       </div>
     </section>
   );

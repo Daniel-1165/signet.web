@@ -26,11 +26,20 @@ export default defineType({
       name: 'content',
       title: 'Testimonial Content',
       type: 'text',
-      validation: (Rule) => Rule.required(),
+      description: 'The written feedback from the client.',
+    }),
+    defineField({
+      name: 'testimonialImage',
+      title: 'Full Testimonial Image Card',
+      description: 'Upload an image that shows the testimonial. If present, this will be displayed instead of the text content.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'avatar',
-      title: 'Avatar / Testimonial Image',
+      title: 'Author Avatar',
       type: 'image',
       options: {
         hotspot: true,
