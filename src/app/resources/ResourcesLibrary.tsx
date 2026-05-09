@@ -8,15 +8,39 @@ import Footer from "@/components/layout/Footer";
 export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { initialPosts: any[], interrupts?: any[] }) {
   const [search, setSearch] = useState("");
 
-  const magazines = initialPosts.filter(p => p.tag?.toLowerCase() === 'magazine');
-  const articles = initialPosts.filter(p => p.tag?.toLowerCase() === 'article' || p.tag?.toLowerCase() === 'image');
-  const books = initialPosts.filter(p => {
-    const tag = p.tag?.toLowerCase();
-    return tag !== 'magazine' && tag !== 'article' && tag !== 'image';
+  // Refined filtering logic to include search and ensure all Sanity posts are captured
+  const filteredPosts = initialPosts.filter(p => {
+    const searchLower = search.toLowerCase();
+    return (
+      p.title?.toLowerCase().includes(searchLower) ||
+      p.description?.toLowerCase().includes(searchLower) ||
+      p.tag?.toLowerCase().includes(searchLower) ||
+      p.category?.toLowerCase().includes(searchLower)
+    );
+  });
+
+  const magazines = filteredPosts.filter(p => 
+    p.tag?.toLowerCase() === 'magazine' || 
+    p.category?.toLowerCase() === 'magazine' ||
+    p._type === 'magazine'
+  );
+
+  const articles = filteredPosts.filter(p => 
+    p.tag?.toLowerCase() === 'article' || 
+    p.category?.toLowerCase() === 'article' || 
+    p._type === 'post' ||
+    p.tag?.toLowerCase() === 'image'
+  );
+
+  const books = filteredPosts.filter(p => {
+    const tag = p.tag?.toLowerCase() || p.category?.toLowerCase();
+    const isMagazine = tag === 'magazine' || p._type === 'magazine';
+    const isArticle = tag === 'article' || p._type === 'post' || tag === 'image';
+    return !isMagazine && !isArticle;
   });
 
   return (
-    <div className="bg-[#F8FAFB] text-[#191c1d] pb-32">
+    <div className="bg-[#F8FAFB] text-[#191c1d] pb-24 px-4 md:px-0">
       <header className="flex flex-col lg:flex-row lg:items-center justify-between py-6 max-w-[1200px] mx-auto gap-6 lg:gap-0">
         <div>
           <h1 className="text-[28px] font-bold text-[#005746] leading-tight" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
@@ -64,8 +88,8 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
              {/* Feature Book */}
-             <div className="bg-white rounded-[1.5rem] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#f2f4f5] flex flex-col sm:flex-row gap-6 relative overflow-hidden group">
-               <div className="w-32 sm:w-40 shrink-0 aspect-[2/3] shadow-lg rounded-md overflow-hidden relative">
+             <div className="bg-white rounded-[1.2rem] p-4 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#f2f4f5] flex flex-col sm:flex-row gap-4 md:gap-6 relative overflow-hidden group">
+               <div className="w-28 md:w-40 shrink-0 aspect-[2/3] shadow-lg rounded-md overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent w-4 z-10" />
                   {books[0]?.mainImageUrl ? (
                     <img src={books[0].mainImageUrl} alt={books[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -105,8 +129,8 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   { title: "Deep Work Ethics", tag: "Marcus Thorne", description: "Strategies for cognitive persistence in the age of constant digital distraction." },
                   { title: "Organic Systems", tag: "Sarah Jenkins", description: "Building habits that mirror natural growth cycles for sustainable results." }
                 ]).map((book: any, idx: number) => (
-                  <a href={book.slug?.current ? `/resources/${book.slug.current}` : "#"} key={book._id || idx} className="bg-white rounded-[1.5rem] p-6 shadow-sm border border-[#f2f4f5] flex gap-5 group items-center hover:shadow-md transition-shadow">
-                     <div className="w-16 h-24 shrink-0 shadow-md rounded overflow-hidden">
+                   <a href={book.slug?.current ? `/resources/${book.slug.current}` : "#"} key={book._id || idx} className="bg-white rounded-[1.2rem] p-4 shadow-sm border border-[#f2f4f5] flex gap-4 group items-center hover:shadow-md transition-shadow">
+                     <div className="w-14 md:w-16 h-20 md:h-24 shrink-0 shadow-md rounded overflow-hidden">
                        <img src={book.mainImageUrl || "/placeholder-avatar.png"} className="w-full h-full bg-emerald-800 object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
                      </div>
                      <div>
@@ -143,7 +167,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
               <a 
                 href={mag.slug?.current ? `/resources/${mag.slug.current}` : "#"} 
                 key={mag._id || idx} 
-                className="group cursor-pointer flex-none w-[200px] md:w-[240px] snap-start"
+                className="group cursor-pointer flex-none w-[160px] md:w-[240px] snap-start"
               >
                 <div className={`aspect-[3/4.2] rounded-[1.2rem] overflow-hidden shadow-sm relative ${mag.special ? 'bg-[#f2f4f5]' : 'bg-[#e1e3e4]'}`}>
                    <img 
@@ -191,32 +215,32 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
             </div>
           </div>
 
-          <div className="space-y-4">
-             {(articles.length > 0 ? articles : [
-               { tag: 'Strategy', title: "The Art of Active Silence in Negotiations", description: "How leaving space for silence can reveal more than asking direct questions.", provider: "Harvard Business Review", icon: BookOpen, colorClass: "bg-[#83fba5] text-[#005746]" },
-               { tag: 'Psychology', title: "Breaking the Feedback Loop of Burnout", description: "Practical steps for middle managers to reclaim their focus and energy.", provider: "Psychology Today", icon: Brain, colorClass: "bg-[#e1e3e4] text-[#191c1d]" },
-               { tag: 'Sustainability', title: "Sustainable Career Paths in 2025", description: "Aligning personal growth with ecological and social impact goals.", provider: "Forbes Growth", icon: Leaf, colorClass: "bg-[#9ef3da] text-[#005746]" }
-             ]).map((article: any, idx) => {
+          <div className="space-y-3">
+             {articles.map((article: any, idx: number) => {
                const IconComponent = article.icon || BookOpen;
                const ColorClass = article.colorClass || "bg-[#e1e3e4] text-[#191c1d]";
                
                return (
-                 <a href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} key={article._id || idx} className="bg-white rounded-[1rem] p-6 shadow-sm border border-[#f2f4f5] flex items-center gap-6 group hover:shadow-md hover:border-[#e1e3e4] transition-all cursor-pointer">
-                    <div className={`w-14 h-14 rounded-[0.5rem] flex items-center justify-center shrink-0 ${ColorClass}`}>
-                       <IconComponent size={24} />
+                 <a 
+                   href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} 
+                   key={article._id || idx} 
+                   className="bg-white rounded-[1.2rem] p-3 md:p-5 shadow-sm border border-[#f2f4f5] flex items-center gap-4 md:gap-6 group hover:shadow-md hover:border-[#e1e3e4] transition-all cursor-pointer"
+                 >
+                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-[0.8rem] flex items-center justify-center shrink-0 ${ColorClass}`}>
+                       <IconComponent className="w-6 h-6 md:w-8 md:h-8" />
                     </div>
                     <div className="flex-1">
-                       <div className="flex items-center gap-3 mb-2">
-                          <span className={`${idx === 1 ? 'bg-[#f8fafb] border border-[#e1e3e4] text-[#3e4945]' : 'bg-[#e6fcf2] text-[#005746]'} uppercase text-[9px] font-bold px-2 py-0.5 rounded tracking-widest`}>
-                            {article.tag || "Article"}
+                       <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
+                          <span className="bg-[#e6fcf2] text-[#005746] uppercase text-[8px] md:text-[9px] font-bold px-2 py-0.5 rounded tracking-widest">
+                            {article.tag || article.category || "Article"}
                           </span>
-                          <span className="text-[11px] text-[#bec9c4] font-medium">5 min read</span>
+                          <span className="text-[10px] md:text-[11px] text-[#bec9c4] font-medium">5 min read</span>
                        </div>
-                       <h3 className="text-[16px] font-bold text-[#191c1d] group-hover:text-[#005746] transition-colors line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                       <h3 className="text-[14px] md:text-[16px] font-bold text-[#191c1d] group-hover:text-[#005746] transition-colors line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
                          {article.title}
                        </h3>
-                       <p className="text-[13px] text-[#6e7975] mt-1 line-clamp-1" style={{ fontFamily: "'Inter', sans-serif" }}>
-                         {article.description}
+                       <p className="text-[12px] md:text-[13px] text-[#6e7975] mt-0.5 md:mt-1 line-clamp-1 md:line-clamp-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                         {article.description || article.content}
                        </p>
                     </div>
                     <div className="hidden sm:flex items-center gap-1 text-[13px] text-[#6e7975] italic shrink-0 pr-4 font-serif">
