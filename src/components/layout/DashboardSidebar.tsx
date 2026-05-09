@@ -9,6 +9,7 @@ import {
   Users, 
   Settings, 
   CheckSquare,
+  Library,
   Shield, 
   HelpCircle,
   Menu,
@@ -24,6 +25,7 @@ const sidebarItems = [
   { name: 'Growth', icon: TrendingUp, href: '/dashboard/growth' },
   { name: 'Exercises', icon: CheckSquare, href: '/dashboard/exercises' },
   { name: 'Community', icon: Users, href: '/dashboard/community' },
+  { name: 'Resources', icon: Library, href: '/resources' },
   { name: 'Settings', icon: Settings, href: '/dashboard/settings' },
 ]
 
