@@ -40,7 +40,7 @@ export function CreatePost() {
   if (!user) return null;
 
   return (
-    <div className="bg-white rounded-[2rem] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#D8CEBE]/40 group transition-all focus-within:border-[#6E7A67]/40">
+    <form onSubmit={handleSubmit} className="bg-white rounded-[2rem] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#D8CEBE]/40 group transition-all focus-within:border-[#6E7A67]/40">
       <div className="flex gap-6">
         <div className="w-12 h-12 rounded-2xl bg-[#6E7A67]/10 shrink-0 overflow-hidden ring-2 ring-[#D8CEBE]/10">
           {user.imageUrl && <img src={user.imageUrl} className="w-full h-full object-cover" />}
@@ -55,17 +55,17 @@ export function CreatePost() {
           />
           <div className="flex items-center justify-between">
             <div className="flex gap-6">
-              <button className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-xs font-bold uppercase tracking-widest group/icon">
+              <button type="button" className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-xs font-bold uppercase tracking-widest group/icon">
                 <ImageIcon size={18} className="group-hover/icon:scale-110 transition-transform" />
                 <span>Media</span>
               </button>
-              <button className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-xs font-bold uppercase tracking-widest group/icon">
+              <button type="button" className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-xs font-bold uppercase tracking-widest group/icon">
                 <Paperclip size={18} className="group-hover/icon:scale-110 transition-transform" />
                 <span>Asset</span>
               </button>
             </div>
             <button 
-              onClick={handleSubmit}
+              type="submit"
               disabled={!content.trim() || isLoading}
               className="flex items-center gap-3 px-8 py-3 rounded-xl bg-[#1D1914] text-white font-bold text-[13px] uppercase tracking-[0.15em] disabled:opacity-20 hover:bg-[#6E7A67] hover:shadow-[0_8px_20px_rgba(110,122,103,0.3)] transition-all disabled:pointer-events-none"
             >
@@ -75,6 +75,6 @@ export function CreatePost() {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }

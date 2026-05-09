@@ -1,48 +1,40 @@
-import { auth } from "@clerk/nextjs/server";
+'use client';
+
 import { PostCard } from "./PostCard";
 import { CreatePost } from "./CreatePost";
-import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { Search, Bell, Calendar, Plus, Sparkles, TrendingUp, Clock } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
-export default async function CommunityHubPage() {
-  const { userId } = await auth();
-  if (!userId) return null;
+export default function CommunityHubPage() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState('trending');
 
-  const supabase = createServerSupabaseClient();
-  const { data, error } = await supabase
-    .from('posts')
-    .select(`
-      *,
-      profiles (
-        first_name,
-        last_name,
-        image_url
-      ),
-      post_reactions (
-        id,
-        user_id,
-        reaction_type
-      ),
-      post_comments (
-        id,
-        content,
-        created_at,
-        profiles (
-          first_name,
-          last_name,
-          image_url
-        )
-      )
-    `)
-    .order('created_at', { ascending: false });
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const response = await fetch('/api/community/posts');
+        if (response.ok) {
+          const data = await response.json();
+          setPosts(data);
+        }
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchPosts();
+  }, []);
 
-  if (error) {
-    console.error('Error fetching posts:', error);
-  }
-
-  const posts = data || [];
+  const scrollToCreate = () => {
+    const element = document.getElementById('create-post-section');
+    element?.scrollIntoView({ behavior: 'smooth' });
+    const textarea = element?.querySelector('textarea');
+    textarea?.focus();
+  };
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] text-[#1D1914] pt-8">
@@ -67,11 +59,17 @@ export default async function CommunityHubPage() {
             />
           </div>
           <div className="flex bg-[#6E7A67]/5 rounded-full p-1 border border-[#D8CEBE]/20">
-             <button className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#1D1914] text-white text-[12px] font-bold transition-all">
+             <button 
+                onClick={() => setActiveFilter('trending')}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-[12px] font-bold transition-all ${activeFilter === 'trending' ? 'bg-[#1D1914] text-white shadow-lg' : 'text-[#6E7A67] hover:bg-white'}`}
+             >
                <TrendingUp size={14} />
                Trending
              </button>
-             <button className="flex items-center gap-2 px-5 py-2 rounded-full text-[#6E7A67] text-[12px] font-medium hover:bg-white transition-all">
+             <button 
+                onClick={() => setActiveFilter('newest')}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-[12px] font-bold transition-all ${activeFilter === 'newest' ? 'bg-[#1D1914] text-white shadow-lg' : 'text-[#6E7A67] hover:bg-white'}`}
+             >
                <Clock size={14} />
                Newest
              </button>
@@ -81,10 +79,18 @@ export default async function CommunityHubPage() {
 
       <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 px-6 pb-32">
         <div className="space-y-10">
-          <CreatePost />
+          <div id="create-post-section">
+            <CreatePost />
+          </div>
 
           <div className="space-y-8">
-            {posts && posts.length > 0 ? (
+            {isLoading ? (
+               <div className="space-y-8">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="h-64 bg-white rounded-[2rem] animate-pulse border border-[#D8CEBE]/20" />
+                  ))}
+               </div>
+            ) : posts.length > 0 ? (
               posts.map((post: any) => (
                 <PostCard 
                   key={post.id} 
@@ -98,11 +104,13 @@ export default async function CommunityHubPage() {
               </div>
             )}
             
-            <div className="pt-8 flex justify-center">
-               <button className="text-[12px] font-bold tracking-[0.2em] uppercase text-[#6E7A67] hover:text-[#1D1914] transition-all border-b border-[#D8CEBE] pb-1">
-                 Load older insights
-               </button>
-            </div>
+            {!isLoading && posts.length > 0 && (
+              <div className="pt-8 flex justify-center">
+                 <button className="text-[12px] font-bold tracking-[0.2em] uppercase text-[#6E7A67] hover:text-[#1D1914] transition-all border-b border-[#D8CEBE] pb-1">
+                   Load older insights
+                 </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -157,7 +165,10 @@ export default async function CommunityHubPage() {
                     </div>
                  ))}
               </div>
-              <button className="w-full mt-10 py-3.5 rounded-2xl border border-[#D8CEBE] text-[#1D1914] font-bold text-[12px] uppercase tracking-widest hover:bg-[#1D1914] hover:text-white hover:border-[#1D1914] transition-all">
+              <button 
+                onClick={() => alert('Calendar feature integrated with Google Calendar is coming in the next build!')}
+                className="w-full mt-10 py-3.5 rounded-2xl border border-[#D8CEBE] text-[#1D1914] font-bold text-[12px] uppercase tracking-widest hover:bg-[#1D1914] hover:text-white hover:border-[#1D1914] transition-all"
+              >
                  Browse Calendar
               </button>
            </div>
@@ -177,8 +188,11 @@ export default async function CommunityHubPage() {
         </aside>
       </div>
 
-      <button className="fixed bottom-10 right-10 w-16 h-16 bg-[#1D1914] text-white rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 hover:-rotate-6 transition-all z-50">
-        <Plus className="w-8 h-8" />
+      <button 
+        onClick={scrollToCreate}
+        className="fixed bottom-24 md:bottom-10 right-6 md:right-10 w-16 h-16 bg-[#1D1914] text-white rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 hover:-rotate-6 transition-all z-50 group"
+      >
+        <Plus className="w-8 h-8 group-hover:rotate-90 transition-transform" />
       </button>
     </div>
   );
