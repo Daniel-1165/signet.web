@@ -38,6 +38,11 @@
   }
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background: #FFFFFF;
   color: var(--foreground);
@@ -45,7 +50,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  @apply bg-[#FFFFFF] text-[#1D1914] selection:bg-[#D8CEBF] selection:text-[#1D1914];
+  @apply bg-[#FFFFFF] text-[#1D1914] selection:bg-[#D8CEBF] selection:text-[#1D1914] w-full overflow-x-hidden;
 }
 
 /* Custom Utilities for Math/Aesthetics */

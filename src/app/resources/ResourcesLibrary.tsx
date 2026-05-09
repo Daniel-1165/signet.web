@@ -40,7 +40,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
   });
 
   return (
-    <div className="bg-[#F8FAFB] text-[#191c1d] pb-24 px-4 md:px-0">
+    <div className="bg-[#F8FAFB] text-[#191c1d] pb-24 px-4 md:px-6">
       <header className="flex flex-col lg:flex-row lg:items-center justify-between py-6 max-w-[1200px] mx-auto gap-6 lg:gap-0">
         <div>
           <h1 className="text-[28px] font-bold text-[#005746] leading-tight" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>

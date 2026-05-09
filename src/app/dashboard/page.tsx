@@ -88,7 +88,7 @@ export default async function DashboardPage() {
         </div>
       </header>
 
-      <div className="max-w-[1400px] mx-auto md:px-10 space-y-12 md:space-y-20">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-12 md:space-y-20">
         {/* Premium Hero Section */}
         <section className="relative w-full h-[450px] md:rounded-[2.5rem] overflow-hidden group">
           <img src="/forest_hero_bg.png" alt="Forest" className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] brightness-90 group-hover:scale-[1.03] transition-transform duration-[3s]" />
