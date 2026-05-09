@@ -12,7 +12,9 @@ import {
   Target,
   TrendingUp,
   ShieldCheck,
-  ListOrdered
+  ListOrdered,
+  Sun,
+  Moon
 } from "lucide-react";
 
 export default async function DashboardPage() {
@@ -54,12 +56,13 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFB] text-[#191c1d] selection:bg-[#83fba5]/30 selection:text-[#005746]">
-      <header className="flex items-center justify-between px-8 py-6 max-w-[1400px] mx-auto">
+    <div className="min-h-screen bg-[#fff] text-[#191c1d] selection:bg-[#83fba5]/30 selection:text-[#005746] pb-24 md:pb-12 pt-0 md:pt-4">
+      {/* Desktop Header */}
+      <header className="hidden md:flex items-center justify-between px-8 py-6 max-w-[1400px] mx-auto bg-white rounded-t-3xl border-b border-gray-100">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
           SIGNET Home Hub
         </h1>
-        <div className="hidden md:flex items-center gap-6">
+        <div className="flex items-center gap-6">
           <div className="relative group">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6e7975]" />
             <input 
@@ -74,123 +77,142 @@ export default async function DashboardPage() {
         </div>
       </header>
 
-      <main className="max-w-[1400px] mx-auto px-8 pb-24 space-y-12">
-        <section className="relative w-full h-[320px] rounded-[1.5rem] overflow-hidden shadow-[0_4px_20px_rgba(13,113,93,0.08)] group">
+      <main className="max-w-[1400px] mx-auto md:px-8 space-y-10 md:space-y-12">
+        {/* Mobile Full-Bleed Hero (rounded on desktop) */}
+        <section className="relative w-full h-[320px] md:h-[400px] md:rounded-[1.5rem] overflow-hidden group">
           <img src="/forest_hero_bg.png" alt="Forest" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
-          <div className="absolute inset-0 bg-[#005746]/70 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#005746]/90 via-[#005746]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#005746]/20 via-[#005746]/10 to-white md:to-[#fff]/80" />
           
-          <div className="relative h-full flex flex-col justify-center px-12 md:px-16 max-w-3xl">
-            <span className="text-[12px] font-bold tracking-[0.2em] uppercase text-[#9df2d8] mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-              Silent Growth Network
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
-              Elevating Excellence through Organic Professionalism.
+          <div className="relative h-full flex flex-col justify-end px-6 md:px-16 pb-12 max-w-3xl">
+            <div className="mb-2">
+               <span className="text-[10px] font-bold tracking-[0.1em] uppercase text-white bg-[#005746]/80 backdrop-blur-md px-3 py-1.5 rounded-full" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                 Silent Growth Network
+               </span>
+            </div>
+            <h2 className="text-[38px] md:text-5xl font-bold text-[#005746] md:text-[#005746] leading-[1.1] tracking-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.5)]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              Master your path.
             </h2>
-            <p className="text-sm md:text-md text-[#b8ecdc] leading-relaxed max-w-xl font-body" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <p className="hidden md:block mt-4 text-sm md:text-md text-[#3e4945] leading-relaxed max-w-xl font-body" style={{ fontFamily: "'Inter', sans-serif" }}>
               Welcome to SIGNET, where impact is measured by depth and growth is fostered in the quiet spaces of collective wisdom.
             </p>
           </div>
         </section>
 
-        <div className="flex items-center gap-8 border-b border-[#e1e3e4] overflow-x-auto no-scrollbar pb-4 shadow-sm" style={{ fontFamily: "'Inter', sans-serif" }}>
-          <button className="flex items-center gap-2 text-[12px] font-bold tracking-widest uppercase text-[#005746] border-b-2 border-[#005746] pb-4 -mb-4">
-            <TrendingUp className="w-4 h-4" /> Growth
-          </button>
-          <button className="flex items-center gap-2 text-[12px] font-bold tracking-widest uppercase text-[#6e7975] hover:text-[#005746] pb-4 -mb-4 transition-colors">
-            <Target className="w-4 h-4" /> Disciplined Focus
-          </button>
-          <button className="flex items-center gap-2 text-[12px] font-bold tracking-widest uppercase text-[#6e7975] hover:text-[#005746] pb-4 -mb-4 transition-colors">
-            <ListOrdered className="w-4 h-4" /> Structured Merit
-          </button>
-          <button className="flex items-center gap-2 text-[12px] font-bold tracking-widest uppercase text-[#6e7975] hover:text-[#005746] pb-4 -mb-4 transition-colors">
-            <ShieldCheck className="w-4 h-4" /> Organic Integrity
-          </button>
-        </div>
+        {/* Daily Discipline */}
+        <section className="px-6 md:px-0">
+           <div className="flex items-baseline justify-between mb-4">
+             <h3 className="text-xl md:text-2xl font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Daily Discipline</h3>
+             <button className="text-[11px] font-bold text-[#005746] hover:text-[#006d36] uppercase tracking-widest" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+               View History
+             </button>
+           </div>
+           
+           <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4 snap-x pr-6 md:pr-0">
+              <div className="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl p-6 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-[#f2f4f5] flex-shrink-0 snap-start">
+                 <div className="flex items-center justify-between mb-4">
+                    <Sun className="w-5 h-5 text-[#005746]" />
+                    <span className="text-[11px] font-bold text-[#6e7975] uppercase tracking-widest" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Day 12/30</span>
+                 </div>
+                 <h4 className="text-[18px] font-bold text-[#191c1d] mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Morning Silence</h4>
+                 <div className="w-full bg-[#f2f4f5] rounded-full h-2 mb-2">
+                   <div className="bg-[#83fba5] h-2 rounded-full relative" style={{ width: '65%' }}>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#83fba5] rounded-full shadow-sm" />
+                   </div>
+                 </div>
+                 <p className="text-[11px] text-[#6e7975] font-medium" style={{ fontFamily: "'JetBrains Mono', monospace" }}>65% toward today&apos;s goal</p>
+              </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-[1rem] p-8 shadow-[0_4px_20px_rgba(13,113,93,0.05)] hover:-translate-y-1 transition-all duration-300">
-            <div className="w-10 h-10 rounded-[0.5rem] bg-[#83fba5]/40 flex items-center justify-center mb-6 text-[#005746]">
-               <Eye className="w-5 h-5 fill-current" />
-            </div>
-            <h3 className="text-2xl font-bold text-[#191c1d] mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Our Vision</h3>
-            <p className="text-[16px] text-[#3e4945] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
-              To build a global network of trailblazers who model and replicate excellence in diverse spheres.
+              <div className="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl p-6 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-[#f2f4f5] flex-shrink-0 snap-start opacity-70">
+                 <div className="flex items-center justify-between mb-4">
+                    <Moon className="w-5 h-5 text-[#6e7975]" />
+                 </div>
+                 <h4 className="text-[18px] font-bold text-[#191c1d] mb-2" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Evening Reflection</h4>
+                 <p className="text-[13px] text-[#6e7975] leading-relaxed mb-4">Reflect on the day&apos;s progress to build your mental muscle.</p>
+                 <button className="text-[11px] font-bold text-[#005746] hover:text-[#006d36] uppercase tracking-widest" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                    Begin Entry
+                 </button>
+              </div>
+           </div>
+        </section>
+
+        {/* Vision & Mission Cards */}
+        <div className="px-6 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="bg-[#005746] rounded-2xl p-8 shadow-[0_8px_30px_rgba(0,87,70,0.2)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+            <Eye className="absolute -bottom-8 -right-8 w-48 h-48 text-black opacity-10" />
+            <h3 className="text-2xl font-bold text-white mb-4 relative z-10" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>The Vision</h3>
+            <p className="text-[15px] text-[#9df2d8] leading-relaxed relative z-10" style={{ fontFamily: "'Inter', sans-serif" }}>
+              To become the world&apos;s most trusted network for silent high-performers seeking intentional evolution.
             </p>
           </div>
-          <div className="bg-white rounded-[1rem] p-8 shadow-[0_4px_20px_rgba(13,113,93,0.05)] hover:-translate-y-1 transition-all duration-300">
-            <div className="w-10 h-10 rounded-[0.5rem] bg-[#83fba5]/40 flex items-center justify-center mb-6 text-[#005746]">
-               <Rocket className="w-5 h-5 fill-current" />
-            </div>
-            <h3 className="text-2xl font-bold text-[#191c1d] mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Our Mission</h3>
-            <p className="text-[16px] text-[#3e4945] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
-              Ordinary persons achieving extraordinary results, silently and sustainably.
+
+          <div className="bg-white border-l-4 border-[#005746] rounded-2xl p-8 shadow-[0_4px_25px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
+            <h3 className="text-2xl font-bold text-[#005746] mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>The Mission</h3>
+            <p className="text-[15px] text-[#3e4945] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
+              Equipping individuals with the psychological tools and community mentorship required to transcend mediocrity.
             </p>
           </div>
         </div>
 
-        <div className="bg-[#f2f4f5] rounded-[1.5rem] p-12 md:p-16 hover:shadow-[0_4px_20px_rgba(13,113,93,0.03)] transition-shadow">
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* About SIGNET */}
+        <div className="mx-6 md:mx-0 bg-white rounded-[1.5rem] p-8 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-[#f2f4f5] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
              <div>
-                <h3 className="text-[32px] font-bold text-[#191c1d] mb-6" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>About SIGNET</h3>
-                <div className="w-16 h-1.5 bg-[#006b58] mb-8" />
+                <h3 className="text-2xl md:text-[32px] font-bold text-[#005746] mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>About SIGNET</h3>
+                <p className="text-[15px] text-[#3e4945] leading-relaxed mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  Our approach blends ancient Stoic philosophy with modern behavioral science to foster genuine self-mastery through mentorship.
+                </p>
                 
-                <div className="space-y-6 text-[16px] text-[#3e4945] leading-relaxed mb-10" style={{ fontFamily: "'Inter', sans-serif" }}>
-                  <p>
-                    SIGNET stands for <strong>Silent Growth Network</strong>. We are a premier community dedicated to mentorship and professional excellence, operating on the principle that the most profound professional development often happens away from the spotlight.
-                  </p>
-                  <p>
-                    Our ecosystem is designed for professionals who seek high-fidelity connections and a space to refine their craft with integrity. Here, we prioritize the organic evolution of skills and the steady cultivation of a leadership style rooted in substance rather than performance.
-                  </p>
-                </div>
-                
-                <Link href="#" className="inline-flex items-center px-6 py-3.5 rounded-[0.5rem] bg-[#005746] text-white font-medium text-[16px] shadow-[0_4px_20px_rgba(13,113,93,0.15)] hover:shadow-[0_8px_25px_rgba(13,113,93,0.25)] hover:-translate-y-0.5 transition-all">
-                  Learn More About Our Philosophy
+                <Link href="#" className="inline-flex items-center justify-center w-full md:w-auto px-6 py-3.5 rounded-[0.5rem] bg-[#005746] text-white font-medium text-[15px] shadow-[0_4px_20px_rgba(13,113,93,0.15)] hover:bg-[#004235] hover:shadow-[0_8px_25px_rgba(13,113,93,0.25)] transition-all">
+                  Learn More
                 </Link>
              </div>
-             <div className="flex justify-center md:justify-end">
-                <div className="aspect-square max-w-[340px] w-full rounded-[1rem] overflow-hidden shadow-xl border border-[#e1e3e4]">
-                   <img src="/mentorship_graphic.png" alt="Mentorship" className="w-full h-full object-cover" />
+             <div className="flex justify-center mt-4 md:mt-0">
+                <div className="aspect-[4/3] md:aspect-square w-full rounded-xl overflow-hidden shadow-sm border border-[#e1e3e4] bg-[#f2f4f5]">
+                   <img src="/mentorship_graphic.png" alt="Mentorship UI Mockup" className="w-full h-full object-cover object-top opacity-90 mix-blend-multiply" />
                 </div>
              </div>
            </div>
         </div>
 
-        <div>
-          <h3 className="text-[24px] font-bold text-[#191c1d] mb-2" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Growth Pillars</h3>
-          <p className="text-[16px] text-[#6e7975] mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>Core attributes of Organic Professionalism</p>
+        {/* Growth Pillars */}
+        <div className="px-6 md:px-0">
+          <h3 className="text-xl md:text-[24px] font-bold text-[#005746] mb-6" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Growth Pillars</h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-[1rem] p-8 shadow-[0_4px_20px_rgba(13,113,93,0.05)] border border-[#f2f4f5] hover:border-[#83fba5] hover:-translate-y-1 transition-all duration-300">
-               <div className="w-10 h-10 rounded-[0.5rem] bg-[#f8fafb] flex items-center justify-center mb-6 text-[#005746] border border-[#e1e3e4]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-[#f8fafb] rounded-[1.2rem] p-6 text-center hover:bg-[#f2f4f5] transition-colors border border-transparent hover:border-[#e1e3e4] flex flex-col items-center justify-center min-h-[140px]">
+               <div className="w-10 h-10 rounded-full bg-[#e6fcf2] flex items-center justify-center mb-3 text-[#005746]">
                  <Heart className="w-5 h-5 fill-current" />
                </div>
-               <h4 className="text-[18px] font-bold text-[#191c1d] mb-3" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Emotional Intelligence</h4>
-               <p className="text-[16px] text-[#6e7975] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>Understanding and managing emotions for better professional relationships.</p>
+               <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Emotional<br/>Intelligence</h4>
             </div>
             
-            <div className="bg-white rounded-[1rem] p-8 shadow-[0_4px_20px_rgba(13,113,93,0.05)] border border-[#f2f4f5] hover:border-[#83fba5] hover:-translate-y-1 transition-all duration-300">
-               <div className="w-10 h-10 rounded-[0.5rem] bg-[#f8fafb] flex items-center justify-center mb-6 text-[#005746] border border-[#e1e3e4]">
+            <div className="bg-[#f8fafb] rounded-[1.2rem] p-6 text-center hover:bg-[#f2f4f5] transition-colors border border-transparent hover:border-[#e1e3e4] flex flex-col items-center justify-center min-h-[140px]">
+               <div className="w-10 h-10 rounded-full bg-[#e6fcf2] flex items-center justify-center mb-3 text-[#005746]">
                  <Target className="w-5 h-5" />
                </div>
-               <h4 className="text-[18px] font-bold text-[#191c1d] mb-3" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Self-Awareness</h4>
-               <p className="text-[16px] text-[#6e7975] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>Deeply understanding your own strengths, weaknesses, and motivations.</p>
+               <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Self-Awareness</h4>
             </div>
             
-            <div className="bg-white rounded-[1rem] p-8 shadow-[0_4px_20px_rgba(13,113,93,0.05)] border border-[#f2f4f5] hover:border-[#83fba5] hover:-translate-y-1 transition-all duration-300">
-               <div className="w-10 h-10 rounded-[0.5rem] bg-[#f8fafb] flex items-center justify-center mb-6 text-[#005746] border border-[#e1e3e4]">
-                 <Eye className="w-5 h-5 fill-current" />
+            <div className="bg-[#f8fafb] rounded-[1.2rem] p-6 text-center hover:bg-[#f2f4f5] transition-colors border border-transparent hover:border-[#e1e3e4] flex flex-col items-center justify-center min-h-[140px]">
+               <div className="w-10 h-10 rounded-full bg-[#e6fcf2] flex items-center justify-center mb-3 text-[#005746]">
+                 <TrendingUp className="w-5 h-5" />
                </div>
-               <h4 className="text-[18px] font-bold text-[#191c1d] mb-3" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Vision</h4>
-               <p className="text-[16px] text-[#6e7975] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>Cultivating a clear, long-term perspective for your professional journey.</p>
+               <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Resilience</h4>
+            </div>
+
+            <div className="bg-[#f8fafb] rounded-[1.2rem] p-6 text-center hover:bg-[#f2f4f5] transition-colors border border-transparent hover:border-[#e1e3e4] flex flex-col items-center justify-center min-h-[140px]">
+               <div className="w-10 h-10 rounded-full bg-[#e6fcf2] flex items-center justify-center mb-3 text-[#005746]">
+                 <ListOrdered className="w-5 h-5" />
+               </div>
+               <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Systems<br/>Thinking</h4>
             </div>
           </div>
         </div>
       </main>
 
-      <footer className="border-t border-[#e1e3e4] py-10 md:flex md:items-center md:justify-between px-12 max-w-[1400px] mx-auto text-[12px] font-medium text-[#3e4945] bg-[#f8fafb]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-        <p className="text-center md:text-left mb-4 md:mb-0"><strong className="text-[#005746] tracking-widest font-bold">SIGNET</strong> © 2024 Silent Growth Network</p>
-        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+      <footer className="mt-12 md:mt-24 border-t border-[#f2f4f5] py-8 md:flex md:items-center md:justify-between px-8 md:px-12 max-w-[1400px] mx-auto text-[11px] md:text-[12px] font-medium text-[#6e7975] bg-white" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+        <p className="text-center md:text-left mb-6 md:mb-0"><strong className="text-[#005746] tracking-widest font-bold">SIGNET</strong> © 2024 Silent Growth Network</p>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
           <Link href="#" className="hover:text-[#005746] transition-colors">Privacy Policy</Link>
           <Link href="#" className="hover:text-[#005746] transition-colors">Terms of Service</Link>
           <Link href="#" className="hover:text-[#005746] transition-colors">Community Guidelines</Link>

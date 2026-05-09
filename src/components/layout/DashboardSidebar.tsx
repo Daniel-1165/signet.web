@@ -12,6 +12,7 @@ import {
   Library,
   Shield, 
   HelpCircle,
+  Bell,
   Menu,
   X,
   LogOut
@@ -36,35 +37,58 @@ export default function DashboardSidebar() {
 
   return (
     <>
-      <div className={`md:hidden fixed top-0 left-0 right-0 h-16 bg-[#005746] backdrop-blur-md z-[50] flex items-center justify-between px-6 border-b border-[rgba(255,255,255,0.05)] shadow-sm transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-        <Link href="/" className="group flex items-center gap-3 relative hover:scale-[1.02] transition-transform">
-            <div className="h-8 flex-shrink-0 flex items-center">
-                <img 
-                    src="/signet-brand-logo.svg" 
-                    alt="Signet Logo" 
-                    className="h-8 w-auto object-contain brightness-0 invert"
-                />
-            </div>
+      {/* Mobile Top Header */}
+      <div className={`md:hidden fixed top-0 left-0 right-0 h-14 bg-white z-[50] flex items-center justify-between px-4 border-b border-[#f2f4f5] shadow-sm transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+        <Link href="/" className="flex items-center">
+            <img 
+                src="/signet-brand-logo.svg" 
+                alt="Signet Logo" 
+                className="h-5 w-auto object-contain"
+            />
         </Link>
         <div className="flex items-center gap-4">
-          <div className="flex-shrink-0 flex items-center justify-center p-[2px] rounded-full border border-white/20 bg-white shadow-sm">
+          <button className="text-[#005746]">
+            <Bell className="w-5 h-5" />
+          </button>
+          <div className="w-7 h-7 rounded-full overflow-hidden border border-[#83fba5] shadow-sm flex items-center justify-center bg-[#f2f4f5]">
              <UserButton />
           </div>
-          <button 
-            onClick={() => setIsOpen(true)}
-            className="text-white p-1.5 rounded-md hover:bg-white/10"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
         </div>
       </div>
 
-      {isOpen && (
-        <div 
-          className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[60]"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      {/* Mobile Bottom Navigation Bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#f2f4f5] z-[50] pb-[env(safe-area-inset-bottom)]">
+         <div className="flex items-center justify-between px-2 h-16">
+            {sidebarItems.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="flex flex-col items-center justify-center flex-1 h-full gap-1 group relative"
+                >
+                  <item.icon size={20} className={`${isActive ? 'text-[#005746]' : 'text-[#6e7975]'}`} />
+                  <span className={`text-[10px] ${isActive ? 'font-bold text-[#005746]' : 'font-medium text-[#6e7975]'}`} style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                    {item.name}
+                  </span>
+                  {isActive && (
+                    <div className="absolute bottom-1 w-1 h-1 rounded-full bg-[#005746]" />
+                  )}
+                </Link>
+              )
+            })}
+         </div>
+      </div>
+      
+      {/* Mobile FAB (Floating Action Button) */}
+      <div className="md:hidden fixed bottom-20 right-4 z-[40]">
+         <div className="w-14 h-14 bg-[#83fba5] text-[#005746] rounded-full flex items-center justify-center shadow-lg hover:bg-[#9df2d8] transition-colors border border-[#006d36]/10">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+               <line x1="12" y1="5" x2="12" y2="19"></line>
+               <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+         </div>
+      </div>
 
       <div className={`w-full md:w-64 h-screen bg-[#005746] border-r border-[#006d36]/20 flex flex-col fixed left-0 top-0 z-[70] md:z-50 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
         
