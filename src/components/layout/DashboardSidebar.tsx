@@ -6,13 +6,12 @@ import {
   Home, 
   Users, 
   Settings, 
-  CheckSquare,
+  CheckSquare, 
   Library,
   HelpCircle,
   Bell,
   X,
   LogOut,
-  Sparkles,
   Info
 } from 'lucide-react'
 import { useState } from 'react'
@@ -50,7 +49,7 @@ export default function DashboardSidebar() {
       {/* Mobile Top Header - Clean Editorial Style */}
       <div className={`md:hidden fixed top-0 left-0 right-0 h-16 bg-white/70 backdrop-blur-xl z-[50] flex items-center justify-between px-6 border-b border-[#D8CEBE]/50 shadow-sm transition-transform duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold tracking-tight text-[#1D1914]" style={{ fontFamily: "'Outfit', sans-serif" }}>SIGNET</span>
+            <img src="/signet-brand-logo.svg" alt="Signet Logo" className="h-8 w-auto object-contain" />
         </Link>
         <div className="flex items-center gap-4">
           <button className="text-[#6E7A67] p-2 hover:bg-[#6E7A67]/5 rounded-full transition-colors">
@@ -91,10 +90,7 @@ export default function DashboardSidebar() {
         
         <div className="py-12 px-10">
           <Link href="/" className="group flex items-center gap-3 relative transition-all">
-              <div className="h-8 w-8 bg-[#6E7A67] rounded-lg flex items-center justify-center text-white shadow-[0_4px_12px_rgba(110,122,103,0.3)]">
-                <Sparkles size={16} />
-              </div>
-              <span className="text-2xl font-bold tracking-tighter text-[#1D1914]" style={{ fontFamily: "'Outfit', sans-serif" }}>SIGNET</span>
+              <img src="/signet-brand-logo.svg" alt="Signet Logo" className="h-10 w-auto object-contain" />
           </Link>
           <button 
             onClick={() => setIsOpen(false)}
