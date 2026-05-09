@@ -99,13 +99,12 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                </div>
              </div>
 
-             {/* Secondary Books Grid */}
-             <div className="flex flex-col gap-6">
-                {(books.length > 1 ? books.slice(1, 3) : [
+             <div className="grid grid-cols-1 gap-6">
+                {(books.length > 1 ? books.slice(1) : [
                   { title: "Deep Work Ethics", tag: "Marcus Thorne", description: "Strategies for cognitive persistence in the age of constant digital distraction." },
                   { title: "Organic Systems", tag: "Sarah Jenkins", description: "Building habits that mirror natural growth cycles for sustainable results." }
                 ]).map((book: any, idx: number) => (
-                  <a href={book.slug?.current ? `/resources/${book.slug.current}` : "#"} key={book._id || idx} className="bg-white rounded-[1.5rem] p-6 shadow-sm border border-[#f2f4f5] flex gap-5 group items-center flex-1 hover:shadow-md transition-shadow">
+                  <a href={book.slug?.current ? `/resources/${book.slug.current}` : "#"} key={book._id || idx} className="bg-white rounded-[1.5rem] p-6 shadow-sm border border-[#f2f4f5] flex gap-5 group items-center hover:shadow-md transition-shadow">
                      <div className="w-16 h-24 shrink-0 shadow-md rounded overflow-hidden">
                        <img src={book.mainImageUrl || "/placeholder-avatar.png"} className="w-full h-full bg-emerald-800 object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
                      </div>
@@ -133,8 +132,8 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(magazines.length > 0 ? magazines.slice(0,3) : [
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {(magazines.length > 0 ? magazines : [
                { title: "Signet Quarterly", description: "Issue #14: The Winter Resilience Edition", special: false },
                { title: "The Modern Lead", description: "Special Report: Asynchronous Mentorship", special: false },
                { title: "Growth Science", description: "Neuroplasticity and Habit Formation", special: true }
@@ -182,7 +181,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
           </div>
 
           <div className="space-y-4">
-             {(articles.length > 0 ? articles.slice(0, 5) : [
+             {(articles.length > 0 ? articles : [
                { tag: 'Strategy', title: "The Art of Active Silence in Negotiations", description: "How leaving space for silence can reveal more than asking direct questions.", provider: "Harvard Business Review", icon: BookOpen, colorClass: "bg-[#83fba5] text-[#005746]" },
                { tag: 'Psychology', title: "Breaking the Feedback Loop of Burnout", description: "Practical steps for middle managers to reclaim their focus and energy.", provider: "Psychology Today", icon: Brain, colorClass: "bg-[#e1e3e4] text-[#191c1d]" },
                { tag: 'Sustainability', title: "Sustainable Career Paths in 2025", description: "Aligning personal growth with ecological and social impact goals.", provider: "Forbes Growth", icon: Leaf, colorClass: "bg-[#9ef3da] text-[#005746]" }
