@@ -23,7 +23,6 @@ const Footer = () => {
                     <div className="space-y-4">
                         <h4 className="text-sm font-bold uppercase tracking-wider text-foreground">Platform</h4>
                         <ul className="space-y-2 text-sm text-foreground/50">
-                            <li><Link href="#" className="hover:text-foreground">Growth Modules</Link></li>
                             <li><Link href="#" className="hover:text-foreground">Mentorship</Link></li>
                             <li><Link href="#" className="hover:text-foreground">Resources</Link></li>
                         </ul>

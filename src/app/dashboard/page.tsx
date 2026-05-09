@@ -7,14 +7,14 @@ import {
   Bell,
   Calendar,
   Eye,
-  Rocket,
   Heart,
   Target,
   TrendingUp,
-  ShieldCheck,
   ListOrdered,
   Sun,
-  Moon
+  Moon,
+  ArrowRight,
+  Sparkles
 } from "lucide-react";
 import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
@@ -25,9 +25,9 @@ export default async function DashboardPage() {
 
   if (!userId || !user) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#f8fafb] text-[#191c1d]">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#FDFCFB] text-[#1D1914]">
         <h1 className="text-2xl font-bold font-heading">Unauthorized</h1>
-        <Link href="/" className="mt-4 text-[#005746] hover:underline">
+        <Link href="/" className="mt-4 text-[#6E7A67] hover:underline">
           Go back home
         </Link>
       </div>
@@ -43,190 +43,191 @@ export default async function DashboardPage() {
 
   if (error && error.code === 'PGRST116') {
     const { data: newProfile, error: insertError } = await supabase
-      .from('profiles')
-      .insert({
-        id: userId,
-        email: user.emailAddresses[0].emailAddress,
-        first_name: user.firstName,
-        last_name: user.lastName,
-        image_url: user.imageUrl
-      })
-      .select()
-      .single();
+       .from('profiles')
+       .insert({
+         id: userId,
+         email: user.emailAddresses[0].emailAddress,
+         first_name: user.firstName,
+         last_name: user.lastName,
+         image_url: user.imageUrl
+       })
+       .select()
+       .single();
     
     if (!insertError) profile = newProfile;
   }
 
   return (
-    <div className="min-h-screen bg-[#fff] text-[#191c1d] selection:bg-[#83fba5]/30 selection:text-[#005746] pb-24 md:pb-12 pt-0 md:pt-4">
-      {/* Desktop Header */}
-      <header className="hidden md:flex items-center justify-between px-8 py-6 max-w-7xl mx-auto bg-white rounded-t-3xl border-b border-gray-100">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
-          SIGNET Home Hub
-        </h1>
-        <div className="flex items-center gap-6">
+    <div className="min-h-screen bg-[#FDFCFB] text-[#1D1914] selection:bg-[#D8CEBF]/40 selection:text-[#1D1914] pb-24 md:pb-12 pt-0 md:pt-6">
+      {/* Editorial Header */}
+      <header className="hidden md:flex items-center justify-between px-10 py-8 max-w-[1400px] mx-auto border-b border-[#D8CEBE]/30 mb-8">
+        <div>
+           <h1 className="text-[32px] font-bold tracking-tight text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+             Welcome back, <span className="text-[#6E7A67] italic font-normal">{user.firstName}</span>.
+           </h1>
+           <p className="text-[14px] text-[#6E7A67]/60 mt-1" style={{ fontFamily: "'Inter', sans-serif" }}>Your intentional growth continues today.</p>
+        </div>
+        <div className="flex items-center gap-8">
           <div className="relative group">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6e7975]" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6E7A67]/40" />
             <input 
               type="text" 
-              placeholder="Search insights..." 
-              className="pl-10 pr-4 py-2 bg-[#f2f4f5] rounded-full text-sm border border-transparent focus:border-[#83fba5] outline-none shadow-[0_4px_20px_rgba(13,113,93,0.02)] transition-all w-64 text-[#3e4945] font-body"
+              placeholder="Search conversations..." 
+              className="pl-11 pr-5 py-2.5 bg-white rounded-full text-sm border border-[#D8CEBE]/40 focus:border-[#6E7A67] outline-none shadow-sm transition-all w-72 text-[#1D1914] font-body"
             />
           </div>
-          <button className="text-[#191c1d] hover:text-[#005746] transition-colors"><Bell className="w-5 h-5" /></button>
-          <button className="text-[#191c1d] hover:text-[#005746] transition-colors"><Calendar className="w-5 h-5" /></button>
-          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-white shadow-sm hover:scale-105 transition-transform"><UserButton /></div>
+          <div className="flex items-center gap-5">
+            <button className="text-[#6E7A67] hover:text-[#1D1914] transition-colors relative">
+               <Bell className="w-5 h-5" />
+               <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#8B4513] rounded-full border-2 border-[#FDFCFB]" />
+            </button>
+            <button className="text-[#6E7A67] hover:text-[#1D1914] transition-colors"><Calendar className="w-5 h-5" /></button>
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-md hover:scale-110 transition-transform"><UserButton /></div>
+          </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto md:px-8 space-y-10 md:space-y-12">
-        {/* Mobile Full-Bleed Hero (rounded on desktop) */}
-        <section className="relative w-full h-[320px] md:h-[400px] md:rounded-[1.5rem] overflow-hidden group">
-          <img src="/forest_hero_bg.png" alt="Forest" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#005746]/20 via-[#005746]/10 to-white md:to-[#fff]/80" />
+      <div className="max-w-[1400px] mx-auto md:px-10 space-y-12 md:space-y-20">
+        {/* Premium Hero Section */}
+        <section className="relative w-full h-[450px] md:rounded-[2.5rem] overflow-hidden group">
+          <img src="/forest_hero_bg.png" alt="Forest" className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] brightness-90 group-hover:scale-[1.03] transition-transform duration-[3s]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1D1914]/80 via-[#1D1914]/40 to-transparent" />
           
-          <div className="relative h-full flex flex-col justify-end px-6 md:px-16 pb-12 max-w-3xl">
-            <div className="mb-2">
-               <span className="text-[10px] font-bold tracking-[0.1em] uppercase text-white bg-[#005746]/80 backdrop-blur-md px-3 py-1.5 rounded-full" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                 Silent Growth Network
+          <div className="relative h-full flex flex-col justify-center px-8 md:px-24 max-w-4xl">
+            <div className="flex items-center gap-3 mb-6">
+               <div className="w-10 h-[1px] bg-[#D8CEBF]" />
+               <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]" style={{ fontFamily: "'Inter', sans-serif" }}>
+                 The Silent Collective
                </span>
             </div>
-            <h2 className="text-[38px] md:text-5xl font-bold text-[#005746] md:text-[#005746] leading-[1.1] tracking-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.5)]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
-              Master your path.
+            <h2 className="text-[44px] md:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
+              Elevate through <br /> <span className="italic font-normal text-[#D8CEBF]">intentional</span> silence.
             </h2>
-            <p className="hidden md:block mt-4 text-sm md:text-md text-[#3e4945] leading-relaxed max-w-xl font-body" style={{ fontFamily: "'Inter', sans-serif" }}>
-              Welcome to SIGNET, where impact is measured by depth and growth is fostered in the quiet spaces of collective wisdom.
-            </p>
+            <Link href="#" className="flex items-center gap-3 group/btn text-white w-fit">
+               <span className="text-sm font-bold tracking-widest uppercase border-b border-white pb-1 group-hover/btn:pr-2 transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>Read the Manifesto</span>
+               <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+            </Link>
           </div>
         </section>
 
-        {/* Daily Discipline */}
+        {/* Core Daily Focus */}
         <section className="px-6 md:px-0">
-           <div className="flex items-baseline justify-between mb-4">
-             <h3 className="text-xl md:text-2xl font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Daily Discipline</h3>
-             <button className="text-[11px] font-bold text-[#005746] hover:text-[#006d36] uppercase tracking-widest" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-               View History
+           <div className="flex items-end justify-between mb-8 border-b border-[#D8CEBE]/30 pb-4">
+             <div>
+                <h3 className="text-[28px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>Daily Discipline</h3>
+                <p className="text-[14px] text-[#6E7A67]/60">Your current trajectory and focus areas.</p>
+             </div>
+             <button className="text-[11px] font-bold text-[#6E7A67] hover:text-[#1D1914] uppercase tracking-widest flex items-center gap-2 group transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>
+               Full Progress History <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
              </button>
            </div>
            
-           <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4 snap-x pr-6 md:pr-0">
-              <div className="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl p-6 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-[#f2f4f5] flex-shrink-0 snap-start">
-                 <div className="flex items-center justify-between mb-4">
-                    <Sun className="w-5 h-5 text-[#005746]" />
-                    <span className="text-[11px] font-bold text-[#6e7975] uppercase tracking-widest" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Day 12/30</span>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white rounded-[2rem] p-8 shadow-[0_15px_40px_rgba(0,0,0,0.03)] border border-[#D8CEBE]/30 relative overflow-hidden group hover:border-[#6E7A67]/30 transition-all">
+                 <div className="flex items-center justify-between mb-8">
+                    <div className="w-12 h-12 rounded-2xl bg-[#6E7A67]/5 flex items-center justify-center text-[#6E7A67]">
+                       <Sun className="w-6 h-6" />
+                    </div>
+                    <span className="text-[11px] font-bold text-[#D8CEBF] uppercase tracking-widest" style={{ fontFamily: "'Inter', sans-serif" }}>Phase 01</span>
                  </div>
-                 <h4 className="text-[18px] font-bold text-[#191c1d] mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Morning Silence</h4>
-                 <div className="w-full bg-[#f2f4f5] rounded-full h-2 mb-2">
-                   <div className="bg-[#83fba5] h-2 rounded-full relative" style={{ width: '65%' }}>
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#83fba5] rounded-full shadow-sm" />
-                   </div>
+                 <h4 className="text-[22px] font-bold text-[#1D1914] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Morning Solitude</h4>
+                 <div className="w-full bg-[#FDFCFB] rounded-full h-1.5 mb-2 overflow-hidden border border-[#D8CEBE]/20">
+                    <div className="bg-[#6E7A67] h-full rounded-full transition-all duration-1000" style={{ width: '65%' }} />
                  </div>
-                 <p className="text-[11px] text-[#6e7975] font-medium" style={{ fontFamily: "'JetBrains Mono', monospace" }}>65% toward today&apos;s goal</p>
+                 <div className="flex justify-between items-center mt-3">
+                   <p className="text-[12px] text-[#6E7A67] font-medium">65% Completed</p>
+                   <p className="text-[12px] text-[#D8CEBF] italic">15 mins to go</p>
+                 </div>
               </div>
 
-              <div className="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl p-6 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-[#f2f4f5] flex-shrink-0 snap-start opacity-70">
-                 <div className="flex items-center justify-between mb-4">
-                    <Moon className="w-5 h-5 text-[#6e7975]" />
+              <div className="bg-[#1D1914] rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group border border-white/5">
+                 <Moon className="absolute -bottom-10 -right-10 w-40 h-40 text-white/5" />
+                 <div className="flex items-center justify-between mb-8">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#D8CEBF]">
+                       <Moon className="w-6 h-6" />
+                    </div>
                  </div>
-                 <h4 className="text-[18px] font-bold text-[#191c1d] mb-2" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Evening Reflection</h4>
-                 <p className="text-[13px] text-[#6e7975] leading-relaxed mb-4">Reflect on the day&apos;s progress to build your mental muscle.</p>
-                 <button className="text-[11px] font-bold text-[#005746] hover:text-[#006d36] uppercase tracking-widest" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                    Begin Entry
-                 </button>
+                 <h4 className="text-[22px] font-bold text-white mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Evening Synthesis</h4>
+                 <p className="text-[14px] text-[#D8CEBF]/60 leading-relaxed mb-6">Capture the day&apos;s essence and prepare your mind for REST.</p>
+                 <button className="px-6 py-2.5 rounded-full bg-white text-[#1D1914] font-bold text-[12px] uppercase tracking-widest hover:bg-[#D8CEBF] transition-colors">Start Session</button>
+              </div>
+
+              <div className="bg-[#D8CEBF]/10 rounded-[2rem] p-8 border border-[#D8CEBE]/40 flex flex-col justify-center items-center text-center">
+                 <Sparkles className="w-10 h-10 text-[#6E7A67] mb-4 opacity-40" />
+                 <p className="text-[15px] text-[#1D1914] font-medium leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>&ldquo;Mastery is the byproduct of relentless, quiet repetition.&rdquo;</p>
               </div>
            </div>
         </section>
 
-        {/* Vision & Mission Cards */}
-        <div className="px-6 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          <div className="bg-[#005746] rounded-2xl p-8 shadow-[0_8px_30px_rgba(0,87,70,0.2)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
-            <Eye className="absolute -bottom-8 -right-8 w-48 h-48 text-black opacity-10" />
-            <h3 className="text-2xl font-bold text-white mb-4 relative z-10" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>The Vision</h3>
-            <p className="text-[15px] text-[#9df2d8] leading-relaxed relative z-10" style={{ fontFamily: "'Inter', sans-serif" }}>
-              To become the world&apos;s most trusted network for silent high-performers seeking intentional evolution.
+        {/* Philosophical Foundations */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-0">
+          <div className="bg-white rounded-[2.5rem] p-12 border border-[#D8CEBE]/30 hover:shadow-2xl transition-all duration-500 group relative">
+            <Eye className="absolute top-12 right-12 w-6 h-6 text-[#6E7A67]/20" />
+            <h3 className="text-[12px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-6">The Vision</h3>
+            <p className="text-[32px] md:text-[40px] font-bold text-[#1D1914] leading-[1.2] tracking-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
+              A world where impact exceeds volume.
+            </p>
+            <p className="mt-8 text-[16px] text-[#6E7A67] leading-relaxed max-w-md">
+              Becoming the trusted ecosystem for high-performers seeking intentionality in a loud world.
             </p>
           </div>
 
-          <div className="bg-white border-l-4 border-[#005746] rounded-2xl p-8 shadow-[0_4px_25px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
-            <h3 className="text-2xl font-bold text-[#005746] mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>The Mission</h3>
-            <p className="text-[15px] text-[#3e4945] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
-              Equipping individuals with the psychological tools and community mentorship required to transcend mediocrity.
+          <div className="bg-[#6E7A67]/5 rounded-[2.5rem] p-12 border border-[#6E7A67]/10 flex flex-col justify-center">
+            <h3 className="text-[12px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-6">The Mission</h3>
+            <p className="text-[20px] md:text-[24px] font-medium text-[#1D1914] leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+              To equip silent architects with the psychological infrastructure needed to build legacies of substance over status.
             </p>
+            <div className="mt-10 flex gap-4">
+               <div className="w-2 h-2 rounded-full bg-[#6E7A67]" />
+               <div className="w-2 h-2 rounded-full bg-[#D8CEBF]" />
+               <div className="w-2 h-2 rounded-full bg-[#1D1914]" />
+            </div>
           </div>
         </div>
 
-        {/* About SIGNET */}
-        <div className="mx-6 md:mx-0 bg-white rounded-[1.5rem] p-8 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-[#f2f4f5] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow">
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-             <div>
-                <h3 className="text-2xl md:text-[32px] font-bold text-[#005746] mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>About SIGNET</h3>
-                <p className="text-[15px] text-[#3e4945] leading-relaxed mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
-                  Our approach blends ancient Stoic philosophy with modern behavioral science to foster genuine self-mastery through mentorship.
-                </p>
-                
-                <Link href="#" className="inline-flex items-center justify-center w-full md:w-auto px-6 py-3.5 rounded-[0.5rem] bg-[#005746] text-white font-medium text-[15px] shadow-[0_4px_20px_rgba(13,113,93,0.15)] hover:bg-[#004235] hover:shadow-[0_8px_25px_rgba(13,113,93,0.25)] transition-all">
-                  Learn More
-                </Link>
-             </div>
-             <div className="flex justify-center mt-4 md:mt-0">
-                <div className="aspect-[4/3] md:aspect-square w-full rounded-xl overflow-hidden shadow-sm border border-[#e1e3e4] bg-[#f2f4f5]">
-                   <img src="/mentorship_graphic.png" alt="Mentorship UI Mockup" className="w-full h-full object-cover object-top opacity-90 mix-blend-multiply" />
+        {/* Growth Architecture */}
+        <div className="px-6 md:px-0 space-y-12">
+           <div className="text-center max-w-2xl mx-auto mb-16">
+              <h3 className="text-[32px] md:text-[44px] font-bold text-[#1D1914] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Growth Architecture</h3>
+              <p className="text-[16px] text-[#6E7A67]">The pillars of the Signet methodology.</p>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              {[
+                { title: "Emotional Intelligence", icon: Heart, label: "01" },
+                { title: "Self-Awareness", icon: Target, label: "02" },
+                { title: "Resilience", icon: TrendingUp, label: "03" },
+                { title: "Systems Thinking", icon: ListOrdered, label: "04" }
+              ].map((pillar, i) => (
+                <div key={i} className="group bg-white rounded-3xl p-10 text-left hover:bg-[#1D1914] transition-all duration-500 border border-[#D8CEBE]/30 flex flex-col min-h-[220px]">
+                   <span className="text-[11px] font-bold text-[#D8CEBF] group-hover:text-white/40 transition-colors mb-auto tracking-widest">{pillar.label}</span>
+                   <pillar.icon className="w-8 h-8 text-[#6E7A67] mb-6 group-hover:text-white transition-colors" />
+                   <h4 className="text-[18px] font-bold text-[#1D1914] group-hover:text-white transition-colors leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{pillar.title}</h4>
                 </div>
-             </div>
+              ))}
            </div>
         </div>
 
-        {/* Growth Pillars */}
-        <div className="px-6 md:px-0">
-          <h3 className="text-xl md:text-[24px] font-bold text-[#005746] mb-6" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Growth Pillars</h3>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-[#f8fafb] rounded-[1.2rem] p-6 text-center hover:bg-[#f2f4f5] transition-colors border border-transparent hover:border-[#e1e3e4] flex flex-col items-center justify-center min-h-[140px]">
-               <div className="w-10 h-10 rounded-full bg-[#e6fcf2] flex items-center justify-center mb-3 text-[#005746]">
-                 <Heart className="w-5 h-5 fill-current" />
-               </div>
-               <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Emotional<br/>Intelligence</h4>
-            </div>
-            
-            <div className="bg-[#f8fafb] rounded-[1.2rem] p-6 text-center hover:bg-[#f2f4f5] transition-colors border border-transparent hover:border-[#e1e3e4] flex flex-col items-center justify-center min-h-[140px]">
-               <div className="w-10 h-10 rounded-full bg-[#e6fcf2] flex items-center justify-center mb-3 text-[#005746]">
-                 <Target className="w-5 h-5" />
-               </div>
-               <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Self-Awareness</h4>
-            </div>
-            
-            <div className="bg-[#f8fafb] rounded-[1.2rem] p-6 text-center hover:bg-[#f2f4f5] transition-colors border border-transparent hover:border-[#e1e3e4] flex flex-col items-center justify-center min-h-[140px]">
-               <div className="w-10 h-10 rounded-full bg-[#e6fcf2] flex items-center justify-center mb-3 text-[#005746]">
-                 <TrendingUp className="w-5 h-5" />
-               </div>
-               <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Resilience</h4>
-            </div>
-
-            <div className="bg-[#f8fafb] rounded-[1.2rem] p-6 text-center hover:bg-[#f2f4f5] transition-colors border border-transparent hover:border-[#e1e3e4] flex flex-col items-center justify-center min-h-[140px]">
-               <div className="w-10 h-10 rounded-full bg-[#e6fcf2] flex items-center justify-center mb-3 text-[#005746]">
-                 <ListOrdered className="w-5 h-5" />
-               </div>
-               <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Systems<br/>Thinking</h4>
-            </div>
-          </div>
-        </div>
-
-        {/* Legacy Sections Re-Integration */}
-        <div className="py-12 border-t border-[#f2f4f5] mt-12">
-            <h3 className="text-xl md:text-[24px] font-bold text-[#005746] mb-8 text-center" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Community Experiences</h3>
+        {/* Community & Legacy */}
+        <div className="py-20 border-t border-[#D8CEBE]/30 mt-20">
+            <h3 className="text-[32px] font-bold text-[#1D1914] mb-12 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>Community Experiences</h3>
             <Testimonials />
         </div>
-        <div className="py-12 border-t border-[#f2f4f5]">
+        
+        <div className="py-20 border-t border-[#D8CEBE]/30">
             <Process />
         </div>
-      </main>
+      </div>
 
-      <footer className="mt-12 md:mt-24 border-t border-[#f2f4f5] py-8 md:flex md:items-center md:justify-between px-8 md:px-12 max-w-[1400px] mx-auto text-[11px] md:text-[12px] font-medium text-[#6e7975] bg-white" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-        <p className="text-center md:text-left mb-6 md:mb-0"><strong className="text-[#005746] tracking-widest font-bold">SIGNET</strong> © 2024 Silent Growth Network</p>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-          <Link href="#" className="hover:text-[#005746] transition-colors">Privacy Policy</Link>
-          <Link href="#" className="hover:text-[#005746] transition-colors">Terms of Service</Link>
-          <Link href="#" className="hover:text-[#005746] transition-colors">Community Guidelines</Link>
+      <footer className="mt-12 md:mt-32 border-t border-[#D8CEBE]/30 py-16 flex flex-col md:flex-row items-center justify-between px-10 md:px-20 max-w-[1600px] mx-auto text-[11px] font-bold text-[#6E7A67] bg-[#FDFCFB]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+        <div className="text-center md:text-left mb-8 md:mb-0">
+           <p className="tracking-[0.4em] uppercase text-[#1D1914] mb-1">SIGNET NETWORK</p>
+           <p className="opacity-50">© 2024 Silent Growth Network. EST. London.</p>
+        </div>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+          <Link href="#" className="hover:text-[#1D1914] transition-colors tracking-widest uppercase">Privacy</Link>
+          <Link href="#" className="hover:text-[#1D1914] transition-colors tracking-widest uppercase">Terms</Link>
+          <Link href="#" className="hover:text-[#1D1914] transition-colors tracking-widest uppercase">Guidelines</Link>
         </div>
       </footer>
     </div>

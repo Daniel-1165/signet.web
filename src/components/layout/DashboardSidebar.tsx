@@ -4,30 +4,40 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
   Home, 
-  MessageSquare, 
-  TrendingUp, 
   Users, 
   Settings, 
   CheckSquare,
   Library,
-  Shield, 
   HelpCircle,
   Bell,
-  Menu,
   X,
-  LogOut
+  LogOut,
+  Sparkles,
+  Info
 } from 'lucide-react'
 import { useState } from 'react'
 import { UserButton } from '@clerk/nextjs'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
 
-const sidebarItems = [
+// Main Navigation Items (Desktop Sidebar)
+const navigationItems = [
   { name: 'Home', icon: Home, href: '/dashboard' },
-  { name: 'Growth', icon: TrendingUp, href: '/dashboard/growth' },
   { name: 'Exercises', icon: CheckSquare, href: '/dashboard/exercises' },
   { name: 'Community', icon: Users, href: '/dashboard/community' },
   { name: 'Resources', icon: Library, href: '/resources' },
+]
+
+// Specific Mobile Bottom Nav (Home/Dashboard, Resource, About Us, Exercises)
+const mobileBottomNavItems = [
+  { name: 'Home', icon: Home, href: '/dashboard' },
+  { name: 'Resources', icon: Library, href: '/resources' },
+  { name: 'About Us', icon: Info, href: '/features' },
+  { name: 'Exercises', icon: CheckSquare, href: '/dashboard/exercises' },
+]
+
+const utilityItems = [
   { name: 'Settings', icon: Settings, href: '/dashboard/settings' },
+  { name: 'Help', icon: HelpCircle, href: '/help' },
 ]
 
 export default function DashboardSidebar() {
@@ -37,29 +47,25 @@ export default function DashboardSidebar() {
 
   return (
     <>
-      {/* Mobile Top Header */}
-      <div className={`md:hidden fixed top-0 left-0 right-0 h-14 bg-white z-[50] flex items-center justify-between px-4 border-b border-[#f2f4f5] shadow-sm transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+      {/* Mobile Top Header - Clean Editorial Style */}
+      <div className={`md:hidden fixed top-0 left-0 right-0 h-16 bg-white/70 backdrop-blur-xl z-[50] flex items-center justify-between px-6 border-b border-[#D8CEBE]/50 shadow-sm transition-transform duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <Link href="/" className="flex items-center">
-            <img 
-                src="/signet-brand-logo.svg" 
-                alt="Signet Logo" 
-                className="h-5 w-auto object-contain"
-            />
+            <span className="text-xl font-bold tracking-tight text-[#1D1914]" style={{ fontFamily: "'Outfit', sans-serif" }}>SIGNET</span>
         </Link>
         <div className="flex items-center gap-4">
-          <button className="text-[#005746]">
+          <button className="text-[#6E7A67] p-2 hover:bg-[#6E7A67]/5 rounded-full transition-colors">
             <Bell className="w-5 h-5" />
           </button>
-          <div className="w-7 h-7 rounded-full overflow-hidden border border-[#83fba5] shadow-sm flex items-center justify-center bg-[#f2f4f5]">
+          <div className="w-8 h-8 rounded-full overflow-hidden border border-[#D8CEBE] shadow-sm">
              <UserButton />
           </div>
         </div>
       </div>
 
-      {/* Mobile Bottom Navigation Bar */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#f2f4f5] z-[50] pb-[env(safe-area-inset-bottom)]">
-         <div className="flex items-center justify-between px-2 h-16">
-            {sidebarItems.map((item) => {
+      {/* Mobile Bottom Navigation Bar - ORGANIZED (Home, Resources, About Us, Exercises) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-[#D8CEBE]/30 z-[50] pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+         <div className="flex items-center justify-around px-2 h-16">
+            {mobileBottomNavItems.map((item) => {
               const isActive = pathname === item.href
               return (
                 <Link
@@ -67,84 +73,93 @@ export default function DashboardSidebar() {
                   href={item.href}
                   className="flex flex-col items-center justify-center flex-1 h-full gap-1 group relative"
                 >
-                  <item.icon size={20} className={`${isActive ? 'text-[#005746]' : 'text-[#6e7975]'}`} />
-                  <span className={`text-[10px] ${isActive ? 'font-bold text-[#005746]' : 'font-medium text-[#6e7975]'}`} style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div className={`p-2 rounded-xl transition-all duration-300 ${isActive ? 'bg-[#6E7A67]/10' : 'bg-transparent'}`}>
+                    <item.icon size={20} className={`transition-all duration-300 ${isActive ? 'text-[#6E7A67] scale-110' : 'text-[#6E7A67]/40 group-hover:text-[#6E7A67]'}`} />
+                  </div>
+                  <span className={`text-[9px] uppercase tracking-widest font-bold ${isActive ? 'text-[#1D1914]' : 'text-[#6E7A67]/40'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
                     {item.name}
                   </span>
-                  {isActive && (
-                    <div className="absolute bottom-1 w-1 h-1 rounded-full bg-[#005746]" />
-                  )}
+                  {isActive && <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-8 h-[2px] bg-[#6E7A67] rounded-full" />}
                 </Link>
               )
             })}
          </div>
       </div>
-      
-      {/* Mobile FAB (Floating Action Button) */}
-      <div className="md:hidden fixed bottom-20 right-4 z-[40]">
-         <div className="w-14 h-14 bg-[#83fba5] text-[#005746] rounded-full flex items-center justify-center shadow-lg hover:bg-[#9df2d8] transition-colors border border-[#006d36]/10">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-               <line x1="12" y1="5" x2="12" y2="19"></line>
-               <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-         </div>
-      </div>
 
-      <div className={`w-full md:w-64 h-screen bg-[#005746] border-r border-[#006d36]/20 flex flex-col fixed left-0 top-0 z-[70] md:z-50 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
+      {/* Desktop Sidebar - Premium Neutral/Editorial Style */}
+      <div className={`w-80 h-screen bg-[#FDFCFB] border-r border-[#D8CEBE]/40 flex flex-col fixed md:sticky left-0 top-0 z-[70] md:z-50 transition-all duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
         
-        <div className="py-8 px-8 flex items-center justify-between">
-          <div>
-            <Link href="/" className="group flex items-center gap-4 relative hover:scale-[1.02] transition-transform">
-                <div className="h-10 flex-shrink-0 flex items-center justify-center">
-                   <img src="/signet-brand-logo.svg" alt="Signet Logo" className="h-10 w-auto object-contain brightness-0 invert" />
-                </div>
-            </Link>
-          </div>
+        <div className="py-12 px-10">
+          <Link href="/" className="group flex items-center gap-3 relative transition-all">
+              <div className="h-8 w-8 bg-[#6E7A67] rounded-lg flex items-center justify-center text-white shadow-[0_4px_12px_rgba(110,122,103,0.3)]">
+                <Sparkles size={16} />
+              </div>
+              <span className="text-2xl font-bold tracking-tighter text-[#1D1914]" style={{ fontFamily: "'Outfit', sans-serif" }}>SIGNET</span>
+          </Link>
           <button 
             onClick={() => setIsOpen(false)}
-            className="md:hidden text-white p-1.5 bg-black/10 rounded-[0.5rem] hover:bg-black/20"
+            className="md:hidden absolute top-10 right-6 text-[#1D1914] p-2 hover:bg-[#6E7A67]/5 rounded-full"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <nav className="flex-1 space-y-1.5 px-6 mt-4">
-          {sidebarItems.map((item) => {
+        <nav className="flex-1 space-y-1.5 px-6 mt-2">
+          <p className="px-4 text-[10px] uppercase tracking-[0.2em] font-bold text-[#6E7A67]/40 mb-4 ml-1">Essentials</p>
+          {navigationItems.map((item) => {
             const isActive = pathname === item.href
             return (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`flex items-center gap-4 px-4 py-3 rounded-[0.5rem] transition-all group ${
+                className={`flex items-center gap-3.5 px-5 py-3 rounded-xl transition-all group ${
                   isActive 
-                    ? 'bg-[#1b4f43] text-white shadow-[0_4px_20px_rgba(0,0,0,0.1)]' 
-                    : 'text-[#9df2d8]/70 hover:text-white hover:bg-white/5 border border-transparent'
+                    ? 'bg-white text-[#1D1914] shadow-[0_10px_30px_rgba(110,122,103,0.08)] border border-[#D8CEBE]/50' 
+                    : 'text-[#6E7A67]/60 hover:text-[#1D1914] hover:bg-[#6E7A67]/5 border border-transparent'
                 }`}
               >
-                <item.icon size={18} className={`transition-transform duration-500 ${isActive ? 'text-[#83fba5] scale-110' : 'group-hover:scale-110'}`} />
-                <span className={`text-[14px] font-medium tracking-wide ${isActive ? 'text-white' : ''}`} style={{ fontFamily: "'Inter', sans-serif" }}>{item.name}</span>
+                <item.icon size={18} className={`transition-transform duration-500 ${isActive ? 'text-[#6E7A67] scale-110' : 'group-hover:scale-110'}`} />
+                <span className={`text-[14px] font-medium tracking-tight ${isActive ? 'font-bold' : ''}`} style={{ fontFamily: "'Inter', sans-serif" }}>{item.name}</span>
                 {isActive && (
-                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#83fba5] shadow-[0_0_8px_#83fba5]" />
+                  <div className="ml-auto w-1 h-4 rounded-full bg-[#6E7A67]/20" />
                 )}
               </Link>
             )
           })}
         </nav>
 
-        <div className="mt-auto px-6 space-y-4 pb-8">
-          <Link href="/join" className="block w-full py-3 rounded-[0.5rem] bg-[#83fba5] text-[#00210c] text-center font-bold text-[14px] shadow-[0_4px_15px_rgba(131,251,165,0.2)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(131,251,165,0.3)] transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>
-             Upgrade to Pro
-          </Link>
-          
-          <nav className="space-y-1 pt-4 border-t border-white/10">
-            <Link href="/help" className="flex items-center gap-4 px-4 py-3 rounded-[0.5rem] text-[#9df2d8]/70 hover:text-white hover:bg-white/5 transition-all">
-              <HelpCircle size={16} />
-              <span className="text-[14px] font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>Help</span>
+        <div className="mt-auto px-6 space-y-6 pb-12">
+          <div className="bg-[#6E7A67]/5 rounded-2xl p-6 border border-[#6E7A67]/10 mx-2">
+            <h4 className="text-[13px] font-bold text-[#1D1914] mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>Inner Circle</h4>
+            <p className="text-[11px] text-[#6E7A67] leading-relaxed mb-4">Elevate your growth with intentional community mentorship.</p>
+            <Link href="/join" className="block w-full py-2.5 rounded-xl bg-[#6E7A67] text-white text-center font-bold text-[12px] shadow-[0_8px_20px_rgba(110,122,103,0.2)] hover:shadow-[0_12px_25px_rgba(110,122,103,0.3)] hover:-translate-y-0.5 transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>
+               Upgrade Plan
             </Link>
-            <button className="w-full flex items-center gap-4 px-4 py-3 rounded-[0.5rem] text-[#9df2d8]/70 hover:text-white hover:bg-white/5 transition-all">
+          </div>
+          
+          <nav className="space-y-1 ml-1">
+            {utilityItems.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3.5 px-4 py-2.5 rounded-lg transition-all group ${
+                    isActive 
+                      ? 'text-[#1D1914] bg-[#6E7A67]/5' 
+                      : 'text-[#6E7A67]/50 hover:text-[#1D1914]'
+                  }`}
+                >
+                  <item.icon size={16} />
+                  <span className="text-[13px] font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>{item.name}</span>
+                </Link>
+              )
+            })}
+            <button className="w-full flex items-center gap-3.5 px-4 py-2.5 text-[#6E7A67]/50 hover:text-[#8B4513] transition-all">
               <LogOut size={16} />
-              <span className="text-[14px] font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>Logout</span>
+              <span className="text-[13px] font-medium">Logout</span>
             </button>
           </nav>
         </div>

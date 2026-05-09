@@ -1,71 +1,82 @@
 "use client";
 
-import { Brain, Heart, Zap, Clock, Shield, Award, CheckCircle2, Binary } from "lucide-react";
+import { Brain, Heart, Zap, Clock, Shield, Award, CheckCircle2, Binary, Sparkles, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+
+const assessments = [
+  { 
+    title: "IQ Cognitive Baseline", 
+    duration: "20 Minutes", 
+    type: "Deduction", 
+    color: "bg-[#6E7A67]/10 text-[#6E7A67]", 
+    icon: Brain,
+    desc: "A meticulous exploration of pattern recognition and logical deduction. Designed to map the structural architecture of your processing capacity." 
+  },
+  { 
+    title: "EQ (Emotional Quotient)", 
+    duration: "15 Minutes", 
+    type: "Resonance", 
+    color: "bg-[#D8CEBF]/40 text-[#6E7A67]", 
+    icon: Heart,
+    desc: "Calibrates the clarity of your emotional signals and regulation stability under simulated high-pressure relational dynamics." 
+  },
+];
 
 export default function DashboardAssessmentsPage() {
   return (
-    <div className="mx-auto max-w-6xl space-y-16 pb-24">
-      {/* Header Panel */}
-      <header className="bg-[#232826]/50 soft-blur border border-white/5 p-12 rounded-[3.5rem] inner-glow signet-glow relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-[400px] h-full bg-vision-blue/5 blur-[100px]" />
-        <div className="absolute -bottom-10 left-1/4 w-[200px] h-[200px] bg-solar-gold/5 blur-[80px]" />
+    <div className="mx-auto max-w-[1200px] space-y-20 pb-32 pt-12 px-6">
+      {/* Editorial Header */}
+      <header className="relative flex flex-col md:flex-row md:items-end justify-between gap-10">
+        <div className="space-y-6 max-w-2xl">
+           <div className="inline-flex items-center gap-3 text-[#6E7A67]">
+              <Sparkles className="w-4 h-4" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Protocol 01: Calibration</span>
+           </div>
+           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+             Establish your <span className="italic font-normal text-[#6E7A67]">Baseline.</span>
+           </h1>
+           <p className="text-[16px] text-[#6E7A67] leading-relaxed max-w-md" style={{ fontFamily: "'Inter', sans-serif" }}>
+             Your growth trajectory requires an accurate starting point. These assessments are the foundation of your curated Signet path.
+           </p>
+        </div>
         
-        <div className="relative z-10 space-y-6">
-           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1DA756]/10 text-[#1DA756] text-[10px] font-bold uppercase tracking-widest border border-[#1DA756]/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1DA756] animate-pulse shadow-[0_0_8px_#1DA756]" /> Testing & Calibration
-           </div>
-           <div className="space-y-2">
-              <h1 className="text-5xl font-extrabold tracking-tighter text-white font-heading uppercase">Baseline <span className="text-white/40 italic font-light font-sans lowercase">Assessments.</span></h1>
-              <p className="max-w-md text-white/40 leading-relaxed font-outfit text-sm">
-                Establish your cognitive and emotional baseline. Completing these assessments is required to unlock advanced community tiers and resource access.
-              </p>
-           </div>
-           
-           <div className="flex gap-4 pt-4">
-              <div className="px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
-                 <div className="w-8 h-8 rounded-lg bg-vision-blue/20 text-vision-blue flex items-center justify-center font-bold text-xs">0%</div>
-                 <div className="space-y-1">
-                    <p className="text-[10px] uppercase font-black tracking-widest text-white/20">Global Accuracy</p>
-                    <div className="w-24 h-1 bg-white/5 rounded-full overflow-hidden">
-                       <div className="w-0 h-full bg-vision-blue" />
-                    </div>
-                 </div>
-              </div>
+        <div className="p-8 rounded-[2.5rem] bg-white border border-[#D8CEBE]/40 shadow-[0_20px_50px_rgba(0,0,0,0.03)] flex flex-col items-center justify-center text-center w-64 h-64">
+           <div className="w-16 h-16 rounded-2xl bg-[#6E7A67]/5 flex items-center justify-center text-[#6E7A67] font-bold text-xl mb-4">0%</div>
+           <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#6E7A67]/40 mb-2">Network Calibration</p>
+           <div className="w-32 h-[2px] bg-[#6E7A67]/10 rounded-full overflow-hidden">
+              <div className="w-0 h-full bg-[#6E7A67]" />
            </div>
         </div>
       </header>
 
       {/* Protocol Modules */}
-      <div className="grid md:grid-cols-2 gap-12">
+      <div className="grid md:grid-cols-2 gap-8">
         {assessments.map((test, i) => (
-          <div key={i} className="group bg-[#232826]/30 soft-blur border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-[#1DA756]/20 transition-all duration-500 hover:-translate-y-1 p-10">
-            <div className="flex justify-between items-start mb-10">
-               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${test.color} text-white shadow-lg`}>
-                  <test.icon size={30} />
+          <div key={i} className="group bg-white rounded-[2.5rem] p-12 border border-[#D8CEBE]/40 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:border-[#6E7A67]/30 hover:shadow-2xl transition-all duration-700 flex flex-col min-h-[420px]">
+            <div className="flex justify-between items-start mb-12">
+               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${test.color} shadow-sm group-hover:bg-[#1D1914] group-hover:text-white transition-all`}>
+                  <test.icon size={28} />
                </div>
-               <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold uppercase tracking-widest text-[#1DA756]">
-                  Ready for Input
+               <div className="px-4 py-1.5 rounded-full bg-[#6E7A67]/5 border border-[#6E7A67]/10 text-[10px] font-bold uppercase tracking-widest text-[#6E7A67]">
+                  Awaiting Data
                </div>
-               {/* psychology accent */}
-               <div className={`absolute bottom-4 left-4 w-1.5 h-1.5 rounded-full ${i % 3 === 0 ? 'bg-solar-gold shadow-[0_0_8px_#fbbf24]' : i % 3 === 1 ? 'bg-terra-soil opacity-50' : 'bg-vision-blue shadow-[0_0_8px_#0ea5e9]'}`} />
             </div>
             
-            <div className="space-y-6">
-               <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-white/20 font-heading">
-                  <span className="flex items-center gap-1.5"><Clock size={12} className="text-[#1DA756]" /> {test.duration}</span>
-                  <span className="flex items-center gap-1.5 text-solar-gold">{test.type}</span>
+            <div className="space-y-6 flex-1 flex flex-col">
+               <div className="flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.15em] text-[#6E7A67]/40">
+                  <span className="flex items-center gap-2"><Clock size={14} /> {test.duration}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D8CEBF]" />
+                  <span>{test.type}</span>
                </div>
-               <h3 className="text-3xl font-bold text-white font-heading leading-tight group-hover:text-[#1DA756] transition-colors">{test.title}</h3>
-               <p className="text-white/40 text-sm leading-relaxed line-clamp-3 font-outfit">
+               <h3 className="text-[32px] font-bold text-[#1D1914] leading-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>{test.title}</h3>
+               <p className="text-[#6E7A67] text-[15px] leading-relaxed line-clamp-3">
                   {test.desc}
                </p>
                
-               <div className="pt-8 flex items-center justify-between border-t border-white/5">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white/10">Score: ---</span>
-                  <button className="px-8 py-3 rounded-xl bg-white text-black text-xs font-bold uppercase hover:bg-[#1DA756] hover:text-white transition-all">
-                     Initiate Protocol
+               <div className="pt-10 mt-auto flex items-center justify-between border-t border-[#D8CEBE]/20">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#D8CEBF]">Calibrated Status: ---</span>
+                  <button className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-[#1D1914] text-white text-[12px] font-bold uppercase tracking-widest hover:bg-[#6E7A67] hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-[0_10px_25px_rgba(110,122,103,0.3)]">
+                     Begin Protocol <ArrowRight size={14} />
                   </button>
                </div>
             </div>
@@ -73,26 +84,30 @@ export default function DashboardAssessmentsPage() {
         ))}
       </div>
 
-      {/* Schema / Technical Detail Section for the dashboard */}
-      <div className="p-16 rounded-[4rem] bg-[#232826]/50 border border-white/5 relative overflow-hidden">
-         <div className="relative z-10 grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-               <h2 className="text-2xl font-bold tracking-tight text-white font-heading uppercase">Calibration Schema.</h2>
-               <p className="text-white/40 text-sm leading-relaxed font-outfit">
-                  Our tests use the <span className="text-[#1DA756] font-bold">Signet Calibration Schema</span> to ensure that results are adjusted for focus-decay and environmental noise.
+      {/* Philosophy Callout */}
+      <div className="p-16 rounded-[4rem] bg-[#1D1914] text-white relative overflow-hidden group">
+         <div className="absolute top-0 right-0 w-[600px] h-full bg-[#6E7A67]/10 blur-[120px]" />
+         <div className="relative z-10 flex flex-col md:flex-row items-center gap-16 justify-between">
+            <div className="space-y-8 max-w-xl">
+               <h2 className="text-[40px] md:text-[52px] font-bold leading-[1.1] tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                 The <span className="italic font-normal text-[#D8CEBF]">Calibration</span> Meta-Framework.
+               </h2>
+               <p className="text-[#D8CEBF]/60 text-[16px] leading-relaxed">
+                 Our methodology transcends mere testing. We utilize high-fidelity environmental simulations to map the intersection of your cognitive depth and emotional resilience.
                </p>
-               <div className="grid grid-cols-2 gap-4">
-                  {['Consistency', 'Speed', 'Decay', 'Signal'].map(label => (
-                     <div key={label} className="p-4 rounded-xl bg-white/5 border border-white/10 text-center">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/20">{label}</p>
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+                  {['Consistency', 'Velocity', 'Resonance', 'Depth'].map(label => (
+                     <div key={label} className="py-4 rounded-2xl bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D8CEBF]">{label}</p>
                      </div>
                   ))}
                </div>
             </div>
-            <div className="h-64 rounded-[3rem] bg-black/40 border border-white/5 flex items-center justify-center">
-               <div className="text-center space-y-4">
-                  <Zap size={40} className="text-solar-gold mx-auto animate-pulse" />
-                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/10">Algorithmic Tracking Active</p>
+            <div className="w-full md:w-80 h-80 rounded-[3rem] bg-white/5 border border-white/10 flex items-center justify-center relative overflow-hidden">
+               <div className="absolute inset-0 bg-gradient-to-br from-[#6E7A67]/20 to-transparent" />
+               <div className="text-center space-y-6 relative z-10">
+                  <Zap size={52} className="text-[#D8CEBF] mx-auto animate-pulse" />
+                  <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/20">Pulse Tracking Active</p>
                </div>
             </div>
          </div>
@@ -100,22 +115,3 @@ export default function DashboardAssessmentsPage() {
     </div>
   );
 }
-
-const assessments = [
-  { 
-    title: "IQ Cognitive Baseline", 
-    duration: "20 Minutes", 
-    type: "Deduction", 
-    color: "bg-[#0A261D]", 
-    icon: Brain,
-    desc: "Measures pure logic, pattern recognition, and processing efficiency. Designed to establish your logical threshold." 
-  },
-  { 
-    title: "EQ (Emotional Quotient)", 
-    duration: "15 Minutes", 
-    type: "Resonance", 
-    color: "bg-terra-soil", 
-    icon: Heart,
-    desc: "Evaluates interpersonal clarity, regulation, and emotional signal accuracy in stress-simulated environments." 
-  },
-];

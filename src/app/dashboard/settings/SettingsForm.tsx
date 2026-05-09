@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useSupabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function SettingsForm({ initialData }: { initialData: any }) {
@@ -40,71 +40,73 @@ export function SettingsForm({ initialData }: { initialData: any }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-2">
-          <label className="text-[10px] font-bold uppercase tracking-widest text-[#1DA756]">Growth Bio</label>
+    <form onSubmit={handleSubmit} className="space-y-12">
+      <div className="grid grid-cols-1 gap-12">
+        <div className="space-y-3">
+          <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6E7A67]">Growth Manifesto</label>
           <textarea
-            placeholder="Tell us about your mission..."
+            placeholder="What is your mission within the network?"
             value={formData.bio}
             onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-            className="w-full h-32 bg-[#232826] border border-white/5 rounded-2xl p-5 text-white/80 focus:border-[#1DA756]/40 transition-colors focus:ring-0 focus:outline-none resize-none font-medium leading-relaxed"
+            className="w-full h-40 bg-[#FDFCFB] border border-[#D8CEBE]/40 rounded-2xl p-6 text-[#1D1914] placeholder:text-[#6E7A67]/30 focus:border-[#6E7A67]/60 transition-all focus:outline-none resize-none font-medium leading-relaxed"
+            style={{ fontFamily: "'Inter', sans-serif" }}
           />
         </div>
         
-        <div className="space-y-8">
-          <div className="space-y-2 text-white">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-white/40">Twitter Profile</label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-3">
+            <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6E7A67]/60">Twitter Identifier</label>
             <div className="relative">
-              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 font-bold">@</span>
+              <span className="absolute left-6 top-1/2 -translate-y-1/2 text-[#6E7A67]/40 font-bold">@</span>
               <input
                 type="text"
                 placeholder="growth_leader"
                 value={formData.twitter_handle}
                 onChange={(e) => setFormData({ ...formData, twitter_handle: e.target.value })}
-                className="w-full h-14 bg-[#232826] border border-white/5 rounded-2xl pl-10 pr-5 text-white/80 focus:border-[#1DA756]/40 transition-colors focus:ring-0 focus:outline-none font-medium"
+                className="w-full h-16 bg-[#FDFCFB] border border-[#D8CEBE]/40 rounded-2xl pl-12 pr-6 text-[#1D1914] font-medium focus:border-[#6E7A67]/60 outline-none transition-all"
               />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-white/40">Portfolio / Academy URL</label>
+          <div className="space-y-3">
+            <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6E7A67]/60">Digital Presence / URL</label>
             <input
               type="text"
               placeholder="https://signet.xyz"
               value={formData.website_url}
               onChange={(e) => setFormData({ ...formData, website_url: e.target.value })}
-              className="w-full h-14 bg-[#232826] border border-white/5 rounded-2xl px-5 text-white/80 focus:border-[#1DA756]/40 transition-colors focus:ring-0 focus:outline-none font-medium"
+              className="w-full h-16 bg-[#FDFCFB] border border-[#D8CEBE]/40 rounded-2xl px-6 text-[#1D1914] font-medium focus:border-[#6E7A67]/60 outline-none transition-all"
             />
           </div>
         </div>
       </div>
 
-      <div className="pt-4 flex items-center gap-6">
+      <div className="pt-6 flex flex-col md:flex-row md:items-center gap-8 border-t border-[#D8CEBE]/20">
         <button
           disabled={isLoading}
-          className="relative px-12 h-14 rounded-2xl bg-[#1DA756] text-[#0D120E] font-bold text-sm tracking-wide transition-all active:scale-95 disabled:opacity-50 overflow-hidden group min-w-[180px]"
+          className="relative px-12 h-14 rounded-xl bg-[#1D1914] text-white font-bold text-[13px] uppercase tracking-widest transition-all active:scale-95 disabled:opacity-50 overflow-hidden group min-w-[220px]"
         >
           <AnimatePresence mode="wait">
             {isLoading ? (
               <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex justify-center">
-                <Loader2 className="animate-spin" size={20} />
+                <Loader2 className="animate-spin text-[#D8CEBF]" size={20} />
               </motion.div>
             ) : showSuccess ? (
-              <motion.div key="success" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-2">
-                <Check size={20} />
-                <span>Updated</span>
+              <motion.div key="success" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-3">
+                <Check size={18} className="text-[#D8CEBF]" />
+                <span className="tracking-[0.1em]">Calibrated</span>
               </motion.div>
             ) : (
-              <motion.span key="text" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                Save Profile
-              </motion.span>
+              <motion.div key="text" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center justify-center gap-3">
+                <span>Save Identity</span>
+                <Sparkles size={16} className="text-[#D8CEBF]/40 group-hover:text-[#D8CEBF] transition-colors" />
+              </motion.div>
             )}
           </AnimatePresence>
         </button>
         {showSuccess && (
-          <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="text-xs font-bold text-[#1DA756] uppercase tracking-widest">
-            Profile sync complete.
+          <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="text-[11px] font-bold text-[#6E7A67] uppercase tracking-[0.2em] italic">
+            Your network profile has been synchronized.
           </motion.p>
         )}
       </div>

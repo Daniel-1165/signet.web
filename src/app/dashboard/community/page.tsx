@@ -2,8 +2,9 @@ import { auth } from "@clerk/nextjs/server";
 import { PostCard } from "./PostCard";
 import { CreatePost } from "./CreatePost";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { Search, Bell, Calendar, Plus } from "lucide-react";
+import { Search, Bell, Calendar, Plus, Sparkles, TrendingUp, Clock } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default async function CommunityHubPage() {
   const { userId } = await auth();
@@ -44,45 +45,45 @@ export default async function CommunityHubPage() {
   const posts = data || [];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFB] text-[#191c1d]">
-      <header className="flex items-center justify-between py-6 max-w-[1200px] mx-auto">
-        <h1 className="text-[28px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
-          Community Hub
-        </h1>
-        <div className="hidden md:flex items-center gap-6">
+    <div className="min-h-screen bg-[#FDFCFB] text-[#1D1914] pt-8">
+      {/* Editorial Header */}
+      <header className="flex items-end justify-between py-10 max-w-[1300px] mx-auto px-6 border-b border-[#D8CEBE]/40 mb-12">
+        <div>
+           <div className="flex items-center gap-2 text-[#6E7A67] mb-2">
+             <Sparkles size={16} />
+             <span className="text-[10px] font-bold tracking-[0.3em] uppercase">The Collective</span>
+           </div>
+           <h1 className="text-[44px] font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+             Community <span className="italic font-normal text-[#6E7A67]">Hub</span>
+           </h1>
+        </div>
+        <div className="hidden md:flex items-center gap-8 pb-1">
           <div className="relative group">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6e7975]" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6E7A67]/40" />
             <input 
               type="text" 
               placeholder="Search conversations..." 
-              className="pl-10 pr-4 py-2 bg-[#f2f4f5] rounded-full text-[14px] border border-transparent focus:border-[#83fba5] outline-none transition-all w-[280px] text-[#3e4945] font-body"
+              className="pl-11 pr-5 py-2.5 bg-white rounded-full text-sm border border-[#D8CEBE]/40 focus:border-[#6E7A67] outline-none shadow-sm transition-all w-[320px] text-[#1D1914] font-body"
             />
           </div>
-          <button className="text-[#191c1d] hover:text-[#005746] transition-colors"><Bell className="w-5 h-5" /></button>
-          <button className="text-[#191c1d] hover:text-[#005746] transition-colors"><Calendar className="w-5 h-5" /></button>
-          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#83fba5] shadow-sm"><UserButton /></div>
+          <div className="flex bg-[#6E7A67]/5 rounded-full p-1 border border-[#D8CEBE]/20">
+             <button className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#1D1914] text-white text-[12px] font-bold transition-all">
+               <TrendingUp size={14} />
+               Trending
+             </button>
+             <button className="flex items-center gap-2 px-5 py-2 rounded-full text-[#6E7A67] text-[12px] font-medium hover:bg-white transition-all">
+               <Clock size={14} />
+               Newest
+             </button>
+          </div>
         </div>
       </header>
 
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 pb-32">
-        <div className="space-y-8">
+      <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 px-6 pb-32">
+        <div className="space-y-10">
           <CreatePost />
 
-          <div className="flex items-center justify-between pt-2">
-             <h2 className="text-[20px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
-               Community Insights
-             </h2>
-             <div className="flex bg-[#f2f4f5] rounded-full p-1 border border-[#e1e3e4]">
-                <button className="px-5 py-1.5 rounded-full bg-[#005746] text-white text-[12px] font-bold tracking-wide" style={{ fontFamily: "'Inter', sans-serif" }}>
-                  Trending
-                </button>
-                <button className="px-5 py-1.5 rounded-full text-[#6e7975] text-[12px] font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>
-                  Newest
-                </button>
-             </div>
-          </div>
-
-          <div className="space-y-6">
+          <div className="space-y-8">
             {posts && posts.length > 0 ? (
               posts.map((post: any) => (
                 <PostCard 
@@ -92,119 +93,92 @@ export default async function CommunityHubPage() {
                 />
               ))
             ) : (
-              <div className="text-center py-20 bg-white rounded-[1rem] border border-[#e1e3e4]">
-                <p className="text-[#6e7975] text-[14px]">No insights posted yet.</p>
+              <div className="text-center py-24 bg-white rounded-[2rem] border border-[#D8CEBE]/30 shadow-sm">
+                <p className="text-[#6E7A67] text-[15px] italic" style={{ fontFamily: "'Playfair Display', serif" }}>The conversation is waiting for your insight.</p>
               </div>
             )}
             
-            <div className="pt-4 flex justify-center">
-               <button className="text-[#005746] font-bold text-[14px]" style={{ fontFamily: "'Inter', sans-serif" }}>
-                 Load more insights
+            <div className="pt-8 flex justify-center">
+               <button className="text-[12px] font-bold tracking-[0.2em] uppercase text-[#6E7A67] hover:text-[#1D1914] transition-all border-b border-[#D8CEBE] pb-1">
+                 Load older insights
                </button>
             </div>
           </div>
         </div>
 
-        <aside className="hidden lg:block space-y-6">
-           <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f2f4f5]">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-[16px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Active Mentors</h3>
-                <span className="text-[#005746] text-[12px] font-medium tracking-widest uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>View All</span>
+        <aside className="hidden lg:block space-y-10">
+           {/* Mentors Section */}
+           <div className="bg-white rounded-[2.5rem] p-8 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)]">
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-[18px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>Active Mentors</h3>
+                <Link href="#" className="text-[#6E7A67] text-[10px] font-bold tracking-[0.2em] uppercase border-b border-[#D8CEBE]">All</Link>
               </div>
-              <div className="space-y-5">
-                 {/* Dummy Mentors to match UI exactly */}
-                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                       <div className="relative">
-                          <img src="/placeholder-avatar.png" className="w-10 h-10 rounded-full bg-slate-200 object-cover" />
-                          <div className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#83fba5] border-2 border-white" />
-                       </div>
-                       <div>
-                          <p className="text-[#191c1d] text-[14px] font-bold" style={{ fontFamily: "'Inter', sans-serif" }}>Sarah Jenkins</p>
-                          <p className="text-[#6e7975] text-[12px]">Leadership Coach</p>
-                       </div>
-                    </div>
-                    <button className="px-3 py-1 rounded-full bg-[#f8fafb] text-[#005746] text-[12px] font-bold hover:bg-[#83fba5]/20 transition-colors">Connect</button>
-                 </div>
-
-                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                       <div className="relative">
-                          <img src="/placeholder-avatar.png" className="w-10 h-10 rounded-full bg-slate-200 object-cover" />
-                          <div className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#005746] border-2 border-white" />
-                       </div>
-                       <div>
-                          <p className="text-[#191c1d] text-[14px] font-bold" style={{ fontFamily: "'Inter', sans-serif" }}>Robert Aris</p>
-                          <p className="text-[#6e7975] text-[12px]">Technical Architect</p>
-                       </div>
-                    </div>
-                    <button className="px-3 py-1 rounded-full bg-[#f8fafb] text-[#005746] text-[12px] font-bold hover:bg-[#83fba5]/20 transition-colors">Connect</button>
-                 </div>
-
-                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                       <div className="relative">
-                          <div className="w-10 h-10 rounded-full bg-[#eceeef] flex items-center justify-center text-[#005746] font-bold text-[14px]">MC</div>
-                          <div className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#e1e3e4] border-2 border-white" />
-                       </div>
-                       <div>
-                          <p className="text-[#191c1d] text-[14px] font-bold" style={{ fontFamily: "'Inter', sans-serif" }}>Maria Chen</p>
-                          <p className="text-[#6e7975] text-[12px]">Design Director</p>
-                       </div>
-                    </div>
-                    <button className="px-3 py-1 rounded-full bg-[#f8fafb] text-[#005746] text-[12px] font-bold hover:bg-[#83fba5]/20 transition-colors">Connect</button>
-                 </div>
+              <div className="space-y-6">
+                 {[
+                   { name: "Sarah Jenkins", role: "Leadership Coach", icon: "SJ" },
+                   { name: "Robert Aris", role: "Technical Architect", icon: "RA" },
+                   { name: "Maria Chen", role: "Design Director", icon: "MC" }
+                 ].map((mentor, i) => (
+                   <div key={i} className="flex items-center justify-between group">
+                      <div className="flex items-center gap-4">
+                         <div className="w-12 h-12 rounded-2xl bg-[#6E7A67]/10 flex items-center justify-center text-[#6E7A67] font-bold text-[14px] group-hover:bg-[#6E7A67] group-hover:text-white transition-all">
+                            {mentor.icon}
+                         </div>
+                         <div>
+                            <p className="text-[#1D1914] text-[15px] font-bold leading-tight">{mentor.name}</p>
+                            <p className="text-[#6E7A67]/60 text-[12px] font-medium">{mentor.role}</p>
+                         </div>
+                      </div>
+                      <button className="w-8 h-8 rounded-full bg-[#D8CEBF]/20 text-[#6E7A67] flex items-center justify-center hover:bg-[#6E7A67] hover:text-white transition-all">
+                         <Plus size={16} />
+                      </button>
+                   </div>
+                 ))}
               </div>
            </div>
            
-           <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f2f4f5]">
-              <h3 className="text-[16px] font-bold text-[#005746] mb-6" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Upcoming Events</h3>
-              <div className="space-y-6">
-                 <div className="flex gap-4">
-                    <div className="w-12 h-12 bg-[#f8fafb] rounded-[0.5rem] flex flex-col items-center justify-center border border-[#e1e3e4] shrink-0">
-                       <span className="text-[10px] text-[#6e7975] font-bold">OCT</span>
-                       <span className="text-[16px] text-[#005746] font-bold">12</span>
+           {/* Events Section */}
+           <div className="bg-white rounded-[2.5rem] p-8 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)]">
+              <h3 className="text-[18px] font-bold text-[#1D1914] mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>Gatherings</h3>
+              <div className="space-y-8">
+                 {[
+                   { title: "Mental Clarity Workshop", day: "12", month: "OCT", time: "10:00 AM" },
+                   { title: "Mentorship Q&A", day: "15", month: "OCT", time: "04:30 PM" }
+                 ].map((event, i) => (
+                    <div key={i} className="flex gap-5 group cursor-pointer">
+                       <div className="w-14 h-14 bg-[#FDFCFB] rounded-2xl flex flex-col items-center justify-center border border-[#D8CEBE]/40 shadow-sm group-hover:bg-[#1D1914] group-hover:border-[#1D1914] transition-all">
+                          <span className="text-[9px] text-[#6E7A67] font-bold group-hover:text-[#D8CEBF] transition-colors">{event.month}</span>
+                          <span className="text-[20px] text-[#1D1914] font-bold group-hover:text-white transition-colors leading-none">{event.day}</span>
+                       </div>
+                       <div>
+                          <h4 className="text-[15px] font-bold text-[#1D1914] leading-tight mb-1">{event.title}</h4>
+                          <p className="text-[#6E7A67]/60 text-[12px] font-medium">{event.time} • Live Session</p>
+                       </div>
                     </div>
-                    <div>
-                       <h4 className="text-[14px] font-bold text-[#191c1d]">Mental Clarity Workshop</h4>
-                       <p className="text-[#6e7975] text-[12px] mt-1 flex items-center gap-1">
-                         🕒 10:00 AM • Live Session
-                       </p>
-                    </div>
-                 </div>
-
-                 <div className="flex gap-4">
-                    <div className="w-12 h-12 bg-[#f8fafb] rounded-[0.5rem] flex flex-col items-center justify-center border border-[#e1e3e4] shrink-0">
-                       <span className="text-[10px] text-[#6e7975] font-bold">OCT</span>
-                       <span className="text-[16px] text-[#005746] font-bold">15</span>
-                    </div>
-                    <div>
-                       <h4 className="text-[14px] font-bold text-[#191c1d]">Mentorship Q&A</h4>
-                       <p className="text-[#6e7975] text-[12px] mt-1 flex items-center gap-1">
-                         🕒 04:30 PM • 45 mins
-                       </p>
-                    </div>
-                 </div>
+                 ))}
               </div>
-              <button className="w-full mt-6 py-2.5 rounded-[0.5rem] border border-[#005746] text-[#005746] font-bold text-[14px] hover:bg-[#f8fafb] transition-colors" style={{ fontFamily: "'Inter', sans-serif" }}>
-                 Browse All Events
+              <button className="w-full mt-10 py-3.5 rounded-2xl border border-[#D8CEBE] text-[#1D1914] font-bold text-[12px] uppercase tracking-widest hover:bg-[#1D1914] hover:text-white hover:border-[#1D1914] transition-all">
+                 Browse Calendar
               </button>
            </div>
 
-           <div className="bg-[#005746] rounded-[1rem] p-6 shadow-xl relative overflow-hidden">
-              <span className="text-[10px] font-medium tracking-widest uppercase text-[#9df2d8]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Network Strength</span>
-              <p className="text-white text-[32px] font-bold mt-2 mb-4" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>4,821</p>
+           {/* Pulse Widget */}
+           <div className="bg-[#1D1914] rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group">
+              <Sparkles className="absolute -top-6 -right-6 w-24 h-24 text-white/5 group-hover:rotate-12 transition-transform duration-1000" />
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]/60">Pulse</span>
+              <p className="text-white text-[38px] font-bold mt-2" style={{ fontFamily: "'Playfair Display', serif" }}>4,821</p>
+              <p className="text-[#D8CEBF] text-[13px] font-medium mb-6">Network Nodes</p>
               
-              <div className="w-full h-2 bg-[#0d715d] rounded-full mb-3 overflow-hidden">
-                 <div className="h-full bg-[#83fba5] w-[75%] rounded-full" />
+              <div className="w-full h-[3px] bg-white/10 rounded-full mb-4 overflow-hidden">
+                 <div className="h-full bg-[#D8CEBF] w-[75%] rounded-full shadow-[0_0_10px_rgba(216,206,191,0.5)]" />
               </div>
-              <p className="text-[10px] text-[#9df2d8]/70 font-medium">Growth of +12% this month in peer connections.</p>
+              <p className="text-[11px] text-white/40 font-medium leading-relaxed italic">The collective is evolving by 12% peer density this month.</p>
            </div>
         </aside>
       </div>
 
-      <button className="fixed bottom-8 right-8 w-14 h-14 bg-[#005746] text-white rounded-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,87,70,0.3)] hover:scale-105 transition-transform z-50">
-        <Plus className="w-6 h-6" />
+      <button className="fixed bottom-10 right-10 w-16 h-16 bg-[#1D1914] text-white rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 hover:-rotate-6 transition-all z-50">
+        <Plus className="w-8 h-8" />
       </button>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import { useState, useRef } from "react";
-import { Image as ImageIcon, Paperclip } from "lucide-react";
+import { Image as ImageIcon, Paperclip, Send, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function CreatePost() {
@@ -40,33 +40,37 @@ export function CreatePost() {
   if (!user) return null;
 
   return (
-    <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f2f4f5]">
-      <div className="flex gap-4">
-        <div className="w-10 h-10 rounded-full bg-[#e1e3e4] shrink-0 overflow-hidden">
+    <div className="bg-white rounded-[2rem] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#D8CEBE]/40 group transition-all focus-within:border-[#6E7A67]/40">
+      <div className="flex gap-6">
+        <div className="w-12 h-12 rounded-2xl bg-[#6E7A67]/10 shrink-0 overflow-hidden ring-2 ring-[#D8CEBE]/10">
           {user.imageUrl && <img src={user.imageUrl} className="w-full h-full object-cover" />}
         </div>
         <div className="flex-1">
           <textarea
-            placeholder="Share a growth insight or resource..."
+            placeholder="Contribute a growth insight..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full bg-[#f8fafb] border border-[#e1e3e4] rounded-[0.5rem] p-4 text-[14px] text-[#191c1d] placeholder:text-[#6e7975] focus:outline-none focus:border-[#83fba5] resize-none min-h-[100px] mb-4"
+            className="w-full bg-[#FDFCFB] border border-[#D8CEBE]/30 rounded-2xl p-5 text-[15px] text-[#1D1914] placeholder:text-[#6E7A67]/40 focus:outline-none focus:bg-white focus:border-[#6E7A67]/40 transition-all resize-none min-h-[120px] mb-6 font-medium"
+            style={{ fontFamily: "'Inter', sans-serif" }}
           />
           <div className="flex items-center justify-between">
-            <div className="flex gap-4">
-              <button className="text-[#6e7975] hover:text-[#005746] transition-colors">
-                <ImageIcon size={18} />
+            <div className="flex gap-6">
+              <button className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-xs font-bold uppercase tracking-widest group/icon">
+                <ImageIcon size={18} className="group-hover/icon:scale-110 transition-transform" />
+                <span>Media</span>
               </button>
-              <button className="text-[#6e7975] hover:text-[#005746] transition-colors">
-                <Paperclip size={18} />
+              <button className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-xs font-bold uppercase tracking-widest group/icon">
+                <Paperclip size={18} className="group-hover/icon:scale-110 transition-transform" />
+                <span>Asset</span>
               </button>
             </div>
             <button 
               onClick={handleSubmit}
               disabled={!content.trim() || isLoading}
-              className="px-6 py-2 rounded-full bg-[#005746] text-white font-bold text-[14px] disabled:opacity-50 hover:bg-[#006d36] transition-colors"
+              className="flex items-center gap-3 px-8 py-3 rounded-xl bg-[#1D1914] text-white font-bold text-[13px] uppercase tracking-[0.15em] disabled:opacity-20 hover:bg-[#6E7A67] hover:shadow-[0_8px_20px_rgba(110,122,103,0.3)] transition-all disabled:pointer-events-none"
             >
-              Post Insight
+              {isLoading ? "Publishing..." : "Publish Insight"}
+              <Send size={14} className={isLoading ? "animate-pulse" : ""} />
             </button>
           </div>
         </div>
