@@ -21,7 +21,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/features" },
   { label: "Resources", href: "/resources" },
-  { label: "Community", href: "/community" },
+  { label: "Community", href: "/dashboard/community" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -29,7 +29,7 @@ const sidebarLinks = [
   { label: "Home", href: "/", icon: Home },
   { label: "About Us", href: "/features", icon: Info },
   { label: "Resources", href: "/resources", icon: FolderOpen },
-  { label: "Community", href: "/community", icon: Users },
+  { label: "Community", href: "/dashboard/community", icon: Users },
   { label: "Contact", href: "/contact", icon: MessageCircle },
   { label: "EQ Test", href: "/eq-test", icon: Brain },
   { label: "IQ Assessment", href: "/iq-test", icon: Lightbulb },

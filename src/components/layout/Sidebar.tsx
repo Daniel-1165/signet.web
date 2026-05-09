@@ -16,7 +16,7 @@ const desktopNavItems = [
   { name: "Dashboard", href: "/", icon: Home },
   { name: "About Signet", href: "/features", icon: Info },
   { name: "Resources", href: "/resources", icon: FolderOpen },
-  { name: "Community", href: "/community", icon: Users },
+  { name: "Community", href: "/dashboard/community", icon: Users },
   { name: "EQ Test", href: "/eq-test", icon: Brain },
   { name: "IQ Assessment", href: "/iq-test", icon: Lightbulb },
   { name: "Vision Guide", href: "/vision-guide", icon: Target },
@@ -26,7 +26,7 @@ const desktopNavItems = [
 const mobileNavItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Resources", href: "/resources", icon: FolderOpen },
-  { name: "Community", href: "/community", icon: Users },
+  { name: "Community", href: "/dashboard/community", icon: Users },
   { name: "About", href: "/features", icon: Info },
 ];
 
