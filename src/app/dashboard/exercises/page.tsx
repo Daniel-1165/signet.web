@@ -8,7 +8,7 @@ import {
   Calendar,
   Heart,
   Eye,
-  Grid,
+  LayoutGrid,
   Clock,
   ArrowRight,
   BrainCircuit,
@@ -125,7 +125,7 @@ export default async function ExercisesPage() {
            <div className="bg-white rounded-[2rem] p-8 border border-[#f2f4f5] shadow-[0_8px_30px_rgba(13,113,93,0.03)] hover:shadow-[0_12px_40px_rgba(13,113,93,0.06)] hover:-translate-y-1 transition-all duration-300 flex flex-col group">
               <div className="flex items-center justify-between mb-8">
                  <div className="w-12 h-12 rounded-full bg-[#f2f4f5] border border-[#e1e3e4] flex items-center justify-center text-[#3e4945] group-hover:bg-[#ECEEEF] transition-colors">
-                    <Grid size={22} />
+                    <LayoutGrid size={22} />
                  </div>
                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#6e7975]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                     Module 02
