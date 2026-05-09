@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Library, CheckSquare, Info } from 'lucide-react'
+import { Home, Library, CheckSquare, Info, Users } from 'lucide-react'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
 
 const mobileBottomNavItems = [
   { name: 'Home', icon: Home, href: '/dashboard' },
   { name: 'Resources', icon: Library, href: '/resources' },
+  { name: 'Community', icon: Users, href: '/dashboard/community' },
   { name: 'About Us', icon: Info, href: '/features' },
   { name: 'Exercises', icon: CheckSquare, href: '/dashboard/exercises' },
 ]
