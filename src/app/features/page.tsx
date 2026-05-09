@@ -1,248 +1,191 @@
 "use client";
 
 import {
-  Calendar, Award, BookOpen, Clock, Users,
-  CheckCircle2, Target, Brain, Activity, Shield,
-  Zap, Flame, Compass, Leaf, ArrowRight, TrendingUp, Quote,
-  ChevronRight
+  Calendar, Award, Clock, ArrowRight,
+  Target, Brain, Heart, ChevronRight
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import Image from "next/image";
 
 export default function FeaturesPage() {
   return (
-    <div className="relative min-h-screen bg-[#F7F6F0] text-[#0D120E] selection:bg-[#1DA756] selection:text-white"
-      style={{ fontFamily: "'Melbourne', system-ui, sans-serif" }}>
-      <main className="pb-32">
+    <div className="relative min-h-screen bg-[#FDFCFB] text-[#1D1914] selection:bg-[#6E7A67] selection:text-white pb-20">
+      <main>
         
-        {/* ── TOP HERO: GET TO KNOW US ─────────────────────────────── */}
-        <section className="relative w-full overflow-hidden pt-[69px] md:pt-0">
-          <Image
-            src="/get-to-know-us.png"
-            alt="Get To Know Us"
-            width={1920}
-            height={1080}
-            priority
-            className="w-full h-auto object-contain"
-          />
-        </section>
-
-        {/* ── FLUID SECTION: GROWTH PHILOSOPHY ──────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 pt-12 md:pt-24 pb-12 md:pb-20">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
-            <div className="space-y-8">
-              <h1 className="text-4xl md:text-7xl font-black leading-[0.9] tracking-tighter">
-                Grow in <br />
-                <span className="text-[#1DA756]">Silence.</span>
-              </h1>
-              <p className="text-lg md:text-xl text-[#0D120E]/60 max-w-lg leading-relaxed font-medium capitalize">
-                We believe the most profound transformations happen when you stop seeking validation and start seeking results. Signet is a structured sanctuary for those ready to lead.
-              </p>
-              
-              <div className="flex items-center gap-6 pt-4">
-                <Link href="/join" className="h-14 px-10 rounded-full bg-[#1DA756] text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-[#1DA756]/20">
-                  Begin Journey <ChevronRight size={18} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Fluid Image Layout inspired by insight */}
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4 pt-12">
-                   <div className="rounded-3xl overflow-hidden shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-                     <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600" alt="Nature" />
-                   </div>
-                   <div className="rounded-none overflow-hidden shadow-xl transform rotate-3 bg-[#1DA756] p-8 text-white">
-                      <Quote className="opacity-40 mb-4" />
-                      <p className="font-bold text-lg leading-tight capitalize">"True growth is like a tree; it doesn't make a sound as it rises."</p>
-                   </div>
-                </div>
-                <div className="space-y-4">
-                   <div className="rounded-none overflow-hidden shadow-2xl h-80">
-                     <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" alt="Mountain" className="h-full w-full object-cover" />
-                   </div>
-                   <div className="rounded-3xl overflow-hidden shadow-xl transform -rotate-2">
-                     <img src="https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?auto=format&fit=crop&q=80&w=600" alt="Growth" />
-                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── IMAGE SECTION 2: OUR PROGRAM DIRECTIVE ─────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
-            <div className="rounded-2xl overflow-hidden shadow-2xl h-[300px] md:h-[450px] relative group">
-                <img 
-                    src="/mission-leap.png" 
-                    alt="Our Program Directive" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
-                />
-                {/* Logo Top Left */}
-                <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full">
-                    <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-8 h-8 object-contain" />
-                    <span className="text-white text-xs font-black tracking-widest uppercase">Signet</span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8 md:p-12">
-                    <h2 className="text-white text-2xl md:text-3xl font-black uppercase tracking-tight font-heading">Our Program Directive.</h2>
-                </div>
-            </div>
-        </section>
-
-        {/* ── PROGRAM DETAILS ───────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
-            <div className="flex flex-col md:flex-row gap-16 md:gap-32">
-                <div className="md:w-1/2">
-                    <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block">Structure & Discipline</span>
-                    <h2 className="text-4xl md:text-6xl font-black uppercase leading-none mb-8">Program <br/><span className="text-[#0D120E]/30">Details.</span></h2>
-                    
-                    <div className="space-y-10">
-                        <div className="flex gap-6">
-                            <div className="w-14 h-14 rounded-none bg-white shadow-xl flex items-center justify-center shrink-0 border border-black/5">
-                                <Calendar className="text-[#1DA756]" />
-                            </div>
-                            <div>
-                                <h4 className="font-black text-xl uppercase mb-1">Every Monday</h4>
-                                <p className="text-[#0D120E]/50 font-bold uppercase text-xs tracking-wider">8:30 PM – 10:30 PM (General classes)</p>
-                            </div>
-                        </div>
-                        <div className="flex gap-6">
-                            <div className="w-14 h-14 rounded-none bg-white shadow-xl flex items-center justify-center shrink-0 border border-black/5">
-                                <Clock className="text-[#1DA756]" />
-                            </div>
-                            <div>
-                                <h4 className="font-black text-xl uppercase mb-1">Weekly Teams</h4>
-                                <p className="text-[#0D120E]/50 font-bold uppercase text-xs tracking-wider">Interactive sessions at your convenience.</p>
-                            </div>
-                        </div>
+        {/* ── HERO SECTION: LOCKED IN ─────────────────────────────── */}
+        <section className="relative w-full h-[600px] md:h-[800px] overflow-hidden flex items-center">
+            <img 
+                src="/forest_hero_bg.png" 
+                alt="Forest Background" 
+                className="absolute inset-0 w-full h-full object-cover brightness-[0.7] grayscale-[0.3]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1D1914]/40 via-transparent to-[#FDFCFB]" />
+            
+            <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-20">
+                <div className="max-w-4xl space-y-8">
+                    <div className="flex items-center gap-3">
+                        <div className="w-12 h-[1px] bg-[#D8CEBF]" />
+                        <span className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D8CEBF]" style={{ fontFamily: "'Inter', sans-serif" }}>
+                            Let's grow in silence
+                        </span>
                     </div>
-                </div>
-
-                <div className="md:w-1/2 bg-[#0D120E] rounded-none p-10 md:p-16 text-white shadow-2xl relative overflow-hidden border border-[#1DA756]/30">
-                    {/* Decorative element */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#1DA756]/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-                    
-                    <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-8 block">Active Enrollment</span>
-                    <h3 className="text-4xl md:text-5xl font-black mb-8 leading-none uppercase tracking-tighter">Watch out for <br/> <span className="text-[#1DA756]">next cohort.</span></h3>
-                    <p className="text-white/60 text-lg mb-12 font-medium capitalize">Join the next group of high-achievers. Stay tuned for the upcoming session details.</p>
-                    <Link href="/join" className="inline-flex items-center gap-3 text-[#1DA756] font-black tracking-[0.2em] uppercase text-sm group">
-                        Apply Now <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                    </Link>
-                </div>
-            </div>
-        </section>
-
-        {/* ── YOUR GAINS ────────────────────────────────────────────── */}
-        <section className="bg-white py-24 border-y border-black/[0.03]">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
-            <div className="grid md:grid-cols-2 gap-16 md:gap-32 items-center">
-              <div className="order-2 md:order-1">
-                <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block font-sans">Transformation</span>
-                <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.85] mb-12">Your <br/><span className="text-[#1DA756]">Gains.</span></h2>
-                
-                <div className="space-y-10">
-                  <div className="flex gap-6">
-                    <div className="w-10 h-10 rounded-full bg-[#1DA756]/10 flex items-center justify-center shrink-0 mt-1">
-                      <Target className="text-[#1DA756]" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-black text-xl uppercase mb-2">Mastery of Skills</h4>
-                      <p className="text-[#0D120E]/60 leading-relaxed font-medium capitalize text-lg">Requisite for success in your academics, career, business, relationship, ministry, family or leadership position.</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-6">
-                    <div className="w-10 h-10 rounded-full bg-[#1DA756]/10 flex items-center justify-center shrink-0 mt-1">
-                      <Award className="text-[#1DA756]" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-black text-xl uppercase mb-2">Certificate of Participation</h4>
-                      <p className="text-[#0D120E]/60 leading-relaxed font-medium capitalize text-lg mb-6">Subject to meeting the following performance criteria:</p>
-                      <ul className="space-y-4">
-                         {['Attendance to classes', 'Participation in team activities', 'Passing the assessment tests'].map((crit) => (
-                           <li key={crit} className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#0D120E]/40">
-                             <div className="w-2 h-2 bg-[#1DA756]" />
-                             {crit}
-                           </li>
-                         ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="order-1 md:order-2">
-                <div className="relative aspect-[4/5] md:aspect-auto md:h-[650px] overflow-hidden group shadow-2xl">
-                  <img 
-                    src="/community_roots.png" 
-                    alt="Success and Rewards" 
-                    className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
-                  />
-                  {/* Logo Top Left */}
-                  <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full">
-                      <img src="/signet-brand-logo.svg" alt="Signet Logo" className="w-8 h-8 object-contain" />
-                      <span className="text-white text-xs font-black tracking-widest uppercase">Signet</span>
-                  </div>
-                  
-                  {/* Tagline */}
-                  <div className="absolute inset-x-0 bottom-0 p-8 z-20 bg-gradient-to-t from-black/60 to-transparent">
-                      <p className="text-white text-sm md:text-base font-black uppercase tracking-wider text-center">
-                        in <span className="text-[#1DA756] font-black drop-shadow-sm">Signet</span> we cultivate our mind for Growth
-                      </p>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1DA756]/20 to-transparent mix-blend-overlay"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── IMAGE SECTION 3: LOCKED IN ───────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
-            <div className="rounded-[3rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px] relative group bg-[#0D120E]">
-                <img 
-                    src="/mission-leap.png" 
-                    alt="Locked In" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
-                />
-                {/* Text Overlay */}
-                <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 z-20 bg-gradient-to-t from-black/80 to-transparent">
-                    <p className="text-white text-sm md:text-lg font-bold italic leading-relaxed max-w-lg mx-auto text-center">
-                        "raising men that walks with a sense of purpose and a vision at heart, thoroughly equiped withstand all life can throw at them"
+                    <h1 className="text-5xl md:text-8xl font-bold leading-[0.95] tracking-tighter text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        Now, we are <br />
+                        <span className="italic font-normal text-[#D8CEBF]">Locked In...</span>
+                    </h1>
+                    <p className="text-lg md:text-2xl text-white/70 max-w-2xl leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        True evolution doesn't announce itself. It grows in the quiet spaces between effort and reflection.
                     </p>
                 </div>
             </div>
         </section>
 
-        {/* ── CURRICULUM ────────────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
-            <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
-                <div className="max-w-2xl">
-                    <span className="text-[10px] font-black tracking-[0.3em] text-[#1DA756] uppercase mb-6 block">The Roadmap</span>
-                    <h2 className="text-4xl md:text-7xl font-black uppercase leading-none">The <br/><span className="text-[#1DA756]">Curriculum.</span></h2>
+        {/* ── THE SIGNET STORY ────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-40">
+            <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-20 md:gap-32 items-center">
+                <div className="space-y-10">
+                    <div>
+                        <span className="text-[10px] font-bold tracking-[0.3em] text-[#6E7A67] uppercase mb-6 block" style={{ fontFamily: "'Inter', sans-serif" }}>The Foundation</span>
+                        <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            The <span className="italic font-normal text-[#6E7A67]">SIGNET</span> Story
+                        </h2>
+                    </div>
+                    <div className="space-y-6 text-[16px] md:text-[18px] text-[#6E7A67] leading-relaxed font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>
+                        <p>At SIGNET, we believe that the most significant transformations happen when the world is quiet. Our "Silent Growth" philosophy isn't about isolation; it's about intentional focus. In an era of constant noise and performative achievement, we provide a sanctuary for depth.</p>
+                        <p>We measure impact by depth, not decibels. Our network was founded on the principle that true leadership and emotional intelligence are forged in quiet spaces—through rigorous self-reflection and organic mentorship that values substance over status.</p>
+                    </div>
                 </div>
-                <p className="text-lg md:text-xl text-[#0D120E]/50 font-medium max-w-sm capitalize">
-                    A multi-layered approach to building internal fortitude and external excellence.
-                </p>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {curriculum.map((item, index) => (
-                    <div key={index} className="group bg-white rounded-none p-8 border border-black/[0.03] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div className="w-12 h-12 rounded-none bg-[#F7F6F0] flex items-center justify-center text-[#1DA756] mb-6 group-hover:bg-[#1DA756] group-hover:text-white transition-colors">
-                            <item.icon size={20} />
+                <div className="relative group">
+                    <div className="bg-white rounded-[3rem] p-4 shadow-2xl border border-[#D8CEBE]/30 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-700">
+                        <img 
+                            src="/mission-leap.png" 
+                            alt="Course Curriculum Illustration" 
+                            className="w-full h-auto rounded-[2.5rem]"
+                        />
+                    </div>
+                    <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#6E7A67]/10 rounded-full blur-3xl -z-10" />
+                </div>
+            </div>
+        </section>
+
+        {/* ── COURSE CURRICULUM ────────────────────────────────────── */}
+        <section className="bg-white py-24 md:py-40 border-y border-[#D8CEBE]/20">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+                <div className="flex items-center gap-4 mb-20">
+                    <div className="h-0.5 w-12 bg-[#6E7A67]" />
+                    <h3 className="text-[12px] font-bold tracking-[0.3em] uppercase text-[#6E7A67]" style={{ fontFamily: "'Inter', sans-serif" }}>Course Curriculum</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-8">
+                    {[
+                        "Introduction to Mentorship: Why and How?",
+                        "The Power of Vision",
+                        "Self-Awareness: Understanding your Self",
+                        "Purpose vs Passion: The distinction",
+                        "Accelerating your Productivity: Time management",
+                        "Building Self-Confidence and Self-Esteem",
+                        "Overcoming Fear",
+                        "Mastering Resilience: The power of growth mindset",
+                        "Emotional Intelligence: How to lead yourself & others",
+                        "Building and Mastering Healthy Relationships",
+                        "Effective Team work and Leadership",
+                        "Effective Communication skills",
+                        "Conflict Resolution: How to resolve ANY conflict"
+                    ].map((item, i) => (
+                        <div key={i} className="flex items-start gap-5 py-4 border-b border-[#D8CEBE]/10 group hover:border-[#6E7A67]/30 transition-all">
+                            <span className="text-[14px] font-bold text-[#6E7A67]/40 group-hover:text-[#6E7A67] transition-colors">{i + 1})</span>
+                            <p className="text-[16px] md:text-[18px] font-medium text-[#1D1914] group-hover:translate-x-2 transition-transform duration-500" style={{ fontFamily: "'Inter', sans-serif" }}>{item}</p>
                         </div>
-                        <h4 className="font-black text-lg uppercase tracking-tight mb-2 group-hover:text-[#1DA756] transition-colors">
-                            {item.title}
-                        </h4>
-                        <p className="text-xs font-bold text-[#0D120E]/40 uppercase tracking-widest">
-                            {item.desc}
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* ── ENROLLMENT & GAINS ────────────────────────────────────── */}
+        <section className="bg-[#0B3D2E] text-white py-24 md:py-40 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-[600px] h-full bg-white/[0.03] blur-[120px] -rotate-12 translate-x-1/2" />
+            
+            <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-20 md:gap-32 items-start relative z-10">
+                <div className="space-y-16">
+                    <div>
+                        <h4 className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]/60 mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>Program Duration</h4>
+                        <div className="space-y-8">
+                            <div className="flex gap-6 items-center">
+                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8CEBF]">
+                                    <Calendar size={20} />
+                                </div>
+                                <p className="text-[15px] md:text-[16px] text-white/80 leading-relaxed font-medium">
+                                    The mentoring program runs from 15th March - 15th June, 2025.
+                                </p>
+                            </div>
+                            <div className="flex gap-6 items-center">
+                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8CEBF]">
+                                    <Clock size={20} />
+                                </div>
+                                <p className="text-[15px] md:text-[16px] text-white/80 leading-relaxed font-medium">
+                                    General classes held every Monday by 8:30pm - 10:30pm.
+                                </p>
+                            </div>
+                            <div className="flex gap-6 items-center">
+                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8CEBF]">
+                                    <Target size={20} />
+                                </div>
+                                <p className="text-[15px] md:text-[16px] text-white/80 leading-relaxed font-medium">
+                                    Weekly team review/interactive sessions (Day/time selected by team).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white/5 border border-white/10 p-8 rounded-[2rem] backdrop-blur-sm">
+                        <p className="text-[13px] italic font-medium leading-relaxed text-[#D8CEBF]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            "ATTEND ALL THE CLASSES TO GET THE MOST OUT OF THIS PROGRAM. ATTENDANCE WILL BE TAKEN SERIOUSLY."
                         </p>
                     </div>
-                ))}
+                </div>
+
+                <div className="bg-white rounded-[3rem] p-10 md:p-16 text-[#1D1914] shadow-2xl space-y-10">
+                    <div>
+                        <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#6E7A67] mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>Your Gains</h4>
+                        <p className="text-[18px] md:text-[20px] font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            At the end of this program, you will have gained:
+                        </p>
+                    </div>
+
+                    <div className="space-y-8">
+                        <div className="flex gap-5">
+                            <div className="w-6 h-6 rounded-full bg-[#6E7A67]/10 flex items-center justify-center text-[#6E7A67] shrink-0 mt-1">
+                                <Heart size={14} className="fill-[#6E7A67]/20" />
+                            </div>
+                            <div>
+                                <h5 className="font-bold text-[16px] mb-2 uppercase tracking-tight">Mastery of skills</h5>
+                                <p className="text-[14px] text-[#6E7A67] leading-relaxed">Requisite for success in academics, career, business, relationships, ministry, family, or leadership positions.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-5">
+                            <div className="w-6 h-6 rounded-full bg-[#6E7A67]/10 flex items-center justify-center text-[#6E7A67] shrink-0 mt-1">
+                                <Award size={14} className="fill-[#6E7A67]/20" />
+                            </div>
+                            <div>
+                                <h5 className="font-bold text-[16px] mb-2 uppercase tracking-tight">A Certificate of Participation</h5>
+                                <p className="text-[14px] text-[#6E7A67] leading-relaxed mb-4">Subject to meeting the following criteria:</p>
+                                <ul className="space-y-2">
+                                    {['Attendance to classes', 'Participation in team activities', 'Passing the assessment tests'].map(li => (
+                                        <li key={li} className="flex items-center gap-3 text-[11px] font-bold text-[#1D1914]/60 uppercase tracking-wider">
+                                            <div className="w-1.5 h-1.5 bg-[#6E7A67] rounded-full" />
+                                            {li}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <Link href="/join" className="group flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-[#6E7A67] text-white font-bold text-[14px] uppercase tracking-widest hover:bg-[#1D1914] transition-all shadow-xl shadow-[#6E7A67]/20">
+                        Apply for Next Cohort <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                    </Link>
+                </div>
             </div>
         </section>
 
@@ -251,18 +194,3 @@ export default function FeaturesPage() {
     </div>
   );
 }
-
-const curriculum = [
-  { title: "Mentorship", desc: "Why and How?", icon: BookOpen },
-  { title: "Vision", desc: "Your ultimate aim", icon: Target },
-  { title: "Self-Awareness", desc: "Understanding yourself", icon: Brain },
-  { title: "Purpose vs Passion", desc: "The crucial difference", icon: Compass },
-  { title: "Productivity", desc: "Time management", icon: Zap },
-  { title: "Self-Confidence", desc: "Building core esteem", icon: Shield },
-  { title: "Overcoming Fear", desc: "Action despite resistance", icon: Flame },
-  { title: "Resilience", desc: "The growth mindset", icon: Activity },
-  { title: "EQ", desc: "Leading self & others", icon: Brain },
-  { title: "Relationships", desc: "Connection networks", icon: Users },
-  { title: "Teamwork", desc: "Collaborative leadership", icon: Users },
-  { title: "Communication", desc: "Translating thought", icon: BookOpen },
-];

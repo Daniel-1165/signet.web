@@ -83,9 +83,9 @@ export default async function ExercisesPage() {
         {/* Action Cards Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            {[
-             { title: "EQ Calibration", duration: "20 Mins", icon: Heart, count: "01", desc: "Develop nuanced emotional resonance through depth-scenarios." },
-             { title: "Logic Synthesis", duration: "45 Mins", icon: Target, count: "02", desc: "Test your cognitive adaptability within high-complexity systems." },
-             { title: "Vision Blueprint", duration: "Guided", icon: Eye, count: "03", desc: "Align your daily architectural actions with your legacy outcomes." }
+             { title: "EQ Calibration", duration: "20 Mins", icon: Heart, count: "01", desc: "Develop nuanced emotional resonance through depth-scenarios.", href: "/eq-test" },
+             { title: "Logic Synthesis", duration: "45 Mins", icon: Target, count: "02", desc: "Test your cognitive adaptability within high-complexity systems.", href: "/iq-test" },
+             { title: "Vision Blueprint", duration: "Guided", icon: Eye, count: "03", desc: "Align your daily architectural actions with your legacy outcomes.", href: "/vision-guide" }
            ].map((test, i) => (
              <div key={i} className="bg-white rounded-[2.5rem] p-10 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:border-[#6E7A67]/30 transition-all duration-700 flex flex-col group">
                 <div className="flex items-center justify-between mb-10">
@@ -109,7 +109,7 @@ export default async function ExercisesPage() {
                       <Clock size={14} className="text-[#6E7A67]" />
                       <span>{test.duration}</span>
                    </div>
-                   <Link href="#" className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-[#1D1914] hover:text-[#6E7A67] transition-all group-hover:translate-x-1">
+                   <Link href={test.href} className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-[#1D1914] hover:text-[#6E7A67] transition-all group-hover:translate-x-1">
                       Initiate <ArrowRight size={16} />
                    </Link>
                 </div>
