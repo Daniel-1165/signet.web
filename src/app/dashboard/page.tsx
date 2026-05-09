@@ -16,6 +16,8 @@ import {
   Sun,
   Moon
 } from "lucide-react";
+import Testimonials from "@/components/sections/Testimonials";
+import Process from "@/components/sections/Process";
 
 export default async function DashboardPage() {
   const user = await currentUser();
@@ -207,6 +209,15 @@ export default async function DashboardPage() {
                <h4 className="text-[11px] font-bold text-[#191c1d] uppercase tracking-widest leading-relaxed" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Systems<br/>Thinking</h4>
             </div>
           </div>
+        </div>
+
+        {/* Legacy Sections Re-Integration */}
+        <div className="py-12 border-t border-[#f2f4f5] mt-12">
+            <h3 className="text-xl md:text-[24px] font-bold text-[#005746] mb-8 text-center" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>Community Experiences</h3>
+            <Testimonials />
+        </div>
+        <div className="py-12 border-t border-[#f2f4f5]">
+            <Process />
         </div>
       </main>
 
