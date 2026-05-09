@@ -37,38 +37,40 @@ export default function CommunityHubPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFCFB] text-[#1D1914] pt-8">
+    <div className="min-h-screen bg-[#FDFCFB] text-[#1D1914] pt-4 md:pt-8">
       {/* Editorial Header */}
-      <header className="flex items-end justify-between py-10 max-w-[1300px] mx-auto px-6 border-b border-[#D8CEBE]/40 mb-12">
+      <header className="flex flex-col md:flex-row md:items-end justify-between py-6 md:py-10 max-w-[1300px] mx-auto px-6 border-b border-[#D8CEBE]/40 mb-8 md:mb-12 gap-6 md:gap-0">
         <div>
            <div className="flex items-center gap-2 text-[#6E7A67] mb-2">
-             <Sparkles size={16} />
-             <span className="text-[10px] font-bold tracking-[0.3em] uppercase">The Collective</span>
+             <Sparkles size={14} className="md:w-4 md:h-4" />
+             <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase">The Collective</span>
            </div>
-           <h1 className="text-[44px] font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+           <h1 className="text-[32px] md:text-[44px] font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
              Community <span className="italic font-normal text-[#6E7A67]">Hub</span>
            </h1>
         </div>
-        <div className="hidden md:flex items-center gap-8 pb-1">
-          <div className="relative group">
+        
+        {/* Right side search/filters - hidden on small mobile, handled differently if needed */}
+        <div className="flex items-center gap-4 md:gap-8 pb-1 overflow-x-auto no-scrollbar">
+          <div className="relative group hidden sm:block">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6E7A67]/40" />
             <input 
               type="text" 
               placeholder="Search conversations..." 
-              className="pl-11 pr-5 py-2.5 bg-white rounded-full text-sm border border-[#D8CEBE]/40 focus:border-[#6E7A67] outline-none shadow-sm transition-all w-[320px] text-[#1D1914] font-body"
+              className="pl-11 pr-5 py-2.5 bg-white rounded-full text-sm border border-[#D8CEBE]/40 focus:border-[#6E7A67] outline-none shadow-sm transition-all w-full sm:w-[240px] lg:w-[320px] text-[#1D1914] font-body"
             />
           </div>
-          <div className="flex bg-[#6E7A67]/5 rounded-full p-1 border border-[#D8CEBE]/20">
+          <div className="flex bg-[#6E7A67]/5 rounded-full p-1 border border-[#D8CEBE]/20 shrink-0">
              <button 
                 onClick={() => setActiveFilter('trending')}
-                className={`flex items-center gap-2 px-5 py-2 rounded-full text-[12px] font-bold transition-all ${activeFilter === 'trending' ? 'bg-[#1D1914] text-white shadow-lg' : 'text-[#6E7A67] hover:bg-white'}`}
+                className={`flex items-center gap-2 px-4 md:px-5 py-2 rounded-full text-[11px] md:text-[12px] font-bold transition-all ${activeFilter === 'trending' ? 'bg-[#1D1914] text-white shadow-lg' : 'text-[#6E7A67] hover:bg-white'}`}
              >
                <TrendingUp size={14} />
                Trending
              </button>
              <button 
                 onClick={() => setActiveFilter('newest')}
-                className={`flex items-center gap-2 px-5 py-2 rounded-full text-[12px] font-bold transition-all ${activeFilter === 'newest' ? 'bg-[#1D1914] text-white shadow-lg' : 'text-[#6E7A67] hover:bg-white'}`}
+                className={`flex items-center gap-2 px-4 md:px-5 py-2 rounded-full text-[11px] md:text-[12px] font-bold transition-all ${activeFilter === 'newest' ? 'bg-[#1D1914] text-white shadow-lg' : 'text-[#6E7A67] hover:bg-white'}`}
              >
                <Clock size={14} />
                Newest
@@ -77,17 +79,17 @@ export default function CommunityHubPage() {
         </div>
       </header>
 
-      <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 px-6 pb-32">
-        <div className="space-y-10">
+      <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
+        <div className="space-y-8 md:space-y-10">
           <div id="create-post-section">
             <CreatePost />
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             {isLoading ? (
-               <div className="space-y-8">
+               <div className="space-y-6 md:space-y-8">
                   {[1, 2, 3].map(i => (
-                    <div key={i} className="h-64 bg-white rounded-[2rem] animate-pulse border border-[#D8CEBE]/20" />
+                    <div key={i} className="h-64 bg-white rounded-[1.5rem] md:rounded-[2rem] animate-pulse border border-[#D8CEBE]/20" />
                   ))}
                </div>
             ) : posts.length > 0 ? (
@@ -99,14 +101,14 @@ export default function CommunityHubPage() {
                 />
               ))
             ) : (
-              <div className="text-center py-24 bg-white rounded-[2rem] border border-[#D8CEBE]/30 shadow-sm">
-                <p className="text-[#6E7A67] text-[15px] italic" style={{ fontFamily: "'Playfair Display', serif" }}>The conversation is waiting for your insight.</p>
+              <div className="text-center py-20 md:py-24 bg-white rounded-[1.5rem] md:rounded-[2rem] border border-[#D8CEBE]/30 shadow-sm px-6">
+                <p className="text-[#6E7A67] text-[15px] italic leading-relaxed" style={{ fontFamily: "'Playfair Display', serif" }}>The conversation is waiting for your insight.</p>
               </div>
             )}
             
             {!isLoading && posts.length > 0 && (
-              <div className="pt-8 flex justify-center">
-                 <button className="text-[12px] font-bold tracking-[0.2em] uppercase text-[#6E7A67] hover:text-[#1D1914] transition-all border-b border-[#D8CEBE] pb-1">
+              <div className="pt-6 md:pt-8 flex justify-center">
+                 <button className="text-[11px] md:text-[12px] font-bold tracking-[0.2em] uppercase text-[#6E7A67] hover:text-[#1D1914] transition-all border-b border-[#D8CEBE] pb-1">
                    Load older insights
                  </button>
               </div>
