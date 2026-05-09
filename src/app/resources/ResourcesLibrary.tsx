@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search, Bell, Calendar, ChevronRight, Bookmark, ArrowRight, BookOpen, Brain, Leaf } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
+import Footer from "@/components/layout/Footer";
 
 export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { initialPosts: any[], interrupts?: any[] }) {
   const [search, setSearch] = useState("");
@@ -132,23 +133,33 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto pb-8 gap-6 scrollbar-hide snap-x snap-mandatory">
             {(magazines.length > 0 ? magazines : [
                { title: "Signet Quarterly", description: "Issue #14: The Winter Resilience Edition", special: false },
                { title: "The Modern Lead", description: "Special Report: Asynchronous Mentorship", special: false },
-               { title: "Growth Science", description: "Neuroplasticity and Habit Formation", special: true }
-            ]).map((mag: any, idx) => (
-              <a href={mag.slug?.current ? `/resources/${mag.slug.current}` : "#"} key={mag._id || idx} className={`group cursor-pointer ${idx === 2 ? 'relative hidden md:block' : ''}`}>
-                <div className={`aspect-[3/4] rounded-[1.5rem] overflow-hidden shadow-sm relative ${mag.special ? 'bg-[#f2f4f5]' : ''}`}>
-                   <img src={mag.mainImageUrl || "/placeholder-avatar.png"} className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${mag.special ? 'mix-blend-multiply opacity-20' : 'bg-[#e1e3e4]'}`} />
-                   {!mag.special && <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />}
+               { title: "Growth Science", description: "Neuroplasticity and Habit Formation", special: true },
+               { title: "Silent Edge", description: "Strategic Advantages of Discretion", special: false }
+            ]).map((mag: any, idx: number) => (
+              <a 
+                href={mag.slug?.current ? `/resources/${mag.slug.current}` : "#"} 
+                key={mag._id || idx} 
+                className="group cursor-pointer flex-none w-[200px] md:w-[240px] snap-start"
+              >
+                <div className={`aspect-[3/4.2] rounded-[1.2rem] overflow-hidden shadow-sm relative ${mag.special ? 'bg-[#f2f4f5]' : 'bg-[#e1e3e4]'}`}>
+                   <img 
+                    src={mag.mainImageUrl || "/placeholder-avatar.png"} 
+                    className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${mag.special ? 'mix-blend-multiply opacity-20' : ''}`} 
+                   />
+                   {!mag.special && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#005746]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                   )}
                 </div>
-                <div className="mt-4 px-2">
-                  <h3 className="text-[16px] font-bold text-[#005746] line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{mag.title}</h3>
-                  <p className="text-[12px] text-[#6e7975] mt-1 line-clamp-1">{mag.description}</p>
+                <div className="mt-4 px-1">
+                  <h3 className="text-[14px] font-bold text-[#005746] line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{mag.title}</h3>
+                  <p className="text-[11px] text-[#6e7975] mt-1 line-clamp-1 font-medium">{mag.description}</p>
                 </div>
                 {mag.special && (
-                   <button className="absolute top-4 right-4 w-10 h-10 bg-[#005746] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#006d36] transition-colors z-10">
+                   <button className="absolute top-3 right-3 w-8 h-8 bg-[#005746] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#006d36] transition-colors z-10">
                      +
                    </button>
                 )}
@@ -219,11 +230,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
 
       </div>
       
-      <footer className="max-w-[1200px] mx-auto mt-24 text-center border-t border-[#e1e3e4] pt-8">
-        <p className="text-[12px] text-[#bec9c4]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-          &copy; 2024 SIGNET Silent Growth Network. All rights reserved.
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 }

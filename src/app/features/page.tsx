@@ -5,6 +5,7 @@ import {
   Target, Brain, Heart, ChevronRight
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
+import Testimonials from "@/components/sections/Testimonials";
 import Link from "next/link";
 
 export default function FeaturesPage() {
@@ -187,6 +188,15 @@ export default function FeaturesPage() {
                     </Link>
                 </div>
             </div>
+        </section>
+
+        {/* ── TESTIMONIALS ────────────────────────────────────── */}
+        <section className="py-24 md:py-40 bg-[#FDFCFB] border-t border-[#D8CEBE]/20">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-20">
+                <h3 className="text-[32px] md:text-[44px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>Member Experiences</h3>
+                <p className="text-[16px] text-[#6E7A67] mt-4">Voices from the Silent Collective.</p>
+            </div>
+            <Testimonials />
         </section>
 
       </main>

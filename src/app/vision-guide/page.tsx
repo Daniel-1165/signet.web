@@ -10,6 +10,7 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { SignUpButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import Footer from "@/components/layout/Footer";
 
 const sections = [
   {
@@ -223,6 +224,7 @@ export default function VisionGuidePage() {
         </div>
       </section>
 
+      <Footer />
     </div>
   );
 }

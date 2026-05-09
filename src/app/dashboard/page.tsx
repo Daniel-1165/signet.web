@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
+import Footer from "@/components/layout/Footer";
 
 export default async function DashboardPage() {
   const user = await currentUser();
@@ -208,28 +209,19 @@ export default async function DashboardPage() {
            </div>
         </div>
 
-        {/* Community & Legacy */}
-        <div className="py-20 border-t border-[#D8CEBE]/30 mt-20">
-            <h3 className="text-[32px] font-bold text-[#1D1914] mb-12 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>Community Experiences</h3>
-            <Testimonials />
-        </div>
-        
+        {/* Final Roadmap */}
         <div className="py-20 border-t border-[#D8CEBE]/30">
             <Process />
         </div>
+
+        {/* Community & Legacy - Last section before footer */}
+        <div className="py-20 border-t border-[#D8CEBE]/30">
+            <h3 className="text-[32px] font-bold text-[#1D1914] mb-12 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>Community Experiences</h3>
+            <Testimonials />
+        </div>
       </div>
 
-      <footer className="mt-12 md:mt-32 border-t border-[#D8CEBE]/30 py-16 flex flex-col md:flex-row items-center justify-between px-10 md:px-20 max-w-[1600px] mx-auto text-[11px] font-bold text-[#6E7A67] bg-[#FDFCFB]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-        <div className="text-center md:text-left mb-8 md:mb-0">
-           <p className="tracking-[0.4em] uppercase text-[#1D1914] mb-1">SIGNET NETWORK</p>
-           <p className="opacity-50">© 2024 Silent Growth Network. EST. London.</p>
-        </div>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
-          <Link href="#" className="hover:text-[#1D1914] transition-colors tracking-widest uppercase">Privacy</Link>
-          <Link href="#" className="hover:text-[#1D1914] transition-colors tracking-widest uppercase">Terms</Link>
-          <Link href="#" className="hover:text-[#1D1914] transition-colors tracking-widest uppercase">Guidelines</Link>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
