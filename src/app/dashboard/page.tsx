@@ -60,7 +60,7 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen bg-[#fff] text-[#191c1d] selection:bg-[#83fba5]/30 selection:text-[#005746] pb-24 md:pb-12 pt-0 md:pt-4">
       {/* Desktop Header */}
-      <header className="hidden md:flex items-center justify-between px-8 py-6 max-w-[1400px] mx-auto bg-white rounded-t-3xl border-b border-gray-100">
+      <header className="hidden md:flex items-center justify-between px-8 py-6 max-w-7xl mx-auto bg-white rounded-t-3xl border-b border-gray-100">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
           SIGNET Home Hub
         </h1>
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
         </div>
       </header>
 
-      <main className="max-w-[1400px] mx-auto md:px-8 space-y-10 md:space-y-12">
+      <main className="max-w-7xl mx-auto md:px-8 space-y-10 md:space-y-12">
         {/* Mobile Full-Bleed Hero (rounded on desktop) */}
         <section className="relative w-full h-[320px] md:h-[400px] md:rounded-[1.5rem] overflow-hidden group">
           <img src="/forest_hero_bg.png" alt="Forest" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
