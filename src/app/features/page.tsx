@@ -19,6 +19,7 @@ export default function FeaturesPage() {
                 src="/forest_hero_bg.png" 
                 alt="Forest Background" 
                 className="absolute inset-0 w-full h-full object-cover brightness-[0.7] grayscale-[0.3]"
+                loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#1D1914]/40 via-transparent to-[#FDFCFB]" />
             
@@ -79,6 +80,7 @@ export default function FeaturesPage() {
                             src="/signet-textured-logo.png" 
                             alt="SIGNET Brand Texture" 
                             className="w-full h-auto rounded-[2.5rem] object-cover aspect-square"
+                            loading="lazy"
                         />
                     </div>
                     <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#6E7A67]/10 rounded-full blur-3xl -z-10" />

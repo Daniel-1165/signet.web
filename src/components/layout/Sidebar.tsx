@@ -37,6 +37,10 @@ export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const isLandingPage = pathname === "/" || pathname === "/features" || pathname === "/vision-guide";
+  const isDashboardPage = pathname.startsWith("/dashboard");
+
+  // Never render on dashboard pages — DashboardSidebar handles those
+  if (isDashboardPage) return null;
 
   return (
     <>

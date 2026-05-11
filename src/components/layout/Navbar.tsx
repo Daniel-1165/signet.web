@@ -166,6 +166,7 @@ const Navbar = () => {
           )}
         </div>
       </header>
+      )} {/* end !isDashboard mobile header */}
 
       {/* ════════════════════════════════════════════════════════════
           MOBILE SLIDE-IN SIDEBAR PANEL

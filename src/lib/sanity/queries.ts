@@ -95,7 +95,10 @@ export const GET_ALL_RESOURCES = `
   *[_type == "resourceCard"] | order(_createdAt desc) {
     _id,
     title,
+    slug,
     category,
+    description,
+    subtitle,
     thumbnail {
       asset-> {
         _id,
@@ -110,6 +113,7 @@ export const GET_ALL_RESOURCES = `
         extension
       }
     },
+    author->{name},
     content
   }
 `

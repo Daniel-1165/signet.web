@@ -29,6 +29,10 @@ export default function DashboardSidebar() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
+  // Only render on dashboard routes
+  const isDashboard = pathname.startsWith('/dashboard')
+  if (!isDashboard) return null
+
   return (
     <div className={`w-80 h-screen bg-[#FDFCFB] border-r border-[#D8CEBE]/40 flex flex-col fixed md:sticky left-0 top-0 z-[70] md:z-50 transition-all duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
       

@@ -34,6 +34,19 @@ export default defineType({
       }
     }),
     defineField({
+      name: 'description',
+      title: 'Short Description',
+      type: 'text',
+      rows: 3,
+      description: 'A short blurb shown under the title in the resource library (books, articles, etc.). Keep it under 150 characters for best display.',
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'Subtitle / Series',
+      type: 'string',
+      description: 'Optional subtitle or series label shown beside the author name (e.g. "Book of the Month" or "Issue #14").',
+    }),
+    defineField({
       name: 'thumbnail',
       title: 'Thumbnail / Cover Image',
       type: 'image',
