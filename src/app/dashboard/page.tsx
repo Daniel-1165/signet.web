@@ -92,23 +92,25 @@ export default async function DashboardPage() {
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-12 md:space-y-20">
         {/* Premium Hero Section */}
-        <section className="relative w-full h-[450px] md:rounded-[2.5rem] overflow-hidden group">
+        <section className="relative w-full h-[420px] md:h-[500px] md:rounded-[2.5rem] overflow-hidden group">
           <img src="/forest_hero_bg.png" alt="Forest" className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] brightness-90 group-hover:scale-[1.03] transition-transform duration-[3s]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1D1914]/80 via-[#1D1914]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1D1914]/80 via-[#1D1914]/50 to-[#1D1914]/20" />
           
-          <div className="relative h-full flex flex-col justify-center px-8 md:px-24 max-w-4xl">
-            <div className="flex items-center gap-3 mb-6">
-               <div className="w-10 h-[1px] bg-[#D8CEBF]" />
-               <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <div className="relative h-full flex flex-col justify-center px-6 md:px-24 w-full overflow-hidden">
+            <div className="flex items-center gap-3 mb-4 md:mb-6">
+               <div className="w-8 md:w-10 h-[1px] bg-[#D8CEBF]" />
+               <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#D8CEBF]" style={{ fontFamily: "'Inter', sans-serif" }}>
                  Silent Growth Network
                </span>
             </div>
-            <h2 className="text-[38px] md:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Become Intentional <br /> about <span className="italic font-normal text-[#D8CEBF]">Growth</span> and Development.
+            <h2 className="text-[26px] sm:text-[32px] md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 md:mb-8 max-w-[90%] md:max-w-4xl" style={{ fontFamily: "'Playfair Display', serif" }}>
+              Become Intentional<br className="md:hidden" /> about{" "}
+              <span className="italic font-normal text-[#D8CEBF]">Growth</span>
+              <br className="hidden md:block" /> and Development.
             </h2>
             <Link href="/dashboard/community" className="flex items-center gap-3 group/btn text-white w-fit">
-               <span className="text-sm font-bold tracking-widest uppercase border-b border-white pb-1 group-hover/btn:pr-2 transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>Join community</span>
-               <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+               <span className="text-xs md:text-sm font-bold tracking-widest uppercase border-b border-white pb-1 group-hover/btn:pr-2 transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>Join community</span>
+               <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:translate-x-2 transition-transform" />
             </Link>
           </div>
         </section>
