@@ -55,11 +55,20 @@ export function CreatePost() {
           />
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex gap-4 md:gap-6">
-              <button type="button" className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-[10px] md:text-xs font-bold uppercase tracking-widest group/icon">
+              <input type="file" ref={fileInputRef} className="hidden" />
+              <button 
+                type="button" 
+                onClick={() => fileInputRef.current?.click()}
+                className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-[10px] md:text-xs font-bold uppercase tracking-widest group/icon"
+              >
                 <ImageIcon size={16} className="md:w-[18px] md:h-[18px] group-hover/icon:scale-110 transition-transform" />
                 <span>Media</span>
               </button>
-              <button type="button" className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-xs font-bold uppercase tracking-widest group/icon">
+              <button 
+                type="button" 
+                onClick={() => fileInputRef.current?.click()}
+                className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all text-xs font-bold uppercase tracking-widest group/icon"
+              >
                 <Paperclip size={18} className="group-hover/icon:scale-110 transition-transform" />
                 <span>Asset</span>
               </button>

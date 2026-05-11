@@ -3,6 +3,7 @@
 import { Heart, MessageSquare, Share2, MoreHorizontal, FileText, Download, Bookmark } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { useUser } from "@clerk/nextjs";
+import { useState } from "react";
 
 export function PostCard({ post, profile }: { post: any; profile: any }) {
   const { user } = useUser();
@@ -71,63 +72,61 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
         )}
       </div>
 
-75:       {/* Interactions Bar - Refined & Functional */}
-76:       <div className="flex items-center justify-between pt-5 border-t border-[#D8CEBE]/20">
-77:         <div className="flex items-center gap-5 md:gap-8">
-78:             {/* 1. Avatars first */}
-79:             <div className="flex -space-x-2 mr-2">
-80:                 {[1, 2, 3].map((i) => (
-81:                     <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-[#D8CEBF] overflow-hidden shadow-sm">
-82:                         <img src={`https://i.pravatar.cc/100?img=${i + (post.id?.length || 10)}`} alt="User" className="w-full h-full object-cover" />
-83:                     </div>
-84:                 ))}
-85:             </div>
-86: 
-87:             {/* 2. Love Button (functional) */}
-88:             <LikeButton initialLikes={post.post_reactions?.length || 162} />
-89: 
-90:             {/* 3. Comment Button (functional) */}
-91:             <CommentButton initialComments={post.post_comments?.length || 37} />
-92:         </div>
-93: 
-94:         <button className="text-[#6E7A67]/40 hover:text-[#1D1914] transition-all group/share">
-95:           <Share2 size={18} className="group-hover/share:scale-110 transition-transform" />
-96:         </button>
-97:       </div>
-98:     </div>
-99:   );
-100: }
-101: 
-102: function LikeButton({ initialLikes }: { initialLikes: number }) {
-103:   const [likes, setLikes] = useState(initialLikes);
-104:   const [isLiked, setIsLiked] = useState(false);
-105: 
-106:   const toggleLike = () => {
-107:     setIsLiked(!isLiked);
-108:     setLikes(prev => isLiked ? prev - 1 : prev + 1);
-109:   };
-110: 
-111:   return (
-112:     <button 
-113:       onClick={toggleLike}
-114:       className={`flex items-center gap-2 transition-all group/stat ${isLiked ? 'text-rose-500' : 'text-[#6E7A67]/60 hover:text-rose-500'}`}
-115:     >
-116:       <Heart 
-117:         size={20} 
-118:         className={`transition-all ${isLiked ? 'fill-rose-500 scale-110' : 'group-hover/stat:scale-110'}`} 
-119:       />
-120:       <span className="text-[13px] font-bold tracking-tight">{likes}</span>
-121:     </button>
-122:   );
-123: }
-124: 
-125: function CommentButton({ initialComments }: { initialComments: number }) {
-126:   return (
-127:     <button className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all group/stat">
-128:       <MessageSquare size={20} className="group-hover/stat:scale-110 transition-all" />
-129:       <span className="text-[13px] font-bold tracking-tight">{initialComments}</span>
-130:     </button>
-131:   );
-132: }
-133: 
-134: import { useState } from "react";
+      {/* Interactions Bar - Refined & Functional */}
+      <div className="flex items-center justify-between pt-5 border-t border-[#D8CEBE]/20">
+        <div className="flex items-center gap-5 md:gap-8">
+            {/* 1. Avatars first */}
+            <div className="flex -space-x-2 mr-2">
+                {[1, 2, 3].map((i) => (
+                    <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-[#D8CEBF] overflow-hidden shadow-sm">
+                        <img src={`https://i.pravatar.cc/100?img=${i + (post.id?.length || 10)}`} alt="User" className="w-full h-full object-cover" />
+                    </div>
+                ))}
+            </div>
+
+            {/* 2. Love Button (functional) */}
+            <LikeButton initialLikes={post.post_reactions?.length || 162} />
+
+            {/* 3. Comment Button (functional) */}
+            <CommentButton initialComments={post.post_comments?.length || 37} />
+        </div>
+
+        <button className="text-[#6E7A67]/40 hover:text-[#1D1914] transition-all group/share">
+          <Share2 size={18} className="group-hover/share:scale-110 transition-transform" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function LikeButton({ initialLikes }: { initialLikes: number }) {
+  const [likes, setLikes] = useState(initialLikes);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const toggleLike = () => {
+    setIsLiked(!isLiked);
+    setLikes(prev => isLiked ? prev - 1 : prev + 1);
+  };
+
+  return (
+    <button 
+      onClick={toggleLike}
+      className={`flex items-center gap-2 transition-all group/stat ${isLiked ? 'text-rose-500' : 'text-[#6E7A67]/60 hover:text-rose-500'}`}
+    >
+      <Heart 
+        size={20} 
+        className={`transition-all ${isLiked ? 'fill-rose-500 scale-110' : 'group-hover/stat:scale-110'}`} 
+      />
+      <span className="text-[13px] font-bold tracking-tight">{likes}</span>
+    </button>
+  );
+}
+
+function CommentButton({ initialComments }: { initialComments: number }) {
+  return (
+    <button className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all group/stat">
+      <MessageSquare size={20} className="group-hover/stat:scale-110 transition-all" />
+      <span className="text-[13px] font-bold tracking-tight">{initialComments}</span>
+    </button>
+  );
+}
