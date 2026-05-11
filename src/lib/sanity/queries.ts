@@ -101,7 +101,8 @@ export const GET_CAROUSEL_SLIDES = `
       },
       hotspot,
     },
-    caption,
+    title,
+    tag,
     link,
     order,
   }

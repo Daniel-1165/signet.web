@@ -78,3 +78,21 @@ export interface Testimonial {
   featured?: boolean
   order?: number
 }
+
+export interface CarouselSlide {
+  _id: string
+  image: {
+    asset: {
+      _id: string
+      url: string
+    }
+    hotspot?: {
+      x: number
+      y: number
+    }
+  }
+  title?: string
+  tag?: string
+  link?: string
+  order?: number
+}

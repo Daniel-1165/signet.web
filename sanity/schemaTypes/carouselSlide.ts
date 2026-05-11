@@ -15,10 +15,16 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'caption',
-      title: 'Caption (optional)',
+      name: 'title',
+      title: 'Title (optional)',
       type: 'string',
-      description: 'A short caption or title for this slide',
+      description: 'The main headline for this slide',
+    }),
+    defineField({
+      name: 'tag',
+      title: 'Tag (optional)',
+      type: 'string',
+      description: 'A small label appearing above the title (e.g., GROWTH SERIES)',
     }),
     defineField({
       name: 'link',
@@ -36,7 +42,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'caption',
+      title: 'title',
       media: 'image',
     },
     prepare(selection) {

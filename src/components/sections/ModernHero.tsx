@@ -9,10 +9,10 @@ const ModernHero = () => {
     const { isSignedIn, isLoaded } = useUser();
 
     return (
-        <section className="relative min-h-screen flex flex-col pt-[69px] md:pt-32 pb-16 overflow-hidden bg-white">
+        <section className="relative min-h-[100svh] flex flex-col pt-[69px] md:pt-32 pb-8 overflow-hidden bg-white">
 
             {/* Container */}
-            <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-[24px] max-w-7xl px-6 w-full mt-10 z-10">
+            <div className="mx-auto flex-1 flex flex-col xl:flex-row items-center justify-center gap-[24px] max-w-7xl px-6 w-full mt-4 md:mt-10 z-10">
                 {/* Left Content */}
                 <div className="flex-1 flex flex-col items-start w-full">
 
@@ -73,10 +73,10 @@ const ModernHero = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
-                    className="flex-1 w-full max-w-lg xl:max-w-none grid grid-cols-1 sm:grid-cols-2 gap-[12px]"
+                    className="flex-1 w-full max-w-lg xl:max-w-none grid grid-cols-1 sm:grid-cols-2 gap-[12px] pb-10 xl:pb-0"
                 >
                     {/* Top Left: Stats -> using gradient shell technique */}
-                    <div className="hidden md:block p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-[inset_0_1px_0_0_rgba(255,255,255,0.75)]">
+                    <div className="hidden sm:block p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-[inset_0_1px_0_0_rgba(255,255,255,0.75)]">
                         <div className="rounded-[31px] bg-[rgba(251,247,240,0.88)] backdrop-blur-[24px] h-full p-[24px] border border-[rgb(216,206,190)] flex flex-col justify-between overflow-hidden relative">
                             {/* Decorative Arch */}
                             <div className="absolute top-0 right-0 w-full h-[80%] bg-[rgba(255,255,255,0.3)] rounded-bl-[100px] border-l border-[rgba(255,255,255,0.6)]"></div>
@@ -94,7 +94,7 @@ const ModernHero = () => {
                     </div>
 
                     {/* Top Right: Activity Profile */}
-                    <div className="hidden md:block p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-sm">
+                    <div className="hidden sm:block p-[1px] rounded-[32px] bg-gradient-to-br from-[rgba(255,255,255,0.72)] via-[rgba(173,150,127,0.34)] to-[rgba(255,255,255,0.52)] relative shadow-sm">
                         <div className="rounded-[31px] bg-[rgba(251,247,240,0.88)] backdrop-blur-[24px] h-full p-[24px] border border-[rgb(216,206,190)] flex flex-col justify-between">
                             <div className="flex items-center gap-[12px]">
                                 <div className="w-[40px] h-[40px] bg-white border border-[#D8CEBF] rounded-[16px] flex items-center justify-center">
@@ -136,7 +136,7 @@ const ModernHero = () => {
             </div>
 
             {/* Bottom Logo Cloud - Brand Values */}
-            <div className="w-full border-t border-[rgb(216,206,190)] border-opacity-40 mt-[80px] py-[32px] px-[24px] z-10 bg-white">
+            <div className="w-full border-t border-[rgb(216,206,190)] border-opacity-40 mt-12 md:mt-[80px] py-[32px] px-[24px] z-10 bg-white">
                 <div className="max-w-6xl mx-auto overflow-hidden">
                     <div className="flex whitespace-nowrap">
                         {/* We double the text arrays to create a seamless loop */}
