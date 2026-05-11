@@ -14,7 +14,9 @@ import {
   Sun,
   Moon,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
