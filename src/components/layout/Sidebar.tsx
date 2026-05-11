@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Home, Users, FolderOpen, Settings, LogOut,
+  Home, Users, FolderOpen, LogOut,
   Brain, Lightbulb, Target, Search, Award, Info,
   ChevronRight,
 } from "lucide-react";
@@ -121,24 +121,7 @@ export default function Sidebar() {
 
         {/* Bottom Section */}
         <div className="mt-6 pt-6 border-t border-[#0D120E]/5 px-4 space-y-2">
-          <Link
-            href="/settings"
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-[#0D120E]/50 hover:text-[#0D120E] hover:bg-black/[0.03] transition-all"
-          >
-            <Settings className="w-5 h-5 shrink-0 stroke-[1.8px]" />
-            <AnimatePresence initial={false}>
-              {isExpanded && (
-                <motion.span
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  className="font-bold text-[13px] whitespace-nowrap"
-                >
-                  Settings
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </Link>
+
 
           <SignOutButton>
             <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500/60 hover:text-red-600 hover:bg-red-50/50 transition-all">

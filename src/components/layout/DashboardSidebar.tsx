@@ -3,9 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
-  Home, 
-  Users, 
-  Settings, 
+  Home,
+  Users,
   CheckSquare, 
   Library,
   HelpCircle,
@@ -23,7 +22,6 @@ const navigationItems = [
 ]
 
 const utilityItems = [
-  { name: 'Settings', icon: Settings, href: '/dashboard/settings' },
   { name: 'Help', icon: HelpCircle, href: '/help' },
 ]
 

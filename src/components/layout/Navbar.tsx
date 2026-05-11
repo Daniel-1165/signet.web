@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, Shield } from "lucide-react";
+import { X, ArrowRight, Shield } from "lucide-react";
 import {
   SignInButton,
   SignUpButton,
@@ -16,6 +16,7 @@ import {
   Home, Users, FolderOpen, Brain, Lightbulb, Target, Award, Info,
   MessageCircle
 } from "lucide-react";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -44,6 +45,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const isVisible = useScrollDirection();
 
   const { user, isLoaded, isSignedIn } = useUser();
   const supabase = useSupabaseClient();
@@ -112,8 +114,8 @@ const Navbar = () => {
           MOBILE TOP BAR  (visible on all screen sizes < md)
       ════════════════════════════════════════════════════════════ */}
       <header
-        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-6 h-[69px] transition-all duration-300 top-0 ${
-          isScrolled ? "bg-white/80 backdrop-blur-xl border-b border-black/5" : "bg-transparent"
+        className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-6 h-[69px] border-b border-black/5 bg-white/80 backdrop-blur-xl transition-transform duration-500 top-0 ${
+          isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         {/* Logo */}
@@ -125,22 +127,24 @@ const Navbar = () => {
             <img 
               src="/signet-brand-logo.svg" 
               alt="Signet Logo" 
-              className={`h-7 w-auto object-contain transition-all duration-300 ${isLightText && !isScrolled ? "brightness-[10]" : ""}`}
+              className="h-7 w-auto object-contain"
             />
           </div>
-          {pathname === "/" && (
-            <span className={`font-black text-lg tracking-tighter uppercase font-heading ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}>
-              SIGNET
-            </span>
-          )}
+          <span className="font-black text-lg tracking-tighter uppercase font-heading text-[#0D120E]">
+            SIGNET
+          </span>
         </Link>
 
-        {/* Right side: hamburger & CTA */}
+        {/* Right side: User Profile & Hamburger */}
         <div className="flex items-center gap-4">
-          {!isSignedIn && (
+          {isLoaded && isSignedIn ? (
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#D8CEBE] shadow-sm">
+               <UserButton appearance={{ elements: { avatarBox: "w-full h-full" } }} />
+            </div>
+          ) : (
              <SignUpButton mode="modal">
-               <button className="px-5 py-2 text-[10px] font-black text-[#F8F4ED] bg-[#0B3D2E] rounded-full hover:bg-[#1D1914] transition-all tracking-widest uppercase">
-                 JOIN OUR COMMUNITY
+               <button className="px-4 py-2 text-[9px] font-black text-[#F8F4ED] bg-[#0B3D2E] rounded-full hover:bg-[#1D1914] transition-all tracking-[0.1em] uppercase">
+                 JOIN
                </button>
              </SignUpButton>
           )}
@@ -150,7 +154,7 @@ const Navbar = () => {
             id="mobile-menu-btn"
             onClick={() => setIsSidebarOpen(true)}
             aria-label="Open menu"
-            className={`w-8 h-8 flex items-center justify-center ${isLightText && !isScrolled ? "text-white" : "text-[#0D120E]"}`}
+            className="w-8 h-8 flex items-center justify-center text-[#0D120E]"
           >
             <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M5 7h14M5 12h14M5 17h14" />

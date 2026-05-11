@@ -13,8 +13,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      <MobileTopHeader />
-      {!isDashboard && <Navbar />}
+      <Navbar />
       
       <div className={`flex flex-1 ${!isLandingPage && !isDashboard ? "pt-[80px] md:pt-0" : "pt-[64px] md:pt-0"}`}>
         {!isDashboard && <Sidebar />}
