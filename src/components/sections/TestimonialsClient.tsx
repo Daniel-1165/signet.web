@@ -20,7 +20,7 @@ function getInitials(name?: string) {
 
 export default function TestimonialsClient({ testimonials }: Props) {
   return (
-    <section id="community" className="py-32 bg-transparent relative z-10">
+    <section id="community" className="py-32 bg-transparent relative z-10 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
           <motion.div

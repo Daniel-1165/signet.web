@@ -14,7 +14,7 @@ const fadeUp: any = {
 
 const FeaturesGrid = () => {
     return (
-        <section id="features" className="py-24 bg-background">
+        <section id="features" className="py-24 bg-background overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
 
                 {/* Section Header */}
