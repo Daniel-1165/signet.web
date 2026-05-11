@@ -73,7 +73,7 @@ export default function VisionGuideContent({
           <div className="text-accent">{icon}</div>
         </div>
         <div>
-          <h2 className="text-4xl font-black text-accent uppercase tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-accent uppercase tracking-tight">
             {title}
           </h2>
           <p className="text-sm font-bold text-foreground/50 uppercase tracking-widest mt-1">

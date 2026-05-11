@@ -41,30 +41,31 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
 
   return (
     <div className="bg-[#F8FAFB] text-[#191c1d] pb-24 px-4 md:px-6">
-      <header className="flex flex-col lg:flex-row lg:items-center justify-between py-6 max-w-[1200px] mx-auto gap-6 lg:gap-0">
+      <header className="flex flex-col sm:flex-row sm:items-center justify-between py-6 max-w-[1200px] mx-auto gap-4 sm:gap-0">
         <div>
-          <h1 className="text-[28px] font-bold text-[#005746] leading-tight" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          <h1 className="text-[24px] sm:text-[28px] font-bold text-[#005746] leading-tight" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
             Resources
           </h1>
-          <p className="text-[#6e7975] text-[14px]">
+          <p className="text-[#6e7975] text-[13px] sm:text-[14px]">
             Curated knowledge for silent growth
           </p>
         </div>
         
-        <div className="flex items-center gap-6">
-          <div className="relative group">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <div className="relative group flex-1 sm:flex-initial">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6e7975]" />
             <input 
               type="text" 
-              placeholder="Search knowledge..." 
+              placeholder="Search..." 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 pr-4 py-2 bg-[#f2f4f5] rounded-full text-[14px] border border-transparent focus:border-[#83fba5] outline-none transition-all w-[240px] text-[#3e4945] font-body"
+              className="pl-9 pr-4 py-2 bg-[#f2f4f5] rounded-full text-[13px] border border-transparent focus:border-[#83fba5] outline-none transition-all w-full sm:w-[240px] text-[#3e4945] font-body"
             />
           </div>
-          <button className="text-[#191c1d] hover:text-[#005746] transition-colors"><Bell className="w-5 h-5" /></button>
-          <button className="text-[#191c1d] hover:text-[#005746] transition-colors"><Calendar className="w-5 h-5" /></button>
-          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#83fba5] shadow-sm"><UserButton /></div>
+          <div className="flex items-center gap-3 sm:gap-5 shrink-0">
+            <button className="text-[#191c1d] hover:text-[#005746] transition-colors"><Bell className="w-5 h-5" /></button>
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border-2 border-[#83fba5] shadow-sm"><UserButton /></div>
+          </div>
         </div>
       </header>
 

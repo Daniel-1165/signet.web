@@ -18,8 +18,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Godswill Chizoba | Graphic Designer",
-  description: "Portfolio of Godswill Chizoba — graphic design, branding and visual storytelling.",
+  title: "SIGNET | Silent Growth Network",
+  description: "A global network of trailblazers who model and replicate excellence in diverse spheres.",
 };
 
 export default function RootLayout({

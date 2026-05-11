@@ -103,7 +103,7 @@ export default async function DashboardPage() {
                  Silent Growth Network
                </span>
             </div>
-            <h2 className="text-[26px] sm:text-[32px] md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 md:mb-8 max-w-[90%] md:max-w-4xl" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h2 className="text-[22px] sm:text-[28px] md:text-7xl font-bold text-white leading-[1.2] tracking-tight mb-6 md:mb-8 max-w-full md:max-w-4xl px-2 md:px-0" style={{ fontFamily: "'Playfair Display', serif" }}>
               Become Intentional<br className="md:hidden" /> about{" "}
               <span className="italic font-normal text-[#D8CEBF]">Growth</span>
               <br className="hidden md:block" /> and Development.
@@ -120,15 +120,15 @@ export default async function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-[#D8CEBE]/30 hover:shadow-2xl transition-all duration-500 group relative">
             <Eye className="absolute top-6 right-6 md:top-12 md:right-12 w-5 h-5 text-[#6E7A67]/20" />
-            <h3 className="text-[11px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-4">The Vision</h3>
-            <p className="text-[22px] md:text-[34px] font-bold text-[#1D1914] leading-[1.2] tracking-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h3 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-3">The Vision</h3>
+            <p className="text-[18px] sm:text-[20px] md:text-[34px] font-bold text-[#1D1914] leading-[1.3] tracking-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
               To build a global network of trailblazers who <span className="italic font-normal text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
             </p>
           </div>
 
           <div className="bg-[#6E7A67]/5 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-[#6E7A67]/10 flex flex-col justify-center">
-            <h3 className="text-[11px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-4">The Mission</h3>
-            <p className="text-[18px] md:text-[24px] font-medium text-[#1D1914] leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h3 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-3">The Mission</h3>
+            <p className="text-[16px] sm:text-[18px] md:text-[24px] font-medium text-[#1D1914] leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
               Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
             </p>
           </div>
