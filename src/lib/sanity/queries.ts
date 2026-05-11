@@ -19,6 +19,14 @@ export const GET_PAGE_BY_SLUG = `
     slug,
     publishedAt,
     content,
+    featuredImage {
+      asset-> {
+        _id,
+        url
+      },
+      hotspot,
+      alt
+    },
     seoTitle,
     seoDescription,
   }

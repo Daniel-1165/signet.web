@@ -1,14 +1,22 @@
-"use client";
-
 import {
   Calendar, Award, Clock, ArrowRight,
-  Target, Brain, Heart, ChevronRight
+  Target, Heart
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import Testimonials from "@/components/sections/Testimonials";
 import Link from "next/link";
+import { sanityFetch } from "@/lib/sanity/client";
+import { GET_PAGE_BY_SLUG } from "@/lib/sanity/queries";
+import { PortableText } from "@portabletext/react";
 
-export default function FeaturesPage() {
+export default async function FeaturesPage() {
+  const pageData = await sanityFetch({
+    query: GET_PAGE_BY_SLUG,
+    params: { slug: "features" }
+  });
+
+  const featuredImage = pageData?.featuredImage?.asset?.url || "/signet-textured-logo.png";
+
   return (
     <div className="relative min-h-screen bg-[#FDFCFB] text-[#1D1914] selection:bg-[#6E7A67] selection:text-white pb-20">
       <main>
@@ -28,7 +36,7 @@ export default function FeaturesPage() {
                     <div className="flex items-center gap-3">
                         <div className="w-12 h-[1px] bg-[#D8CEBF]" />
                         <span className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D8CEBF]" style={{ fontFamily: "'Inter', sans-serif" }}>
-                            Let's grow in silence
+                            {pageData?.title || "Let's grow in silence"}
                         </span>
                     </div>
                     <h1 className="text-5xl md:text-8xl font-bold leading-[0.95] tracking-tighter text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -53,8 +61,16 @@ export default function FeaturesPage() {
                         </h2>
                     </div>
                     <div className="space-y-6 text-[16px] md:text-[18px] text-[#6E7A67] leading-relaxed font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>
-                        <p>At SIGNET, we believe that the most significant transformations happen when the world is quiet. Our "Silent Growth" philosophy isn't about isolation; it's about intentional focus. In an era of constant noise and performative achievement, we provide a sanctuary for depth.</p>
-                        <p>We measure impact by depth, not decibels. Our network was founded on the principle that true leadership and emotional intelligence are forged in quiet spaces—through rigorous self-reflection and organic mentorship that values substance over status.</p>
+                        {pageData?.content ? (
+                           <div className="prose prose-lg prose-signet">
+                              <PortableText value={pageData.content} />
+                           </div>
+                        ) : (
+                          <>
+                            <p>At SIGNET, we believe that the most significant transformations happen when the world is quiet. Our "Silent Growth" philosophy isn't about isolation; it's about intentional focus. In an era of constant noise and performative achievement, we provide a sanctuary for depth.</p>
+                            <p>We measure impact by depth, not decibels. Our network was founded on the principle that true leadership and emotional intelligence are forged in quiet spaces—through rigorous self-reflection and organic mentorship that values substance over status.</p>
+                          </>
+                        )}
                     </div>
                     
                     {/* Vision & Mission Statements */}
@@ -77,8 +93,8 @@ export default function FeaturesPage() {
                 <div className="relative group">
                     <div className="bg-white rounded-[3rem] p-4 shadow-2xl border border-[#D8CEBE]/30 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-700">
                         <img 
-                            src="/signet-textured-logo.png" 
-                            alt="SIGNET Brand Texture" 
+                            src={featuredImage} 
+                            alt={pageData?.featuredImage?.alt || "SIGNET Brand Texture"} 
                             className="w-full h-auto rounded-[2.5rem] object-cover aspect-square"
                             loading="lazy"
                         />
@@ -87,6 +103,7 @@ export default function FeaturesPage() {
                 </div>
             </div>
         </section>
+
 
         {/* ── COURSE CURRICULUM ────────────────────────────────────── */}
         <section className="bg-white py-24 md:py-40 border-y border-[#D8CEBE]/20">
