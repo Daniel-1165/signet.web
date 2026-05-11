@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
-        <body className={`${syne.variable} ${outfit.variable} font-sans antialiased bg-white`}>
+        <body className={`${syne.variable} ${outfit.variable} font-sans antialiased bg-white w-full overflow-x-hidden relative`}>
           <SyncUser />
           <LayoutWrapper>
             {children}

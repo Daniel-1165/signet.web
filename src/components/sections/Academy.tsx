@@ -63,7 +63,7 @@ const Academy = () => {
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest mb-6">
                             <GraduationCap className="h-3 w-3" /> Signet Academy
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground mb-8 leading-[1.1]">
+                        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground mb-8 leading-[1.1] break-words">
                             The Growth <br /><span className="italic font-black text-foreground/40">Curriculum.</span>
                         </h2>
                         <p className="text-xl font-normal text-foreground/50 leading-relaxed mb-12 max-w-md">
