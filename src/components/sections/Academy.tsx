@@ -109,7 +109,7 @@ const Academy = () => {
                                     : "bg-transparent border-transparent hover:bg-white/50"
                                 }`}
                             >
-                                <div className="p-8 md:p-10 flex items-center gap-6">
+                                <div className="p-6 md:p-10 flex items-center gap-6">
                                     <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-500 ${isActive ? course.accent : 'bg-black/[0.04] text-foreground/30'}`}>
                                         {course.icon}
                                     </div>
@@ -142,7 +142,7 @@ const Academy = () => {
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                                         >
-                                            <div className="px-10 pb-10 flex flex-col md:flex-row gap-10 items-start">
+                                            <div className="px-6 md:px-10 pb-10 flex flex-col md:flex-row gap-10 items-start">
                                                 <div className="flex-1">
                                                     <p className="text-lg text-foreground/50 leading-relaxed font-normal mb-8">
                                                         {course.description}
