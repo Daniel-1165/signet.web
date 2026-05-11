@@ -1,6 +1,6 @@
 'use client';
 
-import { Heart, MessageSquare, Share2, MoreHorizontal, FileText, Download, Bookmark } from "lucide-react";
+import { Heart, MessageSquare, Share2, MoreHorizontal, FileText, Download, ChevronDown, Send, X } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
@@ -13,9 +13,18 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
 
   const isResourcePost = post.content?.includes("PDF") || post.content?.includes("Resource");
 
+  // Use actual reactors if available, else fallback to pravatar placeholders
+  const reactors: string[] = post.post_reactions?.slice(0, 3).map((r: any) =>
+    r.profiles?.image_url || `https://i.pravatar.cc/100?img=${r.user_id?.charCodeAt(0) || 10}`
+  ) || [
+    `https://i.pravatar.cc/100?img=${(post.id?.charCodeAt?.(0) || 10) + 1}`,
+    `https://i.pravatar.cc/100?img=${(post.id?.charCodeAt?.(0) || 10) + 2}`,
+    `https://i.pravatar.cc/100?img=${(post.id?.charCodeAt?.(0) || 10) + 3}`,
+  ];
+
   return (
     <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30 hover:border-[#6E7A67]/30 transition-all group">
-      {/* Header - Refined Style */}
+      {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div className="flex items-center gap-4">
           <div className="relative shrink-0">
@@ -72,23 +81,23 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
         )}
       </div>
 
-      {/* Interactions Bar - Refined & Functional */}
+      {/* Interactions Bar */}
       <div className="flex items-center justify-between pt-5 border-t border-[#D8CEBE]/20">
-        <div className="flex items-center gap-5 md:gap-8">
-            {/* 1. Avatars first */}
-            <div className="flex -space-x-2 mr-2">
-                {[1, 2, 3].map((i) => (
+        <div className="flex items-center gap-4 md:gap-6">
+            {/* Reactor Avatars — people who liked */}
+            <div className="flex -space-x-2">
+                {reactors.map((src, i) => (
                     <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-[#D8CEBF] overflow-hidden shadow-sm">
-                        <img src={`https://i.pravatar.cc/100?img=${i + (post.id?.length || 10)}`} alt="User" className="w-full h-full object-cover" />
+                        <img src={src} alt="Liker" className="w-full h-full object-cover" />
                     </div>
                 ))}
             </div>
 
-            {/* 2. Love Button (functional) */}
-            <LikeButton initialLikes={post.post_reactions?.length || 162} />
+            {/* Like Button — green */}
+            <LikeButton initialLikes={post.post_reactions?.length || 0} />
 
-            {/* 3. Comment Button (functional) */}
-            <CommentButton initialComments={post.post_comments?.length || 37} />
+            {/* Comment Button — functional */}
+            <CommentButton initialComments={post.post_comments?.length || 0} postId={post.id} />
         </div>
 
         <button className="text-[#6E7A67]/40 hover:text-[#1D1914] transition-all group/share">
@@ -99,34 +108,81 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
   );
 }
 
+/* ── Like Button — green theme ─────────────────────────────── */
 function LikeButton({ initialLikes }: { initialLikes: number }) {
   const [likes, setLikes] = useState(initialLikes);
   const [isLiked, setIsLiked] = useState(false);
 
   const toggleLike = () => {
-    setIsLiked(!isLiked);
+    setIsLiked(prev => !prev);
     setLikes(prev => isLiked ? prev - 1 : prev + 1);
   };
 
   return (
     <button 
       onClick={toggleLike}
-      className={`flex items-center gap-2 transition-all group/stat ${isLiked ? 'text-rose-500' : 'text-[#6E7A67]/60 hover:text-rose-500'}`}
+      className={`flex items-center gap-1.5 transition-all group/stat ${isLiked ? 'text-[#1DA756]' : 'text-[#6E7A67]/60 hover:text-[#1DA756]'}`}
     >
       <Heart 
-        size={20} 
-        className={`transition-all ${isLiked ? 'fill-rose-500 scale-110' : 'group-hover/stat:scale-110'}`} 
+        size={19} 
+        className={`transition-all duration-200 ${isLiked ? 'fill-[#1DA756] scale-110' : 'group-hover/stat:scale-110'}`} 
       />
-      <span className="text-[13px] font-bold tracking-tight">{likes}</span>
+      {likes > 0 && <span className="text-[13px] font-bold tracking-tight">{likes}</span>}
     </button>
   );
 }
 
-function CommentButton({ initialComments }: { initialComments: number }) {
+/* ── Comment Button — opens inline reply thread ─────────────── */
+function CommentButton({ initialComments, postId }: { initialComments: number; postId: string }) {
+  const [open, setOpen] = useState(false);
+  const [comment, setComment] = useState('');
+  const [comments, setComments] = useState<{ text: string; time: string }[]>([]);
+  const count = initialComments + comments.length;
+
+  const submit = () => {
+    if (!comment.trim()) return;
+    setComments(prev => [...prev, { text: comment.trim(), time: 'just now' }]);
+    setComment('');
+  };
+
   return (
-    <button className="flex items-center gap-2 text-[#6E7A67]/60 hover:text-[#1D1914] transition-all group/stat">
-      <MessageSquare size={20} className="group-hover/stat:scale-110 transition-all" />
-      <span className="text-[13px] font-bold tracking-tight">{initialComments}</span>
-    </button>
+    <div>
+      <button
+        onClick={() => setOpen(prev => !prev)}
+        className={`flex items-center gap-1.5 transition-all group/stat ${open ? 'text-[#1D1914]' : 'text-[#6E7A67]/60 hover:text-[#1D1914]'}`}
+      >
+        <MessageSquare size={19} className="group-hover/stat:scale-110 transition-all" />
+        {count > 0 && <span className="text-[13px] font-bold tracking-tight">{count}</span>}
+      </button>
+
+      {open && (
+        <div className="mt-4 border-t border-[#D8CEBE]/20 pt-4 space-y-3">
+          {comments.map((c, i) => (
+            <div key={i} className="flex gap-3 items-start">
+              <div className="w-7 h-7 rounded-full bg-[#6E7A67]/10 flex items-center justify-center text-[#6E7A67] text-[10px] font-bold shrink-0">U</div>
+              <div className="flex-1 bg-[#FDFCFB] rounded-2xl px-4 py-2.5 border border-[#D8CEBE]/20">
+                <p className="text-[14px] text-[#1D1914] font-medium">{c.text}</p>
+                <p className="text-[10px] text-[#6E7A67]/50 mt-1 font-medium">{c.time}</p>
+              </div>
+            </div>
+          ))}
+          <div className="flex gap-3 items-center">
+            <div className="w-7 h-7 rounded-full bg-[#1DA756]/10 flex items-center justify-center text-[#1DA756] text-[10px] font-bold shrink-0">Me</div>
+            <div className="flex-1 flex items-center gap-2 bg-[#FDFCFB] rounded-2xl px-4 py-2 border border-[#D8CEBE]/30 focus-within:border-[#6E7A67] transition-all">
+              <input
+                value={comment}
+                onChange={e => setComment(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && submit()}
+                placeholder="Write a reply..."
+                className="flex-1 bg-transparent text-[14px] text-[#1D1914] outline-none font-medium placeholder:text-[#6E7A67]/40"
+              />
+              <button onClick={submit} className="text-[#1DA756] hover:scale-110 transition-transform shrink-0">
+                <Send size={15} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

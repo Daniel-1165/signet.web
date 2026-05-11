@@ -115,37 +115,6 @@ export default async function DashboardPage() {
           </div>
         </section>
 
-        {/* Featured Insights & Wisdom Scroller */}
-        <section className="px-6 md:px-0">
-           <div className="flex items-end justify-between mb-8 border-b border-[#D8CEBE]/30 pb-4">
-             <div>
-                <h3 className="text-[28px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>Featured Insights</h3>
-                <p className="text-[14px] text-[#6E7A67]/60">Wisdom carefully curated for the intentional growth network.</p>
-             </div>
-             <div className="flex gap-2">
-                <div className="w-8 h-8 rounded-full border border-[#D8CEBE] flex items-center justify-center text-[#6E7A67] opacity-20"><ChevronLeft size={16} /></div>
-                <div className="w-8 h-8 rounded-full border border-[#D8CEBE] flex items-center justify-center text-[#6E7A67]"><ChevronRight size={16} /></div>
-             </div>
-           </div>
-           
-           <div className="flex gap-6 overflow-x-auto no-scrollbar pb-6 snap-x">
-              {[
-                { title: "Quiet Leadership", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600", tag: "Strategy" },
-                { title: "Intentional Focus", img: "https://images.unsplash.com/photo-1506485338023-6ce5f36692df?auto=format&fit=crop&q=80&w=600", tag: "Mindset" },
-                { title: "Mastery of Repetition", img: "https://images.unsplash.com/photo-1454165833772-d996d49513d7?auto=format&fit=crop&q=80&w=600", tag: "Discipline" },
-                { title: "The Power of Reflection", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600", tag: "Wisdom" }
-              ].map((card, i) => (
-                <div key={i} className="flex-none w-[280px] md:w-[350px] snap-start group cursor-pointer">
-                   <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 border border-[#D8CEBE]/30 shadow-sm relative">
-                      <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                      <div className="absolute top-4 left-4 px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-[9px] font-black uppercase text-white tracking-widest">{card.tag}</div>
-                   </div>
-                   <h4 className="text-[18px] md:text-[20px] font-bold text-[#1D1914] leading-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>{card.title}</h4>
-                   <p className="text-[12px] text-[#6E7A67]/60 mt-1 font-medium">Click to expand insight • 5 min read</p>
-                </div>
-              ))}
-           </div>
-        </section>
 
         {/* Philosophical Foundations */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-0">

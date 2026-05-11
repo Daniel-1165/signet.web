@@ -2,7 +2,7 @@
 
 import { PostCard } from "./PostCard";
 import { CreatePost } from "./CreatePost";
-import { Search, Bell, Calendar, Plus, Sparkles, TrendingUp, Clock } from "lucide-react";
+import { Search, Bell, Calendar, Sparkles, TrendingUp, Clock } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -139,9 +139,9 @@ export default function CommunityHubPage() {
                             <p className="text-[#6E7A67]/60 text-[12px] font-medium">{mentor.role}</p>
                          </div>
                       </div>
-                      <button className="w-8 h-8 rounded-full bg-[#D8CEBF]/20 text-[#6E7A67] flex items-center justify-center hover:bg-[#6E7A67] hover:text-white transition-all">
-                         <Plus size={16} />
-                      </button>
+                       <button className="w-8 h-8 rounded-full bg-[#D8CEBF]/20 text-[#6E7A67] flex items-center justify-center hover:bg-[#6E7A67]/10 transition-all text-xs font-bold">
+                          ›
+                       </button>
                    </div>
                  ))}
               </div>
@@ -190,12 +190,7 @@ export default function CommunityHubPage() {
         </aside>
       </div>
 
-      <button 
-        onClick={scrollToCreate}
-        className="fixed bottom-24 md:bottom-10 right-6 md:right-10 w-16 h-16 bg-[#1D1914] text-white rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 hover:-rotate-6 transition-all z-50 group"
-      >
-        <Plus className="w-8 h-8 group-hover:rotate-90 transition-transform" />
-      </button>
+
     </div>
   );
 }

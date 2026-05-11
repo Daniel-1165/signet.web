@@ -46,6 +46,7 @@ const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
   const isVisible = useScrollDirection();
+  const isDashboard = pathname.startsWith("/dashboard");
 
   const { user, isLoaded, isSignedIn } = useUser();
   const supabase = useSupabaseClient();
@@ -111,8 +112,9 @@ const Navbar = () => {
     <>
 
       {/* ════════════════════════════════════════════════════════════
-          MOBILE TOP BAR  (visible on all screen sizes < md)
+          MOBILE TOP BAR  (hidden on dashboard pages — DashboardSidebar handles nav)
       ════════════════════════════════════════════════════════════ */}
+      {!isDashboard && (
       <header
         className={`md:hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-6 h-[69px] border-b border-black/5 bg-white/80 backdrop-blur-xl transition-transform duration-500 top-0 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
@@ -149,17 +151,19 @@ const Navbar = () => {
              </SignUpButton>
           )}
 
-          {/* Minimalist Hamburger */}
-          <button
-            id="mobile-menu-btn"
-            onClick={() => setIsSidebarOpen(true)}
-            aria-label="Open menu"
-            className="w-8 h-8 flex items-center justify-center text-[#0D120E]"
-          >
-            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M5 7h14M5 12h14M5 17h14" />
-            </svg>
-          </button>
+          {/* Hamburger — hidden on dashboard pages (DashboardSidebar handles nav there) */}
+          {!isDashboard && (
+            <button
+              id="mobile-menu-btn"
+              onClick={() => setIsSidebarOpen(true)}
+              aria-label="Open menu"
+              className="w-8 h-8 flex items-center justify-center text-[#0D120E]"
+            >
+              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M5 7h14M5 12h14M5 17h14" />
+              </svg>
+            </button>
+          )}
         </div>
       </header>
 
