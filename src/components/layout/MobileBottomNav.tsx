@@ -15,10 +15,11 @@ const mobileBottomNavItems = [
 ]
 
 // Page order for swipe navigation — left swipe goes forward, right swipe goes back
+// Order: Home -> Resources -> Community -> About Us -> Exercises
 const SWIPE_PAGE_ORDER = [
   '/dashboard',
-  '/dashboard/community',
   '/resources',
+  '/dashboard/community',
   '/features',
   '/dashboard/exercises',
 ]

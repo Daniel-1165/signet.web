@@ -15,7 +15,7 @@ export default function Home() {
           Silent Growth Network
         </p>
         <h1
-          className="text-[26px] sm:text-[38px] md:text-[52px] font-bold leading-[1.1] tracking-tight text-[#1D1914] mb-4 max-w-3xl"
+          className="text-[26px] sm:text-[38px] md:text-[52px] font-bold leading-[1.1] tracking-tight text-[#1D1914] mb-4 max-w-3xl break-words"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
           The platform for{" "}

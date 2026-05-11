@@ -103,7 +103,7 @@ export default async function DashboardPage() {
                  Silent Growth Network
                </span>
             </div>
-            <h2 className="text-[22px] sm:text-[28px] md:text-7xl font-bold text-white leading-[1.2] tracking-tight mb-6 md:mb-8 max-w-full md:max-w-4xl px-2 md:px-0" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h2 className="text-[24px] sm:text-[32px] md:text-7xl font-bold text-white leading-[1.2] tracking-tight mb-6 md:mb-8 max-w-full md:max-w-4xl px-2 md:px-0 break-words" style={{ fontFamily: "'Playfair Display', serif" }}>
               Become Intentional<br className="md:hidden" /> about{" "}
               <span className="italic font-normal text-[#D8CEBF]">Growth</span>
               <br className="hidden md:block" /> and Development.

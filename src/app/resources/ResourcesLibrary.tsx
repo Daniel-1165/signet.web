@@ -134,10 +134,10 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                      <div className="w-14 md:w-16 h-20 md:h-24 shrink-0 shadow-md rounded overflow-hidden">
                        <img src={book.mainImageUrl || "/placeholder-avatar.png"} className="w-full h-full bg-emerald-800 object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
                      </div>
-                     <div>
-                       <h3 className="text-[16px] font-bold text-[#005746] line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{book.title}</h3>
-                       <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-0.5 mb-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{book.tag || "Signet Author"}</p>
-                       <p className="text-[12px] text-[#3e4945] line-clamp-2" style={{ fontFamily: "'Inter', sans-serif" }}>{book.description || "In-depth strategies for cognitive persistence and continuous intentional growth."}</p>
+                     <div className="min-w-0 flex-1">
+                       <h3 className="text-[15px] md:text-[16px] font-bold text-[#005746] line-clamp-2 leading-snug" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{book.title}</h3>
+                       <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-0.5 mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{book.tag || "Signet Author"}</p>
+                       <p className="text-[12px] text-[#3e4945] line-clamp-2 opacity-70" style={{ fontFamily: "'Inter', sans-serif" }}>{book.description || "In-depth strategies for cognitive persistence and continuous intentional growth."}</p>
                      </div>
                   </a>
                 ))}
