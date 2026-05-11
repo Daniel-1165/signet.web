@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
-import MobileTopHeader from "@/components/layout/MobileTopHeader";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

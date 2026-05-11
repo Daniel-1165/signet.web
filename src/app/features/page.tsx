@@ -55,14 +55,30 @@ export default function FeaturesPage() {
                         <p>At SIGNET, we believe that the most significant transformations happen when the world is quiet. Our "Silent Growth" philosophy isn't about isolation; it's about intentional focus. In an era of constant noise and performative achievement, we provide a sanctuary for depth.</p>
                         <p>We measure impact by depth, not decibels. Our network was founded on the principle that true leadership and emotional intelligence are forged in quiet spaces—through rigorous self-reflection and organic mentorship that values substance over status.</p>
                     </div>
+                    
+                    {/* Vision & Mission Statements */}
+                    <div className="grid sm:grid-cols-2 gap-12 pt-10 border-t border-[#D8CEBE]/40">
+                        <div className="space-y-4">
+                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1D1914]">Our Vision</h4>
+                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                To build a global network of trailblazers who <span className="italic text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
+                            </p>
+                        </div>
+                        <div className="space-y-4">
+                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1D1914]">Our Mission</h4>
+                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="relative group">
                     <div className="bg-white rounded-[3rem] p-4 shadow-2xl border border-[#D8CEBE]/30 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-700">
                         <img 
-                            src="/mission-leap.png" 
-                            alt="Course Curriculum Illustration" 
-                            className="w-full h-auto rounded-[2.5rem]"
+                            src="/signet-textured-logo.png" 
+                            alt="SIGNET Brand Texture" 
+                            className="w-full h-auto rounded-[2.5rem] object-cover aspect-square"
                         />
                     </div>
                     <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#6E7A67]/10 rounded-full blur-3xl -z-10" />

@@ -98,65 +98,48 @@ export default async function DashboardPage() {
             <div className="flex items-center gap-3 mb-6">
                <div className="w-10 h-[1px] bg-[#D8CEBF]" />
                <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]" style={{ fontFamily: "'Inter', sans-serif" }}>
-                 The Silent Collective
+                 Silent Growth Network
                </span>
             </div>
-            <h2 className="text-[44px] md:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Elevate through <br /> <span className="italic font-normal text-[#D8CEBF]">intentional</span> silence.
+            <h2 className="text-[38px] md:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
+              Become Intentional <br /> about <span className="italic font-normal text-[#D8CEBF]">Growth</span> and Development.
             </h2>
-            <Link href="#" className="flex items-center gap-3 group/btn text-white w-fit">
-               <span className="text-sm font-bold tracking-widest uppercase border-b border-white pb-1 group-hover/btn:pr-2 transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>Read the Manifesto</span>
+            <Link href="/dashboard/community" className="flex items-center gap-3 group/btn text-white w-fit">
+               <span className="text-sm font-bold tracking-widest uppercase border-b border-white pb-1 group-hover/btn:pr-2 transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>Join community</span>
                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
             </Link>
           </div>
         </section>
 
-        {/* Core Daily Focus */}
+        {/* Featured Insights & Wisdom Scroller */}
         <section className="px-6 md:px-0">
            <div className="flex items-end justify-between mb-8 border-b border-[#D8CEBE]/30 pb-4">
              <div>
-                <h3 className="text-[28px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>Daily Discipline</h3>
-                <p className="text-[14px] text-[#6E7A67]/60">Your current trajectory and focus areas.</p>
+                <h3 className="text-[28px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>Featured Insights</h3>
+                <p className="text-[14px] text-[#6E7A67]/60">Wisdom carefully curated for the intentional growth network.</p>
              </div>
-             <button className="text-[11px] font-bold text-[#6E7A67] hover:text-[#1D1914] uppercase tracking-widest flex items-center gap-2 group transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>
-               Full Progress History <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-             </button>
+             <div className="flex gap-2">
+                <div className="w-8 h-8 rounded-full border border-[#D8CEBE] flex items-center justify-center text-[#6E7A67] opacity-20"><ChevronLeft size={16} /></div>
+                <div className="w-8 h-8 rounded-full border border-[#D8CEBE] flex items-center justify-center text-[#6E7A67]"><ChevronRight size={16} /></div>
+             </div>
            </div>
            
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-[2rem] p-8 shadow-[0_15px_40px_rgba(0,0,0,0.03)] border border-[#D8CEBE]/30 relative overflow-hidden group hover:border-[#6E7A67]/30 transition-all">
-                 <div className="flex items-center justify-between mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-[#6E7A67]/5 flex items-center justify-center text-[#6E7A67]">
-                       <Sun className="w-6 h-6" />
-                    </div>
-                    <span className="text-[11px] font-bold text-[#D8CEBF] uppercase tracking-widest" style={{ fontFamily: "'Inter', sans-serif" }}>Phase 01</span>
-                 </div>
-                 <h4 className="text-[22px] font-bold text-[#1D1914] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Morning Solitude</h4>
-                 <div className="w-full bg-[#FDFCFB] rounded-full h-1.5 mb-2 overflow-hidden border border-[#D8CEBE]/20">
-                    <div className="bg-[#6E7A67] h-full rounded-full transition-all duration-1000" style={{ width: '65%' }} />
-                 </div>
-                 <div className="flex justify-between items-center mt-3">
-                   <p className="text-[12px] text-[#6E7A67] font-medium">65% Completed</p>
-                   <p className="text-[12px] text-[#D8CEBF] italic">15 mins to go</p>
-                 </div>
-              </div>
-
-              <div className="bg-[#1D1914] rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group border border-white/5">
-                 <Moon className="absolute -bottom-10 -right-10 w-40 h-40 text-white/5" />
-                 <div className="flex items-center justify-between mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#D8CEBF]">
-                       <Moon className="w-6 h-6" />
-                    </div>
-                 </div>
-                 <h4 className="text-[22px] font-bold text-white mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Evening Synthesis</h4>
-                 <p className="text-[14px] text-[#D8CEBF]/60 leading-relaxed mb-6">Capture the day&apos;s essence and prepare your mind for REST.</p>
-                 <button className="px-6 py-2.5 rounded-full bg-white text-[#1D1914] font-bold text-[12px] uppercase tracking-widest hover:bg-[#D8CEBF] transition-colors">Start Session</button>
-              </div>
-
-              <div className="bg-[#D8CEBF]/10 rounded-[2rem] p-8 border border-[#D8CEBE]/40 flex flex-col justify-center items-center text-center">
-                 <Sparkles className="w-10 h-10 text-[#6E7A67] mb-4 opacity-40" />
-                 <p className="text-[15px] text-[#1D1914] font-medium leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>&ldquo;Mastery is the byproduct of relentless, quiet repetition.&rdquo;</p>
-              </div>
+           <div className="flex gap-6 overflow-x-auto no-scrollbar pb-6 snap-x">
+              {[
+                { title: "Quiet Leadership", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600", tag: "Strategy" },
+                { title: "Intentional Focus", img: "https://images.unsplash.com/photo-1506485338023-6ce5f36692df?auto=format&fit=crop&q=80&w=600", tag: "Mindset" },
+                { title: "Mastery of Repetition", img: "https://images.unsplash.com/photo-1454165833772-d996d49513d7?auto=format&fit=crop&q=80&w=600", tag: "Discipline" },
+                { title: "The Power of Reflection", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600", tag: "Wisdom" }
+              ].map((card, i) => (
+                <div key={i} className="flex-none w-[280px] md:w-[350px] snap-start group cursor-pointer">
+                   <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 border border-[#D8CEBE]/30 shadow-sm relative">
+                      <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute top-4 left-4 px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-[9px] font-black uppercase text-white tracking-widest">{card.tag}</div>
+                   </div>
+                   <h4 className="text-[18px] md:text-[20px] font-bold text-[#1D1914] leading-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>{card.title}</h4>
+                   <p className="text-[12px] text-[#6E7A67]/60 mt-1 font-medium">Click to expand insight • 5 min read</p>
+                </div>
+              ))}
            </div>
         </section>
 
@@ -165,24 +148,16 @@ export default async function DashboardPage() {
           <div className="bg-white rounded-[2.5rem] p-12 border border-[#D8CEBE]/30 hover:shadow-2xl transition-all duration-500 group relative">
             <Eye className="absolute top-12 right-12 w-6 h-6 text-[#6E7A67]/20" />
             <h3 className="text-[12px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-6">The Vision</h3>
-            <p className="text-[32px] md:text-[40px] font-bold text-[#1D1914] leading-[1.2] tracking-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
-              A world where impact exceeds volume.
-            </p>
-            <p className="mt-8 text-[16px] text-[#6E7A67] leading-relaxed max-w-md">
-              Becoming the trusted ecosystem for high-performers seeking intentionality in a loud world.
+            <p className="text-[28px] md:text-[34px] font-bold text-[#1D1914] leading-[1.2] tracking-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
+              To build a global network of trailblazers who <span className="italic font-normal text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
             </p>
           </div>
 
           <div className="bg-[#6E7A67]/5 rounded-[2.5rem] p-12 border border-[#6E7A67]/10 flex flex-col justify-center">
             <h3 className="text-[12px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-6">The Mission</h3>
             <p className="text-[20px] md:text-[24px] font-medium text-[#1D1914] leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
-              To equip silent architects with the psychological infrastructure needed to build legacies of substance over status.
+              Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
             </p>
-            <div className="mt-10 flex gap-4">
-               <div className="w-2 h-2 rounded-full bg-[#6E7A67]" />
-               <div className="w-2 h-2 rounded-full bg-[#D8CEBF]" />
-               <div className="w-2 h-2 rounded-full bg-[#1D1914]" />
-            </div>
           </div>
         </div>
 
