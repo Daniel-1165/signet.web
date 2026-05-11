@@ -18,7 +18,7 @@ const desktopNavItems = [
   { name: "Resources", href: "/resources", icon: FolderOpen },
   { name: "Community", href: "/dashboard/community", icon: Users },
   { name: "EQ Test", href: "/eq-test", icon: Brain },
-  { name: "IQ Assessment", href: "/iq-test", icon: Lightbulb },
+  { name: "IQ Test", href: "/iq-test", icon: Lightbulb },
   { name: "Vision Guide", href: "/vision-guide", icon: Target },
   { name: "Certificates", href: "/certificates", icon: Award },
 ];

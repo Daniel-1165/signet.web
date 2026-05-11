@@ -33,7 +33,7 @@ const sidebarLinks = [
   { label: "Community", href: "/dashboard/community", icon: Users },
   { label: "Contact", href: "/contact", icon: MessageCircle },
   { label: "EQ Test", href: "/eq-test", icon: Brain },
-  { label: "IQ Assessment", href: "/iq-test", icon: Lightbulb },
+  { label: "IQ Test", href: "/iq-test", icon: Lightbulb },
   { label: "Vision Guide", href: "/vision-guide", icon: Target },
   { label: "Certificates", href: "/certificates", icon: Award },
 ];

@@ -83,8 +83,8 @@ export default async function ExercisesPage() {
         {/* Action Cards Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            {[
-             { title: "EQ Calibration", duration: "20 Mins", icon: Heart, count: "01", desc: "Develop nuanced emotional resonance through depth-scenarios.", href: "/eq-test" },
-             { title: "Logic Synthesis", duration: "45 Mins", icon: Target, count: "02", desc: "Test your cognitive adaptability within high-complexity systems.", href: "/iq-test" },
+             { title: "EQ Test", duration: "20 Mins", icon: Heart, count: "01", desc: "Develop nuanced emotional resonance through depth-scenarios.", href: "/eq-test" },
+             { title: "IQ Test", duration: "45 Mins", icon: Target, count: "02", desc: "Test your cognitive adaptability within high-complexity systems.", href: "/iq-test" },
              { title: "Vision Blueprint", duration: "Guided", icon: Eye, count: "03", desc: "Align your daily architectural actions with your legacy outcomes.", href: "/vision-guide" }
            ].map((test, i) => (
              <div key={i} className="bg-white rounded-[2.5rem] p-10 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:border-[#6E7A67]/30 transition-all duration-700 flex flex-col group">
@@ -117,75 +117,7 @@ export default async function ExercisesPage() {
            ))}
         </div>
 
-        {/* Ecosystem Visualizer */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-           <div className="md:col-span-3 bg-[#1D1914] rounded-[3rem] p-16 shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-[500px] h-full bg-[#6E7A67]/10 blur-[100px]" />
-              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
-                 <div className="max-w-md">
-                    <h3 className="text-[36px] font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>The <span className="italic font-normal text-[#D8CEBF]">Ecosystem</span> Canvas.</h3>
-                    <p className="text-[#D8CEBF]/60 text-[16px] leading-relaxed mb-10">
-                       A higher-fidelity view of the interconnected professional domains that constitute your organic growth trajectory.
-                    </p>
-                    <div className="grid grid-cols-2 gap-4">
-                       {['Resilience', 'Empathy', 'Logic', 'Vision'].map(tag => (
-                          <div key={tag} className="px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-all cursor-default">
-                             <span className="text-[10px] font-bold tracking-[0.2em] text-[#D8CEBF] uppercase">{tag}</span>
-                          </div>
-                       ))}
-                    </div>
-                 </div>
-                 <div className="relative w-72 h-72 hidden md:block">
-                    <div className="absolute inset-0 rounded-full border border-white/10 animate-spin-slow" />
-                    <div className="absolute inset-4 rounded-full border border-[#6E7A67]/30" />
-                    <div className="absolute inset-10 rounded-full border border-[#D8CEBF]/20" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                       <Sparkles className="w-12 h-12 text-[#D8CEBF] animate-pulse" />
-                    </div>
-                 </div>
-              </div>
-           </div>
 
-           <div className="bg-white rounded-[3rem] p-12 border border-[#D8CEBE]/40 flex flex-col items-center justify-center text-center shadow-[0_15px_40px_rgba(0,0,0,0.02)]">
-              <div className="w-16 h-16 rounded-2xl bg-[#6E7A67]/5 flex items-center justify-center text-[#6E7A67] mb-8">
-                 <BrainCircuit size={32} />
-              </div>
-              <p className="text-[18px] text-[#1D1914] font-medium italic leading-relaxed" style={{ fontFamily: "'Playfair Display', serif" }}>
-                 &ldquo;Silence is the fertile soil where true focus takes root and flourishes.&rdquo;
-              </p>
-           </div>
-        </div>
-
-        {/* Progress Footer */}
-        <div className="bg-white rounded-[2.5rem] p-12 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)]">
-           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-12">
-              <div className="max-w-lg">
-                 <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-[#6E7A67] mb-4">Curated Path</h3>
-                 <p className="text-[24px] font-bold text-[#1D1914] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-                    Your evolution is <span className="italic font-normal text-[#6E7A67]">62% calibrated</span> this period.
-                 </p>
-              </div>
-              <div className="text-right">
-                 <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#D8CEBF] mb-2 block">Next Milestone</span>
-                 <p className="text-[14px] font-bold text-[#1D1914]">The Observer Protocol</p>
-              </div>
-           </div>
-
-           <div className="w-full h-1 bg-[#D8CEBF]/20 rounded-full mb-10 overflow-hidden">
-              <div className="h-full bg-[#6E7A67] w-[62%] rounded-full shadow-[0_0_15px_rgba(110,122,103,0.5)]" />
-           </div>
-
-           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-              <div className="flex gap-4">
-                 {['E', 'L', 'V', 'S'].map(letter => (
-                   <div key={letter} className="w-10 h-10 rounded-xl bg-[#6E7A67]/5 border border-[#6E7A67]/10 flex items-center justify-center text-[#6E7A67] font-bold text-[12px] hover:bg-[#1D1914] hover:text-white transition-all cursor-default">{letter}</div>
-                 ))}
-              </div>
-              <button className="flex items-center gap-3 px-8 py-3 rounded-xl bg-[#1D1914] text-white text-[12px] font-bold uppercase tracking-widest hover:bg-[#6E7A67] transition-all">
-                 Review Full Roadmap <ArrowRight size={14} />
-              </button>
-           </div>
-        </div>
       </main>
     </div>
   );
