@@ -91,6 +91,22 @@ export const GET_CERTIFICATES = `
   }
 `
 
+export const GET_CAROUSEL_SLIDES = `
+  *[_type == "carouselSlide"] | order(order asc, _createdAt asc) {
+    _id,
+    image {
+      asset-> {
+        _id,
+        url
+      },
+      hotspot,
+    },
+    caption,
+    link,
+    order,
+  }
+`
+
 export const GET_ALL_RESOURCES = `
   *[_type == "resourceCard"] | order(_createdAt desc) {
     _id,
