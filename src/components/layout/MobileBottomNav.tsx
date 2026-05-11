@@ -17,27 +17,28 @@ export default function MobileBottomNav() {
   const pathname = usePathname()
   const isVisible = useScrollDirection()
   
-  // Don't show if we are in some specific routes if needed, 
-  // but for now we show it everywhere as requested "unify navigation"
-  
   return (
-    <div className={`md:hidden fixed bottom-0 left-0 right-0 bg-[#1D1914] border-t border-white/5 z-[60] pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(0,0,0,0.3)] transition-transform duration-500 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
-         <div className="flex items-center justify-around px-1 h-14">
+    <div className={`md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-black/[0.03] z-[60] pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(0,0,0,0.04)] transition-transform duration-500 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
+         <div className="flex items-center justify-between px-2 h-16">
             {mobileBottomNavItems.map((item) => {
               const isActive = pathname === item.href
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="flex flex-col items-center justify-center flex-1 h-full gap-1 group relative"
+                  className="flex flex-col items-center justify-center w-1/5 h-full pt-1.5 gap-1 group relative"
                 >
-                  <div className={`p-1.5 rounded-lg transition-all duration-300 ${isActive ? 'bg-white/10' : 'bg-transparent'}`}>
-                    <item.icon size={18} className={`transition-all duration-300 ${isActive ? 'text-[#8EB69B] scale-110' : 'text-white/30 group-hover:text-white/60'}`} />
+                  <div className={`p-1.5 rounded-xl transition-all duration-300 ${isActive ? 'bg-[#8EB69B]/10' : 'bg-transparent'}`}>
+                    <item.icon 
+                      size={18} 
+                      className={`transition-all duration-300 ${isActive ? 'text-[#8EB69B] fill-[#8EB69B]' : 'text-[#1D1914]'}`} 
+                      strokeWidth={isActive ? 2.5 : 1.5}
+                    />
                   </div>
-                  <span className={`text-[8px] uppercase tracking-[0.15em] font-extrabold transition-colors ${isActive ? 'text-[#8EB69B]' : 'text-white/20'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <span className={`text-[7px] uppercase tracking-[0.14em] font-extrabold transition-colors ${isActive ? 'text-[#8EB69B]' : 'text-[#1D1914]/40'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
                     {item.name}
                   </span>
-                  {isActive && <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-6 h-[2px] bg-[#8EB69B] rounded-full" />}
+                  {isActive && <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-[#8EB69B] rounded-full shadow-[0_1px_4px_rgba(142,182,155,0.4)]" />}
                 </Link>
               )
             })}
