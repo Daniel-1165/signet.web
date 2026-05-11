@@ -56,8 +56,7 @@ export default function Sidebar() {
 
 
       {/* ── DESKTOP MODERN SIDEBAR ── */}
-      {!isLandingPage && (
-        <motion.aside
+      <motion.aside
           initial={false}
           onMouseEnter={() => setIsExpanded(true)}
           onMouseLeave={() => setIsExpanded(false)}
@@ -174,7 +173,6 @@ export default function Sidebar() {
           </div>
         </div>
       </motion.aside>
-    )}
     </>
   );
 }

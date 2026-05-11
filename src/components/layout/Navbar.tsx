@@ -292,20 +292,8 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Links - Minimal & Centered */}
+          {/* Links - Removed to focus on Sidebar */}
           <div className="flex items-center gap-10">
-            {navLinks.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`relative group py-2 text-[11px] font-black tracking-[0.2em] uppercase transition-all ${
-                  isLightText && !isScrolled ? "text-white/80 hover:text-white" : "text-[#0D120E]/60 hover:text-[#0D120E]"
-                }`}
-              >
-                {item.label}
-                <span className={`absolute bottom-0 left-0 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full ${isLightText && !isScrolled ? "bg-white" : "bg-[#1DA756]"}`} />
-              </Link>
-            ))}
           </div>
 
           {/* Auth CTA & Hamburger - Pill Style */}
