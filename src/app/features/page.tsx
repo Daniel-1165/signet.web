@@ -7,7 +7,7 @@ import Testimonials from "@/components/sections/Testimonials";
 import Link from "next/link";
 import { sanityFetch } from "@/lib/sanity/client";
 import { GET_PAGE_BY_SLUG } from "@/lib/sanity/queries";
-import { PortableText } from "@portabletext/react";
+import { PortableText } from "next-sanity";
 
 export default async function FeaturesPage() {
   const pageData = await sanityFetch({
