@@ -87,19 +87,19 @@ export default function MobileBottomNav() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="flex flex-col items-center justify-center w-1/5 h-full pt-1.5 gap-1 group relative"
+                className="flex flex-col items-center justify-center w-1/5 h-full pt-1 gap-1.5 group relative px-0.5"
               >
-                <div className={`p-1.5 rounded-xl transition-all duration-300 ${isActive ? 'bg-[#8EB69B]/10' : 'bg-transparent'}`}>
+                <div className={`p-1 rounded-xl transition-all duration-300 ${isActive ? 'bg-[#8EB69B]/10' : 'bg-transparent'}`}>
                   <item.icon 
-                    size={18} 
+                    size={19} 
                     className={`transition-all duration-300 ${isActive ? 'text-[#8EB69B] fill-[#8EB69B]' : 'text-[#1D1914]'}`} 
                     strokeWidth={isActive ? 2.5 : 1.5}
                   />
                 </div>
-                <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.08em] font-black transition-colors ${isActive ? 'text-[#8EB69B]' : 'text-[#1D1914]/30'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
+                <span className={`text-[7px] uppercase tracking-normal font-black transition-colors ${isActive ? 'text-[#8EB69B]' : 'text-[#1D1914]/25'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
                   {item.name}
                 </span>
-                {isActive && <div className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-[2px] bg-[#8EB69B] rounded-full" />}
+                {isActive && <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-[1.5px] bg-[#8EB69B] rounded-full" />}
               </Link>
             )
           })}
