@@ -34,7 +34,7 @@ export default function DashboardSidebar() {
   if (!isDashboard) return null
 
   return (
-    <div className={`w-80 h-screen bg-[#FDFCFB] border-r border-[#D8CEBE]/40 flex flex-col fixed md:sticky left-0 top-0 z-[70] md:z-50 transition-all duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
+    <div className={`w-80 h-screen bg-[#FDFCFB] border-r border-[#D8CEBE]/40 flex flex-col fixed md:sticky left-0 top-0 z-[70] md:z-50 transition-all duration-300 ${isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full md:translate-x-0 pointer-events-none md:pointer-events-auto"}`}>
       
       <div className="py-12 px-10">
         <Link href="/" className="group flex items-center gap-3 relative transition-all">

@@ -13,14 +13,12 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
 
   const isResourcePost = post.content?.includes("PDF") || post.content?.includes("Resource");
 
-  // Use actual reactors if available, else fallback to pravatar placeholders
-  const reactors: string[] = post.post_reactions?.slice(0, 3).map((r: any) =>
-    r.profiles?.image_url || `https://i.pravatar.cc/100?img=${r.user_id?.charCodeAt(0) || 10}`
-  ) || [
-    `https://i.pravatar.cc/100?img=${(post.id?.charCodeAt?.(0) || 10) + 1}`,
-    `https://i.pravatar.cc/100?img=${(post.id?.charCodeAt?.(0) || 10) + 2}`,
-    `https://i.pravatar.cc/100?img=${(post.id?.charCodeAt?.(0) || 10) + 3}`,
-  ];
+  // Seed reactor avatars from existing reactions (real likers)
+  const seedReactors: string[] = (post.post_reactions ?? []).slice(0, 5).map(
+    (r: any) => r.profiles?.image_url || `https://i.pravatar.cc/100?img=${(r.user_id?.charCodeAt?.(0) ?? 10) % 70 + 1}`
+  );
+  const [reactorAvatars, setReactorAvatars] = useState<string[]>(seedReactors);
+  const currentUserAvatar = user?.imageUrl ?? null;
 
   return (
     <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30 hover:border-[#6E7A67]/30 transition-all group">
@@ -84,17 +82,22 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
       {/* Interactions Bar */}
       <div className="flex items-center justify-between pt-5 border-t border-[#D8CEBE]/20">
         <div className="flex items-center gap-4 md:gap-6">
-            {/* Reactor Avatars — people who liked */}
+            {/* Reactor Avatars — updates live when user likes */}
             <div className="flex -space-x-2">
-                {reactors.map((src, i) => (
+                {reactorAvatars.slice(0, 5).map((src, i) => (
                     <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-[#D8CEBF] overflow-hidden shadow-sm">
                         <img src={src} alt="Liker" className="w-full h-full object-cover" />
                     </div>
                 ))}
             </div>
 
-            {/* Like Button — green */}
-            <LikeButton initialLikes={post.post_reactions?.length || 0} />
+            {/* Like Button — green, updates avatar list */}
+            <LikeButton
+              initialLikes={post.post_reactions?.length || 0}
+              currentUserAvatar={currentUserAvatar}
+              reactorAvatars={reactorAvatars}
+              onLikeChange={(_, updated) => setReactorAvatars(updated)}
+            />
 
             {/* Comment Button — functional */}
             <CommentButton initialComments={post.post_comments?.length || 0} postId={post.id} />
@@ -108,24 +111,44 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
   );
 }
 
-/* ── Like Button — green theme ─────────────────────────────── */
-function LikeButton({ initialLikes }: { initialLikes: number }) {
+/* ── Like Button — green theme with avatar tracking ──────────── */
+function LikeButton({
+  initialLikes,
+  currentUserAvatar,
+  reactorAvatars,
+  onLikeChange,
+}: {
+  initialLikes: number;
+  currentUserAvatar: string | null;
+  reactorAvatars: string[];
+  onLikeChange: (liked: boolean, avatars: string[]) => void;
+}) {
   const [likes, setLikes] = useState(initialLikes);
   const [isLiked, setIsLiked] = useState(false);
 
   const toggleLike = () => {
-    setIsLiked(prev => !prev);
-    setLikes(prev => isLiked ? prev - 1 : prev + 1);
+    const nowLiked = !isLiked;
+    setIsLiked(nowLiked);
+    setLikes(prev => nowLiked ? prev + 1 : prev - 1);
+
+    // Add or remove the current user's avatar from reactors
+    let updated = [...reactorAvatars];
+    if (nowLiked && currentUserAvatar && !updated.includes(currentUserAvatar)) {
+      updated = [currentUserAvatar, ...updated].slice(0, 5);
+    } else if (!nowLiked && currentUserAvatar) {
+      updated = updated.filter(a => a !== currentUserAvatar);
+    }
+    onLikeChange(nowLiked, updated);
   };
 
   return (
-    <button 
+    <button
       onClick={toggleLike}
       className={`flex items-center gap-1.5 transition-all group/stat ${isLiked ? 'text-[#1DA756]' : 'text-[#6E7A67]/60 hover:text-[#1DA756]'}`}
     >
-      <Heart 
-        size={19} 
-        className={`transition-all duration-200 ${isLiked ? 'fill-[#1DA756] scale-110' : 'group-hover/stat:scale-110'}`} 
+      <Heart
+        size={19}
+        className={`transition-all duration-200 ${isLiked ? 'fill-[#1DA756] scale-110' : 'group-hover/stat:scale-110'}`}
       />
       {likes > 0 && <span className="text-[13px] font-bold tracking-tight">{likes}</span>}
     </button>

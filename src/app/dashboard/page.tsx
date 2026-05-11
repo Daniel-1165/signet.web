@@ -117,41 +117,41 @@ export default async function DashboardPage() {
 
 
         {/* Philosophical Foundations */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-0">
-          <div className="bg-white rounded-[2.5rem] p-12 border border-[#D8CEBE]/30 hover:shadow-2xl transition-all duration-500 group relative">
-            <Eye className="absolute top-12 right-12 w-6 h-6 text-[#6E7A67]/20" />
-            <h3 className="text-[12px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-6">The Vision</h3>
-            <p className="text-[28px] md:text-[34px] font-bold text-[#1D1914] leading-[1.2] tracking-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-[#D8CEBE]/30 hover:shadow-2xl transition-all duration-500 group relative">
+            <Eye className="absolute top-6 right-6 md:top-12 md:right-12 w-5 h-5 text-[#6E7A67]/20" />
+            <h3 className="text-[11px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-4">The Vision</h3>
+            <p className="text-[22px] md:text-[34px] font-bold text-[#1D1914] leading-[1.2] tracking-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
               To build a global network of trailblazers who <span className="italic font-normal text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
             </p>
           </div>
 
-          <div className="bg-[#6E7A67]/5 rounded-[2.5rem] p-12 border border-[#6E7A67]/10 flex flex-col justify-center">
-            <h3 className="text-[12px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-6">The Mission</h3>
-            <p className="text-[20px] md:text-[24px] font-medium text-[#1D1914] leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <div className="bg-[#6E7A67]/5 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-[#6E7A67]/10 flex flex-col justify-center">
+            <h3 className="text-[11px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-4">The Mission</h3>
+            <p className="text-[18px] md:text-[24px] font-medium text-[#1D1914] leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
               Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
             </p>
           </div>
         </div>
 
         {/* Growth Architecture */}
-        <div className="px-6 md:px-0 space-y-12">
-           <div className="text-center max-w-2xl mx-auto mb-16">
-              <h3 className="text-[32px] md:text-[44px] font-bold text-[#1D1914] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Growth Architecture</h3>
-              <p className="text-[16px] text-[#6E7A67]">The pillars of the Signet methodology.</p>
+        <div className="space-y-8">
+           <div className="text-center max-w-2xl mx-auto">
+              <h3 className="text-[26px] md:text-[44px] font-bold text-[#1D1914] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Growth Architecture</h3>
+              <p className="text-[14px] md:text-[16px] text-[#6E7A67]">The pillars of the Signet methodology.</p>
            </div>
            
-           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {[
                 { title: "Emotional Intelligence", icon: Heart, label: "01" },
                 { title: "Self-Awareness", icon: Target, label: "02" },
                 { title: "Resilience", icon: TrendingUp, label: "03" },
                 { title: "Systems Thinking", icon: ListOrdered, label: "04" }
               ].map((pillar, i) => (
-                <div key={i} className="group bg-white rounded-3xl p-10 text-left hover:bg-[#1D1914] transition-all duration-500 border border-[#D8CEBE]/30 flex flex-col min-h-[220px]">
-                   <span className="text-[11px] font-bold text-[#D8CEBF] group-hover:text-white/40 transition-colors mb-auto tracking-widest">{pillar.label}</span>
-                   <pillar.icon className="w-8 h-8 text-[#6E7A67] mb-6 group-hover:text-white transition-colors" />
-                   <h4 className="text-[18px] font-bold text-[#1D1914] group-hover:text-white transition-colors leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{pillar.title}</h4>
+                <div key={i} className="group bg-white rounded-2xl md:rounded-3xl p-5 md:p-10 text-left hover:bg-[#1D1914] transition-all duration-500 border border-[#D8CEBE]/30 flex flex-col min-h-[160px] md:min-h-[220px]">
+                   <span className="text-[10px] font-bold text-[#D8CEBF] group-hover:text-white/40 transition-colors mb-auto tracking-widest">{pillar.label}</span>
+                   <pillar.icon className="w-6 h-6 md:w-8 md:h-8 text-[#6E7A67] mb-3 md:mb-6 group-hover:text-white transition-colors" />
+                   <h4 className="text-[14px] md:text-[18px] font-bold text-[#1D1914] group-hover:text-white transition-colors leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{pillar.title}</h4>
                 </div>
               ))}
            </div>
