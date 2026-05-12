@@ -87,7 +87,7 @@ export default async function ExercisesPage() {
              { title: "IQ Test", duration: "45 Mins", icon: Target, count: "02", desc: "Test your cognitive adaptability within high-complexity systems.", href: "/iq-test" },
              { title: "Vision Blueprint", duration: "Guided", icon: Eye, count: "03", desc: "Align your daily architectural actions with your legacy outcomes.", href: "/vision-guide" }
            ].map((test, i) => (
-             <div key={i} className="bg-white rounded-[2.5rem] p-10 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:border-[#6E7A67]/30 transition-all duration-700 flex flex-col group">
+             <div key={i} className="bg-white rounded-[2.5rem] p-7 md:p-10 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:border-[#6E7A67]/30 transition-all duration-700 flex flex-col group">
                 <div className="flex items-center justify-between mb-10">
                    <div className="w-14 h-14 rounded-2xl bg-[#6E7A67]/5 flex items-center justify-center text-[#6E7A67] group-hover:bg-[#1D1914] group-hover:text-white transition-all">
                       <test.icon size={24} />

@@ -4,22 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Home, Users, FolderOpen, LogOut,
-  Brain, Lightbulb, Target, Search, Award, Info,
-  ChevronRight,
+  Home, Users, FolderOpen, LogOut, Brain, Lightbulb, Target, Search, Award, Info, ChevronRight, CheckSquare,
 } from "lucide-react";
 import { useUser, SignOutButton } from "@clerk/nextjs";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { useState } from "react";
 
 const desktopNavItems = [
-  { name: "Dashboard", href: "/", icon: Home },
-  { name: "About Signet", href: "/features", icon: Info },
+  { name: "Home", href: "/", icon: Home },
   { name: "Resources", href: "/resources", icon: FolderOpen },
   { name: "Community", href: "/dashboard/community", icon: Users },
+  { name: "Exercises", href: "/dashboard/exercises", icon: CheckSquare },
+  { name: "Vision Guide", href: "/vision-guide", icon: Target },
   { name: "EQ Test", href: "/eq-test", icon: Brain },
   { name: "IQ Test", href: "/iq-test", icon: Lightbulb },
-  { name: "Vision Guide", href: "/vision-guide", icon: Target },
+  { name: "About Signet", href: "/features", icon: Info },
   { name: "Certificates", href: "/certificates", icon: Award },
 ];
 
@@ -36,11 +35,7 @@ export default function Sidebar() {
   const isVisible = useScrollDirection();
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const isLandingPage = pathname === "/" || pathname === "/features" || pathname === "/vision-guide";
-  const isDashboardPage = pathname.startsWith("/dashboard");
-
-  // Never render on dashboard pages — DashboardSidebar handles those
-  if (isDashboardPage) return null;
+  // Sidebar renders globally via LayoutWrapper
 
   return (
     <>

@@ -15,7 +15,7 @@ import { useState } from 'react'
 
 // Main Navigation Items (Desktop Sidebar)
 const navigationItems = [
-  { name: 'Home', icon: Home, href: '/dashboard' },
+  { name: 'Home', icon: Home, href: '/' },
   { name: 'Exercises', icon: CheckSquare, href: '/dashboard/exercises' },
   { name: 'Community', icon: Users, href: '/dashboard/community' },
   { name: 'Resources', icon: Library, href: '/resources' },
