@@ -73,7 +73,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: i * 0.1 }}
-                    className="flex-none w-[320px] md:w-[420px]"
+                    className="flex-none w-[290px] sm:w-[320px] md:w-[420px]"
                   >
                     <div className="h-full rounded-[2.5rem] border border-black/[0.05] bg-white p-8 md:p-10 flex flex-col gap-8 transition-all duration-500 hover:shadow-2xl hover:shadow-black/5 hover:-translate-y-2 relative overflow-hidden min-h-[350px]">
                       {/* Decorative Quote Mark - Hide if image card exists */}

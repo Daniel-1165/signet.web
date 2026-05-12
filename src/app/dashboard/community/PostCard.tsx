@@ -30,7 +30,7 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h4 className="font-bold text-[15px] md:text-[16px] text-[#1D1914] leading-tight" style={{ fontFamily: "'Inter', sans-serif" }}>{authorName}</h4>
+              <h4 className="font-bold text-[15px] md:text-[16px] text-[#1D1914] leading-tight break-words" style={{ fontFamily: "'Inter', sans-serif" }}>{authorName}</h4>
               <span className="hidden md:inline text-[#D8CEBE]">•</span>
               <span className="text-[11px] md:text-[12px] text-[#6E7A67]/60 font-medium">
                 {formatDistanceToNow(new Date(post.created_at))} ago

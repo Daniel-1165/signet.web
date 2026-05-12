@@ -39,7 +39,7 @@ export default function CommunityHubPage() {
   return (
     <div className="min-h-screen bg-[#FDFCFB] text-[#1D1914] pt-4 md:pt-8">
       {/* Editorial Header */}
-      <header className="flex flex-col md:flex-row md:items-end justify-between py-6 md:py-10 max-w-[1300px] mx-auto px-6 border-b border-[#D8CEBE]/40 mb-8 md:mb-12 gap-6 md:gap-0">
+      <header className="flex flex-col md:flex-row md:items-end justify-between py-6 md:py-10 max-w-[1300px] mx-auto px-5 md:px-6 border-b border-[#D8CEBE]/40 mb-8 md:mb-12 gap-6 md:gap-0">
         <div>
            <div className="flex items-center gap-2 text-[#6E7A67] mb-2">
              <Sparkles size={14} className="md:w-4 md:h-4" />

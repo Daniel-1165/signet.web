@@ -42,7 +42,7 @@ const ProcessStep = ({ step, i }: any) => {
             style={{ opacity, scale }}
             className="group relative flex flex-col pt-16 pb-16 md:pb-32"
         >
-            <div className="flex items-start gap-8">
+            <div className="flex items-start gap-4 md:gap-8">
                 <div className="flex flex-col items-center">
                     <div className="h-14 w-14 rounded-2xl bg-white border border-black/[0.04] flex items-center justify-center text-xl font-medium text-solar-gold shadow-sm shadow-black/5 relative z-10 transition-transform duration-500 group-hover:scale-110">
                         {step.num}
