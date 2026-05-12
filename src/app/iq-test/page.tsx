@@ -230,7 +230,7 @@ export default function IQTestPage() {
     if (view === "welcome") {
         return (
             <div className="min-h-screen relative overflow-hidden bg-gradient-to-tr from-[#F1F5F0] via-white to-[#F7F6F0] text-black font-sans flex flex-col items-center justify-start pt-28 md:pt-0 md:justify-center px-6">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/4 -translate-y-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
 
                 <div className="max-w-5xl mx-auto w-full relative z-10 flex flex-col items-center text-center">
@@ -271,7 +271,7 @@ export default function IQTestPage() {
     if (view === "results" && results) {
         return (
             <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-b from-[#F1F5F0] to-white text-black font-sans px-6 py-20">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/4 -translate-y-1/2"></div>
 
                 <div className="max-w-5xl mx-auto w-full">
                     <header className="mb-24 flex flex-col md:flex-row justify-between items-baseline border-b border-black/10 pb-8">

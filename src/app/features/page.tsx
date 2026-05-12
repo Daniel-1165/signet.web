@@ -140,7 +140,7 @@ export default async function FeaturesPage() {
 
         {/* ── ENROLLMENT & GAINS ────────────────────────────────────── */}
         <section className="bg-[#0B3D2E] text-white py-24 md:py-40 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-[600px] h-full bg-white/[0.03] blur-[120px] -rotate-12 translate-x-1/2" />
+            <div className="absolute top-0 right-0 w-full md:w-[600px] h-full bg-white/[0.03] blur-[120px] -rotate-12 translate-x-1/4" />
             
             <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-20 md:gap-32 items-start relative z-10">
                 <div className="space-y-16">

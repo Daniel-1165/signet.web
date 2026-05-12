@@ -79,7 +79,7 @@ export default function CommunityHubPage() {
         </div>
       </header>
 
-      <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
+      <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
         <div className="space-y-8 md:space-y-10">
           <div id="create-post-section">
             <CreatePost />
