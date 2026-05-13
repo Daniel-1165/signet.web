@@ -106,23 +106,27 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                
                <div className="flex flex-col justify-center">
                  <div className="flex justify-between items-start">
-                   <div>
-                     <h3 className="text-[18px] md:text-[22px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{books[0]?.title || 'The Silent Lead'}</h3>
-                     <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>By {books[0]?.tag || 'Elena Vance'}</p>
+                   <div className="min-w-0 flex-1 pr-4">
+                     <h3 className="text-[20px] md:text-[24px] font-extrabold text-[#005746] leading-tight" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                       {books[0]?.title}
+                     </h3>
+                     <p className="text-[11px] uppercase tracking-[0.2em] text-[#006b58] mt-2 font-bold" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                       By {books[0]?.tag || 'Signet Expert'}
+                     </p>
                    </div>
-                   <span className="bg-[#83fba5] text-[#005746] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shrink-0 shadow-sm whitespace-nowrap hidden sm:block">
-                     Book of the Month
+                   <span className="bg-[#83fba5] text-[#005746] text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shrink-0 shadow-sm whitespace-nowrap hidden sm:block">
+                     Latest Release
                    </span>
                  </div>
-                 <p className="text-[14px] text-[#3e4945] mt-4 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
-                    {books[0]?.description || 'A transformative guide on harnessing introversion as a strategic advantage in competitive leadership environments.'}
+                 <p className="text-[15px] text-[#3e4945] mt-6 leading-relaxed line-clamp-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+                    {books[0]?.description}
                  </p>
-                 <div className="flex items-center gap-3 mt-6">
-                    <button className="px-5 py-2 rounded-full bg-[#005746] text-white text-[14px] font-bold hover:bg-[#006d36] transition-colors">
-                      {books[0]?.fileUrl ? 'Download Now' : 'Read Summary'}
+                 <div className="flex items-center gap-4 mt-10">
+                    <button className="px-8 py-3 rounded-full bg-[#005746] text-white text-[14px] font-bold hover:bg-[#006d36] transition-all transform hover:scale-105 shadow-lg shadow-[#005746]/20">
+                      {books[0]?.fileUrl ? 'Open Resource' : 'Read Now'}
                     </button>
-                    <button onClick={(e) => { e.stopPropagation(); }} className="w-10 h-10 rounded-full border border-[#bec9c4] text-[#6e7975] flex items-center justify-center hover:bg-[#f2f4f5] transition-colors">
-                      <Bookmark size={18} />
+                    <button onClick={(e) => { e.stopPropagation(); }} className="w-12 h-12 rounded-full border border-[#bec9c4] text-[#6e7975] flex items-center justify-center hover:bg-[#f2f4f5] transition-all hover:scale-110">
+                      <Bookmark size={20} />
                     </button>
                  </div>
                </div>
