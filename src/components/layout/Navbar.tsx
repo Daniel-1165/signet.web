@@ -213,7 +213,7 @@ const Navbar = () => {
               </div>
 
               {/* Nav Links */}
-              <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+              <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto no-scrollbar">
                 {sidebarLinks.map((item) => (
                   <Link
                     key={item.label}
@@ -221,10 +221,23 @@ const Navbar = () => {
                     onClick={() => setIsSidebarOpen(false)}
                     className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#0D120E] hover:bg-black/[0.04] font-bold text-sm tracking-tight transition-all"
                   >
-                    <item.icon className="w-4 h-4 shrink-0 text-[#0B3D2E]" />
+                    <item.icon className="w-4 h-4 shrink-0 text-[#1DA756]" />
                     {item.label}
                   </Link>
                 ))}
+
+                {/* Upgrade CTA in Mobile Menu */}
+                <div className="mt-6 px-4 py-6 bg-[#1DA756]/5 rounded-[2rem] border border-[#1DA756]/10">
+                   <h4 className="text-[11px] font-black text-[#0D120E] mb-1 uppercase tracking-[0.1em]">Upgrade to Pro</h4>
+                   <p className="text-[10px] text-[#0D120E]/50 leading-relaxed mb-4 font-bold">Access exclusive mentorship and advanced growth modules.</p>
+                   <Link 
+                     href="/join"
+                     onClick={() => setIsSidebarOpen(false)}
+                     className="block w-full py-3 rounded-xl bg-[#1DA756] text-white text-center font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-[#1DA756]/20"
+                   >
+                     Upgrade Now
+                   </Link>
+                </div>
               </nav>
 
               {/* Panel Footer — auth actions */}

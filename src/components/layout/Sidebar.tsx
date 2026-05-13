@@ -4,13 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Home, Users, FolderOpen, LogOut, Brain, Lightbulb, Target, Search, Award, Info, ChevronRight, CheckSquare,
+  Home, Users, FolderOpen, LogOut, Brain, Lightbulb, Target, Award, Info, CheckSquare,
 } from "lucide-react";
 import { useUser, SignOutButton } from "@clerk/nextjs";
-import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { useState } from "react";
 
-const desktopNavItems = [
+const navItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Resources", href: "/resources", icon: FolderOpen },
   { name: "Community", href: "/dashboard/community", icon: Users },
@@ -22,35 +21,13 @@ const desktopNavItems = [
   { name: "Certificates", href: "/certificates", icon: Award },
 ];
 
-const mobileNavItems = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "Resources", href: "/resources", icon: FolderOpen },
-  { name: "Community", href: "/dashboard/community", icon: Users },
-  { name: "About", href: "/features", icon: Info },
-];
-
 export default function Sidebar() {
   const pathname = usePathname();
   const { user } = useUser();
-  const isVisible = useScrollDirection();
   const [isExpanded, setIsExpanded] = useState(false);
-
-  // Sidebar renders globally via LayoutWrapper
 
   return (
     <>
-      <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
-
-
-      {/* ── DESKTOP MODERN SIDEBAR ── */}
       <motion.aside
           initial={false}
           onMouseEnter={() => setIsExpanded(true)}
@@ -59,7 +36,7 @@ export default function Sidebar() {
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="hidden md:flex flex-col fixed top-0 left-0 z-[45] h-screen bg-white border-r border-[#0D120E]/5 py-8 overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
         >
-        {/* Brand/Logo - Only Text */}
+        {/* Brand/Logo */}
         <div className="px-6 mb-10 flex items-center h-12 overflow-hidden">
           <Link href="/" className="flex items-center gap-3">
             <img 
@@ -70,12 +47,10 @@ export default function Sidebar() {
           </Link>
         </div>
 
-        {/* Navigation - No Scrollbar */}
-        <nav className="flex-1 px-4 space-y-1.5 no-scrollbar overflow-y-auto">
-          {desktopNavItems.map((item) => {
-            const isActive =
-              pathname === item.href ||
-              (pathname.startsWith(item.href) && item.href !== "/");
+        {/* Navigation */}
+        <nav className="flex-1 px-4 space-y-1.5 overflow-y-auto no-scrollbar">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== "/");
 
             return (
               <Link
@@ -92,7 +67,6 @@ export default function Sidebar() {
                     isActive ? "stroke-[2.5px]" : "stroke-[1.8px]"
                   }`}
                 />
-                
                 <AnimatePresence initial={false}>
                   {isExpanded && (
                     <motion.span
@@ -105,12 +79,8 @@ export default function Sidebar() {
                     </motion.span>
                   )}
                 </AnimatePresence>
-
                 {isActive && !isExpanded && (
-                  <motion.div
-                    layoutId="active-dot"
-                    className="absolute right-0 w-1.5 h-1.5 bg-white rounded-full translate-x-3"
-                  />
+                  <motion.div layoutId="active-dot" className="absolute right-0 w-1.5 h-1.5 bg-white rounded-full translate-x-3" />
                 )}
               </Link>
             );
@@ -118,15 +88,15 @@ export default function Sidebar() {
         </nav>
 
         {/* Bottom Section */}
-        <div className="mt-auto pt-6 border-t border-[#0D120E]/5 px-4 space-y-2">
-          
+        <div className="mt-auto px-4 pt-6 border-t border-[#0D120E]/5 space-y-2">
+          {/* Upgrade Box */}
           <AnimatePresence>
             {isExpanded && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                className="bg-[#1DA756]/5 rounded-2xl p-5 border border-[#1DA756]/10 mb-2"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="bg-[#1DA756]/5 rounded-2xl p-5 border border-[#1DA756]/10 mb-4"
               >
                 <h4 className="text-[12px] font-black text-[#0D120E] mb-1 uppercase tracking-tight">Upgrade to Pro</h4>
                 <p className="text-[10px] text-[#0D120E]/50 leading-relaxed mb-4 font-bold">Access exclusive mentorship and advanced modules.</p>
@@ -156,13 +126,9 @@ export default function Sidebar() {
           </SignOutButton>
 
           {/* User Profile */}
-          <div className="mt-4 px-2 py-2 rounded-2xl border border-black/[0.03] bg-black/[0.01] flex items-center gap-3 whitespace-nowrap transition-all duration-300">
+          <div className="mt-2 px-2 py-2 rounded-2xl border border-black/[0.03] bg-black/[0.01] flex items-center gap-3">
             <div className="w-10 h-10 shrink-0 rounded-xl bg-[#1DA756]/10 overflow-hidden flex items-center justify-center font-bold text-[#1DA756] border border-[#1DA756]/5 shadow-inner">
-              {user?.imageUrl ? (
-                <img src={user.imageUrl} alt="Profile" className="w-full h-full object-cover" />
-              ) : (
-                user?.firstName?.charAt(0) || "U"
-              )}
+              {user?.imageUrl ? <img src={user.imageUrl} alt="Profile" className="w-full h-full object-cover" /> : (user?.firstName?.charAt(0) || "U")}
             </div>
             <AnimatePresence initial={false}>
               {isExpanded && (
@@ -172,12 +138,8 @@ export default function Sidebar() {
                   exit={{ opacity: 0, x: -10 }}
                   className="flex flex-col min-w-0"
                 >
-                  <p className="text-[12px] font-black truncate text-[#0D120E] leading-none mb-1">
-                    {user?.fullName || user?.firstName || "Member"}
-                  </p>
-                  <p className="text-[10px] font-bold text-[#1DA756] truncate leading-none">
-                    View profile
-                  </p>
+                  <p className="text-[12px] font-black truncate text-[#0D120E] leading-none mb-1">{user?.fullName || user?.firstName || "Member"}</p>
+                  <p className="text-[10px] font-bold text-[#1DA756] truncate leading-none">View profile</p>
                 </motion.div>
               )}
             </AnimatePresence>
