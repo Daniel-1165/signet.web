@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Heart, Target, TrendingUp, ListOrdered } from "lucide-react";
 
 const pillars = [
@@ -11,16 +11,41 @@ const pillars = [
 ];
 
 export default function PillarsGrid() {
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    <div 
+      ref={containerRef}
+      className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+    >
       {pillars.map((pillar, i) => (
-        <motion.div
+        <div
           key={i}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: i * 0.1 }}
-          className="group bg-white rounded-3xl p-6 md:p-12 text-left hover:bg-[#1D1914] transition-all duration-500 border border-[#D8CEBE]/30 flex flex-col min-h-[160px] md:min-h-[280px] [transform:translate3d(0,0,0)] [backface-visibility:hidden] [perspective:1000px]"
+          style={{ 
+            opacity: isVisible ? 1 : 0,
+            transition: `opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s`,
+            willChange: 'opacity'
+          }}
+          className="group bg-white rounded-3xl p-6 md:p-12 text-left hover:bg-[#1D1914] transition-colors duration-500 border border-[#D8CEBE]/30 flex flex-col min-h-[160px] md:min-h-[280px]"
         >
           <span className="text-[10px] font-bold text-[#D8CEBF] group-hover:text-white/40 transition-colors mb-auto tracking-widest">
             {pillar.label}
@@ -32,7 +57,7 @@ export default function PillarsGrid() {
           >
             {pillar.title}
           </h4>
-        </motion.div>
+        </div>
       ))}
     </div>
   );

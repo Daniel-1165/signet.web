@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useUser } from '@clerk/nextjs'
 import { createClient } from '@supabase/supabase-js'
-import { Send, User, AtSign, Filter, Bell } from 'lucide-react'
+import { Send, User, AtSign, Filter, Bell, MoreVertical, Edit2, Copy, Trash2, Check, X } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import { LikeIcon, CommentIcon, TransmissionIcon, NotificationIcon } from '@/components/ui/SignetIcons'
 
@@ -31,6 +31,9 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
   const [messages, setMessages] = useState<Message[]>([])
   const [newMessage, setNewMessage] = useState('')
   const [room, setRoom] = useState<Room | null>(null)
+  const [activeMenuId, setActiveMenuId] = useState<string | null>(null)
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [editContent, setEditContent] = useState('')
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const supabase = createClient(
@@ -41,13 +44,11 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
   useEffect(() => {
     if (!roomId) return
 
-    // Fetch room details
     const fetchRoom = async () => {
       const { data } = await supabase.from('rooms').select('*').eq('id', roomId).single()
       if (data) setRoom(data)
     }
 
-    // Fetch initial messages with joined profiles
     const fetchMessages = async () => {
       const { data } = await supabase
         .from('messages')
@@ -61,12 +62,10 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
     fetchRoom()
     fetchMessages()
 
-    // Realtime subscription
     const channel = supabase
       .channel(`room:${roomId}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `room_id=eq.${roomId}` }, 
         async (payload) => {
-          // Re-fetch to get the profile association too
           const { data } = await supabase
             .from('messages')
             .select('*, profiles(first_name, last_name, image_url)')
@@ -74,6 +73,16 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
             .single()
 
           if (data) setMessages(prev => [...prev, data as Message])
+        }
+      )
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'messages', filter: `room_id=eq.${roomId}` }, 
+        (payload) => {
+          setMessages(prev => prev.map(msg => msg.id === payload.new.id ? { ...msg, content: payload.new.content } : msg))
+        }
+      )
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'messages' }, 
+        (payload) => {
+          setMessages(prev => prev.filter(msg => msg.id !== payload.old.id))
         }
       )
       .subscribe()
@@ -97,15 +106,34 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
       content: newMessage.trim(),
     })
 
-    if (error) {
-      console.error('Error sending message:', error)
-    } else {
-      setNewMessage('')
-    }
+    if (!error) setNewMessage('')
+  }
+
+  const deleteMessage = async (id: string) => {
+    await supabase.from('messages').delete().eq('id', id)
+    setActiveMenuId(null)
+  }
+
+  const startEditing = (msg: Message) => {
+    setEditingId(msg.id)
+    setEditContent(msg.content)
+    setActiveMenuId(null)
+  }
+
+  const saveEdit = async () => {
+    if (!editingId || !editContent.trim()) return
+    await supabase.from('messages').update({ content: editContent.trim() }).eq('id', editingId)
+    setEditingId(null)
+    setEditContent('')
+  }
+
+  const copyMessage = (content: string) => {
+    navigator.clipboard.writeText(content)
+    setActiveMenuId(null)
   }
 
   return (
-    <div className="flex flex-col h-full bg-[#0a0a0a] border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+    <div className="flex flex-col h-full bg-[#0a0a0a] border border-white/5 rounded-3xl overflow-hidden shadow-2xl" onClick={() => setActiveMenuId(null)}>
       {/* Header */}
       <header className="flex items-center justify-between px-8 py-6 border-b border-white/5 bg-[#111111]/50 soft-blur">
         <div className="flex items-center gap-4">
@@ -156,24 +184,83 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                   {formatDistanceToNow(new Date(msg.created_at))}
                 </span>
               </div>
-              <div className={`group relative px-6 py-4 rounded-[2rem] text-sm leading-relaxed typography-premium ${
+              <div className={`group relative px-6 py-4 rounded-[2rem] text-sm leading-relaxed ${
                 msg.user_id === user?.id 
-                  ? 'bg-[#D3F36B] text-[#000000] font-semibold signet-glow' 
-                  : 'bg-[#111111]/80 soft-blur text-white/80 border border-white/5 inner-glow'
+                  ? 'bg-[#D3F36B] text-[#000000] font-semibold shadow-lg shadow-[#D3F36B]/10' 
+                  : 'bg-[#111111]/80 soft-blur text-white/80 border border-white/5'
               }`}>
-                {msg.content}
+                {editingId === msg.id ? (
+                  <div className="flex flex-col gap-2 min-w-[200px]">
+                    <textarea 
+                      value={editContent}
+                      onChange={(e) => setEditContent(e.target.value)}
+                      className="bg-transparent border-none focus:outline-none resize-none text-sm w-full"
+                      autoFocus
+                    />
+                    <div className="flex justify-end gap-2">
+                       <button onClick={() => setEditingId(null)} className="p-1 rounded-full hover:bg-black/10"><X size={14} /></button>
+                       <button onClick={saveEdit} className="p-1 rounded-full bg-black/5 hover:bg-black/10"><Check size={14} /></button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {msg.content}
+                    
+                    {/* Message Actions - Three Dots */}
+                    <div className={`absolute top-4 ${msg.user_id === user?.id ? '-left-8' : '-right-8'} opacity-0 group-hover:opacity-100 transition-opacity`}>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); setActiveMenuId(activeMenuId === msg.id ? null : msg.id) }} 
+                        className="text-white/20 hover:text-white/60 transition-colors"
+                      >
+                        <MoreVertical size={16} />
+                      </button>
+
+                      {activeMenuId === msg.id && (
+                        <div 
+                          className={`absolute top-0 ${msg.user_id === user?.id ? 'right-0' : 'left-0'} mt-6 w-32 bg-[#1a1a1a] border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden py-1`}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <button 
+                            onClick={() => copyMessage(msg.content)}
+                            className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
+                          >
+                            <Copy size={14} /> Copy
+                          </button>
+                          {msg.user_id === user?.id && (
+                            <>
+                              <button 
+                                onClick={() => startEditing(msg)}
+                                className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
+                              >
+                                <Edit2 size={14} /> Edit
+                              </button>
+                              <button 
+                                onClick={() => deleteMessage(msg.id)}
+                                className="w-full px-4 py-2 text-left text-[11px] font-bold text-red-400/60 hover:text-red-400 hover:bg-red-400/5 flex items-center gap-2 transition-all"
+                              >
+                                <Trash2 size={14} /> Delete
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
                 
                 {/* Reactions Placeholder */}
-                <div className={`absolute -bottom-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all ${msg.user_id === user?.id ? 'right-4' : 'left-4'}`}>
-                   <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#000000] border border-white/10 text-[10px] font-bold text-white/40 hover:text-[#D3F36B] transition-colors">
-                      <LikeIcon size={12} />
-                      <span>0</span>
-                   </button>
-                   <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#000000] border border-white/10 text-[10px] font-bold text-white/40 hover:text-[#D3F36B] transition-colors">
-                      <CommentIcon size={12} />
-                      <span>Reply</span>
-                   </button>
-                </div>
+                {!editingId && (
+                  <div className={`absolute -bottom-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all ${msg.user_id === user?.id ? 'right-4' : 'left-4'}`}>
+                    <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#000000] border border-white/10 text-[10px] font-bold text-white/40 hover:text-[#D3F36B] transition-colors">
+                        <LikeIcon size={12} />
+                        <span>0</span>
+                    </button>
+                    <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#000000] border border-white/10 text-[10px] font-bold text-white/40 hover:text-[#D3F36B] transition-colors">
+                        <CommentIcon size={12} />
+                        <span>Reply</span>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
