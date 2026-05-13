@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { urlFor } from '@/lib/sanity/image';
@@ -45,6 +45,15 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Auto-play logic
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const nextIndex = (activeIndex + 1) % displaySlides.length;
+      scrollTo(nextIndex);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [activeIndex, displaySlides.length]);
+
   const scrollTo = (index: number) => {
     const clamped = Math.max(0, Math.min(index, displaySlides.length - 1));
     setActiveIndex(clamped);
@@ -61,8 +70,8 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
     if (!container) return;
     const scrollLeft = container.scrollLeft;
     const cardWidth = (container.children[0] as HTMLElement)?.offsetWidth ?? 260;
-    const index = Math.round(scrollLeft / (cardWidth + 16)); // 16 = gap
-    setActiveIndex(index);
+    const index = Math.round(scrollLeft / (cardWidth + 16));
+    if (index !== activeIndex) setActiveIndex(index);
   };
 
   return (
@@ -151,8 +160,8 @@ function SlideCard({
 
   const content = (
     <div
-      className={`relative w-full aspect-[16/10] md:aspect-video rounded-[2.5rem] overflow-hidden cursor-pointer group transition-all duration-700 ${
-        isActive ? 'shadow-2xl shadow-[#1D1914]/15 scale-[1.02]' : 'shadow-lg shadow-black/5 opacity-60 scale-[0.98]'
+      className={`relative w-full aspect-[16/9.5] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden cursor-pointer group transition-all duration-1000 ${
+        isActive ? 'scale-[1.02]' : 'opacity-40 scale-[0.98]'
       }`}
     >
       {/* Background/Blurred Fill to ensure no empty space */}
@@ -161,7 +170,7 @@ function SlideCard({
           <img
             src={image?.asset ? urlFor(image).width(400).blur(50).url() : image.url}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-40 scale-110"
+            className="absolute inset-0 w-full h-full object-cover opacity-20 scale-110"
           />
           <img
             src={image?.asset ? urlFor(image).width(1200).auto('format').url() : image.url}

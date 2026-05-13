@@ -89,8 +89,11 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
              {/* Feature Book */}
-             <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-[#f2f4f5] flex flex-col md:flex-row gap-6 md:gap-10 relative overflow-hidden group h-fit">
-               <div className="w-full md:w-56 shrink-0 aspect-[3/4.5] shadow-2xl rounded-xl overflow-hidden relative self-start">
+             <div 
+               onClick={() => books[0]?.fileUrl && window.open(books[0].fileUrl, '_blank')}
+               className="bg-white rounded-[2rem] p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-[#f2f4f5] flex flex-col md:flex-row gap-6 md:gap-10 relative overflow-hidden group cursor-pointer"
+             >
+               <div className="w-full md:w-56 shrink-0 aspect-[2/3] md:aspect-[3/4.5] shadow-2xl rounded-xl overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent w-6 z-10" />
                   {books[0]?.mainImageUrl ? (
                     <img src={books[0].mainImageUrl} alt={books[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -104,23 +107,23 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                <div className="flex flex-col justify-center">
                  <div className="flex justify-between items-start">
                    <div>
-                     <h3 className="text-[18px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>The Silent Lead</h3>
-                     <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>By Elena Vance</p>
+                     <h3 className="text-[18px] md:text-[22px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{books[0]?.title || 'The Silent Lead'}</h3>
+                     <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>By {books[0]?.tag || 'Elena Vance'}</p>
                    </div>
                    <span className="bg-[#83fba5] text-[#005746] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shrink-0 shadow-sm whitespace-nowrap hidden sm:block">
                      Book of the Month
                    </span>
                  </div>
                  <p className="text-[14px] text-[#3e4945] mt-4 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
-                   A transformative guide on harnessing introversion as a strategic advantage in competitive leadership environments.
+                    {books[0]?.description || 'A transformative guide on harnessing introversion as a strategic advantage in competitive leadership environments.'}
                  </p>
                  <div className="flex items-center gap-3 mt-6">
-                   <button className="px-5 py-2 rounded-full bg-[#005746] text-white text-[14px] font-bold hover:bg-[#006d36] transition-colors">
-                     Read Summary
-                   </button>
-                   <button className="w-10 h-10 rounded-full border border-[#bec9c4] text-[#6e7975] flex items-center justify-center hover:bg-[#f2f4f5] transition-colors">
-                     <Bookmark size={18} />
-                   </button>
+                    <button className="px-5 py-2 rounded-full bg-[#005746] text-white text-[14px] font-bold hover:bg-[#006d36] transition-colors">
+                      {books[0]?.fileUrl ? 'Download Now' : 'Read Summary'}
+                    </button>
+                    <button onClick={(e) => { e.stopPropagation(); }} className="w-10 h-10 rounded-full border border-[#bec9c4] text-[#6e7975] flex items-center justify-center hover:bg-[#f2f4f5] transition-colors">
+                      <Bookmark size={18} />
+                    </button>
                  </div>
                </div>
              </div>
@@ -130,7 +133,11 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   { title: "Deep Work Ethics", tag: "Marcus Thorne", description: "Strategies for cognitive persistence in the age of constant digital distraction." },
                   { title: "Organic Systems", tag: "Sarah Jenkins", description: "Building habits that mirror natural growth cycles for sustainable results." }
                 ]).map((book: any, idx: number) => (
-                   <a href={book.slug?.current ? `/resources/${book.slug.current}` : "#"} key={book._id || idx} className="bg-white rounded-[1.2rem] p-4 shadow-sm border border-[#f2f4f5] flex gap-4 group items-center hover:shadow-md transition-shadow">
+                   <button 
+                     onClick={() => book.fileUrl && window.open(book.fileUrl, '_blank')} 
+                     key={book._id || idx} 
+                     className="bg-white rounded-[1.2rem] p-4 shadow-sm border border-[#f2f4f5] flex gap-4 group items-center hover:shadow-md transition-shadow text-left w-full"
+                   >
                      <div className="w-14 md:w-16 h-20 md:h-24 shrink-0 shadow-md rounded overflow-hidden">
                        <img src={book.mainImageUrl || "/placeholder-avatar.png"} className="w-full h-full bg-emerald-800 object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
                      </div>
@@ -139,7 +146,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                        <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-0.5 mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{book.tag || "Signet Author"}</p>
                        <p className="text-[12px] text-[#3e4945] line-clamp-2 opacity-70" style={{ fontFamily: "'Inter', sans-serif" }}>{book.description || "In-depth strategies for cognitive persistence and continuous intentional growth."}</p>
                      </div>
-                  </a>
+                   </button>
                 ))}
              </div>
           </div>
