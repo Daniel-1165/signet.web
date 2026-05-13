@@ -4,10 +4,18 @@ import FeaturesGrid from "@/components/sections/FeaturesGrid";
 import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/layout/Footer";
+import HomeCarousel from "@/components/sections/HomeCarousel";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { sanityFetch } from "@/lib/sanity/client";
+import { GET_CAROUSEL_SLIDES } from "@/lib/sanity/queries";
 
-export default function Home() {
+export default async function Home() {
+  const slides = await sanityFetch({ 
+    query: GET_CAROUSEL_SLIDES,
+    tags: ['carouselSlide']
+  }) || [];
+
   return (
     <main className="min-h-screen bg-[#FDFCFB]">
       {/* Premium Hero Section - Repurposed from Dashboard for consistent high-end feel */}
@@ -40,6 +48,9 @@ export default function Home() {
       </section>
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-20 md:space-y-32 py-20 md:py-32">
+        {/* Featured Insights Carousel */}
+        <HomeCarousel slides={slides} />
+        
         {/* Philosophical Foundations */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white rounded-[2.5rem] p-7 md:p-16 border border-[#D8CEBE]/30 hover:shadow-2xl transition-all duration-500 group relative">
