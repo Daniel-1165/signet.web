@@ -225,19 +225,6 @@ const Navbar = () => {
                     {item.label}
                   </Link>
                 ))}
-
-                {/* Upgrade CTA in Mobile Menu */}
-                <div className="mt-6 px-4 py-6 bg-[#1DA756]/5 rounded-[2rem] border border-[#1DA756]/10">
-                   <h4 className="text-[11px] font-black text-[#0D120E] mb-1 uppercase tracking-[0.1em]">Upgrade to Pro</h4>
-                   <p className="text-[10px] text-[#0D120E]/50 leading-relaxed mb-4 font-bold">Access exclusive mentorship and advanced growth modules.</p>
-                   <Link 
-                     href="/join"
-                     onClick={() => setIsSidebarOpen(false)}
-                     className="block w-full py-3 rounded-xl bg-[#1DA756] text-white text-center font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-[#1DA756]/20"
-                   >
-                     Upgrade Now
-                   </Link>
-                </div>
               </nav>
 
               {/* Panel Footer — auth actions */}

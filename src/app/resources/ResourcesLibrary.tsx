@@ -87,11 +87,11 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
              {/* Feature Book */}
-             <div className="bg-white rounded-[1.2rem] p-4 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#f2f4f5] flex flex-col sm:flex-row gap-4 md:gap-6 relative overflow-hidden group">
-               <div className="w-28 md:w-40 shrink-0 aspect-[2/3] shadow-lg rounded-md overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent w-4 z-10" />
+             <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-[#f2f4f5] flex flex-col md:flex-row gap-6 md:gap-10 relative overflow-hidden group h-fit">
+               <div className="w-full md:w-56 shrink-0 aspect-[3/4.5] shadow-2xl rounded-xl overflow-hidden relative self-start">
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent w-6 z-10" />
                   {books[0]?.mainImageUrl ? (
                     <img src={books[0].mainImageUrl} alt={books[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   ) : (
