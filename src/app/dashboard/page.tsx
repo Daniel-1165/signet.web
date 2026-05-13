@@ -7,20 +7,12 @@ import {
   Bell,
   Calendar,
   Eye,
-  Heart,
-  Target,
-  TrendingUp,
-  ListOrdered,
-  Sun,
-  Moon,
   ArrowRight,
-  Sparkles,
-  ChevronLeft,
-  ChevronRight
 } from "lucide-react";
 import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
 import Footer from "@/components/layout/Footer";
+import PillarsGrid from "@/components/sections/PillarsGrid";
 
 export default async function DashboardPage() {
   const user = await currentUser();
@@ -141,20 +133,7 @@ export default async function DashboardPage() {
               <p className="text-[14px] md:text-[16px] text-[#6E7A67]">The pillars of the Signet methodology.</p>
            </div>
            
-           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-              {[
-                { title: "Emotional Intelligence", icon: Heart, label: "01" },
-                { title: "Self-Awareness", icon: Target, label: "02" },
-                { title: "Resilience", icon: TrendingUp, label: "03" },
-                { title: "Systems Thinking", icon: ListOrdered, label: "04" }
-              ].map((pillar, i) => (
-                <div key={i} className="group bg-white rounded-2xl md:rounded-3xl p-5 md:p-10 text-left hover:bg-[#1D1914] transition-all duration-500 border border-[#D8CEBE]/30 flex flex-col min-h-[160px] md:min-h-[220px]">
-                   <span className="text-[10px] font-bold text-[#D8CEBF] group-hover:text-white/40 transition-colors mb-auto tracking-widest">{pillar.label}</span>
-                   <pillar.icon className="w-6 h-6 md:w-8 md:h-8 text-[#6E7A67] mb-3 md:mb-6 group-hover:text-white transition-colors" />
-                   <h4 className="text-[14px] md:text-[18px] font-bold text-[#1D1914] group-hover:text-white transition-colors leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{pillar.title}</h4>
-                </div>
-              ))}
-           </div>
+           <PillarsGrid />
         </div>
 
         {/* Final Roadmap */}

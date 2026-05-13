@@ -1,10 +1,11 @@
+import PillarsGrid from "@/components/sections/PillarsGrid";
 import Academy from "@/components/sections/Academy";
 import FeaturesGrid from "@/components/sections/FeaturesGrid";
 import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
-import { ArrowRight, Eye, Heart, Target, TrendingUp, ListOrdered } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -63,20 +64,7 @@ export default function Home() {
               <p className="text-[16px] text-[#6E7A67]">The four pillars of the Signet methodology.</p>
            </div>
            
-           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {[
-                { title: "Emotional Intelligence", icon: Heart, label: "01" },
-                { title: "Self-Awareness", icon: Target, label: "02" },
-                { title: "Resilience", icon: TrendingUp, label: "03" },
-                { title: "Systems Thinking", icon: ListOrdered, label: "04" }
-              ].map((pillar, i) => (
-                <div key={i} className="group bg-white rounded-3xl p-6 md:p-12 text-left hover:bg-[#1D1914] transition-all duration-500 border border-[#D8CEBE]/30 flex flex-col min-h-[160px] md:min-h-[280px]">
-                   <span className="text-[10px] font-bold text-[#D8CEBF] group-hover:text-white/40 transition-colors mb-auto tracking-widest">{pillar.label}</span>
-                   <pillar.icon className="w-6 h-6 md:w-8 md:h-8 text-[#6E7A67] mb-4 md:mb-10 group-hover:text-white transition-colors" />
-                   <h4 className="text-[15px] md:text-[22px] font-bold text-[#1D1914] group-hover:text-white transition-colors leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{pillar.title}</h4>
-                </div>
-              ))}
-           </div>
+           <PillarsGrid />
         </div>
 
         <Academy />

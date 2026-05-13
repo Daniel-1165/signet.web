@@ -16,13 +16,13 @@ const Footer = () => {
                         </p>
                     </div>
                     <div className="flex flex-col gap-3 justify-center">
-                        <div className="flex bg-white rounded-2xl p-1.5 border border-[#D8CEBE]/40 shadow-sm focus-within:border-[#6E7A67] transition-all">
+                        <div className="flex w-full bg-white rounded-2xl p-1.5 border border-[#D8CEBE]/40 shadow-sm focus-within:border-[#6E7A67] transition-all overflow-hidden">
                             <input 
                                 type="email" 
                                 placeholder="Enter your email" 
-                                className="flex-1 bg-transparent px-4 py-2.5 text-sm outline-none text-[#1D1914] font-medium"
+                                className="flex-1 min-w-0 bg-transparent px-3 md:px-4 py-2.5 text-sm outline-none text-[#1D1914] font-medium"
                             />
-                            <button className="bg-[#1D1914] text-white px-6 py-2.5 rounded-xl font-bold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#6E7A67] transition-all flex items-center gap-2">
+                            <button className="shrink-0 bg-[#1D1914] text-white px-4 md:px-6 py-2.5 rounded-xl font-bold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#6E7A67] transition-all flex items-center gap-2">
                                 Subscribe <ArrowRight size={14} />
                             </button>
                         </div>

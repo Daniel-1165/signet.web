@@ -118,8 +118,24 @@ export default function Sidebar() {
         </nav>
 
         {/* Bottom Section */}
-        <div className="mt-6 pt-6 border-t border-[#0D120E]/5 px-4 space-y-2">
-
+        <div className="mt-auto pt-6 border-t border-[#0D120E]/5 px-4 space-y-2">
+          
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="bg-[#1DA756]/5 rounded-2xl p-5 border border-[#1DA756]/10 mb-2"
+              >
+                <h4 className="text-[12px] font-black text-[#0D120E] mb-1 uppercase tracking-tight">Upgrade to Pro</h4>
+                <p className="text-[10px] text-[#0D120E]/50 leading-relaxed mb-4 font-bold">Access exclusive mentorship and advanced modules.</p>
+                <Link href="/join" className="block w-full py-2.5 rounded-xl bg-[#1DA756] text-white text-center font-bold text-[11px] uppercase tracking-widest shadow-lg shadow-[#1DA756]/20 hover:bg-[#158C45] transition-all">
+                   Upgrade Now
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <SignOutButton>
             <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500/60 hover:text-red-600 hover:bg-red-50/50 transition-all">
