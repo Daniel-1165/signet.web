@@ -34,6 +34,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editContent, setEditContent] = useState('')
+  const [isAdmin, setIsAdmin] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const supabase = createClient(
@@ -43,6 +44,17 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
 
   useEffect(() => {
     if (!roomId) return
+
+    if (user) {
+      supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single()
+        .then(({ data }) => {
+          if (data?.role === 'admin') setIsAdmin(true);
+        });
+    }
 
     const fetchRoom = async () => {
       const { data } = await supabase.from('rooms').select('*').eq('id', roomId).single()
@@ -227,20 +239,20 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                             <Copy size={14} /> Copy
                           </button>
                           {msg.user_id === user?.id && (
-                            <>
-                              <button 
-                                onClick={() => startEditing(msg)}
-                                className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
-                              >
-                                <Edit2 size={14} /> Edit
-                              </button>
-                              <button 
-                                onClick={() => deleteMessage(msg.id)}
-                                className="w-full px-4 py-2 text-left text-[11px] font-bold text-red-400/60 hover:text-red-400 hover:bg-red-400/5 flex items-center gap-2 transition-all"
-                              >
-                                <Trash2 size={14} /> Delete
-                              </button>
-                            </>
+                            <button 
+                              onClick={() => startEditing(msg)}
+                              className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
+                            >
+                              <Edit2 size={14} /> Edit
+                            </button>
+                          )}
+                          {(msg.user_id === user?.id || isAdmin) && (
+                            <button 
+                              onClick={() => deleteMessage(msg.id)}
+                              className="w-full px-4 py-2 text-left text-[11px] font-bold text-red-400/60 hover:text-red-400 hover:bg-red-400/5 flex items-center gap-2 transition-all"
+                            >
+                              <Trash2 size={14} /> Delete
+                            </button>
                           )}
                         </div>
                       )}

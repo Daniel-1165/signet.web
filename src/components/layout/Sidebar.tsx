@@ -7,24 +7,46 @@ import {
   Home, Users, FolderOpen, LogOut, Brain, Lightbulb, Target, Award, Info, CheckSquare,
 } from "lucide-react";
 import { useUser, SignOutButton } from "@clerk/nextjs";
-import { useState } from "react";
-
-const navItems = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "Resources", href: "/resources", icon: FolderOpen },
-  { name: "Community", href: "/dashboard/community", icon: Users },
-  { name: "Exercises", href: "/dashboard/exercises", icon: CheckSquare },
-  { name: "Vision Guide", href: "/vision-guide", icon: Target },
-  { name: "EQ Test", href: "/eq-test", icon: Brain },
-  { name: "IQ Test", href: "/iq-test", icon: Lightbulb },
-  { name: "About Signet", href: "/features", icon: Info },
-  { name: "Certificates", href: "/certificates", icon: Award },
-];
+import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
+import { Shield } from "lucide-react";
 
 export default function Sidebar() {
   const pathname = usePathname();
   const { user } = useUser();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+
+  useEffect(() => {
+    if (user) {
+      supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single()
+        .then(({ data }) => {
+          if (data?.role === 'admin') setIsAdmin(true);
+        });
+    }
+  }, [user]);
+
+  const navItems = [
+    { name: "Home", href: "/", icon: Home },
+    { name: "Resources", href: "/resources", icon: FolderOpen },
+    { name: "Community", href: "/dashboard/community", icon: Users },
+    { name: "Exercises", href: "/dashboard/exercises", icon: CheckSquare },
+    { name: "Vision Guide", href: "/vision-guide", icon: Target },
+    { name: "EQ Test", href: "/eq-test", icon: Brain },
+    { name: "IQ Test", href: "/iq-test", icon: Lightbulb },
+    { name: "About Signet", href: "/features", icon: Info },
+    { name: "Certificates", href: "/certificates", icon: Award },
+    ...(isAdmin ? [{ name: "Admin", href: "/dashboard/admin", icon: Shield }] : []),
+  ];
 
   return (
     <>
