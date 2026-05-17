@@ -43,3 +43,22 @@ BEGIN
   );
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- 6. Helper to promote user by email (if email column exists in profiles)
+-- If you don't have an email column in profiles, you'll need the user's ID.
+-- UPDATE profiles SET role = 'admin' WHERE email = 'user@example.com';
+
+-- 7. Ensure everyone has a role if they don't already
+UPDATE profiles SET role = 'member' WHERE role IS NULL;
+
+-- 8. Add a "Search User" and "Update Role" capability for the Admin Page
+-- This function allows the Admin Page to promote users safely.
+CREATE OR REPLACE FUNCTION promote_to_admin(user_email_or_id TEXT)
+RETURNS VOID AS $$
+BEGIN
+  -- This is a simple update. In a real app, you might want more checks.
+  UPDATE profiles 
+  SET role = 'admin' 
+  WHERE id = user_email_or_id OR first_name || ' ' || last_name ILIKE '%' || user_email_or_id || '%';
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;

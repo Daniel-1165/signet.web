@@ -12,20 +12,21 @@ export default function CommunityHubPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('trending');
 
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const response = await fetch('/api/community/posts');
-        if (response.ok) {
-          const data = await response.json();
-          setPosts(data);
-        }
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-      } finally {
-        setIsLoading(false);
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch('/api/community/posts');
+      if (response.ok) {
+        const data = await response.json();
+        setPosts(data);
       }
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
     fetchPosts();
   }, []);
 
@@ -82,7 +83,7 @@ export default function CommunityHubPage() {
       <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
         <div className="space-y-8 md:space-y-10">
           <div id="create-post-section">
-            <CreatePost />
+            <CreatePost onPostCreated={fetchPosts} />
           </div>
 
           <div className="space-y-6 md:space-y-8">

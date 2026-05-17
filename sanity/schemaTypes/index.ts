@@ -9,6 +9,7 @@ import author from './author'
 import category from './category'
 import post from './post'
 import carouselSlide from './carouselSlide'
+import audioLecture from './audioLecture'
 
 export const schemaTypes = [
   page,
@@ -22,6 +23,7 @@ export const schemaTypes = [
   category,
   post,
   carouselSlide,
+  audioLecture,
 ]
 
 export default schemaTypes

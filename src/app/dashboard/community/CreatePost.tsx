@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import { Image as ImageIcon, Paperclip, Send, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export function CreatePost() {
+export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
   const { user } = useUser();
   const router = useRouter();
   const [content, setContent] = useState("");
@@ -28,7 +28,11 @@ export function CreatePost() {
 
       if (response.ok) {
         setContent("");
-        router.refresh();
+        if (onPostCreated) {
+          onPostCreated();
+        } else {
+          router.refresh();
+        }
       }
     } catch (error) {
       console.error('Error creating post:', error);

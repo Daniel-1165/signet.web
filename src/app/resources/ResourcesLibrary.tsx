@@ -88,45 +88,46 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-             {/* Feature Book */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+             {/* Feature Book - Reverted Mobile UI to be more list-like but prominent */}
              <div 
                onClick={() => books[0]?.fileUrl && window.open(books[0].fileUrl, '_blank')}
-               className="bg-white rounded-[2rem] p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-[#f2f4f5] flex flex-col md:flex-row gap-6 md:gap-10 relative overflow-hidden group cursor-pointer"
+               className="bg-white rounded-[2rem] p-5 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-[#f2f4f5] flex flex-row md:flex-row gap-5 md:gap-10 relative overflow-hidden group cursor-pointer"
              >
-               <div className="w-full md:w-56 shrink-0 aspect-[2/3] md:aspect-[3/4.5] shadow-2xl rounded-xl overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent w-6 z-10" />
+               <div className="w-24 md:w-56 shrink-0 aspect-[2/3] md:aspect-[3/4.5] shadow-2xl rounded-xl overflow-hidden relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent w-4 md:w-6 z-10" />
                   {books[0]?.mainImageUrl ? (
                     <img src={books[0].mainImageUrl} alt={books[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   ) : (
-                    <div className="w-full h-full bg-[#005746] flex justify-center items-center">
-                       <span className="text-white text-xs">The Silent Lead</span>
+                    <div className="w-full h-full bg-[#005746] flex justify-center items-center p-2">
+                       <span className="text-white text-[8px] md:text-xs text-center font-bold uppercase tracking-widest">{books[0]?.title || 'Silent Lead'}</span>
                     </div>
                   )}
                </div>
                
-               <div className="flex flex-col justify-center">
+               <div className="flex flex-col justify-center py-2">
                  <div className="flex justify-between items-start">
-                   <div className="min-w-0 flex-1 pr-4">
-                     <h3 className="text-[20px] md:text-[24px] font-extrabold text-[#005746] leading-tight" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
-                       {books[0]?.title}
-                     </h3>
-                     <p className="text-[11px] uppercase tracking-[0.2em] text-[#006b58] mt-2 font-bold" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                       By {books[0]?.tag || 'Signet Expert'}
-                     </p>
-                   </div>
-                   <span className="bg-[#83fba5] text-[#005746] text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shrink-0 shadow-sm whitespace-nowrap hidden sm:block">
-                     Latest Release
-                   </span>
+                    <div className="min-w-0 flex-1 pr-2">
+                      <h3 className="text-[16px] md:text-[24px] font-extrabold text-[#005746] leading-tight line-clamp-2 md:line-clamp-none" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                        {books[0]?.title}
+                      </h3>
+                      <p className="text-[9px] md:text-[11px] uppercase tracking-[0.2em] text-[#006b58] mt-1.5 md:mt-2 font-bold" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                        By {books[0]?.tag || 'Signet Expert'}
+                      </p>
+                    </div>
+                    <span className="bg-[#83fba5] text-[#005746] text-[8px] md:text-[10px] font-bold px-3 md:px-4 py-1 rounded-full uppercase tracking-widest shrink-0 shadow-sm whitespace-nowrap hidden sm:block">
+                      Latest Release
+                    </span>
                  </div>
-                 <p className="text-[15px] text-[#3e4945] mt-6 leading-relaxed line-clamp-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+                 <p className="text-[13px] md:text-[15px] text-[#3e4945] mt-3 md:mt-6 leading-relaxed line-clamp-3 md:line-clamp-4" style={{ fontFamily: "'Inter', sans-serif" }}>
                     {books[0]?.description}
                  </p>
-                 <div className="flex items-center gap-4 mt-10">
-                    <button className="px-8 py-3 rounded-full bg-[#005746] text-white text-[14px] font-bold hover:bg-[#006d36] transition-all transform hover:scale-105 shadow-lg shadow-[#005746]/20">
+                 <div className="flex items-center gap-3 md:gap-4 mt-6 md:mt-10">
+                    <button className="px-5 md:px-8 py-2 md:py-3 rounded-full bg-[#005746] text-white text-[12px] md:text-[14px] font-bold hover:bg-[#006d36] transition-all transform hover:scale-105 shadow-lg shadow-[#005746]/20">
                       {books[0]?.fileUrl ? 'Open Resource' : 'Read Now'}
                     </button>
-                    <button onClick={(e) => { e.stopPropagation(); }} className="w-12 h-12 rounded-full border border-[#bec9c4] text-[#6e7975] flex items-center justify-center hover:bg-[#f2f4f5] transition-all hover:scale-110">
-                      <Bookmark size={20} />
+                    <button onClick={(e) => { e.stopPropagation(); }} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#bec9c4] text-[#6e7975] flex items-center justify-center hover:bg-[#f2f4f5] transition-all hover:scale-110">
+                      <Bookmark size={18} />
                     </button>
                  </div>
                </div>
@@ -142,8 +143,9 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                      key={book._id || idx} 
                      className="bg-white rounded-[1.2rem] p-4 shadow-sm border border-[#f2f4f5] flex gap-4 group items-center hover:shadow-md transition-shadow text-left w-full"
                    >
-                     <div className="w-14 md:w-16 h-20 md:h-24 shrink-0 shadow-md rounded overflow-hidden">
-                       <img src={book.mainImageUrl || "/placeholder-avatar.png"} className="w-full h-full bg-emerald-800 object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
+                     <div className="w-14 md:w-16 h-20 md:h-24 shrink-0 shadow-md rounded overflow-hidden relative">
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent w-2 z-10" />
+                        <img src={book.mainImageUrl || "/placeholder-avatar.png"} className="w-full h-full bg-emerald-800 object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
                      </div>
                      <div className="min-w-0 flex-1">
                        <h3 className="text-[15px] md:text-[16px] font-bold text-[#005746] line-clamp-2 leading-snug" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{book.title}</h3>
@@ -228,39 +230,45 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
           </div>
 
           <div className="space-y-3">
-             {articles.map((article: any, idx: number) => {
-               const IconComponent = article.icon || BookOpen;
-               const ColorClass = article.colorClass || "bg-[#e1e3e4] text-[#191c1d]";
-               
-               return (
-                 <a 
-                   href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} 
-                   key={article._id || idx} 
-                   className="bg-white rounded-[1.2rem] p-3 md:p-5 shadow-sm border border-[#f2f4f5] flex items-center gap-4 md:gap-6 group hover:shadow-md hover:border-[#e1e3e4] transition-all cursor-pointer"
-                 >
-                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-[0.8rem] flex items-center justify-center shrink-0 ${ColorClass}`}>
-                       <IconComponent className="w-6 h-6 md:w-8 md:h-8" />
-                    </div>
-                    <div className="flex-1">
-                       <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
-                          <span className="bg-[#e6fcf2] text-[#005746] uppercase text-[8px] md:text-[9px] font-bold px-2 py-0.5 rounded tracking-widest">
-                            {article.tag || article.category || "Article"}
-                          </span>
-                          <span className="text-[10px] md:text-[11px] text-[#bec9c4] font-medium">5 min read</span>
-                       </div>
-                       <h3 className="text-[14px] md:text-[16px] font-bold text-[#191c1d] group-hover:text-[#005746] transition-colors line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
-                         {article.title}
-                       </h3>
-                       <p className="text-[12px] md:text-[13px] text-[#6e7975] mt-0.5 md:mt-1 line-clamp-1 md:line-clamp-2" style={{ fontFamily: "'Inter', sans-serif" }}>
-                         {article.description || article.content}
-                       </p>
-                    </div>
-                    <div className="hidden sm:flex items-center gap-1 text-[13px] text-[#6e7975] italic shrink-0 pr-4 font-serif">
-                       {article.provider || "Signet Exclusive"} <ChevronRight size={14} className="not-italic opacity-50" />
-                    </div>
-                 </a>
-               )
-             })}
+             {articles.length > 0 ? (
+               articles.map((article: any, idx: number) => {
+                 const IconComponent = article.icon || BookOpen;
+                 const ColorClass = article.colorClass || "bg-[#e1e3e4] text-[#191c1d]";
+                 
+                 return (
+                   <a 
+                     href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} 
+                     key={article._id || idx} 
+                     className="bg-white rounded-[1.2rem] p-3 md:p-5 shadow-sm border border-[#f2f4f5] flex items-center gap-4 md:gap-6 group hover:shadow-md hover:border-[#e1e3e4] transition-all cursor-pointer"
+                   >
+                      <div className={`w-12 h-12 md:w-14 md:h-14 rounded-[0.8rem] flex items-center justify-center shrink-0 ${ColorClass}`}>
+                         <IconComponent className="w-6 h-6 md:w-8 md:h-8" />
+                      </div>
+                      <div className="flex-1">
+                         <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
+                            <span className="bg-[#e6fcf2] text-[#005746] uppercase text-[8px] md:text-[9px] font-bold px-2 py-0.5 rounded tracking-widest">
+                               {article.tag || article.category || "Article"}
+                            </span>
+                            <span className="text-[10px] md:text-[11px] text-[#bec9c4] font-medium">5 min read</span>
+                         </div>
+                         <h3 className="text-[14px] md:text-[16px] font-bold text-[#191c1d] group-hover:text-[#005746] transition-colors line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                           {article.title}
+                         </h3>
+                         <p className="text-[12px] md:text-[13px] text-[#6e7975] mt-0.5 md:mt-1 line-clamp-1 md:line-clamp-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                           {article.description || article.content}
+                         </p>
+                      </div>
+                      <div className="hidden sm:flex items-center gap-1 text-[13px] text-[#6e7975] italic shrink-0 pr-4 font-serif">
+                         {article.provider || "Signet Exclusive"} <ChevronRight size={14} className="not-italic opacity-50" />
+                      </div>
+                   </a>
+                 )
+               })
+             ) : (
+                <div className="py-12 text-center bg-white rounded-3xl border border-dashed border-[#bec9c4]/40">
+                   <p className="text-[#6e7975] text-sm italic">New insights arriving soon from our editors.</p>
+                </div>
+             )}
           </div>
         </section>
 

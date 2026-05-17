@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
+import Image from "next/image";
+
 interface CarouselSlide {
   _id: string;
   imageUrl: string;
@@ -91,18 +93,21 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
               >
                 <Wrapper
                   {...wrapperProps as any}
-                  className="group block h-full cursor-pointer"
+                  className="group block w-full h-full cursor-pointer"
                 >
-                  <div className="relative w-full md:rounded-[2rem] overflow-hidden md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-[#0B2B26]/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition-all duration-500">
-                    <img
+                  {/* Image container with 1:1 aspect ratio as requested */}
+                  <div className="relative w-full aspect-square md:rounded-[2rem] md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-[#0B2B26]/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition-all duration-500">
+                    <Image
                       src={slide.imageUrl}
                       alt={slide.caption || "Gallery image"}
-                      className="w-full aspect-[16/9] sm:aspect-video md:h-[600px] md:aspect-auto object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                      loading="eager"
+                      fill
+                      className="transition-transform duration-700 group-hover:scale-105 object-contain"
+                      loading={i < 2 ? "eager" : "lazy"}
+                      sizes="(max-width: 768px) 100vw, 400px"
                     />
 
                     {/* Gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                     {/* Caption overlay */}
                     {slide.caption && (
@@ -112,16 +117,12 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                         </p>
                       </div>
                     )}
-
-                    {/* Slide counter removed */}
                   </div>
                 </Wrapper>
               </motion.div>
             );
           })}
         </div>
-
-        {/* Dot indicators removed for editorial minimalism */}
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { Heart, MessageSquare, Share2, MoreHorizontal, FileText, Download, ChevronDown, Send, X } from "lucide-react";
+import { Heart, MessageSquare, Share2, MoreHorizontal, FileText, Download, ChevronDown, Send, X, Trash2 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
@@ -20,8 +20,26 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
   const [reactorAvatars, setReactorAvatars] = useState<string[]>(seedReactors);
   const currentUserAvatar = user?.imageUrl ?? null;
 
+  const [showDropdown, setShowDropdown] = useState(false);
+  const isAdmin = user?.publicMetadata?.role === 'admin' || profile?.role === 'admin'; // Basic check, better to fetch from DB
+  const isOwner = user?.id === post.user_id;
+
+  const handleDelete = async () => {
+    if (!confirm("Are you sure you want to delete this insight?")) return;
+    try {
+      const response = await fetch(`/api/community/posts?id=${post.id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        window.location.reload(); // Simple refresh for now
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
+
   return (
-    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30 hover:border-[#6E7A67]/30 transition-all group">
+    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30 hover:border-[#6E7A67]/30 transition-all group relative">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div className="flex items-center gap-4">
@@ -40,9 +58,38 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
           </div>
         </div>
         
-        <button className="text-[#6E7A67]/40 hover:text-[#1D1914] transition-colors p-1 shrink-0">
-          <MoreHorizontal size={18} />
-        </button>
+        <div className="relative dropdown-container">
+          <button 
+            onClick={() => setShowDropdown(!showDropdown)}
+            className="text-[#6E7A67]/40 hover:text-[#1D1914] transition-colors p-1 shrink-0"
+          >
+            <MoreHorizontal size={18} />
+          </button>
+
+          {showDropdown && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-[#D8CEBE]/30 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+              <button 
+                className="w-full text-left px-4 py-2 text-[12px] font-bold text-[#6E7A67] hover:bg-[#FDFCFB] hover:text-[#1D1914] transition-colors flex items-center gap-2"
+                onClick={() => {
+                  navigator.clipboard.writeText(`${window.location.origin}/dashboard/community#post-${post.id}`);
+                  setShowDropdown(false);
+                }}
+              >
+                <Share2 size={14} />
+                Copy Link
+              </button>
+              {(isOwner || isAdmin) && (
+                <button 
+                  className="w-full text-left px-4 py-2 text-[12px] font-bold text-red-500 hover:bg-red-50 transition-colors flex items-center gap-2"
+                  onClick={handleDelete}
+                >
+                  <Trash2 size={14} />
+                  Delete Insight
+                </button>
+              )}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Content */}

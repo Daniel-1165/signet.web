@@ -104,3 +104,61 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { searchParams } = new URL(request.url);
+    const postId = searchParams.get('id');
+
+    if (!postId) {
+      return NextResponse.json({ error: 'Post ID is required' }, { status: 400 });
+    }
+
+    const supabase = createServerSupabaseClient();
+
+    // Check if user is the owner or an admin
+    const { data: post, error: fetchError } = await supabase
+      .from('posts')
+      .select('user_id')
+      .eq('id', postId)
+      .single();
+
+    if (fetchError || !post) {
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+    }
+
+    // Check for admin role in profiles
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', userId)
+      .single();
+
+    const isAdmin = profile?.role === 'admin';
+    const isOwner = post.user_id === userId;
+
+    if (!isAdmin && !isOwner) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+
+    const { error: deleteError } = await supabase
+      .from('posts')
+      .delete()
+      .eq('id', postId);
+
+    if (deleteError) {
+      console.error('Error deleting post:', deleteError);
+      return NextResponse.json({ error: 'Failed to delete post' }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}

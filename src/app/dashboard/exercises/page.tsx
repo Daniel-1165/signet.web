@@ -14,12 +14,30 @@ import {
   BrainCircuit,
   Sparkles,
   Zap,
-  Target
+  Target,
+  Headphones,
+  Play,
+  Music
 } from "lucide-react";
+import { sanityFetch } from "@/lib/sanity/client";
+import { AudioLecturesSection } from "./AudioLecturesSection";
 
 export default async function ExercisesPage() {
   const user = await currentUser();
   const { userId } = await auth();
+
+  const audioLectures = await sanityFetch({
+    query: `*[_type == "audioLecture"] | order(_createdAt desc) {
+      _id,
+      title,
+      duration,
+      description,
+      author,
+      "audioUrl": audioFile.asset->url,
+      "coverImageUrl": coverImage.asset->url
+    }`,
+    tags: ["audioLecture"]
+  });
 
   if (!userId || !user) {
     return (
@@ -117,6 +135,23 @@ export default async function ExercisesPage() {
            ))}
         </div>
 
+
+        {/* Audio Lectures Section - Header always shows */}
+        <section className="pt-10">
+           <div className="flex items-center justify-between mb-12">
+              <div>
+                <div className="flex items-center gap-2 text-[#6E7A67] mb-2">
+                   <Headphones size={14} className="animate-pulse" />
+                   <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Auditory Insight</span>
+                </div>
+                <h2 className="text-[32px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  The Lecture <span className="italic font-normal text-[#6E7A67]">Series</span>
+                </h2>
+              </div>
+           </div>
+           
+           <AudioLecturesSection lectures={audioLectures} />
+        </section>
 
       </main>
     </div>
