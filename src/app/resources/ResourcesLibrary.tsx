@@ -88,7 +88,6 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
              {/* Feature Book - Reverted Mobile UI to be more list-like but prominent */}
              <div 
                onClick={() => books[0]?.fileUrl && window.open(books[0].fileUrl, '_blank')}
