@@ -4,9 +4,7 @@
 
 UPDATE public.profiles
 SET role = 'admin'
-WHERE id IN (
-  SELECT id::text FROM auth.users WHERE email = 'ebukadaniel065@gmail.com'
-);
+WHERE first_name ILIKE '%Daniel%' OR first_name ILIKE '%Ebuka%';
 
 -- =========================================================================
 
@@ -75,7 +73,6 @@ BEGIN
   UPDATE public.profiles 
   SET role = 'admin' 
   WHERE id = target_user 
-     OR id IN (SELECT id::text FROM auth.users WHERE email = target_user)
      OR first_name || ' ' || last_name ILIKE '%' || target_user || '%';
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;

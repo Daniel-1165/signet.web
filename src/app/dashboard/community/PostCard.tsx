@@ -94,9 +94,11 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
 
       {/* Content */}
       <div className="mb-6">
-        <p className="text-[#1D1914] leading-[1.6] text-[15px] md:text-[16px] whitespace-pre-wrap break-words font-medium" style={{ fontFamily: "'Inter', sans-serif", wordBreak: "break-word" }}>
-          {post.content}
-        </p>
+        <div className="max-h-[500px] overflow-y-auto overscroll-contain pr-2 custom-scrollbar">
+          <p className="text-[#1D1914] leading-[1.6] text-[15px] md:text-[16px] whitespace-pre-wrap break-words font-medium" style={{ fontFamily: "'Inter', sans-serif", wordBreak: "break-word" }}>
+            {post.content}
+          </p>
+        </div>
 
         {isResourcePost && (
           <div className="mt-5 flex items-center justify-between p-4 rounded-2xl bg-[#FDFCFB] border border-[#D8CEBE]/40 group/asset hover:border-[#6E7A67]/30 transition-all">
