@@ -3,14 +3,29 @@
 import { PostCard } from "./PostCard";
 import { CreatePost } from "./CreatePost";
 import { Search, Bell, Calendar, Sparkles, TrendingUp, Clock } from "lucide-react";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+
+import { useSupabaseClient } from "@/lib/supabase/client";
 
 export default function CommunityHubPage() {
   const [posts, setPosts] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('trending');
+  
+  const { user } = useUser();
+  const supabase = useSupabaseClient();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      supabase.from("profiles").select("role").eq("id", user.id).single()
+        .then(({ data }) => {
+          if (data?.role === "admin") setIsAdmin(true);
+        });
+    }
+  }, [user, supabase]);
 
   const fetchPosts = async () => {
     try {
@@ -99,6 +114,7 @@ export default function CommunityHubPage() {
                   key={post.id} 
                   post={post} 
                   profile={post.profiles}
+                  currentUserIsAdmin={isAdmin}
                 />
               ))
             ) : (

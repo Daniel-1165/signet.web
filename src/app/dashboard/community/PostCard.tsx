@@ -5,7 +5,7 @@ import { formatDistanceToNow } from "date-fns";
 import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 
-export function PostCard({ post, profile }: { post: any; profile: any }) {
+export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; profile: any; currentUserIsAdmin?: boolean }) {
   const { user } = useUser();
   const authorName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "Growth Member";
   const authorImage = profile?.image_url || "/placeholder-avatar.png";
@@ -21,7 +21,7 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
   const currentUserAvatar = user?.imageUrl ?? null;
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const isAdmin = user?.publicMetadata?.role === 'admin' || profile?.role === 'admin'; // Basic check, better to fetch from DB
+  const isAdmin = currentUserIsAdmin || user?.publicMetadata?.role === 'admin';
   const isOwner = user?.id === post.user_id;
 
   const handleDelete = async () => {
