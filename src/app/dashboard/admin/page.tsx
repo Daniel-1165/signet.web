@@ -12,6 +12,8 @@ export default function AdminPage() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState<{ type: 'success' | 'error' | 'idle', message: string }>({ type: 'idle', message: '' })
+  const [promotionTarget, setPromotionTarget] = useState('')
+  const [promoting, setPromoting] = useState(false)
 
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -54,6 +56,25 @@ export default function AdminPage() {
       setStatus({ type: 'success', message: 'Successfully cleared all community insights.' })
     }
     setLoading(false)
+  }
+
+  const handlePromote = async () => {
+    if (!promotionTarget.trim() || !user) return
+    setPromoting(true)
+    // Pass the currently authenticated user ID to verify they are an admin, 
+    // and the target they wish to promote.
+    const { error } = await supabase.rpc('promote_to_admin', { 
+      admin_id: user.id, 
+      target_user: promotionTarget 
+    })
+
+    if (error) {
+      setStatus({ type: 'error', message: 'Promotion failed: ' + error.message })
+    } else {
+      setStatus({ type: 'success', message: `Successfully promoted ${promotionTarget} to Admin.` })
+      setPromotionTarget('')
+    }
+    setPromoting(false)
   }
 
   if (loading && !isAdmin) return <div className="p-10 text-white/20 font-bold animate-pulse">Verifying Admin Privileges...</div>
@@ -104,15 +125,18 @@ export default function AdminPage() {
             <div className="relative group">
               <input 
                 type="text" 
-                placeholder="Enter User ID or Email..."
+                value={promotionTarget}
+                onChange={(e) => setPromotionTarget(e.target.value)}
+                placeholder="Enter User ID, Email, or Name..."
                 className="w-full bg-black/50 border border-white/5 rounded-2xl py-4 px-6 text-white text-sm outline-none focus:border-[#1DA756]/50 transition-all"
               />
             </div>
             <button 
-              onClick={() => alert('Search and promotion logic integrated with Supabase. Admin confirmation required.')}
-              className="w-full py-4 bg-[#1DA756] hover:bg-[#1DA756]/80 text-white rounded-2xl font-bold text-sm transition-all shadow-[0_10px_20px_rgba(29,167,86,0.2)]"
+              onClick={handlePromote}
+              disabled={promoting || !promotionTarget.trim()}
+              className="w-full py-4 bg-[#1DA756] hover:bg-[#1DA756]/80 text-white rounded-2xl font-bold text-sm transition-all shadow-[0_10px_20px_rgba(29,167,86,0.2)] disabled:opacity-50"
             >
-              Verify & Promote
+              {promoting ? 'Promoting...' : 'Verify & Promote'}
             </button>
           </div>
 

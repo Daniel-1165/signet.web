@@ -160,31 +160,24 @@ function SlideCard({
 
   const content = (
     <div
-      className={`relative w-full aspect-[16/9.5] md:aspect-[16/9] rounded-[2.5rem] overflow-hidden cursor-pointer group transition-all duration-1000 ${
+      className={`relative w-full aspect-square rounded-[2.5rem] overflow-hidden cursor-pointer group transition-all duration-1000 ${
         isActive ? 'scale-[1.02]' : 'opacity-40 scale-[0.98]'
       }`}
     >
-      {/* Background/Blurred Fill to ensure no empty space */}
+      {/* 1:1 Aspect Ratio fill with full width/height */}
       {image?.asset || image?.url ? (
-        <>
-          <img
-            src={image?.asset ? urlFor(image).width(400).blur(50).url() : image.url}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-20 scale-110"
-          />
-          <img
-            src={image?.asset ? urlFor(image).width(1200).auto('format').url() : image.url}
-            alt={title || 'Carousel slide'}
-            className="absolute inset-0 w-full h-full object-contain z-10"
-            loading="lazy"
-          />
-        </>
+        <img
+          src={image?.asset ? urlFor(image).width(1080).height(1080).auto('format').url() : image.url}
+          alt={title || 'Carousel slide'}
+          className="absolute inset-0 w-full h-full object-cover z-10"
+          loading="lazy"
+        />
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1D1914] via-[#6E7A67] to-[#1D1914]" />
+        <div className="absolute inset-0 bg-[#FDFCFB]" />
       )}
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 z-20" />
+      {/* Gentle gradient just for text readability at the bottom, removing the full shadow bg */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-90 z-20" />
 
       {/* Content Overlay */}
       {hasText && (

@@ -94,7 +94,7 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
 
       {/* Content */}
       <div className="mb-6">
-        <p className="text-[#1D1914] leading-[1.6] text-[15px] md:text-[16px] whitespace-pre-wrap font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>
+        <p className="text-[#1D1914] leading-[1.6] text-[15px] md:text-[16px] whitespace-pre-wrap break-words font-medium" style={{ fontFamily: "'Inter', sans-serif", wordBreak: "break-word" }}>
           {post.content}
         </p>
 

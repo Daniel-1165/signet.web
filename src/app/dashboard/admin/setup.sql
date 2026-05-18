@@ -1,4 +1,16 @@
--- 1. Ensure the profiles table has a role column
+-- 1. QUICK SCRIPT TO MAKE YOURSELF ADMIN BY EMAIL
+-- Run this block in your Supabase SQL Editor.
+-- REPLACE 'your.email@example.com' with your actual account email.
+
+UPDATE public.profiles
+SET role = 'admin'
+WHERE id IN (
+  SELECT id::text FROM auth.users WHERE email = 'ebukadaniel065@gmail.com'
+);
+
+-- =========================================================================
+
+-- 2. Ensure the profiles table has a role column
 -- This allows us to distinguish between 'member' and 'admin' users.
 DO $$ 
 BEGIN 
@@ -7,15 +19,12 @@ BEGIN
     END IF;
 END $$;
 
--- 2. Promote a specific user to Admin
--- REPLACE 'YOUR_USER_ID' with the actual user ID from Clerk/Supabase
--- UPDATE profiles SET role = 'admin' WHERE id = 'YOUR_USER_ID';
-
 -- 3. Update RLS policies for the messages table
 -- This allows admins to delete ANY message, and owners to delete THEIR OWN messages.
 
 -- First, drop the existing delete policy if it exists
 DROP POLICY IF EXISTS "Users can delete their own messages" ON messages;
+DROP POLICY IF EXISTS "Users or Admins can delete messages" ON messages;
 
 -- Create the new enhanced delete policy
 CREATE POLICY "Users or Admins can delete messages" ON messages
@@ -52,13 +61,19 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 UPDATE profiles SET role = 'member' WHERE role IS NULL;
 
 -- 8. Add a "Search User" and "Update Role" capability for the Admin Page
--- This function allows the Admin Page to promote users safely.
-CREATE OR REPLACE FUNCTION promote_to_admin(user_email_or_id TEXT)
+-- This function allows the Admin Page to promote users securely using Clerk/Supabase architecture
+CREATE OR REPLACE FUNCTION promote_to_admin(admin_id TEXT, target_user TEXT)
 RETURNS VOID AS $$
 BEGIN
-  -- This is a simple update. In a real app, you might want more checks.
-  UPDATE profiles 
+  -- Security: verify caller holds admin status
+  IF NOT EXISTS (SELECT 1 FROM public.profiles WHERE id = admin_id AND role = 'admin') THEN
+     RAISE EXCEPTION 'Not authorized. Only existing admins can promote members.';
+  END IF;
+
+  UPDATE public.profiles 
   SET role = 'admin' 
-  WHERE id = user_email_or_id OR first_name || ' ' || last_name ILIKE '%' || user_email_or_id || '%';
+  WHERE id = target_user 
+     OR id IN (SELECT id::text FROM auth.users WHERE email = target_user)
+     OR first_name || ' ' || last_name ILIKE '%' || target_user || '%';
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;

@@ -14,7 +14,7 @@ export default function CommunityHubPage() {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('/api/community/posts');
+      const response = await fetch('/api/community/posts?t=' + Date.now(), { cache: 'no-store' });
       if (response.ok) {
         const data = await response.json();
         setPosts(data);
