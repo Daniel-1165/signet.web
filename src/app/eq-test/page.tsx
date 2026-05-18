@@ -182,7 +182,7 @@ export default function EQAssessment() {
   // Welcome Screen
   if (screen === "welcome") {
     return (
-      <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-start pt-28 md:pt-0 md:justify-center p-6`}>
+      <div className={`min-h-[100dvh] bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-center p-6 pb-20 md:pb-6`}>
         <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto z-10 w-full">
           <div className="w-10 h-10 rounded-full bg-accent text-[#051F20] flex items-center justify-center mb-3 shadow-xl">
             <CheckCircle2 className="w-5 h-5" />
@@ -342,10 +342,10 @@ export default function EQAssessment() {
 
   // Active Question Screen
   return (
-    <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col pt-6 px-6`}>
-       <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col relative">
+    <div className={`min-h-[100dvh] bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col pt-6 px-6`}>
+       <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col relative justify-between">
           
-          <header className="pt-4 pb-2 w-full">
+          <header className="pt-2 pb-2 w-full shrink-0">
               <div className="flex items-center gap-2 mb-4">
                   <button onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))} disabled={currentIdx === 0} className="disabled:opacity-30">
                       <ArrowLeft className="w-5 h-5 text-[#1a1a2e]" />
@@ -398,18 +398,18 @@ export default function EQAssessment() {
             </AnimatePresence>
           </main>
 
-          <footer className="fixed bottom-0 left-0 right-0 p-4 flex justify-between items-center z-20 pointer-events-none max-w-3xl mx-auto">
+          <footer className="mt-8 mb-6 shrink-0 w-full flex justify-between items-center max-w-3xl mx-auto">
               <button 
                   onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))}
                   disabled={currentIdx === 0}
-                  className="text-[#1a1a2e]/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-[#1a1a2e] px-4 py-2 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
+                  className="text-[#1a1a2e]/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-[#1a1a2e] px-4 py-2 rounded-full transition-all disabled:opacity-0"
               >
                   <ArrowLeft className="w-3 h-3 mr-2" /> Back
               </button>
               <button 
                   onClick={handleNext}
                   disabled={answers[question.id] === undefined}
-                  className="bg-[#163832] text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-[#051F20] px-6 py-3 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
+                  className="bg-[#163832] text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-[#051F20] px-6 py-3 rounded-full transition-all disabled:opacity-30 shadow-xl"
               >
                   {currentIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
               </button>

@@ -51,9 +51,6 @@ const Navbar = () => {
   const { user, isLoaded, isSignedIn } = useUser();
   const supabase = useSupabaseClient();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [showAdminModal, setShowAdminModal] = useState(false);
-  const [targetUser, setTargetUser] = useState("");
-  const [adminActionStatus, setAdminActionStatus] = useState("");
 
   // Determine if this page has a dark hero (navbar needs white text when not scrolled)
   const hasDarkHero = DARK_HERO_ROUTES.some(
@@ -81,32 +78,7 @@ const Navbar = () => {
     }
   }, [user, supabase]);
 
-  const handleMakeAdmin = async () => {
-    if (!targetUser.trim()) return;
-    setAdminActionStatus("Processing...");
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("id, first_name")
-      .ilike("first_name", targetUser.trim())
-      .limit(1)
-      .single();
 
-    if (profile) {
-      const { error } = await supabase
-        .from("profiles")
-        .update({ role: "admin" })
-        .eq("id", profile.id);
-      if (error) {
-        setAdminActionStatus("Error: " + error.message);
-      } else {
-        setAdminActionStatus(`Success! ${profile.first_name || targetUser} is now an admin.`);
-        setTargetUser("");
-        setTimeout(() => { setShowAdminModal(false); setAdminActionStatus(""); }, 2000);
-      }
-    } else {
-      setAdminActionStatus("User not found!");
-    }
-  };
 
   return (
     <>
@@ -259,12 +231,13 @@ const Navbar = () => {
                 )}
 
                 {isAdmin && isSignedIn && (
-                  <button
-                    onClick={() => { setShowAdminModal(true); setIsSidebarOpen(false); }}
+                  <Link
+                    href="/dashboard/admin"
+                    onClick={() => setIsSidebarOpen(false)}
                     className="w-full h-10 mt-1 px-3 bg-[#1DA756]/10 border border-[#1DA756]/20 text-[#1DA756] rounded-full font-bold text-xs flex items-center justify-center gap-1.5"
                   >
                     <Shield className="w-4 h-4" /> Admin Panel
-                  </button>
+                  </Link>
                 )}
               </div>
             </motion.div>
@@ -303,12 +276,12 @@ const Navbar = () => {
                 <div className="flex items-center gap-4">
                   <UserButton appearance={{ elements: { avatarBox: "w-9 h-9 border-2 border-[#1DA756]/20" } }} />
                   {isAdmin && (
-                    <button
-                      onClick={() => setShowAdminModal(true)}
-                      className="h-9 px-4 bg-[#1DA756]/10 text-[#1DA756] border border-[#1DA756]/20 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-[#1DA756] hover:text-white transition-all shadow-sm"
+                    <Link
+                      href="/dashboard/admin"
+                      className="h-9 px-4 flex items-center justify-center bg-[#1DA756]/10 text-[#1DA756] border border-[#1DA756]/20 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-[#1DA756] hover:text-white transition-all shadow-sm"
                     >
                       Admin
-                    </button>
+                    </Link>
                   )}
                 </div>
               ) : (
@@ -344,44 +317,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Admin Modal */}
-      <AnimatePresence>
-        {showAdminModal && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm relative"
-            >
-              <button onClick={() => setShowAdminModal(false)} className="absolute top-4 right-4 text-black/40 hover:text-black">
-                <X className="h-5 w-5" />
-              </button>
-              <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-                <Shield className="text-[#1DA756] h-5 w-5" /> Admin Panel
-              </h3>
-              <p className="text-xs text-black/50 mb-6">Promote a user to Admin by entering their First Name.</p>
-              <input
-                type="text"
-                placeholder="Username"
-                value={targetUser}
-                onChange={(e) => setTargetUser(e.target.value)}
-                className="w-full px-4 py-3 bg-black/[0.05] border border-black/[0.1] rounded-xl text-sm mb-4 focus:outline-none focus:border-[#1DA756]"
-              />
-              {adminActionStatus && (
-                <p className="text-xs font-bold text-[#1DA756] mb-4">{adminActionStatus}</p>
-              )}
-              <button
-                onClick={handleMakeAdmin}
-                disabled={!targetUser.trim()}
-                className="w-full bg-[#1DA756] text-white py-3 rounded-xl font-bold tracking-wide hover:bg-[#158C45] transition-colors disabled:opacity-50"
-              >
-                Make Admin
-              </button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+
     </>
   );
 };

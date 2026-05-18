@@ -39,7 +39,7 @@ export function PostCard({ post, profile }: { post: any; profile: any }) {
   };
 
   return (
-    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30 hover:border-[#6E7A67]/30 transition-all group relative">
+    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-sm border border-[#D8CEBE]/30 hover:border-[#6E7A67]/30 transition-colors group relative overflow-hidden flex flex-col transform-gpu contain-content">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div className="flex items-center gap-4">

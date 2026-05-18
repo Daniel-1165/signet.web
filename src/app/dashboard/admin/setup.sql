@@ -19,27 +19,29 @@ BEGIN
     END IF;
 END $$;
 
--- 3. Update RLS policies for the messages table
--- This allows admins to delete ANY message, and owners to delete THEIR OWN messages.
+-- 3. Update RLS policies for the posts table
+-- This allows admins to delete ANY post, and owners to delete THEIR OWN posts.
 
 -- First, drop the existing delete policy if it exists
+DROP POLICY IF EXISTS "Users can delete their own posts" ON posts;
+DROP POLICY IF EXISTS "Users or Admins can delete posts" ON posts;
 DROP POLICY IF EXISTS "Users can delete their own messages" ON messages;
 DROP POLICY IF EXISTS "Users or Admins can delete messages" ON messages;
 
 -- Create the new enhanced delete policy
-CREATE POLICY "Users or Admins can delete messages" ON messages
+CREATE POLICY "Users or Admins can delete posts" ON posts
 FOR DELETE
 USING (
   auth.uid()::text = user_id OR 
   EXISTS (
-    SELECT 1 FROM profiles 
-    WHERE profiles.id = auth.uid()::text 
-    AND profiles.role = 'admin'
+    SELECT 1 FROM public.profiles 
+    WHERE public.profiles.id = auth.uid()::text 
+    AND public.profiles.role = 'admin'
   )
 );
 
--- 4. Enable RLS on messages if not already enabled
-ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
+-- 4. Enable RLS on posts if not already enabled
+ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 
 -- 5. Helper function to check if current user is admin (optional utility)
 CREATE OR REPLACE FUNCTION is_admin()
