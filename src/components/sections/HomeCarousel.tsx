@@ -181,7 +181,7 @@ function SlideCard({
 
       {/* Content Overlay */}
       {hasText && (
-        <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
+        <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end z-30">
           {tag && (
             <span
               className="text-[10px] font-black uppercase tracking-[0.4em] text-[#D8CEBF] mb-3 block"
