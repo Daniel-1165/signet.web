@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE(request: NextRequest) {
+export async function PATCH(request: NextRequest) {
   try {
     const { userId } = await auth();
     if (!userId) {
@@ -114,9 +114,10 @@ export async function DELETE(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const postId = searchParams.get('id');
+    const { content } = await request.json();
 
-    if (!postId) {
-      return NextResponse.json({ error: 'Post ID is required' }, { status: 400 });
+    if (!postId || !content) {
+      return NextResponse.json({ error: 'Post ID and content are required' }, { status: 400 });
     }
 
     const supabase = createServerSupabaseClient();
@@ -143,7 +144,70 @@ export async function DELETE(request: NextRequest) {
     const isOwner = post.user_id === userId;
 
     if (!isAdmin && !isOwner) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+      return NextResponse.json({ error: 'Forbidden. You do not have permission to edit this post.' }, { status: 403 });
+    }
+
+    const { data, error: updateError } = await supabase
+      .from('posts')
+      .update({ content: content.trim() })
+      .eq('id', postId)
+      .select()
+      .single();
+
+    if (updateError) {
+      console.error('Error updating post:', updateError);
+      return NextResponse.json({ error: 'Failed to update post' }, { status: 500 });
+    }
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error('Error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { searchParams } = new URL(request.url);
+    const postId = searchParams.get('id');
+
+    if (!postId) {
+      return NextResponse.json({ error: 'Post ID is required' }, { status: 400 });
+    }
+
+    const supabase = createServerSupabaseClient();
+
+    // Check if user is the owner or an admin
+    const { data: post, error: fetchError } = await supabase
+      .from('posts')
+      .select('user_id')
+      .eq('id', postId)
+      .single();
+
+    if (fetchError || !post) {
+      console.error('Fetch post error:', fetchError);
+      return NextResponse.json({ error: 'Post not found or database error' }, { status: 404 });
+    }
+
+    // Check for admin role in profiles
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', userId)
+      .single();
+
+    const isAdmin = profile?.role === 'admin';
+    const isOwner = post.user_id === userId;
+
+    console.log(`Delete attempt: post_owner=${post.user_id}, requester=${userId}, isAdmin=${isAdmin}, isOwner=${isOwner}`);
+
+    if (!isAdmin && !isOwner) {
+      return NextResponse.json({ error: `Forbidden. Role: ${profile?.role || 'none'}` }, { status: 403 });
     }
 
     const { error: deleteError } = await supabase
@@ -153,7 +217,7 @@ export async function DELETE(request: NextRequest) {
 
     if (deleteError) {
       console.error('Error deleting post:', deleteError);
-      return NextResponse.json({ error: 'Failed to delete post' }, { status: 500 });
+      return NextResponse.json({ error: 'Failed to delete post: ' + deleteError.message }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });

@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export const CustomCursor = () => {
     const [isVisible, setIsVisible] = useState(false);
-    
+
     // Position of the mouse
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -21,9 +21,9 @@ export const CustomCursor = () => {
             mouseY.set(e.clientY);
             if (!isVisible) setIsVisible(true);
         };
-        
+
         const handleMouseSelect = () => {
-             // Handle selection states if needed
+            // Handle selection states if needed
         }
 
         window.addEventListener("mousemove", handleMouseMove);

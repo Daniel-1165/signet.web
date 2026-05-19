@@ -24,6 +24,10 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
   const isAdmin = currentUserIsAdmin || user?.publicMetadata?.role === 'admin';
   const isOwner = user?.id === post.user_id;
 
+  const [isEditing, setIsEditing] = useState(false);
+  const [editContent, setEditContent] = useState(post.content);
+  const [isUpdating, setIsUpdating] = useState(false);
+
   const handleDelete = async () => {
     if (!confirm("Are you sure you want to delete this insight?")) return;
     try {
@@ -32,9 +36,34 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
       });
       if (response.ok) {
         window.location.reload(); // Simple refresh for now
+      } else {
+        const err = await response.json();
+        alert(`Failed to delete: ${err.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error("Error deleting post:", error);
+    }
+  };
+
+  const handleUpdate = async () => {
+    if (!editContent.trim()) return;
+    setIsUpdating(true);
+    try {
+      const response = await fetch(`/api/community/posts?id=${post.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: editContent.trim() }),
+      });
+      if (response.ok) {
+        setIsEditing(false);
+        window.location.reload();
+      } else {
+        alert("Failed to update insight");
+      }
+    } catch (error) {
+      console.error("Error updating post:", error);
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -79,13 +108,25 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
                 Copy Link
               </button>
               {(isOwner || isAdmin) && (
-                <button 
-                  className="w-full text-left px-4 py-2 text-[12px] font-bold text-red-500 hover:bg-red-50 transition-colors flex items-center gap-2"
-                  onClick={handleDelete}
-                >
-                  <Trash2 size={14} />
-                  Delete Insight
-                </button>
+                <>
+                  <button 
+                    className="w-full text-left px-4 py-2 text-[12px] font-bold text-[#6E7A67] hover:bg-[#FDFCFB] hover:text-[#1D1914] transition-colors flex items-center gap-2"
+                    onClick={() => {
+                      setIsEditing(true);
+                      setShowDropdown(false);
+                    }}
+                  >
+                    <FileText size={14} />
+                    Edit Insight
+                  </button>
+                  <button 
+                    className="w-full text-left px-4 py-2 text-[12px] font-bold text-red-500 hover:bg-red-50 transition-colors flex items-center gap-2"
+                    onClick={handleDelete}
+                  >
+                    <Trash2 size={14} />
+                    Delete Insight
+                  </button>
+                </>
               )}
             </div>
           )}
@@ -95,9 +136,36 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
       {/* Content */}
       <div className="mb-6">
         <div className="max-h-[500px] overflow-y-auto overscroll-contain pr-2 custom-scrollbar">
-          <p className="text-[#1D1914] leading-[1.6] text-[15px] md:text-[16px] whitespace-pre-wrap break-words font-medium" style={{ fontFamily: "'Inter', sans-serif", wordBreak: "break-word" }}>
-            {post.content}
-          </p>
+          {isEditing ? (
+            <div className="space-y-4">
+              <textarea
+                value={editContent}
+                onChange={(e) => setEditContent(e.target.value)}
+                className="w-full p-4 bg-[#FDFCFB] border border-[#D8CEBE]/40 rounded-2xl text-[14px] md:text-[15px] font-medium text-[#1D1914] outline-none focus:border-[#6E7A67] transition-all min-h-[120px] resize-none"
+                placeholder="Update your insight..."
+                autoFocus
+              />
+              <div className="flex justify-end gap-3">
+                <button 
+                  onClick={() => setIsEditing(false)}
+                  className="px-4 py-2 text-[11px] font-bold text-[#6E7A67] hover:text-[#1D1914] transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleUpdate}
+                  disabled={isUpdating || !editContent.trim()}
+                  className="px-6 py-2 bg-[#1D1914] text-white rounded-full text-[11px] font-bold hover:bg-[#1D1914]/80 transition-all disabled:opacity-50"
+                >
+                  {isUpdating ? "Saving..." : "Save Changes"}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <p className="text-[#1D1914] leading-[1.6] text-[14px] md:text-[15px] whitespace-pre-wrap break-words font-medium" style={{ fontFamily: "'Inter', sans-serif", wordBreak: "break-word" }}>
+              {post.content}
+            </p>
+          )}
         </div>
 
         {isResourcePost && (
