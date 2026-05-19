@@ -30,10 +30,10 @@ DROP POLICY IF EXISTS "Users or Admins can delete messages" ON messages;
 CREATE POLICY "Users or Admins can delete posts" ON posts
 FOR DELETE
 USING (
-  auth.uid()::text = user_id OR 
+  (auth.jwt() ->> 'sub') = user_id OR 
   EXISTS (
     SELECT 1 FROM public.profiles 
-    WHERE public.profiles.id = auth.uid()::text 
+    WHERE public.profiles.id = (auth.jwt() ->> 'sub')
     AND public.profiles.role = 'admin'
   )
 );
@@ -47,7 +47,7 @@ RETURNS BOOLEAN AS $$
 BEGIN
   RETURN EXISTS (
     SELECT 1 FROM profiles
-    WHERE profiles.id = auth.uid()::text
+    WHERE profiles.id = (auth.jwt() ->> 'sub')
     AND profiles.role = 'admin'
   );
 END;

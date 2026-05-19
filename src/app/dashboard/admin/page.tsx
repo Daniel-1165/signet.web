@@ -196,7 +196,7 @@ export default function AdminHubPage() {
                 <h2 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.2em]">Platform Safety</h2>
               </div>
               
-              <h3 className="text-[20px] font-bold text-[#1D1914] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Platform <span className="text-red-500 italic font-normal">Reset</span></h3>
+              <h3 className="text-[20px] font-bold text-[#1D1914] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Platform <span className="text-red-500 italic font-normal">Cleanup</span></h3>
               <p className="text-[#6E7A67]/70 text-[13px] mb-8 leading-relaxed">
                 Resets the collective community feed. All published insights, assets, and discussions will be permanently removed.
               </p>
@@ -207,7 +207,7 @@ export default function AdminHubPage() {
                 className="flex items-center justify-center gap-3 w-full py-4 bg-red-50 text-red-600 border border-red-100 rounded-2xl font-bold text-[12px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all disabled:opacity-50"
               >
                 <Trash2 size={16} />
-                Perform Content Purge
+                Delete All Messages
               </button>
             </div>
           </div>
