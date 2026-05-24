@@ -1,21 +1,8 @@
 import type { Metadata } from "next";
-import { Syne, Outfit } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { SyncUser } from "@/components/auth/SyncUser";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["700", "800"],
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
 
 export const metadata: Metadata = {
   title: "SIGNET | Silent Growth Network",
@@ -30,7 +17,7 @@ export default function RootLayout({
   return (
     <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
-        <body className={`${syne.variable} ${outfit.variable} font-sans antialiased bg-white w-full overflow-x-hidden relative`}>
+        <body className="font-sans antialiased bg-white w-full overflow-x-hidden relative">
           <SyncUser />
           <LayoutWrapper>
             {children}

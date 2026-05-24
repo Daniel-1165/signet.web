@@ -9,6 +9,10 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   const pathname = usePathname();
   const isDashboard = pathname.startsWith("/dashboard");
 
+  if (pathname.startsWith("/studio")) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="flex flex-col min-h-screen relative overflow-x-hidden">
       <Navbar />
