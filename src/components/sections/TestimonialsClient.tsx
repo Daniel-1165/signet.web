@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Testimonial } from "@/lib/sanity/types";
+import { urlFor } from "@/lib/sanity/image";
 
 interface Props {
   testimonials: Testimonial[];
@@ -84,14 +85,12 @@ export default function TestimonialsClient({ testimonials }: Props) {
                       )}
 
                       {t.testimonialImage ? (
-                        <div className="absolute inset-0 z-0">
+                        <div className="flex-1 w-full aspect-square relative overflow-hidden rounded-2xl bg-black/[0.02]">
                           <img 
-                            src={t.testimonialImage.asset?.url} 
+                            src={urlFor(t.testimonialImage).fit('max').url()} 
                             alt={`Testimonial from ${t.name}`}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
                           />
-                          {/* Subtle overlay to ensure any text overlay would be readable, though we aim for full image cards */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                         </div>
                       ) : (
                         <div className="flex-1 relative z-10">
@@ -109,10 +108,10 @@ export default function TestimonialsClient({ testimonials }: Props) {
                         </div>
                       )}
 
-                      <div className={`pt-6 border-t border-black/[0.05] relative z-10 flex items-center gap-4 ${t.testimonialImage ? "mt-auto bg-white/60 backdrop-blur-md -m-8 md:-m-10 p-6 md:p-8" : ""}`}>
-                        {t.avatar?.asset?.url ? (
+                      <div className="pt-6 border-t border-black/[0.05] relative z-10 flex items-center gap-4">
+                        {t.avatar?.asset ? (
                           <img 
-                            src={t.avatar.asset.url} 
+                            src={urlFor(t.avatar).fit('max').width(80).height(80).url()} 
                             alt={t.name} 
                             className="w-10 h-10 rounded-full object-cover border border-black/5"
                           />
@@ -122,8 +121,8 @@ export default function TestimonialsClient({ testimonials }: Props) {
                           </div>
                         )}
                         <div>
-                          <h4 className={`text-base font-black tracking-tight ${t.testimonialImage ? "text-[#051F20]" : "text-[#0D120E]"}`}>{t.name || "Anonymous"}</h4>
-                          <p className={`text-[9px] font-bold uppercase tracking-[0.2em] mt-1 flex items-center gap-2 ${t.testimonialImage ? "text-[#051F20]/60" : "text-[#0D120E]/40"}`}>
+                          <h4 className="text-base font-black tracking-tight text-[#0D120E]">{t.name || "Anonymous"}</h4>
+                          <p className="text-[9px] font-bold uppercase tracking-[0.2em] mt-1 flex items-center gap-2 text-[#0D120E]/40">
                              {t.role || "Member"}{t.company ? `, ${t.company}` : ""}
                           </p>
                         </div>
