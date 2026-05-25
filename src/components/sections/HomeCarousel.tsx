@@ -45,14 +45,55 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const [isDragging, setIsDragging] = useState(false);
+  const startX = useRef(0);
+  const scrollLeftState = useRef(0);
+  const dragDistance = useRef(0);
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    setIsDragging(true);
+    startX.current = e.pageX - container.offsetLeft;
+    scrollLeftState.current = container.scrollLeft;
+    dragDistance.current = 0;
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    const container = scrollRef.current;
+    if (!container) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    container.scrollLeft = scrollLeftState.current - walk;
+    dragDistance.current = Math.abs(x - startX.current);
+  };
+
+  const onMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const onMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (dragDistance.current > 10) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
   // Auto-play logic
   useEffect(() => {
+    if (isDragging) return; // Pause auto-play when user is dragging
     const timer = setInterval(() => {
       const nextIndex = (activeIndex + 1) % displaySlides.length;
       scrollTo(nextIndex);
     }, 5000);
     return () => clearInterval(timer);
-  }, [activeIndex, displaySlides.length]);
+  }, [activeIndex, displaySlides.length, isDragging]);
 
   const scrollTo = (index: number) => {
     const clamped = Math.max(0, Math.min(index, displaySlides.length - 1));
@@ -110,7 +151,14 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 md:px-0 pb-10"
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseLeave}
+        onClickCapture={onClickCapture}
+        className={`flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 md:px-0 pb-10 no-swipe ${
+          isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'
+        }`}
       >
         {displaySlides.map((slide, i) => {
           const isActive = i === activeIndex;

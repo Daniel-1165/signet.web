@@ -1,4 +1,3 @@
-import Academy from "@/components/sections/Academy";
 import FeaturesGrid from "@/components/sections/FeaturesGrid";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/layout/Footer";
@@ -66,7 +65,6 @@ export default async function Home() {
           </div>
         </div>
 
-        <Academy />
         <FeaturesGrid />
         <Testimonials />
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Testimonial } from "@/lib/sanity/types";
 import { urlFor } from "@/lib/sanity/image";
@@ -20,10 +21,51 @@ function getInitials(name?: string) {
 }
 
 export default function TestimonialsClient({ testimonials }: Props) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+  const dragDistance = useRef(0);
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    setIsDragging(true);
+    startX.current = e.pageX - container.offsetLeft;
+    scrollLeft.current = container.scrollLeft;
+    dragDistance.current = 0;
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    const container = scrollRef.current;
+    if (!container) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    container.scrollLeft = scrollLeft.current - walk;
+    dragDistance.current = Math.abs(x - startX.current);
+  };
+
+  const onMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const onMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (dragDistance.current > 10) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
   return (
-    <section id="community" className="py-32 bg-transparent relative z-10 overflow-hidden">
+    <section id="community" className="py-16 bg-transparent relative z-10 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="flex flex-col mb-14">
+        <div className="flex flex-col mb-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +97,17 @@ export default function TestimonialsClient({ testimonials }: Props) {
         ) : (
           <div className="relative group/testimonials">
             {/* Horizontal Scroll Container */}
-            <div className="flex gap-6 overflow-x-auto no-scrollbar pb-12 cursor-grab active:cursor-grabbing px-2 md:px-0 -mx-6 md:-mx-0">
+            <div 
+              ref={scrollRef}
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseLeave}
+              onClickCapture={onClickCapture}
+              className={`flex gap-6 overflow-x-auto no-scrollbar pb-12 px-2 md:px-0 -mx-6 md:-mx-0 no-swipe ${
+                isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'
+              }`}
+            >
               {testimonials.map((t, i) => {
                 const isLongText = t.content && t.content.length > 150;
                 return (
@@ -99,7 +151,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                         </div>
                       )}
 
-                      <div className="pt-6 border-t border-black/[0.05] relative z-10 flex items-center gap-4">
+                      <div className="pt-6 border-t border-[#1DA756] relative z-10 flex items-center gap-4">
                         {t.avatar?.asset ? (
                           <img 
                             src={urlFor(t.avatar).fit('max').width(80).height(80).url()} 

@@ -33,6 +33,12 @@ export default function MobileBottomNav() {
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
+      const target = e.target as HTMLElement
+      if (target && target.closest('.no-swipe')) {
+        touchStartX.current = null
+        touchStartY.current = null
+        return
+      }
       touchStartX.current = e.touches[0].clientX
       touchStartY.current = e.touches[0].clientY
     }
