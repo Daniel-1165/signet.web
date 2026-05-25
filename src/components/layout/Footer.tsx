@@ -38,7 +38,7 @@ const Footer = () => {
             const data = await res.json();
             if (res.ok) {
                 setStatus("success");
-                setMessage(data.message || "Subscribed successfully!");
+                setMessage(data.message || "Subscribed successfully to Signet");
             } else {
                 setStatus("error");
                 setMessage(data.error || "Something went wrong. Please try again.");

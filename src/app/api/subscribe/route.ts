@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Subscribed successfully in silence!',
+      message: 'Subscribed successfully to Signet',
       id: result._id,
     });
 
