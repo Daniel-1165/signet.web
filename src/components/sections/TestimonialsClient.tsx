@@ -23,7 +23,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
   return (
     <section id="community" className="py-32 bg-transparent relative z-10 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div className="flex flex-col mb-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -33,19 +33,10 @@ export default function TestimonialsClient({ testimonials }: Props) {
             <p className="text-xs font-black uppercase tracking-[0.25em] text-accent mb-3">
               Community
             </p>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground max-w-md">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground max-w-md">
               Real stories from our network.
             </h2>
           </motion.div>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-lg text-foreground/50 font-normal max-w-sm"
-          >
-            Join 10,000+ individuals committed to building their life right.
-          </motion.p>
         </div>
 
         {testimonials.length === 0 ? (

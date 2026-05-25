@@ -111,7 +111,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                         {books[0]?.title}
                       </h3>
                       <p className="text-[9px] md:text-[11px] uppercase tracking-[0.2em] text-[#006b58] mt-1.5 md:mt-2 font-bold" >
-                        By {books[0]?.tag || 'Signet Expert'}
+                        By {books[0]?.author?.name || books[0]?.tag || 'Signet Expert'}
                       </p>
                     </div>
                     <span className="bg-[#83fba5] text-[#005746] text-[8px] md:text-[10px] font-bold px-3 md:px-4 py-1 rounded-full uppercase tracking-widest shrink-0 shadow-sm whitespace-nowrap hidden sm:block">
@@ -148,8 +148,8 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                      </div>
                      <div className="min-w-0 flex-1">
                        <h3 className="text-[15px] md:text-[16px] font-bold text-[#005746] line-clamp-2 leading-snug" >{book.title}</h3>
-                       <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-0.5 mb-1" >{book.tag || "Signet Author"}</p>
-                       <p className="text-[12px] text-[#3e4945] line-clamp-2 opacity-70" >{book.description || "In-depth strategies for cognitive persistence and continuous intentional growth."}</p>
+                       <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-0.5 mb-1" >{book.author?.name || book.tag || "Signet Author"}</p>
+                       <p className="text-[12px] text-[#3e4945] line-clamp-2 opacity-70" >{book.description}</p>
                      </div>
                    </button>
                 ))}

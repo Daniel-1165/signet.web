@@ -11,6 +11,15 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',
@@ -19,9 +28,23 @@ export default defineType({
           {title: 'Magazine', value: 'Magazine'},
           {title: 'Book', value: 'Book'},
           {title: 'Article', value: 'Article'},
-          {title: 'Design', value: 'Design'}
+          {title: 'Design', value: 'Design'},
+          {title: 'Image', value: 'Image'}
         ],
       }
+    }),
+    defineField({
+      name: 'description',
+      title: 'Short Description',
+      type: 'text',
+      rows: 3,
+      description: 'A short blurb shown under the title in the resource library (books, articles, etc.). Keep it under 150 characters for best display.',
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'Subtitle / Series',
+      type: 'string',
+      description: 'Optional subtitle or series label shown beside the author name (e.g. "Book of the Month" or "Issue #14").',
     }),
     defineField({
       name: 'thumbnail',
@@ -39,10 +62,16 @@ export default defineType({
       description: 'Upload PDF for books or magazines',
     }),
     defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{type: 'author'}],
+    }),
+    defineField({
       name: 'content',
       title: 'Write-up / Article Content',
-      type: 'text',
-      description: 'Write up for designs, or text content for articles',
+      type: 'blockContent',
+      description: 'Rich text content for articles (highly recommended over plain text)',
     }),
   ],
 })

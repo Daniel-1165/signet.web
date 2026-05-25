@@ -1,7 +1,5 @@
-import PillarsGrid from "@/components/sections/PillarsGrid";
 import Academy from "@/components/sections/Academy";
 import FeaturesGrid from "@/components/sections/FeaturesGrid";
-import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/layout/Footer";
 import HomeCarousel from "@/components/sections/HomeCarousel";
@@ -68,19 +66,8 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Growth Architecture */}
-        <div className="space-y-12">
-           <div className="text-center max-w-2xl mx-auto">
-              <h3 className="text-[32px] md:text-[52px] font-bold text-[#1D1914] mb-4" >Growth Architecture</h3>
-              <p className="text-[16px] text-[#6E7A67]">The four pillars of the Signet methodology.</p>
-           </div>
-           
-           <PillarsGrid />
-        </div>
-
         <Academy />
         <FeaturesGrid />
-        <Process />
         <Testimonials />
       </div>
       <Footer />
