@@ -1,8 +1,23 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Montserrat, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SyncUser } from "@/components/auth/SyncUser";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+});
 
 export const metadata: Metadata = {
   title: "SIGNET | Silent Growth Network",
@@ -17,7 +32,7 @@ export default function RootLayout({
   return (
     <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
-        <body className="font-sans antialiased bg-white w-full overflow-x-hidden relative">
+        <body className={`${montserrat.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white w-full overflow-x-hidden relative`}>
           <SyncUser />
           <LayoutWrapper>
             {children}
