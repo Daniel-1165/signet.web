@@ -51,7 +51,7 @@ export default async function FeaturesPage() {
         </section>
 
         {/* ── THE SIGNET STORY ────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-40">
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-16">
             <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-20 md:gap-32 items-center">
                 <div className="space-y-10">
                     <div>
@@ -76,13 +76,13 @@ export default async function FeaturesPage() {
                     {/* Vision & Mission Statements */}
                     <div className="grid sm:grid-cols-2 gap-12 pt-10 border-t border-[#D8CEBE]/40">
                         <div className="space-y-4">
-                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1D1914]">Our Vision</h4>
+                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#6E7A67]">Our Vision</h4>
                             <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
                                 To build a global network of trailblazers who <span className="italic text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
                             </p>
                         </div>
                         <div className="space-y-4">
-                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1D1914]">Our Mission</h4>
+                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#6E7A67]">Our Mission</h4>
                             <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
                                 Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
                             </p>
@@ -95,7 +95,7 @@ export default async function FeaturesPage() {
                         <img 
                             src={featuredImage} 
                             alt={pageData?.featuredImage?.alt || "SIGNET Brand Texture"} 
-                            className="w-full h-auto rounded-[2.5rem] object-cover aspect-square"
+                            className="w-full h-auto rounded-[2.5rem] object-contain aspect-square bg-[#FDFCFB]"
                             loading="lazy"
                         />
                     </div>
@@ -106,9 +106,9 @@ export default async function FeaturesPage() {
 
 
         {/* ── COURSE CURRICULUM ────────────────────────────────────── */}
-        <section className="bg-white py-24 md:py-40 border-y border-[#D8CEBE]/20">
+        <section className="bg-white py-10 md:py-16 border-y border-[#D8CEBE]/20">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
-                <div className="flex items-center gap-4 mb-20">
+                <div className="flex items-center gap-4 mb-10">
                     <div className="h-0.5 w-12 bg-[#6E7A67]" />
                     <h3 className="text-[12px] font-bold tracking-[0.3em] uppercase text-[#6E7A67]" >Course Curriculum</h3>
                 </div>
@@ -129,7 +129,7 @@ export default async function FeaturesPage() {
                         "Effective Communication skills",
                         "Conflict Resolution: How to resolve ANY conflict"
                     ].map((item, i) => (
-                        <div key={i} className="flex items-start gap-5 py-4 border-b border-[#D8CEBE]/10 group hover:border-[#6E7A67]/30 transition-all">
+                        <div key={i} className="flex items-start gap-5 py-2.5 border-b border-[#D8CEBE]/10 group hover:border-[#6E7A67]/30 transition-all">
                             <span className="text-[14px] font-bold text-[#6E7A67]/40 group-hover:text-[#6E7A67] transition-colors">{i + 1})</span>
                             <p className="text-[16px] md:text-[18px] font-medium text-[#1D1914] group-hover:translate-x-2 transition-transform duration-500" >{item}</p>
                         </div>
@@ -139,7 +139,7 @@ export default async function FeaturesPage() {
         </section>
 
         {/* ── ENROLLMENT & GAINS ────────────────────────────────────── */}
-        <section className="bg-[#0B3D2E] text-white py-24 md:py-40 overflow-hidden relative">
+        <section className="bg-[#0B3D2E] text-white py-10 md:py-16 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-full md:w-[600px] h-full bg-white/[0.03] blur-[120px] -rotate-12 translate-x-1/4" />
             
             <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-20 md:gap-32 items-start relative z-10">
@@ -195,7 +195,7 @@ export default async function FeaturesPage() {
                                 <Heart size={14} className="fill-[#6E7A67]/20" />
                             </div>
                             <div>
-                                <h5 className="font-bold text-[16px] mb-2 uppercase tracking-tight">Mastery of skills</h5>
+                                <h5 className="font-bold text-[16px] mb-2 uppercase tracking-tight text-[#6E7A67]">Mastery of skills</h5>
                                 <p className="text-[14px] text-[#6E7A67] leading-relaxed">Requisite for success in academics, career, business, relationships, ministry, family, or leadership positions.</p>
                             </div>
                         </div>
@@ -204,7 +204,7 @@ export default async function FeaturesPage() {
                                 <Award size={14} className="fill-[#6E7A67]/20" />
                             </div>
                             <div>
-                                <h5 className="font-bold text-[16px] mb-2 uppercase tracking-tight">A Certificate of Participation</h5>
+                                <h5 className="font-bold text-[16px] mb-2 uppercase tracking-tight text-[#6E7A67]">A Certificate of Participation</h5>
                                 <p className="text-[14px] text-[#6E7A67] leading-relaxed mb-4">Subject to meeting the following criteria:</p>
                                 <ul className="space-y-2">
                                     {['Attendance to classes', 'Participation in team activities', 'Passing the assessment tests'].map(li => (
@@ -218,15 +218,15 @@ export default async function FeaturesPage() {
                         </div>
                     </div>
 
-                    <Link href="/join" className="group flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-[#6E7A67] text-white font-bold text-[14px] uppercase tracking-widest hover:bg-[#1D1914] transition-all shadow-xl shadow-[#6E7A67]/20">
-                        Apply for Next Cohort <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                    <Link href="/join" className="group flex items-center justify-center gap-3 w-full h-14 rounded-2xl bg-[#6E7A67] text-white font-bold text-[14px] uppercase tracking-widest hover:bg-[#1D1914] transition-all shadow-xl shadow-[#6E7A67]/20">
+                        <span className="flex items-center">Apply for Next Cohort</span> <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                     </Link>
                 </div>
             </div>
         </section>
 
         {/* ── TESTIMONIALS ────────────────────────────────────── */}
-        <section className="py-24 md:py-40 bg-[#FDFCFB] border-t border-[#D8CEBE]/20">
+        <section className="py-10 md:py-16 bg-[#FDFCFB] border-t border-[#D8CEBE]/20">
             <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-20">
                 <h3 className="text-[32px] md:text-[44px] font-bold text-[#1D1914]" >Member Experiences</h3>
                 <p className="text-[16px] text-[#6E7A67] mt-4">Voices from the Silent Collective.</p>
