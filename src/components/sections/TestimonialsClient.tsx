@@ -65,7 +65,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: i * 0.1 }}
-                    className="flex-none w-[290px] sm:w-[320px] md:w-[420px]"
+                    className="flex-none w-[310px] sm:w-[360px] md:w-[460px]"
                   >
                     <div className="h-full flex flex-col gap-8 transition-all duration-500 hover:-translate-y-1 relative min-h-[320px] px-4 py-6">
                       {/* Decorative Quote Mark - Hide if image card exists */}
@@ -76,7 +76,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                       )}
 
                       {t.testimonialImage ? (
-                        <div className="flex-1 w-full aspect-square relative overflow-hidden rounded-2xl bg-black/[0.02]">
+                        <div className="flex-1 w-full aspect-square relative overflow-hidden bg-black/[0.02]">
                           <img 
                             src={urlFor(t.testimonialImage).fit('max').url()} 
                             alt={`Testimonial from ${t.name}`}
@@ -93,7 +93,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                             ))}
                           </div>
                           
-                          <p className={`leading-relaxed text-[#0D120E] font-medium italic ${isLongText ? "text-[18px] md:text-lg" : "text-[22px] md:text-2xl"}`}>
+                          <p className={`leading-relaxed text-[#0D120E] font-medium italic ${isLongText ? "text-[20px] md:text-xl" : "text-[24px] md:text-3xl"}`}>
                             "{t.content}"
                           </p>
                         </div>
