@@ -8,6 +8,7 @@ import blockContent from './blockContent'
 import post from './post'
 import author from './author'
 import category from './category'
+import newsletterSubscription from './newsletterSubscription'
 
 export const schemaTypes = [
   page, 
@@ -19,7 +20,8 @@ export const schemaTypes = [
   blockContent,
   post,
   author,
-  category
+  category,
+  newsletterSubscription
 ]
 
 export default schemaTypes

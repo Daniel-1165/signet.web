@@ -1,7 +1,55 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useUser, SignInButton } from "@clerk/nextjs";
 import { Mail, Instagram, Twitter, Linkedin, ArrowRight, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
+    const { user, isSignedIn, isLoaded } = useUser();
+    const [email, setEmail] = useState("");
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [message, setMessage] = useState("");
+
+    // Automatically pre-fill the email when Clerk loads the user info
+    useEffect(() => {
+        if (isLoaded && isSignedIn && user?.primaryEmailAddress?.emailAddress) {
+            setEmail(user.primaryEmailAddress.emailAddress);
+        }
+    }, [user, isSignedIn, isLoaded]);
+
+    const handleSubscribe = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+
+        setStatus("loading");
+        try {
+            const res = await fetch("/api/subscribe", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    name: user?.fullName || user?.firstName || "Anonymous Subscriber",
+                }),
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                setStatus("success");
+                setMessage(data.message || "Subscribed successfully!");
+            } else {
+                setStatus("error");
+                setMessage(data.error || "Something went wrong. Please try again.");
+            }
+        } catch (err) {
+            console.error("Subscription error:", err);
+            setStatus("error");
+            setMessage("Failed to submit. Please check your connection.");
+        }
+    };
+
     return (
         <footer className="bg-[#F5F7F4] border-t border-[#D8CEBE]/40 pt-12 pb-8">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -16,16 +64,57 @@ const Footer = () => {
                         </p>
                     </div>
                     <div className="flex flex-col gap-3 justify-center">
-                        <div className="flex w-full bg-white rounded-2xl p-1 md:p-1.5 border border-[#D8CEBE]/40 shadow-sm focus-within:border-[#6E7A67] transition-all overflow-hidden items-center">
-                            <input 
-                                type="email" 
-                                placeholder="Enter your email" 
-                                className="flex-1 min-w-0 bg-transparent px-2 md:px-4 py-2 md:py-2.5 text-[13px] md:text-sm outline-none text-[#1D1914] font-medium"
-                            />
-                            <button className="shrink-0 bg-[#1D1914] text-white px-3 md:px-6 py-2 md:py-2.5 rounded-xl font-bold text-[9px] md:text-xs uppercase tracking-widest hover:bg-[#6E7A67] transition-all flex items-center gap-1.5 md:gap-2">
-                                Subscribe <ArrowRight size={12} className="md:w-[14px] md:h-[14px]" />
-                            </button>
-                        </div>
+                        {isLoaded && !isSignedIn ? (
+                            <div className="flex flex-col gap-2">
+                                <div className="flex w-full bg-[#1D1914]/5 rounded-2xl p-1 md:p-1.5 border border-[#D8CEBE]/40 shadow-sm items-center opacity-75">
+                                    <input 
+                                        type="email" 
+                                        disabled
+                                        placeholder="Sign in to subscribe to newsletter" 
+                                        className="flex-1 min-w-0 bg-transparent px-2 md:px-4 py-2 md:py-2.5 text-[13px] md:text-sm outline-none text-[#1D1914]/40 font-medium cursor-not-allowed"
+                                    />
+                                    <SignInButton mode="modal">
+                                        <button className="shrink-0 bg-[#0B3D2E] text-white px-3 md:px-6 py-2 md:py-2.5 rounded-xl font-bold text-[9px] md:text-xs uppercase tracking-widest hover:bg-[#6E7A67] transition-all flex items-center gap-1.5 md:gap-2">
+                                            Sign In <ArrowRight size={12} className="md:w-[14px] md:h-[14px]" />
+                                        </button>
+                                    </SignInButton>
+                                </div>
+                                <p className="text-[10px] text-[#6E7A67] font-medium ml-2">
+                                    🔒 Authentication is required to capture subscriber names.
+                                </p>
+                            </div>
+                        ) : (
+                            <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
+                                <div className="flex w-full bg-white rounded-2xl p-1 md:p-1.5 border border-[#D8CEBE]/40 shadow-sm focus-within:border-[#6E7A67] transition-all overflow-hidden items-center">
+                                    <input 
+                                        type="email" 
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="Enter your email" 
+                                        className="flex-1 min-w-0 bg-transparent px-2 md:px-4 py-2 md:py-2.5 text-[13px] md:text-sm outline-none text-[#1D1914] font-medium"
+                                        disabled={status === "loading" || status === "success"}
+                                    />
+                                    <button 
+                                        type="submit"
+                                        disabled={status === "loading" || status === "success" || !email}
+                                        className="shrink-0 bg-[#1D1914] disabled:opacity-50 text-white px-3 md:px-6 py-2 md:py-2.5 rounded-xl font-bold text-[9px] md:text-xs uppercase tracking-widest hover:bg-[#6E7A67] transition-all flex items-center gap-1.5 md:gap-2"
+                                    >
+                                        {status === "loading" ? "Subscribing..." : "Subscribe"} <ArrowRight size={12} className="md:w-[14px] md:h-[14px]" />
+                                    </button>
+                                </div>
+                                {status === "success" && (
+                                    <p className="text-xs text-[#1DA756] font-bold ml-2 animate-pulse">
+                                        ✓ {message}
+                                    </p>
+                                )}
+                                {status === "error" && (
+                                    <p className="text-xs text-red-600 font-bold ml-2">
+                                        ✗ {message}
+                                    </p>
+                                )}
+                            </form>
+                        )}
                         <p className="text-[9px] text-[#6E7A67]/40 uppercase tracking-[0.2em] font-bold ml-2">
                             No noise. Just substance.
                         </p>
