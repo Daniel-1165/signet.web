@@ -94,7 +94,7 @@ export default function AdminHubPage() {
              <Shield size={14} className="md:w-4 md:h-4" />
              <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase">Private Protocol</span>
            </div>
-           <h1 className="text-[32px] md:text-[44px] font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+           <h1 className="text-[32px] md:text-[44px] font-bold leading-tight" >
              Admin <span className="italic font-normal text-[#6E7A67]">Hub</span>
            </h1>
            <p className="text-[#6E7A67]/60 text-[14px] font-medium mt-2">Platform Governance & Infrastructure Control</p>
@@ -126,7 +126,7 @@ export default function AdminHubPage() {
               <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#6E7A67]">Access Control</span>
             </div>
             
-            <h3 className="text-[24px] md:text-[28px] font-bold text-[#1D1914] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h3 className="text-[24px] md:text-[28px] font-bold text-[#1D1914] mb-4" >
               Promote <span className="italic font-normal text-[#6E7A67]">Member</span>
             </h3>
             <p className="text-[#6E7A67]/70 text-[14px] mb-8 max-w-xl leading-relaxed">
@@ -196,7 +196,7 @@ export default function AdminHubPage() {
                 <h2 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.2em]">Platform Safety</h2>
               </div>
               
-              <h3 className="text-[20px] font-bold text-[#1D1914] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Platform <span className="text-red-500 italic font-normal">Cleanup</span></h3>
+              <h3 className="text-[20px] font-bold text-[#1D1914] mb-4" >Platform <span className="text-red-500 italic font-normal">Cleanup</span></h3>
               <p className="text-[#6E7A67]/70 text-[13px] mb-8 leading-relaxed">
                 Resets the collective community feed. All published insights, assets, and discussions will be permanently removed.
               </p>
@@ -216,7 +216,7 @@ export default function AdminHubPage() {
           <div className="bg-[#1D1914] rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group">
              <Sparkles className="absolute -top-6 -right-6 w-24 h-24 text-white/5 group-hover:rotate-12 transition-transform duration-1000" />
              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]/60">System Logs</span>
-             <h3 className="text-white text-[24px] font-bold mt-2 mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Infrastructure</h3>
+             <h3 className="text-white text-[24px] font-bold mt-2 mb-6" >Infrastructure</h3>
              
              <div className="space-y-3">
                 <a href="https://clerk.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all group/link">

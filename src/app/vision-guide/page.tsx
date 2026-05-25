@@ -60,7 +60,7 @@ export default function VisionGuidePage() {
 
   return (
     <div className="relative min-h-screen bg-[#FDFDFB] text-[#0D120E] selection:bg-[#1DA756] selection:text-white"
-         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+         >
       
       {/* ── HERO SECTION ─────────────────────────────────────────── */}
       <section className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">

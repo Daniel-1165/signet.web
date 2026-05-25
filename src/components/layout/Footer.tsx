@@ -8,7 +8,7 @@ const Footer = () => {
                 {/* Upper Section with Newsletter */}
                 <div className="grid lg:grid-cols-2 gap-10 pb-12 border-b border-[#D8CEBE]/20">
                     <div>
-                        <h3 className="text-[28px] md:text-[32px] font-bold text-[#1D1914] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        <h3 className="text-[28px] md:text-[32px] font-bold text-[#1D1914] mb-4" >
                             Stay in the <span className="italic font-normal text-[#6E7A67]">Silent Loop.</span>
                         </h3>
                         <p className="text-[#6E7A67] text-[15px] leading-relaxed max-w-md font-medium">

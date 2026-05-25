@@ -48,7 +48,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
               </div>
               
               <div className="flex-1 min-w-0">
-                <h3 className="text-[18px] font-bold text-[#1D1914] truncate mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <h3 className="text-[18px] font-bold text-[#1D1914] truncate mb-1" >
                   <span className="text-[#6E7A67] mr-2">{index + 1}.</span> {lecture.title}
                 </h3>
                 <div className="flex items-center gap-3 text-[#6E7A67]/60 text-[11px] font-bold uppercase tracking-wider">
@@ -154,7 +154,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
                      </motion.div>
                      
                      <div className="text-center px-4">
-                        <h4 className="text-[32px] md:text-[38px] font-bold mb-3 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        <h4 className="text-[32px] md:text-[38px] font-bold mb-3 leading-tight" >
                           {currentLecture.title}
                         </h4>
                         <p className="text-[#6E7A67] text-[16px] font-medium tracking-wide">

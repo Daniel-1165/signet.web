@@ -43,7 +43,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
     <div className="bg-[#F8FAFB] text-[#191c1d] pb-24 px-4 md:px-6">
       <header className="flex flex-col sm:flex-row sm:items-center justify-between py-6 max-w-[1200px] mx-auto gap-4 sm:gap-0">
         <div>
-          <h1 className="text-[24px] sm:text-[28px] font-bold text-[#005746] leading-tight" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+          <h1 className="text-[24px] sm:text-[28px] font-bold text-[#005746] leading-tight" >
             Resources
           </h1>
           <p className="text-[#6e7975] text-[13px] sm:text-[14px]">
@@ -74,11 +74,11 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
         {/* Curated Books Section */}
         <section>
           <div className="mb-6">
-            <span className="text-[10px] font-bold tracking-widest text-[#006b58] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            <span className="text-[10px] font-bold tracking-widest text-[#006b58] uppercase" >
               FOUNDATION
             </span>
             <div className="flex items-center justify-between mt-1">
-              <h2 className="text-[24px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              <h2 className="text-[24px] font-bold text-[#005746]" >
                 Curated Books
               </h2>
               <button className="flex items-center gap-1.5 text-[14px] font-bold text-[#191c1d] hover:text-[#005746] transition-colors">
@@ -107,10 +107,10 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                <div className="flex flex-col justify-center py-2">
                  <div className="flex justify-between items-start">
                     <div className="min-w-0 flex-1 pr-2">
-                      <h3 className="text-[16px] md:text-[24px] font-extrabold text-[#005746] leading-tight line-clamp-2 md:line-clamp-none" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                      <h3 className="text-[16px] md:text-[24px] font-extrabold text-[#005746] leading-tight line-clamp-2 md:line-clamp-none" >
                         {books[0]?.title}
                       </h3>
-                      <p className="text-[9px] md:text-[11px] uppercase tracking-[0.2em] text-[#006b58] mt-1.5 md:mt-2 font-bold" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                      <p className="text-[9px] md:text-[11px] uppercase tracking-[0.2em] text-[#006b58] mt-1.5 md:mt-2 font-bold" >
                         By {books[0]?.tag || 'Signet Expert'}
                       </p>
                     </div>
@@ -118,7 +118,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                       Latest Release
                     </span>
                  </div>
-                 <p className="text-[13px] md:text-[15px] text-[#3e4945] mt-3 md:mt-6 leading-relaxed line-clamp-3 md:line-clamp-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+                 <p className="text-[13px] md:text-[15px] text-[#3e4945] mt-3 md:mt-6 leading-relaxed line-clamp-3 md:line-clamp-4" >
                     {books[0]?.description}
                  </p>
                  <div className="flex items-center gap-3 md:gap-4 mt-6 md:mt-10">
@@ -147,9 +147,9 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                         <img src={book.mainImageUrl || "/placeholder-avatar.png"} className="w-full h-full bg-emerald-800 object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
                      </div>
                      <div className="min-w-0 flex-1">
-                       <h3 className="text-[15px] md:text-[16px] font-bold text-[#005746] line-clamp-2 leading-snug" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{book.title}</h3>
-                       <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-0.5 mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{book.tag || "Signet Author"}</p>
-                       <p className="text-[12px] text-[#3e4945] line-clamp-2 opacity-70" style={{ fontFamily: "'Inter', sans-serif" }}>{book.description || "In-depth strategies for cognitive persistence and continuous intentional growth."}</p>
+                       <h3 className="text-[15px] md:text-[16px] font-bold text-[#005746] line-clamp-2 leading-snug" >{book.title}</h3>
+                       <p className="text-[10px] uppercase tracking-widest text-[#6e7975] mt-0.5 mb-1" >{book.tag || "Signet Author"}</p>
+                       <p className="text-[12px] text-[#3e4945] line-clamp-2 opacity-70" >{book.description || "In-depth strategies for cognitive persistence and continuous intentional growth."}</p>
                      </div>
                    </button>
                 ))}
@@ -160,11 +160,11 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
         {/* Magazines & Journals Section */}
         <section>
           <div className="mb-6">
-            <span className="text-[10px] font-bold tracking-widest text-[#006b58] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            <span className="text-[10px] font-bold tracking-widest text-[#006b58] uppercase" >
               INDUSTRY PULSE
             </span>
             <div className="flex items-center mt-1">
-              <h2 className="text-[24px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              <h2 className="text-[24px] font-bold text-[#005746]" >
                 Magazines & Journals
               </h2>
             </div>
@@ -192,7 +192,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                    )}
                 </div>
                 <div className="mt-4 px-1">
-                  <h3 className="text-[14px] font-bold text-[#005746] line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>{mag.title}</h3>
+                  <h3 className="text-[14px] font-bold text-[#005746] line-clamp-1" >{mag.title}</h3>
                   <p className="text-[11px] text-[#6e7975] mt-1 line-clamp-1 font-medium">{mag.description}</p>
                 </div>
                 {mag.special && (
@@ -209,20 +209,20 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
         <section>
           <div className="mb-6 flex items-end justify-between">
             <div>
-              <span className="text-[10px] font-bold tracking-widest text-[#006b58] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <span className="text-[10px] font-bold tracking-widest text-[#006b58] uppercase" >
                 FRESH PERSPECTIVES
               </span>
               <div className="flex items-center mt-1">
-                <h2 className="text-[24px] font-bold text-[#005746]" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                <h2 className="text-[24px] font-bold text-[#005746]" >
                   Curated Articles
                 </h2>
               </div>
             </div>
             <div className="flex bg-[#f2f4f5] rounded-full p-1 border border-[#e1e3e4]">
-                <button className="px-5 py-1.5 rounded-full bg-[#e6e8e9] text-[#191c1d] text-[12px] font-bold tracking-wide shadow-sm" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <button className="px-5 py-1.5 rounded-full bg-[#e6e8e9] text-[#191c1d] text-[12px] font-bold tracking-wide shadow-sm" >
                   Latest
                 </button>
-                <button className="px-5 py-1.5 rounded-full text-[#6e7975] text-[12px] font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <button className="px-5 py-1.5 rounded-full text-[#6e7975] text-[12px] font-medium" >
                   Trending
                 </button>
             </div>
@@ -250,10 +250,10 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                             </span>
                             <span className="text-[10px] md:text-[11px] text-[#bec9c4] font-medium">5 min read</span>
                          </div>
-                         <h3 className="text-[14px] md:text-[16px] font-bold text-[#191c1d] group-hover:text-[#005746] transition-colors line-clamp-1" style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}>
+                         <h3 className="text-[14px] md:text-[16px] font-bold text-[#191c1d] group-hover:text-[#005746] transition-colors line-clamp-1" >
                            {article.title}
                          </h3>
-                         <p className="text-[12px] md:text-[13px] text-[#6e7975] mt-0.5 md:mt-1 line-clamp-1 md:line-clamp-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                         <p className="text-[12px] md:text-[13px] text-[#6e7975] mt-0.5 md:mt-1 line-clamp-1 md:line-clamp-2" >
                            {article.description || article.content}
                          </p>
                       </div>

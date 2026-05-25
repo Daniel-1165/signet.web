@@ -36,7 +36,7 @@ export default function ChatPage() {
                     <Sparkles size={16} />
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em]">The Transmission</span>
                  </div>
-                 <h2 className="text-[44px] md:text-[52px] font-bold text-[#1D1914] tracking-tight leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                 <h2 className="text-[44px] md:text-[52px] font-bold text-[#1D1914] tracking-tight leading-tight" >
                    Connect with the <span className="italic font-normal text-[#6E7A67]">Collective.</span>
                  </h2>
                  <p className="text-[#6E7A67] text-[16px] leading-relaxed max-w-sm mx-auto italic">

@@ -64,7 +64,7 @@ export default function DashboardSidebar() {
               }`}
             >
               <item.icon size={18} className={`transition-transform duration-500 ${isActive ? 'text-[#6E7A67] scale-110' : 'group-hover:scale-110'}`} />
-              <span className={`text-[14px] font-medium tracking-tight ${isActive ? 'font-bold' : ''}`} style={{ fontFamily: "'Inter', sans-serif" }}>{item.name}</span>
+              <span className={`text-[14px] font-medium tracking-tight ${isActive ? 'font-bold' : ''}`} >{item.name}</span>
               {isActive && (
                 <div className="ml-auto w-1 h-4 rounded-full bg-[#6E7A67]/20" />
               )}
@@ -75,9 +75,9 @@ export default function DashboardSidebar() {
 
       <div className="mt-auto px-6 space-y-6 pb-12">
         <div className="bg-[#6E7A67]/5 rounded-2xl p-6 border border-[#6E7A67]/10 mx-2">
-          <h4 className="text-[13px] font-bold text-[#1D1914] mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>Inner Circle</h4>
+          <h4 className="text-[13px] font-bold text-[#1D1914] mb-2" >Inner Circle</h4>
           <p className="text-[11px] text-[#6E7A67] leading-relaxed mb-4">Elevate your growth with intentional community mentorship.</p>
-          <Link href="/join" className="block w-full py-2.5 rounded-xl bg-[#6E7A67] text-white text-center font-bold text-[12px] shadow-[0_8px_20px_rgba(110,122,103,0.2)] hover:shadow-[0_12px_25px_rgba(110,122,103,0.3)] hover:-translate-y-0.5 transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <Link href="/join" className="block w-full py-2.5 rounded-xl bg-[#6E7A67] text-white text-center font-bold text-[12px] shadow-[0_8px_20px_rgba(110,122,103,0.2)] hover:shadow-[0_12px_25px_rgba(110,122,103,0.3)] hover:-translate-y-0.5 transition-all" >
              Upgrade Plan
           </Link>
         </div>
@@ -97,7 +97,7 @@ export default function DashboardSidebar() {
                 }`}
               >
                 <item.icon size={16} />
-                <span className="text-[13px] font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>{item.name}</span>
+                <span className="text-[13px] font-medium" >{item.name}</span>
               </Link>
             )
           })}

@@ -61,7 +61,7 @@ export default function CommunityHubPage() {
              <Sparkles size={14} className="md:w-4 md:h-4" />
              <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase">The Collective</span>
            </div>
-           <h1 className="text-[32px] md:text-[44px] font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+           <h1 className="text-[32px] md:text-[44px] font-bold leading-tight" >
              Community <span className="italic font-normal text-[#6E7A67]">Hub</span>
            </h1>
         </div>
@@ -119,7 +119,7 @@ export default function CommunityHubPage() {
               ))
             ) : (
               <div className="text-center py-20 md:py-24 bg-white rounded-[1.5rem] md:rounded-[2rem] border border-[#D8CEBE]/30 shadow-sm px-6">
-                <p className="text-[#6E7A67] text-[15px] italic leading-relaxed" style={{ fontFamily: "'Playfair Display', serif" }}>The conversation is waiting for your insight.</p>
+                <p className="text-[#6E7A67] text-[15px] italic leading-relaxed" >The conversation is waiting for your insight.</p>
               </div>
             )}
             
@@ -137,7 +137,7 @@ export default function CommunityHubPage() {
            {/* Mentors Section */}
            <div className="bg-white rounded-[2.5rem] p-8 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)]">
               <div className="flex items-center justify-between mb-8">
-                <h3 className="text-[18px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>Active Mentors</h3>
+                <h3 className="text-[18px] font-bold text-[#1D1914]" >Active Mentors</h3>
                 <Link href="#" className="text-[#6E7A67] text-[10px] font-bold tracking-[0.2em] uppercase border-b border-[#D8CEBE]">All</Link>
               </div>
               <div className="space-y-6">
@@ -166,7 +166,7 @@ export default function CommunityHubPage() {
            
            {/* Events Section */}
            <div className="bg-white rounded-[2.5rem] p-8 border border-[#D8CEBE]/30 shadow-[0_15px_40px_rgba(0,0,0,0.02)]">
-              <h3 className="text-[18px] font-bold text-[#1D1914] mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>Gatherings</h3>
+              <h3 className="text-[18px] font-bold text-[#1D1914] mb-8" >Gatherings</h3>
               <div className="space-y-8">
                  {[
                    { title: "Mental Clarity Workshop", day: "12", month: "OCT", time: "10:00 AM" },
@@ -196,7 +196,7 @@ export default function CommunityHubPage() {
            <div className="bg-[#1D1914] rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group">
               <Sparkles className="absolute -top-6 -right-6 w-24 h-24 text-white/5 group-hover:rotate-12 transition-transform duration-1000" />
               <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]/60">Pulse</span>
-              <p className="text-white text-[38px] font-bold mt-2" style={{ fontFamily: "'Playfair Display', serif" }}>4,821</p>
+              <p className="text-white text-[38px] font-bold mt-2" >4,821</p>
               <p className="text-[#D8CEBF] text-[13px] font-medium mb-6">Network Nodes</p>
               
               <div className="w-full h-[3px] bg-white/10 rounded-full mb-4 overflow-hidden">

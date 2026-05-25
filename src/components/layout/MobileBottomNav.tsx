@@ -96,7 +96,7 @@ export default function MobileBottomNav() {
                     strokeWidth={isActive ? 2.5 : 1.5}
                   />
                 </div>
-                <span className={`text-[7px] uppercase tracking-normal font-black transition-colors ${isActive ? 'text-[#8EB69B]' : 'text-[#1D1914]/25'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
+                <span className={`text-[7px] uppercase tracking-normal font-black transition-colors ${isActive ? 'text-[#8EB69B]' : 'text-[#1D1914]/25'}`} >
                   {item.name}
                 </span>
                 {isActive && <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-[1.5px] bg-[#8EB69B] rounded-full" />}

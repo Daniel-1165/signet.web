@@ -68,7 +68,7 @@ export default async function ExercisesPage() {
            <div className="flex items-center gap-2 text-[#6E7A67] mb-2">
               <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Daily Practice</span>
            </div>
-           <h1 className="text-[42px] font-bold tracking-tight text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+           <h1 className="text-[42px] font-bold tracking-tight text-[#1D1914]" >
              Refine your <span className="italic font-normal text-[#6E7A67]">Architecture.</span>
            </h1>
         </div>
@@ -93,7 +93,7 @@ export default async function ExercisesPage() {
         
         {/* Intro */}
         <div className="max-w-3xl">
-           <p className="text-[18px] text-[#6E7A67] leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+           <p className="text-[18px] text-[#6E7A67] leading-relaxed italic" >
               The Signet methodology is built on active repetition across foundational professional domains. Each module below is a curated deep-work session designed to catalyze your evolution.
            </p>
         </div>
@@ -116,8 +116,8 @@ export default async function ExercisesPage() {
                 </div>
                 
                 <div className="flex-1">
-                   <h3 className="text-[26px] font-bold text-[#1D1914] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>{test.title}</h3>
-                   <p className="text-[15px] text-[#6E7A67] leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
+                   <h3 className="text-[26px] font-bold text-[#1D1914] mb-4" >{test.title}</h3>
+                   <p className="text-[15px] text-[#6E7A67] leading-relaxed" >
                       {test.desc}
                    </p>
                 </div>
@@ -144,7 +144,7 @@ export default async function ExercisesPage() {
                    <Headphones size={14} className="animate-pulse" />
                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Auditory Insight</span>
                 </div>
-                <h2 className="text-[32px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <h2 className="text-[32px] font-bold text-[#1D1914]" >
                   The Lecture <span className="italic font-normal text-[#6E7A67]">Series</span>
                 </h2>
               </div>

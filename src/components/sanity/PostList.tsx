@@ -63,7 +63,7 @@ export default function PostList({posts}: PostListProps) {
                <span className="flex items-center gap-1"><User size={10} /> {post.author?.name || 'Signet Editorial'}</span>
             </div>
 
-            <h3 className="text-xl md:text-2xl font-bold text-[#051F20] leading-[1.2] group-hover:text-[#163832] transition-colors line-clamp-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h3 className="text-xl md:text-2xl font-bold text-[#051F20] leading-[1.2] group-hover:text-[#163832] transition-colors line-clamp-3" >
               {post.title}
             </h3>
 

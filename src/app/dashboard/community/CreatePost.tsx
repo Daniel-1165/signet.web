@@ -55,7 +55,7 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className="w-full bg-[#FDFCFB] border border-[#D8CEBE]/30 rounded-[1.2rem] md:rounded-2xl p-4 md:p-5 text-[14px] md:text-[15px] text-[#1D1914] placeholder:text-[#6E7A67]/40 focus:outline-none focus:bg-white focus:border-[#6E7A67]/40 transition-all resize-none min-h-[100px] md:min-h-[120px] mb-4 md:mb-6 font-medium"
-            style={{ fontFamily: "'Inter', sans-serif" }}
+            
           />
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex gap-4 md:gap-6">

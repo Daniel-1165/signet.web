@@ -35,15 +35,15 @@ export default async function FeaturesPage() {
                 <div className="max-w-4xl space-y-8">
                     <div className="flex items-center gap-3">
                         <div className="w-12 h-[1px] bg-[#D8CEBF]" />
-                        <span className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D8CEBF]" style={{ fontFamily: "'Inter', sans-serif" }}>
+                        <span className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D8CEBF]" >
                             {pageData?.title || "Let's grow in silence"}
                         </span>
                     </div>
-                    <h1 className="text-5xl md:text-8xl font-bold leading-[0.95] tracking-tighter text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    <h1 className="text-5xl md:text-8xl font-bold leading-[0.95] tracking-tighter text-white" >
                         Now, we are <br />
                         <span className="italic font-normal text-[#D8CEBF]">Locked In...</span>
                     </h1>
-                    <p className="text-lg md:text-2xl text-white/70 max-w-2xl leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    <p className="text-lg md:text-2xl text-white/70 max-w-2xl leading-relaxed italic" >
                         True evolution doesn't announce itself. It grows in the quiet spaces between effort and reflection.
                     </p>
                 </div>
@@ -55,12 +55,12 @@ export default async function FeaturesPage() {
             <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-20 md:gap-32 items-center">
                 <div className="space-y-10">
                     <div>
-                        <span className="text-[10px] font-bold tracking-[0.3em] text-[#6E7A67] uppercase mb-6 block" style={{ fontFamily: "'Inter', sans-serif" }}>The Foundation</span>
-                        <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        <span className="text-[10px] font-bold tracking-[0.3em] text-[#6E7A67] uppercase mb-6 block" >The Foundation</span>
+                        <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-[#1D1914]" >
                             The <span className="italic font-normal text-[#6E7A67]">SIGNET</span> Story
                         </h2>
                     </div>
-                    <div className="space-y-6 text-[16px] md:text-[18px] text-[#6E7A67] leading-relaxed font-medium" style={{ fontFamily: "'Inter', sans-serif" }}>
+                    <div className="space-y-6 text-[16px] md:text-[18px] text-[#6E7A67] leading-relaxed font-medium" >
                         {pageData?.content ? (
                            <div className="prose prose-lg prose-signet">
                               <PortableText value={pageData.content} />
@@ -77,13 +77,13 @@ export default async function FeaturesPage() {
                     <div className="grid sm:grid-cols-2 gap-12 pt-10 border-t border-[#D8CEBE]/40">
                         <div className="space-y-4">
                             <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1D1914]">Our Vision</h4>
-                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
                                 To build a global network of trailblazers who <span className="italic text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
                             </p>
                         </div>
                         <div className="space-y-4">
                             <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1D1914]">Our Mission</h4>
-                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
                                 Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
                             </p>
                         </div>
@@ -110,7 +110,7 @@ export default async function FeaturesPage() {
             <div className="max-w-7xl mx-auto px-6 md:px-12">
                 <div className="flex items-center gap-4 mb-20">
                     <div className="h-0.5 w-12 bg-[#6E7A67]" />
-                    <h3 className="text-[12px] font-bold tracking-[0.3em] uppercase text-[#6E7A67]" style={{ fontFamily: "'Inter', sans-serif" }}>Course Curriculum</h3>
+                    <h3 className="text-[12px] font-bold tracking-[0.3em] uppercase text-[#6E7A67]" >Course Curriculum</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-8">
@@ -131,7 +131,7 @@ export default async function FeaturesPage() {
                     ].map((item, i) => (
                         <div key={i} className="flex items-start gap-5 py-4 border-b border-[#D8CEBE]/10 group hover:border-[#6E7A67]/30 transition-all">
                             <span className="text-[14px] font-bold text-[#6E7A67]/40 group-hover:text-[#6E7A67] transition-colors">{i + 1})</span>
-                            <p className="text-[16px] md:text-[18px] font-medium text-[#1D1914] group-hover:translate-x-2 transition-transform duration-500" style={{ fontFamily: "'Inter', sans-serif" }}>{item}</p>
+                            <p className="text-[16px] md:text-[18px] font-medium text-[#1D1914] group-hover:translate-x-2 transition-transform duration-500" >{item}</p>
                         </div>
                     ))}
                 </div>
@@ -145,7 +145,7 @@ export default async function FeaturesPage() {
             <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-20 md:gap-32 items-start relative z-10">
                 <div className="space-y-16">
                     <div>
-                        <h4 className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]/60 mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>Program Duration</h4>
+                        <h4 className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]/60 mb-8" >Program Duration</h4>
                         <div className="space-y-8">
                             <div className="flex gap-6 items-center">
                                 <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8CEBF]">
@@ -175,7 +175,7 @@ export default async function FeaturesPage() {
                     </div>
 
                     <div className="bg-white/5 border border-white/10 p-8 rounded-[2rem] backdrop-blur-sm">
-                        <p className="text-[13px] italic font-medium leading-relaxed text-[#D8CEBF]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        <p className="text-[13px] italic font-medium leading-relaxed text-[#D8CEBF]" >
                             "ATTEND ALL THE CLASSES TO GET THE MOST OUT OF THIS PROGRAM. ATTENDANCE WILL BE TAKEN SERIOUSLY."
                         </p>
                     </div>
@@ -183,8 +183,8 @@ export default async function FeaturesPage() {
 
                 <div className="bg-white rounded-[3rem] p-10 md:p-16 text-[#1D1914] shadow-2xl space-y-10">
                     <div>
-                        <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#6E7A67] mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>Your Gains</h4>
-                        <p className="text-[18px] md:text-[20px] font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#6E7A67] mb-4" >Your Gains</h4>
+                        <p className="text-[18px] md:text-[20px] font-bold leading-tight" >
                             At the end of this program, you will have gained:
                         </p>
                     </div>
@@ -228,7 +228,7 @@ export default async function FeaturesPage() {
         {/* ── TESTIMONIALS ────────────────────────────────────── */}
         <section className="py-24 md:py-40 bg-[#FDFCFB] border-t border-[#D8CEBE]/20">
             <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-20">
-                <h3 className="text-[32px] md:text-[44px] font-bold text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>Member Experiences</h3>
+                <h3 className="text-[32px] md:text-[44px] font-bold text-[#1D1914]" >Member Experiences</h3>
                 <p className="text-[16px] text-[#6E7A67] mt-4">Voices from the Silent Collective.</p>
             </div>
             <Testimonials />

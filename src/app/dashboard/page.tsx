@@ -57,10 +57,10 @@ export default async function DashboardPage() {
       {/* Editorial Header */}
       <header className="hidden md:flex items-center justify-between px-10 py-8 max-w-[1400px] mx-auto border-b border-[#D8CEBE]/30 mb-8">
         <div>
-           <h1 className="text-[32px] font-bold tracking-tight text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+           <h1 className="text-[32px] font-bold tracking-tight text-[#1D1914]" >
              Welcome back, <span className="text-[#6E7A67] italic font-normal">{user.firstName}</span>.
            </h1>
-           <p className="text-[14px] text-[#6E7A67]/60 mt-1" style={{ fontFamily: "'Inter', sans-serif" }}>Your intentional growth continues today.</p>
+           <p className="text-[14px] text-[#6E7A67]/60 mt-1" >Your intentional growth continues today.</p>
         </div>
         <div className="flex items-center gap-8">
           <div className="relative group">
@@ -91,17 +91,17 @@ export default async function DashboardPage() {
           <div className="relative h-full flex flex-col justify-center px-6 md:px-24 w-full overflow-hidden">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
                <div className="w-8 md:w-10 h-[1px] bg-[#D8CEBF]" />
-               <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#D8CEBF]" style={{ fontFamily: "'Inter', sans-serif" }}>
+               <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#D8CEBF]" >
                  Silent Growth Network
                </span>
             </div>
-            <h2 className="text-[24px] sm:text-[32px] md:text-7xl font-bold text-white leading-[1.2] tracking-tight mb-6 md:mb-8 max-w-full md:max-w-4xl px-2 md:px-0 break-words" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h2 className="text-[24px] sm:text-[32px] md:text-7xl font-bold text-white leading-[1.2] tracking-tight mb-6 md:mb-8 max-w-full md:max-w-4xl px-2 md:px-0 break-words" >
               Become Intentional<br className="md:hidden" /> about{" "}
               <span className="italic font-normal text-[#D8CEBF]">Growth</span>
               <br className="hidden md:block" /> and Development.
             </h2>
             <Link href="/dashboard/community" className="flex items-center gap-3 group/btn text-white w-fit">
-               <span className="text-xs md:text-sm font-bold tracking-widest uppercase border-b border-white pb-1 group-hover/btn:pr-2 transition-all" style={{ fontFamily: "'Inter', sans-serif" }}>Join community</span>
+               <span className="text-xs md:text-sm font-bold tracking-widest uppercase border-b border-white pb-1 group-hover/btn:pr-2 transition-all" >Join community</span>
                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:translate-x-2 transition-transform" />
             </Link>
           </div>
@@ -113,14 +113,14 @@ export default async function DashboardPage() {
           <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-[#D8CEBE]/30 hover:shadow-2xl transition-all duration-500 group relative">
             <Eye className="absolute top-6 right-6 md:top-12 md:right-12 w-5 h-5 text-[#6E7A67]/20" />
             <h3 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-3">The Vision</h3>
-            <p className="text-[18px] sm:text-[20px] md:text-[34px] font-bold text-[#1D1914] leading-[1.3] tracking-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <p className="text-[18px] sm:text-[20px] md:text-[34px] font-bold text-[#1D1914] leading-[1.3] tracking-tight group-hover:text-[#6E7A67] transition-colors" >
               To build a global network of trailblazers who <span className="italic font-normal text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
             </p>
           </div>
 
           <div className="bg-[#6E7A67]/5 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-[#6E7A67]/10 flex flex-col justify-center">
             <h3 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-3">The Mission</h3>
-            <p className="text-[16px] sm:text-[18px] md:text-[24px] font-medium text-[#1D1914] leading-relaxed italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <p className="text-[16px] sm:text-[18px] md:text-[24px] font-medium text-[#1D1914] leading-relaxed italic" >
               Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
             </p>
           </div>
@@ -129,7 +129,7 @@ export default async function DashboardPage() {
         {/* Growth Architecture */}
         <div className="space-y-8">
            <div className="text-center max-w-2xl mx-auto">
-              <h3 className="text-[26px] md:text-[44px] font-bold text-[#1D1914] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Growth Architecture</h3>
+              <h3 className="text-[26px] md:text-[44px] font-bold text-[#1D1914] mb-3" >Growth Architecture</h3>
               <p className="text-[14px] md:text-[16px] text-[#6E7A67]">The pillars of the Signet methodology.</p>
            </div>
            
@@ -143,7 +143,7 @@ export default async function DashboardPage() {
 
         {/* Community & Legacy - Last section before footer */}
         <div className="py-20 border-t border-[#D8CEBE]/30">
-            <h3 className="text-[32px] font-bold text-[#1D1914] mb-12 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>Community Experiences</h3>
+            <h3 className="text-[32px] font-bold text-[#1D1914] mb-12 text-center" >Community Experiences</h3>
             <Testimonials />
         </div>
       </div>

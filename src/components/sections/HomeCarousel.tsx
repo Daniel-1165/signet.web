@@ -85,7 +85,7 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
            </div>
           <h2
             className="text-[28px] md:text-[36px] font-bold text-[#1D1914] leading-tight"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+            
           >
             Growth Archives
           </h2>
@@ -185,7 +185,7 @@ function SlideCard({
           {tag && (
             <span
               className="text-[10px] font-black uppercase tracking-[0.4em] text-[#D8CEBF] mb-3 block"
-              style={{ fontFamily: "'Inter', sans-serif" }}
+              
             >
               {tag}
             </span>
@@ -193,7 +193,7 @@ function SlideCard({
           {title && (
             <h3
               className="text-white font-bold text-[24px] md:text-[30px] leading-[1.1] mb-6 max-w-[90%]"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              
             >
               {title}
             </h3>

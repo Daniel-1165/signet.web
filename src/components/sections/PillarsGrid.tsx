@@ -53,7 +53,7 @@ export default function PillarsGrid() {
           <pillar.icon className="w-6 h-6 md:w-8 md:h-8 text-[#6E7A67] mb-4 md:mb-10 group-hover:text-white transition-colors" />
           <h4 
             className="text-[15px] md:text-[22px] font-bold text-[#1D1914] group-hover:text-white transition-colors leading-tight" 
-            style={{ fontFamily: "'Playfair Display', serif" }}
+            
           >
             {pillar.title}
           </h4>

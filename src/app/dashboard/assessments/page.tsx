@@ -32,10 +32,10 @@ export default function DashboardAssessmentsPage() {
               <Sparkles className="w-4 h-4" />
               <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Protocol 01: Calibration</span>
            </div>
-           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#1D1914]" style={{ fontFamily: "'Playfair Display', serif" }}>
+           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#1D1914]" >
              Establish your <span className="italic font-normal text-[#6E7A67]">Baseline.</span>
            </h1>
-           <p className="text-[16px] text-[#6E7A67] leading-relaxed max-w-md" style={{ fontFamily: "'Inter', sans-serif" }}>
+           <p className="text-[16px] text-[#6E7A67] leading-relaxed max-w-md" >
              Your growth trajectory requires an accurate starting point. These assessments are the foundation of your curated Signet path.
            </p>
         </div>
@@ -68,7 +68,7 @@ export default function DashboardAssessmentsPage() {
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D8CEBF]" />
                   <span>{test.type}</span>
                </div>
-               <h3 className="text-[32px] font-bold text-[#1D1914] leading-tight group-hover:text-[#6E7A67] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>{test.title}</h3>
+               <h3 className="text-[32px] font-bold text-[#1D1914] leading-tight group-hover:text-[#6E7A67] transition-colors" >{test.title}</h3>
                <p className="text-[#6E7A67] text-[15px] leading-relaxed line-clamp-3">
                   {test.desc}
                </p>
@@ -89,7 +89,7 @@ export default function DashboardAssessmentsPage() {
          <div className="absolute top-0 right-0 w-[600px] h-full bg-[#6E7A67]/10 blur-[120px]" />
          <div className="relative z-10 flex flex-col md:flex-row items-center gap-16 justify-between">
             <div className="space-y-8 max-w-xl">
-               <h2 className="text-[40px] md:text-[52px] font-bold leading-[1.1] tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+               <h2 className="text-[40px] md:text-[52px] font-bold leading-[1.1] tracking-tight" >
                  The <span className="italic font-normal text-[#D8CEBF]">Calibration</span> Meta-Framework.
                </h2>
                <p className="text-[#D8CEBF]/60 text-[16px] leading-relaxed">
