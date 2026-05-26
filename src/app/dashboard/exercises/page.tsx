@@ -93,8 +93,8 @@ export default async function ExercisesPage() {
         
         {/* Intro */}
         <div className="max-w-3xl">
-           <p className="text-[18px] text-[#6E7A67] leading-relaxed italic" >
-              The Signet methodology is built on active repetition across foundational professional domains. Each module below is a curated deep-work session designed to catalyze your evolution.
+           <p className="text-[18px] text-[#1D1914] leading-relaxed italic" >
+              The <span className="text-[#6E7A67] font-bold hover:text-[#0B3D2E] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#6E7A67]/40 pb-0.5">Signet methodology</span> is built on <span className="text-[#6E7A67] font-semibold hover:text-[#0B3D2E] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#6E7A67]/40 pb-0.5">active repetition</span> across <span className="text-[#6E7A67] font-semibold hover:text-[#0B3D2E] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#6E7A67]/40 pb-0.5">foundational professional domains</span>. Each module below is a <span className="text-[#6E7A67] font-semibold hover:text-[#0B3D2E] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#6E7A67]/40 pb-0.5">curated deep-work session</span> designed to <span className="text-[#6E7A67] font-semibold hover:text-[#0B3D2E] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#6E7A67]/40 pb-0.5">catalyze your evolution</span>.
            </p>
         </div>
 
@@ -117,7 +117,7 @@ export default async function ExercisesPage() {
                 
                 <div className="flex-1">
                    <h3 className="text-[26px] font-bold text-[#1D1914] mb-4" >{test.title}</h3>
-                   <p className="text-[15px] text-[#6E7A67] leading-relaxed" >
+                   <p className="text-[15px] text-[#1D1914]/80 leading-relaxed font-medium" >
                       {test.desc}
                    </p>
                 </div>

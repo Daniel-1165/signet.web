@@ -44,7 +44,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-20 md:space-y-32 py-20 md:py-32">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-10 md:space-y-16 py-12 md:py-20">
         <Introduction />
         
         {/* Featured Insights Carousel */}
@@ -52,17 +52,17 @@ export default async function Home() {
         
         {/* Philosophical Foundations */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-[2.5rem] p-7 md:p-16 border border-[#D8CEBE]/30 hover:shadow-2xl transition-all duration-500 group relative">
+          <div className="bg-[#6E7A67]/5 rounded-[2.5rem] p-7 md:p-16 border border-[#6E7A67]/10 flex flex-col justify-center hover:shadow-2xl hover:border-[#6E7A67]/30 transition-all duration-500 group relative">
             <h3 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-4">The Vision</h3>
             <p className="text-[22px] md:text-[38px] font-bold text-[#1D1914] leading-[1.2] tracking-tight group-hover:text-[#6E7A67] transition-colors" >
               To build a global network of trailblazers who <span className="italic font-normal text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
             </p>
           </div>
 
-          <div className="bg-[#6E7A67]/5 rounded-[2.5rem] p-7 md:p-16 border border-[#6E7A67]/10 flex flex-col justify-center">
+          <div className="bg-[#6E7A67]/5 rounded-[2.5rem] p-7 md:p-16 border border-[#6E7A67]/10 flex flex-col justify-center hover:shadow-2xl hover:border-[#6E7A67]/30 transition-all duration-500 group relative">
             <h3 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-4">The Mission</h3>
-            <p className="text-[18px] md:text-[28px] font-medium text-[#1D1914] leading-relaxed italic" >
-              Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
+            <p className="text-[18px] md:text-[28px] font-medium text-[#1D1914] leading-relaxed italic uppercase tracking-wider" >
+              ORDINARY PERSONS ACHIEVING <span className="italic text-[#6E7A67]">EXTRAORDINARY RESULTS</span> SILENTLY AND SUSTAINABLY.
             </p>
           </div>
         </div>

@@ -63,7 +63,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
   };
 
   return (
-    <section id="community" className="py-8 bg-transparent relative z-10 overflow-hidden">
+    <section id="community" className="py-0 bg-transparent relative z-10 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="flex flex-col mb-6">
           <motion.div
@@ -104,7 +104,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
               onMouseUp={onMouseUp}
               onMouseLeave={onMouseLeave}
               onClickCapture={onClickCapture}
-              className={`flex gap-4 overflow-x-auto no-scrollbar pb-8 px-2 md:px-0 -mx-6 md:-mx-0 no-swipe ${
+              className={`flex gap-3 overflow-x-auto no-scrollbar pb-8 px-2 md:px-0 -mx-6 md:-mx-0 no-swipe ${
                 isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'
               }`}
             >
