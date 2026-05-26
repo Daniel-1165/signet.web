@@ -1,4 +1,3 @@
-import FeaturesGrid from "@/components/sections/FeaturesGrid";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/layout/Footer";
 import HomeCarousel from "@/components/sections/HomeCarousel";
@@ -65,7 +64,6 @@ export default async function Home() {
           </div>
         </div>
 
-        <FeaturesGrid />
         <Testimonials />
       </div>
       <Footer />

@@ -63,7 +63,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
   };
 
   return (
-    <section id="community" className="py-16 bg-transparent relative z-10 overflow-hidden">
+    <section id="community" className="py-8 bg-transparent relative z-10 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="flex flex-col mb-6">
           <motion.div
@@ -104,7 +104,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
               onMouseUp={onMouseUp}
               onMouseLeave={onMouseLeave}
               onClickCapture={onClickCapture}
-              className={`flex gap-6 overflow-x-auto no-scrollbar pb-12 px-2 md:px-0 -mx-6 md:-mx-0 no-swipe ${
+              className={`flex gap-4 overflow-x-auto no-scrollbar pb-8 px-2 md:px-0 -mx-6 md:-mx-0 no-swipe ${
                 isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'
               }`}
             >
@@ -119,7 +119,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                     transition={{ duration: 0.8, delay: i * 0.1 }}
                     className="flex-none w-[310px] sm:w-[360px] md:w-[460px]"
                   >
-                    <div className="h-full flex flex-col gap-8 transition-all duration-500 hover:-translate-y-1 relative min-h-[320px] px-4 py-6">
+                    <div className="h-full flex flex-col gap-5 transition-all duration-500 hover:-translate-y-1 relative min-h-[320px] px-4 py-6">
                       {/* Decorative Quote Mark - Hide if image card exists */}
                       {!t.testimonialImage && (
                         <div className="absolute top-[-10px] right-[-5px] text-[100px] font-serif text-black/[0.03] pointer-events-none group-hover:text-[#1DA756]/5 transition-colors leading-none">
