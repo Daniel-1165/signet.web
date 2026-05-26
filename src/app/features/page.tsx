@@ -75,27 +75,17 @@ export default async function FeaturesPage() {
                     
                     {/* Vision & Mission Statements */}
                     <div className="grid sm:grid-cols-2 gap-12 pt-10 border-t border-[#D8CEBE]/40">
-                        <div className="space-y-6">
-                            <div>
-                                <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#6E7A67] mb-2">Our Vision</h4>
-                                <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
-                                    To build a global network of trailblazers who <span className="italic text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
-                                </p>
-                            </div>
-                            <div className="rounded-[1.5rem] overflow-hidden border border-[#D8CEBE]/30 shadow-md bg-white p-2">
-                                <img src="/vision.png" alt="Our Vision Graphic" className="w-full h-auto rounded-[1rem] object-cover aspect-[4/3]" />
-                            </div>
+                        <div className="space-y-4">
+                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#6E7A67]">Our Vision</h4>
+                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
+                                To build a global network of trailblazers who <span className="italic text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
+                            </p>
                         </div>
-                        <div className="space-y-6">
-                            <div>
-                                <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#6E7A67] mb-2">Our Mission</h4>
-                                <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
-                                    Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
-                                </p>
-                            </div>
-                            <div className="rounded-[1.5rem] overflow-hidden border border-[#D8CEBE]/30 shadow-md bg-white p-2">
-                                <img src="/mission.png" alt="Our Mission Graphic" className="w-full h-auto rounded-[1rem] object-cover aspect-[4/3]" />
-                            </div>
+                        <div className="space-y-4">
+                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#6E7A67]">Our Mission</h4>
+                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
+                                Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
+                            </p>
                         </div>
                     </div>
                 </div>

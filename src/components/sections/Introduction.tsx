@@ -30,15 +30,9 @@ export default function Introduction() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-7 flex flex-col items-start"
           >
-            <span className="text-xs md:text-sm font-black uppercase tracking-[0.25em] text-[#E03E00] mb-3">
-              ABOUT US
+            <span className="font-serif italic text-2xl md:text-3xl text-[#E03E00] mb-8 block">
+              About Us
             </span>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#0D120E] tracking-tight mb-4">
-              Introduction
-            </h2>
-            
-            {/* Orange Underline Indicator */}
-            <div className="w-24 h-1.5 bg-[#E03E00] mb-8 rounded-full" />
             
             <div className="space-y-6 text-[#1D1914]/80 text-sm md:text-base leading-relaxed font-semibold mb-8">
               <p>
@@ -70,7 +64,7 @@ export default function Introduction() {
             {/* Decorative Dots - Bottom Left under the image */}
             <DotGrid className="absolute -bottom-8 -left-8 opacity-75 z-0" />
 
-            <div className="relative w-full max-w-[480px] aspect-[4/3] lg:aspect-auto lg:h-[480px] overflow-hidden rounded-l-[100%_50%] border-l border-y border-black/[0.03] shadow-md z-10 bg-white">
+            <div className="relative w-full max-w-[480px] aspect-square overflow-hidden rounded-l-[100%_50%] border-l border-y border-black/[0.03] shadow-md z-10 bg-white">
               <img
                 src="/get-to-know-us.png"
                 alt="Silent Growth Network Mentors"
