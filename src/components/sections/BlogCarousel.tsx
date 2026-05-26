@@ -62,7 +62,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
   }, [activeIndex, slides.length]);
 
   return (
-    <section className="bg-white pt-[69px] md:pt-24 pb-6 md:pb-24 border-y border-black/[0.04]">
+    <section className="bg-white pt-12 md:pt-24 pb-6 md:pb-24 border-y border-black/[0.04]">
 
       {/* Carousel - full width on mobile, constrained on desktop */}
       <div className="relative md:max-w-7xl md:mx-auto md:px-6">

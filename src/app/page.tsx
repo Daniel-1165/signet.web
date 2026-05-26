@@ -1,3 +1,4 @@
+import Introduction from "@/components/sections/Introduction";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/layout/Footer";
 import HomeCarousel from "@/components/sections/HomeCarousel";
@@ -26,7 +27,7 @@ export default async function Home() {
                Silent Growth Network
              </span>
           </div>
-          <h1 className="text-[28px] sm:text-[48px] md:text-8xl font-bold text-white leading-[1.1] tracking-tight mb-8 max-w-4xl break-words" >
+          <h1 className="text-[28px] sm:text-[40px] md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-8 max-w-4xl break-words" >
             Become Intentional<br className="md:hidden" /> about{" "}
             <span className="italic font-normal text-[#D8CEBF]">Growth</span>
             <br className="hidden md:block" /> and Development.
@@ -44,6 +45,8 @@ export default async function Home() {
       </section>
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-20 md:space-y-32 py-20 md:py-32">
+        <Introduction />
+        
         {/* Featured Insights Carousel */}
         <HomeCarousel slides={slides} />
         
