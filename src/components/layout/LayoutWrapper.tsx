@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
-import Sidebar from "@/components/layout/Sidebar";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -19,8 +18,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       <Navbar />
       
       <div className="flex flex-1 pt-0">
-        <Sidebar aria-label="Main Navigation" />
-        <main className="flex-1 min-w-0 overflow-x-hidden relative pb-[110px] md:pb-0 md:pl-[88px]">
+        <main className="flex-1 min-w-0 overflow-x-hidden relative pb-[110px] md:pb-0">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={pathname}

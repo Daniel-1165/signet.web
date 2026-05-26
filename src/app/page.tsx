@@ -1,4 +1,7 @@
 import Introduction from "@/components/sections/Introduction";
+import ProgramSection from "@/components/sections/ProgramSection";
+import VisionMissionSection from "@/components/sections/VisionMissionSection";
+import CommunityBanner from "@/components/sections/CommunityBanner";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/layout/Footer";
 import HomeCarousel from "@/components/sections/HomeCarousel";
@@ -14,8 +17,9 @@ export default async function Home() {
   }) || [];
 
   return (
-    <main className="min-h-screen bg-[#FDFCFB]">
-      {/* Premium Hero Section - Repurposed from Dashboard for consistent high-end feel */}
+    <main className="min-h-screen bg-[#FAFAF8] text-[#0F172A] font-sans selection:bg-[#EAF4EC] selection:text-[#114B2A]">
+      
+      {/* Premium Hero Section - Kept exactly the same as per user instruction ("landing page should remain the same") */}
       <section className="relative w-full h-[85vh] min-h-[500px] overflow-hidden group">
         <img src="/forest_hero_bg.png" alt="Forest" className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] brightness-90 group-hover:scale-[1.03] transition-transform duration-[3s]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1D1914]/80 via-[#1D1914]/50 to-[#1D1914]/20" />
@@ -44,30 +48,27 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-10 md:space-y-16 py-12 md:py-20">
+      {/* Content wrapper */}
+      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-16 md:space-y-24 py-16 md:py-24">
+        
+        {/* 1. Program Section */}
+        <ProgramSection />
+        
+        {/* 2. Vision & Mission Section */}
+        <VisionMissionSection />
+        
+        {/* 3. About Us / Signet Introduction Section */}
         <Introduction />
         
-        {/* Featured Insights Carousel */}
+        {/* 4. Featured Insights Carousel */}
         <HomeCarousel slides={slides} />
         
-        {/* Philosophical Foundations */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[#6E7A67]/5 rounded-[2.5rem] p-7 md:p-16 border border-[#6E7A67]/10 flex flex-col justify-center hover:shadow-2xl hover:border-[#6E7A67]/30 transition-all duration-500 group relative">
-            <h3 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-4">The Vision</h3>
-            <p className="text-[22px] md:text-[38px] font-bold text-[#1D1914] leading-[1.2] tracking-tight group-hover:text-[#6E7A67] transition-colors" >
-              To build a global network of trailblazers who <span className="italic font-normal text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
-            </p>
-          </div>
-
-          <div className="bg-[#6E7A67]/5 rounded-[2.5rem] p-7 md:p-16 border border-[#6E7A67]/10 flex flex-col justify-center hover:shadow-2xl hover:border-[#6E7A67]/30 transition-all duration-500 group relative">
-            <h3 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.3em] mb-4">The Mission</h3>
-            <p className="text-[18px] md:text-[28px] font-medium text-[#1D1914] leading-relaxed italic uppercase tracking-wider" >
-              ORDINARY PERSONS ACHIEVING <span className="italic text-[#6E7A67]">EXTRAORDINARY RESULTS</span> SILENTLY AND SUSTAINABLY.
-            </p>
-          </div>
-        </div>
-
+        {/* 5. Community CTA Banner */}
+        <CommunityBanner />
+        
+        {/* 6. Testimonials Section */}
         <Testimonials />
+        
       </div>
       <Footer />
     </main>

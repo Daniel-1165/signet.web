@@ -20,10 +20,11 @@ import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/features" },
+  { label: "About Us", href: "/#about-us" },
+  { label: "Programs", href: "/#programs" },
   { label: "Resources", href: "/resources" },
   { label: "Community", href: "/dashboard/community" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const sidebarLinks = [
@@ -265,20 +266,33 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Links - Removed to focus on Sidebar */}
-          <div className="flex items-center gap-10">
+          {/* Links */}
+          <div className="hidden md:flex items-center gap-8 font-sans">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`text-sm font-semibold tracking-wide transition-all relative py-2 ${
+                  isLightText && !isScrolled 
+                    ? "text-white/80 hover:text-white" 
+                    : "text-[#0F172A]/70 hover:text-[#1E6B3A]"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
 
-          {/* Auth CTA & Hamburger - Pill Style */}
+          {/* Auth CTA */}
           <div className="flex items-center gap-6">
             {isLoaded && (
               isSignedIn ? (
                 <div className="flex items-center gap-4">
-                  <UserButton appearance={{ elements: { avatarBox: "w-9 h-9 border-2 border-[#1DA756]/20" } }} />
+                  <UserButton appearance={{ elements: { avatarBox: "w-9 h-9 border-2 border-[#1E6B3A]/20" } }} />
                   {isAdmin && (
                     <Link
                       href="/dashboard/admin"
-                      className="h-9 px-4 flex items-center justify-center bg-[#1DA756]/10 text-[#1DA756] border border-[#1DA756]/20 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-[#1DA756] hover:text-white transition-all shadow-sm"
+                      className="h-9 px-4 flex items-center justify-center bg-[#1E6B3A]/10 text-[#1E6B3A] border border-[#1E6B3A]/20 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-[#1E6B3A] hover:text-white transition-all shadow-sm"
                     >
                       Admin
                     </Link>
@@ -288,31 +302,19 @@ const Navbar = () => {
                 <div className="flex items-center gap-6">
                   <SignInButton mode="modal">
                     <button className={`text-[11px] font-black tracking-[0.2em] uppercase transition-colors ${
-                      isLightText && !isScrolled ? "text-white/80 hover:text-white" : "text-[#0D120E]/60 hover:text-[#0D120E]"
+                      isLightText && !isScrolled ? "text-white/80 hover:text-white" : "text-[#0F172A]/60 hover:text-[#0F172A]"
                     }`}>
                       Login
                     </button>
                   </SignInButton>
                   <SignUpButton mode="modal">
-                    <button className="h-10 px-8 flex items-center justify-center rounded-full bg-[#0B3D2E] text-[#F8F4ED] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-[#1D1914] transition-all shadow-lg shadow-[#0B3D2E]/20 border-0">
-                      JOIN OUR COMMUNITY
+                    <button className="h-10 px-8 flex items-center justify-center rounded-full bg-[#1E6B3A] text-white text-[11px] font-semibold uppercase tracking-[0.15em] hover:bg-[#114B2A] transition-all shadow-lg shadow-[#1E6B3A]/20 border-0">
+                      Learn More
                     </button>
                   </SignUpButton>
                 </div>
               )
             )}
-
-            {/* Desktop Hamburger menu */}
-            <button
-              onClick={() => setIsSidebarOpen(true)}
-              className={`w-10 h-10 flex items-center justify-center transition-colors ${
-                isLightText && !isScrolled ? "text-white hover:text-white/70" : "text-[#0D120E] hover:text-[#1DA756]"
-              }`}
-            >
-              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M5 7h14M5 12h14M5 17h14" />
-              </svg>
-            </button>
           </div>
         </div>
       </nav>

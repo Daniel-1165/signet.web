@@ -1,6 +1,6 @@
 import {
   Calendar, Award, Clock, ArrowRight,
-  Target, Heart
+  Target, Heart, Eye, Flag
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import Testimonials from "@/components/sections/Testimonials";
@@ -15,35 +15,35 @@ export default async function FeaturesPage() {
     params: { slug: "features" }
   });
 
-  const featuredImage = pageData?.featuredImage?.asset?.url || "/signet-textured-logo.png";
+  const featuredImage = pageData?.featuredImage?.asset?.url || "/mentorship_new.png";
 
   return (
-    <div className="relative min-h-screen bg-[#FDFCFB] text-[#1D1914] selection:bg-[#6E7A67] selection:text-white pb-20">
+    <div className="relative min-h-screen bg-[#FAFAF8] text-[#0F172A] font-sans selection:bg-[#EAF4EC] selection:text-[#114B2A] pb-20">
       <main>
         
         {/* ── HERO SECTION: LOCKED IN ─────────────────────────────── */}
-        <section className="relative w-full h-[600px] md:h-[800px] overflow-hidden flex items-center">
+        <section className="relative w-full h-[600px] md:h-[750px] overflow-hidden flex items-center">
             <img 
                 src="/forest_hero_bg.png" 
                 alt="Forest Background" 
-                className="absolute inset-0 w-full h-full object-cover brightness-[0.7] grayscale-[0.3]"
+                className="absolute inset-0 w-full h-full object-cover brightness-[0.6] grayscale-[0.2]"
                 loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1D1914]/40 via-transparent to-[#FDFCFB]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#FAFAF8]" />
             
             <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-20">
                 <div className="max-w-4xl space-y-8">
                     <div className="flex items-center gap-3">
-                        <div className="w-12 h-[1px] bg-[#D8CEBF]" />
-                        <span className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D8CEBF]" >
-                            {pageData?.title || "Let's grow in silence"}
+                        <div className="w-12 h-[1px] bg-[#EAF4EC]/60" />
+                        <span className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#EAF4EC]" >
+                            {pageData?.title || "EMPLOY. GROW. LEAD."}
                         </span>
                     </div>
-                    <h1 className="text-5xl md:text-8xl font-bold leading-[0.95] tracking-tighter text-white" >
+                    <h1 className="text-5xl md:text-8xl font-extrabold leading-[0.95] tracking-tight text-white font-sans" >
                         Now, we are <br />
-                        <span className="italic font-normal text-[#D8CEBF]">Locked In...</span>
+                        <span className="italic font-light text-[#EAF4EC]">Locked In...</span>
                     </h1>
-                    <p className="text-lg md:text-2xl text-white/70 max-w-2xl leading-relaxed italic" >
+                    <p className="text-lg md:text-2xl text-white/80 max-w-2xl leading-relaxed italic font-light" >
                         True evolution doesn't announce itself. It grows in the quiet spaces between effort and reflection.
                     </p>
                 </div>
@@ -51,18 +51,18 @@ export default async function FeaturesPage() {
         </section>
 
         {/* ── THE SIGNET STORY ────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-16">
-            <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-20 md:gap-32 items-center">
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+            <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-16 md:gap-24 items-center">
                 <div className="space-y-10">
                     <div>
-                        <span className="text-[10px] font-bold tracking-[0.3em] text-[#6E7A67] uppercase mb-6 block" >The Foundation</span>
-                        <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-[#1D1914]" >
-                            The <span className="italic font-normal text-[#6E7A67]">SIGNET</span> Story
+                        <span className="text-[11px] font-bold tracking-[0.3em] text-[#1E6B3A] uppercase mb-4 block font-sans" >The Foundation</span>
+                        <h2 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-[#0F172A] font-sans" >
+                            The <span className="italic font-light text-[#1E6B3A]">SIGNET</span> Story
                         </h2>
                     </div>
-                    <div className="space-y-6 text-[16px] md:text-[18px] text-[#6E7A67] leading-relaxed font-medium" >
+                    <div className="space-y-6 text-[16px] md:text-[18px] text-[#0F172A]/80 leading-relaxed font-normal font-sans" >
                         {pageData?.content ? (
-                           <div className="prose prose-lg prose-signet">
+                           <div className="prose prose-lg prose-signet text-[#0F172A]/80 font-sans">
                               <PortableText value={pageData.content} />
                            </div>
                         ) : (
@@ -73,47 +73,60 @@ export default async function FeaturesPage() {
                         )}
                     </div>
                     
-                    {/* Vision & Mission Statements */}
-                    <div className="grid sm:grid-cols-2 gap-12 pt-10 border-t border-[#D8CEBE]/40">
-                        <div className="space-y-4">
-                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#6E7A67]">Our Vision</h4>
-                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
-                                To build a global network of trailblazers who <span className="italic text-[#6E7A67]">model and replicate excellence</span> in diverse spheres.
-                            </p>
+                    {/* Vision & Mission Statements: Redesigned as Side-by-Side Premium Cards */}
+                    <div className="grid sm:grid-cols-2 gap-8 pt-10 border-t border-[#EDEDED]">
+                        {/* Vision Card */}
+                        <div className="bg-white rounded-[2rem] p-8 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+                            <div>
+                                <div className="w-12 h-12 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] mb-6">
+                                    <Eye size={22} />
+                                </div>
+                                <h4 className="text-[12px] font-bold uppercase tracking-[0.25em] text-[#1E6B3A] mb-3">OUR VISION</h4>
+                                <p className="text-[17px] md:text-[18px] font-semibold text-[#0F172A] leading-snug" >
+                                    To build a global network of trailblazers who <span className="italic font-medium text-[#1E6B3A]">model and replicate excellence</span> in diverse spheres.
+                                </p>
+                            </div>
                         </div>
-                        <div className="space-y-4">
-                            <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#6E7A67]">Our Mission</h4>
-                            <p className="text-[20px] md:text-[22px] font-bold text-[#1D1914] leading-tight" >
-                                Ordinary persons achieving <span className="italic text-[#6E7A67]">extraordinary results</span> silently and sustainably.
-                            </p>
+
+                        {/* Mission Card */}
+                        <div className="bg-[#F6F4EE] rounded-[2rem] p-8 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+                            <div>
+                                <div className="w-12 h-12 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] mb-6">
+                                    <Flag size={20} />
+                                </div>
+                                <h4 className="text-[12px] font-bold uppercase tracking-[0.25em] text-[#1E6B3A] mb-3">OUR MISSION</h4>
+                                <p className="text-[17px] md:text-[18px] font-bold text-[#0F172A] leading-snug uppercase tracking-wide font-sans" >
+                                    ORDINARY PERSONS ACHIEVING <span className="italic font-medium text-[#1E6B3A]">EXTRAORDINARY RESULTS</span> SILENTLY AND SUSTAINABLY.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                {/* Right side Image with beautiful curved border container */}
                 <div className="relative group">
-                    <div className="bg-white rounded-[3rem] p-4 shadow-2xl border border-[#D8CEBE]/30 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-700">
+                    <div className="bg-white rounded-[3rem] p-4 shadow-xl border border-[#EDEDED] overflow-hidden transform group-hover:scale-[1.01] transition-transform duration-500">
                         <img 
                             src={featuredImage} 
-                            alt={pageData?.featuredImage?.alt || "SIGNET Brand Texture"} 
-                            className="w-full h-auto rounded-[2.5rem] object-contain aspect-square bg-[#FDFCFB]"
+                            alt={pageData?.featuredImage?.alt || "SIGNET Mentorship"} 
+                            className="w-full h-auto rounded-[2.5rem] object-cover aspect-square"
                             loading="lazy"
                         />
                     </div>
-                    <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#6E7A67]/10 rounded-full blur-3xl -z-10" />
+                    <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#EAF4EC] rounded-full blur-3xl -z-10" />
                 </div>
             </div>
         </section>
 
-
         {/* ── COURSE CURRICULUM ────────────────────────────────────── */}
-        <section className="bg-white py-10 md:py-16 border-y border-[#D8CEBE]/20">
+        <section className="bg-white py-16 md:py-24 border-y border-[#EDEDED]">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
-                <div className="flex items-center gap-4 mb-10">
-                    <div className="h-0.5 w-12 bg-[#6E7A67]" />
-                    <h3 className="text-[12px] font-bold tracking-[0.3em] uppercase text-[#6E7A67]" >Course Curriculum</h3>
+                <div className="flex items-center gap-4 mb-12">
+                    <div className="h-0.5 w-12 bg-[#1E6B3A]" />
+                    <h3 className="text-[12px] font-extrabold tracking-[0.3em] uppercase text-[#1E6B3A]" >Course Curriculum</h3>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-6">
                     {[
                         "Introduction to Mentorship: Why and How?",
                         "The Power of Vision",
@@ -129,9 +142,9 @@ export default async function FeaturesPage() {
                         "Effective Communication skills",
                         "Conflict Resolution: How to resolve ANY conflict"
                     ].map((item, i) => (
-                        <div key={i} className="flex items-start gap-5 py-2.5 border-b border-[#D8CEBE]/10 group hover:border-[#6E7A67]/30 transition-all">
-                            <span className="text-[14px] font-bold text-[#6E7A67]/40 group-hover:text-[#6E7A67] transition-colors">{i + 1})</span>
-                            <p className="text-[16px] md:text-[18px] font-medium text-[#1D1914] group-hover:translate-x-2 transition-transform duration-500" >{item}</p>
+                        <div key={i} className="flex items-center gap-5 py-3 border-b border-[#EDEDED] group hover:border-[#1E6B3A]/30 transition-all">
+                            <span className="text-[14px] font-bold text-[#1E6B3A]/40 group-hover:text-[#1E6B3A] transition-colors">{i + 1})</span>
+                            <p className="text-[16px] md:text-[17px] font-semibold text-[#0F172A] group-hover:translate-x-2 transition-transform duration-500" >{item}</p>
                         </div>
                     ))}
                 </div>
@@ -139,35 +152,35 @@ export default async function FeaturesPage() {
         </section>
 
         {/* ── ENROLLMENT & GAINS ────────────────────────────────────── */}
-        <section className="bg-[#0B3D2E] text-white py-10 md:py-16 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-full md:w-[600px] h-full bg-white/[0.03] blur-[120px] -rotate-12 translate-x-1/4" />
+        <section className="bg-[#114B2A] text-white py-16 md:py-24 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-full md:w-[600px] h-full bg-white/[0.02] blur-[120px] -rotate-12 translate-x-1/4" />
             
-            <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-20 md:gap-32 items-start relative z-10">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-16 md:gap-24 items-start relative z-10">
                 <div className="space-y-16">
                     <div>
-                        <h4 className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]/60 mb-8" >Program Duration</h4>
+                        <h4 className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#EAF4EC]/75 mb-8" >Program Duration</h4>
                         <div className="space-y-8">
                             <div className="flex gap-6 items-center">
-                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8CEBF]">
+                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#EAF4EC]">
                                     <Calendar size={20} />
                                 </div>
-                                <p className="text-[15px] md:text-[16px] text-white/80 leading-relaxed font-medium">
+                                <p className="text-[15px] md:text-[16px] text-white/90 leading-relaxed font-semibold">
                                     The mentoring program runs from 15th March - 15th June, 2025.
                                 </p>
                             </div>
                             <div className="flex gap-6 items-center">
-                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8CEBF]">
+                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#EAF4EC]">
                                     <Clock size={20} />
                                 </div>
-                                <p className="text-[15px] md:text-[16px] text-white/80 leading-relaxed font-medium">
+                                <p className="text-[15px] md:text-[16px] text-white/90 leading-relaxed font-semibold">
                                     General classes held every Monday by 8:30pm - 10:30pm.
                                 </p>
                             </div>
                             <div className="flex gap-6 items-center">
-                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8CEBF]">
+                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#EAF4EC]">
                                     <Target size={20} />
                                 </div>
-                                <p className="text-[15px] md:text-[16px] text-white/80 leading-relaxed font-medium">
+                                <p className="text-[15px] md:text-[16px] text-white/90 leading-relaxed font-semibold">
                                     Weekly team review/interactive sessions (Day/time selected by team).
                                 </p>
                             </div>
@@ -175,41 +188,41 @@ export default async function FeaturesPage() {
                     </div>
 
                     <div className="bg-white/5 border border-white/10 p-8 rounded-[2rem] backdrop-blur-sm">
-                        <p className="text-[13px] italic font-medium leading-relaxed text-[#D8CEBF]" >
+                        <p className="text-[14px] italic font-semibold leading-relaxed text-[#EAF4EC]" >
                             "ATTEND ALL THE CLASSES TO GET THE MOST OUT OF THIS PROGRAM. ATTENDANCE WILL BE TAKEN SERIOUSLY."
                         </p>
                     </div>
                 </div>
 
-                <div className="bg-white rounded-[3rem] p-10 md:p-16 text-[#1D1914] shadow-2xl space-y-10">
+                <div className="bg-white rounded-[3rem] p-8 md:p-12 text-[#0F172A] shadow-xl border border-[#EDEDED] space-y-8">
                     <div>
-                        <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#6E7A67] mb-4" >Your Gains</h4>
-                        <p className="text-[18px] md:text-[20px] font-bold leading-tight" >
+                        <h4 className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#1E6B3A] mb-3" >Your Gains</h4>
+                        <p className="text-[18px] md:text-[20px] font-extrabold leading-tight text-[#0F172A]" >
                             At the end of this program, you will have gained:
                         </p>
                     </div>
 
-                    <div className="space-y-8">
+                    <div className="space-y-6">
                         <div className="flex gap-5">
-                            <div className="w-6 h-6 rounded-full bg-[#6E7A67]/10 flex items-center justify-center text-[#6E7A67] shrink-0 mt-1">
-                                <Heart size={14} className="fill-[#6E7A67]/20" />
+                            <div className="w-8 h-8 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] shrink-0 mt-1">
+                                <Heart size={15} className="fill-[#1E6B3A]/20" />
                             </div>
                             <div>
-                                <h5 className="font-bold text-[16px] mb-2 uppercase tracking-tight text-[#6E7A67]">Mastery of skills</h5>
-                                <p className="text-[14px] text-[#6E7A67] leading-relaxed">Requisite for success in academics, career, business, relationships, ministry, family, or leadership positions.</p>
+                                <h5 className="font-bold text-[16px] mb-1 uppercase tracking-tight text-[#1E6B3A]">Mastery of skills</h5>
+                                <p className="text-[14px] text-[#0F172A]/70 leading-relaxed">Requisite for success in academics, career, business, relationships, ministry, family, or leadership positions.</p>
                             </div>
                         </div>
                         <div className="flex gap-5">
-                            <div className="w-6 h-6 rounded-full bg-[#6E7A67]/10 flex items-center justify-center text-[#6E7A67] shrink-0 mt-1">
-                                <Award size={14} className="fill-[#6E7A67]/20" />
+                            <div className="w-8 h-8 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] shrink-0 mt-1">
+                                <Award size={15} className="fill-[#1E6B3A]/20" />
                             </div>
                             <div>
-                                <h5 className="font-bold text-[16px] mb-2 uppercase tracking-tight text-[#6E7A67]">A Certificate of Participation</h5>
-                                <p className="text-[14px] text-[#6E7A67] leading-relaxed mb-4">Subject to meeting the following criteria:</p>
+                                <h5 className="font-bold text-[16px] mb-1 uppercase tracking-tight text-[#1E6B3A]">A Certificate of Participation</h5>
+                                <p className="text-[14px] text-[#0F172A]/70 leading-relaxed mb-3">Subject to meeting the following criteria:</p>
                                 <ul className="space-y-2">
                                     {['Attendance to classes', 'Participation in team activities', 'Passing the assessment tests'].map(li => (
-                                        <li key={li} className="flex items-center gap-3 text-[11px] font-bold text-[#1D1914]/60 uppercase tracking-wider">
-                                            <div className="w-1.5 h-1.5 bg-[#6E7A67] rounded-full" />
+                                        <li key={li} className="flex items-center gap-3 text-[11px] font-bold text-[#0F172A]/60 uppercase tracking-wider">
+                                            <div className="w-1.5 h-1.5 bg-[#1E6B3A] rounded-full" />
                                             {li}
                                         </li>
                                     ))}
@@ -218,7 +231,7 @@ export default async function FeaturesPage() {
                         </div>
                     </div>
 
-                    <Link href="/join" className="group flex items-center justify-center gap-3 w-full h-14 rounded-2xl bg-[#6E7A67] text-white font-bold text-[14px] uppercase tracking-widest hover:bg-[#1D1914] transition-all shadow-xl shadow-[#6E7A67]/20">
+                    <Link href="/join" className="group flex items-center justify-center gap-3 w-full h-14 rounded-full bg-[#1E6B3A] text-white font-bold text-[13px] uppercase tracking-widest hover:bg-[#114B2A] transition-all shadow-md shadow-[#1E6B3A]/20">
                         <span className="flex items-center">Apply for Next Cohort</span> <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                     </Link>
                 </div>
@@ -226,10 +239,10 @@ export default async function FeaturesPage() {
         </section>
 
         {/* ── TESTIMONIALS ────────────────────────────────────── */}
-        <section className="py-10 md:py-16 bg-[#FDFCFB] border-t border-[#D8CEBE]/20">
-            <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-20">
-                <h3 className="text-[32px] md:text-[44px] font-bold text-[#1D1914]" >Member Experiences</h3>
-                <p className="text-[16px] text-[#6E7A67] mt-4">Voices from the Silent Collective.</p>
+        <section className="py-16 md:py-24 bg-[#FAFAF8] border-t border-[#EDEDED]">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-16">
+                <h3 className="text-[32px] md:text-[44px] font-extrabold text-[#0F172A]" >Member Experiences</h3>
+                <p className="text-[16px] text-[#1E6B3A] mt-3 font-semibold">Voices from the Silent Collective.</p>
             </div>
             <Testimonials />
         </section>
