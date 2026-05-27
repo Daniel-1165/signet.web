@@ -41,7 +41,7 @@ export default async function Home() {
                <span className="text-[11px] font-bold tracking-widest uppercase" >Join the Collective</span>
                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
             </Link>
-            <Link href="/resources" className="text-white/60 hover:text-white transition-colors text-sm font-medium border-b border-white/20 pb-1">
+            <Link href="/resources" className="text-white/60 hover:text-white transition-colors text-sm font-medium border-b border-[#D8CEBF]/20 pb-1">
               Explore Library →
             </Link>
           </div>
@@ -51,22 +51,57 @@ export default async function Home() {
       {/* Content wrapper */}
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-16 md:space-y-24 py-16 md:py-24">
         
-        {/* 1. Program Section */}
-        <ProgramSection />
-        
-        {/* 2. Vision & Mission Section */}
-        <VisionMissionSection />
-        
-        {/* 3. About Us / Signet Introduction Section */}
+        {/* 1. About Us / Signet Introduction Section */}
         <Introduction />
         
-        {/* 4. Featured Insights Carousel */}
+        {/* 2. Custom Transform Your Life Section (Side-by-Side row layout on all screens) */}
+        <section className="bg-white rounded-[2.5rem] p-6 md:p-12 border border-[#EDEDED] shadow-sm relative group overflow-hidden">
+          <div className="flex flex-row items-center justify-between gap-6 md:gap-12">
+            {/* Left Column: Text Content */}
+            <div className="w-[60%] sm:w-[65%] flex flex-col items-start space-y-2 sm:space-y-4">
+              <span className="font-sans font-bold text-[8px] sm:text-xs uppercase tracking-[0.25em] text-[#1E6B3A]">
+                EMPOWER. GROW. LEAD.
+              </span>
+              <h2 className="text-sm sm:text-xl md:text-3xl lg:text-5xl font-extrabold text-[#0F172A] leading-tight tracking-tight font-sans">
+                Transform Your Life, <br />
+                Transform Your Future.
+              </h2>
+              <p className="text-[10px] sm:text-sm md:text-base text-[#0F172A]/70 leading-relaxed font-sans font-medium hidden sm:block">
+                A 12-month high-impact journey with ambitious leaders unlocking unmatched growth, 
+                building leadership capacity and creating lasting impact.
+              </p>
+              <Link href="/join" className="flex items-center gap-1.5 sm:gap-3 bg-[#1E6B3A] hover:bg-[#114B2A] text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-full font-semibold text-[10px] sm:text-xs uppercase tracking-wider transition-all shadow-md shadow-[#1E6B3A]/10 font-sans">
+                <span>Learn More</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+              </Link>
+            </div>
+
+            {/* Right Column: Collage Image */}
+            <div className="w-[40%] sm:w-[35%] flex justify-end">
+              <div className="w-full max-w-[120px] sm:max-w-[280px] md:max-w-[340px] aspect-square overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#EDEDED] shadow-sm bg-white">
+                <img
+                  src="/hero_collage.png"
+                  alt="SIGNET Journey"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Program Section */}
+        <ProgramSection />
+        
+        {/* 4. Vision & Mission Section */}
+        <VisionMissionSection />
+        
+        {/* 5. Featured Insights Carousel */}
         <HomeCarousel slides={slides} />
         
-        {/* 5. Community CTA Banner */}
+        {/* 6. Community CTA Banner */}
         <CommunityBanner />
         
-        {/* 6. Testimonials Section */}
+        {/* 7. Testimonials Section */}
         <Testimonials />
         
       </div>

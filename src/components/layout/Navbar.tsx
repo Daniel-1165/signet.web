@@ -89,7 +89,7 @@ const Navbar = () => {
       ════════════════════════════════════════════════════════════ */}
       {!isDashboard && (
       <header
-        className={`hidden fixed left-0 right-0 z-[50] flex items-center justify-between px-6 h-[69px] border-b border-black/5 bg-white/80 backdrop-blur-xl transition-transform duration-500 top-0 ${
+        className={`flex md:hidden fixed left-0 right-0 z-[50] items-center justify-between px-6 h-[69px] border-b border-black/5 bg-white/80 backdrop-blur-xl transition-transform duration-500 top-0 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -250,7 +250,7 @@ const Navbar = () => {
           DESKTOP NAV BAR
       ════════════════════════════════════════════════════════════ */}
       <nav
-        className={`hidden md:block fixed z-[50] w-full transition-all duration-500 top-0 py-[21px] ${
+        className={`hidden fixed z-[50] w-full transition-all duration-500 top-0 py-[21px] ${
           isScrolled ? "bg-white/80 backdrop-blur-2xl border-b border-black/[0.04] shadow-sm py-[15px]" : "bg-transparent"
         }`}
       >

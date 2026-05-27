@@ -32,7 +32,7 @@ export default function VisionMissionSection() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-12 items-stretch">
           
           {/* Card 1: Vision Card */}
           <motion.div
@@ -40,21 +40,21 @@ export default function VisionMissionSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
+            className="bg-white rounded-[1.5rem] sm:rounded-[2.5rem] p-4 sm:p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
           >
             <DotGrid className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" />
             
-            <div className="space-y-8 relative z-10">
+            <div className="space-y-4 sm:space-y-8 relative z-10">
               {/* Icon Container */}
-              <div className="w-14 h-14 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A]">
-                <Eye size={24} strokeWidth={1.5} />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A]">
+                <Eye className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </div>
               
-              <div className="space-y-4">
-                <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-[#1E6B3A] block">
+              <div className="space-y-2 sm:space-y-4">
+                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.2em] text-[#1E6B3A] block">
                   OUR VISION
                 </span>
-                <p className="text-lg md:text-2xl font-bold text-[#0F172A] leading-snug font-sans">
+                <p className="text-xs sm:text-lg md:text-2xl font-bold text-[#0F172A] leading-snug font-sans">
                   To build a global network of trailblazers who <span className="italic font-medium text-[#1E6B3A]">model and replicate excellence</span> in diverse spheres.
                 </p>
               </div>
@@ -67,21 +67,21 @@ export default function VisionMissionSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#F6F4EE] rounded-[2.5rem] p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
+            className="bg-[#F6F4EE] rounded-[1.5rem] sm:rounded-[2.5rem] p-4 sm:p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
           >
             <DotGrid className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" />
 
-            <div className="space-y-8 relative z-10">
+            <div className="space-y-4 sm:space-y-8 relative z-10">
               {/* Icon Container */}
-              <div className="w-14 h-14 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A]">
-                <Flag size={22} strokeWidth={1.5} />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A]">
+                <Flag className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </div>
 
-              <div className="space-y-4">
-                <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-[#1E6B3A] block">
+              <div className="space-y-2 sm:space-y-4">
+                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.2em] text-[#1E6B3A] block">
                   OUR MISSION
                 </span>
-                <p className="text-lg md:text-2xl font-extrabold text-[#0F172A] leading-snug uppercase tracking-wide font-sans">
+                <p className="text-xs sm:text-lg md:text-2xl font-extrabold text-[#0F172A] leading-snug uppercase tracking-wide font-sans">
                   Ordinary persons achieving <span className="italic font-medium text-[#1E6B3A]">extraordinary results</span> silently and sustainably.
                 </p>
               </div>

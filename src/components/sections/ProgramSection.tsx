@@ -48,10 +48,6 @@ export default function ProgramSection() {
               </div>
               
               <div className="space-y-4">
-                <h3 className="text-2xl font-extrabold text-[#0F172A] font-sans">
-                  Activities
-                </h3>
-                <div className="w-12 h-[2px] bg-[#1E6B3A]" />
                 <p className="text-sm font-semibold text-[#0F172A]/70 uppercase tracking-wider">
                   Beyond the training sessions, there will be:
                 </p>
@@ -92,12 +88,7 @@ export default function ProgramSection() {
                 <CalendarRange size={26} strokeWidth={1.5} />
               </div>
 
-              <div className="space-y-4">
-                <h3 className="text-2xl font-extrabold text-[#0F172A] font-sans">
-                  Program Duration
-                </h3>
-                <div className="w-12 h-[2px] bg-[#1E6B3A]" />
-              </div>
+              <div className="h-2" />
 
               {/* Info Bullet Points */}
               <ul className="space-y-4">

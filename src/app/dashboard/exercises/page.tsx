@@ -20,18 +20,23 @@ export default async function ExercisesPage() {
   const user = await currentUser();
   const { userId } = await auth();
 
-  const audioLectures = await sanityFetch({
-    query: `*[_type == "audioLecture"] | order(_createdAt desc) {
-      _id,
-      title,
-      duration,
-      description,
-      author,
-      "audioUrl": audioFile.asset->url,
-      "coverImageUrl": coverImage.asset->url
-    }`,
-    tags: ["audioLecture"]
-  });
+  let audioLectures = [];
+  try {
+    audioLectures = await sanityFetch({
+      query: `*[_type == "audioLecture"] | order(_createdAt desc) {
+        _id,
+        title,
+        duration,
+        description,
+        author,
+        "audioUrl": audioFile.asset->url,
+        "coverImageUrl": coverImage.asset->url
+      }`,
+      tags: ["audioLecture"]
+    }) || [];
+  } catch (error) {
+    console.error("Sanity fetch error in exercises page:", error);
+  }
 
   if (!userId || !user) {
     return (
