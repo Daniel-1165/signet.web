@@ -89,7 +89,7 @@ const Navbar = () => {
       ════════════════════════════════════════════════════════════ */}
       {!isDashboard && (
       <header
-        className={`flex md:hidden fixed left-0 right-0 z-[50] items-center justify-between px-6 h-[69px] border-b border-black/5 bg-white/80 backdrop-blur-xl transition-transform duration-500 top-0 ${
+        className={`hidden fixed left-0 right-0 z-[50] items-center justify-between px-6 h-[69px] border-b border-black/5 bg-white/80 backdrop-blur-xl transition-transform duration-500 top-0 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >

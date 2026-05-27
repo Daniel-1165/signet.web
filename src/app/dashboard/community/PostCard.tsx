@@ -219,7 +219,7 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
             <CommentButton initialComments={post.post_comments?.length || 0} postId={post.id} />
         </div>
 
-        <button className="text-[#6E7A67]/40 hover:text-[#1D1914] transition-all group/share">
+        <button className="text-[#1E6B3A]/40 hover:text-[#114B2A] transition-all group/share">
           <Share2 size={18} className="group-hover/share:scale-110 transition-transform" />
         </button>
       </div>
@@ -227,7 +227,7 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
   );
 }
 
-/* ── Like Button — green theme with avatar tracking ──────────── */
+/* ── Like Button — forest green theme with avatar tracking ──────────── */
 function LikeButton({
   initialLikes,
   currentUserAvatar,
@@ -260,11 +260,11 @@ function LikeButton({
   return (
     <button
       onClick={toggleLike}
-      className={`flex items-center gap-1.5 transition-all group/stat ${isLiked ? 'text-[#1DA756]' : 'text-[#6E7A67]/60 hover:text-[#1DA756]'}`}
+      className={`flex items-center gap-1.5 transition-all group/stat ${isLiked ? 'text-[#1E6B3A]' : 'text-[#1E6B3A]/60 hover:text-[#1E6B3A]'}`}
     >
       <Heart
         size={19}
-        className={`transition-all duration-200 ${isLiked ? 'fill-[#1DA756] scale-110' : 'group-hover/stat:scale-110'}`}
+        className={`transition-all duration-200 ${isLiked ? 'fill-[#1E6B3A] scale-110' : 'group-hover/stat:scale-110'}`}
       />
       {likes > 0 && <span className="text-[13px] font-bold tracking-tight">{likes}</span>}
     </button>
@@ -288,7 +288,7 @@ function CommentButton({ initialComments, postId }: { initialComments: number; p
     <div>
       <button
         onClick={() => setOpen(prev => !prev)}
-        className={`flex items-center gap-1.5 transition-all group/stat ${open ? 'text-[#1D1914]' : 'text-[#6E7A67]/60 hover:text-[#1D1914]'}`}
+        className={`flex items-center gap-1.5 transition-all group/stat ${open ? 'text-[#114B2A]' : 'text-[#1E6B3A]/60 hover:text-[#1E6B3A]'}`}
       >
         <MessageSquare size={19} className="group-hover/stat:scale-110 transition-all" />
         {count > 0 && <span className="text-[13px] font-bold tracking-tight">{count}</span>}
@@ -298,24 +298,24 @@ function CommentButton({ initialComments, postId }: { initialComments: number; p
         <div className="mt-4 border-t border-[#D8CEBE]/20 pt-4 space-y-3">
           {comments.map((c, i) => (
             <div key={i} className="flex gap-3 items-start">
-              <div className="w-7 h-7 rounded-full bg-[#6E7A67]/10 flex items-center justify-center text-[#6E7A67] text-[10px] font-bold shrink-0">U</div>
+              <div className="w-7 h-7 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] text-[10px] font-bold shrink-0">U</div>
               <div className="flex-1 bg-[#FDFCFB] rounded-2xl px-4 py-2.5 border border-[#D8CEBE]/20">
-                <p className="text-[14px] text-[#1D1914] font-medium">{c.text}</p>
-                <p className="text-[10px] text-[#6E7A67]/50 mt-1 font-medium">{c.time}</p>
+                <p className="text-[14px] text-[#114B2A] font-medium">{c.text}</p>
+                <p className="text-[10px] text-[#1E6B3A]/50 mt-1 font-medium">{c.time}</p>
               </div>
             </div>
           ))}
           <div className="flex gap-3 items-center">
-            <div className="w-7 h-7 rounded-full bg-[#1DA756]/10 flex items-center justify-center text-[#1DA756] text-[10px] font-bold shrink-0">Me</div>
-            <div className="flex-1 flex items-center gap-2 bg-[#FDFCFB] rounded-2xl px-4 py-2 border border-[#D8CEBE]/30 focus-within:border-[#6E7A67] transition-all">
+            <div className="w-7 h-7 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] text-[10px] font-bold shrink-0">Me</div>
+            <div className="flex-1 flex items-center gap-2 bg-[#FDFCFB] rounded-2xl px-4 py-2 border border-[#D8CEBE]/30 focus-within:border-[#1E6B3A] transition-all">
               <input
                 value={comment}
                 onChange={e => setComment(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && submit()}
                 placeholder="Write a reply..."
-                className="flex-1 bg-transparent text-[14px] text-[#1D1914] outline-none font-medium placeholder:text-[#6E7A67]/40"
+                className="flex-1 bg-transparent text-[14px] text-[#114B2A] outline-none font-medium placeholder:text-[#1E6B3A]/40"
               />
-              <button onClick={submit} className="text-[#1DA756] hover:scale-110 transition-transform shrink-0">
+              <button onClick={submit} className="text-[#1E6B3A] hover:scale-110 transition-transform shrink-0">
                 <Send size={15} />
               </button>
             </div>
