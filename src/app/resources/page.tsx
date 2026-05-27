@@ -7,7 +7,7 @@ const DATA_QUERY = `
       _id, 
       title, 
       "tag": category, 
-      "description": content, 
+      description, 
       _createdAt, 
       slug, 
       _type,

@@ -12,7 +12,7 @@ const RESOURCE_QUERY = `
     _id, 
     title, 
     "tag": category, 
-    "description": content, 
+    description, 
     _createdAt, 
     "fileUrl": resourceFile.asset->url,
     "fileName": resourceFile.asset->originalFilename,
