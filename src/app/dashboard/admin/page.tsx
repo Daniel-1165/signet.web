@@ -74,10 +74,10 @@ export default function AdminHubPage() {
 
   if (loading && !isAdmin) {
     return (
-      <div className="min-h-screen bg-[#FDFCFB] flex items-center justify-center">
+      <div className="min-h-screen bg-[#FAFAF8] flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 rounded-full border-2 border-[#D8CEBE] border-t-[#6E7A67] animate-spin" />
-          <p className="text-[#6E7A67] text-[12px] font-bold tracking-[0.2em] uppercase">Verifying Admin Privileges</p>
+          <div className="w-12 h-12 rounded-full border-2 border-[#EAF4EC] border-t-[#1E6B3A] animate-spin" />
+          <p className="text-[#1E6B3A] text-[12px] font-bold tracking-[0.2em] uppercase font-sans">Verifying Admin Privileges</p>
         </div>
       </div>
     )
@@ -86,50 +86,50 @@ export default function AdminHubPage() {
   if (!isAdmin) return null
 
   return (
-    <div className="min-h-screen bg-[#FDFCFB] text-[#1D1914] pt-4 md:pt-8">
+    <div className="min-h-screen bg-[#FAFAF8] text-[#0F172A] pt-4 md:pt-8 font-sans selection:bg-[#EAF4EC] selection:text-[#114B2A]">
       {/* Editorial Header */}
-      <header className="flex flex-col md:flex-row md:items-end justify-between py-6 md:py-10 max-w-[1300px] mx-auto px-5 md:px-6 border-b border-[#D8CEBE]/40 mb-8 md:mb-12 gap-6 md:gap-0">
+      <header className="flex flex-col md:flex-row md:items-end justify-between py-6 md:py-10 max-w-[1300px] mx-auto px-5 md:px-6 border-b border-[#EDEDED] mb-8 md:mb-12 gap-6 md:gap-0">
         <div>
-           <div className="flex items-center gap-2 text-[#6E7A67] mb-2">
+           <div className="flex items-center gap-2 text-[#1E6B3A] mb-2">
              <Shield size={14} className="md:w-4 md:h-4" />
              <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase">Private Protocol</span>
            </div>
-           <h1 className="text-[32px] md:text-[44px] font-bold leading-tight" >
-             Admin <span className="italic font-normal text-[#6E7A67]">Hub</span>
+           <h1 className="text-[32px] md:text-[44px] font-extrabold leading-tight text-[#0F172A] font-sans" >
+             Admin <span className="italic font-light text-[#1E6B3A]">Hub</span>
            </h1>
-           <p className="text-[#6E7A67]/60 text-[14px] font-medium mt-2">Platform Governance & Infrastructure Control</p>
+           <p className="text-[#0F172A]/60 text-[14px] font-semibold mt-2">Platform Governance & Infrastructure Control</p>
         </div>
         
         <div className="flex items-center gap-4">
-          <div className="bg-white border border-[#D8CEBE]/40 rounded-2xl px-6 py-4 shadow-sm">
+          <div className="bg-white border border-[#EDEDED] rounded-2xl px-6 py-4 shadow-sm">
             <div className="flex items-center gap-2 mb-1">
-              <Users size={12} className="text-[#6E7A67]/60" />
-              <p className="text-[#6E7A67]/40 text-[9px] font-bold uppercase tracking-widest">Members</p>
+              <Users size={12} className="text-[#1E6B3A]/60" />
+              <p className="text-[#0F172A]/40 text-[9px] font-bold uppercase tracking-widest">Members</p>
             </div>
-            <p className="text-xl font-bold text-[#1D1914]">1,284</p>
+            <p className="text-xl font-extrabold text-[#0F172A] font-sans">1,284</p>
           </div>
-          <div className="bg-white border border-[#D8CEBE]/40 rounded-2xl px-6 py-4 shadow-sm">
+          <div className="bg-white border border-[#EDEDED] rounded-2xl px-6 py-4 shadow-sm">
             <div className="flex items-center gap-2 mb-1">
-              <Activity size={12} className="text-[#6E7A67]/60" />
-              <p className="text-[#6E7A67]/40 text-[9px] font-bold uppercase tracking-widest">Insights</p>
+              <Activity size={12} className="text-[#1E6B3A]/60" />
+              <p className="text-[#0F172A]/40 text-[9px] font-bold uppercase tracking-widest">Insights</p>
             </div>
-            <p className="text-xl font-bold text-[#1D1914]">4,821</p>
+            <p className="text-xl font-extrabold text-[#0F172A] font-sans">4,821</p>
           </div>
         </div>
       </header>
 
-      <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
+      <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
         <div className="space-y-10">
           {/* Access Control Card */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30">
+          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED]">
             <div className="flex items-center gap-2 mb-8">
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#6E7A67]">Access Control</span>
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#1E6B3A]">Access Control</span>
             </div>
             
-            <h3 className="text-[24px] md:text-[28px] font-bold text-[#1D1914] mb-4" >
-              Promote <span className="italic font-normal text-[#6E7A67]">Member</span>
+            <h3 className="text-[24px] md:text-[28px] font-extrabold text-[#0F172A] mb-4 font-sans" >
+              Promote <span className="italic font-light text-[#1E6B3A]">Member</span>
             </h3>
-            <p className="text-[#6E7A67]/70 text-[14px] mb-8 max-w-xl leading-relaxed">
+            <p className="text-[#0F172A]/70 text-[14px] mb-8 max-w-xl leading-relaxed font-medium">
               Grant administrative privileges to a specific member. This allows them to moderate posts, delete content, and access this hub.
             </p>
 
@@ -139,12 +139,12 @@ export default function AdminHubPage() {
                 value={promotionTarget}
                 onChange={(e) => setPromotionTarget(e.target.value)}
                 placeholder="Enter User ID or Email address..."
-                className="flex-1 bg-[#FDFCFB] border border-[#D8CEBE]/40 rounded-2xl py-4 px-6 text-[#1D1914] text-[14px] outline-none focus:border-[#6E7A67] transition-all"
+                className="flex-1 bg-[#FAFAF8] border border-[#EDEDED] rounded-2xl py-4 px-6 text-[#0F172A] text-[14px] outline-none focus:border-[#1E6B3A] transition-all font-sans font-medium"
               />
               <button 
                 onClick={handlePromote}
                 disabled={promoting || !promotionTarget.trim()}
-                className="px-8 py-4 bg-[#1D1914] hover:bg-[#6E7A67] text-white rounded-2xl font-bold text-[13px] transition-all shadow-lg disabled:opacity-50"
+                className="px-8 py-4 bg-[#1E6B3A] hover:bg-[#114B2A] text-white rounded-2xl font-bold text-[13px] transition-all shadow-md shadow-[#1E6B3A]/20 disabled:opacity-50 font-sans"
               >
                 {promoting ? 'Processing...' : 'Verify & Promote'}
               </button>
@@ -161,22 +161,22 @@ export default function AdminHubPage() {
           </div>
 
           {/* Active Staff List */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30">
-            <h4 className="text-[10px] font-bold text-[#6E7A67]/40 uppercase tracking-[0.2em] mb-8">Active Administrators</h4>
+          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED]">
+            <h4 className="text-[10px] font-bold text-[#1E6B3A]/60 uppercase tracking-[0.2em] mb-8">Active Administrators</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {[user].map((staff, i) => (
-                 <div key={i} className="flex items-center justify-between p-5 bg-[#FDFCFB] rounded-2xl border border-[#D8CEBE]/30 hover:border-[#6E7A67]/30 transition-all group">
+                 <div key={i} className="flex items-center justify-between p-5 bg-[#FAFAF8] rounded-2xl border border-[#EDEDED] hover:border-[#1E6B3A]/30 transition-all group">
                     <div className="flex items-center gap-4">
                       <div className="relative">
                         <img src={staff?.imageUrl} className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
                         <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white" />
                       </div>
                       <div>
-                        <p className="text-[14px] font-bold text-[#1D1914]">{staff?.fullName || 'Root Admin'}</p>
-                        <p className="text-[11px] text-[#6E7A67]/60 font-bold uppercase tracking-wider">Level 1 Admin</p>
+                        <p className="text-[14px] font-bold text-[#0F172A]">{staff?.fullName || 'Root Admin'}</p>
+                        <p className="text-[11px] text-[#1E6B3A]/60 font-bold uppercase tracking-wider">Level 1 Admin</p>
                       </div>
                     </div>
-                    <Shield size={16} className="text-[#6E7A67]/20 group-hover:text-[#6E7A67] transition-colors" />
+                    <Shield size={16} className="text-[#1E6B3A]/20 group-hover:text-[#1E6B3A] transition-colors" />
                  </div>
                ))}
             </div>
@@ -185,7 +185,7 @@ export default function AdminHubPage() {
 
         <aside className="space-y-10">
           {/* Content Safety Card */}
-          <div className="bg-white rounded-[2rem] p-8 border border-[#D8CEBE]/30 shadow-[0_10px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group">
+          <div className="bg-white rounded-[2rem] p-8 border border-[#EDEDED] shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none group-hover:rotate-12 transition-transform duration-700">
               <Trash2 size={80} />
             </div>
@@ -193,11 +193,11 @@ export default function AdminHubPage() {
             <div className="relative z-10">
               <div className="flex items-center gap-2 mb-6">
                 <AlertTriangle className="text-red-500/60" size={14} />
-                <h2 className="text-[10px] font-bold text-[#6E7A67] uppercase tracking-[0.2em]">Platform Safety</h2>
+                <h2 className="text-[10px] font-bold text-[#1E6B3A] uppercase tracking-[0.2em]">Platform Safety</h2>
               </div>
               
-              <h3 className="text-[20px] font-bold text-[#1D1914] mb-4" >Platform <span className="text-red-500 italic font-normal">Cleanup</span></h3>
-              <p className="text-[#6E7A67]/70 text-[13px] mb-8 leading-relaxed">
+              <h3 className="text-[20px] font-extrabold text-[#0F172A] mb-4 font-sans" >Platform <span className="text-red-600 italic font-light">Cleanup</span></h3>
+              <p className="text-[#0F172A]/70 text-[13px] mb-8 leading-relaxed font-semibold font-sans">
                 Resets the collective community feed. All published insights, assets, and discussions will be permanently removed.
               </p>
 
@@ -213,18 +213,18 @@ export default function AdminHubPage() {
           </div>
 
           {/* Integration Links */}
-          <div className="bg-[#1D1914] rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group">
+          <div className="bg-[#0F172A] rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group">
              <Sparkles className="absolute -top-6 -right-6 w-24 h-24 text-white/5 group-hover:rotate-12 transition-transform duration-1000" />
-             <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]/60">System Logs</span>
-             <h3 className="text-white text-[24px] font-bold mt-2 mb-6" >Infrastructure</h3>
+             <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#EAF4EC]/60">System Logs</span>
+             <h3 className="text-white text-[24px] font-extrabold mt-2 mb-6 font-sans" >Infrastructure</h3>
              
-             <div className="space-y-3">
+             <div className="space-y-3 font-sans">
                 <a href="https://clerk.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all group/link">
-                   <span className="text-white/80 text-[13px] font-medium">Clerk Console</span>
+                   <span className="text-white/80 text-[13px] font-semibold">Clerk Console</span>
                    <ExternalLink size={14} className="text-white/20 group-hover/link:text-white" />
                 </a>
                 <a href="https://supabase.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all group/link">
-                   <span className="text-white/80 text-[13px] font-medium">Supabase DB</span>
+                   <span className="text-white/80 text-[13px] font-semibold">Supabase DB</span>
                    <ExternalLink size={14} className="text-white/20 group-hover/link:text-white" />
                 </a>
              </div>
