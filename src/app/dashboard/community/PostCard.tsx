@@ -68,7 +68,7 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
   };
 
   return (
-    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30 hover:border-[#6E7A67]/30 transition-all group relative">
+    <div className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-[#D8CEBE]/30 hover:border-[#1E6B3A]/30 transition-all group relative">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div className="flex items-center gap-4">
@@ -77,28 +77,27 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h4 className="font-bold text-[15px] md:text-[16px] text-[#1D1914] leading-tight break-words" >{authorName}</h4>
+              <h4 className="font-bold text-[15px] md:text-[16px] text-[#114B2A] leading-tight break-words" >{authorName}</h4>
               <span className="hidden md:inline text-[#D8CEBE]">•</span>
-              <span className="text-[11px] md:text-[12px] text-[#6E7A67]/60 font-medium">
+              <span className="text-[11px] md:text-[12px] text-[#1E6B3A]/60 font-medium">
                 {formatDistanceToNow(new Date(post.created_at))} ago
               </span>
             </div>
-            <p className="text-[11px] md:text-[12px] text-[#6E7A67]/50 font-medium mt-0.5">{authorRole}</p>
+            <p className="text-[11px] md:text-[12px] text-[#1E6B3A]/50 font-medium mt-0.5">{authorRole}</p>
           </div>
         </div>
-        
-        <div className="relative dropdown-container">
+                <div className="relative dropdown-container">
           <button 
             onClick={() => setShowDropdown(!showDropdown)}
-            className="text-[#6E7A67]/40 hover:text-[#1D1914] transition-colors p-1 shrink-0"
+            className="text-[#1E6B3A]/40 hover:text-[#114B2A] transition-colors p-1 shrink-0"
           >
             <MoreHorizontal size={18} />
           </button>
-
+ 
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-[#D8CEBE]/30 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
               <button 
-                className="w-full text-left px-4 py-2 text-[12px] font-bold text-[#6E7A67] hover:bg-[#FDFCFB] hover:text-[#1D1914] transition-colors flex items-center gap-2"
+                className="w-full text-left px-4 py-2 text-[12px] font-bold text-[#1E6B3A] hover:bg-[#FDFCFB] hover:text-[#114B2A] transition-colors flex items-center gap-2"
                 onClick={() => {
                   navigator.clipboard.writeText(`${window.location.origin}/dashboard/community#post-${post.id}`);
                   setShowDropdown(false);
@@ -110,7 +109,7 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
               {(isOwner || isAdmin) && (
                 <>
                   <button 
-                    className="w-full text-left px-4 py-2 text-[12px] font-bold text-[#6E7A67] hover:bg-[#FDFCFB] hover:text-[#1D1914] transition-colors flex items-center gap-2"
+                    className="w-full text-left px-4 py-2 text-[12px] font-bold text-[#1E6B3A] hover:bg-[#FDFCFB] hover:text-[#114B2A] transition-colors flex items-center gap-2"
                     onClick={() => {
                       setIsEditing(true);
                       setShowDropdown(false);
@@ -141,45 +140,45 @@ export function PostCard({ post, profile, currentUserIsAdmin }: { post: any; pro
               <textarea
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
-                className="w-full p-4 bg-[#FDFCFB] border border-[#D8CEBE]/40 rounded-2xl text-[14px] md:text-[15px] font-medium text-[#1D1914] outline-none focus:border-[#6E7A67] transition-all min-h-[120px] resize-none"
+                className="w-full p-4 bg-[#FDFCFB] border border-[#D8CEBE]/40 rounded-2xl text-[14px] md:text-[15px] font-medium text-[#114B2A] outline-none focus:border-[#1E6B3A] transition-all min-h-[120px] resize-none"
                 placeholder="Update your insight..."
                 autoFocus
               />
               <div className="flex justify-end gap-3">
                 <button 
                   onClick={() => setIsEditing(false)}
-                  className="px-4 py-2 text-[11px] font-bold text-[#6E7A67] hover:text-[#1D1914] transition-colors"
+                  className="px-4 py-2 text-[11px] font-bold text-[#1E6B3A] hover:text-[#114B2A] transition-colors"
                 >
                   Cancel
                 </button>
                 <button 
                   onClick={handleUpdate}
                   disabled={isUpdating || !editContent.trim()}
-                  className="px-6 py-2 bg-[#1D1914] text-white rounded-full text-[11px] font-bold hover:bg-[#1D1914]/80 transition-all disabled:opacity-50"
+                  className="px-6 py-2 bg-[#1E6B3A] text-white rounded-full text-[11px] font-bold hover:bg-[#1E6B3A]/80 transition-all disabled:opacity-50"
                 >
                   {isUpdating ? "Saving..." : "Save Changes"}
                 </button>
               </div>
             </div>
           ) : (
-            <p className="text-[#1D1914] leading-[1.6] text-[14px] md:text-[15px] whitespace-pre-wrap break-words font-medium" >
+            <p className="text-[#114B2A] leading-[1.6] text-[14px] md:text-[15px] whitespace-pre-wrap break-words font-medium" >
               {post.content}
             </p>
           )}
         </div>
 
         {isResourcePost && (
-          <div className="mt-5 flex items-center justify-between p-4 rounded-2xl bg-[#FDFCFB] border border-[#D8CEBE]/40 group/asset hover:border-[#6E7A67]/30 transition-all">
+          <div className="mt-5 flex items-center justify-between p-4 rounded-2xl bg-[#FDFCFB] border border-[#D8CEBE]/40 group/asset hover:border-[#1E6B3A]/30 transition-all">
              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#8B4513] shadow-sm border border-[#D8CEBE]/20">
+                <div className="w-10 h-10 bg-[#EAF4EC] rounded-xl flex items-center justify-center text-[#1E6B3A] shadow-sm border border-[#D8CEBE]/20">
                    <FileText size={20} />
                 </div>
                 <div className="min-w-0">
-                   <p className="text-[13px] md:text-[14px] font-bold text-[#1D1914] truncate">Growth_Framework_v2.pdf</p>
-                   <p className="text-[11px] text-[#6E7A67]/60 font-medium tracking-wide">1.2 MB &bull; PDF</p>
+                   <p className="text-[13px] md:text-[14px] font-bold text-[#114B2A] truncate">Growth_Framework_v2.pdf</p>
+                   <p className="text-[11px] text-[#1E6B3A]/60 font-medium tracking-wide">1.2 MB &bull; PDF</p>
                 </div>
              </div>
-             <button className="w-9 h-9 rounded-full bg-white text-[#6E7A67] border border-[#D8CEBE]/40 flex items-center justify-center hover:bg-[#1D1914] hover:text-white transition-all shrink-0">
+             <button className="w-9 h-9 rounded-full bg-white text-[#1E6B3A] border border-[#D8CEBE]/40 flex items-center justify-center hover:bg-[#1E6B3A] hover:text-white transition-all shrink-0">
                 <Download size={16} />
              </button>
           </div>

@@ -69,9 +69,14 @@ export default async function Home() {
           </div>
 
           {/* Floating image and wrapping text container */}
-          <div className="flow-root font-sans">
-            {/* Floated Image */}
-            <div className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[140px] h-[140px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#EDEDED] bg-white shadow-sm">
+          <div className="flow-root font-sans text-[#0F172A]/85 text-base sm:text-lg md:text-xl leading-relaxed font-normal">
+            {/* Paragraph 1 - Spans full width on mobile because it's before the floated image */}
+            <p className="mb-6">
+              A <strong className="font-extrabold text-[#1E6B3A]">12-month high-impact journey</strong> with <span className="font-bold text-[#1E6B3A]">ambitious leaders</span> unlocking <span className="font-bold text-[#1E6B3A]">unmatched growth</span>.
+            </p>
+
+            {/* Floated Image - Restructured to sit after Paragraph 1 and float right of Paragraph 2 */}
+            <div className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[170px] h-[170px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
               <img
                 src="/hero_collage.png"
                 alt="SIGNET Journey"
@@ -79,18 +84,17 @@ export default async function Home() {
               />
             </div>
 
-            {/* Wrapping Text */}
-            <div className="text-[#0F172A]/85 text-base sm:text-lg md:text-xl leading-relaxed font-normal space-y-6">
-              <p>
-                A 12-month high-impact journey with ambitious leaders unlocking unmatched growth, 
-                building leadership capacity and creating lasting impact.
-              </p>
-              <div className="pt-4">
-                <Link href="/join" className="inline-flex items-center gap-3 bg-[#1E6B3A] hover:bg-[#114B2A] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all shadow-md shadow-[#1E6B3A]/10 font-sans uppercase tracking-wider text-xs">
-                  <span>Learn More</span>
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
+            {/* Paragraph 2 - Wraps around the floated image */}
+            <p className="mb-6">
+              Together, we focus on building <span className="font-bold text-[#1E6B3A]">leadership capacity</span> and creating a <em className="italic font-bold text-[#1E6B3A]">lasting impact</em>.
+            </p>
+
+            {/* CTA Button - Clears float to span full width below */}
+            <div className="pt-4 clear-left sm:clear-none">
+              <Link href="/join" className="inline-flex items-center gap-3 bg-[#1E6B3A] hover:bg-[#114B2A] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all shadow-md shadow-[#1E6B3A]/10 font-sans uppercase tracking-wider text-xs">
+                <span>Learn More</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
             </div>
           </div>
         </section>
