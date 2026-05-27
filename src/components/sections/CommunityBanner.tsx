@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function CommunityBanner() {
   return (
     <section className="relative py-8 md:py-12 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="w-full relative z-10">
         
         {/* Banner Container - Stacked layout to match the hand-drawn sketch exactly on mobile & desktop */}
         <div className="relative w-full rounded-[2.5rem] bg-[#114B2A] p-6 sm:p-10 md:p-12 overflow-hidden shadow-sm flex flex-col justify-between group">

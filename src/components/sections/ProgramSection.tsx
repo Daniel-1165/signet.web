@@ -15,7 +15,7 @@ const DotGrid = ({ className }: { className?: string }) => (
 export default function ProgramSection() {
   return (
     <section id="programs" className="relative py-16 md:py-24 bg-[#FAFAF8] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -28,16 +28,16 @@ export default function ProgramSection() {
           </h2>
         </div>
 
-        {/* Cards Grid */}
+        {/* Cards Grid - Now borderless/cardless as requested */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           
-          {/* Card 1: Activities */}
+          {/* Column 1: Activities (Cardless) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
+            className="relative group"
           >
             <DotGrid className="absolute top-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" />
             
@@ -72,13 +72,13 @@ export default function ProgramSection() {
             </div>
           </motion.div>
 
-          {/* Card 2: Program Duration */}
+          {/* Column 2: Program Duration (Cardless) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
+            className="relative group"
           >
             <DotGrid className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" />
 
