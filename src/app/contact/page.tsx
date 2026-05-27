@@ -1,6 +1,5 @@
 import ContactForm from "@/components/sections/ContactForm";
-import { Mail, MessageCircle, Phone, MapPin, Clock, Send, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Mail, MessageCircle, Phone, ArrowRight } from "lucide-react";
 
 export default function ContactPage() {
   const contactMethods = [
@@ -9,266 +8,202 @@ export default function ContactPage() {
       title: "WhatsApp",
       description: "Chat with us instantly on WhatsApp for quick support and questions.",
       action: "Start Chat",
-      href: "https://wa.me/15551234567?text=Hi%20Signet%20Network%2C%20I%20need%20help%20with...",
-      color: "bg-[#0B2B26] hover:bg-[#163832]",
-      bgColor: "bg-[#DAF1DE]/40",
-      textColor: "text-[#051F20]",
+      href: "https://wa.me/2349032387758?text=Hi%20Signet%20Network%2C%20I%20need%20help%20with...",
+      color: "bg-[#1E6B3A] hover:bg-[#114B2A]",
+      bgColor: "bg-[#EAF4EC]/40",
+      textColor: "text-[#1E6B3A]",
     },
     {
       icon: <Mail className="w-8 h-8" />,
       title: "Email Support",
       description: "Send us a detailed message and we'll get back to you within 24 hours.",
       action: "Send Email",
-      href: "mailto:hello@signetnetwork.com?subject=Support%20Request&body=Hi%20Signet%20Network%20Team%2C%0A%0A",
-      color: "bg-[#163832] hover:bg-[#235347]",
-      bgColor: "bg-[#8EB69B]/20",
-      textColor: "text-[#051F20]",
+      href: "mailto:info@signet.org?subject=Support%20Request&body=Hi%20Signet%20Network%20Team%2C%0A%0A",
+      color: "bg-[#1E6B3A] hover:bg-[#114B2A]",
+      bgColor: "bg-[#EAF4EC]/40",
+      textColor: "text-[#1E6B3A]",
     },
     {
       icon: <Phone className="w-8 h-8" />,
       title: "Phone Support",
       description: "Speak directly with our support team for urgent matters.",
       action: "Call Now",
-      href: "tel:+15551234567",
-      color: "bg-[#235347] hover:bg-[#0B2B26]",
-      bgColor: "bg-[#DAF1DE]/40",
-      textColor: "text-[#051F20]",
-    },
-  ];
-
-  const supportTopics = [
-    {
-      title: "Technical Support",
-      description: "Issues with assessments, account access, or platform functionality",
-      icon: "🔧",
-    },
-    {
-      title: "Assessment Questions",
-      description: "Help with IQ/EQ tests, scoring, or interpretation",
-      icon: "🧠",
-    },
-    {
-      title: "Community Guidelines",
-      description: "Questions about community participation and moderation",
-      icon: "👥",
-    },
-    {
-      title: "Billing & Subscriptions",
-      description: "Payment issues, refunds, or subscription management",
-      icon: "💳",
-    },
-    {
-      title: "Partnership Inquiries",
-      description: "Business partnerships, collaborations, or media requests",
-      icon: "🤝",
-    },
-    {
-      title: "General Feedback",
-      description: "Share your thoughts, suggestions, or feature requests",
-      icon: "💬",
+      href: "tel:+2349032387758",
+      color: "bg-[#1E6B3A] hover:bg-[#114B2A]",
+      bgColor: "bg-[#EAF4EC]/40",
+      textColor: "text-[#1E6B3A]",
     },
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#F7F8F5] to-white">
-      <main className="pt-10 pb-24 px-8 max-w-6xl mx-auto">
+    <div className="relative min-h-screen bg-[#FAFAF8] text-[#0F172A] font-sans selection:bg-[#EAF4EC] selection:text-[#114B2A]">
+      <main className="pt-16 pb-24 px-6 md:px-8 max-w-6xl mx-auto">
         {/* Hero Section */}
-        <div className="text-center space-y-12 mb-32">
-          <div className="flex justify-center gap-1.5 mb-4">
-            <span className="w-2 h-2 rounded-full bg-accent shadow-sm" />
-            <span className="w-2 h-2 rounded-full bg-foreground opacity-40" />
-            <span className="w-2 h-2 rounded-full bg-foreground opacity-30" />
+        <div className="text-center space-y-6 mb-20 md:mb-24">
+          <div className="flex justify-center gap-1.5 mb-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#1E6B3A]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0F172A] opacity-25" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0F172A] opacity-15" />
           </div>
 
-          <div className="space-y-6">
-            <h1 className="text-6xl md:text-7xl font-black tracking-tighter text-[#051F20] leading-tight">
-              Get in <span className="text-[#163832]">Touch</span>
+          <div className="space-y-4">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#0F172A] font-sans">
+              Get in <span className="italic font-light text-[#1E6B3A]">Touch</span>
             </h1>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg text-[#0F172A]/70 max-w-2xl mx-auto leading-relaxed font-sans font-medium">
               We're here to help you on your personal development journey. Choose your preferred way to connect with our support team.
             </p>
           </div>
-
-          <div className="h-1 w-24 bg-gradient-to-r from-accent to-accent/20 mx-auto rounded-full" />
         </div>
 
         {/* Contact Methods */}
-        <div className="grid md:grid-cols-3 gap-8 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 md:mb-24">
           {contactMethods.map((method, index) => (
-            <Link
+            <a
               key={index}
               href={method.href}
               target={method.href.startsWith('http') ? '_blank' : undefined}
               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="group block"
             >
-              <div className={`rounded-3xl ${method.bgColor} border-2 border-transparent hover:border-current transition-all duration-500 p-8 h-full hover:shadow-xl hover:shadow-black/5`}>
-                {/* Icon */}
-                <div className={`w-16 h-16 ${method.textColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {method.icon}
+              <div className={`rounded-[2.5rem] bg-white border border-[#EDEDED] hover:border-[#1E6B3A]/30 transition-all duration-500 p-8 h-full shadow-sm hover:shadow-xl flex flex-col justify-between`}>
+                <div className="space-y-6">
+                  {/* Icon Container */}
+                  <div className={`w-16 h-16 ${method.bgColor} ${method.textColor} rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
+                    {method.icon}
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-3">
+                    <h3 className="text-2xl font-extrabold text-[#0F172A] tracking-tight font-sans uppercase">
+                      {method.title}
+                    </h3>
+                    <p className="text-[#0F172A]/70 text-sm leading-relaxed font-sans font-medium">
+                      {method.description}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="space-y-4">
-                  <h3 className={`text-2xl font-black ${method.textColor} uppercase tracking-tight`}>
-                    {method.title}
-                  </h3>
-                  <p className="text-foreground/70 text-base leading-relaxed">
-                    {method.description}
-                  </p>
-
-                  {/* Action Button */}
-                  <div className={`inline-flex items-center gap-2 px-6 py-3 ${method.color} text-white font-bold rounded-xl transition-all duration-300 group-hover:shadow-lg`}>
+                {/* Action Button */}
+                <div className="mt-8">
+                  <div className={`inline-flex items-center justify-center gap-2 px-6 py-3 w-full sm:w-auto ${method.color} text-white font-bold rounded-full transition-all duration-300 shadow-md shadow-[#1E6B3A]/10 font-sans text-xs uppercase tracking-wider`}>
                     <span>{method.action}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
 
         {/* Contact Form */}
-        <div className="mb-32">
+        <div className="mb-20 md:mb-24">
           <ContactForm />
         </div>
 
-        {/* Support Topics */}
-        <div className="mb-32">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-black text-foreground uppercase tracking-tight mb-6">
-              What Can We Help With?
-            </h2>
-            <p className="text-xl text-foreground/60 max-w-2xl mx-auto">
-              Common topics our support team handles
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {supportTopics.map((topic, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl bg-white border border-black/5 hover:border-accent/20 transition-all duration-300 hover:shadow-lg hover:shadow-black/5"
-              >
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl">{topic.icon}</span>
-                  <div className="space-y-2">
-                    <h3 className="font-black text-lg text-foreground uppercase tracking-tight">
-                      {topic.title}
-                    </h3>
-                    <p className="text-foreground/60 text-sm leading-relaxed">
-                      {topic.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Response Times */}
-        <div className="rounded-3xl bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20 p-12 text-center space-y-8">
-          <div className="space-y-4">
-            <h3 className="text-4xl font-black text-foreground">
+        <div className="rounded-[2.5rem] bg-[#F6F4EE] border border-[#EDEDED] p-10 md:p-12 text-center space-y-8">
+          <div className="space-y-2">
+            <h3 className="text-3xl font-extrabold text-[#0F172A] font-sans">
               Response Times
             </h3>
-            <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
+            <p className="text-sm md:text-base text-[#0F172A]/60 max-w-2xl mx-auto font-sans font-semibold">
               We strive to respond to all inquiries as quickly as possible
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="space-y-3">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <MessageCircle className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-[#EAF4EC] rounded-full flex items-center justify-center mx-auto text-[#1E6B3A]">
+                <MessageCircle className="w-6 h-6" />
               </div>
-              <h4 className="font-black text-lg text-foreground">WhatsApp</h4>
-              <p className="text-foreground/60">Within 1-2 hours during business hours</p>
+              <h4 className="font-bold text-lg text-[#0F172A] font-sans">WhatsApp</h4>
+              <p className="text-sm text-[#0F172A]/60 font-medium">Within 1-2 hours during business hours</p>
             </div>
 
             <div className="space-y-3">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                <Mail className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-[#EAF4EC] rounded-full flex items-center justify-center mx-auto text-[#1E6B3A]">
+                <Mail className="w-6 h-6" />
               </div>
-              <h4 className="font-black text-lg text-foreground">Email</h4>
-              <p className="text-foreground/60">Within 24 hours</p>
+              <h4 className="font-bold text-lg text-[#0F172A] font-sans">Email</h4>
+              <p className="text-sm text-[#0F172A]/60 font-medium">Within 24 hours</p>
             </div>
 
             <div className="space-y-3">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-                <Phone className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 bg-[#EAF4EC] rounded-full flex items-center justify-center mx-auto text-[#1E6B3A]">
+                <Phone className="w-6 h-6" />
               </div>
-              <h4 className="font-black text-lg text-foreground">Phone</h4>
-              <p className="text-foreground/60">Mon-Fri 9AM-6PM (GMT)</p>
+              <h4 className="font-bold text-lg text-[#0F172A] font-sans">Phone Support</h4>
+              <p className="text-sm text-[#0F172A]/60 font-medium">Mon-Fri 9AM-6PM (GMT)</p>
             </div>
           </div>
         </div>
 
         {/* FAQ Section */}
-        <div className="mt-32 space-y-8">
+        <div className="mt-20 md:mt-24 space-y-12">
           <div className="text-center">
-            <h2 className="text-5xl font-black text-foreground uppercase tracking-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] uppercase tracking-tight mb-4 font-sans">
               Quick Answers
             </h2>
-            <p className="text-xl text-foreground/60">
+            <p className="text-base text-[#0F172A]/60 font-sans font-semibold">
               Frequently asked questions about the Signet Mentorship Program
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-white border border-black/5">
-                <h3 className="font-black text-lg text-foreground mb-3">
+              <div className="p-6 rounded-2xl bg-white border border-[#EDEDED]">
+                <h3 className="font-bold text-lg text-[#0F172A] mb-3 font-sans">
                   How long is the mentorship program?
                 </h3>
-                <p className="text-foreground/60 text-sm leading-relaxed">
+                <p className="text-[#0F172A]/70 text-sm leading-relaxed font-sans font-medium">
                   The core program spans 12 weeks of intense personal development. However, members retain lifetime access to the network to ensure continuous, compounded growth.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-black/5">
-                <h3 className="font-black text-lg text-foreground mb-3">
+              <div className="p-6 rounded-2xl bg-white border border-[#EDEDED]">
+                <h3 className="font-bold text-lg text-[#0F172A] mb-3 font-sans">
                   Is this program a good fit for me?
                 </h3>
-                <p className="text-foreground/60 text-sm leading-relaxed">
+                <p className="text-[#0F172A]/70 text-sm leading-relaxed font-sans font-medium">
                   If you are hungry to optimize your habits, cultivate unwavering discipline, and become the best version of yourself, then Signet is built entirely for you.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-black/5">
-                <h3 className="font-black text-lg text-foreground mb-3">
+              <div className="p-6 rounded-2xl bg-white border border-[#EDEDED]">
+                <h3 className="font-bold text-lg text-[#0F172A] mb-3 font-sans">
                   How much time do I need to commit?
                 </h3>
-                <p className="text-foreground/60 text-sm leading-relaxed">
+                <p className="text-[#0F172A]/70 text-sm leading-relaxed font-sans font-medium">
                   We recommend dedicating at least 3-5 hours a week. This allows you enough time to consume our briefs, engage with your cohort, and actively apply the frameworks.
                 </p>
               </div>
             </div>
 
             <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-white border border-black/5">
-                <h3 className="font-black text-lg text-foreground mb-3">
+              <div className="p-6 rounded-2xl bg-white border border-[#EDEDED]">
+                <h3 className="font-bold text-lg text-[#0F172A] mb-3 font-sans">
                   Is the format group or 1-on-1 driven?
                 </h3>
-                <p className="text-foreground/60 text-sm leading-relaxed">
+                <p className="text-[#0F172A]/70 text-sm leading-relaxed font-sans font-medium">
                   Signet leverages a powerful hybrid framework. You'll receive deep 1-on-1 strategy sessions alongside group sprints to maximize accountability and collective insights.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-black/5">
-                <h3 className="font-black text-lg text-foreground mb-3">
+              <div className="p-6 rounded-2xl bg-white border border-[#EDEDED]">
+                <h3 className="font-bold text-lg text-[#0F172A] mb-3 font-sans">
                   What happens when the 12 weeks ends?
                 </h3>
-                <p className="text-foreground/60 text-sm leading-relaxed">
+                <p className="text-[#0F172A]/70 text-sm leading-relaxed font-sans font-medium">
                   Your journey never truly ends. You transition into an alumni state where you stay plugged into the global activity feed, unlocking ongoing network opportunities.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-black/5">
-                <h3 className="font-black text-lg text-foreground mb-3">
+              <div className="p-6 rounded-2xl bg-white border border-[#EDEDED]">
+                <h3 className="font-bold text-lg text-[#0F172A] mb-3 font-sans">
                   Do I need any prior experience?
                 </h3>
-                <p className="text-foreground/60 text-sm leading-relaxed">
+                <p className="text-[#0F172A]/70 text-sm leading-relaxed font-sans font-medium">
                   None. We provide everything from foundational mindsets to advanced daily operating protocols. Bring only commitment, and we'll provide the blueprint.
                 </p>
               </div>
