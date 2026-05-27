@@ -73,29 +73,29 @@ export default async function FeaturesPage() {
                         )}
                     </div>
                     
-                    {/* Vision & Mission Statements: Redesigned as Side-by-Side Premium Cards */}
-                    <div className="grid sm:grid-cols-2 gap-8 pt-10 border-t border-[#EDEDED]">
-                        {/* Vision Card */}
-                        <div className="bg-white rounded-[2rem] p-8 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+                    {/* Vision & Mission Statements: Redesigned as Stacked on Mobile, Side-by-Side on Desktop */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10 border-t border-[#EDEDED]">
+                        {/* Vision Card - Containerless */}
+                        <div className="bg-transparent p-0 border-0 shadow-none flex flex-col justify-between">
                             <div>
                                 <div className="w-12 h-12 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] mb-6">
                                     <Eye size={22} />
                                 </div>
                                 <h4 className="text-[12px] font-bold uppercase tracking-[0.25em] text-[#1E6B3A] mb-3">OUR VISION</h4>
-                                <p className="text-[17px] md:text-[18px] font-semibold text-[#0F172A] leading-snug" >
+                                <p className="text-[15px] sm:text-[17px] md:text-[18px] font-semibold text-[#0F172A] leading-relaxed" >
                                     To build a global network of trailblazers who <span className="italic font-medium text-[#1E6B3A]">model and replicate excellence</span> in diverse spheres.
                                 </p>
                             </div>
                         </div>
 
-                        {/* Mission Card */}
-                        <div className="bg-[#F6F4EE] rounded-[2rem] p-8 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+                        {/* Mission Card - Contained */}
+                        <div className="bg-[#F6F4EE] rounded-[2rem] p-6 md:p-8 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
                             <div>
                                 <div className="w-12 h-12 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] mb-6">
                                     <Flag size={20} />
                                 </div>
                                 <h4 className="text-[12px] font-bold uppercase tracking-[0.25em] text-[#1E6B3A] mb-3">OUR MISSION</h4>
-                                <p className="text-[17px] md:text-[18px] font-bold text-[#0F172A] leading-snug uppercase tracking-wide font-sans" >
+                                <p className="text-[15px] sm:text-[17px] md:text-[18px] font-bold text-[#0F172A] leading-relaxed uppercase tracking-wide font-sans" >
                                     ORDINARY PERSONS ACHIEVING <span className="italic font-medium text-[#1E6B3A]">EXTRAORDINARY RESULTS</span> SILENTLY AND SUSTAINABLY.
                                 </p>
                             </div>

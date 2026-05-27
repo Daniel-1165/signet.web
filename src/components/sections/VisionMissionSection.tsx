@@ -31,19 +31,17 @@ export default function VisionMissionSection() {
           </p>
         </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-12 items-stretch">
+        {/* Cards Grid - Stacked on mobile, side-by-side on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 lg:gap-12 items-stretch">
           
-          {/* Card 1: Vision Card */}
+          {/* Card 1: Vision Card - Containerless */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-[1.5rem] sm:rounded-[2.5rem] p-4 sm:p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
+            className="bg-transparent p-0 border-0 shadow-none flex flex-col justify-between relative group"
           >
-            <DotGrid className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" />
-            
             <div className="space-y-4 sm:space-y-8 relative z-10">
               {/* Icon Container */}
               <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A]">
@@ -51,23 +49,23 @@ export default function VisionMissionSection() {
               </div>
               
               <div className="space-y-2 sm:space-y-4">
-                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.2em] text-[#1E6B3A] block">
+                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.25em] text-[#1E6B3A] block animate-pulse">
                   OUR VISION
                 </span>
-                <p className="text-xs sm:text-lg md:text-2xl font-bold text-[#0F172A] leading-snug font-sans">
+                <p className="text-[15px] sm:text-lg md:text-2xl font-bold text-[#0F172A] leading-relaxed font-sans">
                   To build a global network of trailblazers who <span className="italic font-medium text-[#1E6B3A]">model and replicate excellence</span> in diverse spheres.
                 </p>
               </div>
             </div>
           </motion.div>
 
-          {/* Card 2: Mission Card */}
+          {/* Card 2: Mission Card - Contained */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#F6F4EE] rounded-[1.5rem] sm:rounded-[2.5rem] p-4 sm:p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
+            className="bg-[#F6F4EE] rounded-[2rem] p-6 sm:p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
           >
             <DotGrid className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" />
 
@@ -78,10 +76,10 @@ export default function VisionMissionSection() {
               </div>
 
               <div className="space-y-2 sm:space-y-4">
-                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.2em] text-[#1E6B3A] block">
+                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.25em] text-[#1E6B3A] block">
                   OUR MISSION
                 </span>
-                <p className="text-xs sm:text-lg md:text-2xl font-extrabold text-[#0F172A] leading-snug uppercase tracking-wide font-sans">
+                <p className="text-[15px] sm:text-lg md:text-2xl font-extrabold text-[#0F172A] leading-relaxed uppercase tracking-wide font-sans">
                   Ordinary persons achieving <span className="italic font-medium text-[#1E6B3A]">extraordinary results</span> silently and sustainably.
                 </p>
               </div>

@@ -10,14 +10,14 @@ export default function Introduction() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Heading & Dashed Line */}
-        <div className="mb-8">
-          <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#F26B21] mb-2 block">
+        <div className="mb-4">
+          <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#F26B21] mb-1 block">
             About Us
           </span>
           <h2 className="text-4xl md:text-6xl font-extrabold text-[#0F172A] font-sans">
-            Signet
+            SIGNET
           </h2>
-          <div className="w-full border-t border-dashed border-[#EDEDED] mt-4" />
+          <div className="w-full border-t border-dashed border-[#EDEDED] mt-2" />
         </div>
 
         {/* Floating image and wrapping text container */}
@@ -33,7 +33,7 @@ export default function Introduction() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[170px] h-[170px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-l-[100%_50%]"
+            className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[195px] h-[195px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-l-[100%_50%]"
           >
             <img
               src="/mentorship_new.png"

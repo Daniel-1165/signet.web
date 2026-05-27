@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useUser } from '@clerk/nextjs'
 import { useSupabaseClient } from '@/lib/supabase/client'
-import { Shield, Trash2, AlertTriangle, CheckCircle, Sparkles, Users, Activity, ExternalLink } from 'lucide-react'
+import { Shield, Trash2, AlertTriangle, CheckCircle, Sparkles, Users, Activity, ExternalLink, Search, Download, ArrowUpDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
@@ -40,6 +40,112 @@ export default function AdminHubPage() {
         })
     }
   }, [user, isLoaded])
+
+  interface Subscriber {
+    id: string
+    name: string
+    email: string
+    username: string
+    subscribedAt: string
+  }
+
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([])
+  const [loadingSubscribers, setLoadingSubscribers] = useState(true)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortField, setSortField] = useState<'name' | 'email' | 'username' | 'subscribedAt'>('subscribedAt')
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 8
+
+  useEffect(() => {
+    if (isAdmin) {
+      fetchSubscribers()
+    }
+  }, [isAdmin])
+
+  const fetchSubscribers = async () => {
+    try {
+      setLoadingSubscribers(true)
+      const res = await fetch('/api/admin/subscribers')
+      if (res.ok) {
+        const data = await res.json()
+        setSubscribers(data.subscribers || [])
+      } else {
+        console.error('Failed to fetch subscribers')
+      }
+    } catch (err) {
+      console.error('Error fetching subscribers:', err)
+    } finally {
+      setLoadingSubscribers(false)
+    }
+  }
+
+  const handleSort = (field: 'name' | 'email' | 'username' | 'subscribedAt') => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+    } else {
+      setSortField(field)
+      setSortDirection('asc')
+    }
+  }
+
+  const filteredSubscribers = subscribers.filter(sub => {
+    const q = searchQuery.toLowerCase()
+    return (
+      (sub.name || '').toLowerCase().includes(q) ||
+      (sub.email || '').toLowerCase().includes(q) ||
+      (sub.username || '').toLowerCase().includes(q)
+    )
+  })
+
+  const sortedSubscribers = [...filteredSubscribers].sort((a, b) => {
+    let valA = a[sortField] || ''
+    let valB = b[sortField] || ''
+    
+    if (sortField === 'subscribedAt') {
+      return sortDirection === 'asc' 
+        ? new Date(valA).getTime() - new Date(valB).getTime()
+        : new Date(valB).getTime() - new Date(valA).getTime()
+    }
+
+    return sortDirection === 'asc'
+      ? valA.localeCompare(valB)
+      : valB.localeCompare(valA)
+  })
+
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(sortedSubscribers.length / itemsPerPage))
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentSubscribers = sortedSubscribers.slice(indexOfFirstItem, indexOfLastItem)
+
+  // Reset page when search changes
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery])
+
+  const handleExportCSV = () => {
+    if (subscribers.length === 0) return
+    const headers = ['Name', 'Email', 'Username', 'Subscribed At']
+    const rows = sortedSubscribers.map(sub => [
+      sub.name,
+      sub.email,
+      sub.username,
+      new Date(sub.subscribedAt).toISOString()
+    ])
+    
+    const csvString = [headers.join(','), ...rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(','))].join('\n')
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', `signet_subscribers_${new Date().toISOString().split('T')[0]}.csv`)
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
 
   const clearAllMessages = async () => {
     if (!confirm('CRITICAL: Are you absolutely sure? This will delete EVERY post in the community insight history permanently.')) return
@@ -156,6 +262,160 @@ export default function AdminHubPage() {
               }`}>
                 {status.type === 'success' ? <CheckCircle size={18} /> : <AlertTriangle size={18} />}
                 <span className="text-[13px] font-bold">{status.message}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Newsletter Subscribers Spreadsheet Card */}
+          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED] overflow-hidden">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+              <div>
+                <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#1E6B3A]">Mailing List</span>
+                <h3 className="text-[24px] md:text-[28px] font-extrabold text-[#0F172A] mt-1 font-sans">
+                  Newsletter <span className="italic font-light text-[#1E6B3A]">Subscribers</span>
+                </h3>
+              </div>
+              
+              <button 
+                onClick={handleExportCSV}
+                disabled={subscribers.length === 0}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#EAF4EC] hover:bg-[#1E6B3A] text-[#1E6B3A] hover:text-white rounded-xl font-bold text-[12px] uppercase tracking-wider transition-all disabled:opacity-50 font-sans"
+              >
+                <Download size={14} /> Export CSV
+              </button>
+            </div>
+
+            {/* Filters Bar */}
+            <div className="flex items-center gap-3 bg-[#FAFAF8] border border-[#EDEDED] rounded-2xl px-4 py-3 mb-6">
+              <Search className="text-[#0F172A]/40 w-4 h-4 shrink-0" />
+              <input
+                type="text"
+                placeholder="Search by name, email, or username..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent text-[13.5px] outline-none text-[#0F172A] placeholder-[#0F172A]/30 font-sans font-medium"
+              />
+              {searchQuery && (
+                <button 
+                  onClick={() => setSearchQuery('')}
+                  className="text-xs font-bold text-[#1E6B3A] hover:underline uppercase shrink-0 font-sans"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+
+            {/* Spreadsheet Table Container */}
+            <div className="overflow-x-auto -mx-8 md:-mx-10 px-8 md:px-10 scrollbar-thin">
+              <table className="w-full text-left border-collapse border-spacing-0 font-sans">
+                <thead>
+                  <tr className="border-b border-[#EDEDED] bg-[#FAFAF8]">
+                    <th 
+                      onClick={() => handleSort('name')}
+                      className="py-4 px-5 text-[10px] font-extrabold uppercase tracking-widest text-[#0F172A]/50 select-none cursor-pointer hover:text-[#1E6B3A] transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        Name <ArrowUpDown size={10} className="text-[#1E6B3A]/40" />
+                      </div>
+                    </th>
+                    <th 
+                      onClick={() => handleSort('email')}
+                      className="py-4 px-5 text-[10px] font-extrabold uppercase tracking-widest text-[#0F172A]/50 select-none cursor-pointer hover:text-[#1E6B3A] transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        Email Address <ArrowUpDown size={10} className="text-[#1E6B3A]/40" />
+                      </div>
+                    </th>
+                    <th 
+                      onClick={() => handleSort('username')}
+                      className="py-4 px-5 text-[10px] font-extrabold uppercase tracking-widest text-[#0F172A]/50 select-none cursor-pointer hover:text-[#1E6B3A] transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        Username <ArrowUpDown size={10} className="text-[#1E6B3A]/40" />
+                      </div>
+                    </th>
+                    <th 
+                      onClick={() => handleSort('subscribedAt')}
+                      className="py-4 px-5 text-[10px] font-extrabold uppercase tracking-widest text-[#0F172A]/50 select-none cursor-pointer hover:text-[#1E6B3A] transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        Subscribed Date <ArrowUpDown size={10} className="text-[#1E6B3A]/40" />
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#EDEDED]/60">
+                  {loadingSubscribers ? (
+                    // Skeleton Rows
+                    Array.from({ length: 4 }).map((_, idx) => (
+                      <tr key={idx} className="animate-pulse">
+                        <td className="py-4 px-5"><div className="h-4 bg-black/[0.05] rounded-full w-24" /></td>
+                        <td className="py-4 px-5"><div className="h-4 bg-black/[0.05] rounded-full w-40" /></td>
+                        <td className="py-4 px-5"><div className="h-4 bg-black/[0.05] rounded-full w-20" /></td>
+                        <td className="py-4 px-5"><div className="h-4 bg-black/[0.05] rounded-full w-28" /></td>
+                      </tr>
+                    ))
+                  ) : currentSubscribers.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="py-12 text-center text-sm font-medium text-[#0F172A]/40">
+                        {searchQuery ? 'No matching subscribers found.' : 'No newsletter subscribers yet.'}
+                      </td>
+                    </tr>
+                  ) : (
+                    currentSubscribers.map((sub) => (
+                      <tr 
+                        key={sub.id} 
+                        className="hover:bg-[#EAF4EC]/10 transition-colors group"
+                      >
+                        <td className="py-4 px-5 text-[13.5px] font-bold text-[#0F172A] truncate max-w-[150px]">
+                          {sub.name}
+                        </td>
+                        <td className="py-4 px-5 text-[13.5px] font-semibold text-[#0F172A]/70 font-mono truncate max-w-[200px]">
+                          {sub.email}
+                        </td>
+                        <td className="py-4 px-5 text-[13px] font-bold text-[#1E6B3A]">
+                          <span className="bg-[#EAF4EC]/60 px-2.5 py-1 rounded-lg">
+                            @{sub.username}
+                          </span>
+                        </td>
+                        <td className="py-4 px-5 text-[12px] font-semibold text-[#0F172A]/50">
+                          {new Date(sub.subscribedAt).toLocaleDateString(undefined, {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          })}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Pagination Controls */}
+            {!loadingSubscribers && totalPages > 1 && (
+              <div className="flex items-center justify-between border-t border-[#EDEDED]/60 pt-6 mt-6">
+                <p className="text-[12px] font-semibold text-[#0F172A]/40">
+                  Showing <span className="font-bold text-[#0F172A]">{indexOfFirstItem + 1}</span> to{' '}
+                  <span className="font-bold text-[#0F172A]">{Math.min(indexOfLastItem, sortedSubscribers.length)}</span> of{' '}
+                  <span className="font-bold text-[#0F172A]">{sortedSubscribers.length}</span> subscribers
+                </p>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="p-2 border border-[#EDEDED] rounded-xl text-[#0F172A]/50 hover:bg-[#FAFAF8] hover:text-[#0F172A] transition-all disabled:opacity-30"
+                  >
+                    <ChevronLeft size={16} />
+                  </button>
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    className="p-2 border border-[#EDEDED] rounded-xl text-[#0F172A]/50 hover:bg-[#FAFAF8] hover:text-[#0F172A] transition-all disabled:opacity-30"
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
               </div>
             )}
           </div>

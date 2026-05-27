@@ -61,6 +61,19 @@ export default async function ExercisesPage() {
 
   return (
     <div className="min-h-screen bg-[#FAFAF8] text-[#0F172A] selection:bg-[#EAF4EC] selection:text-[#114B2A] pb-24 md:pb-12 pt-0 md:pt-12">
+      {/* Mobile Header (shown on mobile, hidden on desktop) */}
+      <div className="flex md:hidden items-center justify-between px-6 py-6 border-b border-[#EDEDED] mb-8 bg-white/80 backdrop-blur-md sticky top-0 z-[40]">
+        <div>
+          <span className="text-[9px] font-bold tracking-[0.25em] text-[#1E6B3A] uppercase block mb-1">Daily Practice</span>
+          <h1 className="text-2xl font-extrabold text-[#0F172A] font-sans">
+            Exercises
+          </h1>
+        </div>
+        <div className="w-8 h-8 flex items-center justify-center">
+          <img src="/signet-brand-logo.svg" alt="Signet Logo" className="h-7 w-auto object-contain" />
+        </div>
+      </div>
+
       {/* Editorial Header */}
       <header className="hidden md:flex items-center justify-between px-10 py-10 max-w-[1400px] mx-auto border-b border-[#EDEDED] mb-16">
         <div>
@@ -92,8 +105,8 @@ export default async function ExercisesPage() {
         
         {/* Intro */}
         <div className="max-w-3xl">
-           <p className="text-[18px] text-[#0F172A]/90 leading-relaxed italic font-light font-sans" >
-              The <span className="text-[#1E6B3A] font-semibold hover:text-[#114B2A] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#1E6B3A]/40 pb-0.5">Signet methodology</span> is built on <span className="text-[#1E6B3A] font-semibold hover:text-[#114B2A] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#1E6B3A]/40 pb-0.5">active repetition</span> across <span className="text-[#1E6B3A] font-semibold hover:text-[#114B2A] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#1E6B3A]/40 pb-0.5">foundational professional domains</span>. Each module below is a <span className="text-[#1E6B3A] font-semibold hover:text-[#114B2A] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#1E6B3A]/40 pb-0.5">curated deep-work session</span> designed to <span className="text-[#1E6B3A] font-semibold hover:text-[#114B2A] transition-colors duration-300 cursor-pointer border-b border-dashed border-[#1E6B3A]/40 pb-0.5">catalyze your evolution</span>.
+           <p className="text-[16px] sm:text-[19px] text-[#0F172A]/80 leading-relaxed font-sans" >
+             Daily practice modules at <strong className="font-extrabold text-[#1E6B3A]">SIGNET</strong> serve as high-yield cognitive protocols designed to expand your <span className="font-bold text-[#1E6B3A] hover:text-[#114B2A] transition-colors cursor-pointer border-b border-dashed border-[#1E6B3A]/30 pb-0.5">emotional adaptability (EQ)</span>, refine your <span className="font-bold text-[#1E6B3A] hover:text-[#114B2A] transition-colors cursor-pointer border-b border-dashed border-[#1E6B3A]/30 pb-0.5">cognitive performance (IQ)</span>, and anchor your <em className="italic font-bold text-[#1E6B3A] hover:text-[#114B2A] transition-colors cursor-pointer border-b border-dashed border-[#1E6B3A]/30 pb-0.5">vision guides</em>. Engaging with these deep-practice modules ensures you model and replicate excellence <span className="text-[#1E6B3A] font-extrabold">silently and sustainably</span>.
            </p>
         </div>
 

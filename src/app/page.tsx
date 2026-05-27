@@ -61,7 +61,7 @@ export default async function Home() {
             <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#1E6B3A] mb-2 block">
               EMPOWER. GROW. LEAD.
             </span>
-            <h2 className="text-4xl md:text-6xl font-extrabold text-[#0F172A] font-sans">
+            <h2 className="text-2xl sm:text-4xl md:text-6xl font-extrabold text-[#0F172A] font-sans">
               Transform Your Life, <br />
               Transform Your Future.
             </h2>
@@ -76,7 +76,7 @@ export default async function Home() {
             </p>
 
             {/* Floated Image - Restructured to sit after Paragraph 1 and float right of Paragraph 2 */}
-            <div className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[170px] h-[170px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
+            <div className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[195px] h-[195px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
               <img
                 src="/hero_collage.png"
                 alt="SIGNET Journey"
@@ -88,14 +88,6 @@ export default async function Home() {
             <p className="mb-6">
               Together, we focus on building <span className="font-bold text-[#1E6B3A]">leadership capacity</span> and creating a <em className="italic font-bold text-[#1E6B3A]">lasting impact</em>.
             </p>
-
-            {/* CTA Button - Clears float to span full width below */}
-            <div className="pt-4 clear-left sm:clear-none">
-              <Link href="/join" className="inline-flex items-center gap-3 bg-[#1E6B3A] hover:bg-[#114B2A] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all shadow-md shadow-[#1E6B3A]/10 font-sans uppercase tracking-wider text-xs">
-                <span>Learn More</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
           </div>
         </section>
       </div>
