@@ -94,10 +94,13 @@ export default async function Home() {
             </div>
           </div>
         </section>
+      </div>
 
-        {/* 3. Program Section */}
-        <ProgramSection />
-        
+      {/* 3. Program Section (Outside the main container) */}
+      <ProgramSection />
+
+      {/* Content wrapper 2 */}
+      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-16 md:space-y-24 pb-16 md:pb-24 pt-12 md:pt-16">
         {/* 4. Vision & Mission Section */}
         <VisionMissionSection />
         
@@ -109,7 +112,6 @@ export default async function Home() {
         
         {/* 7. Testimonials Section */}
         <Testimonials />
-        
       </div>
       <Footer />
     </main>

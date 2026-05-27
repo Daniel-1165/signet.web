@@ -166,7 +166,7 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
           return (
             <div
               key={slide._id}
-              className="flex-none w-[85vw] max-w-[320px] md:w-[450px] md:max-w-none snap-start"
+              className="flex-none w-[85vw] max-w-[324px] md:w-[454px] md:max-w-none snap-start"
             >
               <SlideCard slide={slide} isActive={isActive} />
             </div>
@@ -208,7 +208,7 @@ function SlideCard({
 
   const content = (
     <div
-      className={`relative w-full aspect-square rounded-[2.5rem] overflow-hidden cursor-pointer group transition-all duration-1000 ${
+      className={`relative w-full aspect-square rounded-none overflow-hidden cursor-pointer group transition-all duration-1000 ${
         isActive ? 'scale-[1.02]' : 'opacity-40 scale-[0.98]'
       }`}
     >
