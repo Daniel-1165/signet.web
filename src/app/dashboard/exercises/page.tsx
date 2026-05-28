@@ -66,7 +66,7 @@ export default async function ExercisesPage() {
         <div>
           <span className="text-[9px] font-bold tracking-[0.25em] text-[#1E6B3A] uppercase block mb-1">Daily Practice</span>
           <h1 className="text-2xl font-extrabold text-[#0F172A] font-sans">
-            Exercises
+            Refine your <span className="italic font-light text-[#1E6B3A]">Architecture.</span>
           </h1>
         </div>
         <div className="w-8 h-8 flex items-center justify-center">
@@ -106,7 +106,7 @@ export default async function ExercisesPage() {
         {/* Intro */}
         <div className="max-w-3xl">
            <p className="text-[16px] sm:text-[19px] text-[#0F172A]/80 leading-relaxed font-sans" >
-             Daily practice modules at <strong className="font-extrabold text-[#1E6B3A]">SIGNET</strong> serve as high-yield cognitive protocols designed to expand your <span className="font-bold text-[#1E6B3A] hover:text-[#114B2A] transition-colors cursor-pointer border-b border-dashed border-[#1E6B3A]/30 pb-0.5">emotional adaptability (EQ)</span>, refine your <span className="font-bold text-[#1E6B3A] hover:text-[#114B2A] transition-colors cursor-pointer border-b border-dashed border-[#1E6B3A]/30 pb-0.5">cognitive performance (IQ)</span>, and anchor your <em className="italic font-bold text-[#1E6B3A] hover:text-[#114B2A] transition-colors cursor-pointer border-b border-dashed border-[#1E6B3A]/30 pb-0.5">vision guides</em>. Engaging with these deep-practice modules ensures you model and replicate excellence <span className="text-[#1E6B3A] font-extrabold">silently and sustainably</span>.
+             Don't assume mastery, <span className="font-extrabold text-[#F26B21]">be sure about it</span>—and that can only be possible by <strong className="font-extrabold text-[#1E6B3A]">practice and exercises</strong>. Check your <span className="font-bold text-[#1E6B3A] hover:text-[#114B2A] transition-colors cursor-pointer border-b border-dashed border-[#1E6B3A]/20 pb-0.5">emotional intelligence quotient (EQ)</span> and <span className="font-bold text-[#F26B21] hover:text-[#D15516] transition-colors cursor-pointer border-b border-dashed border-[#F26B21]/20 pb-0.5">cognitive performance (IQ)</span> by taking the tests below, and also go through the <strong className="font-extrabold text-[#1E6B3A]">SIGNET guide</strong> to building a <em className="italic font-bold text-[#1E6B3A]">sound vision</em> for your life. <span className="text-[#1E6B3A] font-extrabold">Engage with these practical modules</span> and <em className="italic font-semibold text-[#F26B21]">transform your mind for impact</em>.
            </p>
         </div>
 

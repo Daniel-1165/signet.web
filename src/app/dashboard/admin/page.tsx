@@ -127,7 +127,13 @@ export default function AdminHubPage() {
   const handleExportCSV = () => {
     if (subscribers.length === 0) return
     const headers = ['Name', 'Email', 'Username', 'Subscribed At']
-    const rows = sortedSubscribers.map(sub => [
+    
+    // Always export the complete mailing list, sorted by subscription date (newest first)
+    const listToExport = [...subscribers].sort((a, b) => 
+      new Date(b.subscribedAt).getTime() - new Date(a.subscribedAt).getTime()
+    )
+    
+    const rows = listToExport.map(sub => [
       sub.name,
       sub.email,
       sub.username,
