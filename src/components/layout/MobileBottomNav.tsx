@@ -93,19 +93,18 @@ export default function MobileBottomNav() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="flex flex-col items-center justify-center w-1/5 h-full pt-1 gap-1.5 group relative px-0.5"
+                className="flex flex-col items-center justify-center w-1/5 h-full pt-1 gap-1 group relative px-0.5"
               >
-                <div className={`p-1 rounded-xl transition-all duration-300 ${isActive ? 'bg-[#8EB69B]/10' : 'bg-transparent'}`}>
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-[#1E6B3A] text-white shadow-sm' : 'bg-transparent text-[#536471]'}`}>
                   <item.icon 
-                    size={19} 
-                    className={`transition-all duration-300 ${isActive ? 'text-[#8EB69B] fill-[#8EB69B]' : 'text-[#1D1914]'}`} 
-                    strokeWidth={isActive ? 2.5 : 1.5}
+                    size={18} 
+                    strokeWidth={isActive ? 2 : 1.5}
+                    className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-[#536471]'}`}
                   />
                 </div>
-                <span className={`text-[7px] uppercase tracking-normal font-black transition-colors ${isActive ? 'text-[#8EB69B]' : 'text-[#1D1914]/25'}`} >
+                <span className={`text-[10px] font-bold mt-0.5 transition-colors ${isActive ? 'text-[#1E6B3A]' : 'text-[#536471]'}`} >
                   {item.name}
                 </span>
-                {isActive && <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-[1.5px] bg-[#8EB69B] rounded-full" />}
               </Link>
             )
           })}

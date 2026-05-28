@@ -157,7 +157,7 @@ export function PostCard({
   };
 
   return (
-    <div className="bg-[#FFFFFF] py-6 border-b border-[#EFF3F4] flex gap-3 font-dm-sans relative">
+    <div className="bg-[#FFFFFF] py-4 border-b border-[#EFF3F4] flex gap-3 font-dm-sans relative">
       {/* Avatar column */}
       <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shrink-0 bg-gray-100 cursor-pointer" onClick={() => router.push(`/dashboard/community/posts/${post.id}`)}>
         <img src={authorImage} alt={authorName} className="w-full h-full object-cover" />
@@ -283,7 +283,7 @@ export function PostCard({
         )}
 
         {/* Footer Actions */}
-        <div className="flex items-center gap-12 mt-4 text-[#536471]">
+        <div className="flex items-center gap-12 mt-2.5 text-[#536471]">
           {/* Comment Button */}
           <button 
             onClick={() => router.push(`/dashboard/community/posts/${post.id}`)}

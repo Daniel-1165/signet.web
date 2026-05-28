@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,wght@0,100..1000;1,100..1000&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,wght@0,100..1000;1,100..1000&family=DM+Serif+Display&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -104,4 +104,8 @@ html, body {
 /* Ensure Montserrat is used everywhere, even overriding inline font-family styles, except for monospace elements */
 [style*="font-family"]:not([style*="monospace"]):not([style*="Mono"]):not([style*="mono"]) {
   font-family: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+.homepage-container {
+  --font-montserrat: 'Plus Jakarta Sans', sans-serif;
 }

@@ -51,61 +51,64 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
   if (!user) return null;
 
   return (
-    <form onSubmit={handleSubmit} className="bg-[#FFFFFF] border border-gray-200 rounded-[1.2rem] p-4 flex flex-col gap-4 font-dm-sans">
-      <div className="flex gap-3 items-center">
-        {/* Avatar */}
-        <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 bg-green-50 flex items-center justify-center ring-2 ring-gray-100">
-          {user.imageUrl ? (
-            <img src={user.imageUrl} className="w-full h-full object-cover" />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-150 text-gray-500 font-bold text-sm">
-              {user.firstName ? user.firstName[0] : "U"}
-            </div>
-          )}
-        </div>
-
-        {/* Input area */}
-        <input 
-          type="text"
-          placeholder="Share your thoughts..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="flex-1 bg-transparent border-none outline-none text-[15px] text-[#0F1419] placeholder-gray-400 py-2 font-medium"
-        />
-
-        {/* Post button */}
-        <button
-          type="submit"
-          disabled={!content.trim() || isLoading}
-          className="px-5 py-1.5 bg-[#1E6B3A] text-white rounded-full text-[14px] font-bold hover:bg-[#114B2A] transition-all disabled:opacity-50 shrink-0"
-        >
-          {isLoading ? "Posting..." : "Post"}
-        </button>
+    <form onSubmit={handleSubmit} className="bg-[#FFFFFF] flex gap-3 font-dm-sans items-start w-full">
+      {/* Avatar on the left, outside the input box */}
+      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shrink-0 bg-green-50 flex items-center justify-center border border-gray-100">
+        {user.imageUrl ? (
+          <img src={user.imageUrl} className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-150 text-gray-500 font-bold text-sm">
+            {user.firstName ? user.firstName[0] : "U"}
+          </div>
+        )}
       </div>
 
-      {/* Plus selector */}
-      <div className="flex items-center justify-between border-t border-gray-50 pt-3">
-        <div className="flex items-center">
+      {/* Input box and actions column */}
+      <div className="flex-1 flex flex-col gap-2.5 min-w-0">
+        {/* White input box containing placeholder and Post button inline */}
+        <div className="flex items-center bg-[#FFFFFF] border border-gray-200 rounded-[1.2rem] pl-4 pr-2 py-1.5 shadow-sm focus-within:border-[#1E6B3A] transition-all">
+          <input 
+            type="text"
+            placeholder="Share your thoughts..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="flex-1 bg-transparent border-none outline-none text-[15px] text-[#0F1419] placeholder-gray-400 py-1.5 mr-2 font-medium"
+          />
+
+          {/* Post button inside input box */}
           <button
-            type="button"
-            onClick={() => fileInputRef.current?.click()}
-            className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-[#1E6B3A] hover:bg-[#EAF4EC]/40 transition-colors"
+            type="submit"
+            disabled={!content.trim() || isLoading}
+            className="px-5 py-1.5 bg-[#1E6B3A] text-white rounded-full text-[14px] font-bold hover:bg-[#114B2A] transition-all disabled:opacity-50 shrink-0"
           >
-            <Plus size={18} />
+            {isLoading ? "Posting..." : "Post"}
           </button>
-          
-          {selectedImage && (
-            <div className="ml-3 flex items-center gap-2 text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
-              <span className="truncate max-w-[150px]">{selectedImage.name}</span>
-              <button 
-                type="button" 
-                onClick={() => setSelectedImage(null)} 
-                className="text-red-500 hover:text-red-700"
-              >
-                <X size={14} />
-              </button>
-            </div>
-          )}
+        </div>
+
+        {/* Plus button outside / below the input box */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-[#1E6B3A] hover:bg-[#EAF4EC]/40 transition-colors"
+            >
+              <Plus size={18} />
+            </button>
+            
+            {selectedImage && (
+              <div className="ml-3 flex items-center gap-2 text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+                <span className="truncate max-w-[150px]">{selectedImage.name}</span>
+                <button 
+                  type="button" 
+                  onClick={() => setSelectedImage(null)} 
+                  className="text-red-500 hover:text-red-700"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 

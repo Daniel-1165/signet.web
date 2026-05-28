@@ -24,7 +24,7 @@ export default function Introduction() {
         <div className="flow-root font-sans text-[#0F172A]/80 text-base sm:text-lg md:text-xl leading-relaxed font-normal">
           {/* Paragraph 1 - Spans full width on mobile because it's before the floated image */}
           <p className="mb-6">
-            <strong className="font-extrabold text-[#1E6B3A]">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-[#1E6B3A]">personal development</span>, <span className="font-bold text-[#1E6B3A]">leadership development</span> and inculcation of <span className="font-bold text-[#1E6B3A]">essential life skills</span> in people, turning them into <em className="italic font-bold text-[#1E6B3A]">extraordinary leaders</em>.
+            <strong className="font-extrabold text-[#0F172A]">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-[#0F172A]">personal development</span>, <span className="font-bold text-[#0F172A]">leadership development</span> and inculcation of <span className="font-bold text-[#0F172A]">essential life skills</span> in people, turning them into <span className="font-bold text-[#0F172A]">extraordinary leaders</span>.
           </p>
 
           {/* Floated Image - Restructured to sit after Paragraph 1 and float right of Paragraph 2 */}
@@ -44,7 +44,7 @@ export default function Introduction() {
 
           {/* Paragraph 2 - Wraps around the floated image */}
           <p className="mb-6">
-            With a special interest in young people, we believe in <span className="font-bold text-[#1E6B3A]">noiseless organic growth</span>, which translates to results that are <em className="italic font-bold text-[#1E6B3A]">loud and sustainable</em>.
+            With a special interest in young people, we believe in <span className="font-bold text-[#0F172A]">noiseless organic growth</span>, which translates to results that are <span className="font-bold text-[#0F172A]">loud and sustainable</span>.
           </p>
 
           {/* Learn More Button - Clears floated content to span full width below */}

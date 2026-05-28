@@ -17,7 +17,7 @@ export default async function Home() {
   }) || [];
 
   return (
-    <main className="min-h-screen bg-[#FAFAF8] text-[#0F172A] font-sans selection:bg-[#EAF4EC] selection:text-[#114B2A]">
+    <main className="min-h-screen bg-[#FAFAF8] text-[#0F172A] font-sans selection:bg-[#EAF4EC] selection:text-[#114B2A] homepage-container">
       
       {/* Premium Hero Section - Kept exactly the same as per user instruction ("landing page should remain the same") */}
       <section className="relative w-full h-[85vh] min-h-[500px] overflow-hidden group">
