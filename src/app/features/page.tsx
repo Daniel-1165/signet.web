@@ -89,14 +89,14 @@ export default async function FeaturesPage() {
                         </div>
 
                         {/* Mission Card - Contained */}
-                        <div className="bg-[#F6F4EE] rounded-[2rem] p-6 md:p-8 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+                        <div className="bg-[#1E3D1E] rounded-[2rem] p-6 md:p-8 border border-[#EFF3F4]/10 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
                             <div>
-                                <div className="w-12 h-12 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] mb-6">
+                                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white mb-6">
                                     <Flag size={20} />
                                 </div>
-                                <h4 className="text-[12px] font-bold uppercase tracking-[0.25em] text-[#1E6B3A] mb-3">OUR MISSION</h4>
-                                <p className="text-[15px] sm:text-[17px] md:text-[18px] font-bold text-[#0F172A] leading-relaxed uppercase tracking-wide font-sans" >
-                                    ORDINARY PERSONS ACHIEVING <span className="italic font-medium text-[#1E6B3A]">EXTRAORDINARY RESULTS</span> SILENTLY AND SUSTAINABLY.
+                                <h4 className="text-[12px] font-bold uppercase tracking-[0.25em] text-[#8EB69B] mb-3">OUR MISSION</h4>
+                                <p className="text-[15px] sm:text-[17px] md:text-[18px] font-bold text-white leading-relaxed uppercase tracking-wide font-sans" >
+                                    ORDINARY PERSONS ACHIEVING <span className="italic font-medium text-[#DAF1DE]">EXTRAORDINARY RESULTS</span> SILENTLY AND SUSTAINABLY.
                                 </p>
                             </div>
                         </div>

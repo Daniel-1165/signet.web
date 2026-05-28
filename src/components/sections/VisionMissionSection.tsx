@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 import { Eye, Flag } from "lucide-react";
 
-const DotGrid = ({ className }: { className?: string }) => (
+const DotGrid = ({ className, dotClass = "fill-[#1E6B3A]/15" }: { className?: string; dotClass?: string }) => (
   <svg className={className} width="100" height="80" fill="none" viewBox="0 0 100 80">
     <pattern id="purpose-dot-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-      <circle cx="3" cy="3" r="1.5" className="fill-[#1E6B3A]/15" />
+      <circle cx="3" cy="3" r="1.5" className={dotClass} />
     </pattern>
     <rect width="100" height="80" fill="url(#purpose-dot-pattern)" />
   </svg>
@@ -65,22 +65,22 @@ export default function VisionMissionSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#F6F4EE] rounded-[2rem] p-6 sm:p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
+            className="bg-[#1E3D1E] rounded-[2rem] p-6 sm:p-8 md:p-12 border border-[#EFF3F4]/10 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
           >
-            <DotGrid className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" />
+            <DotGrid className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" dotClass="fill-white/10" />
 
             <div className="space-y-4 sm:space-y-8 relative z-10">
               {/* Icon Container */}
-              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A]">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/10 flex items-center justify-center text-white">
                 <Flag className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </div>
 
               <div className="space-y-2 sm:space-y-4">
-                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.25em] text-[#1E6B3A] block">
+                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.25em] text-[#8EB69B] block">
                   OUR MISSION
                 </span>
-                <p className="text-[15px] sm:text-lg md:text-2xl font-extrabold text-[#0F172A] leading-relaxed uppercase tracking-wide font-sans">
-                  Ordinary persons achieving <span className="italic font-medium text-[#1E6B3A]">extraordinary results</span> silently and sustainably.
+                <p className="text-[15px] sm:text-lg md:text-2xl font-extrabold text-white leading-relaxed uppercase tracking-wide font-sans">
+                  Ordinary persons achieving <span className="italic font-medium text-[#DAF1DE]">extraordinary results</span> silently and sustainably.
                 </p>
               </div>
             </div>
