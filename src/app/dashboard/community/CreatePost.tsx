@@ -66,20 +66,20 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
       {/* Input box and actions column */}
       <div className="flex-1 flex flex-col gap-2.5 min-w-0">
         {/* White input box containing placeholder and Post button inline */}
-        <div className="flex items-center bg-[#FFFFFF] border border-gray-200 rounded-[1.2rem] pl-4 pr-2 py-1.5 shadow-sm focus-within:border-[#1E6B3A] transition-all">
+        <div className="flex items-center bg-[#FFFFFF] border border-gray-200 rounded-[1.2rem] pl-4 pr-2 py-1.5 shadow-sm focus-within:border-[#1E6B3A] transition-all w-full min-w-0">
           <input 
             type="text"
             placeholder="Share your thoughts..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="flex-1 bg-transparent border-none outline-none text-[15px] text-[#0F1419] placeholder-gray-400 py-1.5 mr-2 font-medium"
+            className="flex-1 min-w-0 bg-transparent border-none outline-none text-[15px] text-[#0F1419] placeholder-gray-400 py-1.5 mr-2 font-medium"
           />
 
           {/* Post button inside input box */}
           <button
             type="submit"
             disabled={!content.trim() || isLoading}
-            className="px-5 py-1.5 bg-[#1E6B3A] text-white rounded-full text-[14px] font-bold hover:bg-[#114B2A] transition-all disabled:opacity-50 shrink-0"
+            className="h-8 px-5 bg-[#1E6B3A] text-white rounded-full text-[14px] font-bold hover:bg-[#114B2A] transition-all disabled:opacity-50 shrink-0 flex items-center justify-center"
           >
             {isLoading ? "Posting..." : "Post"}
           </button>
