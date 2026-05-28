@@ -2,13 +2,14 @@
 
 import { useUser } from "@clerk/nextjs";
 import { useState, useRef } from "react";
-import { Image as ImageIcon, Paperclip, Send, X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
   const { user } = useUser();
   const router = useRouter();
   const [content, setContent] = useState("");
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -20,6 +21,9 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
     try {
       const formData = new FormData();
       formData.append('content', content.trim());
+      if (selectedImage) {
+        formData.append('image', selectedImage);
+      }
 
       const response = await fetch('/api/community/posts', {
         method: 'POST',
@@ -28,11 +32,14 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
 
       if (response.ok) {
         setContent("");
+        setSelectedImage(null);
         if (onPostCreated) {
           onPostCreated();
         } else {
           router.refresh();
         }
+      } else {
+        alert("Failed to publish post");
       }
     } catch (error) {
       console.error('Error creating post:', error);
@@ -44,50 +51,75 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
   if (!user) return null;
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#D8CEBE]/40 group transition-all focus-within:border-[#1E6B3A]/40">
-      <div className="flex gap-4 md:gap-6">
-        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full md:rounded-2xl bg-[#EAF4EC] shrink-0 overflow-hidden ring-2 ring-[#D8CEBE]/10">
-          {user.imageUrl && <img src={user.imageUrl} className="w-full h-full object-cover" />}
+    <form onSubmit={handleSubmit} className="bg-[#FFFFFF] border border-gray-200 rounded-[1.2rem] p-4 flex flex-col gap-4 font-dm-sans">
+      <div className="flex gap-3 items-center">
+        {/* Avatar */}
+        <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 bg-green-50 flex items-center justify-center ring-2 ring-gray-100">
+          {user.imageUrl ? (
+            <img src={user.imageUrl} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-150 text-gray-500 font-bold text-sm">
+              {user.firstName ? user.firstName[0] : "U"}
+            </div>
+          )}
         </div>
-        <div className="flex-1">
-          <textarea
-            placeholder="Contribute a growth insight..."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="w-full bg-[#FDFCFB] border border-[#D8CEBE]/30 rounded-[1.2rem] md:rounded-2xl p-4 md:p-5 text-[14px] md:text-[15px] text-[#114B2A] placeholder:text-[#1E6B3A]/40 focus:outline-none focus:bg-white focus:border-[#1E6B3A]/40 transition-all resize-none min-h-[100px] md:min-h-[120px] mb-4 md:mb-6 font-medium"
-            
-          />
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex gap-4 md:gap-6">
-              <input type="file" ref={fileInputRef} className="hidden" />
+
+        {/* Input area */}
+        <input 
+          type="text"
+          placeholder="Share your thoughts..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className="flex-1 bg-transparent border-none outline-none text-[15px] text-[#0F1419] placeholder-gray-400 py-2 font-medium"
+        />
+
+        {/* Post button */}
+        <button
+          type="submit"
+          disabled={!content.trim() || isLoading}
+          className="px-5 py-1.5 bg-[#1E6B3A] text-white rounded-full text-[14px] font-bold hover:bg-[#114B2A] transition-all disabled:opacity-50 shrink-0"
+        >
+          {isLoading ? "Posting..." : "Post"}
+        </button>
+      </div>
+
+      {/* Plus selector */}
+      <div className="flex items-center justify-between border-t border-gray-50 pt-3">
+        <div className="flex items-center">
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-[#1E6B3A] hover:bg-[#EAF4EC]/40 transition-colors"
+          >
+            <Plus size={18} />
+          </button>
+          
+          {selectedImage && (
+            <div className="ml-3 flex items-center gap-2 text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+              <span className="truncate max-w-[150px]">{selectedImage.name}</span>
               <button 
                 type="button" 
-                onClick={() => fileInputRef.current?.click()}
-                className="flex items-center gap-2 text-[#1E6B3A]/60 hover:text-[#114B2A] transition-all text-[10px] md:text-xs font-bold uppercase tracking-widest group/icon"
+                onClick={() => setSelectedImage(null)} 
+                className="text-red-500 hover:text-red-700"
               >
-                <ImageIcon size={16} className="md:w-[18px] md:h-[18px] group-hover/icon:scale-110 transition-transform" />
-                <span>Media</span>
-              </button>
-              <button 
-                type="button" 
-                onClick={() => fileInputRef.current?.click()}
-                className="flex items-center gap-2 text-[#1E6B3A]/60 hover:text-[#114B2A] transition-all text-xs font-bold uppercase tracking-widest group/icon"
-              >
-                <Paperclip size={18} className="group-hover/icon:scale-110 transition-transform" />
-                <span>Asset</span>
+                <X size={14} />
               </button>
             </div>
-            <button 
-              type="submit"
-              disabled={!content.trim() || isLoading}
-              className="flex items-center gap-3 px-8 py-3 rounded-xl bg-[#1E6B3A] text-white font-bold text-[13px] uppercase tracking-[0.15em] disabled:opacity-20 hover:bg-[#114B2A] hover:shadow-[0_8px_20px_rgba(30,107,58,0.2)] transition-all disabled:pointer-events-none"
-            >
-              {isLoading ? "Publishing..." : "Publish Insight"}
-              <Send size={14} className={isLoading ? "animate-pulse" : ""} />
-            </button>
-          </div>
+          )}
         </div>
       </div>
+
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        accept="image/*" 
+        className="hidden" 
+        onChange={(e) => {
+          if (e.target.files?.[0]) {
+            setSelectedImage(e.target.files[0]);
+          }
+        }}
+      />
     </form>
   );
 }
