@@ -29,46 +29,64 @@ interface Question {
   options: Option[];
 }
 
+const LIKERT_OPTIONS: Option[] = [
+  { text: "Strongly Disagree", score: 20 },
+  { text: "Disagree", score: 40 },
+  { text: "Neutral", score: 60 },
+  { text: "Agree", score: 80 },
+  { text: "Strongly Agree", score: 100 }
+];
+
 const QUESTIONS: Question[] = [
   // SELF-AWARENESS
-  { id: 1, dimension: "Self-Awareness", subDimension: "Emotional self-awareness", format: "likert", text: "I can easily identify the exact emotion I am feeling at any given moment.", options: [{ text: "Strongly Disagree", score: 20 }, { text: "Disagree", score: 40 }, { text: "Neutral", score: 60 }, { text: "Agree", score: 80 }, { text: "Strongly Agree", score: 100 }] },
-  { id: 2, dimension: "Self-Awareness", subDimension: "Accurate self-assessment", format: "likert", text: "I instantly recognize when my emotions are negatively affecting my performance.", options: [{ text: "Never", score: 20 }, { text: "Rarely", score: 40 }, { text: "Sometimes", score: 60 }, { text: "Often", score: 80 }, { text: "Always", score: 100 }] },
-  { id: 3, dimension: "Self-Awareness", subDimension: "Emotional self-awareness", format: "mcq", text: "You feel suddenly frustrated during a meeting. What is your internal response?", options: [{ text: "I push the feeling down and force myself to focus.", score: 25 }, { text: "I mentally pause to figure out exactly what triggered me.", score: 100 }, { text: "I let the frustration fuel my argument.", score: 50 }, { text: "I distract myself to avoid losing my temper.", score: 75 }] },
-  { id: 4, dimension: "Self-Awareness", subDimension: "Accurate self-assessment", format: "mcq", text: "You receive harsh feedback on a project you spent weeks on. Your first internal reaction is:", options: [{ text: "\"They don't understand the work I put into this.\"", score: 25 }, { text: "\"I must have completely failed this assignment.\"", score: 50 }, { text: "\"It hurts, but let me extract what is actually useful here.\"", score: 100 }, { text: "\"I will nod along, then continue doing it my way.\"", score: 75 }] },
-  { id: 5, dimension: "Self-Awareness", subDimension: "Emotional self-awareness", format: "forced", text: "Which feels more natural to you?", options: [{ text: "Analyzing why I feel a certain way.", score: 100 }, { text: "Acting quickly and reflecting on my feelings later.", score: 50 }] },
-  { id: 6, dimension: "Self-Awareness", subDimension: "Accurate self-assessment", format: "forced", text: "When evaluating your own skills:", options: [{ text: "I tend to overestimate to project confidence.", score: 50 }, { text: "I am acutely aware of exactly where I lack competence.", score: 100 }] },
+  { id: 1, dimension: "Self-Awareness", subDimension: "Emotional Self-Awareness", format: "likert", text: "I can identify the physical sensations (like heart rate or muscle tension) that accompany my emotions.", options: LIKERT_OPTIONS },
+  { id: 2, dimension: "Self-Awareness", subDimension: "Emotional Self-Awareness", format: "likert", text: "I am aware of how my mood affects the way I communicate with others.", options: LIKERT_OPTIONS },
+  { id: 3, dimension: "Self-Awareness", subDimension: "Emotional Self-Awareness", format: "likert", text: "I recognize when my confidence levels are temporary reactions to external praise or criticism.", options: LIKERT_OPTIONS },
+  { id: 4, dimension: "Self-Awareness", subDimension: "Emotional Self-Awareness", format: "likert", text: "I can easily describe the exact mixture of emotions I am experiencing when I feel unsettled.", options: LIKERT_OPTIONS },
+  { id: 5, dimension: "Self-Awareness", subDimension: "Accurate Self-Assessment", format: "likert", text: "I know which triggers are most likely to make me feel defensive or frustrated.", options: LIKERT_OPTIONS },
+  { id: 6, dimension: "Self-Awareness", subDimension: "Accurate Self-Assessment", format: "likert", text: "I understand how my past experiences shape my current emotional reactions.", options: LIKERT_OPTIONS },
+  { id: 7, dimension: "Self-Awareness", subDimension: "Accurate Self-Assessment", format: "likert", text: "I am clear about my personal values and how they guide my decision-making.", options: LIKERT_OPTIONS },
+  { id: 8, dimension: "Self-Awareness", subDimension: "Accurate Self-Assessment", format: "likert", text: "I accurately assess my own strengths and limitations without being overly critical or boastful.", options: LIKERT_OPTIONS },
 
   // SELF-REGULATION
-  { id: 7, dimension: "Self-Regulation", subDimension: "Impulse control", format: "likert", text: "When stressed, I can safely delay acting until I am completely calm.", options: [{ text: "Never", score: 20 }, { text: "Rarely", score: 40 }, { text: "Sometimes", score: 60 }, { text: "Often", score: 80 }, { text: "Always", score: 100 }] },
-  { id: 8, dimension: "Self-Regulation", subDimension: "Adaptability", format: "likert", text: "I seamlessly adapt my plans when sudden, unexpected changes occur.", options: [{ text: "Strongly Disagree", score: 20 }, { text: "Disagree", score: 40 }, { text: "Neutral", score: 60 }, { text: "Agree", score: 80 }, { text: "Strongly Agree", score: 100 }] },
-  { id: 9, dimension: "Self-Regulation", subDimension: "Impulse control", format: "mcq", text: "Someone cuts you off aggressively in traffic, almost causing a severe accident. You:", options: [{ text: "Instinctively speed up or lean on the horn.", score: 25 }, { text: "Breathe, acknowledge the adrenaline, and let them go.", score: 100 }, { text: "Shake your head and complain about it for the next hour.", score: 50 }, { text: "Feel panicked, pulling over immediately to calm down.", score: 75 }] },
-  { id: 10, dimension: "Self-Regulation", subDimension: "Adaptability", format: "mcq", text: "A massive constraint is added to your project days before launch. You:", options: [{ text: "Resist the change, arguing it’s too late.", score: 25 }, { text: "Immediately start mapping out a pivot strategy.", score: 100 }, { text: "Wait to see if someone else can fix it.", score: 50 }, { text: "Try to force the original plan through anyway.", score: 75 }] },
-  { id: 11, dimension: "Self-Regulation", subDimension: "Impulse control", format: "forced", text: "In heated moments, your default is:", options: [{ text: "Immediate reactivity or defense.", score: 50 }, { text: "A calculated, deliberate pause.", score: 100 }] },
-  { id: 12, dimension: "Self-Regulation", subDimension: "Adaptability", format: "forced", text: "When facing a sudden disruption:", options: [{ text: "I find it deeply unsettling and frustrating.", score: 50 }, { text: "I immediately look for where the new leverage is.", score: 100 }] },
+  { id: 9, dimension: "Self-Regulation", subDimension: "Emotional Self-Control", format: "likert", text: "When I feel a surge of anger or frustration, I wait for it to pass before responding.", options: LIKERT_OPTIONS },
+  { id: 10, dimension: "Self-Regulation", subDimension: "Emotional Self-Control", format: "likert", text: "I remain calm and clear-headed under tight deadlines or high-pressure situations.", options: LIKERT_OPTIONS },
+  { id: 11, dimension: "Self-Regulation", subDimension: "Emotional Self-Control", format: "likert", text: "I can adapt my strategy quickly when unexpected changes disrupt my original plans.", options: LIKERT_OPTIONS },
+  { id: 12, dimension: "Self-Regulation", subDimension: "Emotional Self-Control", format: "likert", text: "I refrain from making impulsive promises or decisions when I am feeling highly enthusiastic.", options: LIKERT_OPTIONS },
+  { id: 13, dimension: "Self-Regulation", subDimension: "Adaptability & Resilience", format: "likert", text: "I manage my stress levels effectively to prevent burnout or emotional outbursts.", options: LIKERT_OPTIONS },
+  { id: 14, dimension: "Self-Regulation", subDimension: "Adaptability & Resilience", format: "likert", text: "I take responsibility for my mistakes and focus on finding solutions instead of blaming others.", options: LIKERT_OPTIONS },
+  { id: 15, dimension: "Self-Regulation", subDimension: "Adaptability & Resilience", format: "likert", text: "I can maintain focus on my long-term goals even when faced with immediate distractions.", options: LIKERT_OPTIONS },
+  { id: 16, dimension: "Self-Regulation", subDimension: "Adaptability & Resilience", format: "likert", text: "I handle constructive criticism constructively, without becoming defensive or hostile.", options: LIKERT_OPTIONS },
 
   // EMPATHY
-  { id: 13, dimension: "Empathy", subDimension: "Perspective-taking", format: "likert", text: "I can easily imagine exactly what another person is thinking, even if I disagree.", options: [{ text: "Never", score: 20 }, { text: "Rarely", score: 40 }, { text: "Sometimes", score: 60 }, { text: "Often", score: 80 }, { text: "Always", score: 100 }] },
-  { id: 14, dimension: "Empathy", subDimension: "Empathic concern", format: "likert", text: "I sense when someone in the room is silently upset without them saying a word.", options: [{ text: "Never", score: 20 }, { text: "Rarely", score: 40 }, { text: "Sometimes", score: 60 }, { text: "Often", score: 80 }, { text: "Always", score: 100 }] },
-  { id: 15, dimension: "Empathy", subDimension: "Perspective-taking", format: "mcq", text: "A friend complains about an issue you think is trivial. You:", options: [{ text: "Tell them they are overreacting.", score: 25 }, { text: "Listen, trying to locate exactly why it matters to them.", score: 100 }, { text: "Offer an immediate solution to permanently fix it.", score: 75 }, { text: "Change the subject to lighten the mood.", score: 50 }] },
-  { id: 16, dimension: "Empathy", subDimension: "Empathic concern", format: "mcq", text: "A colleague seems withdrawn and quiet. You:", options: [{ text: "Assume they are busy and leave them strictly alone.", score: 50 }, { text: "Gently ask privately if everything is alright.", score: 100 }, { text: "Call them out in a meeting to get them engaged.", score: 25 }, { text: "Watch them for a while to see if they snap out of it.", score: 75 }] },
-  { id: 17, dimension: "Empathy", subDimension: "Perspective-taking", format: "forced", text: "During a disagreement, I usually:", options: [{ text: "Focus entirely on making sure my point is understood.", score: 50 }, { text: "Focus heavily on understanding how the other person arrived at their stance.", score: 100 }] },
-  { id: 18, dimension: "Empathy", subDimension: "Empathic concern", format: "forced", text: "Which matters more to you?", options: [{ text: "Making sure things are fair and logical.", score: 50 }, { text: "Making sure people feel heard and respected.", score: 100 }] },
+  { id: 17, dimension: "Empathy", subDimension: "Cognitive Empathy", format: "likert", text: "I pay close attention to others' body language and facial expressions to understand their feelings.", options: LIKERT_OPTIONS },
+  { id: 18, dimension: "Empathy", subDimension: "Cognitive Empathy", format: "likert", text: "I can see things from another person's point of view, even when I strongly disagree with them.", options: LIKERT_OPTIONS },
+  { id: 19, dimension: "Empathy", subDimension: "Cognitive Empathy", format: "likert", text: "I sense when someone in a group feels excluded or uncomfortable, and try to include them.", options: LIKERT_OPTIONS },
+  { id: 20, dimension: "Empathy", subDimension: "Cognitive Empathy", format: "likert", text: "I listen actively to others without immediately formulating my own response or interrupting.", options: LIKERT_OPTIONS },
+  { id: 21, dimension: "Empathy", subDimension: "Emotional Empathy", format: "likert", text: "I am sensitive to the emotional needs of my friends and colleagues.", options: LIKERT_OPTIONS },
+  { id: 22, dimension: "Empathy", subDimension: "Emotional Empathy", format: "likert", text: "I can accurately guess what someone is feeling based on the tone of their voice.", options: LIKERT_OPTIONS },
+  { id: 23, dimension: "Empathy", subDimension: "Emotional Empathy", format: "likert", text: "I validate other people's feelings even if their emotional reactions seem different from mine.", options: LIKERT_OPTIONS },
+  { id: 24, dimension: "Empathy", subDimension: "Emotional Empathy", format: "likert", text: "I am compassionate towards people who are dealing with personal challenges.", options: LIKERT_OPTIONS },
 
   // SOCIAL SKILLS
-  { id: 19, dimension: "Social Skills", subDimension: "Conflict management", format: "likert", text: "I comfortably navigate tense confrontations without taking things personally.", options: [{ text: "Strongly Disagree", score: 20 }, { text: "Disagree", score: 40 }, { text: "Neutral", score: 60 }, { text: "Agree", score: 80 }, { text: "Strongly Agree", score: 100 }] },
-  { id: 20, dimension: "Social Skills", subDimension: "Influence/communication", format: "likert", text: "I can smoothly guide a group's consensus without forcing my opinion.", options: [{ text: "Strongly Disagree", score: 20 }, { text: "Disagree", score: 40 }, { text: "Neutral", score: 60 }, { text: "Agree", score: 80 }, { text: "Strongly Agree", score: 100 }] },
-  { id: 21, dimension: "Social Skills", subDimension: "Conflict management", format: "mcq", text: "Two team members are actively fighting over a strategy. You:", options: [{ text: "Let them figure it out; it's their problem.", score: 25 }, { text: "Intervene to find the underlying shared goal between them.", score: 100 }, { text: "Tell them both to stop wasting time and pick a side.", score: 50 }, { text: "Try to compromise by splitting the difference exactly down the middle.", score: 75 }] },
-  { id: 22, dimension: "Social Skills", subDimension: "Influence/communication", format: "mcq", text: "You need support for a radical new initiative. How do you pitch it?", options: [{ text: "I list pure data and metrics; the facts speak for themselves.", score: 50 }, { text: "I weave a compelling narrative linking it to the group's deeper values.", score: 100 }, { text: "I demand compliance because it is undeniably optimal.", score: 25 }, { text: "I quietly ask people 1-on-1 and hope it gathers momentum.", score: 75 }] },
-  { id: 23, dimension: "Social Skills", subDimension: "Conflict management", format: "forced", text: "When an argument begins, my instinct is to:", options: [{ text: "Avoid the friction or walk away.", score: 50 }, { text: "De-escalate the tone while tackling the core issue.", score: 100 }] },
-  { id: 24, dimension: "Social Skills", subDimension: "Influence/communication", format: "forced", text: "When persuading others:", options: [{ text: "I rely on the strength of my logic.", score: 50 }, { text: "I adjust my approach dynamically based on my audience.", score: 100 }] },
+  { id: 25, dimension: "Social Skills", subDimension: "Relationship Management", format: "likert", text: "I resolve conflicts with others by seeking win-win compromises rather than just winning.", options: LIKERT_OPTIONS },
+  { id: 26, dimension: "Social Skills", subDimension: "Relationship Management", format: "likert", text: "I communicate my thoughts and ideas clearly and persuasively to a group.", options: LIKERT_OPTIONS },
+  { id: 27, dimension: "Social Skills", subDimension: "Relationship Management", format: "likert", text: "I build strong, supportive, and collaborative relationships with team members.", options: LIKERT_OPTIONS },
+  { id: 28, dimension: "Social Skills", subDimension: "Relationship Management", format: "likert", text: "I adapt my communication style to suit different personalities and cultural backgrounds.", options: LIKERT_OPTIONS },
+  { id: 29, dimension: "Social Skills", subDimension: "Collaboration & Leadership", format: "likert", text: "I encourage and motivate others to perform at their best and collaborate.", options: LIKERT_OPTIONS },
+  { id: 30, dimension: "Social Skills", subDimension: "Collaboration & Leadership", format: "likert", text: "I handle difficult conversations with tact, diplomacy, and respect.", options: LIKERT_OPTIONS },
+  { id: 31, dimension: "Social Skills", subDimension: "Collaboration & Leadership", format: "likert", text: "I am effective at networking and building rapport with new people.", options: LIKERT_OPTIONS },
+  { id: 32, dimension: "Social Skills", subDimension: "Collaboration & Leadership", format: "likert", text: "I support and facilitate group consensus when working towards a common objective.", options: LIKERT_OPTIONS },
 
   // MOTIVATION
-  { id: 25, dimension: "Motivation", subDimension: "Achievement drive", format: "likert", text: "I operate with an overwhelming internal drive to improve, even absent rewards.", options: [{ text: "Strongly Disagree", score: 20 }, { text: "Disagree", score: 40 }, { text: "Neutral", score: 60 }, { text: "Agree", score: 80 }, { text: "Strongly Agree", score: 100 }] },
-  { id: 26, dimension: "Motivation", subDimension: "Resilience/optimism", format: "likert", text: "When I experience a severe failure, I quickly reset and maintain forward momentum.", options: [{ text: "Strongly Disagree", score: 20 }, { text: "Disagree", score: 40 }, { text: "Neutral", score: 60 }, { text: "Agree", score: 80 }, { text: "Strongly Agree", score: 100 }] },
-  { id: 27, dimension: "Motivation", subDimension: "Achievement drive", format: "mcq", text: "You successfully reach a massive milestone. What next?", options: [{ text: "I relax; the hard work is finally done.", score: 50 }, { text: "I briefly celebrate, then immediately construct the next summit.", score: 100 }, { text: "I feel empty and burnout hits immediately.", score: 25 }, { text: "I maintain the exact same routine.", score: 75 }] },
-  { id: 28, dimension: "Motivation", subDimension: "Resilience/optimism", format: "mcq", text: "You are rejected for an opportunity you desperately wanted. Your reaction:", options: [{ text: "It's proof the system is rigged or I lack talent.", score: 25 }, { text: "I analyze the rejection data and iterate my approach.", score: 100 }, { text: "I quickly apply for a lower-tier fallback.", score: 50 }, { text: "I feel horrible, but eventually try again months later.", score: 75 }] },
-  { id: 29, dimension: "Motivation", subDimension: "Achievement drive", format: "forced", text: "What drives you more?", options: [{ text: "Reaching a high status or obtaining external validation.", score: 50 }, { text: "The sheer thrill of proving I can execute the impossible.", score: 100 }] },
-  { id: 30, dimension: "Motivation", subDimension: "Resilience/optimism", format: "forced", text: "When looking at the future, you naturally lean towards:", options: [{ text: "Protecting myself securely against potential risks.", score: 50 }, { text: "Identifying massive opportunities to capitalize on.", score: 100 }] }
+  { id: 33, dimension: "Motivation", subDimension: "Achievement Drive", format: "likert", text: "I set high standards of excellence for myself and strive to exceed them.", options: LIKERT_OPTIONS },
+  { id: 34, dimension: "Motivation", subDimension: "Achievement Drive", format: "likert", text: "I am driven by a personal desire to learn, grow, and improve, rather than just external rewards.", options: LIKERT_OPTIONS },
+  { id: 35, dimension: "Motivation", subDimension: "Achievement Drive", format: "likert", text: "I remain optimistic and persistent in pursuing my goals, even after facing major setbacks.", options: LIKERT_OPTIONS },
+  { id: 36, dimension: "Motivation", subDimension: "Achievement Drive", format: "likert", text: "I actively seek out opportunities for professional and personal development.", options: LIKERT_OPTIONS },
+  { id: 37, dimension: "Motivation", subDimension: "Optimism & Initiative", format: "likert", text: "I am willing to make personal sacrifices to achieve a meaningful long-term goal.", options: LIKERT_OPTIONS },
+  { id: 38, dimension: "Motivation", subDimension: "Optimism & Initiative", format: "likert", text: "I take initiative to start new projects or suggest improvements without being asked.", options: LIKERT_OPTIONS },
+  { id: 39, dimension: "Motivation", subDimension: "Optimism & Initiative", format: "likert", text: "I find satisfaction in the process of working towards a goal, not just achieving it.", options: LIKERT_OPTIONS },
+  { id: 40, dimension: "Motivation", subDimension: "Optimism & Initiative", format: "likert", text: "I maintain a high level of energy and enthusiasm for my work and personal projects.", options: LIKERT_OPTIONS }
 ];
 
 
@@ -190,7 +208,7 @@ export default function EQAssessment() {
              Define Your <br/><span className="text-[#16a34a] italic">Emotional Protocol.</span>
           </h1>
           <p className="text-sm md:text-base text-[#1a1a2e]/60 font-medium max-w-2xl leading-relaxed mb-4">
-            A 30-question diagnostic grounded in advanced behavioral frameworks. Pinpoint your emotional blind spots, discover your archetype, and architect a highly-calibrated mind.
+            A 40-question diagnostic grounded in advanced behavioral frameworks. Pinpoint your emotional blind spots, discover your archetype, and architect a highly-calibrated mind.
           </p>
           <div className="flex flex-wrap justify-center gap-1.5 mb-5 w-full">
             {["Self-Awareness", "Self-Regulation", "Empathy", "Social Skills", "Motivation"].map(dim => (
@@ -233,7 +251,7 @@ export default function EQAssessment() {
           
           <header className="mb-16 text-center">
             <h1 className="text-4xl md:text-5xl font-serif text-[#1a1a2e] mb-4">Your Emotional Signature</h1>
-            <p className="text-lg font-medium text-[#1a1a2e]/60">Based on the analytical processing of your 30 situational matrices.</p>
+            <p className="text-lg font-medium text-[#1a1a2e]/60">Based on the analytical processing of your 40 diagnostic matrices.</p>
           </header>
 
           {/* Top Level Metric */}

@@ -1,6 +1,7 @@
 import Introduction from "@/components/sections/Introduction";
 import ProgramSection from "@/components/sections/ProgramSection";
 import VisionMissionSection from "@/components/sections/VisionMissionSection";
+import ProgramStructure from "@/components/sections/ProgramStructure";
 import CommunityBanner from "@/components/sections/CommunityBanner";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/layout/Footer";
@@ -90,6 +91,9 @@ export default async function Home() {
             </p>
           </div>
         </section>
+
+        {/* 2.5. Program Structure Section */}
+        <ProgramStructure />
       </div>
 
       {/* 3. Program Section (Outside the main container) */}
