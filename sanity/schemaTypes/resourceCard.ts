@@ -78,7 +78,10 @@ export default defineType({
       title: 'Article Pages (Images)',
       type: 'array',
       of: [{type: 'image', options: {hotspot: true}}],
-      description: 'Upload PNG/JPEG images of the article pages if you want to display the article as page-by-page images instead of text.',
+      options: {
+        layout: 'grid',
+      },
+      description: 'Upload PNG/JPEG images of the article pages. You can drag and drop multiple images at once to upload them as pages.',
     }),
   ],
 })

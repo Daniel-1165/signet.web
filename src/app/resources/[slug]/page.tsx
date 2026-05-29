@@ -78,7 +78,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
 
   return (
     <div className="min-h-screen bg-white overflow-y-auto scrollbar-hide">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-16 py-12 md:py-24">
+      <div className="max-w-[1400px] mx-auto px-0 sm:px-6 md:px-12 flex flex-col md:flex-row gap-12 py-12 md:py-24">
         
         {/* Left Sidebar */}
         <aside className="hidden lg:flex flex-col w-48 shrink-0 sticky top-32 h-fit space-y-12">
@@ -113,8 +113,8 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 max-w-4xl mx-auto">
-          <header className="mb-12 md:mb-20">
+        <main className={`flex-1 mx-auto w-full ${resource.pages && resource.pages.length > 0 || resource.fileUrl ? "max-w-6xl" : "max-w-4xl"}`}>
+          <header className="mb-12 md:mb-20 px-6 sm:px-0">
             <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#163832] mb-6">
               <span className="px-3 py-1 bg-[#DAF1DE] rounded-full">{resource.tag || "Discovery"}</span>
               <span>{new Date(resource._createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
@@ -197,22 +197,8 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
              )}
           </div>
 
-          {resource.fileUrl && (
-            <div className="mt-20 p-10 bg-[#051F20] rounded-[3rem] text-white text-center relative overflow-hidden group border border-[#163832]/30">
-               <div className="absolute top-0 right-0 w-64 h-64 bg-[#163832]/20 rounded-full blur-[100px] pointer-events-none" />
-               <div className="relative z-10">
-                  <Download className="mx-auto mb-6 text-[#8EB69B]" size={40} />
-                  <h3 className="text-3xl font-black uppercase mb-4">Tactical Resource File</h3>
-                  <p className="text-white/40 mb-8 max-w-sm mx-auto font-medium text-sm">Download the complete manual for our library analysis and internal review.</p>
-                  <a href={resource.fileUrl} download className="inline-flex items-center gap-3 px-10 py-4 bg-[#163832] text-white rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-white hover:text-[#051F20] transition-all">
-                     Download {resource.fileName || 'Resource'} <ArrowLeft className="rotate-[-90deg] w-4 h-4" />
-                  </a>
-               </div>
-            </div>
-          )}
-
           {/* Author Bio at end */}
-          <footer className="mt-24 pt-24 border-t border-[#051F20]/10 max-w-3xl mx-auto">
+          <footer className="mt-24 pt-24 border-t border-[#051F20]/10 max-w-3xl mx-auto px-6 sm:px-0">
              <div className="p-10 bg-[#FAFAFA] rounded-[3rem] border border-[#051F20]/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left transition-all hover:shadow-xl group">
                 {resource.author?.image && (
                   <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">

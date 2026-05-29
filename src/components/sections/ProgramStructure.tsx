@@ -22,11 +22,11 @@ export default function ProgramStructure() {
       style={{ fontFamily: "'Melbourne', sans-serif" }}
     >
       {/* Background Image / Illustration */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-15 md:opacity-95 flex items-center justify-center md:justify-end">
+      <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-35 md:opacity-50 flex items-center justify-center md:justify-end">
         <img 
           src="/program_structure.png" 
           alt="" 
-          className="w-full md:w-[55%] h-full md:h-[85%] object-contain object-center md:object-right" 
+          className="w-full md:w-[55%] h-full md:h-[85%] object-contain object-center md:object-right brightness-[0.85] contrast-[1.05]" 
         />
       </div>
 
