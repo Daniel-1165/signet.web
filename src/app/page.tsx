@@ -49,12 +49,15 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* 1. About Us / Signet Introduction Section (Outside container, full bleed) */}
+      <div className="bg-[#1E3D1E] w-full border-y border-[#EFF3F4]/10">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24">
+          <Introduction />
+        </div>
+      </div>
+
       {/* Content wrapper */}
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-16 md:space-y-24 py-16 md:py-24">
-        
-        {/* 1. About Us / Signet Introduction Section */}
-        <Introduction />
-        
         {/* 2. Custom Transform Your Life Section (Floated layout on all screens) */}
         <section className="relative py-12 bg-transparent overflow-hidden">
           {/* Heading & Dashed Line */}
@@ -91,9 +94,13 @@ export default async function Home() {
             </p>
           </div>
         </section>
+      </div>
 
-        {/* 2.5. Program Structure Section */}
-        <ProgramStructure />
+      {/* 2.5. Program Structure Section (Outside container, full bleed) */}
+      <div className="bg-[#1E3D1E] w-full border-y border-[#EFF3F4]/10">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24">
+          <ProgramStructure />
+        </div>
       </div>
 
       {/* 3. Program Section (Outside the main container) */}

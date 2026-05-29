@@ -246,83 +246,84 @@ export default function EQAssessment() {
     const lowestDims = [...dims].sort((a,b) => results.finalDimScores[a] - results.finalDimScores[b]).slice(0, 2);
 
     return (
-      <div className={`min-h-screen bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans py-24`}>
+    return (
+      <div className={`min-h-screen bg-gradient-to-tr from-[#ECFDF5]/30 via-white to-white text-[#022C22] ${dmSans.variable} ${dmSerif.variable} font-sans py-24`}>
         <div className="max-w-5xl mx-auto px-6">
           
           <header className="mb-16 text-center">
-            <h1 className="text-4xl md:text-5xl font-serif text-[#1a1a2e] mb-4">Your Emotional Signature</h1>
-            <p className="text-lg font-medium text-[#1a1a2e]/60">Based on the analytical processing of your 40 diagnostic matrices.</p>
+            <span className="inline-flex items-center px-4 py-1.5 bg-[#ECFDF5] text-[#064E3B] border border-[#A7F3D0] text-[10px] font-bold uppercase tracking-[0.2em] rounded-full mb-4">
+              Diagnostic Complete
+            </span>
+            <h1 className="text-4xl md:text-5xl font-serif text-[#022C22] mb-4">Your Emotional Signature</h1>
+            <p className="text-base md:text-lg font-medium text-[#064E3B]/70">Based on the analytical processing of your 40 diagnostic matrices.</p>
           </header>
 
           {/* Top Level Metric */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white p-10 rounded-[2.5rem] shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-[#1a1a2e]/5 flex flex-col items-center justify-center text-center">
-               <div className="text-[6rem] font-serif leading-none tracking-tighter text-[#16a34a] mb-2">{results.totalScore}</div>
-               <div className="text-sm font-bold uppercase tracking-widest text-[#1a1a2e]/40 mb-6">Aggregate EQ Score</div>
-               <div className="px-6 py-2 bg-[#f2f0ec] rounded-full text-sm font-bold tracking-wide">{results.tier}</div>
+            <div className="bg-white/70 backdrop-blur-xl p-10 rounded-3xl shadow-xl shadow-emerald-950/[0.03] border border-white/40 flex flex-col items-center justify-center text-center">
+               <div className="text-[6rem] font-serif leading-none tracking-tighter text-[#10B981] mb-2">{results.totalScore}</div>
+               <div className="text-xs font-bold uppercase tracking-widest text-[#064E3B]/50 mb-6">Aggregate EQ Score</div>
+               <div className="px-6 py-2 bg-[#ECFDF5] text-[#064E3B] border border-[#A7F3D0]/50 rounded-full text-xs font-bold tracking-wide">{results.tier}</div>
             </div>
 
-            <div className="bg-[#1a1a2e] text-white p-10 rounded-[2.5rem] shadow-2xl flex flex-col justify-between">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Primary Archetype</div>
+            <div className="bg-[#022C22] text-white p-10 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-[#10B981]/10 rounded-full blur-[80px]" />
+              <div className="relative z-10">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3">Primary Archetype</div>
                 <h2 className="text-4xl font-serif mb-4">{results.archetype.name}</h2>
-                <p className="text-lg text-white/80 leading-relaxed font-medium mb-8">{results.archetype.essence}</p>
+                <p className="text-base text-white/80 leading-relaxed font-normal mb-8">{results.archetype.essence}</p>
               </div>
-              <div className="pt-6 border-t border-white/10 flex justify-between items-center text-sm font-medium">
-                 <div><span className="text-[#0d9e7b]">Power:</span> {results.archetype.power}</div>
-                 <div><span className="text-[#d45f43]">Blind Spot:</span> {results.archetype.blindSpot}</div>
+              <div className="pt-6 border-t border-white/10 flex justify-between items-center text-xs font-bold relative z-10">
+                 <div><span className="text-[#10B981]">Power:</span> {results.archetype.power}</div>
+                 <div><span className="text-[#8EB69B]">Blind Spot:</span> {results.archetype.blindSpot}</div>
               </div>
             </div>
           </div>
 
           {/* Radar & Heatmap Layer */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-[#1a1a2e]/5 flex items-center justify-center relative">
-               <svg width="300" height="300" viewBox="0 0 300 300" className="drop-shadow-xl">
+            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-xl shadow-emerald-950/[0.03] border border-white/40 flex items-center justify-center relative">
+               <svg width="300" height="300" viewBox="0 0 300 300" className="drop-shadow-lg">
                   {/* Web Background */}
                   {[20, 40, 60, 80, 100].map(val => (
                     <polygon 
                       key={val} 
                       points={dims.map((_, i) => getCoord(val, i, dims.length)).join(" ")} 
                       fill="none" 
-                      stroke="#1a1a2e" 
+                      stroke="#022C22" 
                       strokeOpacity="0.05" 
                       strokeWidth="1" 
                     />
                   ))}
                   {/* Axis lines */}
                   {dims.map((_, i) => (
-                    <line key={i} x1="150" y1="150" x2={getCoord(100, i, dims.length).split(',')[0]} y2={getCoord(100, i, dims.length).split(',')[1]} stroke="#1a1a2e" strokeOpacity="0.05" />
+                    <line key={i} x1="150" y1="150" x2={getCoord(100, i, dims.length).split(',')[0]} y2={getCoord(100, i, dims.length).split(',')[1]} stroke="#022C22" strokeOpacity="0.05" />
                   ))}
                   {/* Active Polygon */}
-                  <polygon points={radarPoints} fill="rgba(92, 79, 207, 0.2)" stroke="#5c4fcf" strokeWidth="3" />
+                  <polygon points={radarPoints} fill="rgba(16, 185, 129, 0.15)" stroke="#10B981" strokeWidth="2.5" />
                   
                   {/* Points */}
                   {dims.map((d, i) => {
                      const [cx, cy] = getCoord(results.finalDimScores[d], i, dims.length).split(',');
-                     return <circle key={'dot'+i} cx={cx} cy={cy} r="6" fill="#1a1a2e" />;
+                     return <circle key={'dot'+i} cx={cx} cy={cy} r="5" fill="#022C22" />;
                   })}
                </svg>
             </div>
 
-            <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-[#1a1a2e]/5">
-              <h3 className="font-serif text-2xl mb-6">Dimension Heatmap</h3>
+            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-xl shadow-emerald-950/[0.03] border border-white/40">
+              <h3 className="font-serif text-xl mb-6">Dimension Heatmap</h3>
               <div className="space-y-4">
                 {dims.map(d => (
                   <div key={d} className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-[#1a1a2e]/70">{d}</span>
+                    <span className="text-xs font-bold text-[#064E3B]/70">{d}</span>
                     <div className="flex items-center gap-4">
-                      <div className="w-32 h-2.5 bg-[#f2f0ec] rounded-full overflow-hidden">
+                      <div className="w-32 h-2 bg-[#ECFDF5] border border-[#A7F3D0]/30 rounded-full overflow-hidden">
                         <div 
-                          className={`h-full rounded-full transition-all duration-1000 ${
-                            results.finalDimScores[d] >= 80 ? 'bg-[#0d9e7b]' : 
-                            results.finalDimScores[d] >= 60 ? 'bg-[#5c4fcf]' : 
-                            results.finalDimScores[d] >= 40 ? 'bg-[#c07a1a]' : 'bg-[#d45f43]'
-                          }`}
+                          className="h-full rounded-full transition-all duration-1000 bg-[#10B981]"
                           style={{ width: `${results.finalDimScores[d]}%` }}
                         />
                       </div>
-                      <span className="w-8 text-right font-bold font-serif text-lg">{results.finalDimScores[d]}</span>
+                      <span className="w-8 text-right font-bold text-sm text-[#022C22]">{results.finalDimScores[d]}</span>
                     </div>
                   </div>
                 ))}
@@ -331,20 +332,20 @@ export default function EQAssessment() {
           </div>
 
           {/* Growth Plan Layer */}
-          <div className="bg-[#f2f0ec] p-10 rounded-[2.5rem]">
-             <h3 className="font-serif text-3xl mb-8">Personalized Execution Protocols</h3>
+          <div className="bg-[#ECFDF5]/80 backdrop-blur-xl p-10 rounded-[2rem] border border-[#A7F3D0]/30">
+             <h3 className="font-serif text-2xl text-[#022C22] mb-8">Personalized Execution Protocols</h3>
              <div className="grid md:grid-cols-2 gap-6">
                 {lowestDims.map(dim => {
                   const plan = GROWTH_PLANS[dim];
                   return (
-                    <div key={dim} className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-                       <span className="text-xs font-bold uppercase tracking-widest text-[#d45f43] mb-2 block">{dim} Enhancement</span>
-                       <h4 className="text-xl font-bold mb-4">{plan.title}</h4>
-                       <p className="text-sm text-[#1a1a2e]/70 font-medium leading-relaxed mb-6">
+                    <div key={dim} className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-sm border border-white/80">
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-[#064E3B]/60 mb-2 block">{dim} Enhancement</span>
+                       <h4 className="text-lg font-bold text-[#022C22] mb-3">{plan.title}</h4>
+                       <p className="text-sm text-[#064E3B]/80 font-normal leading-relaxed mb-6">
                          {plan.practice}
                        </p>
-                       <div className="pt-4 border-t border-black/5 text-xs font-bold text-black/40">
-                         Recommended Reading: <span className="text-[#1a1a2e] block mt-1">{plan.book}</span>
+                       <div className="pt-4 border-t border-black/5 text-[10px] font-bold text-black/40">
+                         Recommended Reading: <span className="text-[#022C22] block mt-1 text-xs">{plan.book}</span>
                        </div>
                     </div>
                   )
