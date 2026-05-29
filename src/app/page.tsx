@@ -97,8 +97,8 @@ export default async function Home() {
       </div>
 
       {/* 2.5. Program Structure Section (Outside container, full bleed) */}
-      <div className="bg-[#1E3D1E] w-full border-y border-[#EFF3F4]/10">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24">
+      <div className="bg-white w-full border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-10">
           <ProgramStructure />
         </div>
       </div>

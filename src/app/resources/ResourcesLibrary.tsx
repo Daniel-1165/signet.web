@@ -320,7 +320,8 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
             <div className="flex overflow-x-auto pb-6 gap-5 scrollbar-hide snap-x snap-mandatory">
               {magazines.map((mag: any, idx: number) => (
                 <a 
-                  href={mag.slug?.current ? `/resources/${mag.slug.current}` : "#"} 
+                  href={mag.fileUrl || (mag.slug?.current ? `/resources/${mag.slug.current}` : "#")} 
+                  target={mag.fileUrl ? "_blank" : undefined}
                   key={mag._id || idx} 
                   className="group cursor-pointer flex-none w-[160px] md:w-[220px] snap-start"
                 >
@@ -356,7 +357,8 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                 const IconComponent = icons[idx % icons.length];
                 return (
                   <a 
-                    href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} 
+                    href={article.fileUrl || (article.slug?.current ? `/resources/${article.slug.current}` : "#")} 
+                    target={article.fileUrl ? "_blank" : undefined}
                     key={article._id || idx} 
                     className="bg-white rounded-2xl p-4 border border-gray-150/60 shadow-[0_2px_15px_rgba(0,0,0,0.01)] flex items-center gap-4 group hover:border-[#1E6B3A]/30 transition-all cursor-pointer"
                   >
