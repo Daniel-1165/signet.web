@@ -52,7 +52,13 @@ export default defineType({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'pages',
+      title: 'Article Pages (Images)',
+      type: 'array',
+      of: [{type: 'image', options: {hotspot: true}}],
+      description: 'Upload PNG/JPEG images of the article pages if you want to display the article as page-by-page images instead of text.',
     }),
   ],
   preview: {

@@ -8,17 +8,19 @@ import { urlFor } from "@/lib/sanity/image";
 import { PortableText } from 'next-sanity';
 
 const RESOURCE_QUERY = `
-  *[_type == "resourceCard" && slug.current == $slug][0] {
+  *[_type in ["resourceCard", "post"] && slug.current == $slug][0] {
     _id, 
+    _type,
     title, 
-    "tag": category, 
+    "tag": coalesce(category, "Article"), 
     description, 
     _createdAt, 
     "fileUrl": resourceFile.asset->url,
     "fileName": resourceFile.asset->originalFilename,
-    "mainImageUrl": thumbnail.asset->url,
+    "mainImageUrl": coalesce(thumbnail.asset->url, mainImage.asset->url),
     author->{name, image, bio},
-    content
+    "body": coalesce(content, body),
+    "pages": pages[].asset->url
   }
 `;
 
@@ -64,7 +66,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
     resource = await sanityFetch({ 
       query: RESOURCE_QUERY, 
       params: { slug },
-      tags: ["resourceCard"] 
+      tags: ["resourceCard", "post"] 
     });
   } catch (error) {
     console.error("Error fetching resource:", error);
@@ -75,7 +77,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
   }
 
   return (
-    <div className="min-h-screen bg-[#FDFCF9]">
+    <div className="min-h-screen bg-[#FDFCF9] overflow-y-auto scrollbar-hide">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-16 py-12 md:py-24">
         
         {/* Left Sidebar */}
@@ -141,17 +143,37 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
             </div>
           </header>
 
-          {resource.mainImageUrl && (
-            <div className="relative aspect-[16/9] w-full mb-16 rounded-[2rem] overflow-hidden shadow-2xl">
-              <img src={resource.mainImageUrl} alt={resource.title} className="w-full h-full object-cover" />
-            </div>
-          )}
+          {!resource.pages || resource.pages.length === 0 ? (
+            resource.mainImageUrl && (
+              <div className="relative aspect-[16/9] w-full mb-16 rounded-[2rem] overflow-hidden shadow-2xl">
+                <img src={resource.mainImageUrl} alt={resource.title} className="w-full h-full object-cover" />
+              </div>
+            )
+          ) : null}
 
           <div className="max-w-3xl mx-auto">
-             {typeof resource.content === 'object' && resource.content ? (
-                <PortableText value={resource.content} components={ptComponents} />
+             {resource.pages && resource.pages.length > 0 ? (
+               <div className="flex flex-col gap-8 w-full max-w-4xl mx-auto items-center py-6">
+                 {resource.pages.map((url: string, index: number) => (
+                   <div key={index} className="w-full relative shadow-lg rounded-2xl overflow-hidden border border-gray-200/50 bg-white">
+                     <img 
+                       src={url} 
+                       alt={`Page ${index + 1}`} 
+                       className="w-full h-auto object-contain max-h-[85vh] mx-auto select-none"
+                       draggable={false}
+                     />
+                     <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full select-none">
+                       Page {index + 1} of {resource.pages.length}
+                     </div>
+                   </div>
+                 ))}
+               </div>
              ) : (
-                <p className="text-lg text-[#051F20]/80 leading-relaxed font-medium">{resource.description || resource.content}</p>
+               typeof resource.body === 'object' && resource.body ? (
+                  <PortableText value={resource.body} components={ptComponents} />
+               ) : (
+                  <p className="text-lg text-[#051F20]/80 leading-relaxed font-medium">{resource.description || resource.body}</p>
+               )
              )}
           </div>
 

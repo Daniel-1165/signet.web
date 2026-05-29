@@ -13,7 +13,8 @@ const DATA_QUERY = `
       _type,
       "mainImageUrl": thumbnail.asset->url,
       "fileUrl": resourceFile.asset->url,
-      "fileExtension": resourceFile.asset->extension
+      "fileExtension": resourceFile.asset->extension,
+      author->{name}
     },
     "blogPosts": *[_type == "post"] | order(publishedAt desc) {
       _id,
@@ -23,7 +24,8 @@ const DATA_QUERY = `
       "_createdAt": publishedAt,
       "slug": {"current": slug.current},
       _type,
-      "mainImageUrl": mainImage.asset->url
+      "mainImageUrl": mainImage.asset->url,
+      author->{name}
     },
     "interrupts": *[_type == "feedInterrupt" && isActive == true] | order(insertAfter asc) {
       _id,

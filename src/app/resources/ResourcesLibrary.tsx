@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Bell, Bookmark, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Menu } from "lucide-react";
+import { Search, Bell, Bookmark, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Menu, FileText, Compass, Newspaper } from "lucide-react";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Footer from "@/components/layout/Footer";
 
@@ -351,30 +351,29 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
             </div>
 
             <div className="grid grid-cols-1 gap-4">
-              {articles.map((article: any, idx: number) => (
-                <a 
-                  href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} 
-                  key={article._id || idx} 
-                  className="bg-white rounded-2xl p-4 border border-gray-150/60 shadow-[0_2px_15px_rgba(0,0,0,0.01)] flex items-center gap-4 group hover:border-[#1E6B3A]/30 transition-all cursor-pointer"
-                >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-[#EAF4EC] text-[#1E6B3A]">
-                    <BookOpen className="w-6 h-6" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="bg-[#EAF4EC] text-[#1E6B3A] uppercase text-[9px] font-bold px-2 py-0.5 rounded tracking-wide">
-                        {article.tag || article.category || "Article"}
-                      </span>
+              {articles.map((article: any, idx: number) => {
+                const icons = [BookOpen, FileText, Compass, Newspaper];
+                const IconComponent = icons[idx % icons.length];
+                return (
+                  <a 
+                    href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} 
+                    key={article._id || idx} 
+                    className="bg-white rounded-2xl p-4 border border-gray-150/60 shadow-[0_2px_15px_rgba(0,0,0,0.01)] flex items-center gap-4 group hover:border-[#1E6B3A]/30 transition-all cursor-pointer"
+                  >
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-[#EAF4EC] text-[#1E6B3A]">
+                      <IconComponent className="w-6 h-6" />
                     </div>
-                    <h3 className="text-[14px] md:text-[16px] font-bold text-[#0B2B26] group-hover:text-[#1E6B3A] transition-colors line-clamp-1">
-                      {article.title}
-                    </h3>
-                    <p className="text-[12px] text-gray-500 mt-0.5 line-clamp-1 font-medium">
-                      {article.description || article.content}
-                    </p>
-                  </div>
-                </a>
-              ))}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-[14px] md:text-[16px] font-bold text-[#0B2B26] group-hover:text-[#1E6B3A] transition-colors line-clamp-1">
+                        {article.title}
+                      </h3>
+                      <p className="text-[12px] text-gray-500 mt-1 font-semibold tracking-wide uppercase text-[10px]">
+                        By {article.author?.name || "Signet Team"}
+                      </p>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </section>
         )}

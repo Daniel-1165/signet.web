@@ -73,5 +73,12 @@ export default defineType({
       type: 'blockContent',
       description: 'Rich text content for articles (highly recommended over plain text)',
     }),
+    defineField({
+      name: 'pages',
+      title: 'Article Pages (Images)',
+      type: 'array',
+      of: [{type: 'image', options: {hotspot: true}}],
+      description: 'Upload PNG/JPEG images of the article pages if you want to display the article as page-by-page images instead of text.',
+    }),
   ],
 })
