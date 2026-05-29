@@ -77,7 +77,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
   }
 
   return (
-    <div className="min-h-screen bg-[#FDFCF9] overflow-y-auto scrollbar-hide">
+    <div className="min-h-screen bg-white overflow-y-auto scrollbar-hide">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-16 py-12 md:py-24">
         
         {/* Left Sidebar */}
@@ -143,7 +143,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
             </div>
           </header>
 
-          {!resource.pages || resource.pages.length === 0 ? (
+          {(!resource.pages || resource.pages.length === 0) && !resource.fileUrl ? (
             resource.mainImageUrl && (
               <div className="relative aspect-[16/9] w-full mb-16 rounded-[2rem] overflow-hidden shadow-2xl">
                 <img src={resource.mainImageUrl} alt={resource.title} className="w-full h-full object-cover" />
@@ -151,15 +151,15 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
             )
           ) : null}
 
-          <div className="max-w-3xl mx-auto">
+          <div>
              {resource.pages && resource.pages.length > 0 ? (
-               <div className="flex flex-col gap-8 w-full max-w-4xl mx-auto items-center py-6">
+               <div className="flex flex-col gap-6 w-full items-center py-2">
                  {resource.pages.map((url: string, index: number) => (
-                   <div key={index} className="w-full relative shadow-lg rounded-2xl overflow-hidden border border-gray-200/50 bg-white">
+                   <div key={index} className="w-full relative bg-white">
                      <img 
                        src={url} 
                        alt={`Page ${index + 1}`} 
-                       className="w-full h-auto object-contain max-h-[85vh] mx-auto select-none"
+                       className="w-full h-auto block select-none"
                        draggable={false}
                      />
                      <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full select-none">
@@ -168,12 +168,32 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                    </div>
                  ))}
                </div>
-             ) : (
-               typeof resource.body === 'object' && resource.body ? (
-                  <PortableText value={resource.body} components={ptComponents} />
+             ) : resource.fileUrl ? (
+               resource.fileUrl.toLowerCase().endsWith('.pdf') ? (
+                 <div className="w-full py-2">
+                   <iframe 
+                     src={resource.fileUrl} 
+                     className="w-full h-[85vh] border-none rounded-2xl shadow-sm bg-white" 
+                     title={resource.title}
+                   />
+                 </div>
                ) : (
-                  <p className="text-lg text-[#051F20]/80 leading-relaxed font-medium">{resource.description || resource.body}</p>
+                 <div className="w-full relative bg-white py-2">
+                   <img 
+                     src={resource.fileUrl} 
+                     alt={resource.title} 
+                     className="w-full h-auto block select-none"
+                   />
+                 </div>
                )
+             ) : (
+               <div className="max-w-3xl mx-auto">
+                 {typeof resource.body === 'object' && resource.body ? (
+                    <PortableText value={resource.body} components={ptComponents} />
+                 ) : (
+                    <p className="text-lg text-[#051F20]/80 leading-relaxed font-medium">{resource.description || resource.body}</p>
+                 )}
+               </div>
              )}
           </div>
 
