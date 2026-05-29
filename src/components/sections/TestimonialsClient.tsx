@@ -130,7 +130,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                       {t.testimonialImage ? (
                         <div className="flex-1 w-full aspect-square relative overflow-hidden bg-black/[0.02]">
                           <img 
-                            src={urlFor(t.testimonialImage).fit('max').url()} 
+                            src={urlFor(t.testimonialImage as any).fit('max').url()} 
                             alt={`Testimonial from ${t.name}`}
                             className="w-full h-full object-contain"
                           />
@@ -154,7 +154,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                       <div className="pt-6 border-t border-[#1DA756] relative z-10 flex items-center gap-4">
                         {t.avatar?.asset ? (
                           <img 
-                            src={urlFor(t.avatar).fit('max').width(80).height(80).url()} 
+                            src={urlFor(t.avatar as any).fit('max').width(80).height(80).url()} 
                             alt={t.name} 
                             className="w-10 h-10 rounded-full object-cover border border-black/5"
                           />
