@@ -50,50 +50,51 @@ export default async function Home() {
       </section>
 
       {/* 1. About Us / Signet Introduction Section (Outside container, full bleed) */}
-      <div className="bg-[#1E3D1E] w-full border-y border-[#EFF3F4]/10">
+      <div className="bg-[#D8DAD7] w-full border-y border-gray-250/20">
         <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24">
           <Introduction />
         </div>
       </div>
 
-      {/* Content wrapper */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-16 md:space-y-24 py-16 md:py-24">
-        {/* 2. Custom Transform Your Life Section (Floated layout on all screens) */}
-        <section className="relative py-12 bg-transparent overflow-hidden">
-          {/* Heading & Dashed Line */}
-          <div className="mb-8">
-            <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#1E6B3A] mb-2 block">
-              EMPOWER. GROW. LEAD.
-            </span>
-            <h2 className="text-2xl sm:text-4xl md:text-6xl font-extrabold text-[#0F172A] font-sans">
-              Transform Your Life, <br />
-              Transform Your Future.
-            </h2>
-            <div className="w-full border-t border-dashed border-[#EDEDED] mt-4" />
-          </div>
-
-          {/* Floating image and wrapping text container */}
-          <div className="flow-root font-sans text-[#0F172A]/85 text-base sm:text-lg md:text-xl leading-relaxed font-normal">
-            {/* Paragraph 1 - Spans full width on mobile because it's before the floated image */}
-            <p className="mb-6">
-              A <strong className="font-extrabold text-[#1E6B3A]">12-month high-impact journey</strong> with <span className="font-bold text-[#1E6B3A]">ambitious leaders</span> unlocking <span className="font-bold text-[#1E6B3A]">unmatched growth</span>.
-            </p>
-
-            {/* Floated Image - Restructured to sit after Paragraph 1 and float right of Paragraph 2 */}
-            <div className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[195px] h-[195px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
-              <img
-                src="/hero_collage.png"
-                alt="SIGNET Journey"
-                className="w-full h-full object-cover"
-              />
+      {/* 2. Transform Your Life Section (Outside container, full bleed with dark green bg) */}
+      <div className="bg-[#1E3D1E] w-full border-y border-[#EFF3F4]/10 text-white">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24">
+          <section className="relative bg-transparent overflow-hidden">
+            {/* Heading & Dashed Line */}
+            <div className="mb-8">
+              <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#DAF1DE] mb-2 block">
+                EMPOWER. GROW. LEAD.
+              </span>
+              <h2 className="text-2xl sm:text-4xl md:text-6xl font-extrabold text-white font-sans">
+                Transform Your Life, <br />
+                Transform Your Future.
+              </h2>
+              <div className="w-full border-t border-dashed border-white/10 mt-4" />
             </div>
 
-            {/* Paragraph 2 - Wraps around the floated image */}
-            <p className="mb-6">
-              Together, we focus on building <span className="font-bold text-[#1E6B3A]">leadership capacity</span> and creating a <em className="italic font-bold text-[#1E6B3A]">lasting impact</em>.
-            </p>
-          </div>
-        </section>
+            {/* Floating image and wrapping text container */}
+            <div className="flow-root font-sans text-white/80 text-base sm:text-lg md:text-xl leading-relaxed font-normal">
+              {/* Paragraph 1 */}
+              <p className="mb-6">
+                A <strong className="font-extrabold text-[#DAF1DE]">12-month high-impact journey</strong> with <span className="font-bold text-[#DAF1DE]">ambitious leaders</span> unlocking <span className="font-bold text-[#DAF1DE]">unmatched growth</span>.
+              </p>
+
+              {/* Floated Image */}
+              <div className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[195px] h-[195px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
+                <img
+                  src="/hero_collage.png"
+                  alt="SIGNET Journey"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Paragraph 2 */}
+              <p className="mb-6">
+                Together, we focus on building <span className="font-bold text-[#DAF1DE]">leadership capacity</span> and creating a <em className="italic font-bold text-[#DAF1DE]">lasting impact</em>.
+              </p>
+            </div>
+          </section>
+        </div>
       </div>
 
       {/* 2.5. Program Structure Section (Outside container, full bleed) */}
