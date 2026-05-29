@@ -50,7 +50,7 @@ export default async function Home() {
       </section>
 
       {/* 1. About Us / Signet Introduction Section (Outside container, full bleed) */}
-      <div className="bg-[#D8DAD7] w-full border-y border-gray-250/20">
+      <div className="bg-[#FAFAF8] w-full border-y border-gray-150/40">
         <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24">
           <Introduction />
         </div>
