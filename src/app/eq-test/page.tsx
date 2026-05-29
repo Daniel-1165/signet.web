@@ -246,7 +246,6 @@ export default function EQAssessment() {
     const lowestDims = [...dims].sort((a,b) => results.finalDimScores[a] - results.finalDimScores[b]).slice(0, 2);
 
     return (
-    return (
       <div className={`min-h-screen bg-gradient-to-tr from-[#ECFDF5]/30 via-white to-white text-[#022C22] ${dmSans.variable} ${dmSerif.variable} font-sans py-24`}>
         <div className="max-w-5xl mx-auto px-6">
           
