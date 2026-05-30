@@ -75,7 +75,7 @@ export default function Introduction() {
         {/* ========================================================================= */}
         {/* DESKTOP VIEW (Hidden on mobile)                                          */}
         {/* ========================================================================= */}
-        <div className="hidden md:block md:max-w-[50%] lg:max-w-[55%] relative z-10">
+        <div className="hidden md:block md:max-w-[45%] lg:max-w-[48%] relative z-10">
           {/* Heading & Dashed Line */}
           <div className="mb-4">
             <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-black mb-1 block">
