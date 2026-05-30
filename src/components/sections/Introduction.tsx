@@ -25,33 +25,32 @@ export default function Introduction() {
         {/* MOBILE VIEW (Hidden on desktop)                                           */}
         {/* ========================================================================= */}
         <div className="block md:hidden space-y-6">
-          {/* Logo of Signet on Top Left */}
-          <div className="flex justify-start">
-            <img 
-              src="/signet-brand-logo.svg" 
-              alt="Signet Logo" 
-              className="h-8 w-auto object-contain" 
-            />
-          </div>
-
           {/* Heading */}
           <div>
-            <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#1E6B3A] mb-1 block">
+            <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-black mb-1 block">
               About Us
             </span>
-            <h2 className="text-4xl font-extrabold text-[#0B2B26] font-sans">
+            <h2 className="text-2xl font-extrabold text-black font-sans">
               SIGNET
             </h2>
-            <div className="w-full border-t border-dashed border-[#0B2B26]/10 mt-2" />
+            <div className="w-full border-t border-dashed border-black/10 mt-2" />
           </div>
 
-          {/* Mobile Image just below SIGNET text with Learn More button on it */}
-          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-black/5 bg-gray-100">
+          {/* Mobile Image just below SIGNET text with Learn More button and Logo on top of it */}
+          <div className="relative w-full aspect-[4/3] rounded-none overflow-hidden shadow-lg border border-black/5 bg-gray-100">
             <img 
               src="/about_us_mobile.jpg" 
               alt="Silent Growth Network Mentorship" 
               className="w-full h-full object-cover" 
             />
+            {/* Logo on top left of the image */}
+            <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-2 py-1.5 rounded-lg shadow-sm border border-white/20">
+              <img 
+                src="/signet-brand-logo.svg" 
+                alt="Signet Logo" 
+                className="h-5 w-auto object-contain" 
+              />
+            </div>
             {/* Learn More Button on top of the image */}
             <div className="absolute bottom-4 right-4 z-10">
               <Link href="/features">
@@ -63,12 +62,12 @@ export default function Introduction() {
           </div>
 
           {/* Paragraphs below the image */}
-          <div className="font-sans text-gray-800 text-base leading-relaxed font-normal space-y-4">
+          <div className="font-sans text-black text-base leading-relaxed font-normal space-y-4">
             <p>
-              <strong className="font-extrabold text-[#0B2B26]">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-[#1E6B3A]">personal development</span>, <span className="font-bold text-[#1E6B3A]">leadership development</span> and inculcation of <span className="font-bold text-[#1E6B3A]">essential life skills</span> in people, turning them into <span className="font-bold text-[#1E6B3A]">extraordinary leaders</span>.
+              <strong className="font-extrabold text-black">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-black">personal development</span>, <span className="font-bold text-black">leadership development</span> and inculcation of <span className="font-bold text-black">essential life skills</span> in people, turning them into <span className="font-bold text-black">extraordinary leaders</span>.
             </p>
             <p>
-              With a special interest in young people, we believe in <span className="font-bold text-[#1E6B3A]">noiseless organic growth</span>, which translates to results that are <span className="font-bold text-[#1E6B3A]">loud and sustainable</span>.
+              With a special interest in young people, we believe in <span className="font-bold text-black">noiseless organic growth</span>, which translates to results that are <span className="font-bold text-black">loud and sustainable</span>.
             </p>
           </div>
         </div>
@@ -79,22 +78,22 @@ export default function Introduction() {
         <div className="hidden md:block md:max-w-[50%] lg:max-w-[55%] relative z-10">
           {/* Heading & Dashed Line */}
           <div className="mb-4">
-            <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#1E6B3A] mb-1 block">
+            <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-black mb-1 block">
               About Us
             </span>
-            <h2 className="text-4xl md:text-6xl font-extrabold text-[#0B2B26] font-sans">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-black font-sans">
               SIGNET
             </h2>
-            <div className="w-full border-t border-dashed border-[#0B2B26]/10 mt-2" />
+            <div className="w-full border-t border-dashed border-black/10 mt-2" />
           </div>
 
           {/* Text and Button container */}
-          <div className="font-sans text-gray-800 text-base sm:text-lg md:text-xl leading-relaxed font-normal">
+          <div className="font-sans text-black text-base sm:text-lg md:text-xl leading-relaxed font-normal">
             <p className="mb-6">
-              <strong className="font-extrabold text-[#0B2B26]">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-[#1E6B3A]">personal development</span>, <span className="font-bold text-[#1E6B3A]">leadership development</span> and inculcation of <span className="font-bold text-[#1E6B3A]">essential life skills</span> in people, turning them into <span className="font-bold text-[#1E6B3A]">extraordinary leaders</span>.
+              <strong className="font-extrabold text-black">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-black">personal development</span>, <span className="font-bold text-black">leadership development</span> and inculcation of <span className="font-bold text-black">essential life skills</span> in people, turning them into <span className="font-bold text-black">extraordinary leaders</span>.
             </p>
             <p className="mb-6">
-              With a special interest in young people, we believe in <span className="font-bold text-[#1E6B3A]">noiseless organic growth</span>, which translates to results that are <span className="font-bold text-[#1E6B3A]">loud and sustainable</span>.
+              With a special interest in young people, we believe in <span className="font-bold text-black">noiseless organic growth</span>, which translates to results that are <span className="font-bold text-black">loud and sustainable</span>.
             </p>
             <div className="pt-4">
               <Link href="/features">
