@@ -1,15 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
-// Public routes — no auth required
 const isPublicRoute = createRouteMatcher([
   '/',
-  '/features(.*)',
-  '/resources(.*)',
-  '/eq-test(.*)',
-  '/iq-test(.*)',
-  '/vision-guide(.*)',
-  '/join(.*)',
-  '/contact(.*)',
   '/api/public/(.*)',
   '/studio(.*)',
 ])

@@ -2,14 +2,32 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useUser, SignInButton } from "@clerk/nextjs";
-import { Mail, Instagram, Twitter, Linkedin, ArrowRight, MapPin, Phone } from "lucide-react";
+import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
+import { useSupabaseClient } from "@/lib/supabase/client";
+import { Mail, Instagram, Twitter, Linkedin, ArrowRight, MapPin, Phone, Shield } from "lucide-react";
 
 const Footer = () => {
     const { user, isSignedIn, isLoaded } = useUser();
+    const supabase = useSupabaseClient();
+    const [isAdmin, setIsAdmin] = useState(false);
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [message, setMessage] = useState("");
+
+    useEffect(() => {
+        if (user) {
+            supabase
+                .from("profiles")
+                .select("role")
+                .eq("id", user.id)
+                .single()
+                .then(({ data }) => {
+                    if (data?.role === "admin") setIsAdmin(true);
+                });
+        } else {
+            setIsAdmin(false);
+        }
+    }, [user, supabase]);
 
     // Automatically pre-fill the email when Clerk loads the user info
     useEffect(() => {
@@ -182,6 +200,25 @@ const Footer = () => {
                     <p className="text-[10px] font-bold text-[#6E7A67]/40 uppercase tracking-[0.2em]">
                         © {new Date().getFullYear()} Silent Growth Network.
                     </p>
+
+                    {isLoaded && isSignedIn && (
+                        <div className="md:hidden flex flex-wrap items-center justify-center gap-3 my-1">
+                            {isAdmin && (
+                                <Link 
+                                    href="/dashboard/admin" 
+                                    className="px-4 py-2 bg-[#1E6B3A]/10 border border-[#1E6B3A]/20 text-[#1E6B3A] rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#1E6B3A] hover:text-white transition-all flex items-center gap-1.5"
+                                >
+                                    <Shield className="w-3.5 h-3.5" /> Admin Panel
+                                </Link>
+                            )}
+                            <SignOutButton>
+                                <button className="px-4 py-2 bg-red-600/10 border border-red-600/20 text-red-600 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all">
+                                    Sign Out
+                                </button>
+                            </SignOutButton>
+                        </div>
+                    )}
+
                     <div className="flex items-center gap-4 text-[10px] font-black text-[#1D1914] uppercase tracking-widest">
                         <span>Established in Silence</span>
                         <div className="w-1 h-1 rounded-full bg-[#6E7A67]" />

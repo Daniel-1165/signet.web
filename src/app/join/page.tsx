@@ -3,10 +3,21 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, CheckCircle2, Shield, Zap, Globe, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export default function JoinPage() {
+    const { isSignedIn, isLoaded } = useUser();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (isLoaded && isSignedIn) {
+            router.replace("/dashboard");
+        }
+    }, [isLoaded, isSignedIn, router]);
+
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         name: "",

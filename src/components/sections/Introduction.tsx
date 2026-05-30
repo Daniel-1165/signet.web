@@ -15,8 +15,9 @@ export default function Introduction() {
         <img 
           src="/about_us_bg.png" 
           alt="" 
-          className="w-full h-full object-cover object-right" 
+          className="w-full h-full object-cover object-right opacity-40" 
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAFAF8] via-[#FAFAF8]/40 to-transparent" />
       </div>
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 relative z-10">
