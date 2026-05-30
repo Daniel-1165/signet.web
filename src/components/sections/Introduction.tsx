@@ -8,7 +8,7 @@ export default function Introduction() {
   return (
     <section 
       id="about-us" 
-      className="relative bg-[#FAFAF8] w-full border-y border-gray-150/40 py-12 md:py-24 overflow-hidden"
+      className="relative bg-[#FAFAF8] w-full border-t border-gray-150/40 py-12 md:py-24 overflow-hidden"
     >
       {/* Background Image (Desktop only) */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none hidden md:block">

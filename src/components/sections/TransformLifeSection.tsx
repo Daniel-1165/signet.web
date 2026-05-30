@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function TransformLifeSection() {
   return (
-    <div className="bg-white w-full border-y border-gray-150/40 text-slate-800">
+    <div className="bg-white w-full text-slate-800">
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24">
         <motion.section 
           initial={{ opacity: 0, y: 35 }}

@@ -55,7 +55,7 @@ export default async function Home() {
       <TransformLifeSection />
 
       {/* 2.5. Program Structure Section (Outside container, full bleed) */}
-      <div className="bg-white w-full border-y border-gray-100">
+      <div className="bg-white w-full">
         <ProgramStructure />
       </div>
 
