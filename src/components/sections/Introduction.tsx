@@ -62,7 +62,7 @@ export default function Introduction() {
           </div>
 
           {/* Paragraphs below the image */}
-          <div className="font-sans text-black text-base leading-relaxed font-normal space-y-4">
+          <div className="font-sans text-black text-sm leading-relaxed font-normal space-y-4">
             <p>
               <strong className="font-extrabold text-black">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-black">personal development</span>, <span className="font-bold text-black">leadership development</span> and inculcation of <span className="font-bold text-black">essential life skills</span> in people, turning them into <span className="font-bold text-black">extraordinary leaders</span>.
             </p>
@@ -88,7 +88,7 @@ export default function Introduction() {
           </div>
 
           {/* Text and Button container */}
-          <div className="font-sans text-black text-base sm:text-lg md:text-xl leading-relaxed font-normal">
+          <div className="font-sans text-black text-sm sm:text-base md:text-lg leading-relaxed font-normal">
             <p className="mb-6">
               <strong className="font-extrabold text-black">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-black">personal development</span>, <span className="font-bold text-black">leadership development</span> and inculcation of <span className="font-bold text-black">essential life skills</span> in people, turning them into <span className="font-bold text-black">extraordinary leaders</span>.
             </p>
