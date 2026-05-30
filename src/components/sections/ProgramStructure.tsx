@@ -18,7 +18,7 @@ export default function ProgramStructure() {
   return (
     <section 
       id="program-structure" 
-      className="relative bg-white overflow-hidden py-16 md:py-24 px-4 md:px-10"
+      className="relative bg-white overflow-hidden py-12 md:py-16 px-4 md:px-10"
       style={{ fontFamily: "'Melbourne', sans-serif" }}
     >
       {/* Background Image / Illustration */}
@@ -27,13 +27,13 @@ export default function ProgramStructure() {
         <img 
           src="/program_structure.png" 
           alt="" 
-          className="hidden md:block w-full h-full object-cover opacity-95 brightness-[0.85] contrast-[1.05]" 
+          className="hidden md:block w-full h-full object-cover opacity-30 brightness-[0.95] contrast-[1.02]" 
         />
         {/* Mobile Background Image (Full-bleed, object-cover, added below the first) */}
         <img 
           src="/program_structure_mobile.png" 
           alt="" 
-          className="block md:hidden w-full h-full object-cover opacity-100" 
+          className="block md:hidden w-full h-full object-cover opacity-35" 
         />
       </div>
 
@@ -44,7 +44,7 @@ export default function ProgramStructure() {
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EAF4EC] text-[#1E6B3A] text-[10px] font-black uppercase tracking-widest mb-3">
             <LayoutGrid className="w-3 h-3" /> Program Overview
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B2B26] tracking-tight font-sans relative inline-block">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black tracking-tight font-sans relative inline-block">
             Program Structure
             <div className="absolute -bottom-3 left-0 w-12 h-1 bg-[#1E6B3A] rounded-full" />
           </h2>
@@ -55,7 +55,7 @@ export default function ProgramStructure() {
           
           {/* Left Column: Levels Timeline */}
           <div className="w-full md:w-[50%] space-y-6">
-            <p className="text-base sm:text-lg text-gray-700 font-bold mb-8">
+            <p className="text-base sm:text-lg text-black font-bold mb-8">
               In the course of this mentorship program,
             </p>
 
@@ -78,10 +78,10 @@ export default function ProgramStructure() {
                     <Users className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-[#0B2B26] mb-2">
+                    <h3 className="text-lg font-black text-black mb-2">
                       Level 1: Group Mentoring
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                    <p className="text-sm text-black leading-relaxed font-medium">
                       You will be required to attend <InteractiveWord>live classes/webinars</InteractiveWord> where the topics in the <InteractiveWord>curriculum</InteractiveWord> will be taught by the <InteractiveWord>Lead Mentor</InteractiveWord>.
                     </p>
                   </div>
@@ -104,10 +104,10 @@ export default function ProgramStructure() {
                     <UserPlus className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-[#4c1d95] mb-2">
+                    <h3 className="text-lg font-black text-black mb-2">
                       Level 2: Peer Mentoring
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                    <p className="text-sm text-black leading-relaxed font-medium">
                       You will be divided into <InteractiveWord>sub-teams</InteractiveWord> where you will interact with other <InteractiveWord>mentees</InteractiveWord> and learn together on your <InteractiveWord>growth journey</InteractiveWord>.
                     </p>
                   </div>
@@ -130,10 +130,10 @@ export default function ProgramStructure() {
                     <UserCheck className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-[#1e3a8a] mb-2">
+                    <h3 className="text-lg font-black text-black mb-2">
                       Level 3: Personalized Mentoring
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                    <p className="text-sm text-black leading-relaxed font-medium">
                       You will have the privilege of interacting <InteractiveWord>directly with the Mentor(s)</InteractiveWord> for <InteractiveWord>personalized help</InteractiveWord> and <InteractiveWord>support</InteractiveWord>.
                     </p>
                   </div>
