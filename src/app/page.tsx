@@ -99,9 +99,7 @@ export default async function Home() {
 
       {/* 2.5. Program Structure Section (Outside container, full bleed) */}
       <div className="bg-white w-full border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-10">
-          <ProgramStructure />
-        </div>
+        <ProgramStructure />
       </div>
 
       {/* 3. Program Section (Outside the main container) */}

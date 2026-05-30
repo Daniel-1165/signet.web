@@ -98,7 +98,7 @@ export default function PostDetail({ post }: PostDetailProps) {
               <span>{new Date(post.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black text-[#051F20] leading-[1.1] tracking-tighter mb-8 bg-gradient-to-br from-[#051F20] to-[#163832] bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#051F20] leading-[1.1] tracking-tighter mb-8 bg-gradient-to-br from-[#051F20] to-[#163832] bg-clip-text text-transparent">
               {post.title}
             </h1>
 

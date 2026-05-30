@@ -18,15 +18,22 @@ export default function ProgramStructure() {
   return (
     <section 
       id="program-structure" 
-      className="relative bg-white overflow-hidden py-16 md:py-24"
+      className="relative bg-white overflow-hidden py-16 md:py-24 px-4 md:px-10"
       style={{ fontFamily: "'Melbourne', sans-serif" }}
     >
       {/* Background Image / Illustration */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-35 md:opacity-50 flex items-center justify-center md:justify-end">
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        {/* Desktop Background Image (Full-bleed, object-cover) */}
         <img 
           src="/program_structure.png" 
           alt="" 
-          className="w-full md:w-[55%] h-full md:h-[85%] object-contain object-center md:object-right brightness-[0.85] contrast-[1.05]" 
+          className="hidden md:block w-full h-full object-cover opacity-95 brightness-[0.85] contrast-[1.05]" 
+        />
+        {/* Mobile Background Image (Full-bleed, object-cover, added below the first) */}
+        <img 
+          src="/program_structure_mobile.png" 
+          alt="" 
+          className="block md:hidden w-full h-full object-cover opacity-100" 
         />
       </div>
 
