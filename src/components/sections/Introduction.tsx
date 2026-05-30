@@ -25,7 +25,13 @@ export default function Introduction() {
         {/* ========================================================================= */}
         {/* MOBILE VIEW (Hidden on desktop)                                           */}
         {/* ========================================================================= */}
-        <div className="block md:hidden space-y-6">
+        <motion.div 
+          className="block md:hidden space-y-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.8 }}
+        >
           {/* Heading */}
           <div>
             <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-black mb-1 block">
@@ -71,12 +77,18 @@ export default function Introduction() {
               With a special interest in young people, we believe in <span className="font-bold text-black">noiseless organic growth</span>, which translates to results that are <span className="font-bold text-black">loud and sustainable</span>.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* ========================================================================= */}
         {/* DESKTOP VIEW (Hidden on mobile)                                          */}
         {/* ========================================================================= */}
-        <div className="hidden md:block md:max-w-[45%] lg:max-w-[48%] relative z-10">
+        <motion.div 
+          className="hidden md:block md:max-w-[45%] lg:max-w-[48%] relative z-10"
+          initial={{ opacity: 0, x: -35 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.8 }}
+        >
           {/* Heading & Dashed Line */}
           <div className="mb-4">
             <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-black mb-1 block">
@@ -104,7 +116,7 @@ export default function Introduction() {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

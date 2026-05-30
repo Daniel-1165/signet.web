@@ -201,30 +201,29 @@ const Footer = () => {
                         © {new Date().getFullYear()} Silent Growth Network.
                     </p>
 
-                    {isLoaded && isSignedIn && (
-                        <div className="md:hidden flex flex-wrap items-center justify-center gap-3 my-1">
-                            {isAdmin && (
-                                <Link 
-                                    href="/dashboard/admin" 
-                                    className="px-4 py-2 bg-[#1E6B3A]/10 border border-[#1E6B3A]/20 text-[#1E6B3A] rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#1E6B3A] hover:text-white transition-all flex items-center gap-1.5"
-                                >
-                                    <Shield className="w-3.5 h-3.5" /> Admin Panel
-                                </Link>
-                            )}
-                            <SignOutButton>
-                                <button className="px-4 py-2 bg-red-600/10 border border-red-600/20 text-red-600 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all">
-                                    Sign Out
-                                </button>
-                            </SignOutButton>
-                        </div>
-                    )}
-
                     <div className="flex items-center gap-4 text-[10px] font-black text-[#1D1914] uppercase tracking-widest">
                         <span>Established in Silence</span>
                         <div className="w-1 h-1 rounded-full bg-[#6E7A67]" />
                         <span>Architected for Growth</span>
                     </div>
                 </div>
+
+                {/* Mobile-only Sign Out & Admin text links as the absolute last thing in the footer */}
+                {isLoaded && isSignedIn && (
+                    <div className="md:hidden flex items-center justify-center gap-4 mt-6 pt-4 border-t border-[#D8CEBE]/10 text-[10px] font-bold tracking-wider text-[#6E7A67]/60">
+                        {isAdmin && (
+                            <Link href="/dashboard/admin" className="hover:text-[#1E6B3A] transition-colors flex items-center gap-1">
+                                <Shield className="w-3 h-3" /> Admin Panel
+                            </Link>
+                        )}
+                        {isAdmin && <span className="w-1 h-1 rounded-full bg-[#D8CEBE]/40" />}
+                        <SignOutButton>
+                            <button className="hover:text-red-600 transition-colors uppercase font-bold tracking-wider">
+                                Sign Out
+                            </button>
+                        </SignOutButton>
+                    </div>
+                )}
             </div>
         </footer>
     );
