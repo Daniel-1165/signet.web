@@ -74,8 +74,13 @@ const Navbar = () => {
         .eq("id", user.id)
         .single()
         .then(({ data }) => {
-          if (data?.role === "admin") setIsAdmin(true);
+          setIsAdmin(data?.role === "admin");
+        })
+        .catch(() => {
+          setIsAdmin(false);
         });
+    } else {
+      setIsAdmin(false);
     }
   }, [user, supabase]);
 

@@ -22,7 +22,10 @@ const Footer = () => {
                 .eq("id", user.id)
                 .single()
                 .then(({ data }) => {
-                    if (data?.role === "admin") setIsAdmin(true);
+                    setIsAdmin(data?.role === "admin");
+                })
+                .catch(() => {
+                    setIsAdmin(false);
                 });
         } else {
             setIsAdmin(false);
@@ -208,17 +211,17 @@ const Footer = () => {
                     </div>
                 </div>
 
-                {/* Mobile-only Sign Out & Admin text links as the absolute last thing in the footer */}
+                {/* Sign Out & Admin text links as the absolute last thing in the footer */}
                 {isLoaded && isSignedIn && (
-                    <div className="md:hidden flex items-center justify-center gap-4 mt-6 pt-4 border-t border-[#D8CEBE]/10 text-[10px] font-bold tracking-wider text-[#6E7A67]/60">
+                    <div className="flex items-center justify-center gap-4 mt-6 pt-4 border-t border-[#D8CEBE]/20 text-[10px] font-bold tracking-wider text-[#6E7A67]">
                         {isAdmin && (
-                            <Link href="/dashboard/admin" className="hover:text-[#1E6B3A] transition-colors flex items-center gap-1">
-                                <Shield className="w-3 h-3" /> Admin Panel
+                            <Link href="/dashboard/admin" className="text-[#1E6B3A] hover:text-[#0B3D2E] transition-colors flex items-center gap-1 uppercase">
+                                <Shield className="w-3.5 h-3.5 stroke-[2.5px]" /> Admin Panel
                             </Link>
                         )}
-                        {isAdmin && <span className="w-1 h-1 rounded-full bg-[#D8CEBE]/40" />}
+                        {isAdmin && <span className="w-1.5 h-1.5 rounded-full bg-[#D8CEBE]" />}
                         <SignOutButton>
-                            <button className="hover:text-red-600 transition-colors uppercase font-bold tracking-wider">
+                            <button className="text-red-700 hover:text-red-500 transition-colors uppercase font-bold tracking-wider cursor-pointer">
                                 Sign Out
                             </button>
                         </SignOutButton>
