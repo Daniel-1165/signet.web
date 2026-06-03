@@ -57,9 +57,29 @@ export default function AdminHubPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 8
 
+  interface DBCertificate {
+    id: string
+    username: string
+    email: string
+    course_name: string
+    file_url: string
+    issue_date: string
+    created_at: string
+  }
+
+  const [dbCertificates, setDbCertificates] = useState<DBCertificate[]>([])
+  const [loadingCerts, setLoadingCerts] = useState(true)
+  const [certUsername, setCertUsername] = useState('')
+  const [certEmail, setCertEmail] = useState('')
+  const [certCourse, setCertCourse] = useState('Silent Growth Network Cohort 1')
+  const [certDate, setCertDate] = useState(new Date().toISOString().split('T')[0])
+  const [certFile, setCertFile] = useState<File | null>(null)
+  const [uploadingCert, setUploadingCert] = useState(false)
+
   useEffect(() => {
     if (isAdmin) {
       fetchSubscribers()
+      fetchCertificates()
     }
   }, [isAdmin])
 
@@ -77,6 +97,106 @@ export default function AdminHubPage() {
       console.error('Error fetching subscribers:', err)
     } finally {
       setLoadingSubscribers(false)
+    }
+  }
+
+  const fetchCertificates = async () => {
+    try {
+      setLoadingCerts(true)
+      const { data, error } = await supabase
+        .from('certificates')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (!error && data) {
+        setDbCertificates(data)
+      } else {
+        console.error('Error fetching certificates:', error)
+      }
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoadingCerts(false)
+    }
+  }
+
+  const handleAddCertificate = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!certUsername.trim() || !certEmail.trim() || !certCourse.trim() || !certFile) {
+      setStatus({ type: 'error', message: 'All certificate fields are required.' })
+      return
+    }
+
+    setUploadingCert(true)
+    setStatus({ type: 'idle', message: '' })
+
+    try {
+      // 1. Upload file to Supabase Storage in 'post-images' bucket
+      const fileExt = certFile.name.split('.').pop()
+      const fileName = `certificate-${Date.now()}.${fileExt}`
+      
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('post-images')
+        .upload(fileName, certFile)
+
+      if (uploadError) {
+        throw new Error('Failed to upload file to Supabase storage: ' + uploadError.message)
+      }
+
+      // 2. Get public URL of the uploaded file
+      const { data: { publicUrl } } = supabase.storage
+        .from('post-images')
+        .getPublicUrl(fileName)
+
+      // 3. Insert record into Supabase certificates table
+      const { error: insertError } = await supabase
+        .from('certificates')
+        .insert({
+          username: certUsername.trim(),
+          email: certEmail.trim(),
+          course_name: certCourse.trim(),
+          file_url: publicUrl,
+          issue_date: certDate ? new Date(certDate).toISOString() : new Date().toISOString()
+        })
+
+      if (insertError) {
+        throw new Error('Failed to insert certificate into database: ' + insertError.message)
+      }
+
+      setStatus({ type: 'success', message: 'Certificate successfully created!' })
+      setCertUsername('')
+      setCertEmail('')
+      setCertFile(null)
+      
+      const fileInput = document.getElementById('certFile') as HTMLInputElement
+      if (fileInput) fileInput.value = ''
+      
+      fetchCertificates()
+    } catch (err: any) {
+      console.error(err)
+      setStatus({ type: 'error', message: err.message || 'An error occurred while creating certificate.' })
+    } finally {
+      setUploadingCert(false)
+    }
+  }
+
+  const handleDeleteCertificate = async (certId: string) => {
+    if (!confirm('Are you sure you want to delete this certificate?')) return
+
+    try {
+      const { error } = await supabase
+        .from('certificates')
+        .delete()
+        .eq('id', certId)
+
+      if (error) {
+        setStatus({ type: 'error', message: 'Failed to delete certificate: ' + error.message })
+      } else {
+        setStatus({ type: 'success', message: 'Certificate deleted successfully.' })
+        fetchCertificates()
+      }
+    } catch (err) {
+      console.error(err)
+      setStatus({ type: 'error', message: 'An error occurred.' })
     }
   }
 
@@ -211,23 +331,6 @@ export default function AdminHubPage() {
            </h1>
            <p className="text-[#0F172A]/60 text-[14px] font-semibold mt-2">Platform Governance & Infrastructure Control</p>
         </div>
-        
-        <div className="flex items-center gap-4">
-          <div className="bg-white border border-[#EDEDED] rounded-2xl px-6 py-4 shadow-sm">
-            <div className="flex items-center gap-2 mb-1">
-              <Users size={12} className="text-[#1E6B3A]/60" />
-              <p className="text-[#0F172A]/40 text-[9px] font-bold uppercase tracking-widest">Members</p>
-            </div>
-            <p className="text-xl font-extrabold text-[#0F172A] font-sans">1,284</p>
-          </div>
-          <div className="bg-white border border-[#EDEDED] rounded-2xl px-6 py-4 shadow-sm">
-            <div className="flex items-center gap-2 mb-1">
-              <Activity size={12} className="text-[#1E6B3A]/60" />
-              <p className="text-[#0F172A]/40 text-[9px] font-bold uppercase tracking-widest">Insights</p>
-            </div>
-            <p className="text-xl font-extrabold text-[#0F172A] font-sans">4,821</p>
-          </div>
-        </div>
       </header>
 
       <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
@@ -271,6 +374,141 @@ export default function AdminHubPage() {
               </div>
             )}
           </div>
+
+          {/* Certificates Management Card */}
+          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED]">
+            <div className="flex items-center gap-2 mb-8">
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#1E6B3A]">Credentials Control</span>
+            </div>
+            
+            <h3 className="text-[24px] md:text-[28px] font-extrabold text-[#0F172A] mb-4 font-sans" >
+              Manage Cohort <span className="italic font-light text-[#1E6B3A]">Certificates</span>
+            </h3>
+            <p className="text-[#0F172A]/70 text-[14px] mb-8 max-w-xl leading-relaxed font-medium">
+              Create and manage official digital certificates. Users will be able to retrieve them by entering either their username or email on the public certificates page.
+            </p>
+
+            {/* Add Certificate Form */}
+            <form onSubmit={handleAddCertificate} className="space-y-6 bg-[#FAFAF8] border border-[#EDEDED] p-6 rounded-[1.5rem] mb-10">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#0F172A]/60">Add New Certificate</h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Signet Username</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. daniel_growth"
+                    value={certUsername}
+                    onChange={(e) => setCertUsername(e.target.value)}
+                    className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none focus:border-[#1E6B3A] transition-all font-medium"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Secure Email</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="e.g. daniel@signet.org"
+                    value={certEmail}
+                    onChange={(e) => setCertEmail(e.target.value)}
+                    className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none focus:border-[#1E6B3A] transition-all font-medium"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Cohort/Course Name</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Silent Growth Network Cohort 1"
+                    value={certCourse}
+                    onChange={(e) => setCertCourse(e.target.value)}
+                    className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none focus:border-[#1E6B3A] transition-all font-medium"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Issue Date</label>
+                  <input
+                    type="date"
+                    required
+                    value={certDate}
+                    onChange={(e) => setCertDate(e.target.value)}
+                    className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none focus:border-[#1E6B3A] transition-all font-medium"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Certificate PDF or Image File</label>
+                <input
+                  id="certFile"
+                  type="file"
+                  required
+                  accept="application/pdf,image/*"
+                  onChange={(e) => setCertFile(e.target.files?.[0] || null)}
+                  className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none file:mr-4 file:py-1.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#EAF4EC] file:text-[#1E6B3A] hover:file:bg-[#1E6B3A] hover:file:text-white file:transition-all"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={uploadingCert}
+                className="w-full py-4 bg-[#1E6B3A] hover:bg-[#114B2A] text-white rounded-xl font-bold text-xs uppercase tracking-widest transition-all shadow-md shadow-[#1E6B3A]/20 disabled:opacity-50"
+              >
+                {uploadingCert ? 'Uploading & Creating...' : 'Create Certificate Record'}
+              </button>
+            </form>
+
+            {/* List of Existing Certificates */}
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F172A]/60">Active Certificates ({dbCertificates.length})</h4>
+              
+              {loadingCerts ? (
+                <div className="flex justify-center py-6">
+                  <div className="w-6 h-6 border-2 border-gray-200 border-t-[#1E6B3A] rounded-full animate-spin" />
+                </div>
+              ) : dbCertificates.length === 0 ? (
+                <p className="text-sm text-[#0F172A]/40 font-medium py-4 text-center">No certificates uploaded to Supabase database yet.</p>
+              ) : (
+                <div className="divide-y divide-[#EDEDED] max-h-[300px] overflow-y-auto pr-2 scrollbar-thin">
+                  {dbCertificates.map((cert) => (
+                    <div key={cert.id} className="py-4 flex items-center justify-between gap-4">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-bold text-[#0F172A] truncate">@{cert.username}</p>
+                          <span className="text-[10px] bg-[#EAF4EC]/60 text-[#1E6B3A] px-2 py-0.5 rounded font-semibold truncate max-w-[150px]">{cert.course_name}</span>
+                        </div>
+                        <p className="text-xs text-[#0F172A]/60 font-semibold truncate mt-0.5">{cert.email}</p>
+                      </div>
+                      
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a 
+                          href={cert.file_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="p-2 text-[#0F172A]/40 hover:text-[#1E6B3A] transition-colors"
+                          title="View Certificate"
+                        >
+                          <ExternalLink size={15} />
+                        </a>
+                        <button 
+                          onClick={() => handleDeleteCertificate(cert.id)}
+                          className="p-2 text-[#0F172A]/40 hover:text-red-600 transition-colors"
+                          title="Delete Certificate"
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
           {/* Newsletter Subscribers Spreadsheet Card */}
           <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED] overflow-hidden">

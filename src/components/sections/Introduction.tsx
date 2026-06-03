@@ -1,8 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail, MessageCircle, Instagram, Facebook } from "lucide-react";
 import Link from "next/link";
+
+const contactLinks = [
+  { icon: MessageCircle, href: "https://wa.me/2349032387758?text=Hi%20Signet%20Network%2C%20I%20need%20help%20with...", label: "WhatsApp", color: "hover:bg-[#1E6B3A] hover:text-white" },
+  { icon: Mail, href: "mailto:info@signet.org?subject=Support%20Request", label: "Email", color: "hover:bg-[#1E6B3A] hover:text-white" },
+  { icon: Facebook, href: "https://facebook.com", label: "Facebook", color: "hover:bg-[#1E6B3A] hover:text-white" },
+  { icon: Instagram, href: "https://instagram.com", label: "Instagram", color: "hover:bg-[#1E6B3A] hover:text-white" },
+];
 
 export default function Introduction() {
   return (
@@ -37,7 +44,7 @@ export default function Introduction() {
             <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-black mb-1 block">
               About Us
             </span>
-            <h2 className="text-2xl font-extrabold text-black font-sans">
+            <h2 className="text-2xl font-bold text-black font-sans">
               SIGNET
             </h2>
             <div className="w-full border-t border-dashed border-black/10 mt-2" />
@@ -71,11 +78,30 @@ export default function Introduction() {
           {/* Paragraphs below the image */}
           <div className="font-sans text-black text-sm leading-relaxed font-normal space-y-4">
             <p>
-              <strong className="font-extrabold text-black">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-black">personal development</span>, <span className="font-bold text-black">leadership development</span> and inculcation of <span className="font-bold text-black">essential life skills</span> in people, turning them into <span className="font-bold text-black">extraordinary leaders</span>.
+              <strong className="font-semibold text-black">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-semibold text-black">personal development</span>, <span className="font-semibold text-black">leadership development</span> and inculcation of <span className="font-semibold text-black">essential life skills</span> in people, turning them into <span className="font-semibold text-black">extraordinary leaders</span>.
             </p>
             <p>
-              With a special interest in young people, we believe in <span className="font-bold text-black">noiseless organic growth</span>, which translates to results that are <span className="font-bold text-black">loud and sustainable</span>.
+              With a special interest in young people, we believe in <span className="font-semibold text-black">noiseless organic growth</span>, which translates to results that are <span className="font-semibold text-black">loud and sustainable</span>.
             </p>
+          </div>
+
+          {/* Contact Section for Mobile */}
+          <div className="pt-6 border-t border-dashed border-black/10">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-black/40 mb-2">Connect With Us</p>
+            <div className="flex gap-2">
+              {contactLinks.map((item, i) => (
+                <a 
+                  key={i} 
+                  href={item.href} 
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className={`w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-black/60 bg-white shadow-sm transition-all ${item.color}`}
+                  aria-label={item.label}
+                >
+                  <item.icon size={15} />
+                </a>
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -94,7 +120,7 @@ export default function Introduction() {
             <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-black mb-1 block">
               About Us
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-black font-sans">
+            <h2 className="text-3xl md:text-4xl font-bold text-black font-sans">
               SIGNET
             </h2>
             <div className="w-full border-t border-dashed border-black/10 mt-2" />
@@ -103,17 +129,35 @@ export default function Introduction() {
           {/* Text and Button container */}
           <div className="font-sans text-black text-sm sm:text-base md:text-lg leading-relaxed font-normal">
             <p className="mb-6">
-              <strong className="font-extrabold text-black">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-bold text-black">personal development</span>, <span className="font-bold text-black">leadership development</span> and inculcation of <span className="font-bold text-black">essential life skills</span> in people, turning them into <span className="font-bold text-black">extraordinary leaders</span>.
+              <strong className="font-semibold text-black">Silent Growth Network (SIGNET)</strong> is a capacity building organization committed to <span className="font-semibold text-black">personal development</span>, <span className="font-semibold text-black">leadership development</span> and inculcation of <span className="font-semibold text-black">essential life skills</span> in people, turning them into <span className="font-semibold text-black">extraordinary leaders</span>.
             </p>
             <p className="mb-6">
-              With a special interest in young people, we believe in <span className="font-bold text-black">noiseless organic growth</span>, which translates to results that are <span className="font-bold text-black">loud and sustainable</span>.
+              With a special interest in young people, we believe in <span className="font-semibold text-black">noiseless organic growth</span>, which translates to results that are <span className="font-semibold text-black">loud and sustainable</span>.
             </p>
-            <div className="pt-4">
-              <Link href="/features">
-                <button className="flex items-center gap-3 bg-[#0B2B26] hover:bg-[#1E6B3A] text-white px-8 py-4 rounded-full font-bold text-sm transition-all shadow-md shadow-[#0B2B26]/5">
-                  Learn More <ArrowRight className="w-5 h-5" />
-                </button>
-              </Link>
+
+            {/* Desktop Action & Contact Flex Row */}
+            <div className="flex flex-wrap items-center gap-6 pt-6 mt-6 border-t border-dashed border-black/10">
+              <div className="flex items-center gap-3">
+                <Link href="/features">
+                  <button className="flex items-center gap-3 bg-[#0B2B26] hover:bg-[#1E6B3A] text-white px-7 py-3.5 rounded-full font-bold text-xs transition-all shadow-md shadow-[#0B2B26]/5">
+                    Learn More <ArrowRight className="w-4 h-4" />
+                  </button>
+                </Link>
+              </div>
+              <div className="flex items-center gap-2">
+                {contactLinks.map((item, i) => (
+                  <a 
+                    key={i} 
+                    href={item.href} 
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className={`w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-black/60 bg-white shadow-sm transition-all ${item.color}`}
+                    aria-label={item.label}
+                  >
+                    <item.icon size={15} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>

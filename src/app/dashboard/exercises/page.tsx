@@ -11,7 +11,8 @@ import {
   Clock,
   ArrowRight,
   Headphones,
-  Target
+  Target,
+  Award
 } from "lucide-react";
 import { sanityFetch } from "@/lib/sanity/client";
 import { AudioLecturesSection } from "./AudioLecturesSection";
@@ -111,11 +112,12 @@ export default async function ExercisesPage() {
         </div>
 
         {/* Action Cards Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
            {[
              { title: "EQ Test", duration: "20 Mins", icon: Heart, count: "01", desc: "Develop nuanced emotional resonance through depth-scenarios.", href: "/eq-test" },
              { title: "IQ Test", duration: "45 Mins", icon: Target, count: "02", desc: "Test your cognitive adaptability within high-complexity systems.", href: "/iq-test" },
-             { title: "Vision Blueprint", duration: "Guided", icon: Eye, count: "03", desc: "Align your daily architectural actions with your legacy outcomes.", href: "/vision-guide" }
+             { title: "Vision Blueprint", duration: "Guided", icon: Eye, count: "03", desc: "Align your daily architectural actions with your legacy outcomes.", href: "/vision-guide" },
+             { title: "Certificates", duration: "Cohort", icon: Award, count: "04", desc: "Access and verify your Cohort Certificates of Participation.", href: "/certificates" }
            ].map((test, i) => (
              <div key={i} className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-[#EDEDED] shadow-sm hover:shadow-xl hover:border-[#1E6B3A]/30 transition-all duration-500 flex flex-col group relative">
                 <div className="flex items-center justify-between mb-10">

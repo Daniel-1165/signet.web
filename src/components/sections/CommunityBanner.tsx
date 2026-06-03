@@ -3,8 +3,18 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useUser, SignUpButton } from "@clerk/nextjs";
 
 export default function CommunityBanner() {
+  const { isSignedIn, isLoaded } = useUser();
+
+  const buttonContent = (
+    <span className="group/btn flex items-center justify-center gap-1.5 sm:gap-3 px-4 py-2 sm:px-6 sm:py-3.5 rounded-full border border-white/20 hover:border-white/50 text-white font-semibold text-[10px] sm:text-xs md:text-sm bg-transparent hover:bg-white/5 transition-all text-center font-sans uppercase tracking-wider cursor-pointer">
+      <span>Join the Community</span> 
+      <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1.5 transition-transform duration-300" />
+    </span>
+  );
+
   return (
     <section className="relative py-8 md:py-12 bg-white overflow-hidden">
       <div className="w-full relative z-10">
@@ -31,10 +41,15 @@ export default function CommunityBanner() {
             
             {/* Outline Button on the right */}
             <div className="shrink-0">
-              <Link href="/join" className="group/btn flex items-center justify-center gap-1.5 sm:gap-3 px-4 py-2 sm:px-6 sm:py-3.5 rounded-full border border-white/20 hover:border-white/50 text-white font-semibold text-[10px] sm:text-xs md:text-sm bg-transparent hover:bg-white/5 transition-all text-center font-sans uppercase tracking-wider">
-                <span>Join the Community</span> 
-                <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1.5 transition-transform duration-300" />
-              </Link>
+              {isLoaded && isSignedIn ? (
+                <Link href="/dashboard/community">
+                  {buttonContent}
+                </Link>
+              ) : (
+                <SignUpButton mode="modal">
+                  {buttonContent}
+                </SignUpButton>
+              )}
             </div>
           </div>
 
@@ -44,3 +59,4 @@ export default function CommunityBanner() {
     </section>
   );
 }
+

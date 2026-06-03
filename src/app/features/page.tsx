@@ -1,6 +1,7 @@
 import {
   Calendar, Award, Clock, ArrowRight,
-  Target, Heart, Eye, Flag
+  Target, Heart, Eye, Flag,
+  MessageCircle, Mail, Facebook, Instagram
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import Testimonials from "@/components/sections/Testimonials";
@@ -114,6 +115,38 @@ export default async function FeaturesPage() {
                         />
                     </div>
                     <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#EAF4EC] rounded-full blur-3xl -z-10" />
+                </div>
+            </div>
+        </section>
+
+        {/* ── MINIMAL CONTACT SECTION ──────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-6 md:px-12 pb-16 md:pb-24">
+            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-[#EDEDED] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-8">
+                <div className="space-y-3 max-w-xl">
+                    <span className="text-[10px] font-bold tracking-[0.3em] text-[#1E6B3A] uppercase block font-sans">Reach Out</span>
+                    <h3 className="text-2xl md:text-3xl font-extrabold text-[#0F172A] font-sans">Get in <span className="italic font-light text-[#1E6B3A]">Touch</span></h3>
+                    <p className="text-sm md:text-base text-[#0F172A]/70 leading-relaxed font-sans font-medium">
+                        Have questions about our cohorts, curriculum, or membership? Select your preferred platform to start a conversation with our network support.
+                    </p>
+                </div>
+                <div className="flex flex-wrap items-center gap-3 shrink-0">
+                    {[
+                        { icon: MessageCircle, href: "https://wa.me/2349032387758?text=Hi%20Signet%20Network%2C%20I%20need%20help%20with...", label: "WhatsApp", color: "bg-[#1E6B3A] hover:bg-[#114B2A] text-white" },
+                        { icon: Mail, href: "mailto:info@signet.org?subject=Support%20Request", label: "Email", color: "bg-[#0F172A] hover:bg-black text-white" },
+                        { icon: Facebook, href: "https://facebook.com", label: "Facebook", color: "bg-[#3B5998] hover:bg-[#2d4373] text-white" },
+                        { icon: Instagram, href: "https://instagram.com", label: "Instagram", color: "bg-[#C13584] hover:bg-[#a62c70] text-white" },
+                    ].map((item, i) => (
+                        <a
+                            key={i}
+                            href={item.href}
+                            target={item.href.startsWith("http") ? "_blank" : undefined}
+                            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className={`w-12 h-12 rounded-full flex items-center justify-center transition-all shadow-sm ${item.color}`}
+                            aria-label={item.label}
+                        >
+                            <item.icon size={18} />
+                        </a>
+                    ))}
                 </div>
             </div>
         </section>

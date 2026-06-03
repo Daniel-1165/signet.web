@@ -3,6 +3,11 @@
 import { useState } from "react";
 import { Search, Download, Award } from "lucide-react";
 import { client } from "@/lib/sanity/client";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 interface Certificate {
   username: string;
@@ -19,27 +24,45 @@ export default function CertificatesPage() {
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username.trim()) return;
+    const searchVal = username.trim();
+    if (!searchVal) return;
 
     setLoading(true);
     setError("");
     setCertificate(null);
 
     try {
-      const query = `*[_type == "certificate" && username == $username][0]{
-        username,
-        courseName,
-        issueDate,
-        "fileUrl": certificateFile.asset->url
-      }`;
-      const data = await client.fetch(query, { username: username.trim() });
-      if (data) {
-        setCertificate(data);
+      // 1. Try querying Supabase certificates table
+      const { data: dbData, error: dbError } = await supabase
+        .from("certificates")
+        .select("*")
+        .or(`username.eq."${searchVal}",email.eq."${searchVal}"`)
+        .maybeSingle();
+
+      if (!dbError && dbData) {
+        setCertificate({
+          username: dbData.username,
+          courseName: dbData.course_name,
+          issueDate: dbData.issue_date,
+          fileUrl: dbData.file_url,
+        });
       } else {
-        setError("No certificate found for this username.");
+        // 2. Fall back to querying Sanity if not found in DB
+        const sanityQuery = `*[_type == "certificate" && (username == $searchVal || email == $searchVal)][0]{
+          username,
+          courseName,
+          issueDate,
+          "fileUrl": certificateFile.asset->url
+        }`;
+        const data = await client.fetch(sanityQuery, { searchVal });
+        if (data) {
+          setCertificate(data);
+        } else {
+          setError("No certificate found matching that username or email address.");
+        }
       }
     } catch (err) {
-      console.error(err);
+      console.error("Certificate search error:", err);
       setError("An error occurred while fetching your certificate.");
     } finally {
       setLoading(false);
@@ -58,7 +81,7 @@ export default function CertificatesPage() {
           Your <span className="text-signet-primary">Certificates</span>.
         </h1>
         <p className="text-foreground/60 max-w-lg mx-auto text-lg leading-relaxed">
-          Enter your registered username below to view and download your verified program certificates.
+          Enter your registered username or email below to view and download your verified program certificates.
         </p>
       </div>
 
@@ -66,7 +89,7 @@ export default function CertificatesPage() {
         <form onSubmit={handleSearch} className="space-y-4">
           <div>
             <label htmlFor="username" className="block text-sm font-bold text-foreground mb-2">
-              Signet Username
+              Signet Username or Email
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
@@ -77,7 +100,7 @@ export default function CertificatesPage() {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="e.g. daniel_growth"
+                placeholder="e.g. daniel_growth or user@domain.com"
                 className="w-full pl-12 pr-4 py-4 bg-background border border-black/10 rounded-xl focus:outline-none focus:border-signet-primary/40 focus:ring-1 focus:ring-signet-primary transition-all text-sm font-medium"
                 required
               />
