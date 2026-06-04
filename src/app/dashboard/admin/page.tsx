@@ -509,6 +509,7 @@ export default function AdminHubPage() {
                 </div>
               )}
             </div>
+          </div>
 
           {/* Newsletter Subscribers Spreadsheet Card */}
           <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED] overflow-hidden">
