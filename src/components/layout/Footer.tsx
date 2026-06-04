@@ -4,7 +4,14 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
 import { useSupabaseClient } from "@/lib/supabase/client";
-import { Mail, Instagram, Twitter, Linkedin, ArrowRight, MapPin, Phone, Shield } from "lucide-react";
+import { Mail, Instagram, Twitter, Linkedin, ArrowRight, MapPin, Phone, Shield, MessageCircle, Facebook } from "lucide-react";
+
+const contactLinks = [
+  { icon: MessageCircle, href: "https://wa.me/2349032387758?text=Hi%20Signet%20Network%2C%20I%20need%20help%20with...", label: "WhatsApp" },
+  { icon: Mail, href: "mailto:info@signet.org?subject=Support%20Request", label: "Email" },
+  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+];
 
 const Footer = () => {
     const { user, isSignedIn, isLoaded } = useUser();
@@ -23,8 +30,7 @@ const Footer = () => {
                 .single()
                 .then(({ data }) => {
                     setIsAdmin(data?.role === "admin");
-                })
-                .catch(() => {
+                }, () => {
                     setIsAdmin(false);
                 });
         } else {
@@ -153,10 +159,17 @@ const Footer = () => {
                             The curated ecosystem for high-performers seeking impact over volume.
                         </p>
                         <div className="flex gap-3">
-                            {[Instagram, Twitter, Linkedin].map((Icon, i) => (
-                                <Link key={i} href="#" className="w-8 h-8 rounded-full border border-[#D8CEBE]/40 flex items-center justify-center text-[#6E7A67] hover:bg-[#1D1914] hover:text-white transition-all">
-                                    <Icon size={16} />
-                                </Link>
+                            {contactLinks.map((item, i) => (
+                                <a 
+                                    key={i} 
+                                    href={item.href} 
+                                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                    className="w-8 h-8 rounded-full border border-[#D8CEBE]/40 flex items-center justify-center text-[#6E7A67] hover:bg-[#1D1914] hover:text-white transition-all"
+                                    aria-label={item.label}
+                                >
+                                    <item.icon size={16} />
+                                </a>
                             ))}
                         </div>
                     </div>

@@ -31,8 +31,7 @@ export default function Sidebar() {
         .single()
         .then(({ data }) => {
           setIsAdmin(data?.role === 'admin');
-        })
-        .catch(() => {
+        }, () => {
           setIsAdmin(false);
         });
     } else {

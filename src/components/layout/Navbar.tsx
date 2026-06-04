@@ -75,8 +75,7 @@ const Navbar = () => {
         .single()
         .then(({ data }) => {
           setIsAdmin(data?.role === "admin");
-        })
-        .catch(() => {
+        }, () => {
           setIsAdmin(false);
         });
     } else {

@@ -118,32 +118,43 @@ export default async function ExercisesPage() {
              { title: "IQ Test", duration: "45 Mins", icon: Target, count: "02", desc: "Test your cognitive adaptability within high-complexity systems.", href: "/iq-test" },
              { title: "Vision Blueprint", duration: "Guided", icon: Eye, count: "03", desc: "Align your daily architectural actions with your legacy outcomes.", href: "/vision-guide" },
              { title: "Certificates", duration: "Cohort", icon: Award, count: "04", desc: "Access and verify your Cohort Certificates of Participation.", href: "/certificates" }
-           ].map((test, i) => (
-             <div key={i} className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-[#EDEDED] shadow-sm hover:shadow-xl hover:border-[#1E6B3A]/30 transition-all duration-500 flex flex-col group relative">
-                <div className="flex items-center justify-between mb-10">
-                   <div className="w-14 h-14 rounded-2xl bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] group-hover:bg-[#1E6B3A] group-hover:text-white transition-all duration-300">
-                      <test.icon size={24} strokeWidth={1.5} />
+            ].map((test, i) => (
+             <div key={i} className="bg-white rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-[#EDEDED] shadow-sm hover:shadow-xl hover:border-[#1E6B3A]/30 transition-all duration-500 flex flex-col group relative">
+                <div className="flex items-center justify-between mb-6 sm:mb-8 md:mb-10">
+                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] group-hover:bg-[#1E6B3A] group-hover:text-white transition-all duration-300">
+                      <test.icon size={20} className="sm:w-[24px] sm:h-[24px]" strokeWidth={1.5} />
                    </div>
-                   <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1E6B3A]/40">
+                   <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#1E6B3A]/40">
                       {test.count}
                    </span>
                 </div>
                 
                 <div className="flex-1">
-                   <h3 className="text-[26px] font-extrabold text-[#0F172A] mb-4 font-sans" >{test.title}</h3>
-                   <p className="text-[15px] text-[#0F172A]/70 leading-relaxed font-semibold font-sans" >
+                   <h3 className="text-[20px] sm:text-[22px] md:text-[26px] font-extrabold text-[#0F172A] mb-3 sm:mb-4 font-sans" >{test.title}</h3>
+                   <p className="text-[13px] sm:text-[14px] md:text-[15px] text-[#0F172A]/70 leading-relaxed font-semibold font-sans" >
                       {test.desc}
                    </p>
                 </div>
 
-                <div className="mt-10 pt-8 border-t border-[#EDEDED] flex items-center justify-between">
-                   <div className="flex items-center gap-3 text-[#0F172A]/50 uppercase tracking-widest text-[10px] font-bold">
-                      <Clock size={14} className="text-[#1E6B3A]" />
+                <div className="mt-6 sm:mt-8 md:mt-10 pt-5 sm:pt-6 md:pt-8 border-t border-[#EDEDED] flex items-center justify-between">
+                   <div className="flex items-center gap-3 text-[#0F172A]/50 uppercase tracking-widest text-[9px] sm:text-[10px] font-bold">
+                      <Clock size={12} className="text-[#1E6B3A] sm:w-3.5 sm:h-3.5" />
                       <span>{test.duration}</span>
                    </div>
-                   <Link href={test.href} className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-[#0F172A] hover:text-[#1E6B3A] transition-all group-hover:translate-x-1 font-sans">
-                      Initiate <ArrowRight size={16} />
-                   </Link>
+                   
+                   {test.title === "Certificates" ? (
+                     <Link 
+                       href={test.href} 
+                       className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#0F172A]/15 hover:border-[#1E6B3A]/50 text-[#0F172A] hover:text-[#1E6B3A] text-[9px] sm:text-[10px] md:text-[11px] font-bold uppercase tracking-wider bg-transparent hover:bg-[#EAF4EC]/20 transition-all font-sans"
+                     >
+                       <span>Initiate</span>
+                       <ArrowRight size={12} className="sm:w-3.5 sm:h-3.5" />
+                     </Link>
+                   ) : (
+                     <Link href={test.href} className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-[12px] font-bold uppercase tracking-widest text-[#0F172A] hover:text-[#1E6B3A] transition-all group-hover:translate-x-1 font-sans">
+                       Initiate <ArrowRight size={14} className="sm:w-4 sm:h-4" />
+                     </Link>
+                   )}
                 </div>
              </div>
            ))}

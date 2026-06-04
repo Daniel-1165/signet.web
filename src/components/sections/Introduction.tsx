@@ -15,7 +15,7 @@ export default function Introduction() {
   return (
     <section 
       id="about-us" 
-      className="relative bg-[#FAFAF8] w-full border-t border-gray-150/40 py-12 md:py-24 overflow-hidden"
+      className="relative bg-white md:bg-[#FAFAF8] w-full border-t border-gray-150/40 py-12 md:py-24 overflow-hidden"
     >
       {/* Background Image (Desktop only) */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none hidden md:block">
@@ -47,7 +47,6 @@ export default function Introduction() {
             <h2 className="text-2xl font-bold text-black font-sans">
               SIGNET
             </h2>
-            <div className="w-full border-t border-dashed border-black/10 mt-2" />
           </div>
 
           {/* Mobile Image just below SIGNET text with Learn More button and Logo on top of it */}
@@ -85,24 +84,7 @@ export default function Introduction() {
             </p>
           </div>
 
-          {/* Contact Section for Mobile */}
-          <div className="pt-6 border-t border-dashed border-black/10">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-black/40 mb-2">Connect With Us</p>
-            <div className="flex gap-2">
-              {contactLinks.map((item, i) => (
-                <a 
-                  key={i} 
-                  href={item.href} 
-                  target={item.href.startsWith("http") ? "_blank" : undefined}
-                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className={`w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-black/60 bg-white shadow-sm transition-all ${item.color}`}
-                  aria-label={item.label}
-                >
-                  <item.icon size={15} />
-                </a>
-              ))}
-            </div>
-          </div>
+          {/* Contact Section for Mobile removed */}
         </motion.div>
 
         {/* ========================================================================= */}
@@ -115,7 +97,7 @@ export default function Introduction() {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Heading & Dashed Line */}
+          {/* Heading */}
           <div className="mb-4">
             <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-black mb-1 block">
               About Us
@@ -123,7 +105,6 @@ export default function Introduction() {
             <h2 className="text-3xl md:text-4xl font-bold text-black font-sans">
               SIGNET
             </h2>
-            <div className="w-full border-t border-dashed border-black/10 mt-2" />
           </div>
 
           {/* Text and Button container */}
@@ -135,29 +116,13 @@ export default function Introduction() {
               With a special interest in young people, we believe in <span className="font-semibold text-black">noiseless organic growth</span>, which translates to results that are <span className="font-semibold text-black">loud and sustainable</span>.
             </p>
 
-            {/* Desktop Action & Contact Flex Row */}
-            <div className="flex flex-wrap items-center gap-6 pt-6 mt-6 border-t border-dashed border-black/10">
-              <div className="flex items-center gap-3">
-                <Link href="/features">
-                  <button className="flex items-center gap-3 bg-[#0B2B26] hover:bg-[#1E6B3A] text-white px-7 py-3.5 rounded-full font-bold text-xs transition-all shadow-md shadow-[#0B2B26]/5">
-                    Learn More <ArrowRight className="w-4 h-4" />
-                  </button>
-                </Link>
-              </div>
-              <div className="flex items-center gap-2">
-                {contactLinks.map((item, i) => (
-                  <a 
-                    key={i} 
-                    href={item.href} 
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className={`w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-black/60 bg-white shadow-sm transition-all ${item.color}`}
-                    aria-label={item.label}
-                  >
-                    <item.icon size={15} />
-                  </a>
-                ))}
-              </div>
+            {/* Desktop Action Row */}
+            <div className="pt-6 mt-6">
+              <Link href="/features">
+                <button className="flex items-center gap-3 bg-[#0B2B26] hover:bg-[#1E6B3A] text-white px-7 py-3.5 rounded-full font-bold text-xs transition-all shadow-md shadow-[#0B2B26]/5">
+                  Learn More <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
             </div>
           </div>
         </motion.div>
