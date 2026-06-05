@@ -112,52 +112,128 @@ export default async function ExercisesPage() {
         </div>
 
         {/* Action Cards Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-           {[
-             { title: "EQ Test", duration: "20 Mins", icon: Heart, count: "01", desc: "Develop nuanced emotional resonance through depth-scenarios.", href: "/eq-test" },
-             { title: "IQ Test", duration: "45 Mins", icon: Target, count: "02", desc: "Test your cognitive adaptability within high-complexity systems.", href: "/iq-test" },
-             { title: "Vision Blueprint", duration: "Guided", icon: Eye, count: "03", desc: "Align your daily architectural actions with your legacy outcomes.", href: "/vision-guide" },
-             { title: "Certificates", duration: "Cohort", icon: Award, count: "04", desc: "Access and verify your Cohort Certificates of Participation.", href: "/certificates" }
-            ].map((test, i) => (
-             <div key={i} className="bg-white rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-[#EDEDED] shadow-sm hover:shadow-xl hover:border-[#1E6B3A]/30 transition-all duration-500 flex flex-col group relative">
-                <div className="flex items-center justify-between mb-6 sm:mb-8 md:mb-10">
-                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] group-hover:bg-[#1E6B3A] group-hover:text-white transition-all duration-300">
-                      <test.icon size={20} className="sm:w-[24px] sm:h-[24px]" strokeWidth={1.5} />
-                   </div>
-                   <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#1E6B3A]/40">
-                      {test.count}
-                   </span>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+          
+          {/* Card 1: EQ Test (Large) */}
+          <div className="md:col-span-6 lg:col-span-4 bg-white rounded-[2.5rem] p-8 sm:p-10 border border-[#EDEDED] shadow-sm hover:shadow-xl hover:border-[#1E6B3A]/30 transition-all duration-500 flex flex-col group relative">
+             <div className="flex items-center justify-between mb-8 sm:mb-10">
+                <div className="w-14 h-14 rounded-2xl bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] group-hover:bg-[#1E6B3A] group-hover:text-white transition-all duration-300">
+                   <Heart size={24} strokeWidth={1.5} />
                 </div>
-                
-                <div className="flex-1">
-                   <h3 className="text-[20px] sm:text-[22px] md:text-[26px] font-extrabold text-[#0F172A] mb-3 sm:mb-4 font-sans" >{test.title}</h3>
-                   <p className="text-[13px] sm:text-[14px] md:text-[15px] text-[#0F172A]/70 leading-relaxed font-semibold font-sans" >
-                      {test.desc}
-                   </p>
-                </div>
-
-                <div className="mt-6 sm:mt-8 md:mt-10 pt-5 sm:pt-6 md:pt-8 border-t border-[#EDEDED] flex items-center justify-between">
-                   <div className="flex items-center gap-3 text-[#0F172A]/50 uppercase tracking-widest text-[9px] sm:text-[10px] font-bold">
-                      <Clock size={12} className="text-[#1E6B3A] sm:w-3.5 sm:h-3.5" />
-                      <span>{test.duration}</span>
-                   </div>
-                   
-                   {test.title === "Certificates" ? (
-                     <Link 
-                       href={test.href} 
-                       className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#0F172A]/15 hover:border-[#1E6B3A]/50 text-[#0F172A] hover:text-[#1E6B3A] text-[9px] sm:text-[10px] md:text-[11px] font-bold uppercase tracking-wider bg-transparent hover:bg-[#EAF4EC]/20 transition-all font-sans"
-                     >
-                       <span>Initiate</span>
-                       <ArrowRight size={12} className="sm:w-3.5 sm:h-3.5" />
-                     </Link>
-                   ) : (
-                     <Link href={test.href} className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-[12px] font-bold uppercase tracking-widest text-[#0F172A] hover:text-[#1E6B3A] transition-all group-hover:translate-x-1 font-sans">
-                       Initiate <ArrowRight size={14} className="sm:w-4 sm:h-4" />
-                     </Link>
-                   )}
-                </div>
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1E6B3A]/40">
+                   01
+                </span>
              </div>
-           ))}
+             
+             <div className="flex-1">
+                <h3 className="text-[24px] sm:text-[26px] font-extrabold text-[#0F172A] mb-4 font-sans">EQ Test</h3>
+                <p className="text-[14.5px] sm:text-[15px] text-[#0F172A]/70 leading-relaxed font-semibold font-sans">
+                   Develop nuanced emotional resonance through depth-scenarios.
+                </p>
+             </div>
+
+             <div className="mt-8 pt-6 sm:pt-8 border-t border-[#EDEDED] flex items-center justify-between">
+                <div className="flex items-center gap-3 text-[#0F172A]/50 uppercase tracking-widest text-[10px] font-bold">
+                   <Clock size={14} className="text-[#1E6B3A]" />
+                   <span>20 Mins</span>
+                </div>
+                <Link href="/eq-test" className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-[#0F172A] hover:text-[#1E6B3A] transition-all group-hover:translate-x-1 font-sans">
+                   Initiate <ArrowRight size={16} />
+                </Link>
+             </div>
+          </div>
+
+          {/* Card 2: IQ Test (Smallest) */}
+          <div className="md:col-span-6 lg:col-span-3 bg-white rounded-[2.1rem] p-6 sm:p-7 border border-[#EDEDED] shadow-sm hover:shadow-xl hover:border-[#1E6B3A]/30 transition-all duration-500 flex flex-col group relative">
+             <div className="flex items-center justify-between mb-6 sm:mb-8">
+                <div className="w-11 h-11 rounded-xl bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] group-hover:bg-[#1E6B3A] group-hover:text-white transition-all duration-300">
+                   <Target size={20} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1E6B3A]/40">
+                   02
+                </span>
+             </div>
+             
+             <div className="flex-1">
+                <h3 className="text-[20px] sm:text-[22px] font-extrabold text-[#0F172A] mb-3 font-sans">IQ Test</h3>
+                <p className="text-[13.5px] text-[#0F172A]/65 leading-relaxed font-semibold font-sans">
+                   Test your cognitive adaptability within high-complexity systems.
+                </p>
+             </div>
+
+             <div className="mt-6 pt-5 sm:pt-6 border-t border-[#EDEDED] flex items-center justify-between">
+                <div className="flex items-center gap-3 text-[#0F172A]/50 uppercase tracking-widest text-[9px] font-bold">
+                   <Clock size={12} className="text-[#1E6B3A]" />
+                   <span>45 Mins</span>
+                </div>
+                <Link href="/iq-test" className="flex items-center gap-2 sm:gap-3 text-[11px] font-bold uppercase tracking-widest text-[#0F172A] hover:text-[#1E6B3A] transition-all group-hover:translate-x-1 font-sans">
+                   Initiate <ArrowRight size={14} />
+                </Link>
+             </div>
+          </div>
+
+          {/* Card 3: Vision Blueprint (Medium) */}
+          <div className="md:col-span-6 lg:col-span-3 bg-white rounded-[2.3rem] p-7 sm:p-8 border border-[#EDEDED] shadow-sm hover:shadow-xl hover:border-[#1E6B3A]/30 transition-all duration-500 flex flex-col group relative">
+             <div className="flex items-center justify-between mb-7 sm:mb-9">
+                <div className="w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-2xl bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A] group-hover:bg-[#1E6B3A] group-hover:text-white transition-all duration-300">
+                   <Eye size={22} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#1E6B3A]/40">
+                   03
+                </span>
+             </div>
+             
+             <div className="flex-1">
+                <h3 className="text-[22px] sm:text-[24px] font-extrabold text-[#0F172A] mb-3.5 font-sans">Vision Blueprint</h3>
+                <p className="text-[14px] text-[#0F172A]/70 leading-relaxed font-semibold font-sans">
+                   Align your daily architectural actions with your legacy outcomes.
+                </p>
+             </div>
+
+             <div className="mt-7 pt-6 sm:pt-7 border-t border-[#EDEDED] flex items-center justify-between">
+                <div className="flex items-center gap-3 text-[#0F172A]/50 uppercase tracking-widest text-[9.5px] font-bold">
+                   <Clock size={13} className="text-[#1E6B3A]" />
+                   <span>Guided</span>
+                </div>
+                <Link href="/vision-guide" className="flex items-center gap-2 sm:gap-3 text-[11.5px] font-bold uppercase tracking-widest text-[#0F172A] hover:text-[#1E6B3A] transition-all group-hover:translate-x-1 font-sans">
+                   Initiate <ArrowRight size={15} />
+                </Link>
+             </div>
+          </div>
+
+          {/* Card 4: Certificates (Compact & Green Brand Background) */}
+          <div className="md:col-span-6 lg:col-span-2 bg-[#1E6B3A] hover:bg-[#114B2A] rounded-[2rem] p-5 sm:p-6 shadow-md hover:shadow-xl transition-all duration-500 flex flex-col group relative text-white">
+             <div className="flex items-center justify-between mb-6 sm:mb-8">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#1E6B3A] transition-all duration-300">
+                   <Award size={18} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/45">
+                   04
+                </span>
+             </div>
+             
+             <div className="flex-1">
+                <h3 className="text-[19px] sm:text-[20px] font-extrabold text-white mb-2 font-sans">Certificates</h3>
+                <p className="text-[12.5px] text-white/80 leading-relaxed font-semibold font-sans">
+                   Access and verify your Cohort Certificates.
+                </p>
+             </div>
+
+             <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-3 text-white/60 uppercase tracking-widest text-[9px] font-bold">
+                   <Clock size={12} className="text-white/80" />
+                   <span>Cohort</span>
+                </div>
+                <Link 
+                  href="/certificates" 
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 hover:border-white/50 hover:bg-white/10 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all font-sans"
+                >
+                  <span>Initiate</span>
+                  <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+             </div>
+          </div>
+
         </div>
 
         {/* Audio Lectures Section */}
