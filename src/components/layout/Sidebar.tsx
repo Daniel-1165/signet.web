@@ -58,9 +58,16 @@ export default function Sidebar() {
           initial={false}
           onMouseEnter={() => setIsExpanded(true)}
           onMouseLeave={() => setIsExpanded(false)}
+          // The rail previously expanded on hover only, so a keyboard user
+          // tabbing through it saw icons with no labels at any point. Focus
+          // now opens it the same way the pointer does.
+          onFocus={() => setIsExpanded(true)}
+          onBlur={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget as Node)) setIsExpanded(false);
+          }}
           animate={{ width: isExpanded ? 280 : 88 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden md:flex flex-col fixed top-0 left-0 z-[45] h-screen bg-white border-r border-[#0D120E]/5 py-8 overflow-hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
+          className="hidden md:flex flex-col fixed top-0 left-0 z-[45] h-screen bg-surface border-r border-rule py-8 overflow-hidden"
         >
         {/* Brand/Logo */}
         <div className="px-6 mb-10 flex items-center h-12 overflow-hidden">
@@ -82,15 +89,20 @@ export default function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                // The collapsed rail shows icons only, so each link needs an
+                // accessible name that survives the label being unmounted.
+                title={item.name}
+                aria-label={item.name}
                 className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 relative ${
                   isActive
-                    ? "bg-[#1DA756] text-white shadow-lg shadow-[#1DA756]/20"
-                    : "text-[#0D120E]/50 hover:text-[#0D120E] hover:bg-black/[0.03]"
+                    ? "bg-seal text-canvas"
+                    : "text-ink/50 hover:text-ink hover:bg-mist/50"
                 }`}
               >
                 <item.icon
                   className={`w-5 h-5 shrink-0 transition-transform duration-300 group-hover:scale-110 ${
-                    isActive ? "stroke-[2.5px]" : "stroke-[1.8px]"
+                    isActive ? "stroke-[2.2px]" : "stroke-[1.8px]"
                   }`}
                 />
                 <AnimatePresence initial={false}>
@@ -99,14 +111,14 @@ export default function Sidebar() {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -10 }}
-                      className="font-bold text-[13px] whitespace-nowrap"
+                      className="font-semibold text-[13px] whitespace-nowrap"
                     >
                       {item.name}
                     </motion.span>
                   )}
                 </AnimatePresence>
                 {isActive && !isExpanded && (
-                  <motion.div layoutId="active-dot" className="absolute right-0 w-1.5 h-1.5 bg-white rounded-full translate-x-3" />
+                  <motion.div layoutId="active-dot" className="absolute right-0 w-1.5 h-1.5 bg-verdant rounded-full translate-x-3" />
                 )}
               </Link>
             );
@@ -114,9 +126,16 @@ export default function Sidebar() {
         </nav>
 
         {/* Bottom Section */}
-        <div className="mt-auto px-4 pt-6 border-t border-[#0D120E]/5 space-y-2">
+        <div className="mt-auto px-4 pt-6 border-t border-rule space-y-2">
           <SignOutButton>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500/60 hover:text-red-600 hover:bg-red-50/50 transition-all">
+            {/* Sign out is the one destructive control here, so it keeps a red
+                — but a muted brick rather than a UI-kit red, so it belongs to
+                the same page as everything else. */}
+            <button
+              aria-label="Sign out"
+              title="Sign out"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#9B3A2F]/70 hover:text-[#9B3A2F] hover:bg-[#9B3A2F]/[0.06] transition-all"
+            >
               <LogOut className="w-5 h-5 shrink-0 stroke-[1.8px]" />
               <AnimatePresence initial={false}>
                 {isExpanded && (
@@ -124,9 +143,9 @@ export default function Sidebar() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -10 }}
-                    className="font-bold text-[13px] whitespace-nowrap"
+                    className="font-semibold text-[13px] whitespace-nowrap"
                   >
-                    Logout
+                    Sign out
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -134,9 +153,13 @@ export default function Sidebar() {
           </SignOutButton>
 
           {/* User Profile */}
-          <div className="mt-2 px-2 py-2 rounded-2xl border border-black/[0.03] bg-black/[0.01] flex items-center gap-3">
-            <div className="w-10 h-10 shrink-0 rounded-xl bg-[#1DA756]/10 overflow-hidden flex items-center justify-center font-bold text-[#1DA756] border border-[#1DA756]/5 shadow-inner">
-              {user?.imageUrl ? <img src={user.imageUrl} alt="Profile" className="w-full h-full object-cover" /> : (user?.firstName?.charAt(0) || "U")}
+          <div className="mt-2 px-2 py-2 rounded-2xl border border-rule flex items-center gap-3">
+            <div className="w-10 h-10 shrink-0 rounded-xl bg-mist overflow-hidden flex items-center justify-center font-mono font-medium text-seal">
+              {user?.imageUrl ? (
+                <img src={user.imageUrl} alt="" className="w-full h-full object-cover" />
+              ) : (
+                user?.firstName?.charAt(0) || "U"
+              )}
             </div>
             <AnimatePresence initial={false}>
               {isExpanded && (
@@ -146,8 +169,12 @@ export default function Sidebar() {
                   exit={{ opacity: 0, x: -10 }}
                   className="flex flex-col min-w-0"
                 >
-                  <p className="text-[12px] font-black truncate text-[#0D120E] leading-none mb-1">{user?.fullName || user?.firstName || "Member"}</p>
-                  <p className="text-[10px] font-bold text-[#1DA756] truncate leading-none">View profile</p>
+                  <p className="text-[12px] font-semibold truncate text-ink leading-none mb-1">
+                    {user?.fullName || user?.firstName || "Member"}
+                  </p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink/45 truncate leading-none">
+                    Member
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>

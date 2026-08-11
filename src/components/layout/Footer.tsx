@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
 import { useSupabaseClient } from "@/lib/supabase/client";
-import { Mail, Instagram, Twitter, Linkedin, ArrowRight, MapPin, Phone, Shield, MessageCircle, Facebook } from "lucide-react";
+import { Mail, Instagram, ArrowRight, Shield, MessageCircle, Facebook } from "lucide-react";
+import SealMark from "@/components/brand/SealMark";
 
 const contactLinks = [
   { icon: MessageCircle, href: "https://wa.me/2349032387758?text=Hi%20Signet%20Network%2C%20I%20need%20help%20with...", label: "WhatsApp" },
@@ -78,71 +79,86 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-[#F5F7F4] border-t border-[#D8CEBE]/40 pt-12 pb-8">
-            <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <footer className="bg-ink on-ink pt-16 pb-8 relative overflow-hidden">
+            {/* The footer is the one full-ink surface on the public site. It
+                closes the page the way a seal closes a letter — which is also
+                why the mark lives here. */}
+            <div className="absolute -bottom-10 -right-10 opacity-[0.13] pointer-events-none hidden md:block">
+                <SealMark size={280} tone="canvas" />
+            </div>
+
+            <div className="page-container relative z-10">
                 {/* Upper Section with Newsletter */}
-                <div className="grid lg:grid-cols-2 gap-10 pb-12 border-b border-[#D8CEBE]/20">
+                <div className="grid lg:grid-cols-2 gap-10 pb-12 border-b border-verdant/15">
                     <div>
-                        <h3 className="text-[28px] md:text-[32px] font-bold text-[#1D1914] mb-4" >
-                            Stay in the <span className="italic font-normal text-[#6E7A67]">Silent Loop.</span>
+                        <h3 className="font-display text-3xl md:text-4xl font-semibold tracking-[-0.025em] text-canvas mb-4">
+                            Stay in the <span className="display-accent text-verdant">silent loop</span>.
                         </h3>
-                        <p className="text-[#6E7A67] text-[15px] leading-relaxed max-w-md font-medium">
-                            Join our monthly brief on architectural action and intentional growth strategies.
+                        <p className="text-mist/65 text-[15px] leading-relaxed max-w-md">
+                            A monthly brief on intentional growth — no noise, just substance.
                         </p>
                     </div>
                     <div className="flex flex-col gap-3 justify-center">
                         {isLoaded && !isSignedIn ? (
-                            <div className="flex flex-col gap-2">
-                                <div className="flex w-full bg-[#1D1914]/5 rounded-2xl p-1 md:p-1.5 border border-[#D8CEBE]/40 shadow-sm items-center opacity-75">
-                                    <input 
-                                        type="email" 
+                            <div className="flex flex-col gap-2.5">
+                                <div className="flex w-full bg-canvas/[0.06] rounded-2xl p-1.5 border border-verdant/20 items-center">
+                                    <input
+                                        type="email"
                                         disabled
-                                        placeholder="Sign in to subscribe to newsletter" 
-                                        className="flex-1 min-w-0 bg-transparent px-2 md:px-4 py-2 md:py-2.5 text-[13px] md:text-sm outline-none text-[#1D1914]/40 font-medium cursor-not-allowed"
+                                        aria-label="Email address"
+                                        placeholder="Sign in to subscribe"
+                                        className="flex-1 min-w-0 bg-transparent px-3 md:px-4 py-2.5 text-sm outline-none text-mist/40 cursor-not-allowed"
                                     />
                                     <SignInButton mode="modal">
-                                        <button className="shrink-0 bg-[#0B3D2E] text-white px-3 md:px-6 py-2 md:py-2.5 rounded-xl font-bold text-[9px] md:text-xs uppercase tracking-widest hover:bg-[#6E7A67] transition-all flex items-center gap-1.5 md:gap-2">
-                                            Sign In <ArrowRight size={12} className="md:w-[14px] md:h-[14px]" />
+                                        <button className="shrink-0 bg-verdant text-ink px-5 py-2.5 rounded-xl font-semibold text-xs hover:bg-mist transition-all flex items-center gap-2">
+                                            Sign in <ArrowRight size={14} />
                                         </button>
                                     </SignInButton>
                                 </div>
-                                <p className="text-[10px] text-[#6E7A67] font-medium ml-2">
-                                    🔒 Authentication is required to capture subscriber names.
+                                {/* Explains the constraint plainly instead of
+                                    gesturing at it with a padlock emoji. */}
+                                <p className="text-[11px] text-mist/50 ml-2">
+                                    Sign in first so we can attach your name to the subscription.
                                 </p>
                             </div>
                         ) : (
-                            <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
-                                <div className="flex w-full bg-white rounded-2xl p-1 md:p-1.5 border border-[#D8CEBE]/40 shadow-sm focus-within:border-[#6E7A67] transition-all overflow-hidden items-center">
-                                    <input 
-                                        type="email" 
+                            <form onSubmit={handleSubscribe} className="flex flex-col gap-2.5">
+                                <div className="flex w-full bg-canvas/[0.06] rounded-2xl p-1.5 border border-verdant/20 focus-within:border-verdant transition-all items-center">
+                                    <input
+                                        type="email"
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="Enter your email" 
-                                        className="flex-1 min-w-0 bg-transparent px-2 md:px-4 py-2 md:py-2.5 text-[13px] md:text-sm outline-none text-[#1D1914] font-medium"
+                                        aria-label="Email address"
+                                        placeholder="you@example.com"
+                                        className="flex-1 min-w-0 bg-transparent px-3 md:px-4 py-2.5 text-sm outline-none text-canvas placeholder:text-mist/35"
                                         disabled={status === "loading" || status === "success"}
                                     />
-                                    <button 
+                                    <button
                                         type="submit"
                                         disabled={status === "loading" || status === "success" || !email}
-                                        className="shrink-0 bg-[#1D1914] disabled:opacity-50 text-white px-3 md:px-6 py-2 md:py-2.5 rounded-xl font-bold text-[9px] md:text-xs uppercase tracking-widest hover:bg-[#6E7A67] transition-all flex items-center gap-1.5 md:gap-2"
+                                        className="shrink-0 bg-verdant disabled:opacity-40 text-ink px-5 py-2.5 rounded-xl font-semibold text-xs hover:bg-mist transition-all flex items-center gap-2"
                                     >
-                                        {status === "loading" ? "Subscribing..." : "Subscribe"} <ArrowRight size={12} className="md:w-[14px] md:h-[14px]" />
+                                        {status === "loading" ? "Subscribing…" : "Subscribe"} <ArrowRight size={14} />
                                     </button>
                                 </div>
-                                {status === "success" && (
-                                    <p className="text-xs text-[#1DA756] font-bold ml-2 animate-pulse">
-                                        ✓ {message}
-                                    </p>
-                                )}
-                                {status === "error" && (
-                                    <p className="text-xs text-red-600 font-bold ml-2">
-                                        ✗ {message}
-                                    </p>
-                                )}
+                                {/* One live region for both outcomes, so a
+                                    screen reader hears the result without
+                                    having to go looking for it. The success
+                                    message no longer pulses — a confirmation
+                                    that keeps moving reads as unresolved. */}
+                                <p
+                                    role="status"
+                                    aria-live="polite"
+                                    className={`text-xs ml-2 min-h-[1rem] ${
+                                        status === "error" ? "text-[#E2A08F]" : "text-verdant"
+                                    }`}
+                                >
+                                    {status === "success" || status === "error" ? message : ""}
+                                </p>
                             </form>
                         )}
-                        <p className="text-[9px] text-[#6E7A67]/40 uppercase tracking-[0.2em] font-bold ml-2">
+                        <p className="font-mono text-[10px] text-mist/35 uppercase tracking-[0.2em] ml-2">
                             No noise. Just substance.
                         </p>
                     </div>
@@ -153,19 +169,23 @@ const Footer = () => {
                     {/* Brand Column */}
                     <div className="col-span-2 lg:col-span-1 space-y-6">
                         <Link href="/" className="block">
-                            <img src="/signet-brand-logo.svg" alt="Signet Logo" className="h-8 w-auto object-contain" />
+                            <img
+                                src="/signet-brand-logo.svg"
+                                alt="SIGNET"
+                                className="h-8 w-auto object-contain brightness-0 invert opacity-90"
+                            />
                         </Link>
-                        <p className="text-[13px] text-[#6E7A67] leading-relaxed font-medium max-w-xs">
+                        <p className="text-[13px] text-mist/60 leading-relaxed max-w-xs">
                             The curated ecosystem for high-performers seeking impact over volume.
                         </p>
                         <div className="flex gap-3">
                             {contactLinks.map((item, i) => (
-                                <a 
-                                    key={i} 
-                                    href={item.href} 
+                                <a
+                                    key={i}
+                                    href={item.href}
                                     target={item.href.startsWith("http") ? "_blank" : undefined}
                                     rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                    className="w-8 h-8 rounded-full border border-[#D8CEBE]/40 flex items-center justify-center text-[#6E7A67] hover:bg-[#1D1914] hover:text-white transition-all"
+                                    className="w-9 h-9 rounded-full border border-verdant/25 flex items-center justify-center text-mist/70 hover:bg-verdant hover:text-ink hover:border-verdant transition-all"
                                     aria-label={item.label}
                                 >
                                     <item.icon size={16} />
@@ -176,7 +196,7 @@ const Footer = () => {
 
                     {/* Platform Links */}
                     <div>
-                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1D1914] mb-6">Platform</h4>
+                        <h4 className="font-mono text-[10px] uppercase tracking-[0.2em] text-mist/45 mb-6">Platform</h4>
                         <ul className="space-y-3">
                             {[
                                 { name: "Dashboard", href: "/dashboard" },
@@ -184,7 +204,7 @@ const Footer = () => {
                                 { name: "Exercises", href: "/dashboard/exercises" }
                             ].map(link => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-[13px] text-[#6E7A67] hover:text-[#1D1914] transition-colors font-medium">
+                                    <Link href={link.href} className="text-[13px] text-mist/70 hover:text-canvas transition-colors">
                                         {link.name}
                                     </Link>
                                 </li>
@@ -194,7 +214,7 @@ const Footer = () => {
 
                     {/* Support & Legal */}
                     <div>
-                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1D1914] mb-6">Collective</h4>
+                        <h4 className="font-mono text-[10px] uppercase tracking-[0.2em] text-mist/45 mb-6">Collective</h4>
                         <ul className="space-y-3">
                             {[
                                 { name: "About Us", href: "/features" },
@@ -202,7 +222,7 @@ const Footer = () => {
                                 { name: "Mentorship", href: "/join" }
                             ].map(link => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-[13px] text-[#6E7A67] hover:text-[#1D1914] transition-colors font-medium">
+                                    <Link href={link.href} className="text-[13px] text-mist/70 hover:text-canvas transition-colors">
                                         {link.name}
                                     </Link>
                                 </li>
@@ -212,30 +232,30 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-[#D8CEBE]/20 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-                    <p className="text-[10px] font-bold text-[#6E7A67]/40 uppercase tracking-[0.2em]">
+                <div className="pt-8 border-t border-verdant/15 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                    <p className="font-mono text-[10px] text-mist/40 uppercase tracking-[0.18em]">
                         © {new Date().getFullYear()} Silent Growth Network.
                     </p>
 
-                    <div className="flex items-center gap-4 text-[10px] font-black text-[#1D1914] uppercase tracking-widest">
+                    <div className="flex items-center gap-4 font-mono text-[10px] text-mist/55 uppercase tracking-[0.18em]">
                         <span>Established in Silence</span>
-                        <div className="w-1 h-1 rounded-full bg-[#6E7A67]" />
+                        <div className="w-1 h-1 rounded-full bg-verdant/60" />
                         <span>Architected for Growth</span>
                     </div>
                 </div>
 
                 {/* Sign Out & Admin text links as the absolute last thing in the footer */}
                 {isLoaded && isSignedIn && (
-                    <div className="flex items-center justify-center gap-4 mt-6 pt-4 border-t border-[#D8CEBE]/20 text-[10px] font-bold tracking-wider text-[#6E7A67]">
+                    <div className="flex items-center justify-center gap-4 mt-6 pt-4 border-t border-verdant/15 text-[11px] tracking-wide text-mist/60">
                         {isAdmin && (
-                            <Link href="/dashboard/admin" className="text-[#1E6B3A] hover:text-[#0B3D2E] transition-colors flex items-center gap-1 uppercase">
-                                <Shield className="w-3.5 h-3.5 stroke-[2.5px]" /> Admin Panel
+                            <Link href="/dashboard/admin" className="text-verdant hover:text-mist transition-colors flex items-center gap-1.5 font-semibold">
+                                <Shield className="w-3.5 h-3.5" /> Admin
                             </Link>
                         )}
-                        {isAdmin && <span className="w-1.5 h-1.5 rounded-full bg-[#D8CEBE]" />}
+                        {isAdmin && <span className="w-1 h-1 rounded-full bg-verdant/40" />}
                         <SignOutButton>
-                            <button className="text-red-700 hover:text-red-500 transition-colors uppercase font-bold tracking-wider cursor-pointer">
-                                Sign Out
+                            <button className="text-[#E2A08F] hover:text-[#F0C4B7] transition-colors font-semibold cursor-pointer">
+                                Sign out
                             </button>
                         </SignOutButton>
                     </div>
