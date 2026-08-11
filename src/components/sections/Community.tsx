@@ -114,8 +114,8 @@ const Community = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <p className="text-xs font-black uppercase tracking-[0.3em] text-accent/80 mb-4">The Network</p>
-                    <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground leading-[1.1]">
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent/80 mb-4">The Network</p>
+                    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-[1.1]">
                         Where Growth Happens<br />
                         <span className="text-foreground/30">in Real Time.</span>
                     </h2>
@@ -344,7 +344,7 @@ const Community = () => {
                         <div className="hidden lg:flex flex-col h-full overflow-y-auto">
                             {/* Search */}
                             <div className="p-3 sticky top-0 bg-white z-10">
-                                <div className="flex items-center gap-3 bg-[#F0F2EC] rounded-full px-4 py-2.5 focus-within:bg-white focus-within:ring-2 focus-within:ring-signet-green/30 focus-within:border-signet-green transition-all border border-transparent">
+                                <div className="flex items-center gap-3 bg-canvas rounded-full px-4 py-2.5 focus-within:bg-white focus-within:ring-2 focus-within:ring-signet-green/30 focus-within:border-signet-green transition-all border border-transparent">
                                     <Search className="h-4 w-4 text-foreground/30 shrink-0" />
                                     <input 
                                         type="text"
@@ -355,8 +355,8 @@ const Community = () => {
                             </div>
 
                             {/* Trending */}
-                            <div className="mx-3 mt-1 rounded-2xl bg-[#F7F8F5] overflow-hidden">
-                                <h3 className="text-[20px] font-extrabold text-foreground px-4 pt-3 pb-2">Trends for you</h3>
+                            <div className="mx-3 mt-1 rounded-2xl bg-canvas overflow-hidden">
+                                <h3 className="text-[20px] font-semibold text-foreground px-4 pt-3 pb-2">Trends for you</h3>
                                 {trends.map((trend, i) => (
                                     <button key={i} className="w-full text-left px-4 py-3 hover:bg-black/[0.03] transition-colors">
                                         <div className="flex items-center justify-between">
@@ -373,8 +373,8 @@ const Community = () => {
                             </div>
 
                             {/* Who to Follow */}
-                            <div className="mx-3 mt-4 rounded-2xl bg-[#F7F8F5] overflow-hidden mb-4">
-                                <h3 className="text-[20px] font-extrabold text-foreground px-4 pt-3 pb-2">Who to follow</h3>
+                            <div className="mx-3 mt-4 rounded-2xl bg-canvas overflow-hidden mb-4">
+                                <h3 className="text-[20px] font-semibold text-foreground px-4 pt-3 pb-2">Who to follow</h3>
                                 {whoToFollow.map((user, i) => (
                                     <button key={i} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-black/[0.03] transition-colors">
                                         <div className={`h-10 w-10 shrink-0 rounded-full ${user.color} flex items-center justify-center text-[11px] font-bold text-white`}>

@@ -4,28 +4,33 @@ import { useUser, SignUpButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+// Signed-in members land in the dashboard; everyone else gets the sign-up
+// modal. The label changes with the destination — a control should say what
+// it actually does, not carry one name through two different outcomes.
 export default function HeroJoinButton() {
   const { isSignedIn, isLoaded } = useUser();
 
+  const className =
+    "group/btn inline-flex items-center gap-3 text-ink bg-canvas hover:bg-mist px-7 py-3.5 rounded-full font-semibold text-sm transition-all hover:-translate-y-px";
+
+  const arrow = (
+    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform motion-reduce:transition-none" />
+  );
+
   if (isLoaded && isSignedIn) {
     return (
-      <Link 
-        href="/dashboard" 
-        className="flex items-center gap-3 group/btn text-white bg-white/10 hover:bg-white/20 px-6 py-3 rounded-full border border-white/20 backdrop-blur-md transition-all"
-      >
-        <span className="text-[11px] font-bold tracking-widest uppercase">Join SIGNET</span>
-        <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+      <Link href="/dashboard" className={className}>
+        <span>Go to dashboard</span>
+        {arrow}
       </Link>
     );
   }
 
   return (
     <SignUpButton mode="modal">
-      <button 
-        className="flex items-center gap-3 group/btn text-white bg-white/10 hover:bg-white/20 px-6 py-3 rounded-full border border-white/20 backdrop-blur-md transition-all"
-      >
-        <span className="text-[11px] font-bold tracking-widest uppercase">Join SIGNET</span>
-        <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+      <button className={className}>
+        <span>Join SIGNET</span>
+        {arrow}
       </button>
     </SignUpButton>
   );

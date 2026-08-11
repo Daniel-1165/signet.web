@@ -51,7 +51,7 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
   if (!user) return null;
 
   return (
-    <form onSubmit={handleSubmit} className="bg-[#FFFFFF] flex gap-3 font-dm-sans items-start w-full">
+    <form onSubmit={handleSubmit} className="bg-surface flex gap-3 font-sans items-start w-full">
       {/* Avatar on the left, outside the input box */}
       <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shrink-0 bg-green-50 flex items-center justify-center border border-gray-100">
         {user.imageUrl ? (
@@ -66,20 +66,20 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
       {/* Input box and actions column */}
       <div className="flex-1 flex flex-col gap-2.5 min-w-0">
         {/* White input box containing placeholder and Post button inline */}
-        <div className="flex items-center bg-[#FFFFFF] border border-gray-200 rounded-[1.2rem] pl-4 pr-2 py-1.5 shadow-sm focus-within:border-[#1E6B3A] transition-all w-full min-w-0">
+        <div className="flex items-center bg-surface border border-gray-200 rounded-[1.2rem] pl-4 pr-2 py-1.5 shadow-sm focus-within:border-seal transition-all w-full min-w-0">
           <input 
             type="text"
             placeholder="Share your thoughts..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="flex-1 min-w-0 bg-transparent border-none outline-none text-[15px] text-[#0F1419] placeholder-gray-400 py-1.5 mr-2 font-medium"
+            className="flex-1 min-w-0 bg-transparent border-none outline-none text-[15px] text-ink placeholder-gray-400 py-1.5 mr-2 font-medium"
           />
 
           {/* Post button inside input box */}
           <button
             type="submit"
             disabled={!content.trim() || isLoading}
-            className="h-8 px-5 bg-[#1E6B3A] text-white rounded-full text-[14px] font-bold hover:bg-[#114B2A] transition-all disabled:opacity-50 shrink-0 flex items-center justify-center"
+            className="h-8 px-5 bg-seal text-white rounded-full text-[14px] font-bold hover:bg-seal transition-all disabled:opacity-50 shrink-0 flex items-center justify-center"
           >
             {isLoading ? "Posting..." : "Post"}
           </button>
@@ -91,7 +91,7 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-[#1E6B3A] hover:bg-[#EAF4EC]/40 transition-colors"
+              className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-seal hover:bg-mist/40 transition-colors"
             >
               <Plus size={18} />
             </button>

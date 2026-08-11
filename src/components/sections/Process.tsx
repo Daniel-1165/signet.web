@@ -66,7 +66,7 @@ const ProcessStep = ({ step, i }: any) => {
             {/* Giant Background Number */}
             <motion.div 
                 style={{ y }} 
-                className="absolute top-0 right-0 text-[12rem] lg:text-[16rem] font-medium tracking-tighter text-foreground/[0.02] transition-colors duration-700 pointer-events-none -z-10 group-hover:text-solar-gold/5"
+                className="absolute top-0 right-0 text-[12rem] lg:text-[16rem] font-medium tracking-tight text-foreground/[0.02] transition-colors duration-700 pointer-events-none -z-10 group-hover:text-solar-gold/5"
             >
                 {step.num}
             </motion.div>
@@ -98,7 +98,7 @@ const Process = () => {
                                 transition={{ duration: 0.8 }}
                             >
                                 <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-terra-soil/50 mb-4 italic">The Architecture of Progress</p>
-                                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground mb-8 leading-[1.1] uppercase">
+                                <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-8 leading-[1.1] uppercase">
                                     A defined <br />journey to <br /><span className="text-accent italic font-light">self-mastery.</span>
                                 </h2>
                                 <p className="text-lg text-foreground/40 font-medium leading-relaxed max-w-sm mb-12">
@@ -135,7 +135,7 @@ const Process = () => {
 
             {/* Abstract Background Accents */}
             <div className="absolute top-0 right-0 w-[800px] h-full bg-solar-gold/[0.01] border-l border-black/[0.04] -z-10" />
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[300px] h-[300px] bg-signet-light/10 blur-[100px] rounded-full pointer-events-none -z-10" />
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[300px] h-[300px] bg-verdant/10 blur-[100px] rounded-full pointer-events-none -z-10" />
         </section>
     );
 };

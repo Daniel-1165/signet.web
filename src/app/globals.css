@@ -1,50 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,wght@0,100..1000;1,100..1000&family=DM+Serif+Display&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+/* ============================================================================
+   SIGNET — "The Seal"
+   ----------------------------------------------------------------------------
+   A signet is a seal ring: a mark pressed into wax that authenticates. That
+   idea drives every decision below — the green-black ink, the paper-not-white
+   canvas, and the letterpress treatment that presses surfaces INTO the page
+   instead of floating them above it.
+
+   Fonts load via @import rather than next/font deliberately: layout.tsx avoids
+   next/font because build-time Google Fonts downloads were failing in this
+   environment. Keep both in sync if that ever changes.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300..800&family=JetBrains+Mono:wght@400..700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-syne: var(--font-montserrat), sans-serif;
-  --font-outfit: var(--font-montserrat), sans-serif;
-  --font-dm-sans: var(--font-dm-sans), sans-serif;
-  --font-dm-serif: var(--font-dm-serif), serif;
+  /* --- Color -------------------------------------------------------------
+     Six values, no more. Every one earns its place; none are decorative.
+     `ink` is a green-black, not a neutral black — the whole palette is tinted
+     toward forest so nothing reads as an off-the-shelf gray ramp. */
+  --color-ink: #051F20;        /* body text, dark surfaces */
+  --color-canvas: #FBFAF7;     /* warm paper — never pure #FFF */
+  --color-seal: #163832;       /* primary brand green */
+  --color-verdant: #8EB69B;    /* growth accent, hairlines, active states */
+  --color-wax: #8A5A37;        /* bronze — the single warm accent, used sparingly */
+  --color-mist: #DAF1DE;       /* soft tinted surface */
 
-  /* Unified Premium Palette */
-  --color-primary: #6E7A67;
-  --color-secondary: #D8CEBF;
-  --color-tertiary: #8A5A37;
-  --color-neutral: #1D1914;
-  --color-border: #D8CEBE;
-  --color-surface: #FFFFFF;
+  /* Tints derived from the six, for surfaces and borders. Kept explicit rather
+     than generated so there is no ambiguity about what is in the system. */
+  --color-ink-70: rgba(5, 31, 32, 0.70);
+  --color-ink-45: rgba(5, 31, 32, 0.45);
+  --color-rule: rgba(5, 31, 32, 0.10);   /* default hairline */
+  --color-rule-strong: rgba(5, 31, 32, 0.18);
+  --color-surface: #FFFFFF;              /* raised card on canvas */
 
-  /* Signet Branded Greens */
-  --color-signet-dark: #051F20;
-  --color-signet-deep: #0B2B26;
-  --color-signet-primary: #163832;
-  --color-signet-medium: #235347;
-  --color-signet-light: #8EB69B;
-  --color-signet-pale: #DAF1DE;
+  /* --- Type --------------------------------------------------------------
+     Three roles, three faces. Fraunces for display (old-style, engraved, with
+     a soft/wonk axis that keeps it human rather than austere), Inter as the
+     body workhorse, JetBrains Mono for eyebrows and data — mono reads as
+     "registry / authenticated", which serves the seal idea. */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-accent: var(--color-signet-primary);
-  --color-growth-green: var(--color-signet-medium);
+  /* --- Elevation ---------------------------------------------------------
+     Two directions only: pressed in, or lifted just off the page. There is no
+     third "floating" tier — that restraint is what keeps the letterpress
+     signature legible. */
+  --shadow-press: inset 0 2px 5px rgba(5, 31, 32, 0.09),
+                  inset 0 -1px 0 rgba(255, 255, 255, 0.75);
+  --shadow-lift: 0 1px 2px rgba(5, 31, 32, 0.04),
+                 0 8px 24px rgba(5, 31, 32, 0.05);
+  --shadow-lift-hover: 0 2px 4px rgba(5, 31, 32, 0.05),
+                       0 16px 44px rgba(5, 31, 32, 0.08);
+
+  --radius-seal: 1.25rem;
 }
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #1D1914;
-  --font-montserrat: 'Montserrat', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-serif: 'Playfair Display', serif;
-  --font-dm-sans: 'DM Sans', sans-serif;
-  --font-dm-serif: 'DM Serif Display', serif;
+  --background: #FBFAF7;
+  --foreground: #051F20;
 }
 
+/* Dark mode is intentionally not supported — the paper-and-ink metaphor only
+   works in one direction, and the brand spec commits to a light surface. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #FFFFFF; /* Force light mode based on spec */
-    --foreground: #1D1914;
+    --background: #FBFAF7;
+    --foreground: #051F20;
   }
 }
 
@@ -52,60 +75,473 @@ html {
   scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
   max-width: 100vw;
   overflow-x: hidden;
   position: relative;
-  background: #FFFFFF;
-  color: #1D1914;
-  font-family: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Utilities for Math/Aesthetics */
-@layer base {
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
-.premium-gradient {
-  background: radial-gradient(circle at top center, rgba(110, 122, 103, 0.15) 0%, transparent 70%);
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  /* Fraunces carries every heading. `opsz` is set high so display sizes get
+     the tighter, more dramatic cut; `SOFT` takes the edge off the terminals
+     so the face reads considered rather than severe. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 20, 'WONK' 0, 'opsz' 100;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-mist);
+    color: var(--color-seal);
+  }
+
+  /* Focus is never removed, only restyled. Two-tone ring stays visible on both
+     paper and ink surfaces. */
+  :focus-visible {
+    outline: 2px solid var(--color-seal);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Dark surfaces switch the ring to the light accent, so focus stays visible
+     against ink as well as paper. */
+  .on-ink :focus-visible,
+  .card-ink :focus-visible {
+    outline-color: var(--color-verdant);
+  }
 }
 
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+@layer components {
+
+  /* --- Layout rhythm -----------------------------------------------------
+     Use these on every page wrapper and major section instead of one-off
+     max-w / py values. Deliberately not Tailwind's `container` utility: under
+     v4 that injects a max-width at every breakpoint, which then fights an
+     explicit max-w on the same element. */
+  .page-container {
+    @apply w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  .prose-container {
+    @apply w-full max-w-[68ch] mx-auto px-5 sm:px-8;
+  }
+
+  .section-py {
+    @apply py-16 sm:py-20 md:py-28;
+  }
+
+  /* --- Type scale --------------------------------------------------------
+     Mobile is a deliberate step smaller than desktop: a heading that reads as
+     confident on a laptop shouts on a phone. */
+  .h1 {
+    @apply font-display text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] tracking-[-0.03em];
+    font-variation-settings: 'SOFT' 20, 'WONK' 0, 'opsz' 144;
+    font-weight: 600;
+  }
+
+  .h2 {
+    @apply font-display text-[1.5rem] sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-[-0.025em];
+    font-variation-settings: 'SOFT' 20, 'WONK' 0, 'opsz' 96;
+    font-weight: 600;
+  }
+
+  .h3 {
+    @apply font-display text-lg md:text-xl leading-[1.25] tracking-[-0.015em];
+    font-variation-settings: 'SOFT' 20, 'WONK' 0, 'opsz' 48;
+    font-weight: 600;
+  }
+
+  /* An accent for display type — the italic optical-size cut of Fraunces is
+     genuinely beautiful and is the one place the face gets to show off. */
+  .display-accent {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-variation-settings: 'SOFT' 40, 'WONK' 1, 'opsz' 144;
+    letter-spacing: -0.01em;
+  }
+
+  .lede {
+    @apply text-base md:text-lg leading-[1.6] text-ink/70;
+  }
+
+  .body-sm {
+    @apply text-sm leading-[1.65] text-ink/70;
+  }
+
+  /* --- Eyebrow -----------------------------------------------------------
+     The structural device for the whole site. Mono, tracked out, preceded by
+     a short rule. It names the section — it never counts it. Numbering is
+     reserved for content that is genuinely sequential (the program weeks). */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-mono text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.22em] text-ink/45;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply block w-6 h-px bg-verdant;
+    flex: none;
+  }
+
+  .eyebrow-on-ink {
+    @apply text-mist/60;
+  }
+
+  /* --- Letterpress -------------------------------------------------------
+     The signature. Surfaces are pressed INTO the paper, not floated above it:
+     a dark inner edge at the top where light would be occluded, a white inner
+     edge at the bottom where it would catch. This is the one bold move on the
+     site; everything around it stays quiet.
+
+     Note on authoring style: these deliberately do NOT `@apply` one another.
+     Tailwind v4 only reliably resolves @apply against real utilities, not
+     against other custom component classes, so `.card { @apply lift }` is a
+     silent failure waiting to happen. Shared declarations are written out
+     instead — slightly more verbose, considerably more predictable. */
+  .press {
+    background: linear-gradient(180deg, rgba(5, 31, 32, 0.025) 0%, rgba(5, 31, 32, 0) 40%),
+                var(--color-canvas);
+    box-shadow: var(--shadow-press);
+    border-radius: var(--radius-seal);
+  }
+
+  /* The raised counterpart — used for the seal mark and for cards that must
+     genuinely sit above the page (menus, popovers). */
+  .lift {
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-seal);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .lift-hover {
+    transition: box-shadow 500ms;
+  }
+
+  .lift-hover:hover {
+    box-shadow: var(--shadow-lift-hover);
+  }
+
+  /* Marks a dark surface, so descendant focus rings can switch to the light
+     accent. Used as a plain class in markup. */
+  .on-ink {
+    color: var(--color-canvas);
+  }
+
+  /* --- Cards -------------------------------------------------------------- */
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-seal);
+    box-shadow: var(--shadow-lift);
+    @apply p-6 md:p-8;
+  }
+
+  .card-press {
+    background: linear-gradient(180deg, rgba(5, 31, 32, 0.025) 0%, rgba(5, 31, 32, 0) 40%),
+                var(--color-canvas);
+    box-shadow: var(--shadow-press);
+    border-radius: var(--radius-seal);
+    @apply p-6 md:p-8;
+  }
+
+  .card-ink {
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    border: 1px solid rgba(142, 182, 155, 0.14);
+    border-radius: var(--radius-seal);
+    @apply p-6 md:p-8;
+  }
+
+  /* --- Buttons -----------------------------------------------------------
+     Pill geometry carried over from the brand spec. Hover lifts by 1px only:
+     on a page built around things pressed into paper, a button that leaps off
+     it would break the fiction. */
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-sans font-semibold
+           text-sm px-7 py-3.5 transition-all duration-300 whitespace-nowrap;
+  }
+
+  .btn-primary {
+    background: var(--color-seal);
+    color: var(--color-canvas);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--shadow-lift);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-ink);
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--shadow-lift-hover);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-rule-strong);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(218, 241, 222, 0.4);
+    border-color: var(--color-verdant);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    @apply px-0 py-1 rounded-none;
+    color: var(--color-ink-70);
+    border-bottom: 1px solid var(--color-rule-strong);
+  }
+
+  .btn-ghost:hover {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-verdant);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: none;
+    }
+  }
+
+  /* --- Rules -------------------------------------------------------------- */
+  .rule {
+    @apply w-full h-px bg-rule border-0;
+  }
+}
+
+/* ==========================================================================
+   Editorial body content (Sanity portable text)
+   ==========================================================================
+   Ported from the SUCF build, retuned to this palette. Body is 15/16px rather
+   than 16/18 — Inter at a slightly smaller size with generous leading reads
+   as editorial; larger reads as a blog template. */
+
+.article-body-content,
+.prose-signet {
+  @apply text-ink;
+  overflow-wrap: break-word;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+.article-body-content p,
+.prose-signet p {
+  margin-bottom: 1em;
+  line-height: 1.7;
+  font-size: 0.9375rem;
+  color: var(--color-ink-70);
+  letter-spacing: -0.003em;
+}
+
+@media (min-width: 768px) {
+  .article-body-content p,
+  .prose-signet p {
+    font-size: 1rem;
+  }
+}
+
+.article-body-content h2,
+.prose-signet h2,
+.article-body-content h3,
+.prose-signet h3 {
+  font-family: var(--font-display);
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+.article-body-content h2,
+.prose-signet h2 {
+  font-size: 1.375rem;
+}
+
+.article-body-content h3,
+.prose-signet h3 {
+  font-size: 1.125rem;
+}
+
+.article-body-content ul,
+.prose-signet ul {
+  list-style: disc;
+}
+
+.article-body-content ol,
+.prose-signet ol {
+  list-style: decimal;
+}
+
+.article-body-content ul,
+.prose-signet ul,
+.article-body-content ol,
+.prose-signet ol {
+  margin-bottom: 1.5em;
+  padding-left: 1.4em;
+  line-height: 1.7;
+}
+
+.article-body-content li,
+.prose-signet li {
+  margin-bottom: 0.5em;
+  font-size: 0.9375rem;
+  color: var(--color-ink-70);
+}
+
+.article-body-content li::marker,
+.prose-signet li::marker {
+  color: var(--color-verdant);
+}
+
+.article-body-content blockquote,
+.prose-signet blockquote {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-style: italic;
+  margin: 2em 0;
+  padding-left: 1.25em;
+  border-left: 2px solid var(--color-verdant);
+  color: var(--color-seal);
+}
+
+.article-body-content figure,
+.prose-signet figure {
+  margin: 2.5em auto;
+  max-width: 32rem;
+}
+
+.article-body-content figure img,
+.prose-signet figure img {
+  width: 100%;
+  height: auto;
+  max-height: 26rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-rule);
+}
+
+.article-body-content figcaption,
+.prose-signet figcaption {
+  margin-top: 0.75em;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-45);
+  text-align: center;
+}
+
+.article-body-content a,
+.prose-signet a {
+  color: var(--color-seal);
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-verdant);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.article-body-content a:hover,
+.prose-signet a:hover {
+  color: var(--color-wax);
+  border-bottom-color: var(--color-wax);
+}
+
+/* ==========================================================================
+   Motion
+   ==========================================================================
+   "Silent growth": content presses into place rather than sliding in. The
+   scale starts fractionally large and settles — the visual grammar of a stamp
+   meeting paper. One gesture, used everywhere, instead of scattered effects. */
+
+@keyframes press-in {
+  from {
+    opacity: 0;
+    transform: scale(1.015) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-press-in {
+  animation: press-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-delay-1 { animation-delay: 0.08s; }
+.animate-delay-2 { animation-delay: 0.16s; }
+.animate-delay-3 { animation-delay: 0.24s; }
+.animate-delay-4 { animation-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-press-in,
+  .animate-delay-1,
+  .animate-delay-2,
+  .animate-delay-3,
+  .animate-delay-4 {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-verdant);
+  border-radius: 999px;
+}
+
+/* Frosted panel, used on the chat surfaces where content scrolls beneath a
+   fixed header. The one survivor of the previous effect classes — the rest
+   (signet-glow, inner-glow, premium-gradient, typography-premium) are gone,
+   replaced by .lift / .press and the type scale. */
 .soft-blur {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 }
 
-.signet-glow {
-  box-shadow: rgba(255, 255, 255, 0.75) 0px 1px 0px 0px inset, rgba(114, 93, 72, 0.04) 0px 1px 0px 0px;
-  border: 1px solid #D8CEBE;
-}
-
-.signet-glow-hover:hover {
-  box-shadow: rgba(255, 255, 255, 0.75) 0px 1px 0px 0px inset, rgba(114, 93, 72, 0.1) 0px 2px 4px 0px;
-  border-color: #D8CEBE;
-}
-
-.inner-glow {
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-.typography-premium {
-  letter-spacing: -0.025em;
-  line-height: 1.4;
-}
-
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-/* Ensure Montserrat is used everywhere, even overriding inline font-family styles, except for monospace elements */
-[style*="font-family"]:not([style*="monospace"]):not([style*="Mono"]):not([style*="mono"]) {
-  font-family: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
-}
-
-.homepage-container {
-  --font-montserrat: 'Plus Jakarta Sans', sans-serif;
+/* A whisper of atmosphere behind hero and CTA blocks. Two stops, very low
+   alpha — enough to keep large flat areas from going dead, not enough to read
+   as a gradient. */
+.canvas-wash {
+  background-color: var(--color-canvas);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(142, 182, 155, 0.10) 0px, transparent 55%),
+    radial-gradient(at 100% 100%, rgba(138, 90, 55, 0.05) 0px, transparent 55%);
 }

@@ -306,10 +306,10 @@ export default function AdminHubPage() {
 
   if (loading && !isAdmin) {
     return (
-      <div className="min-h-screen bg-[#FAFAF8] flex items-center justify-center font-sans">
+      <div className="min-h-screen bg-canvas flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 rounded-full border-2 border-[#EAF4EC] border-t-[#1E6B3A] animate-spin" />
-          <p className="text-[#1E6B3A] text-[12px] font-bold tracking-[0.2em] uppercase font-sans">Verifying Admin Privileges</p>
+          <div className="w-12 h-12 rounded-full border-2 border-mist border-t-seal animate-spin" />
+          <p className="text-seal text-[12px] font-bold tracking-[0.2em] uppercase font-sans">Verifying Admin Privileges</p>
         </div>
       </div>
     )
@@ -318,33 +318,33 @@ export default function AdminHubPage() {
   if (!isAdmin) return null
 
   return (
-    <div className="min-h-screen bg-[#FAFAF8] text-[#0F172A] pt-4 md:pt-8 font-sans selection:bg-[#EAF4EC] selection:text-[#114B2A]">
+    <div className="min-h-screen bg-canvas text-ink pt-4 md:pt-8 font-sans selection:bg-mist selection:text-seal">
       {/* Editorial Header */}
-      <header className="flex flex-col md:flex-row md:items-end justify-between py-6 md:py-10 max-w-[1300px] mx-auto px-5 md:px-6 border-b border-[#EDEDED] mb-8 md:mb-12 gap-6 md:gap-0">
+      <header className="flex flex-col md:flex-row md:items-end justify-between py-6 md:py-10 max-w-[1300px] mx-auto px-5 md:px-6 border-b border-rule mb-8 md:mb-12 gap-6 md:gap-0">
         <div>
-           <div className="flex items-center gap-2 text-[#1E6B3A] mb-2">
+           <div className="flex items-center gap-2 text-seal mb-2">
              <Shield size={14} className="md:w-4 md:h-4" />
              <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase">Private Protocol</span>
            </div>
-           <h1 className="text-[32px] md:text-[44px] font-extrabold leading-tight text-[#0F172A] font-sans" >
-             Admin <span className="italic font-light text-[#1E6B3A]">Hub</span>
+           <h1 className="text-[32px] md:text-[44px] font-semibold leading-tight text-ink font-sans" >
+             Admin <span className="italic font-light text-seal">Hub</span>
            </h1>
-           <p className="text-[#0F172A]/60 text-[14px] font-semibold mt-2">Platform Governance & Infrastructure Control</p>
+           <p className="text-ink/60 text-[14px] font-semibold mt-2">Platform Governance & Infrastructure Control</p>
         </div>
       </header>
 
       <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
         <div className="space-y-10">
           {/* Access Control Card */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED]">
+          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-rule">
             <div className="flex items-center gap-2 mb-8">
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#1E6B3A]">Access Control</span>
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-seal">Access Control</span>
             </div>
             
-            <h3 className="text-[24px] md:text-[28px] font-extrabold text-[#0F172A] mb-4 font-sans" >
-              Promote <span className="italic font-light text-[#1E6B3A]">Member</span>
+            <h3 className="text-[24px] md:text-[28px] font-semibold text-ink mb-4 font-sans" >
+              Promote <span className="italic font-light text-seal">Member</span>
             </h3>
-            <p className="text-[#0F172A]/70 text-[14px] mb-8 max-w-xl leading-relaxed font-medium">
+            <p className="text-ink/70 text-[14px] mb-8 max-w-xl leading-relaxed font-medium">
               Grant administrative privileges to a specific member. This allows them to moderate posts, delete content, and access this hub.
             </p>
 
@@ -354,12 +354,12 @@ export default function AdminHubPage() {
                 value={promotionTarget}
                 onChange={(e) => setPromotionTarget(e.target.value)}
                 placeholder="Enter User ID or Email address..."
-                className="flex-1 bg-[#FAFAF8] border border-[#EDEDED] rounded-2xl py-4 px-6 text-[#0F172A] text-[14px] outline-none focus:border-[#1E6B3A] transition-all font-sans font-medium"
+                className="flex-1 bg-canvas border border-rule rounded-2xl py-4 px-6 text-ink text-[14px] outline-none focus:border-seal transition-all font-sans font-medium"
               />
               <button 
                 onClick={handlePromote}
                 disabled={promoting || !promotionTarget.trim()}
-                className="px-8 py-4 bg-[#1E6B3A] hover:bg-[#114B2A] text-white rounded-2xl font-bold text-[13px] transition-all shadow-md shadow-[#1E6B3A]/20 disabled:opacity-50 font-sans"
+                className="px-8 py-4 bg-seal hover:bg-seal text-white rounded-2xl font-bold text-[13px] transition-all shadow-md shadow-seal/20 disabled:opacity-50 font-sans"
               >
                 {promoting ? 'Processing...' : 'Verify & Promote'}
               </button>
@@ -376,89 +376,89 @@ export default function AdminHubPage() {
           </div>
 
           {/* Certificates Management Card */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED]">
+          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-rule">
             <div className="flex items-center gap-2 mb-8">
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#1E6B3A]">Credentials Control</span>
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-seal">Credentials Control</span>
             </div>
             
-            <h3 className="text-[24px] md:text-[28px] font-extrabold text-[#0F172A] mb-4 font-sans" >
-              Manage Cohort <span className="italic font-light text-[#1E6B3A]">Certificates</span>
+            <h3 className="text-[24px] md:text-[28px] font-semibold text-ink mb-4 font-sans" >
+              Manage Cohort <span className="italic font-light text-seal">Certificates</span>
             </h3>
-            <p className="text-[#0F172A]/70 text-[14px] mb-8 max-w-xl leading-relaxed font-medium">
+            <p className="text-ink/70 text-[14px] mb-8 max-w-xl leading-relaxed font-medium">
               Create and manage official digital certificates. Users will be able to retrieve them by entering either their username or email on the public certificates page.
             </p>
 
             {/* Add Certificate Form */}
-            <form onSubmit={handleAddCertificate} className="space-y-6 bg-[#FAFAF8] border border-[#EDEDED] p-6 rounded-[1.5rem] mb-10">
-              <h4 className="text-sm font-bold uppercase tracking-wider text-[#0F172A]/60">Add New Certificate</h4>
+            <form onSubmit={handleAddCertificate} className="space-y-6 bg-canvas border border-rule p-6 rounded-[1.5rem] mb-10">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-ink/60">Add New Certificate</h4>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Signet Username</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Signet Username</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. daniel_growth"
                     value={certUsername}
                     onChange={(e) => setCertUsername(e.target.value)}
-                    className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none focus:border-[#1E6B3A] transition-all font-medium"
+                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-all font-medium"
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Secure Email</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Secure Email</label>
                   <input
                     type="email"
                     required
                     placeholder="e.g. daniel@signet.org"
                     value={certEmail}
                     onChange={(e) => setCertEmail(e.target.value)}
-                    className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none focus:border-[#1E6B3A] transition-all font-medium"
+                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-all font-medium"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Cohort/Course Name</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Cohort/Course Name</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Silent Growth Network Cohort 1"
                     value={certCourse}
                     onChange={(e) => setCertCourse(e.target.value)}
-                    className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none focus:border-[#1E6B3A] transition-all font-medium"
+                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-all font-medium"
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Issue Date</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Issue Date</label>
                   <input
                     type="date"
                     required
                     value={certDate}
                     onChange={(e) => setCertDate(e.target.value)}
-                    className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none focus:border-[#1E6B3A] transition-all font-medium"
+                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-all font-medium"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-[#0F172A]/60">Certificate PDF or Image File</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Certificate PDF or Image File</label>
                 <input
                   id="certFile"
                   type="file"
                   required
                   accept="application/pdf,image/*"
                   onChange={(e) => setCertFile(e.target.files?.[0] || null)}
-                  className="w-full bg-white border border-[#EDEDED] rounded-xl py-3 px-4 text-sm outline-none file:mr-4 file:py-1.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#EAF4EC] file:text-[#1E6B3A] hover:file:bg-[#1E6B3A] hover:file:text-white file:transition-all"
+                  className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none file:mr-4 file:py-1.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-mist file:text-seal hover:file:bg-seal hover:file:text-white file:transition-all"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={uploadingCert}
-                className="w-full py-4 bg-[#1E6B3A] hover:bg-[#114B2A] text-white rounded-xl font-bold text-xs uppercase tracking-widest transition-all shadow-md shadow-[#1E6B3A]/20 disabled:opacity-50"
+                className="w-full py-4 bg-seal hover:bg-seal text-white rounded-xl font-bold text-xs uppercase tracking-widest transition-all shadow-md shadow-seal/20 disabled:opacity-50"
               >
                 {uploadingCert ? 'Uploading & Creating...' : 'Create Certificate Record'}
               </button>
@@ -466,24 +466,24 @@ export default function AdminHubPage() {
 
             {/* List of Existing Certificates */}
             <div className="space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F172A]/60">Active Certificates ({dbCertificates.length})</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-ink/60">Active Certificates ({dbCertificates.length})</h4>
               
               {loadingCerts ? (
                 <div className="flex justify-center py-6">
-                  <div className="w-6 h-6 border-2 border-gray-200 border-t-[#1E6B3A] rounded-full animate-spin" />
+                  <div className="w-6 h-6 border-2 border-gray-200 border-t-seal rounded-full animate-spin" />
                 </div>
               ) : dbCertificates.length === 0 ? (
-                <p className="text-sm text-[#0F172A]/40 font-medium py-4 text-center">No certificates uploaded to Supabase database yet.</p>
+                <p className="text-sm text-ink/40 font-medium py-4 text-center">No certificates uploaded to Supabase database yet.</p>
               ) : (
-                <div className="divide-y divide-[#EDEDED] max-h-[300px] overflow-y-auto pr-2 scrollbar-thin">
+                <div className="divide-y divide-rule max-h-[300px] overflow-y-auto pr-2 scrollbar-thin">
                   {dbCertificates.map((cert) => (
                     <div key={cert.id} className="py-4 flex items-center justify-between gap-4">
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
-                          <p className="text-sm font-bold text-[#0F172A] truncate">@{cert.username}</p>
-                          <span className="text-[10px] bg-[#EAF4EC]/60 text-[#1E6B3A] px-2 py-0.5 rounded font-semibold truncate max-w-[150px]">{cert.course_name}</span>
+                          <p className="text-sm font-bold text-ink truncate">@{cert.username}</p>
+                          <span className="text-[10px] bg-mist/60 text-seal px-2 py-0.5 rounded font-semibold truncate max-w-[150px]">{cert.course_name}</span>
                         </div>
-                        <p className="text-xs text-[#0F172A]/60 font-semibold truncate mt-0.5">{cert.email}</p>
+                        <p className="text-xs text-ink/60 font-semibold truncate mt-0.5">{cert.email}</p>
                       </div>
                       
                       <div className="flex items-center gap-2 shrink-0">
@@ -491,14 +491,14 @@ export default function AdminHubPage() {
                           href={cert.file_url} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="p-2 text-[#0F172A]/40 hover:text-[#1E6B3A] transition-colors"
+                          className="p-2 text-ink/40 hover:text-seal transition-colors"
                           title="View Certificate"
                         >
                           <ExternalLink size={15} />
                         </a>
                         <button 
                           onClick={() => handleDeleteCertificate(cert.id)}
-                          className="p-2 text-[#0F172A]/40 hover:text-red-600 transition-colors"
+                          className="p-2 text-ink/40 hover:text-red-600 transition-colors"
                           title="Delete Certificate"
                         >
                           <Trash2 size={15} />
@@ -512,38 +512,38 @@ export default function AdminHubPage() {
           </div>
 
           {/* Newsletter Subscribers Spreadsheet Card */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED] overflow-hidden">
+          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-rule overflow-hidden">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
               <div>
-                <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#1E6B3A]">Mailing List</span>
-                <h3 className="text-[24px] md:text-[28px] font-extrabold text-[#0F172A] mt-1 font-sans">
-                  Newsletter <span className="italic font-light text-[#1E6B3A]">Subscribers</span>
+                <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-seal">Mailing List</span>
+                <h3 className="text-[24px] md:text-[28px] font-semibold text-ink mt-1 font-sans">
+                  Newsletter <span className="italic font-light text-seal">Subscribers</span>
                 </h3>
               </div>
               
               <button 
                 onClick={handleExportCSV}
                 disabled={subscribers.length === 0}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#EAF4EC] hover:bg-[#1E6B3A] text-[#1E6B3A] hover:text-white rounded-xl font-bold text-[12px] uppercase tracking-wider transition-all disabled:opacity-50 font-sans"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-mist hover:bg-seal text-seal hover:text-white rounded-xl font-bold text-[12px] uppercase tracking-wider transition-all disabled:opacity-50 font-sans"
               >
                 <Download size={14} /> Export CSV
               </button>
             </div>
 
             {/* Filters Bar */}
-            <div className="flex items-center gap-3 bg-[#FAFAF8] border border-[#EDEDED] rounded-2xl px-4 py-3 mb-6">
-              <Search className="text-[#0F172A]/40 w-4 h-4 shrink-0" />
+            <div className="flex items-center gap-3 bg-canvas border border-rule rounded-2xl px-4 py-3 mb-6">
+              <Search className="text-ink/40 w-4 h-4 shrink-0" />
               <input
                 type="text"
                 placeholder="Search by name, email, or username..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent text-[13.5px] outline-none text-[#0F172A] placeholder-[#0F172A]/30 font-sans font-medium"
+                className="w-full bg-transparent text-[13.5px] outline-none text-ink placeholder-ink/30 font-sans font-medium"
               />
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery('')}
-                  className="text-xs font-bold text-[#1E6B3A] hover:underline uppercase shrink-0 font-sans"
+                  className="text-xs font-bold text-seal hover:underline uppercase shrink-0 font-sans"
                 >
                   Clear
                 </button>
@@ -554,42 +554,42 @@ export default function AdminHubPage() {
             <div className="overflow-x-auto -mx-8 md:-mx-10 px-8 md:px-10 scrollbar-thin">
               <table className="w-full text-left border-collapse border-spacing-0 font-sans">
                 <thead>
-                  <tr className="border-b border-[#EDEDED] bg-[#FAFAF8]">
+                  <tr className="border-b border-rule bg-canvas">
                     <th 
                       onClick={() => handleSort('name')}
-                      className="py-4 px-5 text-[10px] font-extrabold uppercase tracking-widest text-[#0F172A]/50 select-none cursor-pointer hover:text-[#1E6B3A] transition-colors"
+                      className="py-4 px-5 text-[10px] font-semibold uppercase tracking-widest text-ink/50 select-none cursor-pointer hover:text-seal transition-colors"
                     >
                       <div className="flex items-center gap-2">
-                        Name <ArrowUpDown size={10} className="text-[#1E6B3A]/40" />
+                        Name <ArrowUpDown size={10} className="text-seal/40" />
                       </div>
                     </th>
                     <th 
                       onClick={() => handleSort('email')}
-                      className="py-4 px-5 text-[10px] font-extrabold uppercase tracking-widest text-[#0F172A]/50 select-none cursor-pointer hover:text-[#1E6B3A] transition-colors"
+                      className="py-4 px-5 text-[10px] font-semibold uppercase tracking-widest text-ink/50 select-none cursor-pointer hover:text-seal transition-colors"
                     >
                       <div className="flex items-center gap-2">
-                        Email Address <ArrowUpDown size={10} className="text-[#1E6B3A]/40" />
+                        Email Address <ArrowUpDown size={10} className="text-seal/40" />
                       </div>
                     </th>
                     <th 
                       onClick={() => handleSort('username')}
-                      className="py-4 px-5 text-[10px] font-extrabold uppercase tracking-widest text-[#0F172A]/50 select-none cursor-pointer hover:text-[#1E6B3A] transition-colors"
+                      className="py-4 px-5 text-[10px] font-semibold uppercase tracking-widest text-ink/50 select-none cursor-pointer hover:text-seal transition-colors"
                     >
                       <div className="flex items-center gap-2">
-                        Username <ArrowUpDown size={10} className="text-[#1E6B3A]/40" />
+                        Username <ArrowUpDown size={10} className="text-seal/40" />
                       </div>
                     </th>
                     <th 
                       onClick={() => handleSort('subscribedAt')}
-                      className="py-4 px-5 text-[10px] font-extrabold uppercase tracking-widest text-[#0F172A]/50 select-none cursor-pointer hover:text-[#1E6B3A] transition-colors"
+                      className="py-4 px-5 text-[10px] font-semibold uppercase tracking-widest text-ink/50 select-none cursor-pointer hover:text-seal transition-colors"
                     >
                       <div className="flex items-center gap-2">
-                        Subscribed Date <ArrowUpDown size={10} className="text-[#1E6B3A]/40" />
+                        Subscribed Date <ArrowUpDown size={10} className="text-seal/40" />
                       </div>
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#EDEDED]/60">
+                <tbody className="divide-y divide-rule/60">
                   {loadingSubscribers ? (
                     // Skeleton Rows
                     Array.from({ length: 4 }).map((_, idx) => (
@@ -602,7 +602,7 @@ export default function AdminHubPage() {
                     ))
                   ) : currentSubscribers.length === 0 ? (
                     <tr>
-                      <td colSpan={4} className="py-12 text-center text-sm font-medium text-[#0F172A]/40">
+                      <td colSpan={4} className="py-12 text-center text-sm font-medium text-ink/40">
                         {searchQuery ? 'No matching subscribers found.' : 'No newsletter subscribers yet.'}
                       </td>
                     </tr>
@@ -610,20 +610,20 @@ export default function AdminHubPage() {
                     currentSubscribers.map((sub) => (
                       <tr 
                         key={sub.id} 
-                        className="hover:bg-[#EAF4EC]/10 transition-colors group"
+                        className="hover:bg-mist/10 transition-colors group"
                       >
-                        <td className="py-4 px-5 text-[13.5px] font-bold text-[#0F172A] truncate max-w-[150px]">
+                        <td className="py-4 px-5 text-[13.5px] font-bold text-ink truncate max-w-[150px]">
                           {sub.name}
                         </td>
-                        <td className="py-4 px-5 text-[13.5px] font-semibold text-[#0F172A]/70 font-mono truncate max-w-[200px]">
+                        <td className="py-4 px-5 text-[13.5px] font-semibold text-ink/70 font-mono truncate max-w-[200px]">
                           {sub.email}
                         </td>
-                        <td className="py-4 px-5 text-[13px] font-bold text-[#1E6B3A]">
-                          <span className="bg-[#EAF4EC]/60 px-2.5 py-1 rounded-lg">
+                        <td className="py-4 px-5 text-[13px] font-bold text-seal">
+                          <span className="bg-mist/60 px-2.5 py-1 rounded-lg">
                             @{sub.username}
                           </span>
                         </td>
-                        <td className="py-4 px-5 text-[12px] font-semibold text-[#0F172A]/50">
+                        <td className="py-4 px-5 text-[12px] font-semibold text-ink/50">
                           {new Date(sub.subscribedAt).toLocaleDateString(undefined, {
                             year: 'numeric',
                             month: 'short',
@@ -639,24 +639,24 @@ export default function AdminHubPage() {
 
             {/* Pagination Controls */}
             {!loadingSubscribers && totalPages > 1 && (
-              <div className="flex items-center justify-between border-t border-[#EDEDED]/60 pt-6 mt-6">
-                <p className="text-[12px] font-semibold text-[#0F172A]/40">
-                  Showing <span className="font-bold text-[#0F172A]">{indexOfFirstItem + 1}</span> to{' '}
-                  <span className="font-bold text-[#0F172A]">{Math.min(indexOfLastItem, sortedSubscribers.length)}</span> of{' '}
-                  <span className="font-bold text-[#0F172A]">{sortedSubscribers.length}</span> subscribers
+              <div className="flex items-center justify-between border-t border-rule/60 pt-6 mt-6">
+                <p className="text-[12px] font-semibold text-ink/40">
+                  Showing <span className="font-bold text-ink">{indexOfFirstItem + 1}</span> to{' '}
+                  <span className="font-bold text-ink">{Math.min(indexOfLastItem, sortedSubscribers.length)}</span> of{' '}
+                  <span className="font-bold text-ink">{sortedSubscribers.length}</span> subscribers
                 </p>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
-                    className="p-2 border border-[#EDEDED] rounded-xl text-[#0F172A]/50 hover:bg-[#FAFAF8] hover:text-[#0F172A] transition-all disabled:opacity-30"
+                    className="p-2 border border-rule rounded-xl text-ink/50 hover:bg-canvas hover:text-ink transition-all disabled:opacity-30"
                   >
                     <ChevronLeft size={16} />
                   </button>
                   <button
                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="p-2 border border-[#EDEDED] rounded-xl text-[#0F172A]/50 hover:bg-[#FAFAF8] hover:text-[#0F172A] transition-all disabled:opacity-30"
+                    className="p-2 border border-rule rounded-xl text-ink/50 hover:bg-canvas hover:text-ink transition-all disabled:opacity-30"
                   >
                     <ChevronRight size={16} />
                   </button>
@@ -666,22 +666,22 @@ export default function AdminHubPage() {
           </div>
 
           {/* Active Staff List */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-[#EDEDED]">
-            <h4 className="text-[10px] font-bold text-[#1E6B3A]/60 uppercase tracking-[0.2em] mb-8">Active Administrators</h4>
+          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-rule">
+            <h4 className="text-[10px] font-bold text-seal/60 uppercase tracking-[0.2em] mb-8">Active Administrators</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {[user].map((staff, i) => (
-                 <div key={i} className="flex items-center justify-between p-5 bg-[#FAFAF8] rounded-2xl border border-[#EDEDED] hover:border-[#1E6B3A]/30 transition-all group">
+                 <div key={i} className="flex items-center justify-between p-5 bg-canvas rounded-2xl border border-rule hover:border-seal/30 transition-all group">
                     <div className="flex items-center gap-4">
                       <div className="relative">
                         <img src={staff?.imageUrl} className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
                         <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white" />
                       </div>
                       <div>
-                        <p className="text-[14px] font-bold text-[#0F172A]">{staff?.fullName || 'Root Admin'}</p>
-                        <p className="text-[11px] text-[#1E6B3A]/60 font-bold uppercase tracking-wider">Level 1 Admin</p>
+                        <p className="text-[14px] font-bold text-ink">{staff?.fullName || 'Root Admin'}</p>
+                        <p className="text-[11px] text-seal/60 font-bold uppercase tracking-wider">Level 1 Admin</p>
                       </div>
                     </div>
-                    <Shield size={16} className="text-[#1E6B3A]/20 group-hover:text-[#1E6B3A] transition-colors" />
+                    <Shield size={16} className="text-seal/20 group-hover:text-seal transition-colors" />
                  </div>
                ))}
             </div>
@@ -690,7 +690,7 @@ export default function AdminHubPage() {
 
         <aside className="space-y-10">
           {/* Content Safety Card */}
-          <div className="bg-white rounded-[2rem] p-8 border border-[#EDEDED] shadow-sm relative overflow-hidden group">
+          <div className="bg-white rounded-[2rem] p-8 border border-rule shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none group-hover:rotate-12 transition-transform duration-700">
               <Trash2 size={80} />
             </div>
@@ -698,11 +698,11 @@ export default function AdminHubPage() {
             <div className="relative z-10">
               <div className="flex items-center gap-2 mb-6">
                 <AlertTriangle className="text-red-500/60" size={14} />
-                <h2 className="text-[10px] font-bold text-[#1E6B3A] uppercase tracking-[0.2em]">Platform Safety</h2>
+                <h2 className="text-[10px] font-bold text-seal uppercase tracking-[0.2em]">Platform Safety</h2>
               </div>
               
-              <h3 className="text-[20px] font-extrabold text-[#0F172A] mb-4 font-sans" >Platform <span className="text-red-600 italic font-light">Cleanup</span></h3>
-              <p className="text-[#0F172A]/70 text-[13px] mb-8 leading-relaxed font-semibold font-sans">
+              <h3 className="text-[20px] font-semibold text-ink mb-4 font-sans" >Platform <span className="text-red-600 italic font-light">Cleanup</span></h3>
+              <p className="text-ink/70 text-[13px] mb-8 leading-relaxed font-semibold font-sans">
                 Resets the collective community feed. All published insights, assets, and discussions will be permanently removed.
               </p>
 
@@ -718,10 +718,10 @@ export default function AdminHubPage() {
           </div>
 
           {/* Integration Links */}
-          <div className="bg-[#0F172A] rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group">
+          <div className="bg-ink rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group">
              <Sparkles className="absolute -top-6 -right-6 w-24 h-24 text-white/5 group-hover:rotate-12 transition-transform duration-1000" />
-             <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#EAF4EC]/60">System Logs</span>
-             <h3 className="text-white text-[24px] font-extrabold mt-2 mb-6 font-sans" >Infrastructure</h3>
+             <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-mist/60">System Logs</span>
+             <h3 className="text-white text-[24px] font-semibold mt-2 mb-6 font-sans" >Infrastructure</h3>
              
              <div className="space-y-3 font-sans">
                 <a href="https://clerk.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all group/link">

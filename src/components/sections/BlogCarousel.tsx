@@ -96,7 +96,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                   className="group block w-full h-full cursor-pointer"
                 >
                   {/* Image container with 1:1 aspect ratio as requested */}
-                  <div className="relative w-full aspect-square md:rounded-[2rem] md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-[#0B2B26]/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition-all duration-500">
+                  <div className="relative w-full aspect-square md:rounded-[2rem] md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-seal/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition-all duration-500">
                     <Image
                       src={slide.imageUrl}
                       alt={slide.caption || "Gallery image"}

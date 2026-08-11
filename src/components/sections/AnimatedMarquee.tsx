@@ -43,7 +43,7 @@ const AnimatedMarquee = () => {
                             return (
                                 <div key={`${i}-${index}`} className="flex items-center gap-1.5 opacity-30 hover:opacity-60 transition-opacity duration-300 cursor-default min-w-[90px] sm:min-w-[130px]">
                                     <Icon className="w-3.5 h-3.5 text-foreground" strokeWidth={2} />
-                                    <span className="text-[9px] sm:text-[11px] font-black tracking-tighter text-foreground uppercase truncate">
+                                    <span className="text-[9px] sm:text-[11px] font-semibold tracking-tight text-foreground uppercase truncate">
                                         {item.text}
                                     </span>
                                 </div>

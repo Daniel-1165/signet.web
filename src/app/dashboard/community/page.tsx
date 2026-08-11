@@ -42,16 +42,16 @@ export default function CommunityHubPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#1D1914] font-dm-sans pb-32">
+    <div className="min-h-screen bg-surface text-ink font-sans pb-32">
       {/* Centered Column wrapper */}
       <div className="max-w-[650px] mx-auto px-4">
         
         {/* Header */}
         <header className="flex items-center justify-between py-6">
-          <h1 className="text-[28px] md:text-[32px] font-black text-[#0F1419]">
+          <h1 className="text-[28px] md:text-[32px] font-semibold text-ink">
             Community
           </h1>
-          <button className="w-10 h-10 rounded-full border border-[#EFF3F4] bg-[#FFFFFF] flex items-center justify-center text-[#1E6B3A] hover:bg-[#EAF4EC]/40 shadow-sm transition-colors">
+          <button className="w-10 h-10 rounded-full border border-rule bg-surface flex items-center justify-center text-seal hover:bg-mist/40 shadow-sm transition-colors">
             <Users size={20} />
           </button>
         </header>
@@ -62,8 +62,8 @@ export default function CommunityHubPage() {
         </div>
 
         {/* Connect Tab */}
-        <div className="border-b border-[#EFF3F4] flex">
-          <button className="text-[#1E6B3A] font-bold text-[15px] pb-3 px-4 border-b-2 border-[#1E6B3A] focus:outline-none transition-all">
+        <div className="border-b border-rule flex">
+          <button className="text-seal font-bold text-[15px] pb-3 px-4 border-b-2 border-seal focus:outline-none transition-all">
             Connect
           </button>
         </div>
@@ -71,7 +71,7 @@ export default function CommunityHubPage() {
         {/* Posts list */}
         <div className="mt-2">
           {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-20 text-[#1E6B3A]/60">
+            <div className="flex flex-col items-center justify-center py-20 text-seal/60">
               <Loader2 className="w-8 h-8 animate-spin mb-2" />
               <p className="font-semibold text-[14px]">Loading feed...</p>
             </div>

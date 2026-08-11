@@ -7,11 +7,11 @@ import { MagneticButton } from "../ui/MagneticButton";
 
 const LockedInHero = () => {
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-between py-12 overflow-hidden bg-[#0D120E]">
+        <section className="relative min-h-screen flex flex-col items-center justify-between py-12 overflow-hidden bg-ink">
             {/* Background Gradients/Shapes */}
             <div className="absolute inset-0 z-0">
-                <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#1DA756]/20 rounded-full blur-[120px]"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#1DA756]/10 rounded-full blur-[120px]"></div>
+                <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-seal/20 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-seal/10 rounded-full blur-[120px]"></div>
                 
                 {/* Organic Leaf-like shapes */}
                 <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
@@ -55,7 +55,7 @@ const LockedInHero = () => {
                         transition={{ delay: 0.4, duration: 0.8 }}
                         className="bg-white rounded-3xl p-4 flex items-center gap-4 shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform cursor-pointer group"
                     >
-                        <div className="w-14 h-14 bg-[#1DA756] rounded-2xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-14 h-14 bg-seal rounded-2xl flex items-center justify-center flex-shrink-0">
                             <img 
                                 src="/signet-brand-logo.svg" 
                                 alt="Signet Logo" 
@@ -78,7 +78,7 @@ const LockedInHero = () => {
                         transition={{ delay: 0.6, duration: 0.8 }}
                         className="bg-white rounded-3xl p-4 flex items-center gap-4 shadow-2xl transform rotate-2 hover:rotate-0 transition-transform cursor-pointer group z-10"
                     >
-                         <div className="w-14 h-14 bg-[#1DA756] rounded-2xl flex items-center justify-center flex-shrink-0">
+                         <div className="w-14 h-14 bg-seal rounded-2xl flex items-center justify-center flex-shrink-0">
                             <img 
                                 src="/signet-brand-logo.svg" 
                                 alt="Signet Logo" 
@@ -103,7 +103,7 @@ const LockedInHero = () => {
                     className="mt-12 flex flex-col sm:flex-row items-center gap-4 w-full"
                 >
                     <Link href="/join" className="group w-full sm:flex-1">
-                        <MagneticButton className="w-full h-14 bg-[#1DA756] text-white font-bold rounded-2xl shadow-lg shadow-[#1DA756]/30 flex items-center justify-center gap-2 hover:bg-[#1DA756]/90 transition-all border border-white/10">
+                        <MagneticButton className="w-full h-14 bg-seal text-white font-bold rounded-2xl shadow-lg shadow-seal/30 flex items-center justify-center gap-2 hover:bg-seal/90 transition-all border border-white/10">
                             Join Network <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </MagneticButton>
                     </Link>

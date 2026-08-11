@@ -115,20 +115,20 @@ export default function PostDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#FFFFFF] text-[#1D1914] flex flex-col items-center justify-center p-6 font-dm-sans">
-        <div className="w-12 h-12 rounded-full border-4 border-[#1E6B3A]/20 border-t-[#1E6B3A] animate-spin mb-4" />
-        <p className="text-[#1E6B3A]/60 font-semibold">Loading insight...</p>
+      <div className="min-h-screen bg-surface text-ink flex flex-col items-center justify-center p-6 font-sans">
+        <div className="w-12 h-12 rounded-full border-4 border-seal/20 border-t-seal animate-spin mb-4" />
+        <p className="text-seal/60 font-semibold">Loading insight...</p>
       </div>
     );
   }
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#FFFFFF] text-[#1D1914] flex flex-col items-center justify-center p-6 font-dm-sans">
+      <div className="min-h-screen bg-surface text-ink flex flex-col items-center justify-center p-6 font-sans">
         <p className="text-red-500 font-bold mb-4">Post not found</p>
         <button 
           onClick={() => router.push("/dashboard/community")}
-          className="flex items-center gap-2 text-[#1E6B3A] font-bold"
+          className="flex items-center gap-2 text-seal font-bold"
         >
           <ArrowLeft size={16} /> Back to community
         </button>
@@ -137,9 +137,9 @@ export default function PostDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#1D1914] font-dm-sans pb-32">
+    <div className="min-h-screen bg-surface text-ink font-sans pb-32">
       {/* Header */}
-      <header className="sticky top-0 z-30 bg-[#FFFFFF]/90 backdrop-blur-md border-b border-[#EFF3F4] px-4 py-3 flex items-center gap-6 max-w-[650px] mx-auto">
+      <header className="sticky top-0 z-30 bg-surface/90 backdrop-blur-md border-b border-rule px-4 py-3 flex items-center gap-6 max-w-[650px] mx-auto">
         <button 
           onClick={() => router.push("/dashboard/community")}
           className="p-2 rounded-full hover:bg-gray-100 transition-colors text-gray-700"
@@ -147,7 +147,7 @@ export default function PostDetailPage() {
           <ArrowLeft size={20} />
         </button>
         <div>
-          <h1 className="text-xl font-bold text-[#0F1419]">Post</h1>
+          <h1 className="text-xl font-bold text-ink">Post</h1>
         </div>
       </header>
 
@@ -162,7 +162,7 @@ export default function PostDetailPage() {
 
         {/* Comment Input box */}
         {user && (
-          <form onSubmit={handlePostComment} className="flex gap-3 py-4 border-b border-[#EFF3F4] items-start">
+          <form onSubmit={handlePostComment} className="flex gap-3 py-4 border-b border-rule items-start">
             <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 bg-gray-100">
               <img src={user.imageUrl} alt="My Avatar" className="w-full h-full object-cover" />
             </div>
@@ -178,7 +178,7 @@ export default function PostDetailPage() {
                 <button
                   type="submit"
                   disabled={!newComment.trim() || isSubmittingComment}
-                  className="px-5 py-1.5 bg-[#1E6B3A] text-white rounded-full text-[14px] font-bold hover:bg-[#114B2A] transition-all disabled:opacity-50"
+                  className="px-5 py-1.5 bg-seal text-white rounded-full text-[14px] font-bold hover:bg-seal transition-all disabled:opacity-50"
                 >
                   {isSubmittingComment ? "Replying..." : "Reply"}
                 </button>
@@ -196,20 +196,20 @@ export default function PostDetailPage() {
               const cAvatar = comment.profiles?.image_url || "/placeholder-avatar.png";
 
               return (
-                <div key={comment.id} className="flex gap-3 py-3 border-b border-[#EFF3F4] items-start">
+                <div key={comment.id} className="flex gap-3 py-3 border-b border-rule items-start">
                   <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 bg-gray-100">
                     <img src={cAvatar} alt={cName} className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="font-bold text-[#0F1419] text-[15px] truncate">{cName}</span>
-                      <span className="text-[#536471] text-[14px]">{cHandle}</span>
-                      <span className="text-[#536471] text-[14px]">&middot;</span>
-                      <span className="text-[#536471] text-[14px]">
+                      <span className="font-bold text-ink text-[15px] truncate">{cName}</span>
+                      <span className="text-ink text-[14px]">{cHandle}</span>
+                      <span className="text-ink text-[14px]">&middot;</span>
+                      <span className="text-ink text-[14px]">
                         {new Date(comment.created_at).toLocaleDateString([], { month: 'short', day: 'numeric' })}
                       </span>
                     </div>
-                    <p className="text-[15px] text-[#0F1419] leading-relaxed mt-1 whitespace-pre-wrap break-words">
+                    <p className="text-[15px] text-ink leading-relaxed mt-1 whitespace-pre-wrap break-words">
                       {comment.content}
                     </p>
                   </div>

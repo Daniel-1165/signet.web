@@ -3,91 +3,76 @@
 import { motion } from "framer-motion";
 import { Eye, Flag } from "lucide-react";
 
-const DotGrid = ({ className, dotClass = "fill-[#1E6B3A]/15" }: { className?: string; dotClass?: string }) => (
-  <svg className={className} width="100" height="80" fill="none" viewBox="0 0 100 80">
-    <pattern id="purpose-dot-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-      <circle cx="3" cy="3" r="1.5" className={dotClass} />
-    </pattern>
-    <rect width="100" height="80" fill="url(#purpose-dot-pattern)" />
-  </svg>
-);
-
 export default function VisionMissionSection() {
   return (
-    <section id="purpose" className="relative py-16 md:py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center mb-16 space-y-4">
-          <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#1E6B3A] mb-3 block">
-            OUR PURPOSE
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight font-sans relative inline-block">
-            Vision & Mission
-            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#1E6B3A] rounded-full" />
+    <section id="purpose" className="relative section-py overflow-hidden">
+      <div className="relative z-10">
+        {/* Section Header. The underline rule that used to sit under the
+            heading is gone — the eyebrow already marks the section, and two
+            devices doing one job is one too many. */}
+        <div className="text-center mb-14 md:mb-20">
+          <span className="eyebrow mb-5">Our Purpose</span>
+          <h2 className="h2">
+            Vision &amp; <span className="display-accent text-seal">Mission</span>
           </h2>
-          <p className="text-base md:text-lg text-[#0F172A]/60 font-medium pt-3 max-w-xl mx-auto">
+          <p className="lede pt-5 max-w-xl mx-auto">
             Guided by a clear purpose. Driven by meaningful impact.
           </p>
         </div>
 
-        {/* Cards Grid - Stacked on mobile, side-by-side on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 lg:gap-12 items-stretch">
-          
-          {/* Card 1: Vision Card - Containerless */}
+        {/* Vision is pressed into the paper, Mission is struck in ink. The pair
+            carries the contrast that the rest of the page keeps quiet. */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 1.015, y: 8 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-transparent p-0 border-0 shadow-none flex flex-col justify-between relative group"
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="card-press flex flex-col justify-between"
           >
-            <div className="space-y-4 sm:space-y-8 relative z-10">
-              {/* Icon Container */}
-              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#EAF4EC] flex items-center justify-center text-[#1E6B3A]">
+            <div className="space-y-6 sm:space-y-8">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-mist flex items-center justify-center text-seal">
                 <Eye className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </div>
-              
-              <div className="space-y-2 sm:space-y-4">
-                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.25em] text-[#1E6B3A] block animate-pulse">
-                  OUR VISION
-                </span>
-                <p className="text-[15px] sm:text-lg md:text-2xl font-bold text-[#0F172A] leading-relaxed font-sans">
-                  To build a global network of trailblazers who <span className="italic font-medium text-[#1E6B3A]">model and replicate excellence</span> in diverse spheres.
+
+              <div className="space-y-4">
+                <span className="eyebrow">Our Vision</span>
+                <p className="font-display text-lg sm:text-xl md:text-2xl leading-[1.35] text-ink">
+                  To build a global network of trailblazers who{" "}
+                  <span className="display-accent text-seal">model and replicate excellence</span> in
+                  diverse spheres.
                 </p>
               </div>
             </div>
           </motion.div>
 
-          {/* Card 2: Mission Card - Contained */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 1.015, y: 8 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-[#1E3D1E] rounded-[2rem] p-6 sm:p-8 md:p-12 border border-[#EFF3F4]/10 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 relative group"
+            transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            className="card-ink flex flex-col justify-between md:p-10"
           >
-            <DotGrid className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-70 transition-opacity" dotClass="fill-white/10" />
-
-            <div className="space-y-4 sm:space-y-8 relative z-10">
-              {/* Icon Container */}
-              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/10 flex items-center justify-center text-white">
+            <div className="space-y-6 sm:space-y-8">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-verdant/15 flex items-center justify-center text-verdant">
                 <Flag className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </div>
 
-              <div className="space-y-2 sm:space-y-4">
-                <span className="font-sans font-bold text-[9px] sm:text-xs uppercase tracking-[0.25em] text-[#8EB69B] block">
-                  OUR MISSION
-                </span>
-                <p className="text-[15px] sm:text-lg md:text-2xl font-extrabold text-white leading-relaxed uppercase tracking-wide font-sans">
-                  Ordinary persons achieving <span className="italic font-medium text-[#DAF1DE]">extraordinary results</span> silently and sustainably.
+              <div className="space-y-4">
+                <span className="eyebrow eyebrow-on-ink">Our Mission</span>
+                {/* The uppercase treatment came off as shouting next to the
+                    Vision card. Sentence case in the display face carries the
+                    same weight without raising its voice — which is rather the
+                    point of a network called Silent. */}
+                <p className="font-display text-lg sm:text-xl md:text-2xl leading-[1.35] text-canvas">
+                  Ordinary persons achieving{" "}
+                  <span className="display-accent text-verdant">extraordinary results</span> —
+                  silently and sustainably.
                 </p>
               </div>
             </div>
           </motion.div>
-
         </div>
-
       </div>
     </section>
   );

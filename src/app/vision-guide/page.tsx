@@ -59,7 +59,7 @@ export default function VisionGuidePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#FDFDFB] text-[#0D120E] selection:bg-[#1DA756] selection:text-white"
+    <div className="relative min-h-screen bg-canvas text-ink selection:bg-seal selection:text-white"
          >
       
       {/* ── HERO SECTION ─────────────────────────────────────────── */}
@@ -70,34 +70,34 @@ export default function VisionGuidePage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1DA756]/10 border border-[#1DA756]/20 mb-8">
-              <Sparkles className="w-3.5 h-3.5 text-[#1DA756]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1DA756]">Vision Matrix v2.0</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-seal/10 border border-seal/20 mb-8">
+              <Sparkles className="w-3.5 h-3.5 text-seal" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-seal">Vision Matrix v2.0</span>
             </div>
             
-            <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
+            <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] mb-10">
               Empowering <br />
-              <span className="text-[#1DA756]">clarity</span> through <br />
+              <span className="text-seal">clarity</span> through <br />
               innovation.
             </h1>
             
-            <p className="text-lg md:text-xl text-[#0D120E]/60 max-w-lg mb-12 leading-relaxed font-medium">
+            <p className="text-lg md:text-xl text-ink/60 max-w-lg mb-12 leading-relaxed font-medium">
               Welcome to the Blueprint, where we combine spiritual insights and modern strategy to revolutionize your life trajectory.
             </p>
             
             <div className="flex flex-wrap gap-4">
               {isLoaded && !isSignedIn ? (
                 <SignUpButton mode="modal">
-                   <button className="h-14 px-10 rounded-full bg-[#1DA756] text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-[#1DA756]/20">
+                   <button className="h-14 px-10 rounded-full bg-seal text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-seal/20">
                       Get Started <ArrowUpRight size={18} />
                    </button>
                 </SignUpButton>
               ) : (
-                <Link href="/dashboard" className="h-14 px-10 rounded-full bg-[#1DA756] text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-[#1DA756]/20">
+                <Link href="/dashboard" className="h-14 px-10 rounded-full bg-seal text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-seal/20">
                   Enter Dashboard <ChevronRight size={18} />
                 </Link>
               )}
-              <button className="h-14 px-10 rounded-full bg-white border border-black/5 text-[#0D120E] font-bold hover:bg-black/5 transition-colors">
+              <button className="h-14 px-10 rounded-full bg-white border border-black/5 text-ink font-bold hover:bg-black/5 transition-colors">
                 Explore Logic
               </button>
             </div>
@@ -115,7 +115,7 @@ export default function VisionGuidePage() {
               alt="Nature" 
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#1DA756]/20 to-transparent mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-seal/20 to-transparent mix-blend-overlay"></div>
           </motion.div>
         </div>
       </section>
@@ -125,12 +125,12 @@ export default function VisionGuidePage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
-               <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-tight mb-6">
+               <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
                  Integrate vision <br />
                  seamlessly into your <br />
-                 <span className="text-[#1DA756]">workflow.</span>
+                 <span className="text-seal">workflow.</span>
                </h2>
-               <p className="text-lg text-[#0D120E]/50 font-medium">
+               <p className="text-lg text-ink/50 font-medium">
                  Our step-by-step guide will show you how to easily incorporate your purpose into your existing journey. Streamline your processes.
                </p>
             </div>
@@ -139,11 +139,11 @@ export default function VisionGuidePage() {
           <div className="grid md:grid-cols-3 gap-8">
              {sections.map((section, idx) => (
                 <div key={section.id} className="group">
-                   <div className="w-12 h-12 rounded-xl bg-[#1DA756]/10 flex items-center justify-center text-[#1DA756] mb-6">
+                   <div className="w-12 h-12 rounded-xl bg-seal/10 flex items-center justify-center text-seal mb-6">
                       {section.icon}
                    </div>
                    <h4 className="text-xl font-bold mb-3 uppercase tracking-tight">{section.title}</h4>
-                   <p className="text-sm text-[#0D120E]/50 leading-relaxed font-medium mb-8">
+                   <p className="text-sm text-ink/50 leading-relaxed font-medium mb-8">
                       {section.description}
                    </p>
                    <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-4 shadow-xl border border-black/5">
@@ -161,31 +161,31 @@ export default function VisionGuidePage() {
 
       {/* ── FINAL BUILDER SECTION ────────────────────────────────── */}
       <section className="py-24 max-w-7xl mx-auto px-6 md:px-12">
-        <div className="bg-[#0D120E] rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden border border-white/5 shadow-2xl">
-           <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-[#1DA756]/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
+        <div className="bg-ink rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden border border-white/5 shadow-2xl">
+           <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-seal/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
            
            <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div>
-                 <span className="text-[10px] font-black tracking-[0.4em] text-[#1DA756] uppercase block mb-8">Final Declaration</span>
-                 <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] mb-10">
+                 <span className="text-[10px] font-semibold tracking-[0.4em] text-seal uppercase block mb-8">Final Declaration</span>
+                 <h2 className="text-4xl md:text-7xl font-semibold tracking-tight leading-[0.9] mb-10">
                    Transforming <br />
                    intentions with <br />
-                   <span className="text-[#1DA756]">sustainable</span> vision.
+                   <span className="text-seal">sustainable</span> vision.
                  </h2>
-                 <p className="text-[#0D120E]/40 text-lg md:text-xl font-medium mb-12 capitalize leading-relaxed">
+                 <p className="text-ink/40 text-lg md:text-xl font-medium mb-12 capitalize leading-relaxed">
                    Signet empowers individuals to achieve their goals while minimizing internal friction. With our sustainable solutions, you can drive growth.
                  </p>
                  
                  <div className="flex flex-col gap-6">
                     <div className="flex gap-4">
-                       <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] mt-2" />
+                       <div className="w-1.5 h-1.5 rounded-full bg-seal mt-2" />
                        <div>
                           <p className="font-bold text-lg mb-1">Efficiency</p>
                           <p className="text-white/40 text-sm">Streamline operations and reduce waste with our innovative vision.</p>
                        </div>
                     </div>
                     <div className="flex gap-4">
-                       <div className="w-1.5 h-1.5 rounded-full bg-[#1DA756] mt-2" />
+                       <div className="w-1.5 h-1.5 rounded-full bg-seal mt-2" />
                        <div>
                           <p className="font-bold text-lg mb-1">Profitability</p>
                           <p className="text-white/40 text-sm">Increase your bottom line while making a positive impact.</p>
@@ -198,7 +198,7 @@ export default function VisionGuidePage() {
                  <h3 className="text-2xl font-bold mb-8">Craft Statement</h3>
                  <textarea 
                     placeholder="I will [action] so that [impact]..."
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-lg outline-none focus:border-[#1DA756] transition-colors min-h-[150px] mb-8"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-lg outline-none focus:border-seal transition-colors min-h-[150px] mb-8"
                  />
                  
                  <div 
@@ -209,14 +209,14 @@ export default function VisionGuidePage() {
                       <img src={selectedImage} className="absolute inset-0 w-full h-full object-cover" />
                     ) : (
                       <>
-                        <Upload className="w-8 h-8 text-[#1DA756] mb-3" />
+                        <Upload className="w-8 h-8 text-seal mb-3" />
                         <span className="text-xs font-bold text-white/40 uppercase tracking-widest">Upload Visual</span>
                       </>
                     )}
                  </div>
                  <input type="file" ref={fileInputRef} className="hidden" onChange={handleImageUpload} />
                  
-                 <button className="w-full h-14 bg-[#1DA756] text-white rounded-full font-black uppercase text-xs tracking-widest mt-8 shadow-xl shadow-[#1DA756]/20">
+                 <button className="w-full h-14 bg-seal text-white rounded-full font-semibold uppercase text-xs tracking-widest mt-8 shadow-xl shadow-seal/20">
                     Save Declaration
                  </button>
               </div>

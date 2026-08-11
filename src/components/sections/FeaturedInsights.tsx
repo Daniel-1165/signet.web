@@ -14,14 +14,14 @@ export default async function FeaturedInsights() {
       <div className="absolute top-0 right-0 w-64 h-64 opacity-5 pointer-events-none -mr-32 -mt-32">
         <div className="grid grid-cols-6 gap-8">
            {[...Array(36)].map((_, i) => (
-             <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#1D1914]" />
+             <div key={i} className="w-1.5 h-1.5 rounded-full bg-ink" />
            ))}
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-48 h-48 opacity-5 pointer-events-none -ml-24 -mb-24">
         <div className="grid grid-cols-4 gap-10">
            {[...Array(16)].map((_, i) => (
-             <div key={i} className="w-2 h-2 rounded-full bg-[#1D1914]" />
+             <div key={i} className="w-2 h-2 rounded-full bg-ink" />
            ))}
         </div>
       </div>

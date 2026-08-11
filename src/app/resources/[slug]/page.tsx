@@ -26,32 +26,32 @@ const RESOURCE_QUERY = `
 
 const ptComponents: any = {
   block: {
-    h1: ({ children }: any) => <h1 className="text-4xl md:text-5xl font-black text-[#051F20] mt-12 mb-6 leading-tight uppercase tracking-tighter">{children}</h1>,
-    h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-bold text-[#051F20] mt-10 mb-5 leading-tight">{children}</h2>,
-    h3: ({ children }: any) => <h3 className="text-2xl md:text-3xl font-bold text-[#051F20] mt-8 mb-4">{children}</h3>,
-    normal: ({ children }: any) => <p className="text-lg md:text-xl text-[#051F20]/80 leading-relaxed mb-6 font-medium">{children}</p>,
+    h1: ({ children }: any) => <h1 className="text-4xl md:text-5xl font-semibold text-ink mt-12 mb-6 leading-tight uppercase tracking-tight">{children}</h1>,
+    h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-bold text-ink mt-10 mb-5 leading-tight">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="text-2xl md:text-3xl font-bold text-ink mt-8 mb-4">{children}</h3>,
+    normal: ({ children }: any) => <p className="text-lg md:text-xl text-ink/80 leading-relaxed mb-6 font-medium">{children}</p>,
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-[#163832] pl-8 py-4 my-10 italic text-2xl md:text-3xl text-[#163832]/90 font-serif leading-relaxed bg-[#163832]/5 rounded-r-2xl">
+      <blockquote className="border-l-4 border-seal pl-8 py-4 my-10 italic text-2xl md:text-3xl text-seal/90 font-serif leading-relaxed bg-seal/5 rounded-r-2xl">
         {children}
       </blockquote>
     ),
   },
   marks: {
-    strong: ({ children }: any) => <strong className="font-black text-[#051F20]">{children}</strong>,
+    strong: ({ children }: any) => <strong className="font-semibold text-ink">{children}</strong>,
     em: ({ children }: any) => <em className="italic font-medium">{children}</em>,
-    highlight: ({ children }: any) => <mark className="bg-[#DAF1DE] text-[#163832] px-1 rounded-sm font-bold">{children}</mark>,
+    highlight: ({ children }: any) => <mark className="bg-mist text-seal px-1 rounded-sm font-bold">{children}</mark>,
     link: ({ value, children }: any) => {
       const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
       return (
-        <a href={value?.href} target={target} className="text-[#163832] underline decoration-2 underline-offset-4 hover:text-[#8EB69B] transition-colors">
+        <a href={value?.href} target={target} className="text-seal underline decoration-2 underline-offset-4 hover:text-verdant transition-colors">
           {children}
         </a>
       )
     },
   },
   list: {
-    bullet: ({ children }: any) => <ul className="list-disc pl-8 mb-8 space-y-4 text-[#051F20]/80 text-lg md:text-xl font-medium">{children}</ul>,
-    number: ({ children }: any) => <ol className="list-decimal pl-8 mb-8 space-y-4 text-[#051F20]/80 text-lg md:text-xl font-medium">{children}</ol>,
+    bullet: ({ children }: any) => <ul className="list-disc pl-8 mb-8 space-y-4 text-ink/80 text-lg md:text-xl font-medium">{children}</ul>,
+    number: ({ children }: any) => <ol className="list-decimal pl-8 mb-8 space-y-4 text-ink/80 text-lg md:text-xl font-medium">{children}</ol>,
   },
 }
 
@@ -84,17 +84,17 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
         <aside className="hidden lg:flex flex-col w-48 shrink-0 sticky top-32 h-fit space-y-12">
           <div className="flex flex-col gap-4">
              {resource.author?.image && (
-                <div className="w-14 h-14 rounded-full overflow-hidden border border-[#051F20]/10">
+                <div className="w-14 h-14 rounded-full overflow-hidden border border-ink/10">
                    <img src={urlFor(resource.author.image as any).url()} alt={resource.author.name} className="object-cover w-full h-full" />
                 </div>
              )}
              <div className="space-y-4">
-                <p className="text-xs text-[#051F20]/60 leading-relaxed font-semibold">
+                <p className="text-xs text-ink/60 leading-relaxed font-semibold">
                    Insight provided by {resource.author?.name || 'Signet Editorial'}, architecting growth for the community.
                 </p>
-                <div className="flex gap-4 text-[#051F20]/40">
-                   <Twitter size={18} className="hover:text-[#163832] cursor-pointer" />
-                   <Linkedin size={18} className="hover:text-[#163832] cursor-pointer" />
+                <div className="flex gap-4 text-ink/40">
+                   <Twitter size={18} className="hover:text-seal cursor-pointer" />
+                   <Linkedin size={18} className="hover:text-seal cursor-pointer" />
                 </div>
              </div>
           </div>
@@ -104,7 +104,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
               <Link 
                 key={item} 
                 href="/resources" 
-                className={`text-sm font-black uppercase tracking-widest transition-colors ${resource.tag === item ? 'text-[#163832]' : 'text-[#051F20]/30 hover:text-[#163832]'}`}
+                className={`text-sm font-semibold uppercase tracking-widest transition-colors ${resource.tag === item ? 'text-seal' : 'text-ink/30 hover:text-seal'}`}
               >
                 {item}
               </Link>
@@ -115,16 +115,16 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
         {/* Main Content */}
         <main className={`flex-1 mx-auto w-full ${resource.pages && resource.pages.length > 0 || resource.fileUrl ? "max-w-6xl" : "max-w-4xl"}`}>
           <header className="mb-12 md:mb-20 px-6 sm:px-0">
-            <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#163832] mb-6">
-              <span className="px-3 py-1 bg-[#DAF1DE] rounded-full">{resource.tag || "Discovery"}</span>
+            <div className="flex items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-seal mb-6">
+              <span className="px-3 py-1 bg-mist rounded-full">{resource.tag || "Discovery"}</span>
               <span>{new Date(resource._createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#051F20] leading-[1.1] tracking-tighter mb-8 bg-gradient-to-br from-[#051F20] to-[#163832] bg-clip-text text-transparent italic uppercase">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-ink leading-[1.1] tracking-tight mb-8 bg-gradient-to-br from-ink to-seal bg-clip-text text-transparent italic uppercase">
               {resource.title}
             </h1>
 
-            <div className="flex items-center justify-between py-8 border-y border-[#051F20]/5">
+            <div className="flex items-center justify-between py-8 border-y border-ink/5">
                <div className="flex items-center gap-4">
                   {resource.author?.image && (
                     <div className="w-10 h-10 rounded-full overflow-hidden">
@@ -132,13 +132,13 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                     </div>
                   )}
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-[#051F20]/40">Written By</span>
-                    <span className="text-sm font-bold text-[#051F20]">{resource.author?.name || 'Signet Team'}</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-ink/40">Written By</span>
+                    <span className="text-sm font-bold text-ink">{resource.author?.name || 'Signet Team'}</span>
                   </div>
                </div>
-               <div className="flex items-center gap-4 text-[#051F20]/60">
-                  <Share2 size={18} className="cursor-pointer hover:text-[#163832]" />
-                  <Bookmark size={18} className="cursor-pointer hover:text-[#163832]" />
+               <div className="flex items-center gap-4 text-ink/60">
+                  <Share2 size={18} className="cursor-pointer hover:text-seal" />
+                  <Bookmark size={18} className="cursor-pointer hover:text-seal" />
                </div>
             </div>
           </header>
@@ -191,29 +191,29 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                  {typeof resource.body === 'object' && resource.body ? (
                     <PortableText value={resource.body} components={ptComponents} />
                  ) : (
-                    <p className="text-lg text-[#051F20]/80 leading-relaxed font-medium">{resource.description || resource.body}</p>
+                    <p className="text-lg text-ink/80 leading-relaxed font-medium">{resource.description || resource.body}</p>
                  )}
                </div>
              )}
           </div>
 
           {/* Author Bio at end */}
-          <footer className="mt-24 pt-24 border-t border-[#051F20]/10 max-w-3xl mx-auto px-6 sm:px-0">
-             <div className="p-10 bg-[#FAFAFA] rounded-[3rem] border border-[#051F20]/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left transition-all hover:shadow-xl group">
+          <footer className="mt-24 pt-24 border-t border-ink/10 max-w-3xl mx-auto px-6 sm:px-0">
+             <div className="p-10 bg-canvas rounded-[3rem] border border-ink/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left transition-all hover:shadow-xl group">
                 {resource.author?.image && (
                   <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
                      <img src={urlFor(resource.author.image as any).url()} alt={resource.author.name} className="w-full h-full object-cover" />
                   </div>
                 )}
                 <div>
-                   <span className="text-[10px] font-black uppercase tracking-widest text-[#163832] block mb-2">Author</span>
-                   <h3 className="text-2xl font-bold text-[#051F20] mb-3">{resource.author?.name || 'Signet Editorial'}</h3>
-                   <p className="text-md text-[#051F20]/60 leading-relaxed font-medium mb-6 italic">
+                   <span className="text-[10px] font-semibold uppercase tracking-widest text-seal block mb-2">Author</span>
+                   <h3 className="text-2xl font-bold text-ink mb-3">{resource.author?.name || 'Signet Editorial'}</h3>
+                   <p className="text-md text-ink/60 leading-relaxed font-medium mb-6 italic">
                      {resource.author?.bio || "A collective of strategic minds focused on architecting human-centric growth systems. We bridge the gap between abstract wisdom and tactical execution."}
                    </p>
-                   <div className="flex gap-4 text-[#051F20]/30 justify-center md:justify-start">
-                      <Twitter size={18} className="hover:text-[#163832] cursor-pointer" />
-                      <Linkedin size={18} className="hover:text-[#163832] cursor-pointer" />
+                   <div className="flex gap-4 text-ink/30 justify-center md:justify-start">
+                      <Twitter size={18} className="hover:text-seal cursor-pointer" />
+                      <Linkedin size={18} className="hover:text-seal cursor-pointer" />
                    </div>
                 </div>
              </div>

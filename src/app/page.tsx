@@ -8,8 +8,8 @@ import Footer from "@/components/layout/Footer";
 import HomeCarousel from "@/components/sections/HomeCarousel";
 import HeroJoinButton from "@/components/sections/HeroJoinButton";
 import TransformLifeSection from "@/components/sections/TransformLifeSection";
+import SealMark from "@/components/brand/SealMark";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { sanityFetch } from "@/lib/sanity/client";
 import { GET_CAROUSEL_SLIDES } from "@/lib/sanity/queries";
 
@@ -20,31 +20,49 @@ export default async function Home() {
   }) || [];
 
   return (
-    <main className="min-h-screen bg-[#FAFAF8] text-[#0F172A] font-sans selection:bg-[#EAF4EC] selection:text-[#114B2A] homepage-container">
-      
-      {/* Premium Hero Section - Kept exactly the same as per user instruction ("landing page should remain the same") */}
-      <section className="relative w-full h-[85vh] min-h-[500px] overflow-hidden group">
-        <img src="/forest_hero_bg.png" alt="Forest" className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] brightness-90 group-hover:scale-[1.03] transition-transform duration-[3s]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1D1914]/80 via-[#1D1914]/50 to-[#1D1914]/20" />
-        
-        <div className="relative h-full max-w-[1400px] mx-auto flex flex-col justify-center px-5 md:px-24 w-full">
-          <div className="flex items-center gap-3 mb-6">
-             <div className="w-10 h-[1px] bg-[#D8CEBF]" />
-             <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D8CEBF]" >
-               Silent Growth Network
-             </span>
+    <main className="min-h-screen bg-canvas text-ink font-sans">
+
+      {/* Hero — the thesis. The forest reads as the "silent" half of the name;
+          the seal, struck over it, reads as the mark that growth leaves behind. */}
+      <section className="relative w-full h-[88vh] min-h-[560px] overflow-hidden group on-ink">
+        <img
+          src="/forest_hero_bg.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.72] saturate-[0.85] group-hover:scale-[1.03] transition-transform duration-[3s] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        />
+        {/* Green-black wash rather than neutral: the whole palette is tinted
+            toward forest, and the hero is where that has to read hardest. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+
+        <div className="relative h-full page-container flex flex-col justify-center">
+          <div className="max-w-4xl">
+            <span className="eyebrow eyebrow-on-ink animate-press-in">
+              Silent Growth Network
+            </span>
+
+            <h1 className="h1 text-canvas mt-7 mb-9 animate-press-in animate-delay-1">
+              Become intentional about{" "}
+              <span className="display-accent text-verdant">growth</span>
+              <br className="hidden md:block" /> and development.
+            </h1>
+
+            <div className="flex flex-wrap gap-x-8 gap-y-4 items-center animate-press-in animate-delay-2">
+              <HeroJoinButton />
+              <Link
+                href="/resources"
+                className="text-mist/70 hover:text-canvas transition-colors text-sm font-medium border-b border-verdant/30 hover:border-verdant pb-1"
+              >
+                Explore the library →
+              </Link>
+            </div>
           </div>
-          <h1 className="text-[28px] sm:text-[40px] md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-8 max-w-4xl break-words" >
-            Become Intentional<br className="md:hidden" /> about{" "}
-            <span className="italic font-normal text-[#D8CEBF]">Growth</span>
-            <br className="hidden md:block" /> and Development.
-          </h1>
-          <div className="flex flex-wrap gap-6 items-center">
-            <HeroJoinButton />
-            <Link href="/resources" className="text-white/60 hover:text-white transition-colors text-sm font-medium border-b border-[#D8CEBF]/20 pb-1">
-              Explore Library →
-            </Link>
-          </div>
+        </div>
+
+        {/* The seal, bottom-right, quiet. Hidden on mobile where the headline
+            needs the full width more than the brand needs the flourish. */}
+        <div className="absolute bottom-12 right-12 hidden lg:block opacity-70 animate-press-in animate-delay-4">
+          <SealMark size={148} tone="canvas" />
         </div>
       </section>
 
@@ -54,8 +72,10 @@ export default async function Home() {
       {/* 2. Transform Your Life Section (Outside container, full bleed with white bg & animations) */}
       <TransformLifeSection />
 
-      {/* 2.5. Program Structure Section (Outside container, full bleed) */}
-      <div className="bg-white w-full">
+      {/* Program Structure sits on the raised surface rather than the canvas —
+          the one tonal step in the page, which keeps the long scroll from
+          reading as a single undifferentiated sheet. */}
+      <div className="bg-surface w-full border-y border-rule">
         <ProgramStructure />
       </div>
 
@@ -63,7 +83,7 @@ export default async function Home() {
       <ProgramSection />
 
       {/* Content wrapper 2 */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-16 md:space-y-24 pb-16 md:pb-24 pt-12 md:pt-16">
+      <div className="page-container space-y-16 md:space-y-24 pb-16 md:pb-24 pt-12 md:pt-16">
         {/* 4. Vision & Mission Section */}
         <VisionMissionSection />
         

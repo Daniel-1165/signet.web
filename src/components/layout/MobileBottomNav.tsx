@@ -85,7 +85,10 @@ export default function MobileBottomNav() {
   }, [pathname, router])
 
   return (
-    <div className={`md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-black/[0.03] z-[60] pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(0,0,0,0.04)] transition-transform duration-500 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
+    <nav
+      aria-label="Primary"
+      className={`md:hidden fixed bottom-0 left-0 right-0 bg-canvas/95 backdrop-blur-md border-t border-rule z-[60] pb-[env(safe-area-inset-bottom)] transition-transform duration-500 motion-reduce:transition-none ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}
+    >
        <div className="flex items-center justify-between px-2 h-16">
           {mobileBottomNavItems.map((item) => {
             const isActive = pathname === item.href
@@ -93,22 +96,22 @@ export default function MobileBottomNav() {
               <Link
                 key={item.name}
                 href={item.href}
+                aria-current={isActive ? 'page' : undefined}
                 className="flex flex-col items-center justify-center w-1/5 h-full pt-1 gap-1 group relative px-0.5"
               >
-                <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-[#1E6B3A] text-white shadow-sm' : 'bg-transparent text-[#536471]'}`}>
-                  <item.icon 
-                    size={18} 
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-seal text-canvas' : 'bg-transparent text-ink/45'}`}>
+                  <item.icon
+                    size={18}
                     strokeWidth={isActive ? 2 : 1.5}
-                    className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-[#536471]'}`}
                   />
                 </div>
-                <span className={`text-[10px] font-bold mt-0.5 transition-colors ${isActive ? 'text-[#1E6B3A]' : 'text-[#536471]'}`} >
+                <span className={`text-[10px] font-semibold mt-0.5 transition-colors ${isActive ? 'text-seal' : 'text-ink/45'}`}>
                   {item.name}
                 </span>
               </Link>
             )
           })}
        </div>
-    </div>
+    </nav>
   )
 }

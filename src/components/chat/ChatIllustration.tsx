@@ -3,7 +3,7 @@ import React from 'react';
 export const ChatIllustration = ({ className = "" }) => (
   <div className={`relative w-40 h-40 flex items-center justify-center ${className}`}>
     {/* Background Glow */}
-    <div className="absolute inset-0 bg-[#1DA756]/10 blur-[40px] rounded-full animate-pulse" />
+    <div className="absolute inset-0 bg-seal/10 blur-[40px] rounded-full animate-pulse" />
     
     {/* Geometric Nature Stack */}
     <div className="relative z-10">

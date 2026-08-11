@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Testimonial } from "@/lib/sanity/types";
 import { urlFor } from "@/lib/sanity/image";
 
@@ -22,6 +22,7 @@ function getInitials(name?: string) {
 
 export default function TestimonialsClient({ testimonials }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const [isDragging, setIsDragging] = useState(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
@@ -63,20 +64,19 @@ export default function TestimonialsClient({ testimonials }: Props) {
   };
 
   return (
-    <section id="community" className="py-0 bg-transparent relative z-10 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="flex flex-col mb-6">
+    <section id="community" className="py-0 relative z-10 overflow-hidden">
+      <div>
+        <div className="flex flex-col mb-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 1.015, y: 8 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-accent mb-3">
-              Community
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground max-w-md">
-              Real stories from our network.
+            <span className="eyebrow mb-4">Community</span>
+            <h2 className="h2 max-w-lg">
+              Real stories from our{" "}
+              <span className="display-accent text-seal">network</span>.
             </h2>
           </motion.div>
         </div>
@@ -87,11 +87,14 @@ export default function TestimonialsClient({ testimonials }: Props) {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center justify-center py-24 rounded-[3rem] border border-dashed border-black/[0.1] bg-white/50 text-center"
+            className="flex flex-col items-center justify-center py-24 px-6 rounded-[2.5rem] border border-dashed border-rule-strong text-center"
           >
-            <div className="text-6xl mb-6 opacity-30">💬</div>
-            <p className="text-[#0D120E]/40 text-lg font-black uppercase tracking-widest">
-              Community voices arriving soon.
+            {/* An empty screen is an invitation to act, not a mood. The old
+                copy just announced absence; this one tells a member what to
+                do about it. */}
+            <h3 className="h3 mb-2">No stories yet</h3>
+            <p className="body-sm max-w-sm">
+              Members share what the program changed for them here. Yours could be the first.
             </p>
           </motion.div>
         ) : (
@@ -122,7 +125,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                     <div className="h-full flex flex-col gap-5 transition-all duration-500 hover:-translate-y-1 relative min-h-[320px] px-4 py-6">
                       {/* Decorative Quote Mark - Hide if image card exists */}
                       {!t.testimonialImage && (
-                        <div className="absolute top-[-10px] right-[-5px] text-[100px] font-serif text-black/[0.03] pointer-events-none group-hover:text-[#1DA756]/5 transition-colors leading-none">
+                        <div className="absolute top-[-10px] right-[-5px] text-[110px] font-display italic text-ink/[0.05] pointer-events-none leading-none">
                           ”
                         </div>
                       )}
@@ -139,34 +142,36 @@ export default function TestimonialsClient({ testimonials }: Props) {
                         <div className="flex-1 relative z-10">
                           <div className="flex gap-1 mb-6">
                             {[...Array(5)].map((Star, starIdx) => (
-                              <svg key={starIdx} className="w-3.5 h-3.5 text-[#1DA756] fill-current" viewBox="0 0 20 20">
+                              <svg key={starIdx} className="w-3.5 h-3.5 text-wax fill-current" viewBox="0 0 20 20">
                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.97a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.286 3.97c.3.921-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.175 0l-3.388 2.46c-.784.57-1.838-.197-1.539-1.118l1.285-3.97a1 1 0 00-.364-1.118L2.245 9.397c-.783-.57-.38-1.81.588-1.81h4.181a1 1 0 00.951-.69l1.285-3.97z" />
                               </svg>
                             ))}
                           </div>
                           
-                          <p className={`leading-relaxed text-[#0D120E] font-medium italic ${isLongText ? "text-[20px] md:text-xl" : "text-[24px] md:text-3xl"}`}>
-                            "{t.content}"
+                          <p className={`font-display leading-[1.35] text-ink ${isLongText ? "text-lg md:text-xl" : "text-2xl md:text-3xl"}`}>
+                            “{t.content}”
                           </p>
                         </div>
                       )}
 
-                      <div className="pt-6 border-t border-[#1DA756] relative z-10 flex items-center gap-4">
+                      <div className="pt-6 border-t border-verdant/40 relative z-10 flex items-center gap-4">
                         {t.avatar?.asset ? (
-                          <img 
-                            src={urlFor(t.avatar as any).fit('max').width(80).height(80).url()} 
-                            alt={t.name} 
-                            className="w-10 h-10 rounded-full object-cover border border-black/5"
+                          <img
+                            src={urlFor(t.avatar as any).fit('max').width(80).height(80).url()}
+                            alt=""
+                            className="w-10 h-10 rounded-full object-cover border border-rule"
                           />
                         ) : (
-                          <div className="w-10 h-10 rounded-full bg-[#1DA756]/10 flex items-center justify-center text-[#1DA756] font-black text-[10px]">
+                          <div className="w-10 h-10 rounded-full bg-mist flex items-center justify-center text-seal font-mono font-medium text-[11px]">
                             {getInitials(t.name)}
                           </div>
                         )}
                         <div>
-                          <h4 className="text-base font-black tracking-tight text-[#0D120E]">{t.name || "Anonymous"}</h4>
-                          <p className="text-[9px] font-bold uppercase tracking-[0.2em] mt-1 flex items-center gap-2 text-[#0D120E]/40">
-                             {t.role || "Member"}{t.company ? `, ${t.company}` : ""}
+                          <h4 className="font-display text-base font-semibold tracking-tight text-ink">
+                            {t.name || "Anonymous"}
+                          </h4>
+                          <p className="font-mono text-[10px] uppercase tracking-[0.18em] mt-1 text-ink/45">
+                            {t.role || "Member"}{t.company ? `, ${t.company}` : ""}
                           </p>
                         </div>
                       </div>
@@ -176,13 +181,15 @@ export default function TestimonialsClient({ testimonials }: Props) {
               })}
             </div>
 
-            {/* Scroll Indicator */}
+            {/* Scroll Indicator. The hint loops indefinitely, so it has to
+                stop for anyone who has asked for reduced motion — a permanent
+                animation is exactly what that setting is about. */}
             <div className="absolute bottom-0 left-0 w-full flex justify-center gap-2 pointer-events-none">
-                <div className="w-12 h-1 bg-black/5 rounded-full overflow-hidden">
-                    <motion.div 
-                        animate={{ x: [0, 24, 0] }}
+                <div className="w-12 h-1 bg-rule rounded-full overflow-hidden">
+                    <motion.div
+                        animate={prefersReducedMotion ? undefined : { x: [0, 24, 0] }}
                         transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                        className="w-1/2 h-full bg-[#1DA756]/40 rounded-full"
+                        className="w-1/2 h-full bg-verdant rounded-full"
                     />
                 </div>
             </div>
