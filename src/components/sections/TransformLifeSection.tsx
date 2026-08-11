@@ -4,46 +4,48 @@ import { motion } from "framer-motion";
 
 export default function TransformLifeSection() {
   return (
-    <div className="bg-white w-full text-slate-800">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24">
-        <motion.section 
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
+    <div className="bg-canvas w-full">
+      <div className="page-container section-py">
+        <motion.section
+          initial={{ opacity: 0, scale: 1.012, y: 8 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.8 }}
-          className="relative bg-transparent overflow-hidden"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative overflow-hidden"
         >
-          {/* Heading & Dashed Line */}
-          <div className="mb-8">
-            <span className="font-sans font-bold text-xs uppercase tracking-[0.25em] text-[#114B2A] mb-2 block">
-              EMPOWER. GROW. LEAD.
-            </span>
-            <h2 className="text-2xl sm:text-4xl md:text-6xl font-extrabold text-[#0F172A] font-sans">
-              Transform Your Life, <br />
-              Transform Your Future.
+          {/* Heading */}
+          <div className="mb-10">
+            <span className="eyebrow mb-4">Empower · Grow · Lead</span>
+            <h2 className="h2 max-w-3xl">
+              Transform your life,
+              <br />
+              transform your <span className="display-accent text-seal">future</span>.
             </h2>
-            <div className="w-full border-t border-dashed border-slate-200 mt-4" />
+            <div className="rule mt-8" />
           </div>
 
-          {/* Floating image and wrapping text container */}
-          <div className="flow-root font-sans text-slate-600 text-base sm:text-lg md:text-xl leading-relaxed font-normal">
-            {/* Paragraph 1 */}
-            <p className="mb-6">
-              A <strong className="font-extrabold text-[#114B2A]">12-month high-impact journey</strong> with <span className="font-bold text-[#114B2A]">ambitious leaders</span> unlocking <span className="font-bold text-[#114B2A]">unmatched growth</span>.
+          {/* Floated image with text wrapping around it */}
+          <div className="flow-root text-ink/70 text-base md:text-lg leading-[1.65]">
+            {/* Emphasis is now one phrase per paragraph. Previously almost every
+                other span was bolded, which flattens the hierarchy — when
+                everything is emphasised, nothing is. */}
+            <p className="mb-6 max-w-2xl">
+              A <strong className="font-semibold text-ink">12-month high-impact journey</strong> with
+              ambitious leaders unlocking unmatched growth.
             </p>
 
-            {/* Floated Image */}
-            <div className="float-right ml-4 mb-4 sm:ml-8 sm:mb-8 w-[195px] h-[195px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] aspect-square overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
+            <div className="float-right ml-5 mb-5 sm:ml-8 sm:mb-8 w-[190px] h-[190px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-rule">
               <img
                 src="/hero_collage.png"
-                alt="SIGNET Journey"
+                alt="Members of the SIGNET network at work together"
                 className="w-full h-full object-cover"
               />
             </div>
 
-            {/* Paragraph 2 */}
             <p className="mb-6">
-              Together, we focus on building <span className="font-bold text-[#114B2A]">leadership capacity</span> and creating a <em className="italic font-bold text-[#114B2A]">lasting impact</em>.
+              Together, we focus on building{" "}
+              <strong className="font-semibold text-ink">leadership capacity</strong> and creating a
+              lasting impact.
             </p>
           </div>
         </motion.section>

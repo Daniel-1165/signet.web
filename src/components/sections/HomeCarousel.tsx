@@ -120,27 +120,22 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8 px-4 md:px-0">
         <div>
-           <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-[1px] bg-[#6E7A67]" />
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#6E7A67]">Featured Insights</span>
-           </div>
-          <h2
-            className="text-[28px] md:text-[36px] font-bold text-[#1D1914] leading-tight"
-            
-          >
-            Growth Archives
+          <span className="eyebrow mb-4">Featured Insights</span>
+          <h2 className="h2">
+            Growth <span className="display-accent text-seal">archives</span>
           </h2>
         </div>
-        {/* Dot indicators */}
-        <div className="hidden md:flex items-center gap-2 bg-white border border-[#D8CEBE]/30 px-4 py-2 rounded-full shadow-sm">
+        {/* Dot indicators. These were unlabelled buttons — to a screen reader
+            they announced as "button" with no name at all. */}
+        <div className="hidden md:flex items-center gap-2 lift px-4 py-2 rounded-full">
           {displaySlides.map((_, i) => (
             <button
               key={i}
               onClick={() => scrollTo(i)}
+              aria-label={`Go to slide ${i + 1} of ${displaySlides.length}`}
+              aria-current={i === activeIndex}
               className={`rounded-full transition-all duration-500 ease-out ${
-                i === activeIndex
-                  ? 'w-6 h-1.5 bg-[#1D1914]'
-                  : 'w-1.5 h-1.5 bg-[#D8CEBE]'
+                i === activeIndex ? 'w-6 h-1.5 bg-seal' : 'w-1.5 h-1.5 bg-rule-strong'
               }`}
             />
           ))}
@@ -179,14 +174,16 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
         <button
           onClick={() => scrollTo(activeIndex - 1)}
           disabled={activeIndex === 0}
-          className="w-12 h-12 rounded-full border border-[#D8CEBE] flex items-center justify-center text-[#1D1914] disabled:opacity-20 hover:bg-[#1D1914] hover:text-white transition-all shadow-sm"
+          aria-label="Previous slide"
+          className="w-12 h-12 rounded-full border border-rule-strong flex items-center justify-center text-ink disabled:opacity-20 hover:bg-ink hover:text-canvas hover:border-ink transition-all"
         >
           <ChevronLeft size={20} />
         </button>
         <button
           onClick={() => scrollTo(activeIndex + 1)}
           disabled={activeIndex === displaySlides.length - 1}
-          className="w-12 h-12 rounded-full border border-[#D8CEBE] flex items-center justify-center text-[#1D1914] disabled:opacity-20 hover:bg-[#1D1914] hover:text-white transition-all shadow-sm"
+          aria-label="Next slide"
+          className="w-12 h-12 rounded-full border border-rule-strong flex items-center justify-center text-ink disabled:opacity-20 hover:bg-ink hover:text-canvas hover:border-ink transition-all"
         >
           <ChevronRight size={20} />
         </button>
@@ -208,9 +205,10 @@ function SlideCard({
 
   const content = (
     <div
-      className={`relative w-full aspect-square rounded-none overflow-hidden cursor-pointer group transition-all duration-1000 ${
-        isActive ? 'scale-[1.02]' : 'opacity-40 scale-[0.98]'
+      className={`relative w-full aspect-square overflow-hidden cursor-pointer group transition-all duration-1000 ${
+        isActive ? 'scale-[1.02]' : 'opacity-45 scale-[0.98]'
       }`}
+      style={{ borderRadius: 'var(--radius-seal)' }}
     >
       {/* 1:1 Aspect Ratio fill with full width/height */}
       {image?.asset || image?.url ? (
@@ -224,34 +222,34 @@ function SlideCard({
         <div className="absolute inset-0 bg-[#FDFCFB]" />
       )}
 
-      {/* Gentle gradient just for text readability at the bottom, removing the full shadow bg */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-90 z-20" />
+      {/* Ink wash rather than neutral black, so the overlay belongs to the
+          same palette as everything else */}
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent z-20" />
 
       {/* Content Overlay */}
       {hasText && (
-        <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end z-30">
+        <div className="absolute inset-0 p-7 md:p-9 flex flex-col justify-end z-30 on-ink">
           {tag && (
-            <span
-              className="text-[10px] font-black uppercase tracking-[0.4em] text-[#D8CEBF] mb-3 block"
-              
-            >
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-verdant mb-3 block">
               {tag}
             </span>
           )}
           {title && (
-            <h3
-              className="text-white font-bold text-[24px] md:text-[30px] leading-[1.1] mb-6 max-w-[90%]"
-              
-            >
+            <h3 className="font-display text-canvas font-semibold text-2xl md:text-[30px] leading-[1.12] mb-5 max-w-[92%]">
               {title}
             </h3>
           )}
-          
-          <div className="flex items-center gap-3 text-white transition-all translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 duration-500">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em]">Explore Narrative</span>
-            <div className="w-8 h-[1px] bg-white/50 group-hover:w-12 transition-all" />
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </div>
+
+          {/* Previously this only appeared on hover, which meant touch users
+              never saw that the card led anywhere. It now sits at low opacity
+              and comes up to full on hover — visible either way. */}
+          {link && (
+            <div className="flex items-center gap-3 text-canvas/70 group-hover:text-canvas transition-colors duration-500">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em]">Read</span>
+              <div className="w-8 h-px bg-verdant/60 group-hover:w-12 transition-all duration-500" />
+              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+            </div>
+          )}
         </div>
       )}
     </div>

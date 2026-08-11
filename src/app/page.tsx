@@ -8,8 +8,8 @@ import Footer from "@/components/layout/Footer";
 import HomeCarousel from "@/components/sections/HomeCarousel";
 import HeroJoinButton from "@/components/sections/HeroJoinButton";
 import TransformLifeSection from "@/components/sections/TransformLifeSection";
+import SealMark from "@/components/brand/SealMark";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { sanityFetch } from "@/lib/sanity/client";
 import { GET_CAROUSEL_SLIDES } from "@/lib/sanity/queries";
 
@@ -72,8 +72,10 @@ export default async function Home() {
       {/* 2. Transform Your Life Section (Outside container, full bleed with white bg & animations) */}
       <TransformLifeSection />
 
-      {/* 2.5. Program Structure Section (Outside container, full bleed) */}
-      <div className="bg-white w-full">
+      {/* Program Structure sits on the raised surface rather than the canvas —
+          the one tonal step in the page, which keeps the long scroll from
+          reading as a single undifferentiated sheet. */}
+      <div className="bg-surface w-full border-y border-rule">
         <ProgramStructure />
       </div>
 
@@ -81,7 +83,7 @@ export default async function Home() {
       <ProgramSection />
 
       {/* Content wrapper 2 */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 space-y-16 md:space-y-24 pb-16 md:pb-24 pt-12 md:pt-16">
+      <div className="page-container space-y-16 md:space-y-24 pb-16 md:pb-24 pt-12 md:pt-16">
         {/* 4. Vision & Mission Section */}
         <VisionMissionSection />
         

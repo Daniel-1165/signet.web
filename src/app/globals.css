@@ -150,7 +150,10 @@ body {
     border-radius: 2px;
   }
 
-  .on-ink :focus-visible {
+  /* Dark surfaces switch the ring to the light accent, so focus stays visible
+     against ink as well as paper. */
+  .on-ink :focus-visible,
+  .card-ink :focus-visible {
     outline-color: var(--color-verdant);
   }
 }
@@ -239,76 +242,120 @@ body {
      The signature. Surfaces are pressed INTO the paper, not floated above it:
      a dark inner edge at the top where light would be occluded, a white inner
      edge at the bottom where it would catch. This is the one bold move on the
-     site; everything around it stays quiet. */
+     site; everything around it stays quiet.
+
+     Note on authoring style: these deliberately do NOT `@apply` one another.
+     Tailwind v4 only reliably resolves @apply against real utilities, not
+     against other custom component classes, so `.card { @apply lift }` is a
+     silent failure waiting to happen. Shared declarations are written out
+     instead — slightly more verbose, considerably more predictable. */
   .press {
     background: linear-gradient(180deg, rgba(5, 31, 32, 0.025) 0%, rgba(5, 31, 32, 0) 40%),
                 var(--color-canvas);
     box-shadow: var(--shadow-press);
-    @apply rounded-[--radius-seal];
+    border-radius: var(--radius-seal);
   }
 
   /* The raised counterpart — used for the seal mark and for cards that must
      genuinely sit above the page (menus, popovers). */
   .lift {
-    @apply bg-surface rounded-[--radius-seal] border border-rule;
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-seal);
     box-shadow: var(--shadow-lift);
   }
 
   .lift-hover {
-    @apply transition-shadow duration-500;
+    transition: box-shadow 500ms;
   }
 
   .lift-hover:hover {
     box-shadow: var(--shadow-lift-hover);
   }
 
+  /* Marks a dark surface, so descendant focus rings can switch to the light
+     accent. Used as a plain class in markup. */
+  .on-ink {
+    color: var(--color-canvas);
+  }
+
   /* --- Cards -------------------------------------------------------------- */
   .card {
-    @apply lift p-6 md:p-8;
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-seal);
+    box-shadow: var(--shadow-lift);
+    @apply p-6 md:p-8;
   }
 
   .card-press {
-    @apply press p-6 md:p-8;
+    background: linear-gradient(180deg, rgba(5, 31, 32, 0.025) 0%, rgba(5, 31, 32, 0) 40%),
+                var(--color-canvas);
+    box-shadow: var(--shadow-press);
+    border-radius: var(--radius-seal);
+    @apply p-6 md:p-8;
   }
 
   .card-ink {
-    @apply bg-ink text-canvas rounded-[--radius-seal] p-6 md:p-8 on-ink;
+    background: var(--color-ink);
+    color: var(--color-canvas);
     border: 1px solid rgba(142, 182, 155, 0.14);
+    border-radius: var(--radius-seal);
+    @apply p-6 md:p-8;
   }
 
   /* --- Buttons -----------------------------------------------------------
      Pill geometry carried over from the brand spec. Hover lifts by 1px only:
      on a page built around things pressed into paper, a button that leaps off
      it would break the fiction. */
-  .btn {
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full font-sans font-semibold
            text-sm px-7 py-3.5 transition-all duration-300 whitespace-nowrap;
   }
 
   .btn-primary {
-    @apply btn bg-seal text-canvas;
+    background: var(--color-seal);
+    color: var(--color-canvas);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--shadow-lift);
   }
 
   .btn-primary:hover {
-    @apply bg-ink -translate-y-px;
+    background: var(--color-ink);
+    transform: translateY(-1px);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--shadow-lift-hover);
   }
 
   .btn-secondary {
-    @apply btn bg-transparent text-ink border border-rule-strong;
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-rule-strong);
   }
 
   .btn-secondary:hover {
-    @apply bg-mist/40 border-verdant -translate-y-px;
+    background: rgba(218, 241, 222, 0.4);
+    border-color: var(--color-verdant);
+    transform: translateY(-1px);
   }
 
   .btn-ghost {
-    @apply btn px-0 py-1 text-ink/60 border-b border-rule-strong rounded-none;
+    @apply px-0 py-1 rounded-none;
+    color: var(--color-ink-70);
+    border-bottom: 1px solid var(--color-rule-strong);
   }
 
   .btn-ghost:hover {
-    @apply text-ink border-verdant;
+    color: var(--color-ink);
+    border-bottom-color: var(--color-verdant);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: none;
+    }
   }
 
   /* --- Rules -------------------------------------------------------------- */
