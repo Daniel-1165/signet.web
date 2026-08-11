@@ -125,10 +125,10 @@ export default function PostDetailPage() {
   if (!post) {
     return (
       <div className="min-h-screen bg-surface text-ink flex flex-col items-center justify-center p-6 font-sans">
-        <p className="text-red-500 font-bold mb-4">Post not found</p>
+        <p className="text-red-500 font-semibold mb-4">Post not found</p>
         <button 
           onClick={() => router.push("/dashboard/community")}
-          className="flex items-center gap-2 text-seal font-bold"
+          className="flex items-center gap-2 text-seal font-semibold"
         >
           <ArrowLeft size={16} /> Back to community
         </button>
@@ -147,7 +147,7 @@ export default function PostDetailPage() {
           <ArrowLeft size={20} />
         </button>
         <div>
-          <h1 className="text-xl font-bold text-ink">Post</h1>
+          <h1 className="text-xl font-semibold text-ink">Post</h1>
         </div>
       </header>
 
@@ -178,7 +178,7 @@ export default function PostDetailPage() {
                 <button
                   type="submit"
                   disabled={!newComment.trim() || isSubmittingComment}
-                  className="px-5 py-1.5 bg-seal text-white rounded-full text-[14px] font-bold hover:bg-seal transition disabled:opacity-50"
+                  className="px-5 py-1.5 bg-seal text-white rounded-full text-[14px] font-semibold hover:bg-seal transition disabled:opacity-50"
                 >
                   {isSubmittingComment ? "Replying..." : "Reply"}
                 </button>
@@ -202,7 +202,7 @@ export default function PostDetailPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="font-bold text-ink text-[15px] truncate">{cName}</span>
+                      <span className="font-semibold text-ink text-[15px] truncate">{cName}</span>
                       <span className="text-ink text-[14px]">{cHandle}</span>
                       <span className="text-ink text-[14px]">&middot;</span>
                       <span className="text-ink text-[14px]">

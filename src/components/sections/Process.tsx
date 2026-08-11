@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { rise } from "@/lib/motion";
 
 const steps = [
     {
@@ -44,7 +45,7 @@ const ProcessStep = ({ step, i }: any) => {
         >
             <div className="flex items-start gap-4 md:gap-8">
                 <div className="flex flex-col items-center">
-                    <div className="h-14 w-14 rounded-2xl bg-white border border-black/[0.04] flex items-center justify-center text-xl font-medium text-solar-gold shadow-sm shadow-black/5 relative z-10 transition-transform duration-500 group-hover:scale-110">
+                    <div className="h-14 w-14 rounded-[var(--radius-lg)] bg-white border border-black/[0.04] flex items-center justify-center text-xl font-medium text-solar-gold   relative z-10 transition-transform duration-500 group-hover:scale-110">
                         {step.num}
                     </div>
                     {i < steps.length - 1 && (
@@ -53,11 +54,11 @@ const ProcessStep = ({ step, i }: any) => {
                 </div>
                 
                 <div className="flex-1 pt-2">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-terra-soil/40 mb-2 block">{step.tag}</span>
-                    <h3 className="mb-6 text-3xl font-medium tracking-tight text-foreground transition-colors duration-500 group-hover:text-solar-gold">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-terra-soil/40 mb-2 block">{step.tag}</span>
+                    <h3 className="mb-6 text-3xl font-medium tracking-tight text-ink transition-colors duration-500 group-hover:text-solar-gold">
                         {step.title}
                     </h3>
-                    <p className="text-foreground/50 leading-relaxed font-normal text-base max-w-sm">
+                    <p className="text-ink/50 leading-relaxed font-normal text-base max-w-sm">
                         {step.description}
                     </p>
                 </div>
@@ -66,7 +67,7 @@ const ProcessStep = ({ step, i }: any) => {
             {/* Giant Background Number */}
             <motion.div 
                 style={{ y }} 
-                className="absolute top-0 right-0 text-[12rem] lg:text-[16rem] font-medium tracking-tight text-foreground/[0.02] transition-colors duration-700 pointer-events-none -z-10 group-hover:text-solar-gold/5"
+                className="absolute top-0 right-0 text-[12rem] lg:text-[16rem] font-medium tracking-tight text-ink/[0.02] transition-colors duration-700 pointer-events-none -z-10 group-hover:text-solar-gold/5"
             >
                 {step.num}
             </motion.div>
@@ -92,20 +93,16 @@ const Process = () => {
                     <div className="lg:col-span-12 xl:col-span-5">
                         <div className="lg:sticky lg:top-40">
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8 }}
-                            >
-                                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-terra-soil/50 mb-4 italic">The Architecture of Progress</p>
-                                <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-8 leading-[1.1] uppercase">
-                                    A defined <br />journey to <br /><span className="text-accent italic font-light">self-mastery.</span>
+                                {...rise}>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-terra-soil/50 mb-4 italic">The Architecture of Progress</p>
+                                <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-ink mb-8 leading-[1.1] uppercase">
+                                    A defined <br />journey to <br /><span className="text-seal italic font-light">self-mastery.</span>
                                 </h2>
-                                <p className="text-lg text-foreground/40 font-medium leading-relaxed max-w-sm mb-12">
+                                <p className="text-lg text-ink/40 font-medium leading-relaxed max-w-sm mb-12">
                                     Sustainable growth is not accidental. It is engineered through precise, rhythmic escalation.
                                 </p>
                                 
-                                <div className="flex items-center gap-4 text-foreground/40 font-bold text-xs uppercase tracking-widest">
+                                <div className="flex items-center gap-4 text-ink/40 font-semibold text-xs uppercase tracking-widest">
                                     <div className="h-10 w-10 rounded-full border border-black/[0.06] flex items-center justify-center animate-bounce">
                                         <ArrowDown className="h-4 w-4" />
                                     </div>

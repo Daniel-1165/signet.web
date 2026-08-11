@@ -309,7 +309,7 @@ export default function AdminHubPage() {
       <div className="min-h-screen bg-canvas flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 rounded-full border-2 border-mist border-t-seal animate-spin" />
-          <p className="text-seal text-[12px] font-bold tracking-[0.2em] uppercase font-sans">Verifying Admin Privileges</p>
+          <p className="text-seal text-[12px] font-semibold tracking-[0.2em] uppercase font-sans">Verifying Admin Privileges</p>
         </div>
       </div>
     )
@@ -324,7 +324,7 @@ export default function AdminHubPage() {
         <div>
            <div className="flex items-center gap-2 text-seal mb-2">
              <Shield size={14} className="md:w-4 md:h-4" />
-             <span className="text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase">Private Protocol</span>
+             <span className="text-[9px] md:text-[10px] font-semibold tracking-[0.3em] uppercase">Private Protocol</span>
            </div>
            <h1 className="text-[32px] md:text-[44px] font-semibold leading-tight text-ink font-sans" >
              Admin <span className="italic font-light text-seal">Hub</span>
@@ -336,9 +336,9 @@ export default function AdminHubPage() {
       <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 md:gap-12 px-4 md:px-6 pb-32">
         <div className="space-y-10">
           {/* Access Control Card */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-rule">
+          <div className="bg-white rounded-[var(--radius-lg)] p-8 md:p-10  border border-rule">
             <div className="flex items-center gap-2 mb-8">
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-seal">Access Control</span>
+              <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-seal">Access Control</span>
             </div>
             
             <h3 className="text-[24px] md:text-[28px] font-semibold text-ink mb-4 font-sans" >
@@ -354,31 +354,31 @@ export default function AdminHubPage() {
                 value={promotionTarget}
                 onChange={(e) => setPromotionTarget(e.target.value)}
                 placeholder="Enter User ID or Email address..."
-                className="flex-1 bg-canvas border border-rule rounded-2xl py-4 px-6 text-ink text-[14px] outline-none focus:border-seal transition-colors font-sans font-medium"
+                className="flex-1 bg-canvas border border-rule rounded-[var(--radius-lg)] py-4 px-6 text-ink text-[14px] outline-none focus:border-seal transition-colors font-sans font-medium"
               />
               <button 
                 onClick={handlePromote}
                 disabled={promoting || !promotionTarget.trim()}
-                className="px-8 py-4 bg-seal hover:bg-seal text-white rounded-2xl font-bold text-[13px] transition shadow-md shadow-seal/20 disabled:opacity-50 font-sans"
+                className="px-8 py-4 bg-seal hover:bg-seal text-white rounded-[var(--radius-lg)] font-semibold text-[13px] transition   disabled:opacity-50 font-sans"
               >
                 {promoting ? 'Processing...' : 'Verify & Promote'}
               </button>
             </div>
 
             {status.type !== 'idle' && (
-              <div className={`mt-6 p-4 rounded-2xl flex items-center gap-3 border animate-in fade-in slide-in-from-top-2 ${
+              <div className={`mt-6 p-4 rounded-[var(--radius-lg)] flex items-center gap-3 border animate-in fade-in slide-in-from-top-2 ${
                 status.type === 'success' ? 'bg-green-50 border-green-100 text-green-700' : 'bg-red-50 border-red-100 text-red-700'
               }`}>
                 {status.type === 'success' ? <CheckCircle size={18} /> : <AlertTriangle size={18} />}
-                <span className="text-[13px] font-bold">{status.message}</span>
+                <span className="text-[13px] font-semibold">{status.message}</span>
               </div>
             )}
           </div>
 
           {/* Certificates Management Card */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-rule">
+          <div className="bg-white rounded-[var(--radius-lg)] p-8 md:p-10  border border-rule">
             <div className="flex items-center gap-2 mb-8">
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-seal">Credentials Control</span>
+              <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-seal">Credentials Control</span>
             </div>
             
             <h3 className="text-[24px] md:text-[28px] font-semibold text-ink mb-4 font-sans" >
@@ -389,12 +389,12 @@ export default function AdminHubPage() {
             </p>
 
             {/* Add Certificate Form */}
-            <form onSubmit={handleAddCertificate} className="space-y-6 bg-canvas border border-rule p-6 rounded-[1.5rem] mb-10">
-              <h4 className="text-sm font-bold uppercase tracking-wider text-ink/60">Add New Certificate</h4>
+            <form onSubmit={handleAddCertificate} className="space-y-6 bg-canvas border border-rule p-6 rounded-[var(--radius-lg)] mb-10">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-ink/60">Add New Certificate</h4>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Signet Username</label>
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-ink/60">Signet Username</label>
                   <input
                     type="text"
                     required
@@ -406,7 +406,7 @@ export default function AdminHubPage() {
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Secure Email</label>
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-ink/60">Secure Email</label>
                   <input
                     type="email"
                     required
@@ -420,7 +420,7 @@ export default function AdminHubPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Cohort/Course Name</label>
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-ink/60">Cohort/Course Name</label>
                   <input
                     type="text"
                     required
@@ -432,7 +432,7 @@ export default function AdminHubPage() {
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Issue Date</label>
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-ink/60">Issue Date</label>
                   <input
                     type="date"
                     required
@@ -444,7 +444,7 @@ export default function AdminHubPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Certificate PDF or Image File</label>
+                <label className="text-[10px] font-semibold uppercase tracking-widest text-ink/60">Certificate PDF or Image File</label>
                 <input
                   id="certFile"
                   type="file"
@@ -458,7 +458,7 @@ export default function AdminHubPage() {
               <button
                 type="submit"
                 disabled={uploadingCert}
-                className="w-full py-4 bg-seal hover:bg-seal text-white rounded-xl font-bold text-xs uppercase tracking-widest transition shadow-md shadow-seal/20 disabled:opacity-50"
+                className="w-full py-4 bg-seal hover:bg-seal text-white rounded-xl font-semibold text-xs uppercase tracking-widest transition   disabled:opacity-50"
               >
                 {uploadingCert ? 'Uploading & Creating...' : 'Create Certificate Record'}
               </button>
@@ -466,7 +466,7 @@ export default function AdminHubPage() {
 
             {/* List of Existing Certificates */}
             <div className="space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-ink/60">Active Certificates ({dbCertificates.length})</h4>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-ink/60">Active Certificates ({dbCertificates.length})</h4>
               
               {loadingCerts ? (
                 <div className="flex justify-center py-6">
@@ -480,7 +480,7 @@ export default function AdminHubPage() {
                     <div key={cert.id} className="py-4 flex items-center justify-between gap-4">
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
-                          <p className="text-sm font-bold text-ink truncate">@{cert.username}</p>
+                          <p className="text-sm font-semibold text-ink truncate">@{cert.username}</p>
                           <span className="text-[10px] bg-mist/60 text-seal px-2 py-0.5 rounded font-semibold truncate max-w-[150px]">{cert.course_name}</span>
                         </div>
                         <p className="text-xs text-ink/60 font-semibold truncate mt-0.5">{cert.email}</p>
@@ -512,10 +512,10 @@ export default function AdminHubPage() {
           </div>
 
           {/* Newsletter Subscribers Spreadsheet Card */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-rule overflow-hidden">
+          <div className="bg-white rounded-[var(--radius-lg)] p-8 md:p-10  border border-rule overflow-hidden">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
               <div>
-                <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-seal">Mailing List</span>
+                <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-seal">Mailing List</span>
                 <h3 className="text-[24px] md:text-[28px] font-semibold text-ink mt-1 font-sans">
                   Newsletter <span className="italic font-light text-seal">Subscribers</span>
                 </h3>
@@ -524,14 +524,14 @@ export default function AdminHubPage() {
               <button 
                 onClick={handleExportCSV}
                 disabled={subscribers.length === 0}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-mist hover:bg-seal text-seal hover:text-white rounded-xl font-bold text-[12px] uppercase tracking-wider transition disabled:opacity-50 font-sans"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-mist hover:bg-seal text-seal hover:text-white rounded-xl font-semibold text-[12px] uppercase tracking-wider transition disabled:opacity-50 font-sans"
               >
                 <Download size={14} /> Export CSV
               </button>
             </div>
 
             {/* Filters Bar */}
-            <div className="flex items-center gap-3 bg-canvas border border-rule rounded-2xl px-4 py-3 mb-6">
+            <div className="flex items-center gap-3 bg-canvas border border-rule rounded-[var(--radius-lg)] px-4 py-3 mb-6">
               <Search className="text-ink/40 w-4 h-4 shrink-0" />
               <input
                 type="text"
@@ -543,7 +543,7 @@ export default function AdminHubPage() {
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery('')}
-                  className="text-xs font-bold text-seal hover:underline uppercase shrink-0 font-sans"
+                  className="text-xs font-semibold text-seal hover:underline uppercase shrink-0 font-sans"
                 >
                   Clear
                 </button>
@@ -612,13 +612,13 @@ export default function AdminHubPage() {
                         key={sub.id} 
                         className="hover:bg-mist/10 transition-colors group"
                       >
-                        <td className="py-4 px-5 text-[13.5px] font-bold text-ink truncate max-w-[150px]">
+                        <td className="py-4 px-5 text-[13.5px] font-semibold text-ink truncate max-w-[150px]">
                           {sub.name}
                         </td>
                         <td className="py-4 px-5 text-[13.5px] font-semibold text-ink/70 font-mono truncate max-w-[200px]">
                           {sub.email}
                         </td>
-                        <td className="py-4 px-5 text-[13px] font-bold text-seal">
+                        <td className="py-4 px-5 text-[13px] font-semibold text-seal">
                           <span className="bg-mist/60 px-2.5 py-1 rounded-lg">
                             @{sub.username}
                           </span>
@@ -641,9 +641,9 @@ export default function AdminHubPage() {
             {!loadingSubscribers && totalPages > 1 && (
               <div className="flex items-center justify-between border-t border-rule/60 pt-6 mt-6">
                 <p className="text-[12px] font-semibold text-ink/40">
-                  Showing <span className="font-bold text-ink">{indexOfFirstItem + 1}</span> to{' '}
-                  <span className="font-bold text-ink">{Math.min(indexOfLastItem, sortedSubscribers.length)}</span> of{' '}
-                  <span className="font-bold text-ink">{sortedSubscribers.length}</span> subscribers
+                  Showing <span className="font-semibold text-ink">{indexOfFirstItem + 1}</span> to{' '}
+                  <span className="font-semibold text-ink">{Math.min(indexOfLastItem, sortedSubscribers.length)}</span> of{' '}
+                  <span className="font-semibold text-ink">{sortedSubscribers.length}</span> subscribers
                 </p>
                 <div className="flex items-center gap-2">
                   <button
@@ -666,19 +666,19 @@ export default function AdminHubPage() {
           </div>
 
           {/* Active Staff List */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-rule">
-            <h4 className="text-[10px] font-bold text-seal/60 uppercase tracking-[0.2em] mb-8">Active Administrators</h4>
+          <div className="bg-white rounded-[var(--radius-lg)] p-8 md:p-10  border border-rule">
+            <h4 className="text-[10px] font-semibold text-seal/60 uppercase tracking-[0.2em] mb-8">Active Administrators</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {[user].map((staff, i) => (
-                 <div key={i} className="flex items-center justify-between p-5 bg-canvas rounded-2xl border border-rule hover:border-seal/30 transition-colors group">
+                 <div key={i} className="flex items-center justify-between p-5 bg-canvas rounded-[var(--radius-lg)] border border-rule hover:border-seal/30 transition-colors group">
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        <img src={staff?.imageUrl} className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                        <img src={staff?.imageUrl} className="w-10 h-10 rounded-full border-2 border-white " />
                         <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white" />
                       </div>
                       <div>
-                        <p className="text-[14px] font-bold text-ink">{staff?.fullName || 'Root Admin'}</p>
-                        <p className="text-[11px] text-seal/60 font-bold uppercase tracking-wider">Level 1 Admin</p>
+                        <p className="text-[14px] font-semibold text-ink">{staff?.fullName || 'Root Admin'}</p>
+                        <p className="text-[11px] text-seal/60 font-semibold uppercase tracking-wider">Level 1 Admin</p>
                       </div>
                     </div>
                     <Shield size={16} className="text-seal/20 group-hover:text-seal transition-colors" />
@@ -690,7 +690,7 @@ export default function AdminHubPage() {
 
         <aside className="space-y-10">
           {/* Content Safety Card */}
-          <div className="bg-white rounded-[2rem] p-8 border border-rule shadow-sm relative overflow-hidden group">
+          <div className="bg-white rounded-[var(--radius-lg)] p-8 border border-rule  relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none group-hover:rotate-12 transition-transform duration-700">
               <Trash2 size={80} />
             </div>
@@ -698,7 +698,7 @@ export default function AdminHubPage() {
             <div className="relative z-10">
               <div className="flex items-center gap-2 mb-6">
                 <AlertTriangle className="text-red-500/60" size={14} />
-                <h2 className="text-[10px] font-bold text-seal uppercase tracking-[0.2em]">Platform Safety</h2>
+                <h2 className="text-[10px] font-semibold text-seal uppercase tracking-[0.2em]">Platform Safety</h2>
               </div>
               
               <h3 className="text-[20px] font-semibold text-ink mb-4 font-sans" >Platform <span className="text-red-600 italic font-light">Cleanup</span></h3>
@@ -709,7 +709,7 @@ export default function AdminHubPage() {
               <button 
                 onClick={clearAllMessages}
                 disabled={loading}
-                className="flex items-center justify-center gap-3 w-full py-4 bg-red-50 text-red-600 border border-red-100 rounded-2xl font-bold text-[12px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition disabled:opacity-50"
+                className="flex items-center justify-center gap-3 w-full py-4 bg-red-50 text-red-600 border border-red-100 rounded-[var(--radius-lg)] font-semibold text-[12px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition disabled:opacity-50"
               >
                 <Trash2 size={16} />
                 Delete All Messages
@@ -718,17 +718,17 @@ export default function AdminHubPage() {
           </div>
 
           {/* Integration Links */}
-          <div className="bg-ink rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group">
+          <div className="bg-ink rounded-[var(--radius-lg)] p-8  relative overflow-hidden group">
              <Sparkles className="absolute -top-6 -right-6 w-24 h-24 text-white/5 group-hover:rotate-12 transition-transform duration-1000" />
-             <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-mist/60">System Logs</span>
+             <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-mist/60">System Logs</span>
              <h3 className="text-white text-[24px] font-semibold mt-2 mb-6 font-sans" >Infrastructure</h3>
              
              <div className="space-y-3 font-sans">
-                <a href="https://clerk.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-colors group/link">
+                <a href="https://clerk.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-[var(--radius-lg)] hover:bg-white/10 transition-colors group/link">
                    <span className="text-white/80 text-[13px] font-semibold">Clerk Console</span>
                    <ExternalLink size={14} className="text-white/20 group-hover/link:text-white" />
                 </a>
-                <a href="https://supabase.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-colors group/link">
+                <a href="https://supabase.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-[var(--radius-lg)] hover:bg-white/10 transition-colors group/link">
                    <span className="text-white/80 text-[13px] font-semibold">Supabase DB</span>
                    <ExternalLink size={14} className="text-white/20 group-hover/link:text-white" />
                 </a>

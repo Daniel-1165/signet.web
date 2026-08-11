@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Eye, Flag } from "lucide-react";
+import { rise, riseAt } from "@/lib/motion";
 
 export default function VisionMissionSection() {
   return (
@@ -24,11 +25,8 @@ export default function VisionMissionSection() {
             carries the contrast that the rest of the page keeps quiet. */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           <motion.div
-            initial={{ opacity: 0, scale: 1.015, y: 8 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="card flex flex-col justify-between"
+            {...rise}
+                            className="card flex flex-col justify-between"
           >
             <div className="space-y-6 sm:space-y-8">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-mist flex items-center justify-center text-seal">
@@ -47,11 +45,8 @@ export default function VisionMissionSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 1.015, y: 8 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="card-ink flex flex-col justify-between md:p-10"
+            {...riseAt(1)}
+                            className="card-ink flex flex-col justify-between md:p-10"
           >
             <div className="space-y-6 sm:space-y-8">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-verdant/15 flex items-center justify-center text-verdant">

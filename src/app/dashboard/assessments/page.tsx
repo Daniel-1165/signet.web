@@ -30,9 +30,9 @@ export default function DashboardAssessmentsPage() {
         <div className="space-y-6 max-w-2xl">
            <div className="inline-flex items-center gap-3 text-ink">
               <Sparkles className="w-4 h-4" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Protocol 01: Calibration</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">Protocol 01: Calibration</span>
            </div>
-           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-ink" >
+           <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-ink" >
              Establish your <span className="italic font-normal text-ink">Baseline.</span>
            </h1>
            <p className="text-[16px] text-ink leading-relaxed max-w-md" >
@@ -40,9 +40,9 @@ export default function DashboardAssessmentsPage() {
            </p>
         </div>
         
-        <div className="p-8 rounded-[2.5rem] bg-white border border-rule/40 shadow-[0_20px_50px_rgba(0,0,0,0.03)] flex flex-col items-center justify-center text-center w-64 h-64">
-           <div className="w-16 h-16 rounded-2xl bg-ink/5 flex items-center justify-center text-ink font-bold text-xl mb-4">0%</div>
-           <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-ink/40 mb-2">Network Calibration</p>
+        <div className="p-8 rounded-[var(--radius-lg)] bg-white border border-rule/40  flex flex-col items-center justify-center text-center w-64 h-64">
+           <div className="w-16 h-16 rounded-[var(--radius-lg)] bg-ink/5 flex items-center justify-center text-ink font-semibold text-xl mb-4">0%</div>
+           <p className="text-[10px] uppercase font-semibold tracking-[0.2em] text-ink/40 mb-2">Network Calibration</p>
            <div className="w-32 h-[2px] bg-ink/10 rounded-full overflow-hidden">
               <div className="w-0 h-full bg-ink" />
            </div>
@@ -52,30 +52,30 @@ export default function DashboardAssessmentsPage() {
       {/* Protocol Modules */}
       <div className="grid md:grid-cols-2 gap-8">
         {assessments.map((test, i) => (
-          <div key={i} className="group bg-white rounded-[2.5rem] p-12 border border-rule/40 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:border-ink/30 hover:shadow-2xl transition duration-700 flex flex-col min-h-[420px]">
+          <div key={i} className="group bg-white rounded-[var(--radius-lg)] p-12 border border-rule/40  hover:border-ink/30  transition duration-700 flex flex-col min-h-[420px]">
             <div className="flex justify-between items-start mb-12">
-               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${test.color} shadow-sm group-hover:bg-ink group-hover:text-white transition`}>
+               <div className={`w-16 h-16 rounded-[var(--radius-lg)] flex items-center justify-center ${test.color}  group-hover:bg-ink group-hover:text-white transition`}>
                   <test.icon size={28} />
                </div>
-               <div className="px-4 py-1.5 rounded-full bg-ink/5 border border-ink/10 text-[10px] font-bold uppercase tracking-widest text-ink">
+               <div className="px-4 py-1.5 rounded-full bg-ink/5 border border-ink/10 text-[10px] font-semibold uppercase tracking-widest text-ink">
                   Awaiting Data
                </div>
             </div>
             
             <div className="space-y-6 flex-1 flex flex-col">
-               <div className="flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.15em] text-ink/40">
+               <div className="flex items-center gap-6 text-[11px] font-semibold uppercase tracking-[0.15em] text-ink/40">
                   <span className="flex items-center gap-2"><Clock size={14} /> {test.duration}</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-rule" />
                   <span>{test.type}</span>
                </div>
-               <h3 className="text-[32px] font-bold text-ink leading-tight group-hover:text-ink transition-colors" >{test.title}</h3>
+               <h3 className="text-[32px] font-semibold text-ink leading-tight group-hover:text-ink transition-colors" >{test.title}</h3>
                <p className="text-ink text-[15px] leading-relaxed line-clamp-3">
                   {test.desc}
                </p>
                
                <div className="pt-10 mt-auto flex items-center justify-between border-t border-rule/20">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-mist/75">Calibrated Status: ---</span>
-                  <button className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-ink text-white text-[12px] font-bold uppercase tracking-widest hover:bg-ink hover:-translate-y-0.5 transition shadow-lg hover:shadow-[0_10px_25px_rgba(110,122,103,0.3)]">
+                  <span className="text-[11px] font-semibold uppercase tracking-widest text-mist/75">Calibrated Status: ---</span>
+                  <button className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-ink text-white text-[12px] font-semibold uppercase tracking-widest hover:bg-ink hover:-translate-y-0.5 transition ">
                      Begin Protocol <ArrowRight size={14} />
                   </button>
                </div>
@@ -89,7 +89,7 @@ export default function DashboardAssessmentsPage() {
          <div className="absolute top-0 right-0 w-[600px] h-full bg-ink/10 blur-[120px]" />
          <div className="relative z-10 flex flex-col md:flex-row items-center gap-16 justify-between">
             <div className="space-y-8 max-w-xl">
-               <h2 className="text-[40px] md:text-[52px] font-bold leading-[1.1] tracking-tight" >
+               <h2 className="text-[40px] md:text-[52px] font-semibold leading-[1.1] tracking-tight" >
                  The <span className="italic font-normal text-mist/75">Calibration</span> Meta-Framework.
                </h2>
                <p className="text-mist/55 text-[16px] leading-relaxed">
@@ -97,17 +97,17 @@ export default function DashboardAssessmentsPage() {
                </p>
                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
                   {['Consistency', 'Velocity', 'Resonance', 'Depth'].map(label => (
-                     <div key={label} className="py-4 rounded-2xl bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-mist/75">{label}</p>
+                     <div key={label} className="py-4 rounded-[var(--radius-lg)] bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-mist/75">{label}</p>
                      </div>
                   ))}
                </div>
             </div>
-            <div className="w-full md:w-80 h-80 rounded-[3rem] bg-white/5 border border-white/10 flex items-center justify-center relative overflow-hidden">
+            <div className="w-full md:w-80 h-80 rounded-[var(--radius-lg)] bg-white/5 border border-white/10 flex items-center justify-center relative overflow-hidden">
                <div className="absolute inset-0 bg-gradient-to-br from-ink/20 to-transparent" />
                <div className="text-center space-y-6 relative z-10">
                   <Zap size={52} className="text-mist/75 mx-auto animate-pulse" />
-                  <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/20">Pulse Tracking Active</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-white/20">Pulse Tracking Active</p>
                </div>
             </div>
          </div>

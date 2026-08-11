@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Book, Layout, FileText, Bookmark } from "lucide-react";
+import { rise, riseAt } from "@/lib/motion";
 
 const Products = () => {
     const products = [
@@ -53,12 +54,9 @@ const Products = () => {
             <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
                 <motion.div
                     className="mb-16"
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
+                    {...rise}>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-seal mb-3">Resources by Signet</p>
-                    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground max-w-2xl leading-tight">
+                    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-ink max-w-2xl leading-tight">
                         Curated environments for silent, structural growth.
                     </h2>
                 </motion.div>
@@ -67,28 +65,25 @@ const Products = () => {
                     {products.map((product, i) => (
                         <motion.div
                             key={product.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="group relative flex flex-col sm:flex-row h-full rounded-3xl border border-black/[0.04] bg-white p-4 hover:shadow-2xl hover:shadow-seal/5 transition duration-500 overflow-hidden"
+                            {...riseAt(i)}
+                            className="group relative flex flex-col sm:flex-row h-full rounded-[var(--radius-lg)] border border-black/[0.04] bg-white p-4   transition duration-500 overflow-hidden"
                         >
                             {/* Image Section */}
-                            <div className="w-full sm:w-2/5 h-48 sm:h-auto rounded-2xl overflow-hidden relative mb-4 sm:mb-0 sm:mr-6 shrink-0 bg-canvas">
+                            <div className="w-full sm:w-2/5 h-48 sm:h-auto rounded-[var(--radius-lg)] overflow-hidden relative mb-4 sm:mb-0 sm:mr-6 shrink-0 bg-canvas">
                                 <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                                <div className={`absolute top-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl ${product.color} backdrop-blur-md shadow-lg`}>
+                                <div className={`absolute top-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl ${product.color} backdrop-blur-md `}>
                                     {product.icon}
                                 </div>
                             </div>
                             
                             {/* Content Section */}
                             <div className="flex-1 flex flex-col justify-center py-2 pr-4">
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-seal/70 mb-2">{product.category}</span>
-                                <h3 className="text-xl font-bold text-foreground mb-3">{product.title}</h3>
-                                <p className="text-sm leading-relaxed text-foreground/60 mb-6">{product.description}</p>
+                                <span className="text-[10px] font-semibold uppercase tracking-widest text-seal/70 mb-2">{product.category}</span>
+                                <h3 className="text-xl font-semibold text-ink mb-3">{product.title}</h3>
+                                <p className="text-sm leading-relaxed text-ink/60 mb-6">{product.description}</p>
                                 
                                 <div className="mt-auto flex items-center justify-between border-t border-black/5 pt-4">
-                                    <span className="text-xs font-bold text-foreground group-hover:text-seal transition-colors">Explore Resource</span>
+                                    <span className="text-xs font-semibold text-ink group-hover:text-seal transition-colors">Explore Resource</span>
                                     <div className="h-8 w-8 rounded-full bg-canvas border border-black/5 flex items-center justify-center group-hover:bg-seal group-hover:text-white transition-colors">
                                         <ArrowUpRight className="h-3 w-3" />
                                     </div>

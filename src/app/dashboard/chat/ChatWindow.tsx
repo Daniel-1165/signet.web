@@ -145,18 +145,18 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
   }
 
   return (
-    <div className="flex flex-col h-full bg-ink border border-white/5 rounded-3xl overflow-hidden shadow-2xl" onClick={() => setActiveMenuId(null)}>
+    <div className="flex flex-col h-full bg-ink border border-white/5 rounded-[var(--radius-lg)] overflow-hidden " onClick={() => setActiveMenuId(null)}>
       {/* Header */}
       <header className="flex items-center justify-between px-8 py-6 border-b border-white/5 bg-ink/50 soft-blur">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-verdant/10 border border-verdant/20 flex items-center justify-center text-verdant">
+          <div className="w-12 h-12 rounded-[var(--radius-lg)] bg-verdant/10 border border-verdant/20 flex items-center justify-center text-verdant">
             <TransmissionIcon size={20} />
           </div>
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-white font-heading">{room?.name || 'Growth Hub'}</h2>
+            <h2 className="text-xl font-semibold tracking-tight text-white font-heading">{room?.name || 'Growth Hub'}</h2>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-verdant animate-pulse" />
-              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-verdant/60 font-heading">Feed Active</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-verdant/60 font-heading">Feed Active</span>
             </div>
           </div>
         </div>
@@ -188,7 +188,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
             </div>
             <div className={`flex flex-col max-w-[70%] ${msg.user_id === user?.id ? 'items-end' : ''}`}>
               <div className="flex items-center gap-2 mb-1.5 px-1">
-                <span className="text-[10px] font-bold tracking-widest text-white/40 uppercase font-heading">
+                <span className="text-[10px] font-semibold tracking-widest text-white/40 uppercase font-heading">
                   {msg.profiles?.first_name || 'Member'}
                 </span>
                 <span className="text-[10px] text-white/10">•</span>
@@ -196,9 +196,9 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                   {formatDistanceToNow(new Date(msg.created_at))}
                 </span>
               </div>
-              <div className={`group relative px-6 py-4 rounded-[2rem] text-sm leading-relaxed ${
+              <div className={`group relative px-6 py-4 rounded-[var(--radius-lg)] text-sm leading-relaxed ${
                 msg.user_id === user?.id 
-                  ? 'bg-verdant text-ink font-semibold shadow-lg shadow-verdant/10' 
+                  ? 'bg-verdant text-ink font-semibold  ' 
                   : 'bg-ink/80 soft-blur text-white/80 border border-white/5'
               }`}>
                 {editingId === msg.id ? (
@@ -229,19 +229,19 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
 
                       {activeMenuId === msg.id && (
                         <div 
-                          className={`absolute top-0 ${msg.user_id === user?.id ? 'right-0' : 'left-0'} mt-6 w-32 bg-ink border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden py-1`}
+                          className={`absolute top-0 ${msg.user_id === user?.id ? 'right-0' : 'left-0'} mt-6 w-32 bg-ink border border-white/10 rounded-xl  z-50 overflow-hidden py-1`}
                           onClick={(e) => e.stopPropagation()}
                         >
                           <button 
                             onClick={() => copyMessage(msg.content)}
-                            className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-colors"
+                            className="w-full px-4 py-2 text-left text-[11px] font-semibold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-colors"
                           >
                             <Copy size={14} /> Copy
                           </button>
                           {msg.user_id === user?.id && (
                             <button 
                               onClick={() => startEditing(msg)}
-                              className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-colors"
+                              className="w-full px-4 py-2 text-left text-[11px] font-semibold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-colors"
                             >
                               <Edit2 size={14} /> Edit
                             </button>
@@ -249,7 +249,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                           {(msg.user_id === user?.id || isAdmin) && (
                             <button 
                               onClick={() => deleteMessage(msg.id)}
-                              className="w-full px-4 py-2 text-left text-[11px] font-bold text-red-400/60 hover:text-red-400 hover:bg-red-400/5 flex items-center gap-2 transition-colors"
+                              className="w-full px-4 py-2 text-left text-[11px] font-semibold text-red-400/60 hover:text-red-400 hover:bg-red-400/5 flex items-center gap-2 transition-colors"
                             >
                               <Trash2 size={14} /> Delete
                             </button>
@@ -263,11 +263,11 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                 {/* Reactions Placeholder */}
                 {!editingId && (
                   <div className={`absolute -bottom-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity ${msg.user_id === user?.id ? 'right-4' : 'left-4'}`}>
-                    <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-ink border border-white/10 text-[10px] font-bold text-white/40 hover:text-verdant transition-colors">
+                    <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-ink border border-white/10 text-[10px] font-semibold text-white/40 hover:text-verdant transition-colors">
                         <LikeIcon size={12} />
                         <span>0</span>
                     </button>
-                    <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-ink border border-white/10 text-[10px] font-bold text-white/40 hover:text-verdant transition-colors">
+                    <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-ink border border-white/10 text-[10px] font-semibold text-white/40 hover:text-verdant transition-colors">
                         <CommentIcon size={12} />
                         <span>Reply</span>
                     </button>
@@ -287,11 +287,11 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Share an insight with the collective..."
-            className="w-full h-16 bg-ink border border-white/5 rounded-2xl px-8 pr-16 focus:outline-none focus:border-verdant/40 text-sm tracking-wide transition-colors placeholder:text-white/10"
+            className="w-full h-16 bg-ink border border-white/5 rounded-[var(--radius-lg)] px-8 pr-16 focus:outline-none focus:border-verdant/40 text-sm tracking-wide transition-colors placeholder:text-white/10"
           />
           <button 
             type="submit"
-            className="absolute right-3 top-3 w-10 h-10 bg-verdant text-ink rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-lg shadow-verdant/20"
+            className="absolute right-3 top-3 w-10 h-10 bg-verdant text-ink rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition "
           >
             <TransmissionIcon size={18} />
           </button>

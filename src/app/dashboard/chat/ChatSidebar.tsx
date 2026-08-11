@@ -38,7 +38,7 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
       {/* Mobile Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden fixed bottom-20 right-6 z-[60] w-12 h-12 bg-verdant text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(255,107,0,0.3)] hover:scale-105 transition-transform"
+        className="md:hidden fixed bottom-20 right-6 z-[60] w-12 h-12 bg-verdant text-white rounded-full flex items-center justify-center  hover:scale-105 transition-transform"
       >
         {isOpen ? <X className="w-5 h-5" /> : <Hash className="w-5 h-5" />}
       </button>
@@ -58,13 +58,13 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
         ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
       `}>
       <div className="mb-10">
-        <h2 className="text-2xl font-bold tracking-tight text-white mb-6 font-heading">Collective.</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-white mb-6 font-heading">Collective.</h2>
         <div className="relative group">
           <Search size={16} strokeWidth={2.5} className="absolute left-5 top-1/2 -translate-y-1/2 text-mist/40 group-focus-within:text-verdant transition-colors" />
           <input 
             type="text" 
             placeholder="Search channels..." 
-            className="w-full h-12 bg-ink border border-white/5 rounded-2xl pl-12 pr-4 focus:outline-none focus:border-verdant/20 text-xs tracking-wider transition-colors placeholder:text-white/10"
+            className="w-full h-12 bg-ink border border-white/5 rounded-[var(--radius-lg)] pl-12 pr-4 focus:outline-none focus:border-verdant/20 text-xs tracking-wider transition-colors placeholder:text-white/10"
           />
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
       <div className="flex-1 space-y-8">
         <div>
           <div className="flex items-center justify-between mb-4 px-2">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-mist/40">Active Hubs</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-mist/40">Active Hubs</span>
             <button className="text-mist/40 hover:text-white transition-colors">
               <Settings2 size={12} strokeWidth={2.5} />
             </button>
@@ -82,7 +82,7 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
               <button
                 key={room.id}
                 onClick={() => handleSelectRoom(room.id)}
-                className={`flex items-center gap-3 w-full p-4 rounded-2xl transition-colors group ${
+                className={`flex items-center gap-3 w-full p-4 rounded-[var(--radius-lg)] transition-colors group ${
                   selectedRoomId === room.id 
                     ? 'bg-verdant/10 border border-verdant/20 text-white' 
                     : 'text-white/40 hover:bg-ink hover:text-white border border-transparent'
@@ -93,7 +93,7 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
                 }`}>
                   <TransmissionIcon size={16} />
                 </div>
-                <span className="text-sm font-bold tracking-wide">{room.name}</span>
+                <span className="text-sm font-semibold tracking-wide">{room.name}</span>
               </button>
             ))}
           </div>
@@ -101,21 +101,21 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
 
         <div>
           <div className="flex items-center justify-between mb-4 px-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-mist/40 font-heading">Direct Transmission</span>
-            <span className="px-2 py-0.5 rounded-full bg-verdant/10 text-[8px] font-bold text-verdant uppercase tracking-widest animate-pulse border border-verdant/20">Encrypted</span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-mist/40 font-heading">Direct Transmission</span>
+            <span className="px-2 py-0.5 rounded-full bg-verdant/10 text-[8px] font-semibold text-verdant uppercase tracking-widest animate-pulse border border-verdant/20">Encrypted</span>
           </div>
-          <div className="p-10 text-center border border-dashed border-white/5 rounded-[2rem] bg-white/[0.02] soft-blur">
+          <div className="p-10 text-center border border-dashed border-white/5 rounded-[var(--radius-lg)] bg-white/[0.02] soft-blur">
              <MessageIcon size={28} className="mx-auto mb-4 text-white/10" />
-             <p className="text-[9px] font-bold uppercase tracking-[0.15em] leading-relaxed text-mist/40">Direct channels arriving in next phase.</p>
+             <p className="text-[9px] font-semibold uppercase tracking-[0.15em] leading-relaxed text-mist/40">Direct channels arriving in next phase.</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-auto px-4 py-6 bg-ink rounded-3xl border border-white/5 group hover:border-verdant/20 transition-colors">
+      <div className="mt-auto px-4 py-6 bg-ink rounded-[var(--radius-lg)] border border-white/5 group hover:border-verdant/20 transition-colors">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-xl bg-verdant/10 border border-verdant/20 animate-pulse" />
           <div>
-            <p className="text-xs font-bold text-white">System Hub</p>
+            <p className="text-xs font-semibold text-white">System Hub</p>
             <p className="text-[10px] text-mist/40 tracking-wider">All systems operational</p>
           </div>
           <MoreHorizontal size={14} strokeWidth={2.5} className="ml-auto text-white/10" />

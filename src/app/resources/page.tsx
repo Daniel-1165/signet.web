@@ -3,31 +3,31 @@ import ResourcesLibrary from "./ResourcesLibrary";
 
 const DATA_QUERY = `
   {
-    "posts": *[_type == "resourceCard"] | order(_createdAt desc) {
+ "posts": *[_type == "resourceCard"] | order(_createdAt desc) {
       _id, 
       title, 
-      "tag": category, 
+ "tag": category, 
       description, 
       _createdAt, 
       slug, 
       _type,
-      "mainImageUrl": thumbnail.asset->url,
-      "fileUrl": resourceFile.asset->url,
-      "fileExtension": resourceFile.asset->extension,
+ "mainImageUrl": thumbnail.asset->url,
+ "fileUrl": resourceFile.asset->url,
+ "fileExtension": resourceFile.asset->extension,
       author->{name}
     },
-    "blogPosts": *[_type == "post"] | order(publishedAt desc) {
+ "blogPosts": *[_type == "post"] | order(publishedAt desc) {
       _id,
       title,
-      "tag": "Article",
-      "description": body[0].children[0].text,
-      "_createdAt": publishedAt,
-      "slug": {"current": slug.current},
+ "tag": "Article",
+ "description": body[0].children[0].text,
+ "_createdAt": publishedAt,
+ "slug": {"current": slug.current},
       _type,
-      "mainImageUrl": mainImage.asset->url,
+ "mainImageUrl": mainImage.asset->url,
       author->{name}
     },
-    "interrupts": *[_type == "feedInterrupt" && isActive == true] | order(insertAfter asc) {
+ "interrupts": *[_type == "feedInterrupt" && isActive == true] | order(insertAfter asc) {
       _id,
       interruptType,
       insertAfter,

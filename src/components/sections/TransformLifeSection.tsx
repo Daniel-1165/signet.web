@@ -1,17 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { rise } from "@/lib/motion";
 
 export default function TransformLifeSection() {
   return (
     <div className="bg-canvas w-full">
       <div className="page-container section-py">
         <motion.section
-          initial={{ opacity: 0, scale: 1.012, y: 8 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative overflow-hidden"
+          {...rise}
+                            className="relative overflow-hidden"
         >
           {/* Heading */}
           <div className="mb-10">
@@ -34,7 +32,7 @@ export default function TransformLifeSection() {
               ambitious leaders unlocking unmatched growth.
             </p>
 
-            <div className="float-right ml-5 mb-5 sm:ml-8 sm:mb-8 w-[190px] h-[190px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-rule">
+            <div className="float-right ml-5 mb-5 sm:ml-8 sm:mb-8 w-[190px] h-[190px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] overflow-hidden rounded-[var(--radius-lg)] sm:rounded-[var(--radius-lg)] border border-rule">
               <img
                 src="/hero_collage.png"
                 alt="Members of the SIGNET network at work together"

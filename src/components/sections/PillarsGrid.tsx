@@ -45,14 +45,14 @@ export default function PillarsGrid() {
             transition: `opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s`,
             willChange: 'opacity'
           }}
-          className="group bg-white rounded-3xl p-6 md:p-12 text-left hover:bg-ink transition-colors duration-500 border border-rule/30 flex flex-col min-h-[160px] md:min-h-[280px]"
+          className="group bg-white rounded-[var(--radius-lg)] p-6 md:p-12 text-left hover:bg-ink transition-colors duration-500 border border-rule/30 flex flex-col min-h-[160px] md:min-h-[280px]"
         >
-          <span className="text-[10px] font-bold text-mist/75 group-hover:text-white/40 transition-colors mb-auto tracking-widest">
+          <span className="text-[10px] font-semibold text-mist/75 group-hover:text-white/40 transition-colors mb-auto tracking-widest">
             {pillar.label}
           </span>
           <pillar.icon className="w-6 h-6 md:w-8 md:h-8 text-ink mb-4 md:mb-10 group-hover:text-white transition-colors" />
           <h4 
-            className="text-[15px] md:text-[22px] font-bold text-ink group-hover:text-white transition-colors leading-tight" 
+            className="text-[15px] md:text-[22px] font-semibold text-ink group-hover:text-white transition-colors leading-tight" 
             
           >
             {pillar.title}

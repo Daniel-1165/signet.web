@@ -12,9 +12,9 @@ interface PostDetailProps {
 const ptComponents: any = {
   block: {
     h1: ({ children }: any) => <h1 className="text-4xl md:text-5xl font-semibold text-ink mt-12 mb-6 leading-tight">{children}</h1>,
-    h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-bold text-ink mt-10 mb-5 leading-tight">{children}</h2>,
-    h3: ({ children }: any) => <h3 className="text-2xl md:text-3xl font-bold text-ink mt-8 mb-4">{children}</h3>,
-    h4: ({ children }: any) => <h4 className="text-xl md:text-2xl font-bold text-ink mt-6 mb-3">{children}</h4>,
+    h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-semibold text-ink mt-10 mb-5 leading-tight">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="text-2xl md:text-3xl font-semibold text-ink mt-8 mb-4">{children}</h3>,
+    h4: ({ children }: any) => <h4 className="text-xl md:text-2xl font-semibold text-ink mt-6 mb-3">{children}</h4>,
     normal: ({ children }: any) => <p className="text-lg md:text-xl text-ink/80 leading-relaxed mb-6 font-medium">{children}</p>,
     blockquote: ({ children }: any) => (
       <blockquote className="border-l-4 border-seal pl-8 py-4 my-10 italic text-2xl md:text-3xl text-seal/90 font-serif leading-relaxed bg-seal/5 rounded-r-2xl">
@@ -25,7 +25,7 @@ const ptComponents: any = {
   marks: {
     strong: ({ children }: any) => <strong className="font-semibold text-ink">{children}</strong>,
     em: ({ children }: any) => <em className="italic font-medium">{children}</em>,
-    highlight: ({ children }: any) => <mark className="bg-mist text-seal px-1 rounded-sm font-bold">{children}</mark>,
+    highlight: ({ children }: any) => <mark className="bg-mist text-seal px-1 rounded-sm font-semibold">{children}</mark>,
     link: ({ value, children }: any) => {
       const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
       return (
@@ -111,7 +111,7 @@ export default function PostDetail({ post }: PostDetailProps) {
                   )}
                   <div className="flex flex-col">
                     <span className="text-[10px] font-semibold uppercase tracking-widest text-ink/40">Written By</span>
-                    <span className="text-sm font-bold text-ink">{post.author?.name || 'Signet Team'}</span>
+                    <span className="text-sm font-semibold text-ink">{post.author?.name || 'Signet Team'}</span>
                   </div>
                </div>
                <div className="flex items-center gap-4">
@@ -123,7 +123,7 @@ export default function PostDetail({ post }: PostDetailProps) {
 
           {/* Hero Image */}
           {post.mainImage && (
-            <div className="relative aspect-[16/9] w-full mb-16 md:mb-24 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-seal/5 group">
+            <div className="relative aspect-[16/9] w-full mb-16 md:mb-24 rounded-[var(--radius-lg)] md:rounded-[var(--radius-lg)] overflow-hidden   group">
               <Image
                 src={urlFor(post.mainImage as any).url()}
                 alt={post.title}
@@ -144,18 +144,18 @@ export default function PostDetail({ post }: PostDetailProps) {
 
           {/* Author Footer Card */}
           <footer className="mt-24 pt-24 border-t border-ink/10 max-w-3xl mx-auto">
-             <div className="p-10 md:p-16 bg-canvas rounded-[3rem] border border-ink/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left relative overflow-hidden group">
+             <div className="p-10 md:p-16 bg-canvas rounded-[var(--radius-lg)] border border-ink/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-mist/30 blur-[100px] pointer-events-none group-hover:bg-mist/50 transition-colors duration-700" />
                 
                 {post.author?.image && (
-                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl shrink-0 z-10 transition-transform duration-500 group-hover:scale-110">
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white  shrink-0 z-10 transition-transform duration-500 group-hover:scale-110">
                      <Image src={urlFor(post.author.image as any).url()} alt={post.author.name} width={128} height={128} className="object-cover w-full h-full" />
                   </div>
                 )}
                 
                 <div className="flex-1 z-10">
                    <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-seal mb-4 block">About the Author</span>
-                   <h3 className="text-3xl font-bold text-ink mb-4">{post.author?.name}</h3>
+                   <h3 className="text-3xl font-semibold text-ink mb-4">{post.author?.name}</h3>
                    <p className="text-lg text-ink/60 leading-relaxed font-medium mb-6 italic">
                      {post.author?.bio || 'Strategic analyst focused on the intersection of human psychology and operational excellence. Leading cognitive development frameworks for the Signet community.'}
                    </p>
@@ -175,9 +175,9 @@ export default function PostDetail({ post }: PostDetailProps) {
 
         {/* Right Sidebar - Newsletter/CTA */}
         <aside className="hidden xl:flex flex-col w-64 shrink-0 space-y-12 pt-24 sticky top-32 h-fit">
-           <div className="p-8 bg-seal rounded-[2rem] text-white">
+           <div className="p-8 bg-seal rounded-[var(--radius-lg)] text-white">
               <span className="text-[8px] font-semibold uppercase tracking-[0.3em] text-white/50 mb-3 block">Network Brief</span>
-              <h4 className="text-xl font-bold mb-4">Stay ahead of the curve.</h4>
+              <h4 className="text-xl font-semibold mb-4">Stay ahead of the curve.</h4>
               <p className="text-xs text-white/70 leading-relaxed font-medium mb-6">Weekly insights on intentional growth and tactical mastery.</p>
               <button className="w-full py-3 bg-white text-seal text-[10px] font-semibold uppercase tracking-widest rounded-xl hover:bg-verdant hover:text-white transition-colors">Join Signet</button>
            </div>
@@ -187,8 +187,8 @@ export default function PostDetail({ post }: PostDetailProps) {
               <div className="space-y-6">
                  {[1, 2, 3].map(i => (
                     <div key={i} className="group cursor-pointer">
-                       <span className="text-[10px] font-bold text-seal block mb-2 opacity-50">0{i}</span>
-                       <p className="text-sm font-bold text-ink group-hover:text-seal transition-colors line-clamp-2 leading-snug">The Architecture of Resilience in Operational Environments</p>
+                       <span className="text-[10px] font-semibold text-seal block mb-2 opacity-50">0{i}</span>
+                       <p className="text-sm font-semibold text-ink group-hover:text-seal transition-colors line-clamp-2 leading-snug">The Architecture of Resilience in Operational Environments</p>
                     </div>
                  ))}
               </div>

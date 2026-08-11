@@ -126,14 +126,14 @@ const QUESTIONS: Question[] = [
 // ==========================================
 
 const ARCHETYPES = {
-    "Gf+Gv": { name: "The Architect", sig: "Structural Intuition" },
-    "Gq+Gc": { name: "The Scholar", sig: "Precision Recall" },
-    "Gs+Gw": { name: "The Operator", sig: "Cognitive Throughput" },
-    "Gf+Gc": { name: "The Synthesiser", sig: "Pattern-to-Meaning" },
-    "Gq+Gv": { name: "The Engineer", sig: "Structural Calculus" },
-    "Gc+Gw": { name: "The Connector", sig: "Verbal Memory Engine" },
-    "Gq+Gs": { name: "The Tactician", sig: "Speed-Accuracy Matrix" },
-    "Generalist": { name: "The Generalist", sig: "Cognitive Versatility" }
+ "Gf+Gv": { name: "The Architect", sig: "Structural Intuition" },
+ "Gq+Gc": { name: "The Scholar", sig: "Precision Recall" },
+ "Gs+Gw": { name: "The Operator", sig: "Cognitive Throughput" },
+ "Gf+Gc": { name: "The Synthesiser", sig: "Pattern-to-Meaning" },
+ "Gq+Gv": { name: "The Engineer", sig: "Structural Calculus" },
+ "Gc+Gw": { name: "The Connector", sig: "Verbal Memory Engine" },
+ "Gq+Gs": { name: "The Tactician", sig: "Speed-Accuracy Matrix" },
+ "Generalist": { name: "The Generalist", sig: "Cognitive Versatility" }
 };
 
 // ==========================================
@@ -230,12 +230,12 @@ export default function IQTestPage() {
     if (view === "welcome") {
         return (
             <div className="min-h-screen relative overflow-hidden bg-gradient-to-tr from-mist via-white to-canvas text-black font-sans flex flex-col items-center justify-start pt-28 md:pt-0 md:justify-center px-6">
-                <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/4 -translate-y-1/2"></div>
+                <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-seal/5 rounded-full blur-3xl -z-10 translate-x-1/4 -translate-y-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-black/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
 
                 <div className="max-w-5xl mx-auto w-full relative z-10 flex flex-col items-center text-center">
                     <div className="mb-2">
-                        <span className="text-[9px] tracking-[0.2em] font-medium uppercase border-l-2 border-accent pl-2 text-accent py-1">SIGNET ASSESSMENT</span>
+                        <span className="text-[9px] tracking-[0.2em] font-medium uppercase border-l-2 border-seal pl-2 text-seal py-1">SIGNET ASSESSMENT</span>
                     </div>
                     <h1 className="text-3xl md:text-5xl tracking-tight leading-none mb-3 font-display font-semibold text-transparent bg-clip-text bg-gradient-to-r from-black to-seal">
                         Cognitive <br />
@@ -244,7 +244,7 @@ export default function IQTestPage() {
                     <p className="text-sm md:text-base text-black/60 max-w-2xl mb-5 leading-relaxed font-sans font-light">
                         A rigorous yet engaging examination of primary cognitive factors. Discover your archetype through dynamic intelligence profiling.
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-2xl p-3 border border-black/5 w-full">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 bg-white  rounded-[var(--radius-lg)] p-3 border border-black/5 w-full">
                         {[
                             { label: "DURATION", val: "15 MIN" },
                             { label: "FORMAT", val: "ADAPTIVE" },
@@ -252,14 +252,14 @@ export default function IQTestPage() {
                             { label: "THEORY", val: "C-H-C" }
                         ].map(it => (
                             <div key={it.label} className="flex flex-col border-l border-black/5 pl-3 text-left">
-                                <span className="text-[8px] tracking-[0.15em] font-medium text-accent mb-1">{it.label}</span>
-                                <span className="text-base tracking-tight font-bold">{it.val}</span>
+                                <span className="text-[8px] tracking-[0.15em] font-medium text-seal mb-1">{it.label}</span>
+                                <span className="text-base tracking-tight font-semibold">{it.val}</span>
                             </div>
                         ))}
                     </div>
                     <button
                         onClick={startAssessment}
-                        className="group flex items-center justify-center gap-3 bg-seal text-white px-8 py-3 rounded-full font-bold text-base tracking-tight transition hover:bg-accent hover:text-ink hover:scale-105 shadow-[0_8px_30px_rgba(16,129,114,0.3)]"
+                        className="group flex items-center justify-center gap-3 bg-seal text-white px-8 py-3 rounded-full font-semibold text-base tracking-tight transition hover:bg-seal hover:text-ink hover:scale-105 "
                     >
                         Begin Process <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </button>
@@ -276,24 +276,24 @@ export default function IQTestPage() {
                 <div className="max-w-5xl mx-auto w-full">
                     <header className="mb-20 flex flex-col md:flex-row justify-between items-baseline border-b border-ink/10 pb-8">
                         <h2 className="text-4xl md:text-5xl tracking-tight font-display font-semibold text-transparent bg-clip-text bg-gradient-to-r from-ink to-seal">Evaluation Complete</h2>
-                        <p className="text-[10px] tracking-[0.2em] text-seal uppercase mt-4 md:mt-0 font-bold bg-mist border border-mist px-4 py-2 rounded-full">Data Sync Verified</p>
+                        <p className="text-[10px] tracking-[0.2em] text-seal uppercase mt-4 md:mt-0 font-semibold bg-mist border border-mist px-4 py-2 rounded-full">Data Sync Verified</p>
                     </header>
 
                     <div className="grid lg:grid-cols-12 gap-12 mb-20">
-                        <div className="lg:col-span-4 flex flex-col justify-between bg-white/70 backdrop-blur-xl shadow-xl shadow-emerald-950/[0.03] rounded-3xl p-10 border border-white/40 relative overflow-hidden">
+                        <div className="lg:col-span-4 flex flex-col justify-between bg-white/70 backdrop-blur-xl   rounded-[var(--radius-lg)] p-10 border border-white/40 relative overflow-hidden">
                             <div className="absolute -top-10 -right-10 w-40 h-40 bg-verdant/5 rounded-full blur-2xl"></div>
                             <div className="relative z-10">
-                                <div className="text-[10px] tracking-[0.15em] font-bold text-seal/50 mb-4">INTELLIGENCE QUOTIENT</div>
+                                <div className="text-[10px] tracking-[0.15em] font-semibold text-seal/50 mb-4">INTELLIGENCE QUOTIENT</div>
                                 <div className="text-[7rem] md:text-[9rem] leading-none tracking-tight mb-4 font-display font-semibold text-ink">{results.iq}</div>
-                                <div className="text-xs tracking-widest uppercase mb-12 font-bold text-seal/60 border-l-2 border-verdant pl-3">Percentile: Top {Math.round((1 - results.iq / 200) * 100)}%</div>
+                                <div className="text-xs tracking-widest uppercase mb-12 font-semibold text-seal/60 border-l-2 border-verdant pl-3">Percentile: Top {Math.round((1 - results.iq / 200) * 100)}%</div>
                             </div>
-                            <p className="text-[10px] text-seal/40 max-w-xs leading-relaxed uppercase tracking-wider relative z-10 font-bold">
+                            <p className="text-[10px] text-seal/40 max-w-xs leading-relaxed uppercase tracking-wider relative z-10 font-semibold">
                                 This metric represents a personal baseline estimation, not a formal diagnostic credential.
                             </p>
                         </div>
 
-                        <div className="lg:col-span-8 flex flex-col justify-center bg-white/70 backdrop-blur-xl shadow-xl shadow-emerald-950/[0.03] rounded-3xl p-10 border border-white/40">
-                            <div className="text-[10px] tracking-[0.15em] font-bold text-seal/50 mb-4">PRIMARY ARCHETYPE</div>
+                        <div className="lg:col-span-8 flex flex-col justify-center bg-white/70 backdrop-blur-xl   rounded-[var(--radius-lg)] p-10 border border-white/40">
+                            <div className="text-[10px] tracking-[0.15em] font-semibold text-seal/50 mb-4">PRIMARY ARCHETYPE</div>
                             <h3 className="text-4xl md:text-5xl tracking-tight mb-4 font-display font-semibold text-ink">{results.archetype.name}</h3>
                             <p className="text-lg text-seal/80 mb-12 font-sans font-medium">{results.archetype.sig}</p>
 
@@ -301,7 +301,7 @@ export default function IQTestPage() {
                                 {Object.entries(results.domainScores).map(([key, score]) => (
                                     <div key={key} className="flex flex-col">
                                         <div className="flex justify-between items-center mb-3">
-                                            <span className="text-[10px] tracking-[0.15em] font-bold uppercase text-seal/70">{G_TYPES[key as Domain].name}</span>
+                                            <span className="text-[10px] tracking-[0.15em] font-semibold uppercase text-seal/70">{G_TYPES[key as Domain].name}</span>
                                             <span className="text-sm font-semibold text-verdant">{Math.round(score)}</span>
                                         </div>
                                         <div className="w-full h-2 bg-mist border border-mist/30 rounded-full overflow-hidden relative">
@@ -321,7 +321,7 @@ export default function IQTestPage() {
                     <div className="flex justify-center pt-12">
                         <button
                             onClick={() => window.location.reload()}
-                            className="group flex items-center justify-center gap-3 bg-ink hover:bg-seal text-white px-8 py-3 rounded-full text-xs tracking-[0.2em] font-bold uppercase transition shadow-xl hover:scale-105"
+                            className="group flex items-center justify-center gap-3 bg-ink hover:bg-seal text-white px-8 py-3 rounded-full text-xs tracking-[0.2em] font-semibold uppercase transition  hover:scale-105"
                         >
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" /> Re-evaluate
                         </button>
@@ -333,7 +333,7 @@ export default function IQTestPage() {
 
     return (
         <div className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-b from-mist to-white text-black font-sans flex flex-col px-6">
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl -z-10 -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-seal/5 rounded-full blur-3xl -z-10 -translate-x-1/2 -translate-y-1/2"></div>
 
             <div className="max-w-4xl mx-auto w-full flex flex-col flex-1 relative z-10">
                 <header className="pt-6 pb-2 w-full">
@@ -341,11 +341,11 @@ export default function IQTestPage() {
                         <button onClick={() => setCurIdx(Math.max(0, curIdx - 1))} disabled={curIdx === 0} className="disabled:opacity-30">
                             <ArrowLeft className="w-5 h-5 text-black" />
                         </button>
-                        <span className="text-lg font-bold text-black">Assessment</span>
+                        <span className="text-lg font-semibold text-black">Assessment</span>
                     </div>
                     <div className="flex items-center gap-4 w-full">
-                        <div className="h-[2px] bg-accent w-1/4 rounded-full" />
-                        <span className="text-[10px] font-bold uppercase text-accent tracking-[0.15em] whitespace-nowrap">
+                        <div className="h-[2px] bg-seal w-1/4 rounded-full" />
+                        <span className="text-[10px] font-semibold uppercase text-seal tracking-[0.15em] whitespace-nowrap">
                             QUESTION {curIdx + 1} OF {QUESTIONS.length}
                         </span>
                         <div className="h-[2px] bg-black/10 flex-1 rounded-full" />
@@ -364,7 +364,7 @@ export default function IQTestPage() {
                         >
                             {question.timed && (
                                 <div className="text-center mb-2">
-                                    <span className="text-xs font-semibold tracking-widest uppercase text-red-600 bg-red-50 px-2 py-0.5 rounded-full shadow-sm animate-pulse">{Math.ceil(gsTimer)}S</span>
+                                    <span className="text-xs font-semibold tracking-widest uppercase text-red-600 bg-red-50 px-2 py-0.5 rounded-full  animate-pulse">{Math.ceil(gsTimer)}S</span>
                                 </div>
                             )}
 
@@ -373,7 +373,7 @@ export default function IQTestPage() {
                             </h2>
 
                             {question.type === 'visual' && question.func && (
-                                <div className="mb-6 flex justify-center bg-white shadow-sm p-4 rounded-xl border border-black/5 max-w-[280px] mx-auto w-full">
+                                <div className="mb-6 flex justify-center bg-white  p-4 rounded-xl border border-black/5 max-w-[280px] mx-auto w-full">
                                     {question.func({})}
                                 </div>
                             )}
@@ -384,8 +384,8 @@ export default function IQTestPage() {
                                         key={i}
                                         onClick={() => handleSelect(i)}
                                         className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-colors duration-200 border ${userAns[question.id] === i
-                                                ? 'bg-seal border-seal text-white shadow-md'
-                                                : 'bg-white border-black/10 text-black hover:border-accent hover:text-black'
+                                                ? 'bg-seal border-seal text-white '
+                                                : 'bg-white border-black/10 text-black hover:border-seal hover:text-black'
                                             }`}
                                     >
                                         {opt}
@@ -400,14 +400,14 @@ export default function IQTestPage() {
                     <button
                         onClick={() => setCurIdx(Math.max(0, curIdx - 1))}
                         disabled={curIdx === 0}
-                        className="text-black/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-black px-4 py-2 rounded-full transition disabled:opacity-0 pointer-events-auto"
+                        className="text-black/40 font-semibold uppercase tracking-widest text-xs flex items-center justify-center hover:text-black px-4 py-2 rounded-full transition disabled:opacity-0 pointer-events-auto"
                     >
                         <ArrowLeft className="w-3 h-3 mr-2" /> Previous
                     </button>
                     <button
                         onClick={handleNext}
                         disabled={userAns[question.id] === undefined}
-                        className="bg-seal text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-ink px-6 py-3 rounded-full transition disabled:opacity-30 pointer-events-auto shadow-xl"
+                        className="bg-seal text-white font-semibold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-seal hover:text-ink px-6 py-3 rounded-full transition disabled:opacity-30 pointer-events-auto "
                     >
                         {curIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
                     </button>

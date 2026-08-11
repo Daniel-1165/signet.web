@@ -16,7 +16,7 @@ export default function CommunityBanner() {
 
   return (
     <section className="relative py-8 md:py-12 overflow-hidden">
-      <div className="relative w-full rounded-[2.5rem] bg-ink on-ink p-7 sm:p-10 md:p-14 overflow-hidden border border-verdant/12 flex flex-col justify-between">
+      <div className="relative w-full rounded-[var(--radius-lg)] bg-ink on-ink p-7 sm:p-10 md:p-14 overflow-hidden border border-verdant/12 flex flex-col justify-between">
         {/* A single low-alpha wash keeps the large flat panel from going dead */}
         <div className="absolute top-0 right-0 w-full md:w-[600px] h-full bg-verdant/[0.04] blur-[80px] -rotate-12 translate-x-1/4 pointer-events-none" />
 

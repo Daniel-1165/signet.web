@@ -171,7 +171,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="md:hidden fixed top-0 right-0 h-full w-[280px] bg-canvas z-[70] flex flex-col shadow-2xl"
+              className="md:hidden fixed top-0 right-0 h-full w-[280px] bg-canvas z-[70] flex flex-col "
             >
               {/* Panel header - Text Logo */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-rule">
@@ -203,7 +203,7 @@ const Navbar = () => {
                       href={item.href}
                       onClick={() => setIsSidebarOpen(false)}
                       aria-current={isActive ? "page" : undefined}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-semibold text-sm tracking-tight transition-colors ${
+                      className={`flex items-center gap-3 px-4 py-3 rounded-[var(--radius-lg)] font-semibold text-sm tracking-tight transition-colors ${
                         isActive ? "bg-mist text-seal" : "text-ink hover:bg-mist/50"
                       }`}
                     >

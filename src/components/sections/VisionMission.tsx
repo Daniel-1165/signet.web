@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { riseAt } from "@/lib/motion";
 
 const VisionMission = () => {
     const sections = [
@@ -27,11 +28,8 @@ const VisionMission = () => {
                     {sections.map((item, index) => (
                         <motion.div
                             key={item.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: index * 0.2 }}
-                            className="group relative aspect-[4/5] md:aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/10 transition duration-500 hover:shadow-black/20 hover:-translate-y-2"
+                            {...riseAt(index)}
+                            className="group relative aspect-[4/5] md:aspect-[3/4] rounded-[var(--radius-lg)] overflow-hidden border border-rule transition-colors duration-500"
                         >
                             {/* Background Image */}
                             <img 
@@ -60,7 +58,7 @@ const VisionMission = () => {
                             </div>
 
                             {/* Border Glow on Hover */}
-                            <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-[2.5rem] transition-colors duration-500" />
+                            <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-[var(--radius-lg)] transition-colors duration-500" />
                         </motion.div>
                     ))}
                 </div>

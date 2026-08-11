@@ -14,7 +14,7 @@ export default function HeroJoinButton() {
   const { isSignedIn, isLoaded } = useUser();
 
   const className =
-    "group/btn inline-flex items-center gap-2.5 bg-wax hover:bg-[#75492C] text-canvas px-6 py-3 rounded-full font-medium text-sm transition-colors touch-manipulation";
+ "group/btn inline-flex items-center gap-2.5 bg-wax hover:bg-[#75492C] text-canvas px-6 py-3 rounded-full font-medium text-sm transition-colors touch-manipulation";
 
   const arrow = (
     <ArrowRight

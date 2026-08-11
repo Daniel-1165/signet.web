@@ -13,11 +13,11 @@ interface PostListProps {
 export default function PostList({posts}: PostListProps) {
   if (!posts.length) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center bg-white/50 rounded-[3rem] border border-seal/5">
+      <div className="flex flex-col items-center justify-center py-20 text-center bg-white/50 rounded-[var(--radius-lg)] border border-seal/5">
          <div className="w-16 h-16 rounded-full bg-seal/5 flex items-center justify-center mb-6">
             <Clock className="w-8 h-8 text-seal/20" />
          </div>
-         <h3 className="text-xl font-bold text-ink">No articles found</h3>
+         <h3 className="text-xl font-semibold text-ink">No articles found</h3>
          <p className="text-sm text-ink/40 mt-2">Check back soon for latest strategic insights.</p>
       </div>
     )
@@ -29,7 +29,7 @@ export default function PostList({posts}: PostListProps) {
         <Link
           key={post._id}
           href={`/blog/${post.slug.current}`}
-          className="group block bg-white rounded-[2rem] overflow-hidden border border-black/[0.03] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition duration-500"
+          className="group block bg-white rounded-[var(--radius-lg)] overflow-hidden border border-black/[0.03]   hover:-translate-y-2 transition duration-500"
         >
           {/* Image Container */}
           <div className="relative aspect-[16/10] overflow-hidden">
@@ -49,7 +49,7 @@ export default function PostList({posts}: PostListProps) {
             {/* Category Tag */}
             {post.categories && post.categories.length > 0 && (
               <div className="absolute top-4 left-4 z-10">
-                <span className="px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[9px] font-semibold uppercase tracking-widest text-seal shadow-sm">
+                <span className="px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[9px] font-semibold uppercase tracking-widest text-seal ">
                   {post.categories[0].title}
                 </span>
               </div>
@@ -63,7 +63,7 @@ export default function PostList({posts}: PostListProps) {
                <span className="flex items-center gap-1"><User size={10} /> {post.author?.name || 'Signet Editorial'}</span>
             </div>
 
-            <h3 className="text-xl md:text-2xl font-bold text-ink leading-[1.2] group-hover:text-seal transition-colors line-clamp-3" >
+            <h3 className="text-xl md:text-2xl font-semibold text-ink leading-[1.2] group-hover:text-seal transition-colors line-clamp-3" >
               {post.title}
             </h3>
 

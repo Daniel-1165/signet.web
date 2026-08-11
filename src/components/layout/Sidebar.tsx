@@ -153,7 +153,7 @@ export default function Sidebar() {
           </SignOutButton>
 
           {/* User Profile */}
-          <div className="mt-2 px-2 py-2 rounded-2xl border border-rule flex items-center gap-3">
+          <div className="mt-2 px-2 py-2 rounded-[var(--radius-lg)] border border-rule flex items-center gap-3">
             <div className="w-10 h-10 shrink-0 rounded-xl bg-mist overflow-hidden flex items-center justify-center font-mono font-medium text-seal">
               {user?.imageUrl ? (
                 <img src={user.imageUrl} alt="" className="w-full h-full object-cover" />

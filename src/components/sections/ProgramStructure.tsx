@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Users, UserPlus, UserCheck } from "lucide-react";
+import { riseAt } from "@/lib/motion";
 
 /**
  * The three levels are a genuine progression — group, then peer, then
@@ -78,11 +79,8 @@ export default function ProgramStructure() {
                 return (
                   <motion.div
                     key={level.n}
-                    initial={{ opacity: 0, scale: 1.015, y: 8 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative group"
+                    {...riseAt(i)}
+                            className="relative group"
                   >
                     <div
                       className={`absolute -left-[34px] sm:-left-[42px] top-1.5 w-3.5 h-3.5 rounded-full ${level.dot} ring-4 ring-canvas transition-transform duration-300 group-hover:scale-125`}

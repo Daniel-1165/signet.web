@@ -170,7 +170,7 @@ export function PostCard({
           <div className="flex items-center gap-1.5 flex-wrap">
             <span 
               onClick={() => router.push(`/dashboard/community/posts/${post.id}`)}
-              className="font-bold text-ink text-[15px] md:text-[16px] hover:underline cursor-pointer"
+              className="font-semibold text-ink text-[15px] md:text-[16px] hover:underline cursor-pointer"
             >
               {authorName}
             </span>
@@ -191,7 +191,7 @@ export function PostCard({
             </button>
    
             {showDropdown && (
-              <div className="absolute right-0 mt-1 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-1.5 z-50">
+              <div className="absolute right-0 mt-1 w-48 bg-white rounded-xl  border border-gray-100 py-1.5 z-50">
                 <button 
                   className="w-full text-left px-4 py-2 text-[13px] font-semibold text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2"
                   onClick={() => {
@@ -242,14 +242,14 @@ export function PostCard({
               <div className="flex justify-end gap-2">
                 <button 
                   onClick={() => setIsEditing(false)}
-                  className="px-3 py-1.5 text-[13px] font-bold text-gray-500 hover:text-gray-900 transition-colors"
+                  className="px-3 py-1.5 text-[13px] font-semibold text-gray-500 hover:text-gray-900 transition-colors"
                 >
                   Cancel
                 </button>
                 <button 
                   onClick={handleUpdate}
                   disabled={isUpdating || !editContent.trim()}
-                  className="px-4 py-1.5 bg-seal text-white rounded-full text-[13px] font-bold hover:bg-seal transition disabled:opacity-50"
+                  className="px-4 py-1.5 bg-seal text-white rounded-full text-[13px] font-semibold hover:bg-seal transition disabled:opacity-50"
                 >
                   {isUpdating ? "Saving..." : "Save"}
                 </button>
@@ -261,7 +261,7 @@ export function PostCard({
               {shouldTruncate && (
                 <Link 
                   href={`/dashboard/community/posts/${post.id}`}
-                  className="text-seal font-bold hover:underline ml-1.5 cursor-pointer inline-block"
+                  className="text-seal font-semibold hover:underline ml-1.5 cursor-pointer inline-block"
                 >
                   See more
                 </Link>
@@ -272,7 +272,7 @@ export function PostCard({
 
         {/* Post Image (if any) */}
         {post.image_url && (
-          <div className="mt-3 overflow-hidden rounded-2xl border border-gray-150">
+          <div className="mt-3 overflow-hidden rounded-[var(--radius-lg)] border border-gray-150">
             <img 
               src={post.image_url} 
               alt="Context" 

@@ -53,9 +53,9 @@ const LockedInHero = () => {
                         initial={{ x: 50, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.4, duration: 0.8 }}
-                        className="bg-white rounded-3xl p-4 flex items-center gap-4 shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform cursor-pointer group"
+                        className="bg-white rounded-[var(--radius-lg)] p-4 flex items-center gap-4  transform -rotate-2 hover:rotate-0 transition-transform cursor-pointer group"
                     >
-                        <div className="w-14 h-14 bg-seal rounded-2xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-14 h-14 bg-seal rounded-[var(--radius-lg)] flex items-center justify-center flex-shrink-0">
                             <img 
                                 src="/signet-brand-logo.svg" 
                                 alt="Signet Logo" 
@@ -67,7 +67,7 @@ const LockedInHero = () => {
                                 <span className="text-sm font-semibold text-gray-800">Now, we are</span>
                                 <span className="text-[10px] text-gray-400 font-medium lowercase">now</span>
                             </div>
-                            <p className="text-xl font-bold text-gray-900 leading-tight">Locked In...</p>
+                            <p className="text-xl font-semibold text-gray-900 leading-tight">Locked In...</p>
                         </div>
                     </motion.div>
 
@@ -76,9 +76,9 @@ const LockedInHero = () => {
                         initial={{ x: -50, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.6, duration: 0.8 }}
-                        className="bg-white rounded-3xl p-4 flex items-center gap-4 shadow-2xl transform rotate-2 hover:rotate-0 transition-transform cursor-pointer group z-10"
+                        className="bg-white rounded-[var(--radius-lg)] p-4 flex items-center gap-4  transform rotate-2 hover:rotate-0 transition-transform cursor-pointer group z-10"
                     >
-                         <div className="w-14 h-14 bg-seal rounded-2xl flex items-center justify-center flex-shrink-0">
+                         <div className="w-14 h-14 bg-seal rounded-[var(--radius-lg)] flex items-center justify-center flex-shrink-0">
                             <img 
                                 src="/signet-brand-logo.svg" 
                                 alt="Signet Logo" 
@@ -90,7 +90,7 @@ const LockedInHero = () => {
                                 <span className="text-sm font-semibold text-gray-800">Let's Grow</span>
                                 <span className="text-[10px] text-gray-400 font-medium lowercase">now</span>
                             </div>
-                            <p className="text-xl font-bold text-gray-900 leading-tight">in Silence!</p>
+                            <p className="text-xl font-semibold text-gray-900 leading-tight">in Silence!</p>
                         </div>
                     </motion.div>
                 </div>
@@ -103,12 +103,12 @@ const LockedInHero = () => {
                     className="mt-12 flex flex-col sm:flex-row items-center gap-4 w-full"
                 >
                     <Link href="/join" className="group w-full sm:flex-1">
-                        <MagneticButton className="w-full h-14 bg-seal text-white font-bold rounded-2xl shadow-lg shadow-seal/30 flex items-center justify-center gap-2 hover:bg-seal/90 transition border border-white/10">
+                        <MagneticButton className="w-full h-14 bg-seal text-white font-semibold rounded-[var(--radius-lg)]   flex items-center justify-center gap-2 hover:bg-seal/90 transition border border-white/10">
                             Join Network <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </MagneticButton>
                     </Link>
                     <Link href="/features" className="w-full sm:flex-1">
-                        <MagneticButton className="w-full h-14 bg-white/10 text-white font-bold rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors">
+                        <MagneticButton className="w-full h-14 bg-white/10 text-white font-semibold rounded-[var(--radius-lg)] backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors">
                             Explore
                         </MagneticButton>
                     </Link>

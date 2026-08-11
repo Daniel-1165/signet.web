@@ -68,7 +68,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="bg-white rounded-[2.5rem] border border-rule p-8 md:p-12 shadow-sm relative overflow-hidden font-sans">
+    <div className="bg-white rounded-[var(--radius-lg)] border border-rule p-8 md:p-12  relative overflow-hidden font-sans">
       <div className="mb-8">
         <h2 className="text-3xl font-semibold text-ink mb-2 font-sans">
           Send Us a Message
@@ -79,7 +79,7 @@ export default function ContactForm() {
       </div>
 
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 bg-mist/50 border border-seal/20 rounded-2xl flex items-center gap-3">
+        <div className="mb-6 p-4 bg-mist/50 border border-seal/20 rounded-[var(--radius-lg)] flex items-center gap-3">
           <CheckCircle className="w-5 h-5 text-seal flex-shrink-0" />
           <p className="text-seal text-sm font-sans font-semibold">
             Message sent successfully! We'll get back to you soon.
@@ -88,7 +88,7 @@ export default function ContactForm() {
       )}
 
       {submitStatus === 'error' && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl flex items-center gap-3">
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-[var(--radius-lg)] flex items-center gap-3">
           <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
           <p className="text-red-800 text-sm font-sans font-semibold">{errorMessage}</p>
         </div>
@@ -97,7 +97,7 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Name Field */}
         <div>
-          <label htmlFor="name" className="block text-sm font-bold text-ink mb-2 font-sans">
+          <label htmlFor="name" className="block text-sm font-semibold text-ink mb-2 font-sans">
             Name *
           </label>
           <input
@@ -113,7 +113,7 @@ export default function ContactForm() {
 
         {/* Email Field */}
         <div>
-          <label htmlFor="email" className="block text-sm font-bold text-ink mb-2 font-sans">
+          <label htmlFor="email" className="block text-sm font-semibold text-ink mb-2 font-sans">
             Email Address *
           </label>
           <input
@@ -129,7 +129,7 @@ export default function ContactForm() {
 
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-sm font-bold text-ink mb-2 font-sans">
+          <label htmlFor="message" className="block text-sm font-semibold text-ink mb-2 font-sans">
             Message *
           </label>
           <textarea
@@ -148,7 +148,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-seal hover:bg-seal text-white font-bold py-4 px-6 rounded-full transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md shadow-seal/10 font-sans uppercase text-xs tracking-wider"
+            className="w-full bg-seal hover:bg-seal text-white font-semibold py-4 px-6 rounded-full transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2   font-sans uppercase text-xs tracking-wider"
           >
             {isSubmitting ? (
               <>

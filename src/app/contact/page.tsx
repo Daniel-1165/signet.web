@@ -66,10 +66,10 @@ export default function ContactPage() {
               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="group block"
             >
-              <div className={`rounded-[2.5rem] bg-white border border-rule hover:border-seal/30 transition duration-500 p-8 h-full shadow-sm hover:shadow-xl flex flex-col justify-between`}>
+              <div className={`rounded-[var(--radius-lg)] bg-white border border-rule hover:border-seal/30 transition duration-500 p-8 h-full   flex flex-col justify-between`}>
                 <div className="space-y-6">
                   {/* Icon Container */}
-                  <div className={`w-16 h-16 ${method.bgColor} ${method.textColor} rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
+                  <div className={`w-16 h-16 ${method.bgColor} ${method.textColor} rounded-[var(--radius-lg)] flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
                     {method.icon}
                   </div>
 
@@ -86,7 +86,7 @@ export default function ContactPage() {
 
                 {/* Action Button */}
                 <div className="mt-8">
-                  <div className={`inline-flex items-center justify-center gap-2 px-6 py-3 w-full sm:w-auto ${method.color} text-white font-bold rounded-full transition duration-300 shadow-md shadow-seal/10 font-sans text-xs uppercase tracking-wider`}>
+                  <div className={`inline-flex items-center justify-center gap-2 px-6 py-3 w-full sm:w-auto ${method.color} text-white font-semibold rounded-full transition duration-300   font-sans text-xs uppercase tracking-wider`}>
                     <span>{method.action}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -102,7 +102,7 @@ export default function ContactPage() {
         </div>
 
         {/* Response Times */}
-        <div className="rounded-[2.5rem] bg-canvas border border-rule p-10 md:p-12 text-center space-y-8">
+        <div className="rounded-[var(--radius-lg)] bg-canvas border border-rule p-10 md:p-12 text-center space-y-8">
           <div className="space-y-2">
             <h3 className="text-3xl font-semibold text-ink font-sans">
               Response Times
@@ -117,7 +117,7 @@ export default function ContactPage() {
               <div className="w-12 h-12 bg-mist rounded-full flex items-center justify-center mx-auto text-seal">
                 <MessageCircle className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-lg text-ink font-sans">WhatsApp</h4>
+              <h4 className="font-semibold text-lg text-ink font-sans">WhatsApp</h4>
               <p className="text-sm text-ink/60 font-medium">Within 1-2 hours during business hours</p>
             </div>
 
@@ -125,7 +125,7 @@ export default function ContactPage() {
               <div className="w-12 h-12 bg-mist rounded-full flex items-center justify-center mx-auto text-seal">
                 <Mail className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-lg text-ink font-sans">Email</h4>
+              <h4 className="font-semibold text-lg text-ink font-sans">Email</h4>
               <p className="text-sm text-ink/60 font-medium">Within 24 hours</p>
             </div>
 
@@ -133,7 +133,7 @@ export default function ContactPage() {
               <div className="w-12 h-12 bg-mist rounded-full flex items-center justify-center mx-auto text-seal">
                 <Phone className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-lg text-ink font-sans">Phone Support</h4>
+              <h4 className="font-semibold text-lg text-ink font-sans">Phone Support</h4>
               <p className="text-sm text-ink/60 font-medium">Mon-Fri 9AM-6PM (GMT)</p>
             </div>
           </div>
@@ -152,8 +152,8 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-white border border-rule">
-                <h3 className="font-bold text-lg text-ink mb-3 font-sans">
+              <div className="p-6 rounded-[var(--radius-lg)] bg-white border border-rule">
+                <h3 className="font-semibold text-lg text-ink mb-3 font-sans">
                   How long is the mentorship program?
                 </h3>
                 <p className="text-ink/70 text-sm leading-relaxed font-sans font-medium">
@@ -161,8 +161,8 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-rule">
-                <h3 className="font-bold text-lg text-ink mb-3 font-sans">
+              <div className="p-6 rounded-[var(--radius-lg)] bg-white border border-rule">
+                <h3 className="font-semibold text-lg text-ink mb-3 font-sans">
                   Is this program a good fit for me?
                 </h3>
                 <p className="text-ink/70 text-sm leading-relaxed font-sans font-medium">
@@ -170,8 +170,8 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-rule">
-                <h3 className="font-bold text-lg text-ink mb-3 font-sans">
+              <div className="p-6 rounded-[var(--radius-lg)] bg-white border border-rule">
+                <h3 className="font-semibold text-lg text-ink mb-3 font-sans">
                   How much time do I need to commit?
                 </h3>
                 <p className="text-ink/70 text-sm leading-relaxed font-sans font-medium">
@@ -181,8 +181,8 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-white border border-rule">
-                <h3 className="font-bold text-lg text-ink mb-3 font-sans">
+              <div className="p-6 rounded-[var(--radius-lg)] bg-white border border-rule">
+                <h3 className="font-semibold text-lg text-ink mb-3 font-sans">
                   Is the format group or 1-on-1 driven?
                 </h3>
                 <p className="text-ink/70 text-sm leading-relaxed font-sans font-medium">
@@ -190,8 +190,8 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-rule">
-                <h3 className="font-bold text-lg text-ink mb-3 font-sans">
+              <div className="p-6 rounded-[var(--radius-lg)] bg-white border border-rule">
+                <h3 className="font-semibold text-lg text-ink mb-3 font-sans">
                   What happens when the 12 weeks ends?
                 </h3>
                 <p className="text-ink/70 text-sm leading-relaxed font-sans font-medium">
@@ -199,8 +199,8 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-rule">
-                <h3 className="font-bold text-lg text-ink mb-3 font-sans">
+              <div className="p-6 rounded-[var(--radius-lg)] bg-white border border-rule">
+                <h3 className="font-semibold text-lg text-ink mb-3 font-sans">
                   Do I need any prior experience?
                 </h3>
                 <p className="text-ink/70 text-sm leading-relaxed font-sans font-medium">

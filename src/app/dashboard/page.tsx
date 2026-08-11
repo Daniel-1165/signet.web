@@ -86,7 +86,7 @@ export default async function DashboardPage() {
 
       <div className="page-container space-y-12 md:space-y-20">
         {/* Premium Hero Section */}
-        <section className="relative w-full h-[420px] md:h-[500px] md:rounded-[2.5rem] overflow-hidden group on-ink">
+        <section className="relative w-full h-[420px] md:h-[500px] md:rounded-[var(--radius-lg)] overflow-hidden group on-ink">
           <img src="/forest_hero_bg.png" alt="" className="absolute inset-0 w-full h-full object-cover brightness-[0.72] saturate-[0.85] group-hover:scale-[1.03] transition-transform duration-[3s] motion-reduce:transition-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/25" />
 

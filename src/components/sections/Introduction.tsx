@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { rise } from "@/lib/motion";
 
 export default function Introduction() {
   return (
@@ -27,11 +28,7 @@ export default function Introduction() {
         {/* ========================================================================= */}
         <motion.div 
           className="block md:hidden space-y-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.8 }}
-        >
+          {...rise}>
           {/* Heading */}
           <div>
             <span className="eyebrow mb-3">About Us</span>
@@ -84,11 +81,7 @@ export default function Introduction() {
         {/* ========================================================================= */}
         <motion.div 
           className="hidden md:block md:max-w-[45%] lg:max-w-[48%] relative z-10"
-          initial={{ opacity: 0, x: -35 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.8 }}
-        >
+          {...rise}>
           {/* Heading */}
           <div className="mb-6">
             <span className="eyebrow mb-3">About Us</span>

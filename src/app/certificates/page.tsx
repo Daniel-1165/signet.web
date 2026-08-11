@@ -52,7 +52,7 @@ export default function CertificatesPage() {
           username,
           courseName,
           issueDate,
-          "fileUrl": certificateFile.asset->url
+ "fileUrl": certificateFile.asset->url
         }`;
         const data = await client.fetch(sanityQuery, { searchVal });
         if (data) {
@@ -70,30 +70,30 @@ export default function CertificatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background relative pt-32 pb-24 px-6 flex flex-col items-center">
+    <div className="min-h-screen bg-canvas relative pt-32 pb-24 px-6 flex flex-col items-center">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-seal/5 blur-[120px] pointer-events-none" />
       
       <div className="text-center mb-12 relative z-10 space-y-4">
-        <div className="mx-auto w-16 h-16 bg-seal text-white flex items-center justify-center rounded-2xl mb-6 shadow-xl shadow-seal/20">
+        <div className="mx-auto w-16 h-16 bg-seal text-white flex items-center justify-center rounded-[var(--radius-lg)] mb-6 ">
             <Award size={32} />
         </div>
-        <h1 className="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-foreground">
+        <h1 className="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-ink">
           Your <span className="text-seal">Certificates</span>.
         </h1>
-        <p className="text-foreground/60 max-w-lg mx-auto text-lg leading-relaxed">
+        <p className="text-ink/60 max-w-lg mx-auto text-lg leading-relaxed">
           Enter your registered username or email below to view and download your verified program certificates.
         </p>
       </div>
 
-      <div className="w-full max-w-md relative z-10 bg-white p-8 rounded-[2rem] shadow-xl border border-black/5">
+      <div className="w-full max-w-md relative z-10 bg-white p-8 rounded-[var(--radius-lg)]  border border-black/5">
         <form onSubmit={handleSearch} className="space-y-4">
           <div>
-            <label htmlFor="username" className="block text-sm font-bold text-foreground mb-2">
+            <label htmlFor="username" className="block text-sm font-semibold text-ink mb-2">
               Signet Username or Email
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-foreground/40" />
+                <Search className="h-5 w-5 text-ink/40" />
               </div>
               <input
                 type="text"
@@ -101,7 +101,7 @@ export default function CertificatesPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="e.g. daniel_growth or user@domain.com"
-                className="w-full pl-12 pr-4 py-4 bg-background border border-black/10 rounded-xl focus:outline-none focus:border-seal/40 focus:ring-1 focus:ring-seal transition-colors text-sm font-medium"
+                className="w-full pl-12 pr-4 py-4 bg-canvas border border-black/10 rounded-xl focus:outline-none focus:border-seal/40 focus:ring-1 focus:ring-seal transition-colors text-sm font-medium"
                 required
               />
             </div>
@@ -109,12 +109,12 @@ export default function CertificatesPage() {
           <button
             type="submit"
             disabled={loading || !username.trim()}
-            className="w-full h-14 bg-seal hover:bg-seal/90 text-white font-bold rounded-xl shadow-[0_4px_20px_rgba(22,56,50,0.3)] transition flex items-center justify-center disabled:opacity-50 disabled:scale-100 uppercase tracking-wider text-sm"
+            className="w-full h-14 bg-seal hover:bg-seal/90 text-white font-semibold rounded-xl  transition flex items-center justify-center disabled:opacity-50 disabled:scale-100 uppercase tracking-wider text-sm"
           >
             {loading ? (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
-              "Search Certificate"
+ "Search Certificate"
             )}
           </button>
         </form>
@@ -127,20 +127,20 @@ export default function CertificatesPage() {
 
         {certificate && (
           <div className="mt-8 pt-8 border-t border-black/10 animate-in slide-in-from-bottom-4 duration-500">
-            <h3 className="font-semibold text-lg text-foreground mb-4">Certificate Found!</h3>
-            <div className="p-5 bg-gradient-to-br from-seal/5 to-seal/5 border border-seal/20 rounded-2xl space-y-4">
+            <h3 className="font-semibold text-lg text-ink mb-4">Certificate Found!</h3>
+            <div className="p-5 bg-gradient-to-br from-seal/5 to-seal/5 border border-seal/20 rounded-[var(--radius-lg)] space-y-4">
               <div>
-                <p className="text-xs font-bold text-foreground/50 uppercase tracking-widest">Program</p>
-                <p className="font-bold text-foreground text-lg">{certificate.courseName}</p>
+                <p className="text-xs font-semibold text-ink/50 uppercase tracking-widest">Program</p>
+                <p className="font-semibold text-ink text-lg">{certificate.courseName}</p>
               </div>
               <div>
-                <p className="text-xs font-bold text-foreground/50 uppercase tracking-widest">Awarded To</p>
-                <p className="font-bold text-seal">{certificate.username}</p>
+                <p className="text-xs font-semibold text-ink/50 uppercase tracking-widest">Awarded To</p>
+                <p className="font-semibold text-seal">{certificate.username}</p>
               </div>
               {certificate.issueDate && (
                 <div>
-                  <p className="text-xs font-bold text-foreground/50 uppercase tracking-widest">Date</p>
-                  <p className="font-semibold text-foreground">
+                  <p className="text-xs font-semibold text-ink/50 uppercase tracking-widest">Date</p>
+                  <p className="font-semibold text-ink">
                     {new Date(certificate.issueDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
                   </p>
                 </div>
@@ -151,7 +151,7 @@ export default function CertificatesPage() {
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 w-full h-12 border-2 border-seal text-seal hover:bg-seal hover:text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
+                className="mt-4 w-full h-12 border-2 border-seal text-seal hover:bg-seal hover:text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
               >
                 <Download size={18} /> Download Certificate
               </a>

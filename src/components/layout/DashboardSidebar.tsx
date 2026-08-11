@@ -49,7 +49,7 @@ export default function DashboardSidebar() {
       </div>
 
       <nav className="flex-1 space-y-1.5 px-6 mt-2">
-        <p className="px-4 text-[10px] uppercase tracking-[0.2em] font-bold text-ink/40 mb-4 ml-1">Essentials</p>
+        <p className="px-4 text-[10px] uppercase tracking-[0.2em] font-semibold text-ink/40 mb-4 ml-1">Essentials</p>
         {navigationItems.map((item) => {
           const isActive = pathname === item.href
           return (
@@ -59,12 +59,12 @@ export default function DashboardSidebar() {
               onClick={() => setIsOpen(false)}
               className={`flex items-center gap-3.5 px-5 py-3 rounded-xl transition-colors group ${
                 isActive 
-                  ? 'bg-white text-ink shadow-[0_10px_30px_rgba(110,122,103,0.08)] border border-rule/50' 
+                  ? 'bg-white text-ink  border border-rule/50' 
                   : 'text-ink/60 hover:text-ink hover:bg-ink/5 border border-transparent'
               }`}
             >
               <item.icon size={18} className={`transition-transform duration-500 ${isActive ? 'text-ink scale-110' : 'group-hover:scale-110'}`} />
-              <span className={`text-[14px] font-medium tracking-tight ${isActive ? 'font-bold' : ''}`} >{item.name}</span>
+              <span className={`text-[14px] font-medium tracking-tight ${isActive ? 'font-semibold' : ''}`} >{item.name}</span>
               {isActive && (
                 <div className="ml-auto w-1 h-4 rounded-full bg-ink/20" />
               )}
@@ -74,10 +74,10 @@ export default function DashboardSidebar() {
       </nav>
 
       <div className="mt-auto px-6 space-y-6 pb-12">
-        <div className="bg-ink/5 rounded-2xl p-6 border border-ink/10 mx-2">
-          <h4 className="text-[13px] font-bold text-ink mb-2" >Inner Circle</h4>
+        <div className="bg-ink/5 rounded-[var(--radius-lg)] p-6 border border-ink/10 mx-2">
+          <h4 className="text-[13px] font-semibold text-ink mb-2" >Inner Circle</h4>
           <p className="text-[11px] text-ink leading-relaxed mb-4">Elevate your growth with intentional community mentorship.</p>
-          <Link href="/join" className="block w-full py-2.5 rounded-xl bg-ink text-white text-center font-bold text-[12px] shadow-[0_8px_20px_rgba(110,122,103,0.2)] hover:shadow-[0_12px_25px_rgba(110,122,103,0.3)] hover:-translate-y-0.5 transition" >
+          <Link href="/join" className="block w-full py-2.5 rounded-xl bg-ink text-white text-center font-semibold text-[12px]   hover:-translate-y-0.5 transition" >
              Upgrade Plan
           </Link>
         </div>

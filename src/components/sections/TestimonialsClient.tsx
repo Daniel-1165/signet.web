@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Testimonial } from "@/lib/sanity/types";
 import { urlFor } from "@/lib/sanity/image";
+import { rise, riseAt } from "@/lib/motion";
 
 interface Props {
   testimonials: Testimonial[];
@@ -68,11 +69,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
       <div>
         <div className="flex flex-col mb-8">
           <motion.div
-            initial={{ opacity: 0, scale: 1.015, y: 8 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
+            {...rise}>
             <span className="eyebrow mb-4">Community</span>
             <h2 className="h2 max-w-lg">
               Real stories from our{" "}
@@ -83,11 +80,8 @@ export default function TestimonialsClient({ testimonials }: Props) {
 
         {testimonials.length === 0 ? (
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center justify-center py-24 px-6 rounded-[2.5rem] border border-dashed border-rule-strong text-center"
+            {...rise}
+                            className="flex flex-col items-center justify-center py-24 px-6 rounded-[var(--radius-lg)] border border-dashed border-rule-strong text-center"
           >
             {/* An empty screen is an invitation to act, not a mood. The old
                 copy just announced absence; this one tells a member what to
@@ -116,11 +110,8 @@ export default function TestimonialsClient({ testimonials }: Props) {
                 return (
                   <motion.div
                     key={t._id}
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: i * 0.1 }}
-                    className="flex-none w-[310px] sm:w-[360px] md:w-[460px]"
+                    {...riseAt(i)}
+                            className="flex-none w-[310px] sm:w-[360px] md:w-[460px]"
                   >
                     <div className="h-full flex flex-col gap-5 transition-transform duration-500 hover:-translate-y-1 relative min-h-[320px] px-4 py-6">
                       {/* Decorative Quote Mark - Hide if image card exists */}

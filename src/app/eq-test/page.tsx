@@ -96,11 +96,11 @@ const QUESTIONS: Question[] = [
 
 const analyzeResults = (answers: Record<number, number>) => {
   const dimScores: Record<Dimension, { total: number; count: number }> = {
-    "Self-Awareness": { total: 0, count: 0 },
-    "Self-Regulation": { total: 0, count: 0 },
-    "Empathy": { total: 0, count: 0 },
-    "Social Skills": { total: 0, count: 0 },
-    "Motivation": { total: 0, count: 0 }
+ "Self-Awareness": { total: 0, count: 0 },
+ "Self-Regulation": { total: 0, count: 0 },
+ "Empathy": { total: 0, count: 0 },
+ "Social Skills": { total: 0, count: 0 },
+ "Motivation": { total: 0, count: 0 }
   };
 
   const subScores: Record<string, { total: number; count: number }> = {};
@@ -121,11 +121,11 @@ const analyzeResults = (answers: Record<number, number>) => {
 
   // Averages
   const finalDimScores: Record<Dimension, number> = {
-    "Self-Awareness": Math.round(dimScores["Self-Awareness"].total / dimScores["Self-Awareness"].count) || 0,
-    "Self-Regulation": Math.round(dimScores["Self-Regulation"].total / dimScores["Self-Regulation"].count) || 0,
-    "Empathy": Math.round(dimScores["Empathy"].total / dimScores["Empathy"].count) || 0,
-    "Social Skills": Math.round(dimScores["Social Skills"].total / dimScores["Social Skills"].count) || 0,
-    "Motivation": Math.round(dimScores["Motivation"].total / dimScores["Motivation"].count) || 0,
+ "Self-Awareness": Math.round(dimScores["Self-Awareness"].total / dimScores["Self-Awareness"].count) || 0,
+ "Self-Regulation": Math.round(dimScores["Self-Regulation"].total / dimScores["Self-Regulation"].count) || 0,
+ "Empathy": Math.round(dimScores["Empathy"].total / dimScores["Empathy"].count) || 0,
+ "Social Skills": Math.round(dimScores["Social Skills"].total / dimScores["Social Skills"].count) || 0,
+ "Motivation": Math.round(dimScores["Motivation"].total / dimScores["Motivation"].count) || 0,
   };
 
   const finalSubScores: Record<string, number> = {};
@@ -162,11 +162,11 @@ const analyzeResults = (answers: Record<number, number>) => {
 };
 
 const GROWTH_PLANS: Record<Dimension, any> = {
-  "Self-Awareness": { title: "The 90-Second Pause Protocol", practice: "When physiological tension spikes, set a 90-second internal timer before speaking. Just label the emotion inwardly.", book: "Insight by Tasha Eurich" },
-  "Self-Regulation": { title: "The Circuit Breaker", practice: "Introduce a deliberate physical micro-action (like breathing deep or closing eyes) instantly when a trigger occurs.", book: "Emotional Intelligence 2.0 by Bradberry & Greaves" },
-  "Empathy": { title: "Contextual Interrogation", practice: "Force yourself to write down two alternative reasons why someone acted negatively before you respond.", book: "The Like Switch by Jack Schafer" },
-  "Social Skills": { title: "Magnetic Synchronization", practice: "Focus 80% of your energy purely on active listening and mirroring physiology before contributing your point.", book: "Never Split the Difference by Chris Voss" },
-  "Motivation": { title: "Micro-Traction Phasing", practice: "Break intimidating goals into laughably small increments. Execute the first one immediately.", book: "Atomic Habits by James Clear" }
+ "Self-Awareness": { title: "The 90-Second Pause Protocol", practice: "When physiological tension spikes, set a 90-second internal timer before speaking. Just label the emotion inwardly.", book: "Insight by Tasha Eurich" },
+ "Self-Regulation": { title: "The Circuit Breaker", practice: "Introduce a deliberate physical micro-action (like breathing deep or closing eyes) instantly when a trigger occurs.", book: "Emotional Intelligence 2.0 by Bradberry & Greaves" },
+ "Empathy": { title: "Contextual Interrogation", practice: "Force yourself to write down two alternative reasons why someone acted negatively before you respond.", book: "The Like Switch by Jack Schafer" },
+ "Social Skills": { title: "Magnetic Synchronization", practice: "Focus 80% of your energy purely on active listening and mirroring physiology before contributing your point.", book: "Never Split the Difference by Chris Voss" },
+ "Motivation": { title: "Micro-Traction Phasing", practice: "Break intimidating goals into laughably small increments. Execute the first one immediately.", book: "Atomic Habits by James Clear" }
 };
 
 
@@ -201,7 +201,7 @@ export default function EQAssessment() {
     return (
       <div className={`min-h-[100dvh] bg-canvas text-ink ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-center p-6 pb-20 md:pb-6`}>
         <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto z-10 w-full">
-          <div className="w-10 h-10 rounded-full bg-accent text-ink flex items-center justify-center mb-3 shadow-xl">
+          <div className="w-10 h-10 rounded-full bg-seal text-ink flex items-center justify-center mb-3 ">
             <CheckCircle2 className="w-5 h-5" />
           </div>
           <h1 className="text-3xl md:text-5xl font-serif text-ink mb-3 leading-tight">
@@ -212,12 +212,12 @@ export default function EQAssessment() {
           </p>
           <div className="flex flex-wrap justify-center gap-1.5 mb-5 w-full">
             {["Self-Awareness", "Self-Regulation", "Empathy", "Social Skills", "Motivation"].map(dim => (
-              <span key={dim} className="px-3 py-1.5 bg-canvas text-[10px] font-bold uppercase tracking-widest rounded-full">{dim}</span>
+              <span key={dim} className="px-3 py-1.5 bg-canvas text-[10px] font-semibold uppercase tracking-widest rounded-full">{dim}</span>
             ))}
           </div>
           <button 
             onClick={() => setScreen("test")}
-            className="px-8 py-3 bg-seal text-white rounded-full font-bold tracking-wide hover:bg-accent hover:text-ink transition duration-300 shadow-2xl flex items-center gap-3"
+            className="px-8 py-3 bg-seal text-white rounded-full font-semibold tracking-wide hover:bg-seal hover:text-ink transition duration-300  flex items-center gap-3"
           >
             Start Assessment <ArrowRight className="w-4 h-4" />
           </button>
@@ -250,7 +250,7 @@ export default function EQAssessment() {
         <div className="max-w-5xl mx-auto px-6">
           
           <header className="mb-16 text-center">
-            <span className="inline-flex items-center px-4 py-1.5 bg-mist text-seal border border-mist text-[10px] font-bold uppercase tracking-[0.2em] rounded-full mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 bg-mist text-seal border border-mist text-[10px] font-semibold uppercase tracking-[0.2em] rounded-full mb-4">
               Diagnostic Complete
             </span>
             <h1 className="text-4xl md:text-5xl font-serif text-ink mb-4">Your Emotional Signature</h1>
@@ -259,20 +259,20 @@ export default function EQAssessment() {
 
           {/* Top Level Metric */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white/70 backdrop-blur-xl p-10 rounded-3xl shadow-xl shadow-emerald-950/[0.03] border border-white/40 flex flex-col items-center justify-center text-center">
+            <div className="bg-white/70 backdrop-blur-xl p-10 rounded-[var(--radius-lg)]   border border-white/40 flex flex-col items-center justify-center text-center">
                <div className="text-[6rem] font-serif leading-none tracking-tight text-verdant mb-2">{results.totalScore}</div>
-               <div className="text-xs font-bold uppercase tracking-widest text-seal/50 mb-6">Aggregate EQ Score</div>
-               <div className="px-6 py-2 bg-mist text-seal border border-mist/50 rounded-full text-xs font-bold tracking-wide">{results.tier}</div>
+               <div className="text-xs font-semibold uppercase tracking-widest text-seal/50 mb-6">Aggregate EQ Score</div>
+               <div className="px-6 py-2 bg-mist text-seal border border-mist/50 rounded-full text-xs font-semibold tracking-wide">{results.tier}</div>
             </div>
 
-            <div className="bg-ink text-white p-10 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden group">
+            <div className="bg-ink text-white p-10 rounded-[var(--radius-lg)]  flex flex-col justify-between relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-48 h-48 bg-verdant/10 rounded-full blur-[80px]" />
               <div className="relative z-10">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3">Primary Archetype</div>
+                <div className="text-[10px] font-semibold uppercase tracking-widest text-white/40 mb-3">Primary Archetype</div>
                 <h2 className="text-4xl font-serif mb-4">{results.archetype.name}</h2>
                 <p className="text-base text-white/80 leading-relaxed font-normal mb-8">{results.archetype.essence}</p>
               </div>
-              <div className="pt-6 border-t border-white/10 flex justify-between items-center text-xs font-bold relative z-10">
+              <div className="pt-6 border-t border-white/10 flex justify-between items-center text-xs font-semibold relative z-10">
                  <div><span className="text-verdant">Power:</span> {results.archetype.power}</div>
                  <div><span className="text-verdant">Blind Spot:</span> {results.archetype.blindSpot}</div>
               </div>
@@ -281,7 +281,7 @@ export default function EQAssessment() {
 
           {/* Radar & Heatmap Layer */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-xl shadow-emerald-950/[0.03] border border-white/40 flex items-center justify-center relative">
+            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-[var(--radius-lg)]   border border-white/40 flex items-center justify-center relative">
                <svg width="300" height="300" viewBox="0 0 300 300" className="drop-shadow-lg">
                   {/* Web Background */}
                   {[20, 40, 60, 80, 100].map(val => (
@@ -309,12 +309,12 @@ export default function EQAssessment() {
                </svg>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-xl shadow-emerald-950/[0.03] border border-white/40">
+            <div className="bg-white/70 backdrop-blur-xl p-8 rounded-[var(--radius-lg)]   border border-white/40">
               <h3 className="font-serif text-xl mb-6">Dimension Heatmap</h3>
               <div className="space-y-4">
                 {dims.map(d => (
                   <div key={d} className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-seal/70">{d}</span>
+                    <span className="text-xs font-semibold text-seal/70">{d}</span>
                     <div className="flex items-center gap-4">
                       <div className="w-32 h-2 bg-mist border border-mist/30 rounded-full overflow-hidden">
                         <div 
@@ -322,7 +322,7 @@ export default function EQAssessment() {
                           style={{ width: `${results.finalDimScores[d]}%` }}
                         />
                       </div>
-                      <span className="w-8 text-right font-bold text-sm text-ink">{results.finalDimScores[d]}</span>
+                      <span className="w-8 text-right font-semibold text-sm text-ink">{results.finalDimScores[d]}</span>
                     </div>
                   </div>
                 ))}
@@ -331,19 +331,19 @@ export default function EQAssessment() {
           </div>
 
           {/* Growth Plan Layer */}
-          <div className="bg-mist/80 backdrop-blur-xl p-10 rounded-[2rem] border border-mist/30">
+          <div className="bg-mist/80 backdrop-blur-xl p-10 rounded-[var(--radius-lg)] border border-mist/30">
              <h3 className="font-serif text-2xl text-ink mb-8">Personalized Execution Protocols</h3>
              <div className="grid md:grid-cols-2 gap-6">
                 {lowestDims.map(dim => {
                   const plan = GROWTH_PLANS[dim];
                   return (
-                    <div key={dim} className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-sm border border-white/80">
-                       <span className="text-[10px] font-bold uppercase tracking-widest text-seal/60 mb-2 block">{dim} Enhancement</span>
-                       <h4 className="text-lg font-bold text-ink mb-3">{plan.title}</h4>
+                    <div key={dim} className="bg-white/95 backdrop-blur-xl rounded-[var(--radius-lg)] p-6  border border-white/80">
+                       <span className="text-[10px] font-semibold uppercase tracking-widest text-seal/60 mb-2 block">{dim} Enhancement</span>
+                       <h4 className="text-lg font-semibold text-ink mb-3">{plan.title}</h4>
                        <p className="text-sm text-seal/80 font-normal leading-relaxed mb-6">
                          {plan.practice}
                        </p>
-                       <div className="pt-4 border-t border-black/5 text-[10px] font-bold text-black/40">
+                       <div className="pt-4 border-t border-black/5 text-[10px] font-semibold text-black/40">
                          Recommended Reading: <span className="text-ink block mt-1 text-xs">{plan.book}</span>
                        </div>
                     </div>
@@ -367,11 +367,11 @@ export default function EQAssessment() {
                   <button onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))} disabled={currentIdx === 0} className="disabled:opacity-30">
                       <ArrowLeft className="w-5 h-5 text-ink" />
                   </button>
-                  <span className="text-lg font-bold text-ink">Questionnaire</span>
+                  <span className="text-lg font-semibold text-ink">Questionnaire</span>
               </div>
               <div className="flex items-center gap-4 w-full">
                   <div className="h-[2px] bg-seal w-1/4 rounded-full" />
-                  <span className="text-[10px] font-bold uppercase text-seal tracking-[0.15em] whitespace-nowrap">
+                  <span className="text-[10px] font-semibold uppercase text-seal tracking-[0.15em] whitespace-nowrap">
                       QUESTION {currentIdx + 1} OF {QUESTIONS.length}
                   </span>
                   <div className="h-[2px] bg-black/10 flex-1 rounded-full" />
@@ -402,7 +402,7 @@ export default function EQAssessment() {
                         onClick={() => handleSelect(opt.score)}
                         className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-colors duration-200 border ${
                           isSelected 
-                            ? 'bg-seal border-seal text-white shadow-md' 
+                            ? 'bg-seal border-seal text-white ' 
                             : 'bg-white border-ink/10 text-ink hover:border-seal hover:text-seal'
                         }`}
                       >
@@ -419,14 +419,14 @@ export default function EQAssessment() {
               <button 
                   onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))}
                   disabled={currentIdx === 0}
-                  className="text-ink/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-ink px-4 py-2 rounded-full transition disabled:opacity-0"
+                  className="text-ink/40 font-semibold uppercase tracking-widest text-xs flex items-center justify-center hover:text-ink px-4 py-2 rounded-full transition disabled:opacity-0"
               >
                   <ArrowLeft className="w-3 h-3 mr-2" /> Back
               </button>
               <button 
                   onClick={handleNext}
                   disabled={answers[question.id] === undefined}
-                  className="bg-seal text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-ink px-6 py-3 rounded-full transition disabled:opacity-30 shadow-xl"
+                  className="bg-seal text-white font-semibold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-seal hover:text-ink px-6 py-3 rounded-full transition disabled:opacity-30 "
               >
                   {currentIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
               </button>

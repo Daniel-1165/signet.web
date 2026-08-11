@@ -35,14 +35,14 @@ export const CustomCursor = () => {
     return (
         <>
             <motion.div
-                className="fixed top-0 left-0 z-[100] pointer-events-none rounded-full bg-signet-green w-3 h-3 -ml-1.5 -mt-1.5 mix-blend-difference"
+                className="fixed top-0 left-0 z-[100] pointer-events-none rounded-full bg-seal w-3 h-3 -ml-1.5 -mt-1.5 mix-blend-difference"
                 style={{
                     x: mouseX,
                     y: mouseY,
                 }}
             />
             <motion.div
-                className="fixed top-0 left-0 z-[99] pointer-events-none rounded-full border border-signet-green/40 w-12 h-12 -ml-6 -mt-6"
+                className="fixed top-0 left-0 z-[99] pointer-events-none rounded-full border border-seal/40 w-12 h-12 -ml-6 -mt-6"
                 style={{
                     x: cursorX,
                     y: cursorY,

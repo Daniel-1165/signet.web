@@ -12,23 +12,23 @@ const RESOURCE_QUERY = `
     _id, 
     _type,
     title, 
-    "tag": coalesce(category, "Article"), 
+ "tag": coalesce(category, "Article"), 
     description, 
     _createdAt, 
-    "fileUrl": resourceFile.asset->url,
-    "fileName": resourceFile.asset->originalFilename,
-    "mainImageUrl": coalesce(thumbnail.asset->url, mainImage.asset->url),
+ "fileUrl": resourceFile.asset->url,
+ "fileName": resourceFile.asset->originalFilename,
+ "mainImageUrl": coalesce(thumbnail.asset->url, mainImage.asset->url),
     author->{name, image, bio},
-    "body": coalesce(content, body),
-    "pages": pages[].asset->url
+ "body": coalesce(content, body),
+ "pages": pages[].asset->url
   }
 `;
 
 const ptComponents: any = {
   block: {
     h1: ({ children }: any) => <h1 className="text-4xl md:text-5xl font-semibold text-ink mt-12 mb-6 leading-tight uppercase tracking-tight">{children}</h1>,
-    h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-bold text-ink mt-10 mb-5 leading-tight">{children}</h2>,
-    h3: ({ children }: any) => <h3 className="text-2xl md:text-3xl font-bold text-ink mt-8 mb-4">{children}</h3>,
+    h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-semibold text-ink mt-10 mb-5 leading-tight">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="text-2xl md:text-3xl font-semibold text-ink mt-8 mb-4">{children}</h3>,
     normal: ({ children }: any) => <p className="text-lg md:text-xl text-ink/80 leading-relaxed mb-6 font-medium">{children}</p>,
     blockquote: ({ children }: any) => (
       <blockquote className="border-l-4 border-seal pl-8 py-4 my-10 italic text-2xl md:text-3xl text-seal/90 font-serif leading-relaxed bg-seal/5 rounded-r-2xl">
@@ -39,7 +39,7 @@ const ptComponents: any = {
   marks: {
     strong: ({ children }: any) => <strong className="font-semibold text-ink">{children}</strong>,
     em: ({ children }: any) => <em className="italic font-medium">{children}</em>,
-    highlight: ({ children }: any) => <mark className="bg-mist text-seal px-1 rounded-sm font-bold">{children}</mark>,
+    highlight: ({ children }: any) => <mark className="bg-mist text-seal px-1 rounded-sm font-semibold">{children}</mark>,
     link: ({ value, children }: any) => {
       const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
       return (
@@ -133,7 +133,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                   )}
                   <div className="flex flex-col">
                     <span className="text-[10px] font-semibold uppercase tracking-widest text-ink/40">Written By</span>
-                    <span className="text-sm font-bold text-ink">{resource.author?.name || 'Signet Team'}</span>
+                    <span className="text-sm font-semibold text-ink">{resource.author?.name || 'Signet Team'}</span>
                   </div>
                </div>
                <div className="flex items-center gap-4 text-ink/60">
@@ -145,7 +145,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
 
           {(!resource.pages || resource.pages.length === 0) && !resource.fileUrl ? (
             resource.mainImageUrl && (
-              <div className="relative aspect-[16/9] w-full mb-16 rounded-[2rem] overflow-hidden shadow-2xl">
+              <div className="relative aspect-[16/9] w-full mb-16 rounded-[var(--radius-lg)] overflow-hidden ">
                 <img src={resource.mainImageUrl} alt={resource.title} className="w-full h-full object-cover" />
               </div>
             )
@@ -162,7 +162,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                        className="w-full h-auto block select-none"
                        draggable={false}
                      />
-                     <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full select-none">
+                     <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-semibold px-3 py-1.5 rounded-full select-none">
                        Page {index + 1} of {resource.pages.length}
                      </div>
                    </div>
@@ -173,7 +173,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                  <div className="w-full py-2">
                    <iframe 
                      src={resource.fileUrl} 
-                     className="w-full h-[85vh] border-none rounded-2xl shadow-sm bg-white" 
+                     className="w-full h-[85vh] border-none rounded-[var(--radius-lg)]  bg-white" 
                      title={resource.title}
                    />
                  </div>
@@ -199,15 +199,15 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
 
           {/* Author Bio at end */}
           <footer className="mt-24 pt-24 border-t border-ink/10 max-w-3xl mx-auto px-6 sm:px-0">
-             <div className="p-10 bg-canvas rounded-[3rem] border border-ink/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left transition hover:shadow-xl group">
+             <div className="p-10 bg-canvas rounded-[var(--radius-lg)] border border-ink/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left transition  group">
                 {resource.author?.image && (
-                  <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
+                  <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-white  group-hover:scale-105 transition-transform duration-500">
                      <img src={urlFor(resource.author.image as any).url()} alt={resource.author.name} className="w-full h-full object-cover" />
                   </div>
                 )}
                 <div>
                    <span className="text-[10px] font-semibold uppercase tracking-widest text-seal block mb-2">Author</span>
-                   <h3 className="text-2xl font-bold text-ink mb-3">{resource.author?.name || 'Signet Editorial'}</h3>
+                   <h3 className="text-2xl font-semibold text-ink mb-3">{resource.author?.name || 'Signet Editorial'}</h3>
                    <p className="text-md text-ink/60 leading-relaxed font-medium mb-6 italic">
                      {resource.author?.bio || "A collective of strategic minds focused on architecting human-centric growth systems. We bridge the gap between abstract wisdom and tactical execution."}
                    </p>

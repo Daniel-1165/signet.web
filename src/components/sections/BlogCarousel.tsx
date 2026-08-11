@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 import Image from "next/image";
+import { riseAt } from "@/lib/motion";
 
 interface CarouselSlide {
   _id: string;
@@ -85,18 +86,15 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
             return (
               <motion.div
                 key={slide._id || i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="flex-none w-full md:w-[45%] lg:w-[400px] snap-start"
+                {...riseAt(i)}
+                            className="flex-none w-full md:w-[45%] lg:w-[400px] snap-start"
               >
                 <Wrapper
                   {...wrapperProps as any}
                   className="group block w-full h-full cursor-pointer"
                 >
                   {/* Image container with 1:1 aspect ratio as requested */}
-                  <div className="relative w-full aspect-square md:rounded-[2rem] md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-seal/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition duration-500">
+                  <div className="relative w-full aspect-square md:rounded-[var(--radius-lg)]  md:border border-seal/5  group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition duration-500">
                     <Image
                       src={slide.imageUrl}
                       alt={slide.caption || "Gallery image"}

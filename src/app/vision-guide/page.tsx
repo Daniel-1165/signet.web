@@ -88,16 +88,16 @@ export default function VisionGuidePage() {
             <div className="flex flex-wrap gap-4">
               {isLoaded && !isSignedIn ? (
                 <SignUpButton mode="modal">
-                   <button className="h-14 px-10 rounded-full bg-seal text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-seal/20">
+                   <button className="h-14 px-10 rounded-full bg-seal text-white font-semibold flex items-center gap-3 hover:scale-105 transition-transform ">
                       Get Started <ArrowUpRight size={18} />
                    </button>
                 </SignUpButton>
               ) : (
-                <Link href="/dashboard" className="h-14 px-10 rounded-full bg-seal text-white font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-xl shadow-seal/20">
+                <Link href="/dashboard" className="h-14 px-10 rounded-full bg-seal text-white font-semibold flex items-center gap-3 hover:scale-105 transition-transform ">
                   Enter Dashboard <ChevronRight size={18} />
                 </Link>
               )}
-              <button className="h-14 px-10 rounded-full bg-white border border-black/5 text-ink font-bold hover:bg-black/5 transition-colors">
+              <button className="h-14 px-10 rounded-full bg-white border border-black/5 text-ink font-semibold hover:bg-black/5 transition-colors">
                 Explore Logic
               </button>
             </div>
@@ -108,7 +108,7 @@ export default function VisionGuidePage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl"
+            className="relative h-[400px] md:h-[600px] rounded-[var(--radius-lg)] overflow-hidden "
           >
             <img 
               src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200" 
@@ -142,11 +142,11 @@ export default function VisionGuidePage() {
                    <div className="w-12 h-12 rounded-xl bg-seal/10 flex items-center justify-center text-seal mb-6">
                       {section.icon}
                    </div>
-                   <h4 className="text-xl font-bold mb-3 uppercase tracking-tight">{section.title}</h4>
+                   <h4 className="text-xl font-semibold mb-3 uppercase tracking-tight">{section.title}</h4>
                    <p className="text-sm text-ink/50 leading-relaxed font-medium mb-8">
                       {section.description}
                    </p>
-                   <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-4 shadow-xl border border-black/5">
+                   <div className="aspect-[4/5] rounded-[var(--radius-lg)] overflow-hidden mb-4  border border-black/5">
                       <img 
                         src={section.image} 
                         alt={section.title} 
@@ -161,7 +161,7 @@ export default function VisionGuidePage() {
 
       {/* ── FINAL BUILDER SECTION ────────────────────────────────── */}
       <section className="py-24 max-w-7xl mx-auto px-6 md:px-12">
-        <div className="bg-ink rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden border border-white/5 shadow-2xl">
+        <div className="bg-ink rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden border border-white/5 ">
            <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-seal/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
            
            <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -180,43 +180,43 @@ export default function VisionGuidePage() {
                     <div className="flex gap-4">
                        <div className="w-1.5 h-1.5 rounded-full bg-seal mt-2" />
                        <div>
-                          <p className="font-bold text-lg mb-1">Efficiency</p>
+                          <p className="font-semibold text-lg mb-1">Efficiency</p>
                           <p className="text-white/40 text-sm">Streamline operations and reduce waste with our innovative vision.</p>
                        </div>
                     </div>
                     <div className="flex gap-4">
                        <div className="w-1.5 h-1.5 rounded-full bg-seal mt-2" />
                        <div>
-                          <p className="font-bold text-lg mb-1">Profitability</p>
+                          <p className="font-semibold text-lg mb-1">Profitability</p>
                           <p className="text-white/40 text-sm">Increase your bottom line while making a positive impact.</p>
                        </div>
                     </div>
                  </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-[3rem] shadow-2xl">
-                 <h3 className="text-2xl font-bold mb-8">Craft Statement</h3>
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-[var(--radius-lg)] ">
+                 <h3 className="text-2xl font-semibold mb-8">Craft Statement</h3>
                  <textarea 
                     placeholder="I will [action] so that [impact]..."
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-lg outline-none focus:border-seal transition-colors min-h-[150px] mb-8"
+                    className="w-full bg-white/5 border border-white/10 rounded-[var(--radius-lg)] p-6 text-lg outline-none focus:border-seal transition-colors min-h-[150px] mb-8"
                  />
                  
                  <div 
                     onClick={() => fileInputRef.current?.click()}
-                    className="aspect-video rounded-3xl border border-white/10 flex flex-col items-center justify-center p-6 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden"
+                    className="aspect-video rounded-[var(--radius-lg)] border border-white/10 flex flex-col items-center justify-center p-6 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden"
                  >
                     {selectedImage ? (
                       <img src={selectedImage} className="absolute inset-0 w-full h-full object-cover" />
                     ) : (
                       <>
                         <Upload className="w-8 h-8 text-seal mb-3" />
-                        <span className="text-xs font-bold text-white/40 uppercase tracking-widest">Upload Visual</span>
+                        <span className="text-xs font-semibold text-white/40 uppercase tracking-widest">Upload Visual</span>
                       </>
                     )}
                  </div>
                  <input type="file" ref={fileInputRef} className="hidden" onChange={handleImageUpload} />
                  
-                 <button className="w-full h-14 bg-seal text-white rounded-full font-semibold uppercase text-xs tracking-widest mt-8 shadow-xl shadow-seal/20">
+                 <button className="w-full h-14 bg-seal text-white rounded-full font-semibold uppercase text-xs tracking-widest mt-8 ">
                     Save Declaration
                  </button>
               </div>

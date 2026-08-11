@@ -27,7 +27,7 @@ export default async function Home() {
           low-left over it instead of centred. The inset is what makes a photo
           read as a considered object rather than a banner. */}
       <section className="px-3 sm:px-4 pt-3 sm:pt-4">
-        <div className="relative w-full h-[78vh] min-h-[520px] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden group on-ink">
+        <div className="relative w-full h-[78vh] min-h-[520px] rounded-[var(--radius-lg)] sm:rounded-[var(--radius-lg)] overflow-hidden group on-ink">
           <img
             src="/forest_hero_bg.png"
             alt=""

@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import { ClipboardCheck, CalendarRange, Check, AlertCircle } from "lucide-react";
+import { rise, riseAt } from "@/lib/motion";
 
 const activities = [
-  "Team review sessions",
-  "Periodic assignments",
-  "Personal check-in sessions",
-  "Assessment tests",
+ "Team review sessions",
+ "Periodic assignments",
+ "Personal check-in sessions",
+ "Assessment tests",
 ];
 
 const Tick = () => (
@@ -32,14 +33,11 @@ export default function ProgramSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           {/* Column 1: Activities */}
           <motion.div
-            initial={{ opacity: 0, scale: 1.015, y: 8 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="card"
+            {...rise}
+                            className="card"
           >
             <div className="space-y-6">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-mist flex items-center justify-center text-seal">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-[var(--radius-lg)] bg-mist flex items-center justify-center text-seal">
                 <ClipboardCheck className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
               </div>
 
@@ -58,14 +56,11 @@ export default function ProgramSection() {
 
           {/* Column 2: Schedule */}
           <motion.div
-            initial={{ opacity: 0, scale: 1.015, y: 8 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="card"
+            {...riseAt(1)}
+                            className="card"
           >
             <div className="space-y-6">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-mist flex items-center justify-center text-seal">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-[var(--radius-lg)] bg-mist flex items-center justify-center text-seal">
                 <CalendarRange className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
               </div>
 

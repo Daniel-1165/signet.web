@@ -51,7 +51,7 @@ export default function CommunityHubPage() {
           <h1 className="text-[28px] md:text-[32px] font-semibold text-ink">
             Community
           </h1>
-          <button className="w-10 h-10 rounded-full border border-rule bg-surface flex items-center justify-center text-seal hover:bg-mist/40 shadow-sm transition-colors">
+          <button className="w-10 h-10 rounded-full border border-rule bg-surface flex items-center justify-center text-seal hover:bg-mist/40  transition-colors">
             <Users size={20} />
           </button>
         </header>
@@ -63,7 +63,7 @@ export default function CommunityHubPage() {
 
         {/* Connect Tab */}
         <div className="border-b border-rule flex">
-          <button className="text-seal font-bold text-[15px] pb-3 px-4 border-b-2 border-seal focus:outline-none transition-colors">
+          <button className="text-seal font-semibold text-[15px] pb-3 px-4 border-b-2 border-seal focus:outline-none transition-colors">
             Connect
           </button>
         </div>

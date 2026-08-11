@@ -116,7 +116,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                 placeholder="Search resources, books, topics..." 
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-gray-100 rounded-full text-[14px] border border-transparent focus:bg-white focus:border-seal outline-none transition text-gray-900 font-medium placeholder-gray-400 shadow-inner"
+                className="w-full pl-10 pr-4 py-2.5 bg-gray-100 rounded-full text-[14px] border border-transparent focus:bg-white focus:border-seal outline-none transition text-gray-900 font-medium placeholder-gray-400 "
               />
             </div>
             
@@ -124,7 +124,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
               <button className="text-gray-600 hover:text-seal transition-colors p-2 rounded-full hover:bg-gray-100">
                 <Bell className="w-5 h-5" />
               </button>
-              <div className="w-9 h-9 rounded-full overflow-hidden border border-gray-200 shadow-sm flex items-center justify-center bg-white">
+              <div className="w-9 h-9 rounded-full overflow-hidden border border-gray-200  flex items-center justify-center bg-white">
                 <UserButton />
               </div>
             </div>
@@ -141,12 +141,12 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
             </div>
 
             {/* Featured Book Card */}
-            <div className="bg-surface rounded-3xl p-5 md:p-8 shadow-[0_10px_35px_rgba(0,0,0,0.02)] border border-gray-150/60 flex flex-col sm:flex-row gap-6 md:gap-10 relative overflow-hidden group">
+            <div className="bg-surface rounded-[var(--radius-lg)] p-5 md:p-8  border border-gray-150/60 flex flex-col sm:flex-row gap-6 md:gap-10 relative overflow-hidden group">
               
               {/* Left Cover Image */}
               <div 
                 onClick={() => featured.fileUrl && window.open(featured.fileUrl, '_blank')}
-                className="w-full sm:w-[150px] md:w-[220px] shrink-0 aspect-[3/4.2] shadow-2xl rounded-2xl overflow-hidden relative cursor-pointer border border-gray-100/50"
+                className="w-full sm:w-[150px] md:w-[220px] shrink-0 aspect-[3/4.2]  rounded-[var(--radius-lg)] overflow-hidden relative cursor-pointer border border-gray-100/50"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-black/15 to-transparent w-4 z-10" />
                 {featured.mainImageUrl ? (
@@ -157,7 +157,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   />
                 ) : (
                   <div className="w-full h-full bg-seal flex justify-center items-center p-4">
-                    <span className="text-white text-sm text-center font-bold uppercase tracking-widest leading-normal">
+                    <span className="text-white text-sm text-center font-semibold uppercase tracking-widest leading-normal">
                       {featured.title}
                     </span>
                   </div>
@@ -168,7 +168,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
               <div className="flex-1 flex flex-col justify-between py-1">
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="bg-mist text-seal text-[9px] md:text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <span className="bg-mist text-seal text-[9px] md:text-[10px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
                       Latest Release
                     </span>
                   </div>
@@ -180,7 +180,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                     {featured.title}
                   </h3>
                   
-                  <p className="text-[11px] md:text-[12px] uppercase tracking-wider text-seal mt-2 font-bold">
+                  <p className="text-[11px] md:text-[12px] uppercase tracking-wider text-seal mt-2 font-semibold">
                     BY {featured.author?.name || featured.tag || 'Patrick Lencioni'}
                   </p>
                   
@@ -193,9 +193,9 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => featured.fileUrl && window.open(featured.fileUrl, '_blank')}
-                      className="px-6 md:px-8 py-2.5 md:py-3.5 rounded-full bg-seal text-white text-[13px] font-bold hover:bg-seal transition transform hover:scale-[1.01] shadow-md flex items-center gap-2"
+                      className="px-6 md:px-8 py-2.5 md:py-3.5 rounded-full bg-seal text-white text-[13px] font-semibold hover:bg-seal transition transform hover:scale-[1.01]  flex items-center gap-2"
                     >
-                      Open Resource <span className="text-[14px] font-bold">&rarr;</span>
+                      Open Resource <span className="text-[14px] font-semibold">&rarr;</span>
                     </button>
                     
                     <button 
@@ -247,7 +247,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
             <h2 className="text-[20px] md:text-[24px] font-semibold text-seal">
               Curated Books
             </h2>
-            <button className="flex items-center gap-1 text-[13px] md:text-[14px] font-bold text-seal hover:underline transition-colors">
+            <button className="flex items-center gap-1 text-[13px] md:text-[14px] font-semibold text-seal hover:underline transition-colors">
               View all books <ArrowRight size={14} />
             </button>
           </div>
@@ -257,12 +257,12 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
               {curatedBooks.map((book: any, idx: number) => (
                 <div 
                   key={book._id || idx}
-                  className="bg-surface rounded-2xl p-4 border border-gray-150/60 shadow-[0_4px_20px_rgba(0,0,0,0.01)] flex gap-4 relative group hover:border-seal/30 transition"
+                  className="bg-surface rounded-[var(--radius-lg)] p-4 border border-gray-150/60  flex gap-4 relative group hover:border-seal/30 transition"
                 >
                   {/* Book Cover */}
                   <div 
                     onClick={() => book.fileUrl && window.open(book.fileUrl, '_blank')}
-                    className="w-18 md:w-20 h-24 md:h-28 shrink-0 shadow-md rounded-xl overflow-hidden relative cursor-pointer"
+                    className="w-18 md:w-20 h-24 md:h-28 shrink-0  rounded-xl overflow-hidden relative cursor-pointer"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent w-2 z-10" />
                     <img 
@@ -276,12 +276,12 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                     <div>
                       <h3 
                         onClick={() => book.fileUrl && window.open(book.fileUrl, '_blank')}
-                        className="text-[15px] md:text-[16px] font-bold text-seal line-clamp-2 leading-snug hover:underline cursor-pointer"
+                        className="text-[15px] md:text-[16px] font-semibold text-seal line-clamp-2 leading-snug hover:underline cursor-pointer"
                       >
                         {book.title}
                       </h3>
                       
-                      <span className="text-[9px] uppercase tracking-wider text-seal mt-1 font-bold block">
+                      <span className="text-[9px] uppercase tracking-wider text-seal mt-1 font-semibold block">
                         {book.tag || "BOOK"}
                       </span>
                     </div>
@@ -302,7 +302,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
               ))}
             </div>
           ) : (
-            <div className="py-12 text-center bg-white rounded-2xl border border-dashed border-gray-250">
+            <div className="py-12 text-center bg-white rounded-[var(--radius-lg)] border border-dashed border-gray-250">
               <p className="text-gray-500 text-sm italic">No books match your filter.</p>
             </div>
           )}
@@ -324,7 +324,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   key={mag._id || idx} 
                   className="group cursor-pointer flex-none w-[160px] md:w-[220px] snap-start"
                 >
-                  <div className="aspect-[3/4.2] rounded-2xl overflow-hidden shadow-sm relative border border-gray-100 bg-white">
+                  <div className="aspect-[3/4.2] rounded-[var(--radius-lg)] overflow-hidden  relative border border-gray-100 bg-white">
                     <img 
                       src={mag.mainImageUrl || "/placeholder-avatar.png"} 
                       className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-700" 
@@ -332,7 +332,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="mt-3 px-1">
-                    <h3 className="text-[14px] font-bold text-seal line-clamp-1 group-hover:underline">{mag.title}</h3>
+                    <h3 className="text-[14px] font-semibold text-seal line-clamp-1 group-hover:underline">{mag.title}</h3>
                     <p className="text-[11px] text-gray-500 mt-0.5 line-clamp-1 font-medium">{mag.description}</p>
                   </div>
                 </a>
@@ -358,13 +358,13 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   <a 
                     href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} 
                     key={article._id || idx} 
-                    className="bg-white rounded-2xl p-4 border border-gray-150/60 shadow-[0_2px_15px_rgba(0,0,0,0.01)] flex items-center gap-4 group hover:border-seal/30 transition cursor-pointer"
+                    className="bg-white rounded-[var(--radius-lg)] p-4 border border-gray-150/60  flex items-center gap-4 group hover:border-seal/30 transition cursor-pointer"
                   >
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-mist text-seal">
                       <IconComponent className="w-6 h-6" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-[14px] md:text-[16px] font-bold text-seal group-hover:text-seal transition-colors line-clamp-1">
+                      <h3 className="text-[14px] md:text-[16px] font-semibold text-seal group-hover:text-seal transition-colors line-clamp-1">
                         {article.title}
                       </h3>
                       <p className="text-[12px] text-gray-500 mt-1 font-semibold tracking-wide uppercase text-[10px]">

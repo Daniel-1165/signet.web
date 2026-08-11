@@ -55,7 +55,7 @@ const Footer = () => {
             const res = await fetch("/api/subscribe", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+ "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     email,
@@ -101,7 +101,7 @@ const Footer = () => {
                     <div className="flex flex-col gap-3 justify-center">
                         {isLoaded && !isSignedIn ? (
                             <div className="flex flex-col gap-2.5">
-                                <div className="flex w-full bg-canvas/[0.06] rounded-2xl p-1.5 border border-verdant/20 items-center">
+                                <div className="flex w-full bg-canvas/[0.06] rounded-[var(--radius-lg)] p-1.5 border border-verdant/20 items-center">
                                     <input
                                         type="email"
                                         disabled
@@ -123,7 +123,7 @@ const Footer = () => {
                             </div>
                         ) : (
                             <form onSubmit={handleSubscribe} className="flex flex-col gap-2.5">
-                                <div className="flex w-full bg-canvas/[0.06] rounded-2xl p-1.5 border border-verdant/20 focus-within:border-verdant transition-colors items-center">
+                                <div className="flex w-full bg-canvas/[0.06] rounded-[var(--radius-lg)] p-1.5 border border-verdant/20 focus-within:border-verdant transition-colors items-center">
                                     <input
                                         type="email"
                                         required
