@@ -83,7 +83,7 @@ export default function FeaturesPreview() {
   return (
     <section className="relative py-32 bg-transparent text-foreground overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-full bg-accent/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-growth-green/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-seal/5 blur-[120px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         <div className="flex-1 space-y-8 lg:max-w-xl">

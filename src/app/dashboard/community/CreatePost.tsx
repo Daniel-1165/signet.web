@@ -51,7 +51,7 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
   if (!user) return null;
 
   return (
-    <form onSubmit={handleSubmit} className="bg-surface flex gap-3 font-dm-sans items-start w-full">
+    <form onSubmit={handleSubmit} className="bg-surface flex gap-3 font-sans items-start w-full">
       {/* Avatar on the left, outside the input box */}
       <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shrink-0 bg-green-50 flex items-center justify-center border border-gray-100">
         {user.imageUrl ? (

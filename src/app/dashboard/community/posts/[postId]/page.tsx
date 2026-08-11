@@ -115,7 +115,7 @@ export default function PostDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-surface text-ink flex flex-col items-center justify-center p-6 font-dm-sans">
+      <div className="min-h-screen bg-surface text-ink flex flex-col items-center justify-center p-6 font-sans">
         <div className="w-12 h-12 rounded-full border-4 border-seal/20 border-t-seal animate-spin mb-4" />
         <p className="text-seal/60 font-semibold">Loading insight...</p>
       </div>
@@ -124,7 +124,7 @@ export default function PostDetailPage() {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-surface text-ink flex flex-col items-center justify-center p-6 font-dm-sans">
+      <div className="min-h-screen bg-surface text-ink flex flex-col items-center justify-center p-6 font-sans">
         <p className="text-red-500 font-bold mb-4">Post not found</p>
         <button 
           onClick={() => router.push("/dashboard/community")}
@@ -137,7 +137,7 @@ export default function PostDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-surface text-ink font-dm-sans pb-32">
+    <div className="min-h-screen bg-surface text-ink font-sans pb-32">
       {/* Header */}
       <header className="sticky top-0 z-30 bg-surface/90 backdrop-blur-md border-b border-rule px-4 py-3 flex items-center gap-6 max-w-[650px] mx-auto">
         <button 

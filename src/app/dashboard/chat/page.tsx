@@ -45,7 +45,7 @@ export default function ChatPage() {
                </div>
                
                <div className="pt-6 relative z-10">
-                 <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-ink text-[10px] font-bold uppercase tracking-[0.2em] text-rule shadow-lg">
+                 <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-ink text-[10px] font-bold uppercase tracking-[0.2em] text-mist/75 shadow-lg">
                     <span className="w-1.5 h-1.5 rounded-full bg-ink animate-pulse" />
                     Network Sync Established
                  </div>

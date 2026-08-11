@@ -47,7 +47,7 @@ export default function PillarsGrid() {
           }}
           className="group bg-white rounded-3xl p-6 md:p-12 text-left hover:bg-ink transition-colors duration-500 border border-rule/30 flex flex-col min-h-[160px] md:min-h-[280px]"
         >
-          <span className="text-[10px] font-bold text-rule group-hover:text-white/40 transition-colors mb-auto tracking-widest">
+          <span className="text-[10px] font-bold text-mist/75 group-hover:text-white/40 transition-colors mb-auto tracking-widest">
             {pillar.label}
           </span>
           <pillar.icon className="w-6 h-6 md:w-8 md:h-8 text-ink mb-4 md:mb-10 group-hover:text-white transition-colors" />

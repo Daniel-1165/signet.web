@@ -149,7 +149,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
       {/* Header */}
       <header className="flex items-center justify-between px-8 py-6 border-b border-white/5 bg-ink/50 soft-blur">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-verdant/10 border border-verdant/20 flex items-center justify-center text-verdant signet-glow">
+          <div className="w-12 h-12 rounded-2xl bg-verdant/10 border border-verdant/20 flex items-center justify-center text-verdant">
             <TransmissionIcon size={20} />
           </div>
           <div>
@@ -182,7 +182,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                 <img src={msg.profiles.image_url} className="w-10 h-10 rounded-xl" alt="avatar" />
               ) : (
                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                  <User size={18} strokeWidth={2.5} className="text-white/20" />
+                  <User size={18} strokeWidth={2.5} className="text-mist/40" />
                 </div>
               )}
             </div>
@@ -192,7 +192,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                   {msg.profiles?.first_name || 'Member'}
                 </span>
                 <span className="text-[10px] text-white/10">•</span>
-                <span className="text-[10px] text-white/20 font-medium">
+                <span className="text-[10px] text-mist/40 font-medium">
                   {formatDistanceToNow(new Date(msg.created_at))}
                 </span>
               </div>
@@ -222,7 +222,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                     <div className={`absolute top-4 ${msg.user_id === user?.id ? '-left-8' : '-right-8'} opacity-0 group-hover:opacity-100 transition-opacity`}>
                       <button 
                         onClick={(e) => { e.stopPropagation(); setActiveMenuId(activeMenuId === msg.id ? null : msg.id) }} 
-                        className="text-white/20 hover:text-white/60 transition-colors"
+                        className="text-mist/40 hover:text-white/60 transition-colors"
                       >
                         <MoreVertical size={16} />
                       </button>
@@ -291,7 +291,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
           />
           <button 
             type="submit"
-            className="absolute right-3 top-3 w-10 h-10 bg-verdant text-ink rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-verdant/20 signet-glow"
+            className="absolute right-3 top-3 w-10 h-10 bg-verdant text-ink rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-verdant/20"
           >
             <TransmissionIcon size={18} />
           </button>

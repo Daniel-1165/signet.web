@@ -71,14 +71,14 @@ export default function CertificatesPage() {
 
   return (
     <div className="min-h-screen bg-background relative pt-32 pb-24 px-6 flex flex-col items-center">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-signet-primary/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-seal/5 blur-[120px] pointer-events-none" />
       
       <div className="text-center mb-12 relative z-10 space-y-4">
-        <div className="mx-auto w-16 h-16 bg-signet-primary text-white flex items-center justify-center rounded-2xl mb-6 shadow-xl shadow-signet-primary/20">
+        <div className="mx-auto w-16 h-16 bg-seal text-white flex items-center justify-center rounded-2xl mb-6 shadow-xl shadow-seal/20">
             <Award size={32} />
         </div>
         <h1 className="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-foreground">
-          Your <span className="text-signet-primary">Certificates</span>.
+          Your <span className="text-seal">Certificates</span>.
         </h1>
         <p className="text-foreground/60 max-w-lg mx-auto text-lg leading-relaxed">
           Enter your registered username or email below to view and download your verified program certificates.
@@ -101,7 +101,7 @@ export default function CertificatesPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="e.g. daniel_growth or user@domain.com"
-                className="w-full pl-12 pr-4 py-4 bg-background border border-black/10 rounded-xl focus:outline-none focus:border-signet-primary/40 focus:ring-1 focus:ring-signet-primary transition-all text-sm font-medium"
+                className="w-full pl-12 pr-4 py-4 bg-background border border-black/10 rounded-xl focus:outline-none focus:border-seal/40 focus:ring-1 focus:ring-seal transition-all text-sm font-medium"
                 required
               />
             </div>
@@ -109,7 +109,7 @@ export default function CertificatesPage() {
           <button
             type="submit"
             disabled={loading || !username.trim()}
-            className="w-full h-14 bg-signet-primary hover:bg-signet-primary/90 text-white font-bold rounded-xl shadow-[0_4px_20px_rgba(22,56,50,0.3)] transition-all flex items-center justify-center disabled:opacity-50 disabled:scale-100 uppercase tracking-wider text-sm"
+            className="w-full h-14 bg-seal hover:bg-seal/90 text-white font-bold rounded-xl shadow-[0_4px_20px_rgba(22,56,50,0.3)] transition-all flex items-center justify-center disabled:opacity-50 disabled:scale-100 uppercase tracking-wider text-sm"
           >
             {loading ? (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -128,14 +128,14 @@ export default function CertificatesPage() {
         {certificate && (
           <div className="mt-8 pt-8 border-t border-black/10 animate-in slide-in-from-bottom-4 duration-500">
             <h3 className="font-semibold text-lg text-foreground mb-4">Certificate Found!</h3>
-            <div className="p-5 bg-gradient-to-br from-signet-primary/5 to-signet-medium/5 border border-signet-primary/20 rounded-2xl space-y-4">
+            <div className="p-5 bg-gradient-to-br from-seal/5 to-seal/5 border border-seal/20 rounded-2xl space-y-4">
               <div>
                 <p className="text-xs font-bold text-foreground/50 uppercase tracking-widest">Program</p>
                 <p className="font-bold text-foreground text-lg">{certificate.courseName}</p>
               </div>
               <div>
                 <p className="text-xs font-bold text-foreground/50 uppercase tracking-widest">Awarded To</p>
-                <p className="font-bold text-signet-primary">{certificate.username}</p>
+                <p className="font-bold text-seal">{certificate.username}</p>
               </div>
               {certificate.issueDate && (
                 <div>
@@ -151,7 +151,7 @@ export default function CertificatesPage() {
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 w-full h-12 border-2 border-signet-primary text-signet-primary hover:bg-signet-primary hover:text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 text-sm"
+                className="mt-4 w-full h-12 border-2 border-seal text-seal hover:bg-seal hover:text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 text-sm"
               >
                 <Download size={18} /> Download Certificate
               </a>

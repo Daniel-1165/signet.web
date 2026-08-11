@@ -135,7 +135,7 @@ const Process = () => {
 
             {/* Abstract Background Accents */}
             <div className="absolute top-0 right-0 w-[800px] h-full bg-solar-gold/[0.01] border-l border-black/[0.04] -z-10" />
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[300px] h-[300px] bg-signet-light/10 blur-[100px] rounded-full pointer-events-none -z-10" />
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[300px] h-[300px] bg-verdant/10 blur-[100px] rounded-full pointer-events-none -z-10" />
         </section>
     );
 };

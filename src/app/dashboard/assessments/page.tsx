@@ -74,7 +74,7 @@ export default function DashboardAssessmentsPage() {
                </p>
                
                <div className="pt-10 mt-auto flex items-center justify-between border-t border-rule/20">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-rule">Calibrated Status: ---</span>
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-mist/75">Calibrated Status: ---</span>
                   <button className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-ink text-white text-[12px] font-bold uppercase tracking-widest hover:bg-ink hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-[0_10px_25px_rgba(110,122,103,0.3)]">
                      Begin Protocol <ArrowRight size={14} />
                   </button>
@@ -90,15 +90,15 @@ export default function DashboardAssessmentsPage() {
          <div className="relative z-10 flex flex-col md:flex-row items-center gap-16 justify-between">
             <div className="space-y-8 max-w-xl">
                <h2 className="text-[40px] md:text-[52px] font-bold leading-[1.1] tracking-tight" >
-                 The <span className="italic font-normal text-rule">Calibration</span> Meta-Framework.
+                 The <span className="italic font-normal text-mist/75">Calibration</span> Meta-Framework.
                </h2>
-               <p className="text-rule/60 text-[16px] leading-relaxed">
+               <p className="text-mist/55 text-[16px] leading-relaxed">
                  Our methodology transcends mere testing. We utilize high-fidelity environmental simulations to map the intersection of your cognitive depth and emotional resilience.
                </p>
                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
                   {['Consistency', 'Velocity', 'Resonance', 'Depth'].map(label => (
                      <div key={label} className="py-4 rounded-2xl bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-rule">{label}</p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-mist/75">{label}</p>
                      </div>
                   ))}
                </div>
@@ -106,7 +106,7 @@ export default function DashboardAssessmentsPage() {
             <div className="w-full md:w-80 h-80 rounded-[3rem] bg-white/5 border border-white/10 flex items-center justify-center relative overflow-hidden">
                <div className="absolute inset-0 bg-gradient-to-br from-ink/20 to-transparent" />
                <div className="text-center space-y-6 relative z-10">
-                  <Zap size={52} className="text-rule mx-auto animate-pulse" />
+                  <Zap size={52} className="text-mist/75 mx-auto animate-pulse" />
                   <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/20">Pulse Tracking Active</p>
                </div>
             </div>

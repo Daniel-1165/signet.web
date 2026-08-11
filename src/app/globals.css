@@ -55,33 +55,6 @@
                        0 16px 44px rgba(5, 31, 32, 0.08);
 
   --radius-seal: 1.25rem;
-
-  /* --- MIGRATION COMPAT — REMOVE WHEN THE LAST FILE IS MIGRATED ----------
-     87 usages of the previous three-palette system exist across 17 files.
-     These aliases keep those screens rendering correctly while each one is
-     restyled, instead of failing silently to unstyled output. Every alias
-     resolves to a value in the six-color system above — nothing new is
-     introduced here. Delete this block once `grep -rE
-     "signet-(dark|deep|primary|medium|light|pale)|font-(syne|outfit|dm-serif)"
-     src/` returns nothing. */
-  --color-signet-dark: var(--color-ink);
-  --color-signet-deep: #0B2B26;
-  --color-signet-primary: var(--color-seal);
-  --color-signet-medium: #235347;
-  --color-signet-light: var(--color-verdant);
-  --color-signet-pale: var(--color-mist);
-  --color-accent: var(--color-seal);
-  --color-growth-green: #235347;
-  --color-primary: var(--color-seal);
-  --color-secondary: var(--color-mist);
-  --color-tertiary: var(--color-wax);
-  --color-neutral: var(--color-ink);
-  --color-border: var(--color-rule);
-  --font-syne: var(--font-display);
-  --font-outfit: var(--font-sans);
-  --font-dm-sans: var(--font-sans);
-  --font-dm-serif: var(--font-display);
-  --font-serif: var(--font-display);
 }
 
 :root {
@@ -554,36 +527,13 @@ body {
   border-radius: 999px;
 }
 
-/* --- MIGRATION COMPAT — REMOVE WITH THE TOKEN ALIASES ABOVE ---------------
-   The previous effect classes, redefined against the new palette so the pages
-   still using them (page.tsx, chat/ChatSidebar, chat/ChatWindow) keep working
-   until they are restyled. */
-.premium-gradient {
-  background: radial-gradient(circle at top center, rgba(142, 182, 155, 0.16) 0%, transparent 70%);
-}
-
+/* Frosted panel, used on the chat surfaces where content scrolls beneath a
+   fixed header. The one survivor of the previous effect classes — the rest
+   (signet-glow, inner-glow, premium-gradient, typography-premium) are gone,
+   replaced by .lift / .press and the type scale. */
 .soft-blur {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-}
-
-.signet-glow {
-  box-shadow: var(--shadow-lift);
-  border: 1px solid var(--color-rule);
-}
-
-.signet-glow-hover:hover {
-  box-shadow: var(--shadow-lift-hover);
-  border-color: var(--color-verdant);
-}
-
-.inner-glow {
-  box-shadow: var(--shadow-press);
-}
-
-.typography-premium {
-  letter-spacing: -0.025em;
-  line-height: 1.4;
 }
 
 /* A whisper of atmosphere behind hero and CTA blocks. Two stops, very low

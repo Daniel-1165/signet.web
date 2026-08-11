@@ -86,7 +86,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
   const featured = featuredResources[activeFeaturedIdx];
 
   return (
-    <div className="bg-canvas text-ink pb-24 font-dm-sans min-h-screen">
+    <div className="bg-canvas text-ink pb-24 font-sans min-h-screen">
       
       {/* Header Container */}
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">

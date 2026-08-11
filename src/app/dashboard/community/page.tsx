@@ -42,7 +42,7 @@ export default function CommunityHubPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-surface text-ink font-dm-sans pb-32">
+    <div className="min-h-screen bg-surface text-ink font-sans pb-32">
       {/* Centered Column wrapper */}
       <div className="max-w-[650px] mx-auto px-4">
         

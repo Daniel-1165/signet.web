@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Share2, RotateCcw, CheckCircle2 } from "lucide-react";
 
 // Static mock font variables to prevent build-time Google Fonts downloads (loaded via globals.css)
-const dmSerif = { variable: "font-dm-serif" };
-const dmSans = { variable: "font-dm-sans" };
+const dmSerif = { variable: "font-display" };
+const dmSans = { variable: "font-sans" };
 
 // ==========================================
 // DATA & TYPES

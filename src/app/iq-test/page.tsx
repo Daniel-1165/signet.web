@@ -237,11 +237,11 @@ export default function IQTestPage() {
                     <div className="mb-2">
                         <span className="text-[9px] tracking-[0.2em] font-medium uppercase border-l-2 border-accent pl-2 text-accent py-1">SIGNET ASSESSMENT</span>
                     </div>
-                    <h1 className="text-3xl md:text-5xl tracking-tight leading-none mb-3 font-syne font-semibold text-transparent bg-clip-text bg-gradient-to-r from-black to-seal">
+                    <h1 className="text-3xl md:text-5xl tracking-tight leading-none mb-3 font-display font-semibold text-transparent bg-clip-text bg-gradient-to-r from-black to-seal">
                         Cognitive <br />
                         Evaluation
                     </h1>
-                    <p className="text-sm md:text-base text-black/60 max-w-2xl mb-5 leading-relaxed font-outfit font-light">
+                    <p className="text-sm md:text-base text-black/60 max-w-2xl mb-5 leading-relaxed font-sans font-light">
                         A rigorous yet engaging examination of primary cognitive factors. Discover your archetype through dynamic intelligence profiling.
                     </p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-2xl p-3 border border-black/5 w-full">
@@ -275,7 +275,7 @@ export default function IQTestPage() {
 
                 <div className="max-w-5xl mx-auto w-full">
                     <header className="mb-20 flex flex-col md:flex-row justify-between items-baseline border-b border-ink/10 pb-8">
-                        <h2 className="text-4xl md:text-5xl tracking-tight font-syne font-semibold text-transparent bg-clip-text bg-gradient-to-r from-ink to-seal">Evaluation Complete</h2>
+                        <h2 className="text-4xl md:text-5xl tracking-tight font-display font-semibold text-transparent bg-clip-text bg-gradient-to-r from-ink to-seal">Evaluation Complete</h2>
                         <p className="text-[10px] tracking-[0.2em] text-seal uppercase mt-4 md:mt-0 font-bold bg-mist border border-mist px-4 py-2 rounded-full">Data Sync Verified</p>
                     </header>
 
@@ -284,7 +284,7 @@ export default function IQTestPage() {
                             <div className="absolute -top-10 -right-10 w-40 h-40 bg-verdant/5 rounded-full blur-2xl"></div>
                             <div className="relative z-10">
                                 <div className="text-[10px] tracking-[0.15em] font-bold text-seal/50 mb-4">INTELLIGENCE QUOTIENT</div>
-                                <div className="text-[7rem] md:text-[9rem] leading-none tracking-tight mb-4 font-syne font-semibold text-ink">{results.iq}</div>
+                                <div className="text-[7rem] md:text-[9rem] leading-none tracking-tight mb-4 font-display font-semibold text-ink">{results.iq}</div>
                                 <div className="text-xs tracking-widest uppercase mb-12 font-bold text-seal/60 border-l-2 border-verdant pl-3">Percentile: Top {Math.round((1 - results.iq / 200) * 100)}%</div>
                             </div>
                             <p className="text-[10px] text-seal/40 max-w-xs leading-relaxed uppercase tracking-wider relative z-10 font-bold">
@@ -294,8 +294,8 @@ export default function IQTestPage() {
 
                         <div className="lg:col-span-8 flex flex-col justify-center bg-white/70 backdrop-blur-xl shadow-xl shadow-emerald-950/[0.03] rounded-3xl p-10 border border-white/40">
                             <div className="text-[10px] tracking-[0.15em] font-bold text-seal/50 mb-4">PRIMARY ARCHETYPE</div>
-                            <h3 className="text-4xl md:text-5xl tracking-tight mb-4 font-syne font-semibold text-ink">{results.archetype.name}</h3>
-                            <p className="text-lg text-seal/80 mb-12 font-outfit font-medium">{results.archetype.sig}</p>
+                            <h3 className="text-4xl md:text-5xl tracking-tight mb-4 font-display font-semibold text-ink">{results.archetype.name}</h3>
+                            <p className="text-lg text-seal/80 mb-12 font-sans font-medium">{results.archetype.sig}</p>
 
                             <div className="grid grid-cols-2 gap-x-12 gap-y-8 border-t border-ink/10 pt-8 mt-auto">
                                 {Object.entries(results.domainScores).map(([key, score]) => (
@@ -368,7 +368,7 @@ export default function IQTestPage() {
                                 </div>
                             )}
 
-                            <h2 className="text-xl md:text-2xl tracking-tight leading-snug mb-6 font-outfit font-medium text-center max-w-lg mx-auto">
+                            <h2 className="text-xl md:text-2xl tracking-tight leading-snug mb-6 font-sans font-medium text-center max-w-lg mx-auto">
                                 {question.q}
                             </h2>
 
