@@ -73,7 +73,7 @@ export default function VisionGuideContent({
           <div className="text-accent">{icon}</div>
         </div>
         <div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-accent uppercase tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-accent uppercase tracking-tight">
             {title}
           </h2>
           <p className="text-sm font-bold text-foreground/50 uppercase tracking-widest mt-1">
@@ -100,7 +100,7 @@ export default function VisionGuideContent({
       {/* Key Points */}
       {keyPoints && keyPoints.length > 0 && (
         <div className="space-y-3">
-          <h3 className="font-black text-lg uppercase tracking-tight text-foreground">Key Takeaways</h3>
+          <h3 className="font-semibold text-lg uppercase tracking-tight text-foreground">Key Takeaways</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {keyPoints.map((point, i) => (
               <div key={i} className="flex gap-3 items-start">
@@ -114,13 +114,13 @@ export default function VisionGuideContent({
 
       {biblicalReferences && biblicalReferences.length > 0 && (
         <div className="space-y-6 pt-4">
-          <h3 className="font-black text-xl uppercase tracking-tight text-accent border-b border-accent/10 pb-2">Biblical Grounding</h3>
+          <h3 className="font-semibold text-xl uppercase tracking-tight text-accent border-b border-accent/10 pb-2">Biblical Grounding</h3>
           {biblicalReferences.map((ref, i) => (
             <div key={i} className="space-y-3">
               <p className="font-bold text-accent text-base">{ref.verse}</p>
               <p className="text-base italic text-foreground/70 mb-2 leading-relaxed">"{ref.text}"</p>
               <div className="pl-4 border-l-2 border-accent/20">
-                <p className="text-xs font-black text-accent/50 uppercase mb-1">Application</p>
+                <p className="text-xs font-semibold text-accent/50 uppercase mb-1">Application</p>
                 <p className="text-base text-foreground/80">{ref.interpretation}</p>
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function VisionGuideContent({
       {/* Academic Resources */}
       {academicResources && academicResources.length > 0 && (
         <div className="space-y-4">
-          <h3 className="font-black text-lg uppercase tracking-tight text-foreground">Research & Academic Foundation</h3>
+          <h3 className="font-semibold text-lg uppercase tracking-tight text-foreground">Research & Academic Foundation</h3>
           {academicResources.map((resource, i) => (
             <div key={i} className="p-4 bg-white/60 rounded-lg border border-white/50 space-y-2">
               <p className="font-bold text-foreground/90">{resource.title}</p>
@@ -146,7 +146,7 @@ export default function VisionGuideContent({
 
       {reflectionPrompts && reflectionPrompts.length > 0 && (
         <div className="space-y-8 pt-8">
-          <h3 className="font-black text-xl uppercase tracking-tight text-accent border-b border-accent/10 pb-2">Reflection & Journal</h3>
+          <h3 className="font-semibold text-xl uppercase tracking-tight text-accent border-b border-accent/10 pb-2">Reflection & Journal</h3>
           {reflectionPrompts.map((prompt, i) => (
             <div key={i} className="space-y-4">
               <div className="font-bold text-accent text-lg flex items-start gap-2">

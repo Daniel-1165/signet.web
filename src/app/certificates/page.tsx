@@ -77,7 +77,7 @@ export default function CertificatesPage() {
         <div className="mx-auto w-16 h-16 bg-signet-primary text-white flex items-center justify-center rounded-2xl mb-6 shadow-xl shadow-signet-primary/20">
             <Award size={32} />
         </div>
-        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground">
+        <h1 className="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-foreground">
           Your <span className="text-signet-primary">Certificates</span>.
         </h1>
         <p className="text-foreground/60 max-w-lg mx-auto text-lg leading-relaxed">
@@ -127,7 +127,7 @@ export default function CertificatesPage() {
 
         {certificate && (
           <div className="mt-8 pt-8 border-t border-black/10 animate-in slide-in-from-bottom-4 duration-500">
-            <h3 className="font-extrabold text-lg text-foreground mb-4">Certificate Found!</h3>
+            <h3 className="font-semibold text-lg text-foreground mb-4">Certificate Found!</h3>
             <div className="p-5 bg-gradient-to-br from-signet-primary/5 to-signet-medium/5 border border-signet-primary/20 rounded-2xl space-y-4">
               <div>
                 <p className="text-xs font-bold text-foreground/50 uppercase tracking-widest">Program</p>

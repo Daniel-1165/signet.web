@@ -34,7 +34,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
             <div 
               key={lecture._id}
               onClick={() => handleLectureClick(lecture)}
-              className="bg-white rounded-[2rem] p-6 border border-[#EDEDED] hover:shadow-xl hover:border-[#1E6B3A]/30 transition-all duration-300 group cursor-pointer flex gap-5 items-center"
+              className="bg-white rounded-[2rem] p-6 border border-rule hover:shadow-xl hover:border-seal/30 transition-all duration-300 group cursor-pointer flex gap-5 items-center"
             >
               <div className="w-20 h-20 rounded-2xl overflow-hidden relative shrink-0 shadow-md">
                 <img 
@@ -43,17 +43,17 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
                   alt={lecture.title}
                 />
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#1E6B3A] shadow-lg">
-                    <Play size={18} className="fill-[#1E6B3A] ml-0.5" />
+                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-seal shadow-lg">
+                    <Play size={18} className="fill-seal ml-0.5" />
                   </div>
                 </div>
               </div>
               
               <div className="flex-1 min-w-0">
-                <h3 className="text-[18px] font-extrabold text-[#0F172A] truncate mb-1" >
-                  <span className="text-[#1E6B3A] mr-1.5 font-light">{index + 1}.</span> {lecture.title}
+                <h3 className="text-[18px] font-semibold text-ink truncate mb-1" >
+                  <span className="text-seal mr-1.5 font-light">{index + 1}.</span> {lecture.title}
                 </h3>
-                <div className="flex items-center gap-3 text-[#1E6B3A]/70 text-[11px] font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-3 text-seal/70 text-[11px] font-bold uppercase tracking-wider">
                   <span className="flex items-center gap-1"><Clock size={12} /> {lecture.duration}</span>
                   <span className="flex items-center gap-1"><User size={12} /> {lecture.author}</span>
                 </div>
@@ -61,9 +61,9 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
             </div>
           ))
         ) : (
-          <div className="col-span-full py-20 text-center bg-white rounded-[2.5rem] border border-[#EDEDED] border-dashed">
-            <Music className="w-12 h-12 text-[#1E6B3A]/40 mx-auto mb-4 opacity-40" />
-            <p className="text-[#1E6B3A]/70 italic font-semibold">The auditory library is currently being curated.</p>
+          <div className="col-span-full py-20 text-center bg-white rounded-[2.5rem] border border-rule border-dashed">
+            <Music className="w-12 h-12 text-seal/40 mx-auto mb-4 opacity-40" />
+            <p className="text-seal/70 italic font-semibold">The auditory library is currently being curated.</p>
           </div>
         )}
       </div>
@@ -77,7 +77,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
             exit={{ y: 100, opacity: 0 }}
             className="fixed bottom-24 md:bottom-8 left-4 right-4 md:left-auto md:right-8 md:w-[360px] z-[90]"
           >
-            <div className="bg-[#0F172A] rounded-2xl p-3 flex items-center gap-4 shadow-2xl border border-white/10 group">
+            <div className="bg-ink rounded-2xl p-3 flex items-center gap-4 shadow-2xl border border-white/10 group">
               <div 
                 className="w-12 h-12 rounded-xl overflow-hidden cursor-pointer"
                 onClick={() => setIsMaximized(true)}
@@ -87,7 +87,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
               
               <div className="flex-1 min-w-0 cursor-pointer" onClick={() => setIsMaximized(true)}>
                 <p className="text-white text-sm font-bold truncate">{currentLecture.title}</p>
-                <p className="text-[#EAF4EC] text-[10px] font-bold uppercase tracking-widest leading-none mt-1">Playing Now</p>
+                <p className="text-mist text-[10px] font-bold uppercase tracking-widest leading-none mt-1">Playing Now</p>
               </div>
 
               <div className="flex items-center gap-2">
@@ -119,10 +119,10 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm md:flex md:items-center md:justify-center"
           >
-            <div className="bg-[#0F172A] text-white h-full md:h-auto md:max-w-[480px] w-full p-8 md:rounded-[3rem] shadow-2xl border border-white/10 relative overflow-hidden flex flex-col justify-between">
+            <div className="bg-ink text-white h-full md:h-auto md:max-w-[480px] w-full p-8 md:rounded-[3rem] shadow-2xl border border-white/10 relative overflow-hidden flex flex-col justify-between">
                {/* Animated Background Pulse */}
-               <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#1E6B3A]/20 rounded-full blur-[80px] animate-pulse" />
-               <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#EAF4EC]/5 rounded-full blur-[80px]" />
+               <div className="absolute -top-24 -right-24 w-64 h-64 bg-seal/20 rounded-full blur-[80px] animate-pulse" />
+               <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-mist/5 rounded-full blur-[80px]" />
 
                <div className="relative z-10 flex flex-col h-full justify-between">
                   <div className="flex items-center justify-between mb-8 md:mb-12">
@@ -156,10 +156,10 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
                      </motion.div>
                      
                      <div className="text-center px-4">
-                        <h4 className="text-[32px] md:text-[36px] font-extrabold mb-3 leading-tight tracking-tight font-sans" >
+                        <h4 className="text-[32px] md:text-[36px] font-semibold mb-3 leading-tight tracking-tight font-sans" >
                           {currentLecture.title}
                         </h4>
-                        <p className="text-[#EAF4EC]/85 text-[16px] font-medium tracking-wide">
+                        <p className="text-mist/85 text-[16px] font-medium tracking-wide">
                           Lecture by {currentLecture.author}
                         </p>
                      </div>
@@ -173,7 +173,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
                            <motion.div 
                              initial={{ width: 0 }}
                              animate={{ width: isPlaying ? '65%' : '65%' }}
-                             className="h-full bg-[#1E6B3A] rounded-full relative"
+                             className="h-full bg-seal rounded-full relative"
                            >
                               <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-2xl scale-125 transition-transform" />
                            </motion.div>
@@ -192,7 +192,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
                            <SkipBack size={32} className="text-white/60 hover:text-white cursor-pointer transition-colors" />
                            <button 
                              onClick={() => setIsPlaying(!isPlaying)}
-                             className="w-20 h-20 rounded-full bg-white text-[#0F172A] flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-[0_20px_40px_rgba(255,255,255,0.08)]"
+                             className="w-20 h-20 rounded-full bg-white text-ink flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-[0_20px_40px_rgba(255,255,255,0.08)]"
                            >
                              {isPlaying ? <Pause size={32} className="fill-current" /> : <Play size={32} className="fill-current ml-1" />}
                            </button>

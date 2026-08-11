@@ -219,7 +219,7 @@ function SlideCard({
           loading="lazy"
         />
       ) : (
-        <div className="absolute inset-0 bg-[#FDFCFB]" />
+        <div className="absolute inset-0 bg-canvas" />
       )}
 
       {/* Ink wash rather than neutral black, so the overlay belongs to the

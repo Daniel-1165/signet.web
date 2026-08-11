@@ -48,15 +48,15 @@ const FeaturesGrid = () => {
                     </motion.div>
 
                     <motion.div custom={1} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl border border-black/[0.05] bg-white p-6 md:p-8 hover:shadow-xl hover:shadow-black/5 transition-all duration-300">
-                        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1DA756]/10 text-[#1DA756] mb-6 transition-transform group-hover:scale-110">
+                        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-seal/10 text-seal mb-6 transition-transform group-hover:scale-110">
                             <TrendingUp className="h-5 w-5" />
                         </div>
                         <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight">Sustained Growth</h3>
                         <p className="text-foreground/60 text-sm leading-relaxed">Compound interest in your skills, mindset, and execution every single day without burnout.</p>
                     </motion.div>
 
-                    <motion.div custom={2} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl bg-[#0D120E] p-6 md:p-8 shadow-xl shadow-black/10 transition-all duration-300 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#1DA756]/10 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                    <motion.div custom={2} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl bg-ink p-6 md:p-8 shadow-xl shadow-black/10 transition-all duration-300 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-seal/10 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
                         <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white mb-6 border border-white/5 transition-transform group-hover:scale-110 relative z-10">
                             <ShieldCheck className="h-5 w-5" />
                         </div>
@@ -68,7 +68,7 @@ const FeaturesGrid = () => {
                 {/* Row 2: Two equal columns with images/backgrounds */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <motion.div custom={3} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group relative rounded-3xl overflow-hidden h-[360px] flex items-end p-6 md:p-8">
-                        <div className="absolute inset-0 bg-[#F7F6F0] transition-colors duration-500 group-hover:bg-[#EBEBE6]"></div>
+                        <div className="absolute inset-0 bg-canvas transition-colors duration-500 group-hover:bg-canvas"></div>
                         <div className="absolute inset-x-6 md:inset-x-8 top-8 bottom-32 bg-white rounded-2xl border border-black/[0.05] shadow-sm flex items-center justify-center overflow-hidden">
                             <img src="/signet-nature.png" alt="Focus Area" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105 mix-blend-multiply" />
                         </div>
@@ -85,8 +85,8 @@ const FeaturesGrid = () => {
                         </div>
                     </motion.div>
 
-                    <motion.div custom={4} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group relative rounded-3xl overflow-hidden h-[360px] flex items-end p-6 md:p-8 bg-[#1DA756]">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#1DA756] to-[#0f6c35]"></div>
+                    <motion.div custom={4} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group relative rounded-3xl overflow-hidden h-[360px] flex items-end p-6 md:p-8 bg-seal">
+                        <div className="absolute inset-0 bg-gradient-to-br from-seal to-seal"></div>
                         <div className="absolute top-0 right-0 p-8 opacity-20 pointer-events-none">
                             <Globe className="w-64 h-64 -mx-16 -my-16 text-white group-hover:scale-110 transition-transform duration-700" />
                         </div>

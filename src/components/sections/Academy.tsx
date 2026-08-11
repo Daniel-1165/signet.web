@@ -60,11 +60,11 @@ const Academy = () => {
                     className="lg:w-[40%] flex flex-col justify-center"
                 >
                     <div className="sticky top-40 text-left">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-widest mb-6">
                             <GraduationCap className="h-3 w-3" /> Signet Academy
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground mb-8 leading-[1.1] break-words">
-                            The Growth <br /><span className="italic font-black text-foreground/40">Curriculum.</span>
+                        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-8 leading-[1.1] break-words">
+                            The Growth <br /><span className="italic font-semibold text-foreground/40">Curriculum.</span>
                         </h2>
                         <p className="text-xl font-normal text-foreground/50 leading-relaxed mb-12 max-w-md">
                             Education at Signet is not passive consumption. It's a structured escalation of your internal capabilities.
@@ -119,7 +119,7 @@ const Academy = () => {
                                                 {course.category}
                                             </span>
                                             {isActive && (
-                                                <div className="flex items-center gap-1 text-[9px] font-bold text-accent uppercase tracking-tighter">
+                                                <div className="flex items-center gap-1 text-[9px] font-bold text-accent uppercase tracking-tight">
                                                     <Star className="h-2 w-2 fill-current" /> Active Enrollment
                                                 </div>
                                             )}

@@ -37,7 +37,7 @@ export default function JoinPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#F8F9F5] text-foreground font-sans selection:bg-signet-green selection:text-white overflow-hidden relative">
+        <div className="min-h-screen bg-canvas text-foreground font-sans selection:bg-signet-green selection:text-white overflow-hidden relative">
             
             {/* Ambient Background Elements */}
             <div className="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-signet-green/[0.03] to-transparent -z-10" />
@@ -116,7 +116,7 @@ export default function JoinPage() {
                                 
                                 <form onSubmit={handleSubmit} className="space-y-8">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-[#2D4B39]">Identity Name</label>
+                                        <label className="text-[10px] font-semibold uppercase tracking-widest text-seal">Identity Name</label>
                                         <input 
                                             required
                                             type="text" 
@@ -128,7 +128,7 @@ export default function JoinPage() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-[#2D4B39]">Secure Email</label>
+                                        <label className="text-[10px] font-semibold uppercase tracking-widest text-seal">Secure Email</label>
                                         <input 
                                             required
                                             type="email" 
@@ -140,7 +140,7 @@ export default function JoinPage() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-widest text-[#2D4B39]">Primary Objective</label>
+                                        <label className="text-[10px] font-semibold uppercase tracking-widest text-seal">Primary Objective</label>
                                         <select 
                                             className="w-full bg-transparent border-b border-black/[0.08] py-3 text-lg outline-none focus:border-signet-green transition-colors appearance-none font-medium text-foreground"
                                             value={formData.objective}
@@ -179,7 +179,7 @@ export default function JoinPage() {
                                     Your profile has been added to our assessment queue. You will receive a secure communication within 48 hours.
                                 </p>
                                 <Link href="/">
-                                    <MagneticButton className="inline-flex h-14 px-10 bg-white border border-black/[0.06] text-foreground font-bold uppercase tracking-widest hover:bg-[#F7F8F5] transition-all rounded-2xl">
+                                    <MagneticButton className="inline-flex h-14 px-10 bg-white border border-black/[0.06] text-foreground font-bold uppercase tracking-widest hover:bg-canvas transition-all rounded-2xl">
                                         Return Home
                                     </MagneticButton>
                                 </Link>

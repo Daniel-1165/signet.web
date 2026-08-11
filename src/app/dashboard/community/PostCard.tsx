@@ -157,7 +157,7 @@ export function PostCard({
   };
 
   return (
-    <div className="bg-[#FFFFFF] py-4 border-b border-[#EFF3F4] flex gap-3 font-dm-sans relative">
+    <div className="bg-surface py-4 border-b border-rule flex gap-3 font-dm-sans relative">
       {/* Avatar column */}
       <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shrink-0 bg-gray-100 cursor-pointer" onClick={() => router.push(`/dashboard/community/posts/${post.id}`)}>
         <img src={authorImage} alt={authorName} className="w-full h-full object-cover" />
@@ -170,13 +170,13 @@ export function PostCard({
           <div className="flex items-center gap-1.5 flex-wrap">
             <span 
               onClick={() => router.push(`/dashboard/community/posts/${post.id}`)}
-              className="font-bold text-[#0F1419] text-[15px] md:text-[16px] hover:underline cursor-pointer"
+              className="font-bold text-ink text-[15px] md:text-[16px] hover:underline cursor-pointer"
             >
               {authorName}
             </span>
-            <span className="text-[#536471] text-[14px]">{authorHandle}</span>
-            <span className="text-[#536471] text-[14px]">&middot;</span>
-            <span className="text-[#536471] text-[14px]">
+            <span className="text-ink text-[14px]">{authorHandle}</span>
+            <span className="text-ink text-[14px]">&middot;</span>
+            <span className="text-ink text-[14px]">
               {formatDistanceCustom(post.created_at)}
             </span>
           </div>
@@ -185,7 +185,7 @@ export function PostCard({
           <div className="relative dropdown-container">
             <button 
               onClick={() => setShowDropdown(!showDropdown)}
-              className="text-[#536471] hover:text-[#0F1419] transition-colors p-1"
+              className="text-ink hover:text-ink transition-colors p-1"
             >
               <MoreHorizontal size={18} />
             </button>
@@ -235,7 +235,7 @@ export function PostCard({
               <textarea
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
-                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-[15px] font-medium text-gray-900 outline-none focus:border-[#1E6B3A] transition-all min-h-[100px] resize-none"
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-[15px] font-medium text-gray-900 outline-none focus:border-seal transition-all min-h-[100px] resize-none"
                 placeholder="Update your thoughts..."
                 autoFocus
               />
@@ -249,19 +249,19 @@ export function PostCard({
                 <button 
                   onClick={handleUpdate}
                   disabled={isUpdating || !editContent.trim()}
-                  className="px-4 py-1.5 bg-[#1E6B3A] text-white rounded-full text-[13px] font-bold hover:bg-[#114B2A] transition-all disabled:opacity-50"
+                  className="px-4 py-1.5 bg-seal text-white rounded-full text-[13px] font-bold hover:bg-seal transition-all disabled:opacity-50"
                 >
                   {isUpdating ? "Saving..." : "Save"}
                 </button>
               </div>
             </div>
           ) : (
-            <div className="text-[15px] text-[#0F1419] leading-relaxed whitespace-pre-wrap break-words">
+            <div className="text-[15px] text-ink leading-relaxed whitespace-pre-wrap break-words">
               <span>{displayedContent}</span>
               {shouldTruncate && (
                 <Link 
                   href={`/dashboard/community/posts/${post.id}`}
-                  className="text-[#1E6B3A] font-bold hover:underline ml-1.5 cursor-pointer inline-block"
+                  className="text-seal font-bold hover:underline ml-1.5 cursor-pointer inline-block"
                 >
                   See more
                 </Link>
@@ -283,13 +283,13 @@ export function PostCard({
         )}
 
         {/* Footer Actions */}
-        <div className="flex items-center gap-12 mt-2.5 text-[#536471]">
+        <div className="flex items-center gap-12 mt-2.5 text-ink">
           {/* Comment Button */}
           <button 
             onClick={() => router.push(`/dashboard/community/posts/${post.id}`)}
-            className="flex items-center gap-2 hover:text-[#1E6B3A] transition-colors group"
+            className="flex items-center gap-2 hover:text-seal transition-colors group"
           >
-            <div className="p-2 rounded-full group-hover:bg-[#1E6B3A]/10 transition-colors">
+            <div className="p-2 rounded-full group-hover:bg-seal/10 transition-colors">
               <MessageSquare size={18} />
             </div>
             {commentCount > 0 && <span className="text-[13px] font-semibold">{commentCount}</span>}
@@ -298,10 +298,10 @@ export function PostCard({
           {/* Like Button */}
           <button 
             onClick={() => handleReaction('like')}
-            className={`flex items-center gap-2 transition-colors group ${userLike ? 'text-[#1E6B3A]' : 'hover:text-[#1E6B3A]'}`}
+            className={`flex items-center gap-2 transition-colors group ${userLike ? 'text-seal' : 'hover:text-seal'}`}
           >
-            <div className={`p-2 rounded-full transition-colors ${userLike ? 'bg-[#1E6B3A]/10' : 'group-hover:bg-[#1E6B3A]/10'}`}>
-              <ThumbsUp size={18} className={userLike ? "fill-[#1E6B3A]" : ""} />
+            <div className={`p-2 rounded-full transition-colors ${userLike ? 'bg-seal/10' : 'group-hover:bg-seal/10'}`}>
+              <ThumbsUp size={18} className={userLike ? "fill-seal" : ""} />
             </div>
             {likesCount > 0 && <span className="text-[13px] font-semibold">{likesCount}</span>}
           </button>

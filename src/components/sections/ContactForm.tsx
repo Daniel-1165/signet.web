@@ -68,20 +68,20 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="bg-white rounded-[2.5rem] border border-[#EDEDED] p-8 md:p-12 shadow-sm relative overflow-hidden font-sans">
+    <div className="bg-white rounded-[2.5rem] border border-rule p-8 md:p-12 shadow-sm relative overflow-hidden font-sans">
       <div className="mb-8">
-        <h2 className="text-3xl font-extrabold text-[#0F172A] mb-2 font-sans">
+        <h2 className="text-3xl font-semibold text-ink mb-2 font-sans">
           Send Us a Message
         </h2>
-        <p className="text-[#0F172A]/60 text-sm font-sans font-medium">
+        <p className="text-ink/60 text-sm font-sans font-medium">
           Fill out the form below and we'll get back to you as soon as possible.
         </p>
       </div>
 
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 bg-[#EAF4EC]/50 border border-[#1E6B3A]/20 rounded-2xl flex items-center gap-3">
-          <CheckCircle className="w-5 h-5 text-[#1E6B3A] flex-shrink-0" />
-          <p className="text-[#1E6B3A] text-sm font-sans font-semibold">
+        <div className="mb-6 p-4 bg-mist/50 border border-seal/20 rounded-2xl flex items-center gap-3">
+          <CheckCircle className="w-5 h-5 text-seal flex-shrink-0" />
+          <p className="text-seal text-sm font-sans font-semibold">
             Message sent successfully! We'll get back to you soon.
           </p>
         </div>
@@ -97,7 +97,7 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Name Field */}
         <div>
-          <label htmlFor="name" className="block text-sm font-bold text-[#0F172A] mb-2 font-sans">
+          <label htmlFor="name" className="block text-sm font-bold text-ink mb-2 font-sans">
             Name *
           </label>
           <input
@@ -105,7 +105,7 @@ export default function ContactForm() {
             id="name"
             value={formData.name}
             onChange={(e) => handleInputChange('name', e.target.value)}
-            className="w-full px-4 py-3 bg-[#FAFAF8] border border-[#EDEDED] rounded-xl focus:border-[#1E6B3A] focus:outline-none transition-colors text-[#0F172A] font-sans font-medium"
+            className="w-full px-4 py-3 bg-canvas border border-rule rounded-xl focus:border-seal focus:outline-none transition-colors text-ink font-sans font-medium"
             placeholder="Your full name"
             required
           />
@@ -113,7 +113,7 @@ export default function ContactForm() {
 
         {/* Email Field */}
         <div>
-          <label htmlFor="email" className="block text-sm font-bold text-[#0F172A] mb-2 font-sans">
+          <label htmlFor="email" className="block text-sm font-bold text-ink mb-2 font-sans">
             Email Address *
           </label>
           <input
@@ -121,7 +121,7 @@ export default function ContactForm() {
             id="email"
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
-            className="w-full px-4 py-3 bg-[#FAFAF8] border border-[#EDEDED] rounded-xl focus:border-[#1E6B3A] focus:outline-none transition-colors text-[#0F172A] font-sans font-medium"
+            className="w-full px-4 py-3 bg-canvas border border-rule rounded-xl focus:border-seal focus:outline-none transition-colors text-ink font-sans font-medium"
             placeholder="your.email@example.com"
             required
           />
@@ -129,7 +129,7 @@ export default function ContactForm() {
 
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-sm font-bold text-[#0F172A] mb-2 font-sans">
+          <label htmlFor="message" className="block text-sm font-bold text-ink mb-2 font-sans">
             Message *
           </label>
           <textarea
@@ -137,7 +137,7 @@ export default function ContactForm() {
             value={formData.message}
             onChange={(e) => handleInputChange('message', e.target.value)}
             rows={6}
-            className="w-full px-4 py-3 bg-[#FAFAF8] border border-[#EDEDED] rounded-xl focus:border-[#1E6B3A] focus:outline-none transition-colors resize-y text-[#0F172A] font-sans font-medium"
+            className="w-full px-4 py-3 bg-canvas border border-rule rounded-xl focus:border-seal focus:outline-none transition-colors resize-y text-ink font-sans font-medium"
             placeholder="Please provide details about your inquiry..."
             required
           />
@@ -148,7 +148,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-[#1E6B3A] hover:bg-[#114B2A] text-white font-bold py-4 px-6 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md shadow-[#1E6B3A]/10 font-sans uppercase text-xs tracking-wider"
+            className="w-full bg-seal hover:bg-seal text-white font-bold py-4 px-6 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md shadow-seal/10 font-sans uppercase text-xs tracking-wider"
           >
             {isSubmitting ? (
               <>
@@ -164,7 +164,7 @@ export default function ContactForm() {
           </button>
         </div>
 
-        <p className="text-xs text-[#0F172A]/50 text-center font-sans font-medium">
+        <p className="text-xs text-ink/50 text-center font-sans font-medium">
           By submitting this form, you agree to our privacy policy and terms of service.
         </p>
       </form>

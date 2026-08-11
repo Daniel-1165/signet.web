@@ -199,25 +199,25 @@ export default function EQAssessment() {
   // Welcome Screen
   if (screen === "welcome") {
     return (
-      <div className={`min-h-[100dvh] bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-center p-6 pb-20 md:pb-6`}>
+      <div className={`min-h-[100dvh] bg-canvas text-ink ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col items-center justify-center p-6 pb-20 md:pb-6`}>
         <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto z-10 w-full">
-          <div className="w-10 h-10 rounded-full bg-accent text-[#051F20] flex items-center justify-center mb-3 shadow-xl">
+          <div className="w-10 h-10 rounded-full bg-accent text-ink flex items-center justify-center mb-3 shadow-xl">
             <CheckCircle2 className="w-5 h-5" />
           </div>
-          <h1 className="text-3xl md:text-5xl font-serif text-[#1a1a2e] mb-3 leading-tight">
-             Define Your <br/><span className="text-[#16a34a] italic">Emotional Protocol.</span>
+          <h1 className="text-3xl md:text-5xl font-serif text-ink mb-3 leading-tight">
+             Define Your <br/><span className="text-seal italic">Emotional Protocol.</span>
           </h1>
-          <p className="text-sm md:text-base text-[#1a1a2e]/60 font-medium max-w-2xl leading-relaxed mb-4">
+          <p className="text-sm md:text-base text-ink/60 font-medium max-w-2xl leading-relaxed mb-4">
             A 40-question diagnostic grounded in advanced behavioral frameworks. Pinpoint your emotional blind spots, discover your archetype, and architect a highly-calibrated mind.
           </p>
           <div className="flex flex-wrap justify-center gap-1.5 mb-5 w-full">
             {["Self-Awareness", "Self-Regulation", "Empathy", "Social Skills", "Motivation"].map(dim => (
-              <span key={dim} className="px-3 py-1.5 bg-[#f2f0ec] text-[10px] font-bold uppercase tracking-widest rounded-full">{dim}</span>
+              <span key={dim} className="px-3 py-1.5 bg-canvas text-[10px] font-bold uppercase tracking-widest rounded-full">{dim}</span>
             ))}
           </div>
           <button 
             onClick={() => setScreen("test")}
-            className="px-8 py-3 bg-[#163832] text-white rounded-full font-bold tracking-wide hover:bg-accent hover:text-[#051F20] transition-all duration-300 shadow-2xl flex items-center gap-3"
+            className="px-8 py-3 bg-seal text-white rounded-full font-bold tracking-wide hover:bg-accent hover:text-ink transition-all duration-300 shadow-2xl flex items-center gap-3"
           >
             Start Assessment <ArrowRight className="w-4 h-4" />
           </button>
@@ -246,35 +246,35 @@ export default function EQAssessment() {
     const lowestDims = [...dims].sort((a,b) => results.finalDimScores[a] - results.finalDimScores[b]).slice(0, 2);
 
     return (
-      <div className={`min-h-screen bg-gradient-to-tr from-[#ECFDF5]/30 via-white to-white text-[#022C22] ${dmSans.variable} ${dmSerif.variable} font-sans py-24`}>
+      <div className={`min-h-screen bg-gradient-to-tr from-mist/30 via-white to-white text-ink ${dmSans.variable} ${dmSerif.variable} font-sans py-24`}>
         <div className="max-w-5xl mx-auto px-6">
           
           <header className="mb-16 text-center">
-            <span className="inline-flex items-center px-4 py-1.5 bg-[#ECFDF5] text-[#064E3B] border border-[#A7F3D0] text-[10px] font-bold uppercase tracking-[0.2em] rounded-full mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 bg-mist text-seal border border-mist text-[10px] font-bold uppercase tracking-[0.2em] rounded-full mb-4">
               Diagnostic Complete
             </span>
-            <h1 className="text-4xl md:text-5xl font-serif text-[#022C22] mb-4">Your Emotional Signature</h1>
-            <p className="text-base md:text-lg font-medium text-[#064E3B]/70">Based on the analytical processing of your 40 diagnostic matrices.</p>
+            <h1 className="text-4xl md:text-5xl font-serif text-ink mb-4">Your Emotional Signature</h1>
+            <p className="text-base md:text-lg font-medium text-seal/70">Based on the analytical processing of your 40 diagnostic matrices.</p>
           </header>
 
           {/* Top Level Metric */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="bg-white/70 backdrop-blur-xl p-10 rounded-3xl shadow-xl shadow-emerald-950/[0.03] border border-white/40 flex flex-col items-center justify-center text-center">
-               <div className="text-[6rem] font-serif leading-none tracking-tighter text-[#10B981] mb-2">{results.totalScore}</div>
-               <div className="text-xs font-bold uppercase tracking-widest text-[#064E3B]/50 mb-6">Aggregate EQ Score</div>
-               <div className="px-6 py-2 bg-[#ECFDF5] text-[#064E3B] border border-[#A7F3D0]/50 rounded-full text-xs font-bold tracking-wide">{results.tier}</div>
+               <div className="text-[6rem] font-serif leading-none tracking-tight text-verdant mb-2">{results.totalScore}</div>
+               <div className="text-xs font-bold uppercase tracking-widest text-seal/50 mb-6">Aggregate EQ Score</div>
+               <div className="px-6 py-2 bg-mist text-seal border border-mist/50 rounded-full text-xs font-bold tracking-wide">{results.tier}</div>
             </div>
 
-            <div className="bg-[#022C22] text-white p-10 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-[#10B981]/10 rounded-full blur-[80px]" />
+            <div className="bg-ink text-white p-10 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-verdant/10 rounded-full blur-[80px]" />
               <div className="relative z-10">
                 <div className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3">Primary Archetype</div>
                 <h2 className="text-4xl font-serif mb-4">{results.archetype.name}</h2>
                 <p className="text-base text-white/80 leading-relaxed font-normal mb-8">{results.archetype.essence}</p>
               </div>
               <div className="pt-6 border-t border-white/10 flex justify-between items-center text-xs font-bold relative z-10">
-                 <div><span className="text-[#10B981]">Power:</span> {results.archetype.power}</div>
-                 <div><span className="text-[#8EB69B]">Blind Spot:</span> {results.archetype.blindSpot}</div>
+                 <div><span className="text-verdant">Power:</span> {results.archetype.power}</div>
+                 <div><span className="text-verdant">Blind Spot:</span> {results.archetype.blindSpot}</div>
               </div>
             </div>
           </div>
@@ -314,15 +314,15 @@ export default function EQAssessment() {
               <div className="space-y-4">
                 {dims.map(d => (
                   <div key={d} className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#064E3B]/70">{d}</span>
+                    <span className="text-xs font-bold text-seal/70">{d}</span>
                     <div className="flex items-center gap-4">
-                      <div className="w-32 h-2 bg-[#ECFDF5] border border-[#A7F3D0]/30 rounded-full overflow-hidden">
+                      <div className="w-32 h-2 bg-mist border border-mist/30 rounded-full overflow-hidden">
                         <div 
-                          className="h-full rounded-full transition-all duration-1000 bg-[#10B981]"
+                          className="h-full rounded-full transition-all duration-1000 bg-verdant"
                           style={{ width: `${results.finalDimScores[d]}%` }}
                         />
                       </div>
-                      <span className="w-8 text-right font-bold text-sm text-[#022C22]">{results.finalDimScores[d]}</span>
+                      <span className="w-8 text-right font-bold text-sm text-ink">{results.finalDimScores[d]}</span>
                     </div>
                   </div>
                 ))}
@@ -331,20 +331,20 @@ export default function EQAssessment() {
           </div>
 
           {/* Growth Plan Layer */}
-          <div className="bg-[#ECFDF5]/80 backdrop-blur-xl p-10 rounded-[2rem] border border-[#A7F3D0]/30">
-             <h3 className="font-serif text-2xl text-[#022C22] mb-8">Personalized Execution Protocols</h3>
+          <div className="bg-mist/80 backdrop-blur-xl p-10 rounded-[2rem] border border-mist/30">
+             <h3 className="font-serif text-2xl text-ink mb-8">Personalized Execution Protocols</h3>
              <div className="grid md:grid-cols-2 gap-6">
                 {lowestDims.map(dim => {
                   const plan = GROWTH_PLANS[dim];
                   return (
                     <div key={dim} className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-sm border border-white/80">
-                       <span className="text-[10px] font-bold uppercase tracking-widest text-[#064E3B]/60 mb-2 block">{dim} Enhancement</span>
-                       <h4 className="text-lg font-bold text-[#022C22] mb-3">{plan.title}</h4>
-                       <p className="text-sm text-[#064E3B]/80 font-normal leading-relaxed mb-6">
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-seal/60 mb-2 block">{dim} Enhancement</span>
+                       <h4 className="text-lg font-bold text-ink mb-3">{plan.title}</h4>
+                       <p className="text-sm text-seal/80 font-normal leading-relaxed mb-6">
                          {plan.practice}
                        </p>
                        <div className="pt-4 border-t border-black/5 text-[10px] font-bold text-black/40">
-                         Recommended Reading: <span className="text-[#022C22] block mt-1 text-xs">{plan.book}</span>
+                         Recommended Reading: <span className="text-ink block mt-1 text-xs">{plan.book}</span>
                        </div>
                     </div>
                   )
@@ -359,19 +359,19 @@ export default function EQAssessment() {
 
   // Active Question Screen
   return (
-    <div className={`min-h-[100dvh] bg-[#faf9f7] text-[#1a1a2e] ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col pt-6 px-6`}>
+    <div className={`min-h-[100dvh] bg-canvas text-ink ${dmSans.variable} ${dmSerif.variable} font-sans flex flex-col pt-6 px-6`}>
        <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col relative justify-between">
           
           <header className="pt-2 pb-2 w-full shrink-0">
               <div className="flex items-center gap-2 mb-4">
                   <button onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))} disabled={currentIdx === 0} className="disabled:opacity-30">
-                      <ArrowLeft className="w-5 h-5 text-[#1a1a2e]" />
+                      <ArrowLeft className="w-5 h-5 text-ink" />
                   </button>
-                  <span className="text-lg font-bold text-[#1a1a2e]">Questionnaire</span>
+                  <span className="text-lg font-bold text-ink">Questionnaire</span>
               </div>
               <div className="flex items-center gap-4 w-full">
-                  <div className="h-[2px] bg-[#1DA756] w-1/4 rounded-full" />
-                  <span className="text-[10px] font-bold uppercase text-[#1DA756] tracking-[0.15em] whitespace-nowrap">
+                  <div className="h-[2px] bg-seal w-1/4 rounded-full" />
+                  <span className="text-[10px] font-bold uppercase text-seal tracking-[0.15em] whitespace-nowrap">
                       QUESTION {currentIdx + 1} OF {QUESTIONS.length}
                   </span>
                   <div className="h-[2px] bg-black/10 flex-1 rounded-full" />
@@ -402,8 +402,8 @@ export default function EQAssessment() {
                         onClick={() => handleSelect(opt.score)}
                         className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-all duration-200 border ${
                           isSelected 
-                            ? 'bg-[#163832] border-[#163832] text-white shadow-md' 
-                            : 'bg-white border-[#1a1a2e]/10 text-[#1a1a2e] hover:border-[#163832] hover:text-[#163832]'
+                            ? 'bg-seal border-seal text-white shadow-md' 
+                            : 'bg-white border-ink/10 text-ink hover:border-seal hover:text-seal'
                         }`}
                       >
                         {opt.text}
@@ -419,14 +419,14 @@ export default function EQAssessment() {
               <button 
                   onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))}
                   disabled={currentIdx === 0}
-                  className="text-[#1a1a2e]/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-[#1a1a2e] px-4 py-2 rounded-full transition-all disabled:opacity-0"
+                  className="text-ink/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-ink px-4 py-2 rounded-full transition-all disabled:opacity-0"
               >
                   <ArrowLeft className="w-3 h-3 mr-2" /> Back
               </button>
               <button 
                   onClick={handleNext}
                   disabled={answers[question.id] === undefined}
-                  className="bg-[#163832] text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-[#051F20] px-6 py-3 rounded-full transition-all disabled:opacity-30 shadow-xl"
+                  className="bg-seal text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-ink px-6 py-3 rounded-full transition-all disabled:opacity-30 shadow-xl"
               >
                   {currentIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
               </button>

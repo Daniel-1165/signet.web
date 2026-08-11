@@ -45,7 +45,7 @@ const VisionMission = () => {
                             
                             {/* Content Overlaid at Bottom */}
                             <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 flex flex-col items-start gap-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                <h2 className="text-white text-2xl md:text-3xl font-black uppercase tracking-tight italic">
+                                <h2 className="text-white text-2xl md:text-3xl font-semibold uppercase tracking-tight italic">
                                     {item.title}
                                 </h2>
                                 <p className="text-white/80 text-xs md:text-sm font-medium leading-relaxed max-w-sm">
@@ -53,7 +53,7 @@ const VisionMission = () => {
                                 </p>
                                 <Link 
                                     href={item.href} 
-                                    className="flex items-center gap-2 text-white text-[11px] font-black uppercase tracking-widest mt-4 group/link"
+                                    className="flex items-center gap-2 text-white text-[11px] font-semibold uppercase tracking-widest mt-4 group/link"
                                 >
                                     Read more <ArrowRight className="w-3 h-3 group-hover/link:translate-x-2 transition-transform" />
                                 </Link>
