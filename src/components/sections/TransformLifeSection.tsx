@@ -19,7 +19,7 @@ export default function TransformLifeSection() {
             <h2 className="h2 max-w-3xl">
               Transform your life,
               <br />
-              transform your <span className="display-accent text-seal">future</span>.
+              transform your <span className="text-seal">future</span>.
             </h2>
             <div className="rule mt-8" />
           </div>

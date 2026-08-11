@@ -91,7 +91,7 @@ export default async function ExercisesPage() {
             <input 
               type="text" 
               placeholder="Search curriculum..." 
-              className="pl-11 pr-5 py-2.5 bg-white rounded-full text-sm border border-rule focus:border-seal outline-none shadow-sm transition-all w-72 text-ink font-sans font-medium"
+              className="pl-11 pr-5 py-2.5 bg-white rounded-full text-sm border border-rule focus:border-seal outline-none shadow-sm transition w-72 text-ink font-sans font-medium"
             />
           </div>
           <div className="flex items-center gap-5">
@@ -115,9 +115,9 @@ export default async function ExercisesPage() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
           
           {/* Card 1: EQ Test (Large) */}
-          <div className="md:col-span-6 lg:col-span-4 bg-white rounded-[2.5rem] p-8 sm:p-10 border border-rule shadow-sm hover:shadow-xl hover:border-seal/30 transition-all duration-500 flex flex-col group relative">
+          <div className="md:col-span-6 lg:col-span-4 bg-white rounded-[2.5rem] p-8 sm:p-10 border border-rule shadow-sm hover:shadow-xl hover:border-seal/30 transition duration-500 flex flex-col group relative">
              <div className="flex items-center justify-between mb-8 sm:mb-10">
-                <div className="w-14 h-14 rounded-2xl bg-mist flex items-center justify-center text-seal group-hover:bg-seal group-hover:text-white transition-all duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-mist flex items-center justify-center text-seal group-hover:bg-seal group-hover:text-white transition-colors duration-300">
                    <Heart size={24} strokeWidth={1.5} />
                 </div>
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-seal/40">
@@ -137,16 +137,16 @@ export default async function ExercisesPage() {
                    <Clock size={14} className="text-seal" />
                    <span>20 Mins</span>
                 </div>
-                <Link href="/eq-test" className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-ink hover:text-seal transition-all group-hover:translate-x-1 font-sans">
+                <Link href="/eq-test" className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-ink hover:text-seal transition group-hover:translate-x-1 font-sans">
                    Initiate <ArrowRight size={16} />
                 </Link>
              </div>
           </div>
 
           {/* Card 2: IQ Test (Smallest) */}
-          <div className="md:col-span-6 lg:col-span-3 bg-white rounded-[2.1rem] p-6 sm:p-7 border border-rule shadow-sm hover:shadow-xl hover:border-seal/30 transition-all duration-500 flex flex-col group relative">
+          <div className="md:col-span-6 lg:col-span-3 bg-white rounded-[2.1rem] p-6 sm:p-7 border border-rule shadow-sm hover:shadow-xl hover:border-seal/30 transition duration-500 flex flex-col group relative">
              <div className="flex items-center justify-between mb-6 sm:mb-8">
-                <div className="w-11 h-11 rounded-xl bg-mist flex items-center justify-center text-seal group-hover:bg-seal group-hover:text-white transition-all duration-300">
+                <div className="w-11 h-11 rounded-xl bg-mist flex items-center justify-center text-seal group-hover:bg-seal group-hover:text-white transition-colors duration-300">
                    <Target size={20} strokeWidth={1.5} />
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-seal/40">
@@ -166,16 +166,16 @@ export default async function ExercisesPage() {
                    <Clock size={12} className="text-seal" />
                    <span>45 Mins</span>
                 </div>
-                <Link href="/iq-test" className="flex items-center gap-2 sm:gap-3 text-[11px] font-bold uppercase tracking-widest text-ink hover:text-seal transition-all group-hover:translate-x-1 font-sans">
+                <Link href="/iq-test" className="flex items-center gap-2 sm:gap-3 text-[11px] font-bold uppercase tracking-widest text-ink hover:text-seal transition group-hover:translate-x-1 font-sans">
                    Initiate <ArrowRight size={14} />
                 </Link>
              </div>
           </div>
 
           {/* Card 3: Vision Blueprint (Medium) */}
-          <div className="md:col-span-6 lg:col-span-3 bg-white rounded-[2.3rem] p-7 sm:p-8 border border-rule shadow-sm hover:shadow-xl hover:border-seal/30 transition-all duration-500 flex flex-col group relative">
+          <div className="md:col-span-6 lg:col-span-3 bg-white rounded-[2.3rem] p-7 sm:p-8 border border-rule shadow-sm hover:shadow-xl hover:border-seal/30 transition duration-500 flex flex-col group relative">
              <div className="flex items-center justify-between mb-7 sm:mb-9">
-                <div className="w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-2xl bg-mist flex items-center justify-center text-seal group-hover:bg-seal group-hover:text-white transition-all duration-300">
+                <div className="w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-2xl bg-mist flex items-center justify-center text-seal group-hover:bg-seal group-hover:text-white transition-colors duration-300">
                    <Eye size={22} strokeWidth={1.5} />
                 </div>
                 <span className="text-[10.5px] font-bold uppercase tracking-[0.2em] text-seal/40">
@@ -195,16 +195,16 @@ export default async function ExercisesPage() {
                    <Clock size={13} className="text-seal" />
                    <span>Guided</span>
                 </div>
-                <Link href="/vision-guide" className="flex items-center gap-2 sm:gap-3 text-[11.5px] font-bold uppercase tracking-widest text-ink hover:text-seal transition-all group-hover:translate-x-1 font-sans">
+                <Link href="/vision-guide" className="flex items-center gap-2 sm:gap-3 text-[11.5px] font-bold uppercase tracking-widest text-ink hover:text-seal transition group-hover:translate-x-1 font-sans">
                    Initiate <ArrowRight size={15} />
                 </Link>
              </div>
           </div>
 
           {/* Card 4: Certificates (Compact & Green Brand Background) */}
-          <div className="md:col-span-6 lg:col-span-2 bg-seal hover:bg-seal rounded-[2rem] p-5 sm:p-6 shadow-md hover:shadow-xl transition-all duration-500 flex flex-col group relative text-white">
+          <div className="md:col-span-6 lg:col-span-2 bg-seal hover:bg-seal rounded-[2rem] p-5 sm:p-6 shadow-md hover:shadow-xl transition duration-500 flex flex-col group relative text-white">
              <div className="flex items-center justify-between mb-6 sm:mb-8">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white group-hover:bg-white group-hover:text-seal transition-all duration-300">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white group-hover:bg-white group-hover:text-seal transition-colors duration-300">
                    <Award size={18} strokeWidth={1.5} />
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/45">
@@ -226,7 +226,7 @@ export default async function ExercisesPage() {
                 </div>
                 <Link 
                   href="/certificates" 
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 hover:border-white/50 hover:bg-white/10 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all font-sans"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 hover:border-white/50 hover:bg-white/10 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-colors font-sans"
                 >
                   <span>Initiate</span>
                   <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />

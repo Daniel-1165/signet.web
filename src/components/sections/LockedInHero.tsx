@@ -103,12 +103,12 @@ const LockedInHero = () => {
                     className="mt-12 flex flex-col sm:flex-row items-center gap-4 w-full"
                 >
                     <Link href="/join" className="group w-full sm:flex-1">
-                        <MagneticButton className="w-full h-14 bg-seal text-white font-bold rounded-2xl shadow-lg shadow-seal/30 flex items-center justify-center gap-2 hover:bg-seal/90 transition-all border border-white/10">
+                        <MagneticButton className="w-full h-14 bg-seal text-white font-bold rounded-2xl shadow-lg shadow-seal/30 flex items-center justify-center gap-2 hover:bg-seal/90 transition border border-white/10">
                             Join Network <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </MagneticButton>
                     </Link>
                     <Link href="/features" className="w-full sm:flex-1">
-                        <MagneticButton className="w-full h-14 bg-white/10 text-white font-bold rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all">
+                        <MagneticButton className="w-full h-14 bg-white/10 text-white font-bold rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors">
                             Explore
                         </MagneticButton>
                     </Link>

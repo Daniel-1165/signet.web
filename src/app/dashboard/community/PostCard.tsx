@@ -235,7 +235,7 @@ export function PostCard({
               <textarea
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
-                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-[15px] font-medium text-gray-900 outline-none focus:border-seal transition-all min-h-[100px] resize-none"
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-[15px] font-medium text-gray-900 outline-none focus:border-seal transition-colors min-h-[100px] resize-none"
                 placeholder="Update your thoughts..."
                 autoFocus
               />
@@ -249,7 +249,7 @@ export function PostCard({
                 <button 
                   onClick={handleUpdate}
                   disabled={isUpdating || !editContent.trim()}
-                  className="px-4 py-1.5 bg-seal text-white rounded-full text-[13px] font-bold hover:bg-seal transition-all disabled:opacity-50"
+                  className="px-4 py-1.5 bg-seal text-white rounded-full text-[13px] font-bold hover:bg-seal transition disabled:opacity-50"
                 >
                   {isUpdating ? "Saving..." : "Save"}
                 </button>

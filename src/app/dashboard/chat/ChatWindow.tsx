@@ -161,10 +161,10 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button className="p-2.5 rounded-xl bg-white/5 text-white/40 hover:text-verdant hover:bg-verdant/10 transition-all border border-transparent hover:border-verdant/20">
+          <button className="p-2.5 rounded-xl bg-white/5 text-white/40 hover:text-verdant hover:bg-verdant/10 transition-colors border border-transparent hover:border-verdant/20">
             <NotificationIcon size={18} />
           </button>
-          <button className="p-2.5 rounded-xl bg-white/5 text-white/40 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10">
+          <button className="p-2.5 rounded-xl bg-white/5 text-white/40 hover:text-white hover:bg-white/10 transition-colors border border-transparent hover:border-white/10">
             <Filter size={18} strokeWidth={2.5} />
           </button>
         </div>
@@ -234,14 +234,14 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                         >
                           <button 
                             onClick={() => copyMessage(msg.content)}
-                            className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
+                            className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-colors"
                           >
                             <Copy size={14} /> Copy
                           </button>
                           {msg.user_id === user?.id && (
                             <button 
                               onClick={() => startEditing(msg)}
-                              className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
+                              className="w-full px-4 py-2 text-left text-[11px] font-bold text-white/60 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-colors"
                             >
                               <Edit2 size={14} /> Edit
                             </button>
@@ -249,7 +249,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                           {(msg.user_id === user?.id || isAdmin) && (
                             <button 
                               onClick={() => deleteMessage(msg.id)}
-                              className="w-full px-4 py-2 text-left text-[11px] font-bold text-red-400/60 hover:text-red-400 hover:bg-red-400/5 flex items-center gap-2 transition-all"
+                              className="w-full px-4 py-2 text-left text-[11px] font-bold text-red-400/60 hover:text-red-400 hover:bg-red-400/5 flex items-center gap-2 transition-colors"
                             >
                               <Trash2 size={14} /> Delete
                             </button>
@@ -262,7 +262,7 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
                 
                 {/* Reactions Placeholder */}
                 {!editingId && (
-                  <div className={`absolute -bottom-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all ${msg.user_id === user?.id ? 'right-4' : 'left-4'}`}>
+                  <div className={`absolute -bottom-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity ${msg.user_id === user?.id ? 'right-4' : 'left-4'}`}>
                     <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-ink border border-white/10 text-[10px] font-bold text-white/40 hover:text-verdant transition-colors">
                         <LikeIcon size={12} />
                         <span>0</span>
@@ -287,11 +287,11 @@ export default function ChatWindow({ roomId }: { roomId: string }) {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Share an insight with the collective..."
-            className="w-full h-16 bg-ink border border-white/5 rounded-2xl px-8 pr-16 focus:outline-none focus:border-verdant/40 text-sm tracking-wide transition-all placeholder:text-white/10"
+            className="w-full h-16 bg-ink border border-white/5 rounded-2xl px-8 pr-16 focus:outline-none focus:border-verdant/40 text-sm tracking-wide transition-colors placeholder:text-white/10"
           />
           <button 
             type="submit"
-            className="absolute right-3 top-3 w-10 h-10 bg-verdant text-ink rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-verdant/20"
+            className="absolute right-3 top-3 w-10 h-10 bg-verdant text-ink rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-lg shadow-verdant/20"
           >
             <TransmissionIcon size={18} />
           </button>

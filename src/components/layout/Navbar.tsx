@@ -203,7 +203,7 @@ const Navbar = () => {
                       href={item.href}
                       onClick={() => setIsSidebarOpen(false)}
                       aria-current={isActive ? "page" : undefined}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-semibold text-sm tracking-tight transition-all ${
+                      className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-semibold text-sm tracking-tight transition-colors ${
                         isActive ? "bg-mist text-seal" : "text-ink hover:bg-mist/50"
                       }`}
                     >
@@ -268,18 +268,18 @@ const Navbar = () => {
           Left switched off deliberately (turning it on would overlap the
           rail), but restyled so it is on-brand if it is ever brought back. */}
       <nav
-        className={`hidden fixed z-[50] w-full transition-all duration-500 top-0 py-[21px] ${
+        className={`hidden fixed z-[50] w-full transition-colors duration-500 top-0 py-[21px] ${
           isScrolled ? "bg-canvas/85 backdrop-blur-2xl border-b border-rule py-[15px]" : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-10 lg:px-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-all">
+          <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
             <div className="h-8 flex-shrink-0 flex items-center">
               <img 
                 src="/signet-brand-logo.svg" 
                 alt="Signet Logo" 
-                className={`h-7 w-auto object-contain transition-all duration-300 ${isLightText && !isScrolled ? "brightness-[10]" : ""}`}
+                className={`h-7 w-auto object-contain transition-colors duration-300 ${isLightText && !isScrolled ? "brightness-[10]" : ""}`}
               />
             </div>
           </Link>
@@ -290,7 +290,7 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-semibold tracking-wide transition-all relative py-2 ${
+                className={`text-sm font-semibold tracking-wide transition-colors relative py-2 ${
                   isLightText && !isScrolled
                     ? "text-canvas/80 hover:text-canvas"
                     : "text-ink/70 hover:text-seal"
@@ -310,7 +310,7 @@ const Navbar = () => {
                   {isAdmin && (
                     <Link
                       href="/dashboard/admin"
-                      className="h-9 px-4 flex items-center justify-center bg-wax/10 text-wax border border-wax/25 rounded-full font-mono font-medium text-[10px] uppercase tracking-[0.14em] hover:bg-wax hover:text-canvas transition-all"
+                      className="h-9 px-4 flex items-center justify-center bg-wax/10 text-wax border border-wax/25 rounded-full font-mono font-medium text-[10px] uppercase tracking-[0.14em] hover:bg-wax hover:text-canvas transition-colors"
                     >
                       Admin
                     </Link>

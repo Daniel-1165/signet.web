@@ -76,7 +76,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
             <span className="eyebrow mb-4">Community</span>
             <h2 className="h2 max-w-lg">
               Real stories from our{" "}
-              <span className="display-accent text-seal">network</span>.
+              <span className="text-seal">network</span>.
             </h2>
           </motion.div>
         </div>
@@ -122,7 +122,7 @@ export default function TestimonialsClient({ testimonials }: Props) {
                     transition={{ duration: 0.8, delay: i * 0.1 }}
                     className="flex-none w-[310px] sm:w-[360px] md:w-[460px]"
                   >
-                    <div className="h-full flex flex-col gap-5 transition-all duration-500 hover:-translate-y-1 relative min-h-[320px] px-4 py-6">
+                    <div className="h-full flex flex-col gap-5 transition-transform duration-500 hover:-translate-y-1 relative min-h-[320px] px-4 py-6">
                       {/* Decorative Quote Mark - Hide if image card exists */}
                       {!t.testimonialImage && (
                         <div className="absolute top-[-10px] right-[-5px] text-[110px] font-display italic text-ink/[0.05] pointer-events-none leading-none">

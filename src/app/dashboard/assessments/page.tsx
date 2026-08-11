@@ -52,9 +52,9 @@ export default function DashboardAssessmentsPage() {
       {/* Protocol Modules */}
       <div className="grid md:grid-cols-2 gap-8">
         {assessments.map((test, i) => (
-          <div key={i} className="group bg-white rounded-[2.5rem] p-12 border border-rule/40 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:border-ink/30 hover:shadow-2xl transition-all duration-700 flex flex-col min-h-[420px]">
+          <div key={i} className="group bg-white rounded-[2.5rem] p-12 border border-rule/40 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:border-ink/30 hover:shadow-2xl transition duration-700 flex flex-col min-h-[420px]">
             <div className="flex justify-between items-start mb-12">
-               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${test.color} shadow-sm group-hover:bg-ink group-hover:text-white transition-all`}>
+               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${test.color} shadow-sm group-hover:bg-ink group-hover:text-white transition`}>
                   <test.icon size={28} />
                </div>
                <div className="px-4 py-1.5 rounded-full bg-ink/5 border border-ink/10 text-[10px] font-bold uppercase tracking-widest text-ink">
@@ -75,7 +75,7 @@ export default function DashboardAssessmentsPage() {
                
                <div className="pt-10 mt-auto flex items-center justify-between border-t border-rule/20">
                   <span className="text-[11px] font-bold uppercase tracking-widest text-mist/75">Calibrated Status: ---</span>
-                  <button className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-ink text-white text-[12px] font-bold uppercase tracking-widest hover:bg-ink hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-[0_10px_25px_rgba(110,122,103,0.3)]">
+                  <button className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-ink text-white text-[12px] font-bold uppercase tracking-widest hover:bg-ink hover:-translate-y-0.5 transition shadow-lg hover:shadow-[0_10px_25px_rgba(110,122,103,0.3)]">
                      Begin Protocol <ArrowRight size={14} />
                   </button>
                </div>

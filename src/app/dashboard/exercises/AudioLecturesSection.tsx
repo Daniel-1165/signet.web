@@ -34,7 +34,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
             <div 
               key={lecture._id}
               onClick={() => handleLectureClick(lecture)}
-              className="bg-white rounded-[2rem] p-6 border border-rule hover:shadow-xl hover:border-seal/30 transition-all duration-300 group cursor-pointer flex gap-5 items-center"
+              className="bg-white rounded-[2rem] p-6 border border-rule hover:shadow-xl hover:border-seal/30 transition duration-300 group cursor-pointer flex gap-5 items-center"
             >
               <div className="w-20 h-20 rounded-2xl overflow-hidden relative shrink-0 shadow-md">
                 <img 
@@ -192,7 +192,7 @@ export function AudioLecturesSection({ lectures = [] }: { lectures: AudioLecture
                            <SkipBack size={32} className="text-white/60 hover:text-white cursor-pointer transition-colors" />
                            <button 
                              onClick={() => setIsPlaying(!isPlaying)}
-                             className="w-20 h-20 rounded-full bg-white text-ink flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-[0_20px_40px_rgba(255,255,255,0.08)]"
+                             className="w-20 h-20 rounded-full bg-white text-ink flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-[0_20px_40px_rgba(255,255,255,0.08)]"
                            >
                              {isPlaying ? <Pause size={32} className="fill-current" /> : <Play size={32} className="fill-current ml-1" />}
                            </button>

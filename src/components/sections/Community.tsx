@@ -150,7 +150,7 @@ const Community = () => {
                                     return (
                                         <button
                                             key={item.label}
-                                            className={`h-12 w-12 flex items-center justify-center rounded-full transition-all duration-200 ${
+                                            className={`h-12 w-12 flex items-center justify-center rounded-full transition-colors duration-200 ${
                                                 item.active 
                                                     ? "text-foreground bg-black/[0.04]" 
                                                     : "text-foreground/40 hover:bg-black/[0.03] hover:text-foreground/70"
@@ -165,7 +165,7 @@ const Community = () => {
 
                             {/* Profile Avatar at bottom */}
                             <div className="mt-auto mb-3">
-                                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-signet-green to-emerald-700 flex items-center justify-center text-[11px] font-bold text-white cursor-pointer hover:ring-2 hover:ring-signet-green/20 transition-all">
+                                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-signet-green to-emerald-700 flex items-center justify-center text-[11px] font-bold text-white cursor-pointer hover:ring-2 hover:ring-signet-green/20 transition-colors">
                                     DS
                                 </div>
                             </div>
@@ -344,7 +344,7 @@ const Community = () => {
                         <div className="hidden lg:flex flex-col h-full overflow-y-auto">
                             {/* Search */}
                             <div className="p-3 sticky top-0 bg-white z-10">
-                                <div className="flex items-center gap-3 bg-canvas rounded-full px-4 py-2.5 focus-within:bg-white focus-within:ring-2 focus-within:ring-signet-green/30 focus-within:border-signet-green transition-all border border-transparent">
+                                <div className="flex items-center gap-3 bg-canvas rounded-full px-4 py-2.5 focus-within:bg-white focus-within:ring-2 focus-within:ring-signet-green/30 focus-within:border-signet-green transition-colors border border-transparent">
                                     <Search className="h-4 w-4 text-foreground/30 shrink-0" />
                                     <input 
                                         type="text"

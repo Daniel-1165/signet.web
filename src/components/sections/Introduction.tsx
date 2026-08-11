@@ -39,7 +39,7 @@ export default function Introduction() {
           </div>
 
           {/* Mobile Image just below SIGNET text with Learn More button and Logo on top of it */}
-          <div className="relative w-full aspect-[4/3] rounded-[var(--radius-seal)] overflow-hidden border border-rule bg-mist/30">
+          <div className="relative w-full aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden border border-rule bg-mist/30">
             <img 
               src="/about_us_mobile.jpg" 
               alt="Silent Growth Network Mentorship" 
@@ -71,7 +71,7 @@ export default function Introduction() {
             </p>
             <p>
               With a special interest in young people, we believe in{" "}
-              <span className="display-accent text-seal">noiseless organic growth</span> — which
+              <span className="text-seal">noiseless organic growth</span> — which
               translates to results that are loud and sustainable.
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function Introduction() {
             </p>
             <p className="mb-6">
               With a special interest in young people, we believe in{" "}
-              <span className="display-accent text-seal">noiseless organic growth</span> — which
+              <span className="text-seal">noiseless organic growth</span> — which
               translates to results that are loud and sustainable.
             </p>
 

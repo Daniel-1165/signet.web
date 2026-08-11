@@ -163,7 +163,7 @@ export default function FeaturesPreview() {
             transition={{ delay: 0.4 }}
           >
             <Link href="/features">
-              <button className="h-16 px-10 rounded-2xl bg-ink text-white font-semibold tracking-[0.2em] uppercase text-xs flex items-center gap-4 hover:bg-accent transition-all shadow-2xl shadow-black/10 group">
+              <button className="h-16 px-10 rounded-2xl bg-ink text-white font-semibold tracking-[0.2em] uppercase text-xs flex items-center gap-4 hover:bg-accent transition shadow-2xl shadow-black/10 group">
                   Explore Full Curriculum 
                   <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
@@ -182,7 +182,7 @@ export default function FeaturesPreview() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: item.delay }}
-                            className={`flex-none w-[200px] md:w-[240px] ${item.height} p-8 rounded-[2.5rem] ${item.bgColor} border border-white/10 flex flex-col items-start gap-4 hover:shadow-2xl hover:shadow-black/10 transition-all duration-500 hover:-translate-y-2 relative group overflow-hidden shadow-lg`}
+                            className={`flex-none w-[200px] md:w-[240px] ${item.height} p-8 rounded-[2.5rem] ${item.bgColor} border border-white/10 flex flex-col items-start gap-4 hover:shadow-2xl hover:shadow-black/10 transition duration-500 hover:-translate-y-2 relative group overflow-hidden shadow-lg`}
                         >
                             {/* Inner ambient glow */}
                             <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 transition-transform duration-700 group-hover:scale-150" />

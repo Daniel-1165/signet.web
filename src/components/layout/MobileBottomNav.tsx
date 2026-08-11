@@ -99,7 +99,7 @@ export default function MobileBottomNav() {
                 aria-current={isActive ? 'page' : undefined}
                 className="flex flex-col items-center justify-center w-1/5 h-full pt-1 gap-1 group relative px-0.5"
               >
-                <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-seal text-canvas' : 'bg-transparent text-ink/45'}`}>
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-300 ${isActive ? 'bg-seal text-canvas' : 'bg-transparent text-ink/45'}`}>
                   <item.icon
                     size={18}
                     strokeWidth={isActive ? 2 : 1.5}

@@ -63,7 +63,7 @@ export default function ProgramStructure() {
         <div className="mb-12 md:mb-16">
           <span className="eyebrow mb-5">Program Overview</span>
           <h2 className="h2">
-            Program <span className="display-accent text-seal">structure</span>
+            Program <span className="text-seal">structure</span>
           </h2>
         </div>
 

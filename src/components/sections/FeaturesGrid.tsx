@@ -39,7 +39,7 @@ const FeaturesGrid = () => {
 
                 {/* Row 1: Three equal columns */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <motion.div custom={0} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl border border-black/[0.05] bg-white p-6 md:p-8 hover:shadow-xl hover:shadow-black/5 transition-all duration-300">
+                    <motion.div custom={0} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl border border-black/[0.05] bg-white p-6 md:p-8 hover:shadow-xl hover:shadow-black/5 transition duration-300">
                         <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.03] text-foreground mb-6 transition-transform group-hover:scale-110">
                             <Target className="h-5 w-5" />
                         </div>
@@ -47,7 +47,7 @@ const FeaturesGrid = () => {
                         <p className="text-foreground/60 text-sm leading-relaxed">Cultivate unbroken attention in an evergreen environment designed strictly for high-yield execution.</p>
                     </motion.div>
 
-                    <motion.div custom={1} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl border border-black/[0.05] bg-white p-6 md:p-8 hover:shadow-xl hover:shadow-black/5 transition-all duration-300">
+                    <motion.div custom={1} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl border border-black/[0.05] bg-white p-6 md:p-8 hover:shadow-xl hover:shadow-black/5 transition duration-300">
                         <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-seal/10 text-seal mb-6 transition-transform group-hover:scale-110">
                             <TrendingUp className="h-5 w-5" />
                         </div>
@@ -55,7 +55,7 @@ const FeaturesGrid = () => {
                         <p className="text-foreground/60 text-sm leading-relaxed">Compound interest in your skills, mindset, and execution every single day without burnout.</p>
                     </motion.div>
 
-                    <motion.div custom={2} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl bg-ink p-6 md:p-8 shadow-xl shadow-black/10 transition-all duration-300 relative overflow-hidden">
+                    <motion.div custom={2} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="group rounded-3xl bg-ink p-6 md:p-8 shadow-xl shadow-black/10 transition duration-300 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-seal/10 blur-2xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
                         <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white mb-6 border border-white/5 transition-transform group-hover:scale-110 relative z-10">
                             <ShieldCheck className="h-5 w-5" />

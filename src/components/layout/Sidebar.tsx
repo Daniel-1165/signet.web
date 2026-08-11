@@ -75,7 +75,7 @@ export default function Sidebar() {
             <img 
               src="/signet-brand-logo.svg" 
               alt="Signet Logo" 
-              className={`h-10 w-auto object-contain transition-all duration-300 ${!isExpanded ? "scale-75 -ml-1" : ""}`}
+              className={`h-10 w-auto object-contain transition-colors duration-300 ${!isExpanded ? "scale-75 -ml-1" : ""}`}
             />
           </Link>
         </div>
@@ -94,7 +94,7 @@ export default function Sidebar() {
                 // accessible name that survives the label being unmounted.
                 title={item.name}
                 aria-label={item.name}
-                className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 relative ${
+                className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-300 relative ${
                   isActive
                     ? "bg-seal text-canvas"
                     : "text-ink/50 hover:text-ink hover:bg-mist/50"
@@ -134,7 +134,7 @@ export default function Sidebar() {
             <button
               aria-label="Sign out"
               title="Sign out"
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#9B3A2F]/70 hover:text-[#9B3A2F] hover:bg-[#9B3A2F]/[0.06] transition-all"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#9B3A2F]/70 hover:text-[#9B3A2F] hover:bg-[#9B3A2F]/[0.06] transition-colors"
             >
               <LogOut className="w-5 h-5 shrink-0 stroke-[1.8px]" />
               <AnimatePresence initial={false}>

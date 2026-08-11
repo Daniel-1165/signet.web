@@ -259,7 +259,7 @@ export default function IQTestPage() {
                     </div>
                     <button
                         onClick={startAssessment}
-                        className="group flex items-center justify-center gap-3 bg-seal text-white px-8 py-3 rounded-full font-bold text-base tracking-tight transition-all hover:bg-accent hover:text-ink hover:scale-105 shadow-[0_8px_30px_rgba(16,129,114,0.3)]"
+                        className="group flex items-center justify-center gap-3 bg-seal text-white px-8 py-3 rounded-full font-bold text-base tracking-tight transition hover:bg-accent hover:text-ink hover:scale-105 shadow-[0_8px_30px_rgba(16,129,114,0.3)]"
                     >
                         Begin Process <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </button>
@@ -321,7 +321,7 @@ export default function IQTestPage() {
                     <div className="flex justify-center pt-12">
                         <button
                             onClick={() => window.location.reload()}
-                            className="group flex items-center justify-center gap-3 bg-ink hover:bg-seal text-white px-8 py-3 rounded-full text-xs tracking-[0.2em] font-bold uppercase transition-all shadow-xl hover:scale-105"
+                            className="group flex items-center justify-center gap-3 bg-ink hover:bg-seal text-white px-8 py-3 rounded-full text-xs tracking-[0.2em] font-bold uppercase transition shadow-xl hover:scale-105"
                         >
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" /> Re-evaluate
                         </button>
@@ -383,7 +383,7 @@ export default function IQTestPage() {
                                     <button
                                         key={i}
                                         onClick={() => handleSelect(i)}
-                                        className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-all duration-200 border ${userAns[question.id] === i
+                                        className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-colors duration-200 border ${userAns[question.id] === i
                                                 ? 'bg-seal border-seal text-white shadow-md'
                                                 : 'bg-white border-black/10 text-black hover:border-accent hover:text-black'
                                             }`}
@@ -400,14 +400,14 @@ export default function IQTestPage() {
                     <button
                         onClick={() => setCurIdx(Math.max(0, curIdx - 1))}
                         disabled={curIdx === 0}
-                        className="text-black/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-black px-4 py-2 rounded-full transition-all disabled:opacity-0 pointer-events-auto"
+                        className="text-black/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-black px-4 py-2 rounded-full transition disabled:opacity-0 pointer-events-auto"
                     >
                         <ArrowLeft className="w-3 h-3 mr-2" /> Previous
                     </button>
                     <button
                         onClick={handleNext}
                         disabled={userAns[question.id] === undefined}
-                        className="bg-seal text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-ink px-6 py-3 rounded-full transition-all disabled:opacity-30 pointer-events-auto shadow-xl"
+                        className="bg-seal text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-ink px-6 py-3 rounded-full transition disabled:opacity-30 pointer-events-auto shadow-xl"
                     >
                         {curIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
                     </button>

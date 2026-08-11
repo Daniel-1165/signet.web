@@ -8,7 +8,7 @@ export default function CommunityBanner() {
   const { isSignedIn, isLoaded } = useUser();
 
   const buttonContent = (
-    <span className="group/btn inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full border border-verdant/30 hover:border-verdant text-canvas font-semibold text-xs sm:text-sm hover:bg-verdant/10 transition-all cursor-pointer whitespace-nowrap">
+    <span className="group/btn inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full border border-verdant/30 hover:border-verdant text-canvas font-semibold text-xs sm:text-sm hover:bg-verdant/10 transition-colors cursor-pointer whitespace-nowrap">
       <span>Join the community</span>
       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300 motion-reduce:transition-none" />
     </span>
@@ -24,7 +24,7 @@ export default function CommunityBanner() {
           <span className="eyebrow eyebrow-on-ink mb-4">Community</span>
           <h3 className="font-display text-xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.025em] leading-[1.15] text-canvas max-w-2xl">
             Real stories from our{" "}
-            <span className="display-accent text-verdant">community</span>.
+            <span className="text-verdant">community</span>.
           </h3>
         </div>
 

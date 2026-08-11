@@ -63,7 +63,7 @@ export default function CommunityHubPage() {
 
         {/* Connect Tab */}
         <div className="border-b border-rule flex">
-          <button className="text-seal font-bold text-[15px] pb-3 px-4 border-b-2 border-seal focus:outline-none transition-all">
+          <button className="text-seal font-bold text-[15px] pb-3 px-4 border-b-2 border-seal focus:outline-none transition-colors">
             Connect
           </button>
         </div>

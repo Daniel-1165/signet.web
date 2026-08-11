@@ -54,7 +54,7 @@ const ProcessStep = ({ step, i }: any) => {
                 
                 <div className="flex-1 pt-2">
                     <span className="text-[10px] font-bold uppercase tracking-widest text-terra-soil/40 mb-2 block">{step.tag}</span>
-                    <h3 className="mb-6 text-3xl font-medium tracking-tight text-foreground transition-all duration-500 group-hover:text-solar-gold">
+                    <h3 className="mb-6 text-3xl font-medium tracking-tight text-foreground transition-colors duration-500 group-hover:text-solar-gold">
                         {step.title}
                     </h3>
                     <p className="text-foreground/50 leading-relaxed font-normal text-base max-w-sm">

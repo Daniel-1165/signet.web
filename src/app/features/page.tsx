@@ -141,7 +141,7 @@ export default async function FeaturesPage() {
                             href={item.href}
                             target={item.href.startsWith("http") ? "_blank" : undefined}
                             rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className={`w-12 h-12 rounded-full flex items-center justify-center transition-all shadow-sm ${item.color}`}
+                            className={`w-12 h-12 rounded-full flex items-center justify-center transition-shadow shadow-sm ${item.color}`}
                             aria-label={item.label}
                         >
                             <item.icon size={18} />
@@ -175,7 +175,7 @@ export default async function FeaturesPage() {
                         "Effective Communication skills",
                         "Conflict Resolution: How to resolve ANY conflict"
                     ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-5 py-3 border-b border-rule group hover:border-seal/30 transition-all">
+                        <div key={i} className="flex items-center gap-5 py-3 border-b border-rule group hover:border-seal/30 transition-colors">
                             <span className="text-[14px] font-bold text-seal/40 group-hover:text-seal transition-colors">{i + 1})</span>
                             <p className="text-[16px] md:text-[17px] font-semibold text-ink group-hover:translate-x-2 transition-transform duration-500" >{item}</p>
                         </div>
@@ -264,7 +264,7 @@ export default async function FeaturesPage() {
                         </div>
                     </div>
 
-                    <Link href="/join" className="group flex items-center justify-center gap-3 w-full h-14 rounded-full bg-seal text-white font-bold text-[13px] uppercase tracking-widest hover:bg-seal transition-all shadow-md shadow-seal/20">
+                    <Link href="/join" className="group flex items-center justify-center gap-3 w-full h-14 rounded-full bg-seal text-white font-bold text-[13px] uppercase tracking-widest hover:bg-seal transition shadow-md shadow-seal/20">
                         <span className="flex items-center">Apply for Next Cohort</span> <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                     </Link>
                 </div>

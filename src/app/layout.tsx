@@ -11,6 +11,9 @@ import LayoutWrapper from "@/components/layout/LayoutWrapper";
 export const metadata: Metadata = {
   title: "SIGNET | Silent Growth Network",
   description: "A global network of trailblazers who model and replicate excellence in diverse spheres.",
+  // Tints the mobile browser chrome to match the page rather than leaving it
+  // default grey.
+  themeColor: "#FBFAF7",
 };
 
 export default function RootLayout({

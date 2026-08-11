@@ -62,7 +62,7 @@ export default function SealMark({
           fill={stroke}
           fillOpacity="0.55"
           style={{
-            fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+            fontFamily: "'Outfit', ui-sans-serif, system-ui, sans-serif",
             fontSize: "11px",
             letterSpacing: "0.32em",
             fontWeight: 500,

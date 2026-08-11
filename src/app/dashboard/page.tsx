@@ -13,7 +13,6 @@ import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
 import Footer from "@/components/layout/Footer";
 import PillarsGrid from "@/components/sections/PillarsGrid";
-import SealMark from "@/components/brand/SealMark";
 
 export default async function DashboardPage() {
   const user = await currentUser();
@@ -58,7 +57,7 @@ export default async function DashboardPage() {
       <header className="hidden md:flex items-center justify-between page-container py-8 border-b border-rule mb-8">
         <div>
            <h1 className="font-display text-3xl font-semibold tracking-[-0.025em] text-ink">
-             Welcome back, <span className="display-accent text-seal">{user.firstName}</span>.
+             Welcome back, <span className="text-seal">{user.firstName}</span>.
            </h1>
            <p className="text-sm text-ink/60 mt-1.5">Your intentional growth continues today.</p>
         </div>
@@ -69,7 +68,7 @@ export default async function DashboardPage() {
               type="text"
               aria-label="Search conversations"
               placeholder="Search conversations…"
-              className="pl-11 pr-5 py-2.5 bg-surface rounded-full text-sm border border-rule focus:border-seal outline-none transition-all w-72 text-ink"
+              className="pl-11 pr-5 py-2.5 bg-surface rounded-full text-sm border border-rule focus:border-seal outline-none transition-colors w-72 text-ink"
             />
           </div>
           <div className="flex items-center gap-5">
@@ -95,17 +94,13 @@ export default async function DashboardPage() {
             <span className="eyebrow eyebrow-on-ink mb-6">Silent Growth Network</span>
             <h2 className="h1 text-canvas mb-8 max-w-4xl">
               Become intentional about{" "}
-              <span className="display-accent text-verdant">growth</span>
+              <span className="text-verdant">growth</span>
               <br className="hidden md:block" /> and development.
             </h2>
             <Link href="/dashboard/community" className="flex items-center gap-3 group/btn text-canvas w-fit">
-               <span className="text-sm font-semibold border-b border-verdant/50 group-hover/btn:border-verdant pb-1 transition-all">Join the community</span>
+               <span className="text-sm font-semibold border-b border-verdant/50 group-hover/btn:border-verdant pb-1 transition-colors">Join the community</span>
                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:translate-x-1.5 transition-transform motion-reduce:transition-none" />
             </Link>
-          </div>
-
-          <div className="absolute bottom-8 right-8 hidden lg:block opacity-60">
-            <SealMark size={112} tone="canvas" />
           </div>
         </section>
 
@@ -115,12 +110,12 @@ export default async function DashboardPage() {
           {/* Mirrors the public Vision/Mission pair: one pressed into the
               paper, one struck in ink. Same idea, same treatment, so the
               dashboard reads as the same brand rather than a separate app. */}
-          <div className="card-press md:p-12 relative">
+          <div className="card md:p-12 relative">
             <Eye className="absolute top-6 right-6 md:top-12 md:right-12 w-5 h-5 text-ink/20" />
             <span className="eyebrow mb-5">The Vision</span>
             <p className="font-display text-xl md:text-[28px] font-semibold text-ink leading-[1.3] tracking-[-0.02em]">
               To build a global network of trailblazers who{" "}
-              <span className="display-accent text-seal">model and replicate excellence</span> in
+              <span className="text-seal">model and replicate excellence</span> in
               diverse spheres.
             </p>
           </div>
@@ -129,7 +124,7 @@ export default async function DashboardPage() {
             <span className="eyebrow eyebrow-on-ink mb-5">The Mission</span>
             <p className="font-display text-lg md:text-2xl text-canvas leading-[1.35]">
               Ordinary persons achieving{" "}
-              <span className="display-accent text-verdant">extraordinary results</span> — silently
+              <span className="text-verdant">extraordinary results</span> — silently
               and sustainably.
             </p>
           </div>
@@ -140,7 +135,7 @@ export default async function DashboardPage() {
            <div className="text-center max-w-2xl mx-auto flex flex-col items-center">
               <span className="eyebrow mb-5">Methodology</span>
               <h3 className="h2">
-                Growth <span className="display-accent text-seal">architecture</span>
+                Growth <span className="text-seal">architecture</span>
               </h3>
               <p className="lede mt-4">The pillars of the SIGNET methodology.</p>
            </div>

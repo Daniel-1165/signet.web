@@ -116,7 +116,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                 placeholder="Search resources, books, topics..." 
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-gray-100 rounded-full text-[14px] border border-transparent focus:bg-white focus:border-seal outline-none transition-all text-gray-900 font-medium placeholder-gray-400 shadow-inner"
+                className="w-full pl-10 pr-4 py-2.5 bg-gray-100 rounded-full text-[14px] border border-transparent focus:bg-white focus:border-seal outline-none transition text-gray-900 font-medium placeholder-gray-400 shadow-inner"
               />
             </div>
             
@@ -193,14 +193,14 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => featured.fileUrl && window.open(featured.fileUrl, '_blank')}
-                      className="px-6 md:px-8 py-2.5 md:py-3.5 rounded-full bg-seal text-white text-[13px] font-bold hover:bg-seal transition-all transform hover:scale-[1.01] shadow-md flex items-center gap-2"
+                      className="px-6 md:px-8 py-2.5 md:py-3.5 rounded-full bg-seal text-white text-[13px] font-bold hover:bg-seal transition transform hover:scale-[1.01] shadow-md flex items-center gap-2"
                     >
                       Open Resource <span className="text-[14px] font-bold">&rarr;</span>
                     </button>
                     
                     <button 
                       onClick={() => toggleBookmark(featured._id)}
-                      className={`w-11 h-11 md:w-12 md:h-12 rounded-full border border-gray-200 flex items-center justify-center transition-all ${bookmarks.includes(featured._id) ? 'bg-seal/10 border-seal text-seal' : 'bg-white text-gray-500 hover:bg-gray-50'}`}
+                      className={`w-11 h-11 md:w-12 md:h-12 rounded-full border border-gray-200 flex items-center justify-center transition-colors ${bookmarks.includes(featured._id) ? 'bg-seal/10 border-seal text-seal' : 'bg-white text-gray-500 hover:bg-gray-50'}`}
                     >
                       <Bookmark size={18} className={bookmarks.includes(featured._id) ? "fill-seal" : ""} />
                     </button>
@@ -233,7 +233,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   <button
                     key={dotIdx}
                     onClick={() => setActiveFeaturedIdx(dotIdx)}
-                    className={`w-2 h-2 rounded-full transition-all ${activeFeaturedIdx === dotIdx ? 'bg-seal w-4' : 'bg-gray-350'}`}
+                    className={`w-2 h-2 rounded-full transition-colors ${activeFeaturedIdx === dotIdx ? 'bg-seal w-4' : 'bg-gray-350'}`}
                   />
                 ))}
               </div>
@@ -257,7 +257,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
               {curatedBooks.map((book: any, idx: number) => (
                 <div 
                   key={book._id || idx}
-                  className="bg-surface rounded-2xl p-4 border border-gray-150/60 shadow-[0_4px_20px_rgba(0,0,0,0.01)] flex gap-4 relative group hover:border-seal/30 transition-all"
+                  className="bg-surface rounded-2xl p-4 border border-gray-150/60 shadow-[0_4px_20px_rgba(0,0,0,0.01)] flex gap-4 relative group hover:border-seal/30 transition"
                 >
                   {/* Book Cover */}
                   <div 
@@ -358,7 +358,7 @@ export default function ResourcesLibrary({ initialPosts, interrupts = [] }: { in
                   <a 
                     href={article.slug?.current ? `/resources/${article.slug.current}` : article.fileUrl || "#"} 
                     key={article._id || idx} 
-                    className="bg-white rounded-2xl p-4 border border-gray-150/60 shadow-[0_2px_15px_rgba(0,0,0,0.01)] flex items-center gap-4 group hover:border-seal/30 transition-all cursor-pointer"
+                    className="bg-white rounded-2xl p-4 border border-gray-150/60 shadow-[0_2px_15px_rgba(0,0,0,0.01)] flex items-center gap-4 group hover:border-seal/30 transition cursor-pointer"
                   >
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-mist text-seal">
                       <IconComponent className="w-6 h-6" />

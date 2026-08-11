@@ -34,10 +34,10 @@ export default function DashboardSidebar() {
   if (!isDashboard) return null
 
   return (
-    <div className={`w-80 h-screen bg-canvas border-r border-rule/40 flex flex-col fixed md:sticky left-0 top-0 z-[70] md:z-50 transition-all duration-300 ${isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full md:translate-x-0 pointer-events-none md:pointer-events-auto"}`}>
+    <div className={`w-80 h-screen bg-canvas border-r border-rule/40 flex flex-col fixed md:sticky left-0 top-0 z-[70] md:z-50 transition-colors duration-300 ${isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full md:translate-x-0 pointer-events-none md:pointer-events-auto"}`}>
       
       <div className="py-12 px-10">
-        <Link href="/" className="group flex items-center gap-3 relative transition-all">
+        <Link href="/" className="group flex items-center gap-3 relative transition-colors">
             <img src="/signet-brand-logo.svg" alt="Signet Logo" className="h-10 w-auto object-contain" />
         </Link>
         <button 
@@ -57,7 +57,7 @@ export default function DashboardSidebar() {
               key={item.name}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className={`flex items-center gap-3.5 px-5 py-3 rounded-xl transition-all group ${
+              className={`flex items-center gap-3.5 px-5 py-3 rounded-xl transition-colors group ${
                 isActive 
                   ? 'bg-white text-ink shadow-[0_10px_30px_rgba(110,122,103,0.08)] border border-rule/50' 
                   : 'text-ink/60 hover:text-ink hover:bg-ink/5 border border-transparent'
@@ -77,7 +77,7 @@ export default function DashboardSidebar() {
         <div className="bg-ink/5 rounded-2xl p-6 border border-ink/10 mx-2">
           <h4 className="text-[13px] font-bold text-ink mb-2" >Inner Circle</h4>
           <p className="text-[11px] text-ink leading-relaxed mb-4">Elevate your growth with intentional community mentorship.</p>
-          <Link href="/join" className="block w-full py-2.5 rounded-xl bg-ink text-white text-center font-bold text-[12px] shadow-[0_8px_20px_rgba(110,122,103,0.2)] hover:shadow-[0_12px_25px_rgba(110,122,103,0.3)] hover:-translate-y-0.5 transition-all" >
+          <Link href="/join" className="block w-full py-2.5 rounded-xl bg-ink text-white text-center font-bold text-[12px] shadow-[0_8px_20px_rgba(110,122,103,0.2)] hover:shadow-[0_12px_25px_rgba(110,122,103,0.3)] hover:-translate-y-0.5 transition" >
              Upgrade Plan
           </Link>
         </div>
@@ -90,7 +90,7 @@ export default function DashboardSidebar() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`flex items-center gap-3.5 px-4 py-2.5 rounded-lg transition-all group ${
+                className={`flex items-center gap-3.5 px-4 py-2.5 rounded-lg transition-colors group ${
                   isActive 
                     ? 'text-ink bg-ink/5' 
                     : 'text-ink/50 hover:text-ink'
@@ -101,7 +101,7 @@ export default function DashboardSidebar() {
               </Link>
             )
           })}
-          <button className="w-full flex items-center gap-3.5 px-4 py-2.5 text-ink/50 hover:text-wax transition-all">
+          <button className="w-full flex items-center gap-3.5 px-4 py-2.5 text-ink/50 hover:text-wax transition-colors">
             <LogOut size={16} />
             <span className="text-[13px] font-medium">Logout</span>
           </button>

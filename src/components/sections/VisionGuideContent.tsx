@@ -66,7 +66,7 @@ export default function VisionGuideContent({
   }
 
   return (
-    <div className="py-8 space-y-12 transition-all">
+    <div className="py-8 space-y-12 transition-colors">
       {/* Header */}
       <div className="flex items-start gap-4">
         <div className={`p-3 rounded-2xl bg-white border-2 border-accent/10`}>
@@ -161,7 +161,7 @@ export default function VisionGuideContent({
                   value={journalEntries[i] || ''}
                   onChange={(e) => updateJournalEntry(i, e.target.value)}
                   placeholder={prompt.journalPlaceholder}
-                  className="w-full p-6 bg-white rounded-xl border border-black/10 min-h-32 text-base text-foreground resize-y focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-all shadow-sm"
+                  className="w-full p-6 bg-white rounded-xl border border-black/10 min-h-32 text-base text-foreground resize-y focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition shadow-sm"
                 />
               </div>
             </div>

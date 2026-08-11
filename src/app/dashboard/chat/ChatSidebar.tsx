@@ -64,7 +64,7 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
           <input 
             type="text" 
             placeholder="Search channels..." 
-            className="w-full h-12 bg-ink border border-white/5 rounded-2xl pl-12 pr-4 focus:outline-none focus:border-verdant/20 text-xs tracking-wider transition-all placeholder:text-white/10"
+            className="w-full h-12 bg-ink border border-white/5 rounded-2xl pl-12 pr-4 focus:outline-none focus:border-verdant/20 text-xs tracking-wider transition-colors placeholder:text-white/10"
           />
         </div>
       </div>
@@ -82,13 +82,13 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
               <button
                 key={room.id}
                 onClick={() => handleSelectRoom(room.id)}
-                className={`flex items-center gap-3 w-full p-4 rounded-2xl transition-all group ${
+                className={`flex items-center gap-3 w-full p-4 rounded-2xl transition-colors group ${
                   selectedRoomId === room.id 
                     ? 'bg-verdant/10 border border-verdant/20 text-white' 
                     : 'text-white/40 hover:bg-ink hover:text-white border border-transparent'
                 }`}
               >
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${
+                <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${
                   selectedRoomId === room.id ? 'bg-verdant text-ink' : 'bg-ink text-mist/40 group-hover:text-verdant'
                 }`}>
                   <TransmissionIcon size={16} />
@@ -111,7 +111,7 @@ export default function ChatSidebar({ onSelectRoom, selectedRoomId }: { onSelect
         </div>
       </div>
 
-      <div className="mt-auto px-4 py-6 bg-ink rounded-3xl border border-white/5 group hover:border-verdant/20 transition-all">
+      <div className="mt-auto px-4 py-6 bg-ink rounded-3xl border border-white/5 group hover:border-verdant/20 transition-colors">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-xl bg-verdant/10 border border-verdant/20 animate-pulse" />
           <div>

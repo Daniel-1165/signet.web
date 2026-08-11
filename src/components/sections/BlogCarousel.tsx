@@ -96,7 +96,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
                   className="group block w-full h-full cursor-pointer"
                 >
                   {/* Image container with 1:1 aspect ratio as requested */}
-                  <div className="relative w-full aspect-square md:rounded-[2rem] md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-seal/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition-all duration-500">
+                  <div className="relative w-full aspect-square md:rounded-[2rem] md:shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:border border-seal/5 group-hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition duration-500">
                     <Image
                       src={slide.imageUrl}
                       alt={slide.caption || "Gallery image"}
@@ -111,7 +111,7 @@ export default function BlogCarousel({ slides }: { slides: CarouselSlide[] }) {
 
                     {/* Caption overlay */}
                     {slide.caption && (
-                      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 z-10">
+                      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-400 z-10">
                         <p className="text-white text-sm font-semibold drop-shadow-lg">
                           {slide.caption}
                         </p>

@@ -66,7 +66,7 @@ export default function ContactPage() {
               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="group block"
             >
-              <div className={`rounded-[2.5rem] bg-white border border-rule hover:border-seal/30 transition-all duration-500 p-8 h-full shadow-sm hover:shadow-xl flex flex-col justify-between`}>
+              <div className={`rounded-[2.5rem] bg-white border border-rule hover:border-seal/30 transition duration-500 p-8 h-full shadow-sm hover:shadow-xl flex flex-col justify-between`}>
                 <div className="space-y-6">
                   {/* Icon Container */}
                   <div className={`w-16 h-16 ${method.bgColor} ${method.textColor} rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
@@ -86,7 +86,7 @@ export default function ContactPage() {
 
                 {/* Action Button */}
                 <div className="mt-8">
-                  <div className={`inline-flex items-center justify-center gap-2 px-6 py-3 w-full sm:w-auto ${method.color} text-white font-bold rounded-full transition-all duration-300 shadow-md shadow-seal/10 font-sans text-xs uppercase tracking-wider`}>
+                  <div className={`inline-flex items-center justify-center gap-2 px-6 py-3 w-full sm:w-auto ${method.color} text-white font-bold rounded-full transition duration-300 shadow-md shadow-seal/10 font-sans text-xs uppercase tracking-wider`}>
                     <span>{method.action}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>

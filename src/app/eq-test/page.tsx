@@ -217,7 +217,7 @@ export default function EQAssessment() {
           </div>
           <button 
             onClick={() => setScreen("test")}
-            className="px-8 py-3 bg-seal text-white rounded-full font-bold tracking-wide hover:bg-accent hover:text-ink transition-all duration-300 shadow-2xl flex items-center gap-3"
+            className="px-8 py-3 bg-seal text-white rounded-full font-bold tracking-wide hover:bg-accent hover:text-ink transition duration-300 shadow-2xl flex items-center gap-3"
           >
             Start Assessment <ArrowRight className="w-4 h-4" />
           </button>
@@ -318,7 +318,7 @@ export default function EQAssessment() {
                     <div className="flex items-center gap-4">
                       <div className="w-32 h-2 bg-mist border border-mist/30 rounded-full overflow-hidden">
                         <div 
-                          className="h-full rounded-full transition-all duration-1000 bg-verdant"
+                          className="h-full rounded-full transition-colors duration-1000 bg-verdant"
                           style={{ width: `${results.finalDimScores[d]}%` }}
                         />
                       </div>
@@ -400,7 +400,7 @@ export default function EQAssessment() {
                       <button
                         key={i}
                         onClick={() => handleSelect(opt.score)}
-                        className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-all duration-200 border ${
+                        className={`py-2 px-4 rounded-full text-center text-sm font-medium transition-colors duration-200 border ${
                           isSelected 
                             ? 'bg-seal border-seal text-white shadow-md' 
                             : 'bg-white border-ink/10 text-ink hover:border-seal hover:text-seal'
@@ -419,14 +419,14 @@ export default function EQAssessment() {
               <button 
                   onClick={() => setCurrentIdx(Math.max(0, currentIdx - 1))}
                   disabled={currentIdx === 0}
-                  className="text-ink/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-ink px-4 py-2 rounded-full transition-all disabled:opacity-0"
+                  className="text-ink/40 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:text-ink px-4 py-2 rounded-full transition disabled:opacity-0"
               >
                   <ArrowLeft className="w-3 h-3 mr-2" /> Back
               </button>
               <button 
                   onClick={handleNext}
                   disabled={answers[question.id] === undefined}
-                  className="bg-seal text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-ink px-6 py-3 rounded-full transition-all disabled:opacity-30 shadow-xl"
+                  className="bg-seal text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-accent hover:text-ink px-6 py-3 rounded-full transition disabled:opacity-30 shadow-xl"
               >
                   {currentIdx === QUESTIONS.length - 1 ? "FINISH" : "CONTINUE"} <ArrowRight className="w-4 h-4 ml-2" />
               </button>

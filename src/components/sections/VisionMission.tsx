@@ -31,7 +31,7 @@ const VisionMission = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: index * 0.2 }}
-                            className="group relative aspect-[4/5] md:aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/10 transition-all duration-500 hover:shadow-black/20 hover:-translate-y-2"
+                            className="group relative aspect-[4/5] md:aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/10 transition duration-500 hover:shadow-black/20 hover:-translate-y-2"
                         >
                             {/* Background Image */}
                             <img 
@@ -60,7 +60,7 @@ const VisionMission = () => {
                             </div>
 
                             {/* Border Glow on Hover */}
-                            <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-[2.5rem] transition-all duration-500" />
+                            <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-[2.5rem] transition-colors duration-500" />
                         </motion.div>
                     ))}
                 </div>

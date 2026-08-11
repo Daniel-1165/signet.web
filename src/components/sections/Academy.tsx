@@ -103,14 +103,14 @@ const Academy = () => {
                             <div 
                                 key={i} 
                                 onClick={() => setActiveIndex(i)}
-                                className={`group cursor-pointer rounded-[2.5rem] border overflow-hidden transition-all duration-500 ${
+                                className={`group cursor-pointer rounded-[2.5rem] border overflow-hidden transition-colors duration-500 ${
                                     isActive 
                                     ? "bg-white border-black/[0.08] shadow-[0_30px_60px_rgb(0,0,0,0.04)] ring-1 ring-black/[0.01]"
                                     : "bg-transparent border-transparent hover:bg-white/50"
                                 }`}
                             >
                                 <div className="p-6 md:p-10 flex items-center gap-6">
-                                    <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-500 ${isActive ? course.accent : 'bg-black/[0.04] text-foreground/30'}`}>
+                                    <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-500 ${isActive ? course.accent : 'bg-black/[0.04] text-foreground/30'}`}>
                                         {course.icon}
                                     </div>
                                     <div className="flex-1">

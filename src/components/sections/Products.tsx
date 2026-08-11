@@ -71,7 +71,7 @@ const Products = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="group relative flex flex-col sm:flex-row h-full rounded-3xl border border-black/[0.04] bg-white p-4 hover:shadow-2xl hover:shadow-seal/5 transition-all duration-500 overflow-hidden"
+                            className="group relative flex flex-col sm:flex-row h-full rounded-3xl border border-black/[0.04] bg-white p-4 hover:shadow-2xl hover:shadow-seal/5 transition duration-500 overflow-hidden"
                         >
                             {/* Image Section */}
                             <div className="w-full sm:w-2/5 h-48 sm:h-auto rounded-2xl overflow-hidden relative mb-4 sm:mb-0 sm:mr-6 shrink-0 bg-canvas">

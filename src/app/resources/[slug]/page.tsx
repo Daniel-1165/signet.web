@@ -199,7 +199,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
 
           {/* Author Bio at end */}
           <footer className="mt-24 pt-24 border-t border-ink/10 max-w-3xl mx-auto px-6 sm:px-0">
-             <div className="p-10 bg-canvas rounded-[3rem] border border-ink/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left transition-all hover:shadow-xl group">
+             <div className="p-10 bg-canvas rounded-[3rem] border border-ink/5 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left transition hover:shadow-xl group">
                 {resource.author?.image && (
                   <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
                      <img src={urlFor(resource.author.image as any).url()} alt={resource.author.name} className="w-full h-full object-cover" />

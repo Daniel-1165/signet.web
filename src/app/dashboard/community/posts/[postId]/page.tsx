@@ -178,7 +178,7 @@ export default function PostDetailPage() {
                 <button
                   type="submit"
                   disabled={!newComment.trim() || isSubmittingComment}
-                  className="px-5 py-1.5 bg-seal text-white rounded-full text-[14px] font-bold hover:bg-seal transition-all disabled:opacity-50"
+                  className="px-5 py-1.5 bg-seal text-white rounded-full text-[14px] font-bold hover:bg-seal transition disabled:opacity-50"
                 >
                   {isSubmittingComment ? "Replying..." : "Reply"}
                 </button>

@@ -101,7 +101,7 @@ export default function CertificatesPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="e.g. daniel_growth or user@domain.com"
-                className="w-full pl-12 pr-4 py-4 bg-background border border-black/10 rounded-xl focus:outline-none focus:border-seal/40 focus:ring-1 focus:ring-seal transition-all text-sm font-medium"
+                className="w-full pl-12 pr-4 py-4 bg-background border border-black/10 rounded-xl focus:outline-none focus:border-seal/40 focus:ring-1 focus:ring-seal transition-colors text-sm font-medium"
                 required
               />
             </div>
@@ -109,7 +109,7 @@ export default function CertificatesPage() {
           <button
             type="submit"
             disabled={loading || !username.trim()}
-            className="w-full h-14 bg-seal hover:bg-seal/90 text-white font-bold rounded-xl shadow-[0_4px_20px_rgba(22,56,50,0.3)] transition-all flex items-center justify-center disabled:opacity-50 disabled:scale-100 uppercase tracking-wider text-sm"
+            className="w-full h-14 bg-seal hover:bg-seal/90 text-white font-bold rounded-xl shadow-[0_4px_20px_rgba(22,56,50,0.3)] transition flex items-center justify-center disabled:opacity-50 disabled:scale-100 uppercase tracking-wider text-sm"
           >
             {loading ? (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -151,7 +151,7 @@ export default function CertificatesPage() {
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 w-full h-12 border-2 border-seal text-seal hover:bg-seal hover:text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 text-sm"
+                className="mt-4 w-full h-12 border-2 border-seal text-seal hover:bg-seal hover:text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
               >
                 <Download size={18} /> Download Certificate
               </a>

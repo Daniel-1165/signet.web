@@ -8,8 +8,8 @@ import Footer from "@/components/layout/Footer";
 import HomeCarousel from "@/components/sections/HomeCarousel";
 import HeroJoinButton from "@/components/sections/HeroJoinButton";
 import TransformLifeSection from "@/components/sections/TransformLifeSection";
-import SealMark from "@/components/brand/SealMark";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { sanityFetch } from "@/lib/sanity/client";
 import { GET_CAROUSEL_SLIDES } from "@/lib/sanity/queries";
 
@@ -22,47 +22,57 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-canvas text-ink font-sans">
 
-      {/* Hero — the thesis. The forest reads as the "silent" half of the name;
-          the seal, struck over it, reads as the mark that growth leaves behind. */}
-      <section className="relative w-full h-[88vh] min-h-[560px] overflow-hidden group on-ink">
-        <img
-          src="/forest_hero_bg.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.72] saturate-[0.85] group-hover:scale-[1.03] transition-transform duration-[3s] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-        />
-        {/* Green-black wash rather than neutral: the whole palette is tinted
-            toward forest, and the hero is where that has to read hardest. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+      {/* Hero. Following the reference: the photograph is a rounded panel
+          inset from the page edge rather than full-bleed, and the text sits
+          low-left over it instead of centred. The inset is what makes a photo
+          read as a considered object rather than a banner. */}
+      <section className="px-3 sm:px-4 pt-3 sm:pt-4">
+        <div className="relative w-full h-[78vh] min-h-[520px] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden group on-ink">
+          <img
+            src="/forest_hero_bg.png"
+            alt=""
+            width={2400}
+            height={1400}
+            fetchPriority="high"
+            className="absolute inset-0 w-full h-full object-cover brightness-[0.7] saturate-[0.9] scale-[1.01] group-hover:scale-[1.04] motion-reduce:group-hover:scale-[1.01]"
+            style={{ transition: "transform 3s var(--ease)" }}
+          />
+          {/* Bottom-weighted wash: the text lives at the foot of the image, so
+              that is where the darkness needs to be. */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/45 to-ink/10" />
 
-        <div className="relative h-full page-container flex flex-col justify-center">
-          <div className="max-w-4xl">
-            <span className="eyebrow eyebrow-on-ink animate-press-in">
-              Silent Growth Network
-            </span>
+          {/* One orchestrated entrance for the whole block, rather than four
+              elements each animating on their own schedule. */}
+          <div className="relative h-full page-container flex flex-col justify-end pb-12 sm:pb-16 animate-rise">
+            <div className="max-w-3xl">
+              <span className="eyebrow eyebrow-on-ink">Silent Growth Network</span>
 
-            <h1 className="h1 text-canvas mt-7 mb-9 animate-press-in animate-delay-1">
-              Become intentional about{" "}
-              <span className="display-accent text-verdant">growth</span>
-              <br className="hidden md:block" /> and development.
-            </h1>
+              {/* Your original copy, unchanged. What is simpler is the setting:
+                  the second line drops to a lighter weight and the mist tone
+                  rather than carrying a coloured span — the same two-tone
+                  headline idea as the reference heroes, done with weight
+                  instead of a second typeface. */}
+              <h1 className="h1 text-canvas mt-5 mb-9 max-w-[18ch]">
+                Become Intentional about Growth{" "}
+                <span className="font-light text-mist/70">and Development.</span>
+              </h1>
 
-            <div className="flex flex-wrap gap-x-8 gap-y-4 items-center animate-press-in animate-delay-2">
-              <HeroJoinButton />
-              <Link
-                href="/resources"
-                className="text-mist/70 hover:text-canvas transition-colors text-sm font-medium border-b border-verdant/30 hover:border-verdant pb-1"
-              >
-                Explore the library →
-              </Link>
+              <div className="flex flex-wrap gap-x-5 gap-y-4 items-center">
+                <HeroJoinButton />
+                {/* Circular arrow affordance from the reference, paired with a
+                    plain text label rather than a second heavy button. */}
+                <Link
+                  href="/resources"
+                  className="group/link inline-flex items-center gap-3 text-canvas/85 hover:text-canvas transition-colors"
+                >
+                  <span className="w-9 h-9 rounded-full border border-canvas/30 group-hover/link:border-canvas/70 flex items-center justify-center transition-colors">
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </span>
+                  <span className="text-sm font-medium">Explore the library</span>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* The seal, bottom-right, quiet. Hidden on mobile where the headline
-            needs the full width more than the brand needs the flourish. */}
-        <div className="absolute bottom-12 right-12 hidden lg:block opacity-70 animate-press-in animate-delay-4">
-          <SealMark size={148} tone="canvas" />
         </div>
       </section>
 

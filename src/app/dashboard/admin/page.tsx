@@ -354,12 +354,12 @@ export default function AdminHubPage() {
                 value={promotionTarget}
                 onChange={(e) => setPromotionTarget(e.target.value)}
                 placeholder="Enter User ID or Email address..."
-                className="flex-1 bg-canvas border border-rule rounded-2xl py-4 px-6 text-ink text-[14px] outline-none focus:border-seal transition-all font-sans font-medium"
+                className="flex-1 bg-canvas border border-rule rounded-2xl py-4 px-6 text-ink text-[14px] outline-none focus:border-seal transition-colors font-sans font-medium"
               />
               <button 
                 onClick={handlePromote}
                 disabled={promoting || !promotionTarget.trim()}
-                className="px-8 py-4 bg-seal hover:bg-seal text-white rounded-2xl font-bold text-[13px] transition-all shadow-md shadow-seal/20 disabled:opacity-50 font-sans"
+                className="px-8 py-4 bg-seal hover:bg-seal text-white rounded-2xl font-bold text-[13px] transition shadow-md shadow-seal/20 disabled:opacity-50 font-sans"
               >
                 {promoting ? 'Processing...' : 'Verify & Promote'}
               </button>
@@ -401,7 +401,7 @@ export default function AdminHubPage() {
                     placeholder="e.g. daniel_growth"
                     value={certUsername}
                     onChange={(e) => setCertUsername(e.target.value)}
-                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-all font-medium"
+                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-colors font-medium"
                   />
                 </div>
                 
@@ -413,7 +413,7 @@ export default function AdminHubPage() {
                     placeholder="e.g. daniel@signet.org"
                     value={certEmail}
                     onChange={(e) => setCertEmail(e.target.value)}
-                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-all font-medium"
+                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-colors font-medium"
                   />
                 </div>
               </div>
@@ -427,7 +427,7 @@ export default function AdminHubPage() {
                     placeholder="e.g. Silent Growth Network Cohort 1"
                     value={certCourse}
                     onChange={(e) => setCertCourse(e.target.value)}
-                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-all font-medium"
+                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-colors font-medium"
                   />
                 </div>
                 
@@ -438,7 +438,7 @@ export default function AdminHubPage() {
                     required
                     value={certDate}
                     onChange={(e) => setCertDate(e.target.value)}
-                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-all font-medium"
+                    className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none focus:border-seal transition-colors font-medium"
                   />
                 </div>
               </div>
@@ -451,14 +451,14 @@ export default function AdminHubPage() {
                   required
                   accept="application/pdf,image/*"
                   onChange={(e) => setCertFile(e.target.files?.[0] || null)}
-                  className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none file:mr-4 file:py-1.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-mist file:text-seal hover:file:bg-seal hover:file:text-white file:transition-all"
+                  className="w-full bg-white border border-rule rounded-xl py-3 px-4 text-sm outline-none file:mr-4 file:py-1.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-mist file:text-seal hover:file:bg-seal hover:file:text-white file:transition-colors"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={uploadingCert}
-                className="w-full py-4 bg-seal hover:bg-seal text-white rounded-xl font-bold text-xs uppercase tracking-widest transition-all shadow-md shadow-seal/20 disabled:opacity-50"
+                className="w-full py-4 bg-seal hover:bg-seal text-white rounded-xl font-bold text-xs uppercase tracking-widest transition shadow-md shadow-seal/20 disabled:opacity-50"
               >
                 {uploadingCert ? 'Uploading & Creating...' : 'Create Certificate Record'}
               </button>
@@ -524,7 +524,7 @@ export default function AdminHubPage() {
               <button 
                 onClick={handleExportCSV}
                 disabled={subscribers.length === 0}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-mist hover:bg-seal text-seal hover:text-white rounded-xl font-bold text-[12px] uppercase tracking-wider transition-all disabled:opacity-50 font-sans"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-mist hover:bg-seal text-seal hover:text-white rounded-xl font-bold text-[12px] uppercase tracking-wider transition disabled:opacity-50 font-sans"
               >
                 <Download size={14} /> Export CSV
               </button>
@@ -649,14 +649,14 @@ export default function AdminHubPage() {
                   <button
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
-                    className="p-2 border border-rule rounded-xl text-ink/50 hover:bg-canvas hover:text-ink transition-all disabled:opacity-30"
+                    className="p-2 border border-rule rounded-xl text-ink/50 hover:bg-canvas hover:text-ink transition disabled:opacity-30"
                   >
                     <ChevronLeft size={16} />
                   </button>
                   <button
                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="p-2 border border-rule rounded-xl text-ink/50 hover:bg-canvas hover:text-ink transition-all disabled:opacity-30"
+                    className="p-2 border border-rule rounded-xl text-ink/50 hover:bg-canvas hover:text-ink transition disabled:opacity-30"
                   >
                     <ChevronRight size={16} />
                   </button>
@@ -670,7 +670,7 @@ export default function AdminHubPage() {
             <h4 className="text-[10px] font-bold text-seal/60 uppercase tracking-[0.2em] mb-8">Active Administrators</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {[user].map((staff, i) => (
-                 <div key={i} className="flex items-center justify-between p-5 bg-canvas rounded-2xl border border-rule hover:border-seal/30 transition-all group">
+                 <div key={i} className="flex items-center justify-between p-5 bg-canvas rounded-2xl border border-rule hover:border-seal/30 transition-colors group">
                     <div className="flex items-center gap-4">
                       <div className="relative">
                         <img src={staff?.imageUrl} className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
@@ -709,7 +709,7 @@ export default function AdminHubPage() {
               <button 
                 onClick={clearAllMessages}
                 disabled={loading}
-                className="flex items-center justify-center gap-3 w-full py-4 bg-red-50 text-red-600 border border-red-100 rounded-2xl font-bold text-[12px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all disabled:opacity-50"
+                className="flex items-center justify-center gap-3 w-full py-4 bg-red-50 text-red-600 border border-red-100 rounded-2xl font-bold text-[12px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition disabled:opacity-50"
               >
                 <Trash2 size={16} />
                 Delete All Messages
@@ -724,11 +724,11 @@ export default function AdminHubPage() {
              <h3 className="text-white text-[24px] font-semibold mt-2 mb-6 font-sans" >Infrastructure</h3>
              
              <div className="space-y-3 font-sans">
-                <a href="https://clerk.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all group/link">
+                <a href="https://clerk.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-colors group/link">
                    <span className="text-white/80 text-[13px] font-semibold">Clerk Console</span>
                    <ExternalLink size={14} className="text-white/20 group-hover/link:text-white" />
                 </a>
-                <a href="https://supabase.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all group/link">
+                <a href="https://supabase.com" target="_blank" className="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-colors group/link">
                    <span className="text-white/80 text-[13px] font-semibold">Supabase DB</span>
                    <ExternalLink size={14} className="text-white/20 group-hover/link:text-white" />
                 </a>

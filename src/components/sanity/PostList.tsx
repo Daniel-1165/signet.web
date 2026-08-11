@@ -29,7 +29,7 @@ export default function PostList({posts}: PostListProps) {
         <Link
           key={post._id}
           href={`/blog/${post.slug.current}`}
-          className="group block bg-white rounded-[2rem] overflow-hidden border border-black/[0.03] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
+          className="group block bg-white rounded-[2rem] overflow-hidden border border-black/[0.03] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition duration-500"
         >
           {/* Image Container */}
           <div className="relative aspect-[16/10] overflow-hidden">
@@ -68,7 +68,7 @@ export default function PostList({posts}: PostListProps) {
             </h3>
 
             <div className="flex items-center gap-2 pt-2 text-seal">
-               <span className="text-[11px] font-semibold uppercase tracking-widest group-hover:tracking-[0.2em] transition-all">Read Insight</span>
+               <span className="text-[11px] font-semibold uppercase tracking-widest group-hover:tracking-[0.2em] transition-colors">Read Insight</span>
                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>

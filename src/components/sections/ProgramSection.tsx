@@ -25,7 +25,7 @@ export default function ProgramSection() {
           <span className="eyebrow mb-5">Our Program</span>
           <h2 className="h2">
             Learn. Grow. Lead.{" "}
-            <span className="display-accent text-seal">Together.</span>
+            <span className="text-seal">Together.</span>
           </h2>
         </div>
 
@@ -36,7 +36,7 @@ export default function ProgramSection() {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="card lift-hover"
+            className="card"
           >
             <div className="space-y-6">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-mist flex items-center justify-center text-seal">
@@ -62,7 +62,7 @@ export default function ProgramSection() {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="card lift-hover"
+            className="card"
           >
             <div className="space-y-6">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-mist flex items-center justify-center text-seal">
@@ -95,7 +95,7 @@ export default function ProgramSection() {
               {/* Attendance note. Previously set in full caps, which read as
                   shouting at people who had not yet done anything wrong. The
                   wax accent and the icon carry the weight instead. */}
-              <div className="press p-5 flex gap-4 items-start">
+              <div className="bg-mist/35 rounded-[var(--radius)] p-5 flex gap-4 items-start">
                 <AlertCircle className="text-wax shrink-0 mt-0.5" size={20} strokeWidth={1.7} />
                 <div className="space-y-2">
                   <p className="text-sm font-semibold text-ink">

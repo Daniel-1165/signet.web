@@ -13,7 +13,7 @@ export default function VisionMissionSection() {
         <div className="text-center mb-14 md:mb-20">
           <span className="eyebrow mb-5">Our Purpose</span>
           <h2 className="h2">
-            Vision &amp; <span className="display-accent text-seal">Mission</span>
+            Vision &amp; <span className="text-seal">Mission</span>
           </h2>
           <p className="lede pt-5 max-w-xl mx-auto">
             Guided by a clear purpose. Driven by meaningful impact.
@@ -28,7 +28,7 @@ export default function VisionMissionSection() {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="card-press flex flex-col justify-between"
+            className="card flex flex-col justify-between"
           >
             <div className="space-y-6 sm:space-y-8">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-mist flex items-center justify-center text-seal">
@@ -39,7 +39,7 @@ export default function VisionMissionSection() {
                 <span className="eyebrow">Our Vision</span>
                 <p className="font-display text-lg sm:text-xl md:text-2xl leading-[1.35] text-ink">
                   To build a global network of trailblazers who{" "}
-                  <span className="display-accent text-seal">model and replicate excellence</span> in
+                  <span className="text-seal">model and replicate excellence</span> in
                   diverse spheres.
                 </p>
               </div>
@@ -66,7 +66,7 @@ export default function VisionMissionSection() {
                     point of a network called Silent. */}
                 <p className="font-display text-lg sm:text-xl md:text-2xl leading-[1.35] text-canvas">
                   Ordinary persons achieving{" "}
-                  <span className="display-accent text-verdant">extraordinary results</span> —
+                  <span className="text-verdant">extraordinary results</span> —
                   silently and sustainably.
                 </p>
               </div>

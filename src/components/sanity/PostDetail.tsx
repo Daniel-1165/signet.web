@@ -179,7 +179,7 @@ export default function PostDetail({ post }: PostDetailProps) {
               <span className="text-[8px] font-semibold uppercase tracking-[0.3em] text-white/50 mb-3 block">Network Brief</span>
               <h4 className="text-xl font-bold mb-4">Stay ahead of the curve.</h4>
               <p className="text-xs text-white/70 leading-relaxed font-medium mb-6">Weekly insights on intentional growth and tactical mastery.</p>
-              <button className="w-full py-3 bg-white text-seal text-[10px] font-semibold uppercase tracking-widest rounded-xl hover:bg-verdant hover:text-white transition-all">Join Signet</button>
+              <button className="w-full py-3 bg-white text-seal text-[10px] font-semibold uppercase tracking-widest rounded-xl hover:bg-verdant hover:text-white transition-colors">Join Signet</button>
            </div>
            
            <div className="space-y-6">

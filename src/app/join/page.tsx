@@ -155,7 +155,7 @@ export default function JoinPage() {
                                     </div>
 
                                     <div className="pt-6">
-                                        <MagneticButton className="w-full h-16 bg-foreground text-white font-bold uppercase tracking-widest hover:bg-signet-green transition-all rounded-2xl shadow-xl shadow-black/10">
+                                        <MagneticButton className="w-full h-16 bg-foreground text-white font-bold uppercase tracking-widest hover:bg-signet-green transition rounded-2xl shadow-xl shadow-black/10">
                                             Request Entry
                                         </MagneticButton>
                                     </div>
@@ -179,7 +179,7 @@ export default function JoinPage() {
                                     Your profile has been added to our assessment queue. You will receive a secure communication within 48 hours.
                                 </p>
                                 <Link href="/">
-                                    <MagneticButton className="inline-flex h-14 px-10 bg-white border border-black/[0.06] text-foreground font-bold uppercase tracking-widest hover:bg-canvas transition-all rounded-2xl">
+                                    <MagneticButton className="inline-flex h-14 px-10 bg-white border border-black/[0.06] text-foreground font-bold uppercase tracking-widest hover:bg-canvas transition-colors rounded-2xl">
                                         Return Home
                                     </MagneticButton>
                                 </Link>

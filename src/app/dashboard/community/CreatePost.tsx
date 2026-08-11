@@ -66,7 +66,7 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
       {/* Input box and actions column */}
       <div className="flex-1 flex flex-col gap-2.5 min-w-0">
         {/* White input box containing placeholder and Post button inline */}
-        <div className="flex items-center bg-surface border border-gray-200 rounded-[1.2rem] pl-4 pr-2 py-1.5 shadow-sm focus-within:border-seal transition-all w-full min-w-0">
+        <div className="flex items-center bg-surface border border-gray-200 rounded-[1.2rem] pl-4 pr-2 py-1.5 shadow-sm focus-within:border-seal transition w-full min-w-0">
           <input 
             type="text"
             placeholder="Share your thoughts..."
@@ -79,7 +79,7 @@ export function CreatePost({ onPostCreated }: { onPostCreated?: () => void }) {
           <button
             type="submit"
             disabled={!content.trim() || isLoading}
-            className="h-8 px-5 bg-seal text-white rounded-full text-[14px] font-bold hover:bg-seal transition-all disabled:opacity-50 shrink-0 flex items-center justify-center"
+            className="h-8 px-5 bg-seal text-white rounded-full text-[14px] font-bold hover:bg-seal transition disabled:opacity-50 shrink-0 flex items-center justify-center"
           >
             {isLoading ? "Posting..." : "Post"}
           </button>

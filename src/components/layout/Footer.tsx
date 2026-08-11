@@ -92,7 +92,7 @@ const Footer = () => {
                 <div className="grid lg:grid-cols-2 gap-10 pb-12 border-b border-verdant/15">
                     <div>
                         <h3 className="font-display text-3xl md:text-4xl font-semibold tracking-[-0.025em] text-canvas mb-4">
-                            Stay in the <span className="display-accent text-verdant">silent loop</span>.
+                            Stay in the <span className="text-verdant">silent loop</span>.
                         </h3>
                         <p className="text-mist/65 text-[15px] leading-relaxed max-w-md">
                             A monthly brief on intentional growth — no noise, just substance.
@@ -110,7 +110,7 @@ const Footer = () => {
                                         className="flex-1 min-w-0 bg-transparent px-3 md:px-4 py-2.5 text-sm outline-none text-mist/40 cursor-not-allowed"
                                     />
                                     <SignInButton mode="modal">
-                                        <button className="shrink-0 bg-verdant text-ink px-5 py-2.5 rounded-xl font-semibold text-xs hover:bg-mist transition-all flex items-center gap-2">
+                                        <button className="shrink-0 bg-verdant text-ink px-5 py-2.5 rounded-xl font-semibold text-xs hover:bg-mist transition-colors flex items-center gap-2">
                                             Sign in <ArrowRight size={14} />
                                         </button>
                                     </SignInButton>
@@ -123,7 +123,7 @@ const Footer = () => {
                             </div>
                         ) : (
                             <form onSubmit={handleSubscribe} className="flex flex-col gap-2.5">
-                                <div className="flex w-full bg-canvas/[0.06] rounded-2xl p-1.5 border border-verdant/20 focus-within:border-verdant transition-all items-center">
+                                <div className="flex w-full bg-canvas/[0.06] rounded-2xl p-1.5 border border-verdant/20 focus-within:border-verdant transition-colors items-center">
                                     <input
                                         type="email"
                                         required
@@ -137,7 +137,7 @@ const Footer = () => {
                                     <button
                                         type="submit"
                                         disabled={status === "loading" || status === "success" || !email}
-                                        className="shrink-0 bg-verdant disabled:opacity-40 text-ink px-5 py-2.5 rounded-xl font-semibold text-xs hover:bg-mist transition-all flex items-center gap-2"
+                                        className="shrink-0 bg-verdant disabled:opacity-40 text-ink px-5 py-2.5 rounded-xl font-semibold text-xs hover:bg-mist transition flex items-center gap-2"
                                     >
                                         {status === "loading" ? "Subscribing…" : "Subscribe"} <ArrowRight size={14} />
                                     </button>
@@ -185,7 +185,7 @@ const Footer = () => {
                                     href={item.href}
                                     target={item.href.startsWith("http") ? "_blank" : undefined}
                                     rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                    className="w-9 h-9 rounded-full border border-verdant/25 flex items-center justify-center text-mist/70 hover:bg-verdant hover:text-ink hover:border-verdant transition-all"
+                                    className="w-9 h-9 rounded-full border border-verdant/25 flex items-center justify-center text-mist/70 hover:bg-verdant hover:text-ink hover:border-verdant transition-colors"
                                     aria-label={item.label}
                                 >
                                     <item.icon size={16} />

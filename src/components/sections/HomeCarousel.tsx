@@ -122,19 +122,19 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
         <div>
           <span className="eyebrow mb-4">Featured Insights</span>
           <h2 className="h2">
-            Growth <span className="display-accent text-seal">archives</span>
+            Growth <span className="text-seal">archives</span>
           </h2>
         </div>
         {/* Dot indicators. These were unlabelled buttons — to a screen reader
             they announced as "button" with no name at all. */}
-        <div className="hidden md:flex items-center gap-2 lift px-4 py-2 rounded-full">
+        <div className="hidden md:flex items-center gap-2 border border-rule bg-surface px-4 py-2 rounded-full">
           {displaySlides.map((_, i) => (
             <button
               key={i}
               onClick={() => scrollTo(i)}
               aria-label={`Go to slide ${i + 1} of ${displaySlides.length}`}
               aria-current={i === activeIndex}
-              className={`rounded-full transition-all duration-500 ease-out ${
+              className={`rounded-full transition-colors duration-500 ease-out ${
                 i === activeIndex ? 'w-6 h-1.5 bg-seal' : 'w-1.5 h-1.5 bg-rule-strong'
               }`}
             />
@@ -175,7 +175,7 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
           onClick={() => scrollTo(activeIndex - 1)}
           disabled={activeIndex === 0}
           aria-label="Previous slide"
-          className="w-12 h-12 rounded-full border border-rule-strong flex items-center justify-center text-ink disabled:opacity-20 hover:bg-ink hover:text-canvas hover:border-ink transition-all"
+          className="w-12 h-12 rounded-full border border-rule-strong flex items-center justify-center text-ink disabled:opacity-20 hover:bg-ink hover:text-canvas hover:border-ink transition"
         >
           <ChevronLeft size={20} />
         </button>
@@ -183,7 +183,7 @@ export default function HomeCarousel({ slides }: HomeCarouselProps) {
           onClick={() => scrollTo(activeIndex + 1)}
           disabled={activeIndex === displaySlides.length - 1}
           aria-label="Next slide"
-          className="w-12 h-12 rounded-full border border-rule-strong flex items-center justify-center text-ink disabled:opacity-20 hover:bg-ink hover:text-canvas hover:border-ink transition-all"
+          className="w-12 h-12 rounded-full border border-rule-strong flex items-center justify-center text-ink disabled:opacity-20 hover:bg-ink hover:text-canvas hover:border-ink transition"
         >
           <ChevronRight size={20} />
         </button>
@@ -205,10 +205,10 @@ function SlideCard({
 
   const content = (
     <div
-      className={`relative w-full aspect-square overflow-hidden cursor-pointer group transition-all duration-1000 ${
+      className={`relative w-full aspect-square overflow-hidden cursor-pointer group transition-colors duration-1000 ${
         isActive ? 'scale-[1.02]' : 'opacity-45 scale-[0.98]'
       }`}
-      style={{ borderRadius: 'var(--radius-seal)' }}
+      style={{ borderRadius: 'var(--radius-lg)' }}
     >
       {/* 1:1 Aspect Ratio fill with full width/height */}
       {image?.asset || image?.url ? (
@@ -246,7 +246,7 @@ function SlideCard({
           {link && (
             <div className="flex items-center gap-3 text-canvas/70 group-hover:text-canvas transition-colors duration-500">
               <span className="font-mono text-[10px] uppercase tracking-[0.2em]">Read</span>
-              <div className="w-8 h-px bg-verdant/60 group-hover:w-12 transition-all duration-500" />
+              <div className="w-8 h-px bg-verdant/60 group-hover:w-12 transition-colors duration-500" />
               <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
             </div>
           )}
