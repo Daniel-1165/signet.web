@@ -4,10 +4,9 @@ import "./globals.css";
 import { SyncUser } from "@/components/auth/SyncUser";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 
-// Static mock font variables to prevent build-time Google Fonts downloads (loaded via globals.css)
-const montserrat = { variable: "font-sans" };
-const jetbrainsMono = { variable: "font-mono" };
-const playfair = { variable: "font-serif" };
+// Fonts are loaded via @import in globals.css rather than next/font, because
+// build-time Google Fonts downloads fail in this environment. Faces: Fraunces
+// (display), Inter (body), JetBrains Mono (eyebrows/data).
 
 export const metadata: Metadata = {
   title: "SIGNET | Silent Growth Network",
@@ -22,7 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
-        <body className={`${montserrat.variable} ${jetbrainsMono.variable} ${playfair.variable} font-sans antialiased bg-white w-full overflow-x-hidden relative`}>
+        <body className="font-sans antialiased bg-canvas text-ink w-full overflow-x-hidden relative">
           <SyncUser />
           <LayoutWrapper>
             {children}
